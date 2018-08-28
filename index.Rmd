@@ -8,7 +8,7 @@ output:
   #bookdown::pdf_book: default
 ---
 
-# About this course
+# About this course {-}
 # Introduction: Measurement, Central Tendency, Dispersion, Validity, Reliability
 # Research Design: Counterfactuals, Forming Hypotheses, Internal & External Validity
 # Sampling and Distributions
