@@ -1,6 +1,6 @@
 ---
-title: "A Book"
-author: "Frida Gomam"
+title: "Statistics 1"
+#author: "Frida Gomam"
 site: bookdown::bookdown_site
 documentclass: book
 output:
@@ -8,7 +8,19 @@ output:
   #bookdown::pdf_book: default
 ---
 
-# Hello World
+# About this course
+# Introduction: Measurement, Central Tendency, Dispersion, Validity, Reliability
+# Research Design: Counterfactuals, Forming Hypotheses, Internal & External Validity
+# Sampling and Distributions
+# T test for the Difference in Means and Hypothesis Testing
+# RCTs: Randomized Controlled Trials
+# Bivariate Linear Regression Models
+# Multiple Linear Regression Models (I)
+# Multiple Linear Regression Models (II)
+# Regression Assumptions and Violations of Assumptions
+# Binary Outcomes: The Linear Probability Model
+# Putting It All Together
+
 
 Hi.
 
