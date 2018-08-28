@@ -1,6 +1,54 @@
 output_dir: "docs"
-book_filename: "bookdown-demo"
+book_filename: "statistics1.rmd"
 language:
   ui:
     chapter_name: "Chapter "
 delete_merged_file: true
+
+rmd_files: [
+  index.Rmd,
+  
+  #dropin_sessions.Rmd,
+  
+  #seminars/seminar1.Rmd, 
+  #solutions/solutions1.Rmd,
+  
+  #seminars/seminar2.Rmd,
+  #solutions/solutions2.Rmd,
+
+  #seminars/seminar3.Rmd,
+  #solutions/solutions3.Rmd,
+
+  #seminars/seminar4.Rmd,
+  #solutions/solutions4.Rmd,
+
+  #seminars/seminar5.Rmd,
+  #solutions/solutions5.Rmd,
+
+  #seminars/seminar6.Rmd,
+  #solutions/solutions6.Rmd,
+
+  #seminars/seminar7.Rmd,
+  #solutions/solutions7.Rmd,
+
+  #seminars/seminar8.Rmd,
+  #solutions/solutions8.Rmd,
+
+  #seminars/seminar9.Rmd,
+  #solutions/solutions9.Rmd,
+
+  # optional material
+  #optional.Rmd,
+  
+  # resources
+  #resources.Rmd,
+  
+  # datasets
+  #datasets.Rmd,
+  
+  # midterm revision
+  # midtermrevision.Rmd
+  
+  # FAQs
+  #FAQs.Rmd
+]

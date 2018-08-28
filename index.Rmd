@@ -1,6 +1,6 @@
 ---
 title: "Statistics 1"
-#author: "Frida Gomam"
+#author: "Philipp Broniecki"
 site: bookdown::bookdown_site
 documentclass: book
 output:
@@ -9,22 +9,7 @@ output:
 ---
 
 # About this course {-}
-# Introduction: Measurement, Central Tendency, Dispersion, Validity, Reliability
-# Research Design: Counterfactuals, Forming Hypotheses, Internal & External Validity
-# Sampling and Distributions
-# T test for the Difference in Means and Hypothesis Testing
-# RCTs: Randomized Controlled Trials
-# Bivariate Linear Regression Models
-# Multiple Linear Regression Models (I)
-# Multiple Linear Regression Models (II)
-# Regression Assumptions and Violations of Assumptions
-# Panel Data Structures: Fixed Effects Models
-# Binary Outcomes: The Linear Probability Model
-# Putting It All Together
 
+This course is an introduction to data science. We have three primary aims. First, to introduce you to the logic of quantitative research design. Second, to familiarise you with statistical models that scientists and policy-makers use to answer social science questions. Third, to help you acquire the necessary skills to conduct your own quantitative research projects. No prior statistical knowledge is assumed. We will use the statistical software R and RStudio on top.
 
-Hi.
-
-Bye.
-
-<!-- If you need PDF output, uncomment bookdown::pdf_book above in YAML. You will need a LaTeX installation, e.g., https://yihui.name/tinytex/ -->
+Please refer to this website for the most up-to-date information.
