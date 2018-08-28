@@ -15,7 +15,7 @@ This course is an introduction to data science. We have three primary aims. Firs
 ----
 
 <div class="container btn-container">
-  <button type = "button" class = "btn btn-lg btn-primary" onclick="window.open('admin/syllabus.pdf');">Syllabus</button>
+  <button type = "button" class = "btn btn-lg btn-primary" onclick="window.open('https://github.com/philippbroniecki/statistics1/raw/master/admin/syllabus.pdf');">Syllabus</button>
   <button type = "button" class = "btn btn-lg btn-info" onclick="window.open('https://moodle.hertie-school.org/');">Moodle</button>
   <button type = "button" class = "btn btn-lg btn-success" onclick="window.open('https://piazza.com/class/j77bue2jo7x343');">Piazza</button>
 </div>
