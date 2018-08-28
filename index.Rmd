@@ -18,6 +18,7 @@ output:
 # Multiple Linear Regression Models (I)
 # Multiple Linear Regression Models (II)
 # Regression Assumptions and Violations of Assumptions
+# Panel Data Structures: Fixed Effects Models
 # Binary Outcomes: The Linear Probability Model
 # Putting It All Together
 
