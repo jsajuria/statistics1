@@ -390,10 +390,11 @@ table(stay) / sum(table(stay))
 1. Square the number 13 using the `^` operator.
 1. What is the result of summing all numbers from 1 to 100?
 
-We take a sample of yearly income in Berlin. The values that we got are `r set.seed(123); as.integer(rnorm(25, 25000, 5000))`. 
+We take a sample of yearly income in Berlin. The values that we got are: `r set.seed(123); as.integer(rnorm(25, 25000, 10000))`. 
 
 1. Create the variable `income` with the values form our Berlin sample in R.
 1. Describe Berlin income using the apropriate measures of central tendency and dispersion.
+1. Compute the average deviation without using the `sd()` function.
 
 Take a look at the Sunday Question (who would you vote for if the general election were next Sunday?) by following this link [Sunday Question Germany](https://www.wahlrecht.de/umfragen/). You should be able to translate the website into English by right clicking in your browser and clicking "Translate to English."
 
