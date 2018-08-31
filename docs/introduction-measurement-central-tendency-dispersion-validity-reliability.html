@@ -400,7 +400,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="median" class="section level4">
 <h4><span class="header-section-number">1.1.9.2</span> Median</h4>
-<p>The median is the appropriate measure of central tendency for ordinal variables. Ordinal means that there is a rank ordering but not equally spaced intervals between values of the variable. Education is a common example. In eduacation, more education is better. But the difference between primary school and secondary school is not the same as the difference between secondary school and an undergraduate degree.</p>
+<p>The median is the appropriate measure of central tendency for ordinal variables. Ordinal means that there is a rank ordering but not equally spaced intervals between values of the variable. Education is a common example. In education, more education is better. But the difference between primary school and secondary school is not the same as the difference between secondary school and an undergraduate degree.</p>
 <p>Let’s generate a fake example with 100 people. We use numbers to code different levels of education.</p>
 <table>
 <tbody>
@@ -441,7 +441,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </tr>
 </tbody>
 </table>
-<p>We introduce a new function to create a vector. The function <code>rep()</code>, replicates elements of vector. Its arguments are the item <code>x</code> to be replicated and the number of times that <code>x</code> should be replicated. Below, we create the variable education with the frequency of education level indicated above. Note that the argumens <code>x</code> and <code>times</code> do not have to be written out.</p>
+<p>We introduce a new function to create a vector. The function <code>rep()</code>, replicates elements of vector. Its arguments are the item <code>x</code> to be replicated and the number of times that <code>x</code> should be replicated. Below, we create the variable education with the frequency of education level indicated above. Note that the arguments <code>x</code> and <code>times</code> do not have to be written out.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">edu &lt;-<span class="st"> </span><span class="kw">c</span>( <span class="kw">rep</span>(<span class="dt">x=</span><span class="dv">0</span>, <span class="dt">times=</span><span class="dv">1</span>), <span class="kw">rep</span>(<span class="dt">x=</span><span class="dv">1</span>, <span class="dt">times=</span><span class="dv">5</span>), <span class="kw">rep</span>(<span class="dt">x=</span><span class="dv">2</span>, <span class="dt">times=</span><span class="dv">55</span>),
           <span class="kw">rep</span>(<span class="dt">x=</span><span class="dv">3</span>, <span class="dt">times=</span><span class="dv">20</span>), <span class="kw">rep</span>(<span class="dv">4</span>,<span class="dv">10</span>), <span class="kw">rep</span>(<span class="dv">5</span>,<span class="dv">9</span>) )</code></pre></div>
 <p>The median level of education is the level where 50 percent of the observations have a lower or equal level of education and 50 percent have a higher or equal level of education. That means that the median splits the data in half.</p>
@@ -452,7 +452,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="mode" class="section level4">
 <h4><span class="header-section-number">1.1.9.3</span> Mode</h4>
-<p>The mode is the appropriate measure of central tendency if level of measurement is nominal. Nomial means that there is no ordering implicit in the values that a variable takes, even if these values are numbers. We create a dataset of 1000 (fake) voters in the United Kingdom who each express their preference on remaining or leaving the European Union. The options are leave or stay. Leaving is not greater than staying and or vice versa (even though we all order the two options normatively).</p>
+<p>The mode is the appropriate measure of central tendency if level of measurement is nominal. Nominal means that there is no ordering implicit in the values that a variable takes, even if these values are numbers. We create a dataset of 1000 (fake) voters in the United Kingdom who each express their preference on remaining or leaving the European Union. The options are leave or stay. Leaving is not greater than staying and or vice versa (even though we all order the two options normatively).</p>
 <table>
 <tbody>
 <tr class="odd">
@@ -616,7 +616,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </tr>
 </tbody>
 </table>
-<p>To compute the variance, we are taking the deviations from the mean for each observation. We are squaring the deviations and then dividing them by the number of observations. You can see that our first grade (80) is below the mean (83.9090909). The sum is, thus, negative. Our second grade (90) is above the mean, so that the sum is positive. We add up the deviations and we each deviation should contribute to the total sum of deviations. Therefore, we must avoid negative deviations. Our deviations should be 0 or larger. The square of each deviation is always positive as you can see in the fourth column. Now we divide the sum of the squared deviations by the number of deviations to get a sense of the average. The variance is somewhat akward because its units are squared deviations.</p>
+<p>To compute the variance, we are taking the deviations from the mean for each observation. We are squaring the deviations and then dividing them by the number of observations. You can see that our first grade (80) is below the mean (83.9090909). The sum is, thus, negative. Our second grade (90) is above the mean, so that the sum is positive. We add up the deviations and we each deviation should contribute to the total sum of deviations. Therefore, we must avoid negative deviations. Our deviations should be 0 or larger. The square of each deviation is always positive as you can see in the fourth column. Now we divide the sum of the squared deviations by the number of deviations to get a sense of the average. The variance is somewhat awkward because its units are squared deviations.</p>
 <p>The variance gives us average squared deviations from the mean. We take the variance in R by using the <a href="http://bit.ly/R_var"><code>var()</code></a> function. By default <code>var()</code> takes the sample variance.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">var</span>(hw.grades)</code></pre></div>
 <pre><code>## [1] 76.29091</code></pre>
@@ -629,12 +629,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="range-and-interquartile-range" class="section level4">
 <h4><span class="header-section-number">1.1.10.2</span> Range and interquartile range</h4>
-<p>The proper measure of dispersion of an ordinal variable is the range or the interquartile range. The interquartile range is usually the preferred measure because the range is stongly affected by outlying cases.</p>
+<p>The proper measure of dispersion of an ordinal variable is the range or the interquartile range. The interquartile range is usually the preferred measure because the range is strongly affected by outlying cases.</p>
 <p>Let’s take the range first. We get back to our education example. In R, we use the <a href="http://bit.ly/R_range"><code>range()</code></a> function to compute the range.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">range</span>(edu)</code></pre></div>
 <pre><code>## [1] 0 5</code></pre>
-<p>Our data ranges from no education all the way to those with a doctorate. However, no education is not a common value. One person in our sample did not have education. The interquartile range is the range rom the 25th to the 75th percentiles, i.e., it contains the central 50 percent of the distribution.</p>
-<p>The 25th percentile is the value of education that 25 percent or fewer poeple have (when we order education from lowest to highest). We use the quantile <a href="http://bit.ly/R_quantile"><code>quantile()</code></a> in R to get percentiles. The function takes two arguments. First, <code>x</code> is the data vector. Second, <code>probs</code> is the percentile.</p>
+<p>Our data ranges from no education all the way to those with a doctorate. However, no education is not a common value. One person in our sample did not have education. The interquartile range is the range from the 25th to the 75th percentiles, i.e., it contains the central 50 percent of the distribution.</p>
+<p>The 25th percentile is the value of education that 25 percent or fewer people have (when we order education from lowest to highest). We use the quantile <a href="http://bit.ly/R_quantile"><code>quantile()</code></a> in R to get percentiles. The function takes two arguments. First, <code>x</code> is the data vector. Second, <code>probs</code> is the percentile.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>(edu, <span class="fl">0.25</span>) <span class="co"># 25th percentile</span></code></pre></div>
 <pre><code>## 25% 
 ##   2</code></pre>
@@ -645,13 +645,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="proportion-in-each-category" class="section level4">
 <h4><span class="header-section-number">1.1.10.3</span> Proportion in each category</h4>
-<p>To describe the distriubution of our nominal variable, support for remaining in the European Union, we use the proportions in each category.</p>
+<p>To describe the distribution of our nominal variable, support for remaining in the European Union, we use the proportions in each category.</p>
 <p>Recall, that we looked at the frequency table to determine the mode</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(stay)</code></pre></div>
 <pre><code>## stay
 ##   0   1 
 ## 509 491</code></pre>
-<p>To get the proportions in each category, we devide the values in the table, i.e., 509 and 491, by the sum of the table, i.e., 1000.</p>
+<p>To get the proportions in each category, we divide the values in the table, i.e., 509 and 491, by the sum of the table, i.e., 1000.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(stay) <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(<span class="kw">table</span>(stay))</code></pre></div>
 <pre><code>## stay
 ##     0     1 
@@ -670,7 +670,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>We take a sample of yearly income in Berlin. The values that we got are: 19395, 22698, 40587, 25705, 26292, 42150, 29609, 12349, 18131, 20543, 37240, 28598, 29007, 26106, 19441, 42869, 29978, 5333, 32013, 20272, 14321, 22820, 14739, 17711, 18749.</p>
 <ol style="list-style-type: decimal">
 <li>Create the variable <code>income</code> with the values form our Berlin sample in R.</li>
-<li>Describe Berlin income using the apropriate measures of central tendency and dispersion.</li>
+<li>Describe Berlin income using the appropriate measures of central tendency and dispersion.</li>
 <li>Compute the average deviation without using the <code>sd()</code> function.</li>
 </ol>
 <p>Take a look at the Sunday Question (who would you vote for if the general election were next Sunday?) by following this link <a href="https://www.wahlrecht.de/umfragen/">Sunday Question Germany</a>. You should be able to translate the website into English by right clicking in your browser and clicking “Translate to English.”</p>
