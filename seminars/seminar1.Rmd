@@ -187,75 +187,6 @@ There are a few different ways to run your code from a script.
 |Multiple lines    |Select the lines you want to run and hit CTRL-ENTER or use the **Run** button|
 |Entire script     |Use the **Source** button|
 
-### data frames
-
-A data frame is an object that holds data in a tabular format similar to how spreadsheets work. Variables are generally kept in columns and observations are in rows.
-
-Although you can create a data frame manually, in most cases you will create a data frame by loading a dataset from a file. For now however, we will simply use a dataset that comes pre-installed with R.
-
-Let's take a look at a macroeconomic dataset called `longley`. The `longley` dataset is provided as a data frame of `r ncol(longley)` variables and `r nrow(longley)` observations.
-
-```{r eval = FALSE}
-help(longley)
-```
-
-The help screen describes each of the `r ncol(longley)` variables. Now let's see what's in the longley dataset.
-
-```{r}
-longley
-```
-
-We can also look at the `longley` dataset graphically using the `View` function which displays the data frame like a spreadsheet.
-
-```{r eval = FALSE}
-View(longley)
-```
-
-In order to access individual columns of a data frame we use the dollar sign `$`. For example, let's see how to access the `Year` column
-
-```{r}
-longley$Year
-```
-
-Often we want to access certain observations (rows) or certain columns (variables) or a combination of the two without looking at the entire dataset all at once. We can use square brackets to subset data frames. In square brackets we put a row and a column coordinate separated by a comma. The row coordinate goes first and the column coordinate second. So `longley[10, 3]` returns the 10th row and third column of the data frame. If we leave the column coordinate empty this means we would like all columns. So, `longley[10,]` returns the 10th row of the dataset. If we leave the row coordinate empty, R returns the entire column. `longley[,3]` returns the third column of the dataset.
-
-```{r}
-longley[10, 3] # element in 10th row, 3rd column
-longley[10, ] # entire 10th row
-longley[, 3] # entire 3rd column
-```
-
-We can look at the first five rows of a dataset to get a better understanding of it with the colon in brackets like so: `longley[1:5,]`. We could display the second and fifth columns of the dataset by using the `c()` function in brackets like so: `longley[, c(2,5)]`.
-
-It's your turn. Display all columns of the longley dataset and show rows 10 to 15. Next display all columns of the dataset and rows 4 and 7.
-
-```{r class.source="collapsible"}
-longley[10:15, ] # elements in 10th to 15th row, all columns
-longley[c(4, 7), ] # elements in 4th and 7th row, all column
-```
-
-### Plots
-
-Now let's create some plots from the `longley` dataset. First let's create a scatterplot with the `Year` variable on the x-axis and `Employed` on the y-axis.
-
-```{r}
-plot(x = longley$Year, y = longley$Employed)
-```
-
-To create a line plot instead, we use the same function with one additional argument `type = "l"`.
-
-```{r}
-plot(x = longley$Year, y = longley$Employed, type = "l")
-```
-
-Now it's your turn.
-
-- Use online help for the `plot()` function and find out how to create a plot that includes both points and lines.
-
-```{r class.source = "collapsible"}
-plot(x = longley$Year, y = longley$Employed, type = "b")
-```
-
 ### Central Tendency
 
 The appropriate measure of central tendency depends on the level of measurement of the variable. To recap:
@@ -362,7 +293,7 @@ The appropriate measure of dispersion depends on the level of measurement of the
 |Level of measurement|Appropriate measure of dispersion|
 |------------------|-------------------------------------------------------|
 |Continuous|variance and/or standard deviation|
-|Ordered   |proportion in each category|
+|Ordered   |range or interquartile range|
 |Nominal   |proportion in each category|
 
 
@@ -376,14 +307,14 @@ The formula for the variance in a sample adjusts for sampling variability, i.e.,
 
  $$ \frac{\sum_{i=1}^n(x_i - \bar{x})^2}{n-1}$$
 
-Notice the different notation for the mean in the two formulas. We write $\mu_x$ for the mean of x in the population and $\bar(x)$ for the mean of x in the sample. Notation is, however, unfortunately not always consistent.
+Notice the different notation for the mean in the two formulas. We write $\mu_x$ for the mean of x in the population and $\bar{x}$ for the mean of x in the sample. Notation is, however, unfortunately not always consistent.
 
 Take a minute to think your way through the formula to understand what is happening. In the numerator, we subtract the mean of x from some realisation of x. The table below takes our homework grade example.
 
-|Observation|Variable|deviation from the mean| squared deviation from mean|
+|Obs|Var|Dev. from mean| Squared dev. from mean|
 |--------------|-----------------------|--------------|----------------|
 |i|grade|$x_i-\bar{x}$|$(x_i-\bar{x})^2$| 
-|1| `r hw.grades[1]` | `r (hw.grades[1] - mean(hw.grades))` | `r (hw.grades[1] - mean(hw.grades))^2`|
+|1| `r hw.grades[1]` | `r (hw.grades[1] - mean(hw.grades))` | `r (hw.grades[1] - mean(hw.grades))^2`| 
 |2| `r hw.grades[2]` | `r (hw.grades[2] - mean(hw.grades))` | `r (hw.grades[2] - mean(hw.grades))^2`|
 |3| `r hw.grades[3]` | `r (hw.grades[3] - mean(hw.grades))` | `r (hw.grades[3] - mean(hw.grades))^2`|
 |4| `r hw.grades[4]` | `r (hw.grades[4] - mean(hw.grades))` | `r (hw.grades[4] - mean(hw.grades))^2`|
@@ -403,7 +334,7 @@ The variance gives us average squared deviations from the mean. We take the vari
 var(hw.grades)
 ```
 
-The average squared difference form our mean grade is `r var(hw.grades)`. But what does that mean? We would like to get rid of the square in our units. That's what the standard deviation does. The standard deviation is the square root over the variance 
+The average squared difference form our mean grade is `r var(hw.grades)`. But what does that mean? We would like to get rid of the square in our units. That's what the standard deviation does. The standard deviation is the square root over the variance.
 
 $$ \sqrt{\frac{\sum_{i=1}^n(x_i - \bar{x})^2}{n-1}}$$
 
@@ -413,8 +344,45 @@ We get the average deviation from our mean grade (`r mean(hw.grades)`) with the 
 sd(hw.grades)
 ```
 
-The standard deviation is much more intuitive than the variance because its units are the same as the units of the variable we are interested in. Why teach us about this awful variance then, you ask. Mathematically, we have to compute the variance before. We recommend that you use the standard deviation to describe the variability of your continuous data.
+The standard deviation is much more intuitive than the variance because its units are the same as the units of the variable we are interested in. "Why teach us about this awful variance then", you ask. Mathematically, we have to compute the variance before getting the standard deviation. We recommend that you use the standard deviation to describe the variability of your continuous data.
 
+#### Range and interquartile range
 
+The proper measure of dispersion of an ordinal variable is the range or the interquartile range. The interquartile range is usually the preferred measure because the range is stongly affected by outlying cases.
 
+Let's take the range first. We get back to our education example. In R, we use the [`range()`](http://bit.ly/R_range) function to compute the range.
 
+```{r}
+range(edu)
+```
+
+Our data ranges from no education all the way to those with a doctorate. However, no education is not a common value. One person in our sample did not have education. The interquartile range is the range rom the 25th to the 75th percentiles, i.e., it contains the central 50 percent of the distribution.
+
+The 25th percentile is the value of education that 25 percent or fewer poeple have (when we order education from lowest to highest). We use the quantile [`quantile()`](http://bit.ly/R_quantile) in R to get percentiles. The function takes two arguments. First, `x` is the data vector. Second, `probs` is the percentile.
+
+```{r}
+quantile(edu, 0.25) # 25th percentile
+quantile(edu, 0.75) # 75th percentile
+```
+
+Thus, we take the interquartile range like so:
+
+```{r}
+quantile(edu, 0.75) - quantile(edu, 0.25)
+```
+
+#### Proportion in each category
+
+To describe the distriubution of our nominal variable, support for remaining in the European Union, we use the proportions in each category.
+
+Recall, that we looked at the frequency table to determine the mode
+
+```{r}
+table(stay)
+```
+
+To get the proportions in each category, we devide the values in the table, i.e., 509 and 491, by the sum of the table, i.e., 1000.
+
+```{r}
+table(stay) / sum(table(stay))
+```
