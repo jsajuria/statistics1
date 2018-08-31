@@ -110,6 +110,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.1.8" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#scripts"><i class="fa fa-check"></i><b>1.1.8</b> Scripts</a></li>
 <li class="chapter" data-level="1.1.9" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#central-tendency"><i class="fa fa-check"></i><b>1.1.9</b> Central Tendency</a></li>
 <li class="chapter" data-level="1.1.10" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#dispersion"><i class="fa fa-check"></i><b>1.1.10</b> Dispersion</a></li>
+<li class="chapter" data-level="1.1.11" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercises"><i class="fa fa-check"></i><b>1.1.11</b> Exercises</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -622,10 +623,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>(edu, <span class="fl">0.75</span>) <span class="co"># 75th percentile</span></code></pre></div>
 <pre><code>## 75% 
 ##   3</code></pre>
-<p>Thus, we take the interquartile range like so:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>(edu, <span class="fl">0.75</span>) <span class="op">-</span><span class="st"> </span><span class="kw">quantile</span>(edu, <span class="fl">0.25</span>)</code></pre></div>
-<pre><code>## 75% 
-##   1</code></pre>
+<p>Therefore, the interquartile range is from 2, secondary school to 3, undergraduate degree.</p>
 </div>
 <div id="proportion-in-each-category" class="section level4">
 <h4><span class="header-section-number">1.1.10.3</span> Proportion in each category</h4>
@@ -640,8 +638,30 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <pre><code>## stay
 ##     0     1 
 ## 0.509 0.491</code></pre>
-
 </div>
+</div>
+<div id="exercises" class="section level3">
+<h3><span class="header-section-number">1.1.11</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li>Create a script and call it assignment01. Save your script.</li>
+<li>Download this <a href="https://www.rstudio.com/wp-content/uploads/2016/06/r-cheat-sheet.pdf">cheat-sheet</a> and go over it. You won’t understand most of it right a away. But it will become a useful resource. Look at it often.</li>
+<li>Calculate the square root of 1369 using the <code>sqrt()</code> function.</li>
+<li>Square the number 13 using the <code>^</code> operator.</li>
+<li>What is the result of summing all numbers from 1 to 100?</li>
+</ol>
+<p>We take a sample of yearly income in Berlin. The values that we got are 22197, 23849, 32793, 25352, 25646, 33575, 27304, 18674, 21565, 22771, 31120, 26799, 27003, 25553, 22220, 33934, 27489, 15166, 28506, 22636, 19660, 23910, 19869, 21355, 21874.</p>
+<ol style="list-style-type: decimal">
+<li>Create the variable <code>income</code> with the values form our Berlin sample in R.</li>
+<li>Describe Berlin income using the apropriate measures of central tendency and dispersion.</li>
+</ol>
+<p>Take a look at the Sunday Question (who would you vote for if the general election were next Sunday?) by following this link <a href="https://www.wahlrecht.de/umfragen/">Sunday Question Germany</a>. You should be able to translate the website into English by right clicking in your browser and clicking “Translate to English.”</p>
+<ol style="list-style-type: decimal">
+<li>What is the level of measurement of the variable in the Sunday Question?</li>
+<li>Take the most recent poll and describe what you see in terms of central tendency and dispersion.</li>
+<li>Save your script, which should now include the answers to all the exercises.</li>
+<li>Source your script, i.e. run the entire script without error message. Clean your script if you get error messages.</li>
+</ol>
+
 </div>
 </div>
 </div>

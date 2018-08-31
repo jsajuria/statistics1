@@ -365,11 +365,7 @@ quantile(edu, 0.25) # 25th percentile
 quantile(edu, 0.75) # 75th percentile
 ```
 
-Thus, we take the interquartile range like so:
-
-```{r}
-quantile(edu, 0.75) - quantile(edu, 0.25)
-```
+Therefore, the interquartile range is from `r quantile(edu, 0.25)`, secondary school to `r quantile(edu, 0.75)`, undergraduate degree.
 
 #### Proportion in each category
 
@@ -386,3 +382,22 @@ To get the proportions in each category, we devide the values in the table, i.e.
 ```{r}
 table(stay) / sum(table(stay))
 ```
+
+### Exercises
+1. Create a script and call it assignment01. Save your script.
+1. Download this [cheat-sheet](https://www.rstudio.com/wp-content/uploads/2016/06/r-cheat-sheet.pdf) and go over it. You won't understand most of it right a away. But it will become a useful resource. Look at it often.
+1. Calculate the square root of 1369 using the `sqrt()` function.
+1. Square the number 13 using the `^` operator.
+1. What is the result of summing all numbers from 1 to 100?
+
+We take a sample of yearly income in Berlin. The values that we got are `r set.seed(123); as.integer(rnorm(25, 25000, 5000))`. 
+
+1. Create the variable `income` with the values form our Berlin sample in R.
+1. Describe Berlin income using the apropriate measures of central tendency and dispersion.
+
+Take a look at the Sunday Question (who would you vote for if the general election were next Sunday?) by following this link [Sunday Question Germany](https://www.wahlrecht.de/umfragen/). You should be able to translate the website into English by right clicking in your browser and clicking "Translate to English."
+
+1. What is the level of measurement of the variable in the Sunday Question?
+1. Take the most recent poll and describe what you see in terms of central tendency and dispersion.
+1. Save your script, which should now include the answers to all the exercises.
+1. Source your script, i.e. run the entire script without error message. Clean your script if you get error messages.
