@@ -1,0 +1,6 @@
+name: Statistics1
+description: Introduction to Quantitative Methods
+
+config_file: ~/.statistics1
+working_dir: ~/statistics1
+
