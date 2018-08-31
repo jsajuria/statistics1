@@ -325,6 +325,9 @@ Take a minute to think your way through the formula to understand what is happen
 |9| `r hw.grades[9]` | `r (hw.grades[9] - mean(hw.grades))` | `r (hw.grades[9] - mean(hw.grades))^2`|
 |10| `r hw.grades[10]` | `r (hw.grades[10] - mean(hw.grades))` | `r (hw.grades[10] - mean(hw.grades))^2`|
 |11| `r hw.grades[11]` | `r (hw.grades[11] - mean(hw.grades))` | `r (hw.grades[11] - mean(hw.grades))^2`|
+|$\sum_{i=1}^n$|  |  | `r sum((hw.grades - mean(hw.grades))^2)`|
+|$\ n-1$ |  |  | `r sum((hw.grades - mean(hw.grades))^2)/(length(hw.grades)-1)`|
+|$\sqrt{}$ |  |  | `r sqrt(sum((hw.grades - mean(hw.grades))^2)/(length(hw.grades)-1))`|
 
 Following the formula, we are taking the deviations from the mean for each observation. We are squaring the deviations and then dividing them by the number of observations. You can see that our first grade (`r hw.grades[1]`) is below the mean (`r mean(hw.grades)`). The sum is, thus, negative. Our second grade (`r hw.grades[2]`) is above the mean, so that the sum is positive. We add up the deviations and we each deviation should contribute to the total sum of deviations. Therefore, we must avoid negative deviations. Our deviations should be 0 or larger. The square of each deviation is always positive as you can see in the fourth column. Now we divide the sum of the squared deviations by the number of deviations to get a sense of the average. The variance is somewhat akward because its units are squared deviations. 
 
