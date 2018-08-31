@@ -73,7 +73,7 @@ Help pages for functions in R follow a consistent layout generally include these
 
 | | |
 |-------------|-----------------------------------------------------------------|
-|Desscription |A brief description of the function|
+|Description |A brief description of the function|
 |Usage        |The complete syntax or grammar including all arguments (inputs)|
 |Arguments    |Explanation of each argument|
 |Details      |Any relevant details about the function and its arguments|
