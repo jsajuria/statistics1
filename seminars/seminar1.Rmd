@@ -304,7 +304,10 @@ Both the variance and the standard deviation tell by how much an average realisa
 Dispersion is important to describe data as this example illustrates. Although, income in our hypothetical example is the same in France and the UK, the distribution is tighter in the UK. The figure below illustrates our example:
 
 ```{r, echo=FALSE}
+set.seed(1243)
 plot( density(rnorm(1000, 35000, 5000)),
+      main = "Income Distributions in the UK and in France",
+      xlim = c(10000,60000),
       bty="l", 
       lwd=2, 
       xlab="income", 
@@ -316,13 +319,13 @@ legend("topright", c("UK", "France"), lty = c("solid","dashed"), lwd =2)
 
 The variance gives us an idea about the variability of data. The formula for the variance in the population is $$ \frac{\sum_{i=1}^n(x_i - \mu_x)^2}{n}$$
 
-The formula for the variance in a sample adjusts for sampling variability, i.e., uncertainty about how well our sample reflects the population by subtracting 1 in the denominator. Subtracting 1 will have next to no effect if n is large but it its effect increases the smaller n. The smaller n, the larger the sample variance. The intuition is that in smaller samples we are less certain that our sample reflects the population. We, therefore, adjust variability of the data upwards. The formula is 
+The formula for the variance in a sample adjusts for sampling variability, i.e., uncertainty about how well our sample reflects the population by subtracting 1 in the denominator. Subtracting 1 will have next to no effect if n is large but the effect increases the smaller n. The smaller n, the larger the sample variance. The intuition is, that in smaller samples, we are less certain that our sample reflects the population. We, therefore, adjust variability of the data upwards. The formula is 
 
  $$ \frac{\sum_{i=1}^n(x_i - \bar{x})^2}{n-1}$$
 
 Notice the different notation for the mean in the two formulas. We write $\mu_x$ for the mean of x in the population and $\bar{x}$ for the mean of x in the sample. Notation is, however, unfortunately not always consistent.
 
-Take a minute to think your way through the formula to understand what is happening. In the numerator, we subtract the mean of x from some realisation of x. The table below takes our homework grade example.
+Take a minute to think your way through the formula. There are 4 setps: (1), In the numerator, we subtract the mean of x from some realisation of x. (2), We square the deviations from the mean because we want positive numbers only. (3) We sum the squared deviations. (4) We divide the sum by $(n-1)$. Below we show this for the homework example. In the last row, we add a 5th step. We take the square root in order to return to the orginial units of the homework grades.
 
 |Obs|Var|Dev. from mean| Squared dev. from mean|
 |--------------|-----------------------|--------------|----------------|
@@ -342,9 +345,9 @@ Take a minute to think your way through the formula to understand what is happen
 |$\div n-1$ |  |  | `r sum((hw.grades - mean(hw.grades))^2)/(length(hw.grades)-1)`|
 |$\sqrt{}$ |  |  | `r sqrt(sum((hw.grades - mean(hw.grades))^2)/(length(hw.grades)-1))`|
 
-To compute the variance, we are taking the deviations from the mean for each observation. We are squaring the deviations and then dividing them by the number of observations. You can see that our first grade (`r hw.grades[1]`) is below the mean (`r mean(hw.grades)`). The sum is, thus, negative. Our second grade (`r hw.grades[2]`) is above the mean, so that the sum is positive. We add up the deviations and we each deviation should contribute to the total sum of deviations. Therefore, we must avoid negative deviations. Our deviations should be 0 or larger. The square of each deviation is always positive as you can see in the fourth column. Now we divide the sum of the squared deviations by the number of deviations to get a sense of the average. The variance is somewhat awkward because its units are squared deviations. 
+Our first grade (`r hw.grades[1]`) is below the mean (`r mean(hw.grades)`). The sum is, thus, negative. Our second grade (`r hw.grades[2]`) is above the mean, so that the sum is positive. Both are deviations from the mean (think of them as distances). Our sum shall reflect the total sum of distances and distances must be positive. Hence, we square the distances from the mean. Having done this for all eleven observations, we sum the squared distances. Dividing by 10 (with the sample adjustment), gives us the average squared deviation. This is the variance. The units of the variance---squared deviations---are somewhat awkward. We return to this in a moment.
 
-The variance gives us average squared deviations from the mean. We take the variance in R by using the [`var()`](http://bit.ly/R_var) function. By default `var()` takes the sample variance.
+We take the variance in R by using the [`var()`](http://bit.ly/R_var) function. By default `var()` takes the sample variance.
 
 ```{r}
 var(hw.grades)
