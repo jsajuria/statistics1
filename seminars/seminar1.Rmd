@@ -322,7 +322,7 @@ rect(xleft=34900,ybottom=0,
 rect(xleft=34950,ybottom=0,
      xright=35050,ytop=max(uk$y),
      col = "darkgray", border = NULL)
-text("UK & France Mean: 35 000", x = 35000, y = quantile(uk$y,.5), pos = 4)
+text("UK & France \n Mean: 35 000", x = 35000, y = quantile(uk$y,.5), pos = 4)
 legend("topright", c("UK", "France"), lty = c("solid","dashed"), lwd =2)
 ```
 
