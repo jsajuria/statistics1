@@ -938,16 +938,16 @@ compute the range.
 \end{verbatim}
 
 Our data ranges from no education all the way to those with a doctorate.
-However, no education is not a common value. One person in our sample
-did not have education. The interquartile range is the range from the
-25th to the 75th percentiles, i.e., it contains the central 50 percent
-of the distribution.
+However, no education is not a common value. Only one person in our
+sample did not have any education. The interquartile range is the range
+from the 25th to the 75th percentiles, i.e., it contains the central 50
+percent of the distribution.
 
 The 25th percentile is the value of education that 25 percent or fewer
 people have (when we order education from lowest to highest). We use the
-quantile \href{http://bit.ly/R_quantile}{\texttt{quantile()}} in R to
-get percentiles. The function takes two arguments. First, \texttt{x} is
-the data vector. Second, \texttt{probs} is the percentile.
+\href{http://bit.ly/R_quantile}{\texttt{quantile()}} function in R to
+get percentiles. The function takes two arguments: \texttt{x} is the
+data vector and \texttt{probs} is the percentile.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -981,7 +981,7 @@ To describe the distribution of our nominal variable, support for
 remaining in the European Union, we use the proportions in each
 category.
 
-Recall, that we looked at the frequency table to determine the mode
+Recall, that we looked at the frequency table to determine the mode:
 
 \begin{Shaded}
 \begin{Highlighting}[]

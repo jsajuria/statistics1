@@ -635,8 +635,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Let’s take the range first. We get back to our education example. In R, we use the <a href="http://bit.ly/R_range"><code>range()</code></a> function to compute the range.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">range</span>(edu)</code></pre></div>
 <pre><code>[1] 0 5</code></pre>
-<p>Our data ranges from no education all the way to those with a doctorate. However, no education is not a common value. One person in our sample did not have education. The interquartile range is the range from the 25th to the 75th percentiles, i.e., it contains the central 50 percent of the distribution.</p>
-<p>The 25th percentile is the value of education that 25 percent or fewer people have (when we order education from lowest to highest). We use the quantile <a href="http://bit.ly/R_quantile"><code>quantile()</code></a> in R to get percentiles. The function takes two arguments. First, <code>x</code> is the data vector. Second, <code>probs</code> is the percentile.</p>
+<p>Our data ranges from no education all the way to those with a doctorate. However, no education is not a common value. Only one person in our sample did not have any education. The interquartile range is the range from the 25th to the 75th percentiles, i.e., it contains the central 50 percent of the distribution.</p>
+<p>The 25th percentile is the value of education that 25 percent or fewer people have (when we order education from lowest to highest). We use the <a href="http://bit.ly/R_quantile"><code>quantile()</code></a> function in R to get percentiles. The function takes two arguments: <code>x</code> is the data vector and <code>probs</code> is the percentile.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>(edu, <span class="fl">0.25</span>) <span class="co"># 25th percentile</span></code></pre></div>
 <pre><code>25% 
   2 </code></pre>
@@ -648,7 +648,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="proportion-in-each-category" class="section level4">
 <h4><span class="header-section-number">1.1.10.3</span> Proportion in each category</h4>
 <p>To describe the distribution of our nominal variable, support for remaining in the European Union, we use the proportions in each category.</p>
-<p>Recall, that we looked at the frequency table to determine the mode</p>
+<p>Recall, that we looked at the frequency table to determine the mode:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(stay)</code></pre></div>
 <pre><code>stay
   0   1 

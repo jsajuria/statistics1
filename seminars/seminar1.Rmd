@@ -375,9 +375,9 @@ Let's take the range first. We get back to our education example. In R, we use t
 range(edu)
 ```
 
-Our data ranges from no education all the way to those with a doctorate. However, no education is not a common value. One person in our sample did not have education. The interquartile range is the range from the 25th to the 75th percentiles, i.e., it contains the central 50 percent of the distribution.
+Our data ranges from no education all the way to those with a doctorate. However, no education is not a common value. Only one person in our sample did not have any education. The interquartile range is the range from the 25th to the 75th percentiles, i.e., it contains the central 50 percent of the distribution.
 
-The 25th percentile is the value of education that 25 percent or fewer people have (when we order education from lowest to highest). We use the quantile [`quantile()`](http://bit.ly/R_quantile) in R to get percentiles. The function takes two arguments. First, `x` is the data vector. Second, `probs` is the percentile.
+The 25th percentile is the value of education that 25 percent or fewer people have (when we order education from lowest to highest). We use the [`quantile()`](http://bit.ly/R_quantile) function in R to get percentiles. The function takes two arguments: `x` is the data vector and `probs` is the percentile.
 
 ```{r}
 quantile(edu, 0.25) # 25th percentile
@@ -390,7 +390,7 @@ Therefore, the interquartile range is from `r quantile(edu, 0.25)`, secondary sc
 
 To describe the distribution of our nominal variable, support for remaining in the European Union, we use the proportions in each category.
 
-Recall, that we looked at the frequency table to determine the mode
+Recall, that we looked at the frequency table to determine the mode:
 
 ```{r}
 table(stay)
