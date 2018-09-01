@@ -310,20 +310,20 @@ france <- density(rnorm(5000, 35000, 10000))
 plot( uk,
       main = "Income Distributions in the UK and in France",
       xlim = c(10000,60000),
-      lwd=2, 
+      lwd=1, 
       xlab="income", 
       ylab="",
       yaxt="n",
       bty = "n")
-lines( france, lwd = 2, lty="dashed" )
-rect(xleft=34900,ybottom=0,
-     xright=35100,ytop=max(uk$y),
-     col = "lightgray", border = NULL)
-rect(xleft=34950,ybottom=0,
-     xright=35050,ytop=max(uk$y),
-     col = "darkgray", border = NULL)
-text("UK & France \n Mean: 35 000", x = 35000, y = quantile(uk$y,.5), pos = 4)
-legend("topright", c("UK", "France"), lty = c("solid","dashed"), lwd =2)
+lines( france, lwd = 1, lty="dashed" )
+#rect(xleft=34900,ybottom=0,
+#     xright=35100,ytop=max(uk$y),
+#     col = "lightgray", border = NULL)
+#rect(xleft=34950,ybottom=0,
+#     xright=35050,ytop=max(uk$y),
+#     col = "darkgray", border = NULL)
+text("UK & France \n Mean: 35 000", x = 35000, y = quantile(uk$y,.5), pos = 3)
+legend("topright", c("UK", "France"), lty = c("solid","dashed"), lwd =1)
 ```
 
 The variance gives us an idea about the variability of data. The formula for the variance in the population is $$ \frac{\sum_{i=1}^n(x_i - \mu_x)^2}{n}$$
