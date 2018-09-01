@@ -612,7 +612,7 @@ tendency\tabularnewline
 \midrule
 \endhead
 Continuous & arithmetic mean (or average)\tabularnewline
-Ordered & median(or the central observation)\tabularnewline
+Ordered & median (or the central observation)\tabularnewline
 Nominal & mode (the most frequent value)\tabularnewline
 \bottomrule
 \end{longtable}
@@ -621,7 +621,8 @@ Nominal & mode (the most frequent value)\tabularnewline
 
 We calculate the average grade on our eleven homework assignments in
 statistics 1. We create our vector of 11 (fake) grades first using the
-\texttt{c()} function. \texttt{c()} stands for collect or concatenate.
+\texttt{c()} function, where \texttt{c} stands for collect or
+concatenate.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -695,11 +696,11 @@ Code & Meaning & Frequency in our data\tabularnewline
 \end{longtable}
 
 We introduce a new function to create a vector. The function
-\texttt{rep()}, replicates elements of vector. Its arguments are the
-item \texttt{x} to be replicated and the number of times that \texttt{x}
-should be replicated. Below, we create the variable education with the
-frequency of education level indicated above. Note that the arguments
-\texttt{x} and \texttt{times} do not have to be written out.
+\texttt{rep()}, replicates elements of a vector. Its arguments are the
+item \texttt{x} to be replicated and the number of \texttt{times} to
+replicate. Below, we create the variable education with the frequency of
+education level indicated above. Note that the arguments \texttt{x} and
+\texttt{times} do not have to be written out.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -730,13 +731,13 @@ The median level of education is secondary school.
 
 \subsubsection{Mode}\label{mode}
 
-The mode is the appropriate measure of central tendency if level of
+The mode is the appropriate measure of central tendency if the level of
 measurement is nominal. Nominal means that there is no ordering implicit
-in the values that a variable takes, even if these values are numbers.
-We create a dataset of 1000 (fake) voters in the United Kingdom who each
-express their preference on remaining or leaving the European Union. The
-options are leave or stay. Leaving is not greater than staying and or
-vice versa (even though we all order the two options normatively).
+in the values that a variable takes on. We create data from 1000 (fake)
+voters in the United Kingdom who each express their preference on
+remaining in or leaving the European Union. The options are leave or
+stay. Leaving is not greater than staying and vice versa (even though we
+all order the two options normatively).
 
 \begin{longtable}[]{@{}lll@{}}
 \toprule
@@ -771,7 +772,8 @@ stay
 509 491 
 \end{verbatim}
 
-The mode is leaving the EU.
+The mode is leaving the EU because the number of `leavers' (0) is
+greater than the number of `remainers' (0).
 
 \subsection{Dispersion}\label{dispersion}
 
@@ -792,18 +794,23 @@ Nominal & proportion in each category\tabularnewline
 \subsubsection{Variance and standard
 deviation}\label{variance-and-standard-deviation}
 
-Our goal is to understand by how much a realisation of some variable
-differs from its mean on average. Let's assume that our variable is
-income in the UK. Let's assume that its mean is 35 000 per year. Now if
-the average deviation from that value were 5 000, this would mean that
-if we ask 100 people at random about their income, they would on average
-differ by 5 000 from 35 000. Suppose that the average income in France
-is also 35 000 per year but the average deviation is 10 000 instead.
-This of course implies that income is more equally distributed in the UK
-than in France. Dispersion is important to describe data as this example
-illustrates. Although, income in our hypothetical example is the same in
-France and the UK, both societies are qualitatively different from one
-another.
+Both the variance and the standard deviation tell by how much an average
+realisation of a variable differs from the mean of that variable. Let's
+assume that our variable is income in the UK. Let's assume that its mean
+is 35 000 per year. We also assume that the average deviation from 35
+000 is 5 000. If we ask 100 people in the UK at random about their
+income, we get 100 different answers. If we average the differences
+betweeen the 100 answers and 35 000, we would get 5 000. Suppose that
+the average income in France is also 35 000 per year but the average
+deviation is 10 000 instead. This would imply that income is more
+equally distributed in the UK than in France.
+
+Dispersion is important to describe data as this example illustrates.
+Although, income in our hypothetical example is the same in France and
+the UK, the distribution is tighter in the UK. The figure below
+illustrates our example:
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-26-1.pdf}
 
 The variance gives us an idea about the variability of data. The formula
 for the variance in the population is
