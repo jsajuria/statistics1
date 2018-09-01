@@ -305,7 +305,9 @@ Dispersion is important to describe data as this example illustrates. Although, 
 
 ```{r, echo=FALSE}
 set.seed(1243)
-plot( density(rnorm(1000, 35000, 5000)),
+uk <- density(rnorm(5000, 35000, 5000))
+france <- density(rnorm(5000, 35000, 10000))
+plot( uk,
       main = "Income Distributions in the UK and in France",
       xlim = c(10000,60000),
       lwd=2, 
@@ -313,7 +315,14 @@ plot( density(rnorm(1000, 35000, 5000)),
       ylab="",
       yaxt="n",
       bty = "n")
-lines( density(rnorm(1000, 35000, 10000)), lwd = 2, lty="dashed" )
+lines( france, lwd = 2, lty="dashed" )
+rect(xleft=34900,ybottom=0,
+     xright=35100,ytop=max(uk$y),
+     col = "lightgray", border = NULL)
+rect(xleft=34950,ybottom=0,
+     xright=35050,ytop=max(uk$y),
+     col = "darkgray", border = NULL)
+text("UK & France Mean: 35 000", x = 35000, y = quantile(uk$y,.5), pos = 4)
 legend("topright", c("UK", "France"), lty = c("solid","dashed"), lwd =2)
 ```
 
