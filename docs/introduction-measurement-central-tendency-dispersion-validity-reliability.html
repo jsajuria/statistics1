@@ -628,6 +628,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(hw.grades)</code></pre></div>
 <pre><code>[1] 8.734467</code></pre>
 <p>The standard deviation is much more intuitive than the variance because its units are the same as the units of the variable we are interested in. “Why teach us about this awful variance then”, you ask. Mathematically, we have to compute the variance before getting the standard deviation. We recommend that you use the standard deviation to describe the variability of your continuous data.</p>
+<p>Note: We used the sample variance and sample standard deviation formulas. If the eleven assignments represent the population, we would use the population variance formula. Whether the 11 cases represent a sample or the population depends on what we want to know. If we want learn about all students’ assignments or future assignments, the 11 cases are a sample.</p>
 </div>
 <div id="range-and-interquartile-range" class="section level4">
 <h4><span class="header-section-number">1.1.10.2</span> Range and interquartile range</h4>
@@ -670,13 +671,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>What is the result of summing all numbers from 1 to 100?</li>
 </ol>
 <p>We take a sample of yearly income in Berlin. The values that we got are: 19395, 22698, 40587, 25705, 26292, 42150, 29609, 12349, 18131, 20543, 37240, 28598, 29007, 26106, 19441, 42869, 29978, 5333, 32013, 20272, 14321, 22820, 14739, 17711, 18749.</p>
-<ol style="list-style-type: decimal">
+<ol start="6" style="list-style-type: decimal">
 <li>Create the variable <code>income</code> with the values form our Berlin sample in R.</li>
 <li>Describe Berlin income using the appropriate measures of central tendency and dispersion.</li>
 <li>Compute the average deviation without using the <code>sd()</code> function.</li>
 </ol>
 <p>Take a look at the Sunday Question (who would you vote for if the general election were next Sunday?) by following this link <a href="https://www.wahlrecht.de/umfragen/">Sunday Question Germany</a>. You should be able to translate the website into English by right clicking in your browser and clicking “Translate to English.”</p>
-<ol style="list-style-type: decimal">
+<ol start="9" style="list-style-type: decimal">
 <li>What is the level of measurement of the variable in the Sunday Question?</li>
 <li>Take the most recent poll and describe what you see in terms of central tendency and dispersion.</li>
 <li>Save your script, which should now include the answers to all the exercises.</li>
