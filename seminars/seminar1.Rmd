@@ -284,7 +284,7 @@ The mode is the most common value in the data. There is no mode function in R. T
 table(stay)
 ```
 
-The mode is leaving the EU because the number of 'leavers' (`r stay[1]`) is greater than the number of 'remainers' (`r stay[2]`).
+The mode is leaving the EU because the number of 'leavers' (`r as.numeric(names(table(stay)[1]))`) is greater than the number of 'remainers' (`r as.numeric(names(table(stay)[2]))`).
 
 ### Dispersion
 
