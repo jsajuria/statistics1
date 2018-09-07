@@ -1081,5 +1081,314 @@ in your browser and clicking ``Translate to English.''
   Clean your script if you get error messages.
 \end{enumerate}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{options}\NormalTok{(}\DataTypeTok{scipen=}\DecValTok{999}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Solutions}\label{solutions}
+
+\subsection{Exercise 3}\label{exercise-3}
+
+Calculate the square root of 1369 using the \texttt{sqrt()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sqrt}\NormalTok{(}\DecValTok{1369}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 37
+\end{verbatim}
+
+\subsection{Exercise 4}\label{exercise-4}
+
+Square the number 13 using the \texttt{\^{}} operator.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{13}\OperatorTok{^}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 169
+\end{verbatim}
+
+\subsection{Exercise 5}\label{exercise-5}
+
+What is the result of summing all numbers from 1 to 100?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# sequence of numbers from 1 to 100 in steps of 1}
+\NormalTok{numbers_1_to_}\DecValTok{100}\NormalTok{ <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DataTypeTok{from =} \DecValTok{1}\NormalTok{, }\DataTypeTok{to =} \DecValTok{100}\NormalTok{, }\DataTypeTok{by =} \DecValTok{1}\NormalTok{)}
+\CommentTok{# sum over the vector}
+\NormalTok{result <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(numbers_1_to_}\DecValTok{100}\NormalTok{)}
+\CommentTok{# print the result}
+\NormalTok{result}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 5050
+\end{verbatim}
+
+The result is 5050.
+
+\subsection{Exercise 6}\label{exercise-6}
+
+Create the variable \emph{income} with the values form our Berlin sample
+in R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# create the income variable using the c() function}
+\NormalTok{income <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}
+  \DecValTok{19395}\NormalTok{, }\DecValTok{22698}\NormalTok{, }\DecValTok{40587}\NormalTok{, }\DecValTok{25705}\NormalTok{, }\DecValTok{26292}\NormalTok{, }\DecValTok{42150}\NormalTok{, }\DecValTok{29609}\NormalTok{, }\DecValTok{12349}\NormalTok{, }\DecValTok{18131}\NormalTok{, }
+  \DecValTok{20543}\NormalTok{, }\DecValTok{37240}\NormalTok{, }\DecValTok{28598}\NormalTok{, }\DecValTok{29007}\NormalTok{, }\DecValTok{26106}\NormalTok{, }\DecValTok{19441}\NormalTok{, }\DecValTok{42869}\NormalTok{, }\DecValTok{29978}\NormalTok{, }\DecValTok{5333}\NormalTok{, }
+  \DecValTok{32013}\NormalTok{, }\DecValTok{20272}\NormalTok{, }\DecValTok{14321}\NormalTok{, }\DecValTok{22820}\NormalTok{, }\DecValTok{14739}\NormalTok{, }\DecValTok{17711}\NormalTok{, }\DecValTok{18749}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Exercise 7}\label{exercise-7}
+
+Describe Berlin income using the appropriate measures of central
+tendency and dispersion.
+
+We use the mean for the central tendency of \emph{income}. The variable
+is interval scaled and the mean is the appropriate measure of central
+tendency for interval scaled variables. Our \emph{income} variable is
+also normally distributed. Income distributions in most countries are
+right skewed. Therefore, the central tendency of income is often
+described using the median.
+
+When asked, e.g., in an exam, to describe the central tendency of an
+interval scaled variable, use the mean. You can also use the median if
+you tell us why.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# central tendency of income}
+\KeywordTok{mean}\NormalTok{(income)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 24666.24
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# dispersion}
+\KeywordTok{sd}\NormalTok{(income)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 9467.383
+\end{verbatim}
+
+Average income in our Berlin sample is (24666.24). The average
+difference from that value is 9467.3828805.
+
+\subsection{Exercise 8}\label{exercise-8}
+
+Compute the average deviation without using the sd() function.
+
+We do this in several steps. First, we compute the mean.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mean.income <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(income) }\OperatorTok{/}\StringTok{ }\KeywordTok{length}\NormalTok{(income)}
+
+\CommentTok{# let's print the mean}
+\NormalTok{mean.income}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 24666.24
+\end{verbatim}
+
+Second, we take the differences between each individual realisation of
+income and the mean of \emph{income}. The result must be a vector with
+the same amount of elements as the \emph{income} vector.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# individual differences between each realisation of income and the mean of income}
+\NormalTok{diffs.from.mean <-}\StringTok{ }\NormalTok{income }\OperatorTok{-}\StringTok{ }\NormalTok{mean.income}
+
+\CommentTok{# let's print the vector of differences}
+\NormalTok{diffs.from.mean}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1]  -5271.24  -1968.24  15920.76   1038.76   1625.76  17483.76   4942.76
+ [8] -12317.24  -6535.24  -4123.24  12573.76   3931.76   4340.76   1439.76
+[15]  -5225.24  18202.76   5311.76 -19333.24   7346.76  -4394.24 -10345.24
+[22]  -1846.24  -9927.24  -6955.24  -5917.24
+\end{verbatim}
+
+You may be surprised that this works. After all, \emph{income} is a
+vector with 25 elements and \emph{mean.income} is a scalar (only one
+value). R treats all variables as vectors. It notices that
+\emph{mean.income} is a shorter vector than \emph{income}. The former
+has 1 element and the latter 25. The vector \emph{mean.income} is
+recycled, so that it has the same length as \emph{income} where each
+element is the same: the mean of \emph{income}. If you did not
+understand this don't worry. The important thing is that it works.
+
+Our next step is to square the differences from the mean.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# square each element in the diffs.from.mean vector}
+\NormalTok{squared.diffs.from.mean <-}\StringTok{ }\NormalTok{diffs.from.mean}\OperatorTok{^}\DecValTok{2}
+
+\CommentTok{# print the squared vecto}
+\NormalTok{squared.diffs.from.mean}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1]  27785971   3873969 253470599   1079022   2643096 305681864  24430876
+ [8] 151714401  42709362  17001108 158099441  15458737  18842197   2072909
+[15]  27303133 331340472  28214794 373774169  53974882  19309345 107023991
+[22]   3408602  98550094  48375363  35013729
+\end{verbatim}
+
+We squared each individual element in the vector. Therefore, our new
+variable \emph{squared.diffs.from.mean} still has 25 elements.
+
+Squaring a value does two things. First, all values in our vector have
+become positive. Second, the marginal increase increases with distance,
+i.e., values that are close to the mean are only somewhat larger whereas
+values that are further from the mean become way larger. To see this,
+lets plot the square (we haven't shown you the plot function yet, but we
+will do this next seminar).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# a vector of x values from negative 100 to positive 100}
+\NormalTok{a <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DataTypeTok{from =} \OperatorTok{-}\DecValTok{100}\NormalTok{, }\DataTypeTok{to =} \DecValTok{100}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{200}\NormalTok{)}
+
+\CommentTok{# the square of that vector}
+\NormalTok{b <-}\StringTok{ }\NormalTok{a}\OperatorTok{^}\DecValTok{2}
+
+\CommentTok{# we plot the input vector a against b, where b is on the y-axis}
+\KeywordTok{plot}\NormalTok{(}
+  \DataTypeTok{x =}\NormalTok{ a, }\CommentTok{# x-axis values}
+  \DataTypeTok{y =}\NormalTok{ b, }\CommentTok{# y-axis values}
+  \DataTypeTok{bty =} \StringTok{"n"}\NormalTok{, }\CommentTok{# no border around plot}
+  \DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\CommentTok{# connect individual dots to a line}
+  \DataTypeTok{xlab =} \StringTok{"input values from vector a"}\NormalTok{, }\CommentTok{# x axis label}
+  \DataTypeTok{ylab =} \StringTok{"b = a^2"} \CommentTok{# y axis label}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-42-1.pdf}
+
+In this plot, you should see that the slope of the line increases, the
+further we are from 0. We are taking individual differences from the
+mean. Hence, if a value is exactly at the mean, the difference is zero.
+The further, the value is from the mean (in any direction), the larger
+the output value.
+
+We will sum over the individual elements in the next step. Hence, values
+that are further from the mean have a larger impact on the sum than
+values that are closer to the mean.
+
+In the next step, we take the sum over our squared deviations from the
+mean
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# sum over squared deviations vector}
+\NormalTok{sum.of.squared.deviations <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(squared.diffs.from.mean)}
+
+\CommentTok{# print the sum}
+\NormalTok{sum.of.squared.deviations}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 2151152127
+\end{verbatim}
+
+By summing over all elements of a vector, we end up with a scalar. The
+sum is 2151152126.56.
+
+We divide the sum of squared deviations by \(n-1\). Recall, that \(n\)
+is the number of observations (elements in the vector) and \(-1\) is our
+sample adjustment.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# get the variance}
+\NormalTok{var.income <-}\StringTok{ }\NormalTok{sum.of.squared.deviations }\OperatorTok{/}\StringTok{ }\NormalTok{( }\KeywordTok{length}\NormalTok{(income) }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{ )}
+
+\CommentTok{# print the variance}
+\NormalTok{var.income}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 89631339
+\end{verbatim}
+
+The squared average deviation from mean income is 89631338.6066667.
+
+In the last step, we take the square root over the variance to return to
+our original units of income.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# get the standard deviation}
+\KeywordTok{sqrt}\NormalTok{(var.income)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 9467.383
+\end{verbatim}
+
+The average deviation from mean income in Berlin (24666.24) is
+9467.3828805.
+
+\subsection{Exercise 9}\label{exercise-9}
+
+What is the level of measurement of the variable in the Sunday Question?
+
+The variable measures vote choice. The answers are categories, the
+parties, without any specific ordering. The level of measurement is
+called categorical or nominal.
+
+\subsection{Exercise 10}\label{exercise-10}
+
+Take the most recent poll and describe what you see in terms of central
+tendency and dispersion.
+
+The most recent poll was carried out by Infratest/dimap on Thursday, 6
+September. The most common value, the mode, is CDU/CSU, the Christian
+Democrats. Therefore, Christian Democrat is the modal category (central
+tendency). Dispersion of a categorical variable is the proportion in
+each category which we see displayed on the website:
+
+\textbar{}-----------------------------------------------------------------\textbar{}-----------------------\textbar{}
+\textbar{}Party \textbar{}Proportion\textbar{}
+\textbar{}CDU/CSU\textbar{}0.29\textbar{}
+\textbar{}SPD\textbar{}0.18\textbar{}
+\textbar{}GREEN\textbar{}0.14\textbar{}
+\textbar{}FDP\textbar{}0.08\textbar{} \textbar{}THE
+LEFT\textbar{}0.10\textbar{} \textbar{}AFD\textbar{}0.16\textbar{}
+\textbar{}other\textbar{}0.05\textbar{}
+
 
 \end{document}

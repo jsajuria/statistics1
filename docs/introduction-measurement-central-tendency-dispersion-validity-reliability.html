@@ -112,6 +112,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.1.10" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#dispersion"><i class="fa fa-check"></i><b>1.1.10</b> Dispersion</a></li>
 <li class="chapter" data-level="1.1.11" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercises"><i class="fa fa-check"></i><b>1.1.11</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="1.2" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#solutions"><i class="fa fa-check"></i><b>1.2</b> Solutions</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-3"><i class="fa fa-check"></i><b>1.2.1</b> Exercise 3</a></li>
+<li class="chapter" data-level="1.2.2" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-4"><i class="fa fa-check"></i><b>1.2.2</b> Exercise 4</a></li>
+<li class="chapter" data-level="1.2.3" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-5"><i class="fa fa-check"></i><b>1.2.3</b> Exercise 5</a></li>
+<li class="chapter" data-level="1.2.4" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-6"><i class="fa fa-check"></i><b>1.2.4</b> Exercise 6</a></li>
+<li class="chapter" data-level="1.2.5" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-7"><i class="fa fa-check"></i><b>1.2.5</b> Exercise 7</a></li>
+<li class="chapter" data-level="1.2.6" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-8"><i class="fa fa-check"></i><b>1.2.6</b> Exercise 8</a></li>
+<li class="chapter" data-level="1.2.7" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-9"><i class="fa fa-check"></i><b>1.2.7</b> Exercise 9</a></li>
+<li class="chapter" data-level="1.2.8" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-10"><i class="fa fa-check"></i><b>1.2.8</b> Exercise 10</a></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -683,6 +693,141 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Save your script, which should now include the answers to all the exercises.</li>
 <li>Source your script, i.e. run the entire script without error message. Clean your script if you get error messages.</li>
 </ol>
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">scipen=</span><span class="dv">999</span>)</code></pre></div>
+</div>
+</div>
+<div id="solutions" class="section level2">
+<h2><span class="header-section-number">1.2</span> Solutions</h2>
+<div id="exercise-3" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> Exercise 3</h3>
+<p>Calculate the square root of 1369 using the <code>sqrt()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="dv">1369</span>)</code></pre></div>
+<pre><code>[1] 37</code></pre>
+</div>
+<div id="exercise-4" class="section level3">
+<h3><span class="header-section-number">1.2.2</span> Exercise 4</h3>
+<p>Square the number 13 using the <code>^</code> operator.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">13</span><span class="op">^</span><span class="dv">2</span></code></pre></div>
+<pre><code>[1] 169</code></pre>
+</div>
+<div id="exercise-5" class="section level3">
+<h3><span class="header-section-number">1.2.3</span> Exercise 5</h3>
+<p>What is the result of summing all numbers from 1 to 100?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># sequence of numbers from 1 to 100 in steps of 1</span>
+numbers_1_to_<span class="dv">100</span> &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>, <span class="dt">to =</span> <span class="dv">100</span>, <span class="dt">by =</span> <span class="dv">1</span>)
+<span class="co"># sum over the vector</span>
+result &lt;-<span class="st"> </span><span class="kw">sum</span>(numbers_1_to_<span class="dv">100</span>)
+<span class="co"># print the result</span>
+result</code></pre></div>
+<pre><code>[1] 5050</code></pre>
+<p>The result is 5050.</p>
+</div>
+<div id="exercise-6" class="section level3">
+<h3><span class="header-section-number">1.2.4</span> Exercise 6</h3>
+<p>Create the variable <em>income</em> with the values form our Berlin sample in R.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create the income variable using the c() function</span>
+income &lt;-<span class="st"> </span><span class="kw">c</span>(
+  <span class="dv">19395</span>, <span class="dv">22698</span>, <span class="dv">40587</span>, <span class="dv">25705</span>, <span class="dv">26292</span>, <span class="dv">42150</span>, <span class="dv">29609</span>, <span class="dv">12349</span>, <span class="dv">18131</span>, 
+  <span class="dv">20543</span>, <span class="dv">37240</span>, <span class="dv">28598</span>, <span class="dv">29007</span>, <span class="dv">26106</span>, <span class="dv">19441</span>, <span class="dv">42869</span>, <span class="dv">29978</span>, <span class="dv">5333</span>, 
+  <span class="dv">32013</span>, <span class="dv">20272</span>, <span class="dv">14321</span>, <span class="dv">22820</span>, <span class="dv">14739</span>, <span class="dv">17711</span>, <span class="dv">18749</span>
+)</code></pre></div>
+</div>
+<div id="exercise-7" class="section level3">
+<h3><span class="header-section-number">1.2.5</span> Exercise 7</h3>
+<p>Describe Berlin income using the appropriate measures of central tendency and dispersion.</p>
+<p>We use the mean for the central tendency of <em>income</em>. The variable is interval scaled and the mean is the appropriate measure of central tendency for interval scaled variables. Our <em>income</em> variable is also normally distributed. Income distributions in most countries are right skewed. Therefore, the central tendency of income is often described using the median.</p>
+<p>When asked, e.g., in an exam, to describe the central tendency of an interval scaled variable, use the mean. You can also use the median if you tell us why.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># central tendency of income</span>
+<span class="kw">mean</span>(income)</code></pre></div>
+<pre><code>[1] 24666.24</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># dispersion</span>
+<span class="kw">sd</span>(income)</code></pre></div>
+<pre><code>[1] 9467.383</code></pre>
+<p>Average income in our Berlin sample is (24666.24). The average difference from that value is 9467.3828805.</p>
+</div>
+<div id="exercise-8" class="section level3">
+<h3><span class="header-section-number">1.2.6</span> Exercise 8</h3>
+<p>Compute the average deviation without using the sd() function.</p>
+<p>We do this in several steps. First, we compute the mean.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean.income &lt;-<span class="st"> </span><span class="kw">sum</span>(income) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(income)
+
+<span class="co"># let&#39;s print the mean</span>
+mean.income</code></pre></div>
+<pre><code>[1] 24666.24</code></pre>
+<p>Second, we take the differences between each individual realisation of income and the mean of <em>income</em>. The result must be a vector with the same amount of elements as the <em>income</em> vector.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># individual differences between each realisation of income and the mean of income</span>
+diffs.from.mean &lt;-<span class="st"> </span>income <span class="op">-</span><span class="st"> </span>mean.income
+
+<span class="co"># let&#39;s print the vector of differences</span>
+diffs.from.mean</code></pre></div>
+<pre><code> [1]  -5271.24  -1968.24  15920.76   1038.76   1625.76  17483.76   4942.76
+ [8] -12317.24  -6535.24  -4123.24  12573.76   3931.76   4340.76   1439.76
+[15]  -5225.24  18202.76   5311.76 -19333.24   7346.76  -4394.24 -10345.24
+[22]  -1846.24  -9927.24  -6955.24  -5917.24</code></pre>
+<p>You may be surprised that this works. After all, <em>income</em> is a vector with 25 elements and <em>mean.income</em> is a scalar (only one value). R treats all variables as vectors. It notices that <em>mean.income</em> is a shorter vector than <em>income</em>. The former has 1 element and the latter 25. The vector <em>mean.income</em> is recycled, so that it has the same length as <em>income</em> where each element is the same: the mean of <em>income</em>. If you did not understand this don’t worry. The important thing is that it works.</p>
+<p>Our next step is to square the differences from the mean.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># square each element in the diffs.from.mean vector</span>
+squared.diffs.from.mean &lt;-<span class="st"> </span>diffs.from.mean<span class="op">^</span><span class="dv">2</span>
+
+<span class="co"># print the squared vecto</span>
+squared.diffs.from.mean</code></pre></div>
+<pre><code> [1]  27785971   3873969 253470599   1079022   2643096 305681864  24430876
+ [8] 151714401  42709362  17001108 158099441  15458737  18842197   2072909
+[15]  27303133 331340472  28214794 373774169  53974882  19309345 107023991
+[22]   3408602  98550094  48375363  35013729</code></pre>
+<p>We squared each individual element in the vector. Therefore, our new variable <em>squared.diffs.from.mean</em> still has 25 elements.</p>
+<p>Squaring a value does two things. First, all values in our vector have become positive. Second, the marginal increase increases with distance, i.e., values that are close to the mean are only somewhat larger whereas values that are further from the mean become way larger. To see this, lets plot the square (we haven’t shown you the plot function yet, but we will do this next seminar).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a vector of x values from negative 100 to positive 100</span>
+a &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="op">-</span><span class="dv">100</span>, <span class="dt">to =</span> <span class="dv">100</span>, <span class="dt">length.out =</span> <span class="dv">200</span>)
+
+<span class="co"># the square of that vector</span>
+b &lt;-<span class="st"> </span>a<span class="op">^</span><span class="dv">2</span>
+
+<span class="co"># we plot the input vector a against b, where b is on the y-axis</span>
+<span class="kw">plot</span>(
+  <span class="dt">x =</span> a, <span class="co"># x-axis values</span>
+  <span class="dt">y =</span> b, <span class="co"># y-axis values</span>
+  <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="co"># no border around plot</span>
+  <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="co"># connect individual dots to a line</span>
+  <span class="dt">xlab =</span> <span class="st">&quot;input values from vector a&quot;</span>, <span class="co"># x axis label</span>
+  <span class="dt">ylab =</span> <span class="st">&quot;b = a^2&quot;</span> <span class="co"># y axis label</span>
+)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<p>In this plot, you should see that the slope of the line increases, the further we are from 0. We are taking individual differences from the mean. Hence, if a value is exactly at the mean, the difference is zero. The further, the value is from the mean (in any direction), the larger the output value.</p>
+<p>We will sum over the individual elements in the next step. Hence, values that are further from the mean have a larger impact on the sum than values that are closer to the mean.</p>
+<p>In the next step, we take the sum over our squared deviations from the mean</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># sum over squared deviations vector</span>
+sum.of.squared.deviations &lt;-<span class="st"> </span><span class="kw">sum</span>(squared.diffs.from.mean)
+
+<span class="co"># print the sum</span>
+sum.of.squared.deviations</code></pre></div>
+<pre><code>[1] 2151152127</code></pre>
+<p>By summing over all elements of a vector, we end up with a scalar. The sum is 2151152126.56.</p>
+<p>We divide the sum of squared deviations by <span class="math inline">\(n-1\)</span>. Recall, that <span class="math inline">\(n\)</span> is the number of observations (elements in the vector) and <span class="math inline">\(-1\)</span> is our sample adjustment.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get the variance</span>
+var.income &lt;-<span class="st"> </span>sum.of.squared.deviations <span class="op">/</span><span class="st"> </span>( <span class="kw">length</span>(income) <span class="op">-</span><span class="st"> </span><span class="dv">1</span> )
+
+<span class="co"># print the variance</span>
+var.income</code></pre></div>
+<pre><code>[1] 89631339</code></pre>
+<p>The squared average deviation from mean income is 89631338.6066667.</p>
+<p>In the last step, we take the square root over the variance to return to our original units of income.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get the standard deviation</span>
+<span class="kw">sqrt</span>(var.income)</code></pre></div>
+<pre><code>[1] 9467.383</code></pre>
+<p>The average deviation from mean income in Berlin (24666.24) is 9467.3828805.</p>
+</div>
+<div id="exercise-9" class="section level3">
+<h3><span class="header-section-number">1.2.7</span> Exercise 9</h3>
+<p>What is the level of measurement of the variable in the Sunday Question?</p>
+<p>The variable measures vote choice. The answers are categories, the parties, without any specific ordering. The level of measurement is called categorical or nominal.</p>
+</div>
+<div id="exercise-10" class="section level3">
+<h3><span class="header-section-number">1.2.8</span> Exercise 10</h3>
+<p>Take the most recent poll and describe what you see in terms of central tendency and dispersion.</p>
+<p>The most recent poll was carried out by Infratest/dimap on Thursday, 6 September. The most common value, the mode, is CDU/CSU, the Christian Democrats. Therefore, Christian Democrat is the modal category (central tendency). Dispersion of a categorical variable is the proportion in each category which we see displayed on the website:</p>
+<p>|—————————————————————–|———————–| |Party |Proportion| |CDU/CSU|0.29| |SPD|0.18| |GREEN|0.14| |FDP|0.08| |THE LEFT|0.10| |AFD|0.16| |other|0.05|</p>
 
 </div>
 </div>
