@@ -1,8 +1,8 @@
-```{r, echo==FALSE}
+## Solutions
+
+```{r, eval=TRUE, echo=FALSE}
 options(scipen=999)
 ```
-
-## Solutions
 
 ### Exercise 3
 
@@ -65,7 +65,7 @@ mean(income)
 sd(income)
 ```
 
-Average income in our Berlin sample is (`r mean(income)`). The average difference from that value is `r sd(income)`. 
+Average income in our Berlin sample is `r round(mean(income),2)`. The average difference from that value is `r round(sd(income),2)`. 
 
 ### Exercise 8
 
@@ -149,7 +149,7 @@ var.income <- sum.of.squared.deviations / ( length(income) - 1 )
 var.income
 ```
 
-The squared average deviation from mean income is `r var.income`.
+The squared average deviation from mean income is `r round(var.income,2)`.
 
 In the last step, we take the square root over the variance to return to our original units of income.
 
@@ -158,7 +158,7 @@ In the last step, we take the square root over the variance to return to our ori
 sqrt(var.income)
 ```
 
-The average deviation from mean income in Berlin (`r mean(income)`) is `r sd(income)`.
+The average deviation from mean income in Berlin (`r round(mean(income),2)`) is `r round(sd(income),2)`.
 
 
 ### Exercise 9
@@ -174,8 +174,9 @@ Take the most recent poll and describe what you see in terms of central tendency
 
 The most recent poll was carried out by Infratest/dimap on Thursday, 6 September. The most common value, the mode, is CDU/CSU, the Christian Democrats. Therefore, Christian Democrat is the modal category (central tendency). Dispersion of a categorical variable is the proportion in each category which we see displayed on the website:
   
-  |-----------------------------------------------------------------|-----------------------|
+  
   |Party |Proportion|
+  |-----------------------------------------------------------------|-----------------------|
   |CDU/CSU|0.29|
   |SPD|0.18|
   |GREEN|0.14|

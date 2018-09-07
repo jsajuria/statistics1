@@ -694,7 +694,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Source your script, i.e. run the entire script without error message. Clean your script if you get error messages.</li>
 </ol>
 
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">scipen=</span><span class="dv">999</span>)</code></pre></div>
 </div>
 </div>
 <div id="solutions" class="section level2">
@@ -744,7 +743,7 @@ income &lt;-<span class="st"> </span><span class="kw">c</span>(
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># dispersion</span>
 <span class="kw">sd</span>(income)</code></pre></div>
 <pre><code>[1] 9467.383</code></pre>
-<p>Average income in our Berlin sample is (24666.24). The average difference from that value is 9467.3828805.</p>
+<p>Average income in our Berlin sample is 24666.24. The average difference from that value is 9467.38.</p>
 </div>
 <div id="exercise-8" class="section level3">
 <h3><span class="header-section-number">1.2.6</span> Exercise 8</h3>
@@ -793,7 +792,7 @@ b &lt;-<span class="st"> </span>a<span class="op">^</span><span class="dv">2</sp
   <span class="dt">xlab =</span> <span class="st">&quot;input values from vector a&quot;</span>, <span class="co"># x axis label</span>
   <span class="dt">ylab =</span> <span class="st">&quot;b = a^2&quot;</span> <span class="co"># y axis label</span>
 )</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
 <p>In this plot, you should see that the slope of the line increases, the further we are from 0. We are taking individual differences from the mean. Hence, if a value is exactly at the mean, the difference is zero. The further, the value is from the mean (in any direction), the larger the output value.</p>
 <p>We will sum over the individual elements in the next step. Hence, values that are further from the mean have a larger impact on the sum than values that are closer to the mean.</p>
 <p>In the next step, we take the sum over our squared deviations from the mean</p>
@@ -811,12 +810,12 @@ var.income &lt;-<span class="st"> </span>sum.of.squared.deviations <span class="
 <span class="co"># print the variance</span>
 var.income</code></pre></div>
 <pre><code>[1] 89631339</code></pre>
-<p>The squared average deviation from mean income is 89631338.6066667.</p>
+<p>The squared average deviation from mean income is 89631338.61.</p>
 <p>In the last step, we take the square root over the variance to return to our original units of income.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get the standard deviation</span>
 <span class="kw">sqrt</span>(var.income)</code></pre></div>
 <pre><code>[1] 9467.383</code></pre>
-<p>The average deviation from mean income in Berlin (24666.24) is 9467.3828805.</p>
+<p>The average deviation from mean income in Berlin (24666.24) is 9467.38.</p>
 </div>
 <div id="exercise-9" class="section level3">
 <h3><span class="header-section-number">1.2.7</span> Exercise 9</h3>
@@ -827,7 +826,44 @@ var.income</code></pre></div>
 <h3><span class="header-section-number">1.2.8</span> Exercise 10</h3>
 <p>Take the most recent poll and describe what you see in terms of central tendency and dispersion.</p>
 <p>The most recent poll was carried out by Infratest/dimap on Thursday, 6 September. The most common value, the mode, is CDU/CSU, the Christian Democrats. Therefore, Christian Democrat is the modal category (central tendency). Dispersion of a categorical variable is the proportion in each category which we see displayed on the website:</p>
-<p>|—————————————————————–|———————–| |Party |Proportion| |CDU/CSU|0.29| |SPD|0.18| |GREEN|0.14| |FDP|0.08| |THE LEFT|0.10| |AFD|0.16| |other|0.05|</p>
+<table>
+<thead>
+<tr class="header">
+<th>Party</th>
+<th>Proportion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CDU/CSU</td>
+<td>0.29</td>
+</tr>
+<tr class="even">
+<td>SPD</td>
+<td>0.18</td>
+</tr>
+<tr class="odd">
+<td>GREEN</td>
+<td>0.14</td>
+</tr>
+<tr class="even">
+<td>FDP</td>
+<td>0.08</td>
+</tr>
+<tr class="odd">
+<td>THE LEFT</td>
+<td>0.10</td>
+</tr>
+<tr class="even">
+<td>AFD</td>
+<td>0.16</td>
+</tr>
+<tr class="odd">
+<td>other</td>
+<td>0.05</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 </div>
