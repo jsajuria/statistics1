@@ -1389,5 +1389,776 @@ other & 0.05\tabularnewline
 \bottomrule
 \end{longtable}
 
+\chapter{Research Design, Counterfactuals, Forming
+Hypotheses}\label{research-design-counterfactuals-forming-hypotheses}
+
+\section{Seminar}\label{seminar-1}
+
+In today's seminar, we learn working with data frames. We will create
+our own dataset, we subset dataset (access elements, rows and
+variables). We load our first dataset into R. We also visualise data
+using the \texttt{plot()} function. Finally, we estimate a treatment
+effect in R---our first inference.
+
+\subsection{setting up}\label{setting-up}
+
+We set our working directory. R operates in specific directory (folder)
+on our computer. We create a folder on our computer where we save our
+scripts for our statistics 1 class. We name the folder \texttt{stats1}.
+Let's create the folder on our computers now (in finder on Mac and
+explorer on Windows).
+
+Now, we set our working directory to the folder, we just created like
+so:
+
+\begin{figure}
+\centering
+\includegraphics{./img/setwdir.png}
+\caption{}
+\end{figure}
+
+Create a new R script and save it as week2.R to your \texttt{stats1}
+directory. Now type the following commands in the new file you just
+created:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Create a numeric and a character variable}
+\NormalTok{a <-}\StringTok{ }\DecValTok{5} 
+\end{Highlighting}
+\end{Shaded}
+
+Save your script, and re-open it to make sure your changes are still
+there. Then check your workspace.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# check workspace}
+\KeywordTok{ls}\NormalTok{()}
+
+\CommentTok{# delete variable 'a' from workspace}
+\KeywordTok{rm}\NormalTok{(a)}
+
+\CommentTok{# delete everything from workspace}
+\KeywordTok{rm}\NormalTok{( }\DataTypeTok{list =} \KeywordTok{ls}\NormalTok{() )}
+
+\CommentTok{# to clear console window press Crtl+l on Win or Command+l on Mac}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{vectors and subsetting}\label{vectors-and-subsetting}
+
+Last week we have already worked with vectors. We created a sequence for
+example. This week, we have a look at element-wise operations and we see
+how to access elements within a vector.
+
+We create a vector using the \texttt{c()} function, where c stands for
+collect.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Create a vector}
+\NormalTok{my.vector <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{99}\NormalTok{,}\DecValTok{34}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{5}\NormalTok{) }\CommentTok{# a vector}
+\NormalTok{my.vector}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 10  7 99 34  0  5
+\end{verbatim}
+
+Let's see how many elements our vector contains using the
+\texttt{length()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{length}\NormalTok{(my.vector) }\CommentTok{# how many elements?}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 6
+\end{verbatim}
+
+Next, we access the first element in our vector. We use square brackets
+to access a specific element. The number in the square brackets is the
+vector element that we access
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# subsetting}
+\NormalTok{my.vector[}\DecValTok{1}\NormalTok{] }\CommentTok{# 1st vector element}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 10
+\end{verbatim}
+
+To access all elements except the last element we use the \texttt{-}
+operator.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my.vector[}\OperatorTok{-}\DecValTok{1}\NormalTok{] }\CommentTok{# all elements but the 1st}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1]  7 99 34  0  5
+\end{verbatim}
+
+We can access elements 2 to 4 by using the colon.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my.vector[}\DecValTok{2}\OperatorTok{:}\DecValTok{4}\NormalTok{] }\CommentTok{# the 2nd to the 4th elements}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1]  7 99 34
+\end{verbatim}
+
+If we want to see to specific non-adjacent elements, we can use the
+collect function \texttt{c()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my.vector[}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{5}\NormalTok{)] }\CommentTok{# 2nd and 5th element}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 7 0
+\end{verbatim}
+
+No, we combine the \texttt{length()} function with the square brackets
+to access the last element in our vector.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my.vector[}\KeywordTok{length}\NormalTok{(my.vector)] }\CommentTok{# the last element}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 5
+\end{verbatim}
+
+\subsection{data frames}\label{data-frames}
+
+A data frame is an object that holds data in a tabular format similar to
+how spreadsheets work. Variables are generally kept in columns and
+observations are in rows.
+
+Before we work with ready-made data, we create a small dataset
+ourselves. It contains the populations of the sixteen German states. We
+start with a vector that contains the names of those states. We call the
+variable \emph{state}. Our variable shall contain text instead of
+numbers. In R jargon this is a character variable, sometimes referred to
+as a string. Using quotes, we indicate that the variable type is
+character. We use the \texttt{c()} function to create the vector.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# create a character vector containing state names}
+\NormalTok{state <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}
+  \StringTok{"North Rhine-Westphalia"}\NormalTok{,}
+  \StringTok{"Bavaria"}\NormalTok{,}
+  \StringTok{"Baden-Wurttemberg"}\NormalTok{,}
+  \StringTok{"Lower Saxony"}\NormalTok{,}
+  \StringTok{"Hesse"}\NormalTok{,}
+  \StringTok{"Saxony"}\NormalTok{,}
+  \StringTok{"Rhineland-Palatinate"}\NormalTok{,}
+  \StringTok{"Berlin"}\NormalTok{,}
+  \StringTok{"Schleswig-Holstein"}\NormalTok{,}
+  \StringTok{"Brandenburg"}\NormalTok{,}
+  \StringTok{"Saxony-Anhalt"}\NormalTok{,}
+  \StringTok{"Thuringia"}\NormalTok{,}
+  \StringTok{"Hamburg"}\NormalTok{,}
+  \StringTok{"Mecklenburg-Vorpommern"}\NormalTok{,}
+  \StringTok{"Saarland"}\NormalTok{,}
+  \StringTok{"Bremen"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+Now, we create a second variable for the populations. This is a numeric
+vector, so we do not use the quotes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{population <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}
+  \DecValTok{17865516}\NormalTok{,}
+  \DecValTok{12843514}\NormalTok{,}
+  \DecValTok{10879618}\NormalTok{,}
+  \DecValTok{7926599}\NormalTok{,}
+  \DecValTok{6176172}\NormalTok{,}
+  \DecValTok{4084851}\NormalTok{,}
+  \DecValTok{4052803}\NormalTok{,}
+  \DecValTok{3670622}\NormalTok{,}
+  \DecValTok{2858714}\NormalTok{,}
+  \DecValTok{2484826}\NormalTok{,}
+  \DecValTok{2245470}\NormalTok{,}
+  \DecValTok{2170714}\NormalTok{,}
+  \DecValTok{1787408}\NormalTok{,}
+  \DecValTok{1612362}\NormalTok{,}
+  \DecValTok{995597}\NormalTok{,}
+  \DecValTok{671489}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Now with both vectors created, we combine them into a dataframe. We put
+our vectors in and give them names. In this case the variable names in
+the dataset correspond to our vector names. The name goes in front of
+the equal sign and the vector object name, after.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{popdata <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{( }
+  \DataTypeTok{state =}\NormalTok{ state,}
+  \DataTypeTok{population =}\NormalTok{ population}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+You should see the new data frame object in your global environment
+window. You can view the dataset in the spreadsheet form that we are all
+used to by clicking on the oject name.
+
+We can see the names of variables in our dataset with the names function
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{names}\NormalTok{(popdata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "state"      "population"
+\end{verbatim}
+
+Let's check the variable types in our data using the \texttt{str()}
+function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(popdata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+'data.frame':   16 obs. of  2 variables:
+ $ state     : Factor w/ 16 levels "Baden-Wurttemberg",..: 10 2 1 8 7 13 11 3 15 4 ...
+ $ population: num  17865516 12843514 10879618 7926599 6176172 ...
+\end{verbatim}
+
+The variable \emph{state} is a factor variable. R has turned the
+character variable into a categorical variable automatically. The
+variable \emph{population} is numeric. These variable types differ. We
+can calculate with numeric variables only.
+
+Often we want to access certain observations (rows) or certain columns
+(variables) or a combination of the two without looking at the entire
+dataset all at once. We can use square brackets to subset data frames.
+In square brackets we put a row and a column coordinate separated by a
+comma. The row coordinate goes first and the column coordinate second.
+So \texttt{popdata{[}10,\ 2{]}} returns the 10th row and third column of
+the data frame. If we leave the column coordinate empty this means we
+would like all columns. So, \texttt{popdata{[}10,{]}} returns the 10th
+row of the dataset. If we leave the row coordinate empty, R returns the
+entire column. \texttt{popdata{[},2{]}} returns the second column of the
+dataset.
+
+We can look at the first five rows of a dataset to get a better
+understanding of it with the colon in brackets like so:
+\texttt{popdata{[}1:5,{]}}. We could display the second and fifth
+columns of the dataset by using the \texttt{c()} function in brackets
+like so: \texttt{popdata{[},\ c(2,5){]}}.
+
+It's your turn. Display all columns of the longley dataset and show rows
+10 to 15. Next display all columns of the dataset and rows 4 and 7.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{popdata[}\DecValTok{10}\OperatorTok{:}\DecValTok{15}\NormalTok{, ] }\CommentTok{# elements in 10th to 15th row, all columns}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+                    state population
+10            Brandenburg    2484826
+11          Saxony-Anhalt    2245470
+12              Thuringia    2170714
+13                Hamburg    1787408
+14 Mecklenburg-Vorpommern    1612362
+15               Saarland     995597
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{popdata[}\KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{7}\NormalTok{), ] }\CommentTok{# elements in 4th and 7th row, all column}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+                 state population
+4         Lower Saxony    7926599
+7 Rhineland-Palatinate    4052803
+\end{verbatim}
+
+In order to access individual columns of a data frame we can also use
+the dollar sign \texttt{\$}. For example, let's see how to access the
+\texttt{population} column.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{popdata}\OperatorTok{$}\NormalTok{population}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] 17865516 12843514 10879618  7926599  6176172  4084851  4052803
+ [8]  3670622  2858714  2484826  2245470  2170714  1787408  1612362
+[15]   995597   671489
+\end{verbatim}
+
+Now, access the state column.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{popdata}\OperatorTok{$}\NormalTok{state}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] North Rhine-Westphalia Bavaria                Baden-Wurttemberg     
+ [4] Lower Saxony           Hesse                  Saxony                
+ [7] Rhineland-Palatinate   Berlin                 Schleswig-Holstein    
+[10] Brandenburg            Saxony-Anhalt          Thuringia             
+[13] Hamburg                Mecklenburg-Vorpommern Saarland              
+[16] Bremen                
+16 Levels: Baden-Wurttemberg Bavaria Berlin Brandenburg Bremen ... Thuringia
+\end{verbatim}
+
+\subsection{Loading data}\label{loading-data}
+
+Before you load the dataset into R, you first download it and save it
+locally in your \texttt{Stats1} folder. Download the data
+\href{http://philippbroniecki.github.io/ML2017.io/data/BSAS_manip.RData}{here}.
+
+We often load existing data sets into R for analysis. Data come in many
+different file formats such as \texttt{.csv}, \texttt{.tab},
+\texttt{.dta}, etc. Today we will load a dataset which is stored in R's
+native file format: \texttt{.RData}. The function to load data from this
+file format is called: \texttt{load()}. If you managed to set your
+working directory correctly just now
+(\texttt{setwd("\textasciitilde{}/Stats1"})), then you should just be
+able to run the line of code below.
+
+We load the dataset with the \texttt{load()} function like.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# load perception of non-western foreigners data}
+\KeywordTok{load}\NormalTok{(}\StringTok{"BSAS_manip.RData"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The non-western foreingers data is about the subjective perception of
+immigrants from non-western countries. The perception of immigrants from
+a context that is not similar to the own is often used as a proxy for
+racism. Whether this is a fair measure or not is debatable but let's
+examine the data from a survey carried our in Britain.
+
+Let's check the codebook of our data.
+
+\begin{tabular}{l|l}
+\hline
+Variable & Description\\
+\hline
+IMMBRIT & Out of every 100 people in Britain, how many do you think are immigrants from non-western countries?\\
+\hline
+over.estimate & 1 if estimate is higher than 10.7\%.\\
+\hline
+RSex & 1 = male, 2 = female\\
+\hline
+RAge & Age of respondent\\
+\hline
+Househld & Number of people living in respondent's household\\
+\hline
+party identification & 1 = Conservatives, 2 = Labour, 3 = SNP, 4 = Greens, 5 = Ukip, 6 = BNP, 7 = other\\
+\hline
+paper & Do you normally read any daily morning newspaper 3+ times/week?\\
+\hline
+WWWhourspW & How many hours WWW per week?\\
+\hline
+religious & Do you regard yourself as belonging to any particular religion?\\
+\hline
+employMonths & How many mnths w. present employer?\\
+\hline
+urban & Population density, 4 categories (highest density is 4, lowest is 1)\\
+\hline
+health.good & How is your health in general for someone of your age? (0: bad, 1: fair, 2: fairly good, 3: good)\\
+\hline
+HHInc & Income bands for household, high number = high HH income\\
+\hline
+\end{tabular}
+
+We can look at the variable names in our data with the
+\href{http://bit.ly/R_names}{\texttt{names()}} function.
+
+The \href{http://bit.ly/R_dim}{\texttt{dim()}} function can be used to
+find out the dimensions of the dataset (dimension 1 = rows, dimension 2
+= columns).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dim}\NormalTok{(data2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 1049   19
+\end{verbatim}
+
+So, the \href{http://bit.ly/R_dim}{\texttt{dim()}} function tells us
+that we have data from 1049 respondents with 19 variables for each
+respondent.
+
+Let's take a quick peek at the first 10 observations to see what the
+dataset looks like. By default the
+\href{http://bit.ly/R_head}{\texttt{head()}} function returns the first
+6 rows, but let's tell it to return the first 10 rows instead.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(data2, }\DataTypeTok{n =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+   IMMBRIT over.estimate RSex RAge Househld Cons Lab SNP Ukip BNP GP
+1        1             0    1   50        2    0   1   0    0   0  0
+2       50             1    2   18        3    0   0   0    0   0  0
+3       50             1    2   60        1    0   0   0    0   0  0
+4       15             1    2   77        2    0   0   0    0   0  0
+5       20             1    2   67        1    0   0   0    0   0  0
+6       30             1    1   30        4    0   0   0    0   0  0
+7       60             1    2   56        2    0   0   1    0   0  0
+8        7             0    1   49        1    0   0   0    0   0  0
+9       30             1    1   40        4    0   0   1    0   0  0
+10       2             0    1   61        3    1   0   0    0   0  0
+   party.other paper WWWhourspW religious employMonths urban health.good
+1            0     0          1         0           72     4           1
+2            1     0          4         0           72     4           2
+3            1     0          1         0          456     3           3
+4            1     1          2         1           72     1           3
+5            1     0          1         1           72     3           3
+6            1     1         14         0           72     1           2
+7            0     0          5         1          180     1           2
+8            1     1          8         0          156     4           2
+9            0     0          3         1          264     2           2
+10           0     1          0         1           72     1           3
+   HHInc
+1     13
+2      3
+3      9
+4      8
+5      9
+6      9
+7     13
+8     14
+9     11
+10     8
+\end{verbatim}
+
+\subsection{Plots}\label{plots}
+
+We can visualize the data with the help of a boxplot, so let's see how
+the perception of the number of immigrants is distributed.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# how good are we at guessing immigration}
+\KeywordTok{boxplot}\NormalTok{(}
+\NormalTok{  data2}\OperatorTok{$}\NormalTok{IMMBRIT, }
+  \DataTypeTok{main =} \StringTok{"Perception of Immigration from Non-Western Countries"}\NormalTok{,}
+  \DataTypeTok{ylab =} \StringTok{"Subjective number of immigrants per 100 British"}\NormalTok{, }
+  \DataTypeTok{frame.plot =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{col =} \StringTok{"darkgray"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-69-1.pdf}
+
+Notice how the lower whisker is much shorter than the upper one. The
+distribution is right skewed. The right tail (higher values) is a lot
+longer. We can see this beter using a density plot. We combine R's
+\texttt{denisty()} function with the \texttt{plot()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}
+  \KeywordTok{density}\NormalTok{(data2}\OperatorTok{$}\NormalTok{IMMBRIT),}
+  \DataTypeTok{bty =} \StringTok{"n"}\NormalTok{,}
+  \DataTypeTok{main =} \StringTok{"Perception of Immigration from Non-Western Countries"}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"Subjective number of immigrants per 100 British"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-70-1.pdf}
+
+We can also plot histograms using the \texttt{hist()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# histogram}
+\KeywordTok{hist}\NormalTok{( data2}\OperatorTok{$}\NormalTok{employMonths, }\DataTypeTok{main =} \StringTok{"histogram"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-71-1.pdf}
+
+It is plausible that perception of immigration from Non-Western
+countries is related to party affiliation. In our dataset, we have a few
+vaiables that are related to party affiliation. We can use square
+brackets to subset our data such that we produce a boxplot only for
+members of the conservative party. We have a look at the variable
+\emph{Cons} using the table function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(data2}\OperatorTok{$}\NormalTok{Cons)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+  0   1 
+765 284 
+\end{verbatim}
+
+In our data 284 respondents associate with the Conservative party and
+765 do not. We create a boxplot of \emph{IMMBRIT} but only for members
+of the Conservative party. We do so by using the square brackets to
+subset our data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# boxplot of immbrit for those observations where Cons is 1}
+\KeywordTok{boxplot}\NormalTok{(}
+\NormalTok{  data2}\OperatorTok{$}\NormalTok{IMMBRIT[data2}\OperatorTok{$}\NormalTok{Cons}\OperatorTok{==}\DecValTok{1}\NormalTok{],}
+  \DataTypeTok{frame.plot =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"Conservatives"}\NormalTok{,}
+  \DataTypeTok{col =} \StringTok{"blue"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-73-1.pdf}
+
+We would now like to compare this with the Labour party. We could subset
+the data just like we did for the Conservative Party. We will do this.
+We also want to plot the two plots next to each other. We can do this
+with the \texttt{par()} and the \texttt{mfrow} argument. This will spilt
+the plot window into rows and columns. We want to columns to plot two
+boxplots next to each other.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# split plot window into 1 row and 2 columns}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+
+\CommentTok{# plot 1}
+\KeywordTok{boxplot}\NormalTok{(}
+\NormalTok{  data2}\OperatorTok{$}\NormalTok{IMMBRIT[data2}\OperatorTok{$}\NormalTok{Cons}\OperatorTok{==}\DecValTok{1}\NormalTok{],}
+  \DataTypeTok{frame.plot =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"Conservatives"}\NormalTok{,}
+  \DataTypeTok{col =} \StringTok{"blue"}
+\NormalTok{  )}
+
+\CommentTok{# plot 2}
+\KeywordTok{boxplot}\NormalTok{(}
+\NormalTok{  data2}\OperatorTok{$}\NormalTok{IMMBRIT[data2}\OperatorTok{$}\NormalTok{Lab}\OperatorTok{==}\DecValTok{1}\NormalTok{],}
+  \DataTypeTok{frame.plot =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"Labour"}\NormalTok{,}
+  \DataTypeTok{col =} \StringTok{"red"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-74-1.pdf}
+
+You can play around with the non-western foreigners data on your own
+time. We now turn to a dataset that is integrated in R already. It is
+called \texttt{longley}. Use the \texttt{help()} function to see what
+this dataset is about
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{help}\NormalTok{(longley)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+starting httpd help server ... done
+\end{verbatim}
+
+Let's create a scatterplot with the \texttt{Year} variable on the x-axis
+and \texttt{Employed} on the y-axis.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ longley}\OperatorTok{$}\NormalTok{Year, }\CommentTok{# x-axis variable}
+     \DataTypeTok{y =}\NormalTok{ longley}\OperatorTok{$}\NormalTok{Employed, }\CommentTok{# y-axis variable}
+     \DataTypeTok{bty =} \StringTok{"n"} \CommentTok{# no box around the plot}
+\NormalTok{     )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-76-1.pdf}
+
+To create a line plot instead, we use the same function with one
+additional argument \texttt{type\ =\ "l"}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(longley}\OperatorTok{$}\NormalTok{Year, longley}\OperatorTok{$}\NormalTok{Employed, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-77-1.pdf}
+
+Create a plot that includes both points and lines.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(longley}\OperatorTok{$}\NormalTok{Year, longley}\OperatorTok{$}\NormalTok{Employed, }\DataTypeTok{type =} \StringTok{"b"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-78-1.pdf}
+
+\subsection{Average Treatment Effect}\label{average-treatment-effect}
+
+In the lecture, we estimated the average treatment effect on a small
+example. We will do this again here. Recall, that the average treatment
+effect is the difference between two means.
+
+Let's suppose, associating with right-wing parties causes people to
+over-estimate the number of non-western foreigners in the Britain. Our
+treatment variable is whether one assoicates with the UK Independence
+Party. It is 1 if that is the case and 0 otherwise. Let's inspect the
+variable \emph{Ukip}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(data2}\OperatorTok{$}\NormalTok{Ukip)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+   0    1 
+1018   31 
+\end{verbatim}
+
+31 respondents identify with Ukip.
+
+The average treatment effect, as we learned, would be the difference
+between the mean outcomes for those who received the treament minus the
+mean for those who did not reicive the treatment.
+
+We have all the tools to solve the problem. Let's take the mean of the
+treated group first.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mean.y.treated <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(data2}\OperatorTok{$}\NormalTok{IMMBRIT[data2}\OperatorTok{$}\NormalTok{Ukip }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{])}
+\NormalTok{mean.y.treated}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 24.29032
+\end{verbatim}
+
+Now, we take the mean of the second group, the untreated group.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mean.y.untreated <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(data2}\OperatorTok{$}\NormalTok{IMMBRIT[data2}\OperatorTok{$}\NormalTok{Ukip }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{])}
+\NormalTok{mean.y.untreated}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 29.17485
+\end{verbatim}
+
+The treatment effect is the difference in means:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mean.y.treated }\OperatorTok{-}\StringTok{ }\NormalTok{mean.y.untreated}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] -4.88453
+\end{verbatim}
+
+The result is surprising. Ukip members over-estimate the number of
+non-western foreigners less than non Ukip members. Our thory is not
+quite supported by the data. We should be very careful with these
+results, however. We used experimental language but our data is
+observational. A multitude of confounders could bias our estimate of the
+causal effect.
+
+\subsection{Exercises}\label{exercises-1}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Create a script and call it assignment02. Save your script.
+\item
+  Use the \texttt{names()} function to display the variable names of the
+  \texttt{longley} dataset.
+\item
+  Use square brackets to access the 4th column of the dataset.
+\item
+  Use the dollar sign to access the 4th column of the dataset.
+\item
+  Access the two cells from row 4 and column 1 and row 6 and column 3.
+\item
+  Using the \texttt{longley} data produce a line plot with GNP on the
+  y-axis and population on the x-axis.
+\item
+  Use the help function to find out how to label the y-axis ``wealth''
+  and the x-axis ``population''.
+\item
+  Create a boxplot showing the distribution of \emph{IMMBRIT} by each
+  party in the data and plot these in one plot next to each other.
+\item
+  Is there a difference between women and men in terms of their
+  subjective estimation of foreingers?
+\item
+  What is the difference between women and men?
+\item
+  Could you form a hypothesis out of the relationship that you see if
+  any exists?
+\item
+  Save your script, which should now include the answers to all the
+  exercises.
+\item
+  Source your script, i.e.~run the entire script without error message.
+  Clean your script if you get error messages.
+\end{enumerate}
+
 
 \end{document}

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Statistics 1</title>
+  <meta name="description" content="Statistics 1">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Statistics 1" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Statistics 1" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="introduction-measurement-central-tendency-dispersion-validity-reliability.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this course</a></li>
+<li class="chapter" data-level="1" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><i class="fa fa-check"></i><b>1</b> Introduction: Measurement, Central Tendency, Dispersion, Validity, Reliability</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#seminar"><i class="fa fa-check"></i><b>1.1</b> Seminar</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#getting-started"><i class="fa fa-check"></i><b>1.1.1</b> Getting Started</a></li>
+<li class="chapter" data-level="1.1.2" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#rstudio"><i class="fa fa-check"></i><b>1.1.2</b> RStudio</a></li>
+<li class="chapter" data-level="1.1.3" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#console"><i class="fa fa-check"></i><b>1.1.3</b> Console</a></li>
+<li class="chapter" data-level="1.1.4" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#functions"><i class="fa fa-check"></i><b>1.1.4</b> Functions</a></li>
+<li class="chapter" data-level="1.1.5" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#getting-help"><i class="fa fa-check"></i><b>1.1.5</b> Getting Help</a></li>
+<li class="chapter" data-level="1.1.6" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#the-assignment-operator"><i class="fa fa-check"></i><b>1.1.6</b> The Assignment Operator</a></li>
+<li class="chapter" data-level="1.1.7" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#sequences"><i class="fa fa-check"></i><b>1.1.7</b> Sequences</a></li>
+<li class="chapter" data-level="1.1.8" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#scripts"><i class="fa fa-check"></i><b>1.1.8</b> Scripts</a></li>
+<li class="chapter" data-level="1.1.9" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#central-tendency"><i class="fa fa-check"></i><b>1.1.9</b> Central Tendency</a></li>
+<li class="chapter" data-level="1.1.10" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#dispersion"><i class="fa fa-check"></i><b>1.1.10</b> Dispersion</a></li>
+<li class="chapter" data-level="1.1.11" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercises"><i class="fa fa-check"></i><b>1.1.11</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#solutions"><i class="fa fa-check"></i><b>1.2</b> Solutions</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-3"><i class="fa fa-check"></i><b>1.2.1</b> Exercise 3</a></li>
+<li class="chapter" data-level="1.2.2" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-4"><i class="fa fa-check"></i><b>1.2.2</b> Exercise 4</a></li>
+<li class="chapter" data-level="1.2.3" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-5"><i class="fa fa-check"></i><b>1.2.3</b> Exercise 5</a></li>
+<li class="chapter" data-level="1.2.4" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-6"><i class="fa fa-check"></i><b>1.2.4</b> Exercise 6</a></li>
+<li class="chapter" data-level="1.2.5" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-7"><i class="fa fa-check"></i><b>1.2.5</b> Exercise 7</a></li>
+<li class="chapter" data-level="1.2.6" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-8"><i class="fa fa-check"></i><b>1.2.6</b> Exercise 8</a></li>
+<li class="chapter" data-level="1.2.7" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-9"><i class="fa fa-check"></i><b>1.2.7</b> Exercise 9</a></li>
+<li class="chapter" data-level="1.2.8" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-10"><i class="fa fa-check"></i><b>1.2.8</b> Exercise 10</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="describing-data.html"><a href="describing-data.html"><i class="fa fa-check"></i><b>2</b> Describing Data,</a><ul>
+<li class="chapter" data-level="2.1" data-path="describing-data.html"><a href="describing-data.html#seminar-1"><i class="fa fa-check"></i><b>2.1</b> Seminar</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="describing-data.html"><a href="describing-data.html#atze-peng"><i class="fa fa-check"></i><b>2.1.1</b> atze peng</a></li>
+<li class="chapter" data-level="2.1.2" data-path="describing-data.html"><a href="describing-data.html#data-frames"><i class="fa fa-check"></i><b>2.1.2</b> data frames</a></li>
+<li class="chapter" data-level="2.1.3" data-path="describing-data.html"><a href="describing-data.html#loading-data"><i class="fa fa-check"></i><b>2.1.3</b> Loading data</a></li>
+<li class="chapter" data-level="2.1.4" data-path="describing-data.html"><a href="describing-data.html#plots"><i class="fa fa-check"></i><b>2.1.4</b> Plots</a></li>
+<li class="chapter" data-level="2.1.5" data-path="describing-data.html"><a href="describing-data.html#loading-data-1"><i class="fa fa-check"></i><b>2.1.5</b> Loading Data</a></li>
+<li class="chapter" data-level="2.1.6" data-path="describing-data.html"><a href="describing-data.html#exercises-1"><i class="fa fa-check"></i><b>2.1.6</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics 1</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="describing-data" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Describing Data,</h1>
+<div id="seminar-1" class="section level2">
+<h2><span class="header-section-number">2.1</span> Seminar</h2>
+<p>We set our working directory. R operates in specific directory (folder) on our computer. We create a folder on our computer where we save our scripts for our statistics 1 class. We name the folder <code>stats1</code>. Let’s create the folder on our computers now (in finder on Mac and explorer on Windows).</p>
+<p>Now, we set our working directory to the folder, we just created like so:</p>
+<div class="figure">
+<img src="img/setwdir.PNG" />
+
+</div>
+<div id="atze-peng" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> atze peng</h3>
+<ul>
+<li>Create a new R script and save it as week2.R to your preferred directory.</li>
+<li>Now type the following commands in the new file you just created:</li>
+</ul>
+<p>Save your script, and re-open it to make sure your changes are still there. Then check your workspace.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># check workspace</span>
+<span class="kw">ls</span>()
+
+<span class="co"># delete variable &#39;a&#39; from workspace</span>
+<span class="kw">rm</span>(a)
+
+<span class="co"># delete everything from workspace</span>
+<span class="kw">rm</span>( <span class="dt">list =</span> <span class="kw">ls</span>() )
+
+<span class="co"># to clear console window press Crtl+l on Win or Command+l on Mac</span></code></pre></div>
+<p>Last week we have already worked with vectors. We created a sequence for example. This week, we have a look at element-wise operations and we see how to access elements within a vector.</p>
+<p>We create a vector using the <code>c()</code> function, where c stands for collect.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a vector</span>
+my.vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">7</span>,<span class="dv">99</span>,<span class="dv">34</span>,<span class="dv">0</span>,<span class="dv">5</span>) <span class="co"># a vector</span>
+my.vector</code></pre></div>
+<pre><code>[1] 10  7 99 34  0  5</code></pre>
+<p>Let’s see how many elements our vector contains using the <code>length()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(my.vector) <span class="co"># how many elements?</span></code></pre></div>
+<pre><code>[1] 6</code></pre>
+<p>Next, we access the first element in our vector. We use square brackets to access a specific element. The number in the square brackets is the vector element that we access</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># subsetting</span>
+my.vector[<span class="dv">1</span>] <span class="co"># 1st vector element</span></code></pre></div>
+<pre><code>[1] 10</code></pre>
+<p>To access all elements except the last element we use the <code>-</code> operator.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.vector[<span class="op">-</span><span class="dv">1</span>] <span class="co"># all elements but the 1st</span></code></pre></div>
+<pre><code>[1]  7 99 34  0  5</code></pre>
+<p>We can access elements 2 to 4 by using the colon.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.vector[<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>] <span class="co"># the 2nd to the 4th elements</span></code></pre></div>
+<pre><code>[1]  7 99 34</code></pre>
+<p>If we want to see to specific non-adjacent elements, we can use the collect function <code>c()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.vector[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">5</span>)] <span class="co"># 2nd and 5th element</span></code></pre></div>
+<pre><code>[1] 7 0</code></pre>
+<p>No, we combine the <code>length()</code> function with the square brackets to access the last element in our vector.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.vector[<span class="kw">length</span>(my.vector)] <span class="co"># the last element</span></code></pre></div>
+<pre><code>[1] 5</code></pre>
+</div>
+<div id="data-frames" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> data frames</h3>
+<p>A data frame is an object that holds data in a tabular format similar to how spreadsheets work. Variables are generally kept in columns and observations are in rows.</p>
+<p>Before we work with ready-made data, we create a small dataset ourselves. It contains the populations of the sixteen German states. We start with a vector that contains the names of those states. We call the variable <em>state</em>. Our variable shall contain text instead of numbers. In R jargon this is a character variable, sometimes referred to as a string. Using quotes, we indicate that the variable type is character. We use the <code>c()</code> function to create the vector.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create a character vector containing state names</span>
+state &lt;-<span class="st"> </span><span class="kw">c</span>(
+  <span class="st">&quot;North Rhine-Westphalia&quot;</span>,
+  <span class="st">&quot;Bavaria&quot;</span>,
+  <span class="st">&quot;Baden-Wurttemberg&quot;</span>,
+  <span class="st">&quot;Lower Saxony&quot;</span>,
+  <span class="st">&quot;Hesse&quot;</span>,
+  <span class="st">&quot;Saxony&quot;</span>,
+  <span class="st">&quot;Rhineland-Palatinate&quot;</span>,
+  <span class="st">&quot;Berlin&quot;</span>,
+  <span class="st">&quot;Schleswig-Holstein&quot;</span>,
+  <span class="st">&quot;Brandenburg&quot;</span>,
+  <span class="st">&quot;Saxony-Anhalt&quot;</span>,
+  <span class="st">&quot;Thuringia&quot;</span>,
+  <span class="st">&quot;Hamburg&quot;</span>,
+  <span class="st">&quot;Mecklenburg-Vorpommern&quot;</span>,
+  <span class="st">&quot;Saarland&quot;</span>,
+  <span class="st">&quot;Bremen&quot;</span>
+  )</code></pre></div>
+<p>Now, we create a second variable for the populations. This is a numeric vector, so we do not use the quotes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">population &lt;-<span class="st"> </span><span class="kw">c</span>(
+  <span class="dv">17865516</span>,
+  <span class="dv">12843514</span>,
+  <span class="dv">10879618</span>,
+  <span class="dv">7926599</span>,
+  <span class="dv">6176172</span>,
+  <span class="dv">4084851</span>,
+  <span class="dv">4052803</span>,
+  <span class="dv">3670622</span>,
+  <span class="dv">2858714</span>,
+  <span class="dv">2484826</span>,
+  <span class="dv">2245470</span>,
+  <span class="dv">2170714</span>,
+  <span class="dv">1787408</span>,
+  <span class="dv">1612362</span>,
+  <span class="dv">995597</span>,
+  <span class="dv">671489</span>
+)</code></pre></div>
+<p>Now with both vectors created, we combine them into a dataframe. We put our vectors in and give them names. In this case the variable names in the dataset correspond to our vector names. The name goes in front of the equal sign and the vector object name, after.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">popdata &lt;-<span class="st"> </span><span class="kw">data.frame</span>( 
+  <span class="dt">state =</span> state,
+  <span class="dt">population =</span> population
+  )</code></pre></div>
+<p>You should see the new data frame object in your global environment window. You can view the dataset in the spreadsheet form that we are all used to by clicking on the oject name.</p>
+<p>We can see the names of variables in our dataset with the names function</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(popdata)</code></pre></div>
+<pre><code>[1] &quot;state&quot;      &quot;population&quot;</code></pre>
+<p>Let’s check the variable types in our data using the <code>str()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(popdata)</code></pre></div>
+<pre><code>&#39;data.frame&#39;:   16 obs. of  2 variables:
+ $ state     : Factor w/ 16 levels &quot;Baden-Wurttemberg&quot;,..: 10 2 1 8 7 13 11 3 15 4 ...
+ $ population: num  17865516 12843514 10879618 7926599 6176172 ...</code></pre>
+<p>The variable <em>state</em> is a factor variable. R has turned the character variable into a categorical variable automatically. The variable <em>population</em> is numeric. These variable types differ. We can calculate with numeric variables only.</p>
+<p>Often we want to access certain observations (rows) or certain columns (variables) or a combination of the two without looking at the entire dataset all at once. We can use square brackets to subset data frames. In square brackets we put a row and a column coordinate separated by a comma. The row coordinate goes first and the column coordinate second. So <code>popdata[10, 2]</code> returns the 10th row and third column of the data frame. If we leave the column coordinate empty this means we would like all columns. So, <code>popdata[10,]</code> returns the 10th row of the dataset. If we leave the row coordinate empty, R returns the entire column. <code>popdata[,2]</code> returns the second column of the dataset.</p>
+<p>We can look at the first five rows of a dataset to get a better understanding of it with the colon in brackets like so: <code>popdata[1:5,]</code>. We could display the second and fifth columns of the dataset by using the <code>c()</code> function in brackets like so: <code>popdata[, c(2,5)]</code>.</p>
+<p>It’s your turn. Display all columns of the longley dataset and show rows 10 to 15. Next display all columns of the dataset and rows 4 and 7.</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r">popdata[<span class="dv">10</span><span class="op">:</span><span class="dv">15</span>, ] <span class="co"># elements in 10th to 15th row, all columns</span></code></pre></div>
+<pre><code>                    state population
+10            Brandenburg    2484826
+11          Saxony-Anhalt    2245470
+12              Thuringia    2170714
+13                Hamburg    1787408
+14 Mecklenburg-Vorpommern    1612362
+15               Saarland     995597</code></pre>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r">popdata[<span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">7</span>), ] <span class="co"># elements in 4th and 7th row, all column</span></code></pre></div>
+<pre><code>                 state population
+4         Lower Saxony    7926599
+7 Rhineland-Palatinate    4052803</code></pre>
+<p>In order to access individual columns of a data frame we can also use the dollar sign <code>$</code>. For example, let’s see how to access the <code>population</code> column.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">popdata<span class="op">$</span>population</code></pre></div>
+<pre><code> [1] 17865516 12843514 10879618  7926599  6176172  4084851  4052803
+ [8]  3670622  2858714  2484826  2245470  2170714  1787408  1612362
+[15]   995597   671489</code></pre>
+<p>Now, access the state column.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">popdata<span class="op">$</span>state</code></pre></div>
+<pre><code> [1] North Rhine-Westphalia Bavaria                Baden-Wurttemberg     
+ [4] Lower Saxony           Hesse                  Saxony                
+ [7] Rhineland-Palatinate   Berlin                 Schleswig-Holstein    
+[10] Brandenburg            Saxony-Anhalt          Thuringia             
+[13] Hamburg                Mecklenburg-Vorpommern Saarland              
+[16] Bremen                
+16 Levels: Baden-Wurttemberg Bavaria Berlin Brandenburg Bremen ... Thuringia</code></pre>
+</div>
+<div id="loading-data" class="section level3">
+<h3><span class="header-section-number">2.1.3</span> Loading data</h3>
+<p>We often load existing data sets into R for analysis. Data come in many different file formats such as <code>.csv</code>, <code>.tab</code>, <code>.dta</code>, etc. Today we will load a dataset which is stored in R’s native file format: <code>.RData</code>. The function to load data from this file format is called: <code>load()</code>. If you managed to set your working directory correctly just now (<code>setwd(&quot;~/PUBLG100&quot;</code>)), then you should just be able to run the line of code below.</p>
+</div>
+<div id="plots" class="section level3">
+<h3><span class="header-section-number">2.1.4</span> Plots</h3>
+<p>Now let’s create some plots from the <code>longley</code> dataset. First let’s create a scatterplot with the <code>Year</code> variable on the x-axis and <code>Employed</code> on the y-axis.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> longley<span class="op">$</span>Year, 
+     <span class="dt">y =</span> longley<span class="op">$</span>Employed)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
+<p>To create a line plot instead, we use the same function with one additional argument <code>type = &quot;l&quot;</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(longley<span class="op">$</span>Year, longley<span class="op">$</span>Employed, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+<p>Now it’s your turn.</p>
+<ul>
+<li>Use online help for the <code>plot()</code> function and find out how to create a plot that includes both points and lines.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r"><span class="kw">plot</span>(longley<span class="op">$</span>Year, longley<span class="op">$</span>Employed, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
+<p>We want to describe the variable <em>Employed</em> which measures the number of people in employment. The variable is continuous. We first look at it’s central tendency and dispersion.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># central tendency</span>
+<span class="kw">mean</span>(longley<span class="op">$</span>Employed)</code></pre></div>
+<pre><code>[1] 65.317</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># dispersion</span>
+<span class="kw">sd</span>(longley<span class="op">$</span>Employed)</code></pre></div>
+<pre><code>[1] 3.511968</code></pre>
+<p>Now let’s examine our variable visually. We can do so with the <code>plot()</code> function. To create a density plot like in the seminar, we use the <code>density()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># density plot</span>
+<span class="kw">plot</span>(<span class="kw">density</span>(longley<span class="op">$</span>Employed),
+     <span class="dt">main =</span> <span class="st">&quot;Distribution of People in Employment&quot;</span>, <span class="co"># title label</span>
+     <span class="dt">xlab =</span> <span class="st">&quot;Number of people employed&quot;</span>, <span class="co"># x-axis label</span>
+     <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>) <span class="co"># no box around the plot</span></code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+</div>
+<div id="loading-data-1" class="section level3">
+<h3><span class="header-section-number">2.1.5</span> Loading Data</h3>
+</div>
+<div id="exercises-1" class="section level3">
+<h3><span class="header-section-number">2.1.6</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li>Create a script and call it assignment02. Save your script.</li>
+<li>Use the <code>names()</code> function to display the variable names of the <code>longley</code> dataset.</li>
+<li>Use square brackets to access the 4th column of the dataset.</li>
+<li>Use the dollar sign to access the 4th column of the dataset.</li>
+<li>Access the two cells from row 4 and column 1 and row 6 and column 3.</li>
+<li>Using the <code>longley</code> data produce a line plot with GNP on the y-axis and population on the x-axis.</li>
+<li>Use the help function to find out how to label the y-axis “wealth” and the x-axis “population”.</li>
+<li>Save your script, which should now include the answers to all the exercises.</li>
+<li>Source your script, i.e. run the entire script without error message. Clean your script if you get error messages.</li>
+</ol>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["statistics1.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

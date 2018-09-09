@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Statistics 1</title>
+  <meta name="description" content="Statistics 1">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Statistics 1" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Statistics 1" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="introduction-measurement-central-tendency-dispersion-validity-reliability.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this course</a></li>
+<li class="chapter" data-level="1" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><i class="fa fa-check"></i><b>1</b> Introduction: Measurement, Central Tendency, Dispersion, Validity, Reliability</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#seminar"><i class="fa fa-check"></i><b>1.1</b> Seminar</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#getting-started"><i class="fa fa-check"></i><b>1.1.1</b> Getting Started</a></li>
+<li class="chapter" data-level="1.1.2" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#rstudio"><i class="fa fa-check"></i><b>1.1.2</b> RStudio</a></li>
+<li class="chapter" data-level="1.1.3" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#console"><i class="fa fa-check"></i><b>1.1.3</b> Console</a></li>
+<li class="chapter" data-level="1.1.4" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#functions"><i class="fa fa-check"></i><b>1.1.4</b> Functions</a></li>
+<li class="chapter" data-level="1.1.5" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#getting-help"><i class="fa fa-check"></i><b>1.1.5</b> Getting Help</a></li>
+<li class="chapter" data-level="1.1.6" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#the-assignment-operator"><i class="fa fa-check"></i><b>1.1.6</b> The Assignment Operator</a></li>
+<li class="chapter" data-level="1.1.7" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#sequences"><i class="fa fa-check"></i><b>1.1.7</b> Sequences</a></li>
+<li class="chapter" data-level="1.1.8" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#scripts"><i class="fa fa-check"></i><b>1.1.8</b> Scripts</a></li>
+<li class="chapter" data-level="1.1.9" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#central-tendency"><i class="fa fa-check"></i><b>1.1.9</b> Central Tendency</a></li>
+<li class="chapter" data-level="1.1.10" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#dispersion"><i class="fa fa-check"></i><b>1.1.10</b> Dispersion</a></li>
+<li class="chapter" data-level="1.1.11" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercises"><i class="fa fa-check"></i><b>1.1.11</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#solutions"><i class="fa fa-check"></i><b>1.2</b> Solutions</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-3"><i class="fa fa-check"></i><b>1.2.1</b> Exercise 3</a></li>
+<li class="chapter" data-level="1.2.2" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-4"><i class="fa fa-check"></i><b>1.2.2</b> Exercise 4</a></li>
+<li class="chapter" data-level="1.2.3" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-5"><i class="fa fa-check"></i><b>1.2.3</b> Exercise 5</a></li>
+<li class="chapter" data-level="1.2.4" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-6"><i class="fa fa-check"></i><b>1.2.4</b> Exercise 6</a></li>
+<li class="chapter" data-level="1.2.5" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-7"><i class="fa fa-check"></i><b>1.2.5</b> Exercise 7</a></li>
+<li class="chapter" data-level="1.2.6" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-8"><i class="fa fa-check"></i><b>1.2.6</b> Exercise 8</a></li>
+<li class="chapter" data-level="1.2.7" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-9"><i class="fa fa-check"></i><b>1.2.7</b> Exercise 9</a></li>
+<li class="chapter" data-level="1.2.8" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-10"><i class="fa fa-check"></i><b>1.2.8</b> Exercise 10</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html"><i class="fa fa-check"></i><b>2</b> Research Design, Counterfactuals, Forming Hypotheses</a><ul>
+<li class="chapter" data-level="2.1" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#seminar-1"><i class="fa fa-check"></i><b>2.1</b> Seminar</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#setting-up"><i class="fa fa-check"></i><b>2.1.1</b> setting up</a></li>
+<li class="chapter" data-level="2.1.2" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#vectors-and-subsetting"><i class="fa fa-check"></i><b>2.1.2</b> vectors and subsetting</a></li>
+<li class="chapter" data-level="2.1.3" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#data-frames"><i class="fa fa-check"></i><b>2.1.3</b> data frames</a></li>
+<li class="chapter" data-level="2.1.4" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#loading-data"><i class="fa fa-check"></i><b>2.1.4</b> Loading data</a></li>
+<li class="chapter" data-level="2.1.5" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#plots"><i class="fa fa-check"></i><b>2.1.5</b> Plots</a></li>
+<li class="chapter" data-level="2.1.6" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#average-treatment-effect"><i class="fa fa-check"></i><b>2.1.6</b> Average Treatment Effect</a></li>
+<li class="chapter" data-level="2.1.7" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercises-1"><i class="fa fa-check"></i><b>2.1.7</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics 1</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="research-design-counterfactuals-forming-hypotheses" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Research Design, Counterfactuals, Forming Hypotheses</h1>
+<div id="seminar-1" class="section level2">
+<h2><span class="header-section-number">2.1</span> Seminar</h2>
+<p>In today’s seminar, we learn working with data frames. We will create our own dataset, we subset dataset (access elements, rows and variables). We load our first dataset into R. We also visualise data using the <code>plot()</code> function. Finally, we estimate a treatment effect in R—our first inference.</p>
+<div id="setting-up" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> setting up</h3>
+<p>We set our working directory. R operates in specific directory (folder) on our computer. We create a folder on our computer where we save our scripts for our statistics 1 class. We name the folder <code>stats1</code>. Let’s create the folder on our computers now (in finder on Mac and explorer on Windows).</p>
+<p>Now, we set our working directory to the folder, we just created like so:</p>
+<div class="figure">
+<img src="img/setwdir.PNG" />
+
+</div>
+<p>Create a new R script and save it as week2.R to your <code>stats1</code> directory. Now type the following commands in the new file you just created:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a numeric and a character variable</span>
+a &lt;-<span class="st"> </span><span class="dv">5</span> </code></pre></div>
+<p>Save your script, and re-open it to make sure your changes are still there. Then check your workspace.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># check workspace</span>
+<span class="kw">ls</span>()
+
+<span class="co"># delete variable &#39;a&#39; from workspace</span>
+<span class="kw">rm</span>(a)
+
+<span class="co"># delete everything from workspace</span>
+<span class="kw">rm</span>( <span class="dt">list =</span> <span class="kw">ls</span>() )
+
+<span class="co"># to clear console window press Crtl+l on Win or Command+l on Mac</span></code></pre></div>
+</div>
+<div id="vectors-and-subsetting" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> vectors and subsetting</h3>
+<p>Last week we have already worked with vectors. We created a sequence for example. This week, we have a look at element-wise operations and we see how to access elements within a vector.</p>
+<p>We create a vector using the <code>c()</code> function, where c stands for collect.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a vector</span>
+my.vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">7</span>,<span class="dv">99</span>,<span class="dv">34</span>,<span class="dv">0</span>,<span class="dv">5</span>) <span class="co"># a vector</span>
+my.vector</code></pre></div>
+<pre><code>[1] 10  7 99 34  0  5</code></pre>
+<p>Let’s see how many elements our vector contains using the <code>length()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(my.vector) <span class="co"># how many elements?</span></code></pre></div>
+<pre><code>[1] 6</code></pre>
+<p>Next, we access the first element in our vector. We use square brackets to access a specific element. The number in the square brackets is the vector element that we access</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># subsetting</span>
+my.vector[<span class="dv">1</span>] <span class="co"># 1st vector element</span></code></pre></div>
+<pre><code>[1] 10</code></pre>
+<p>To access all elements except the last element we use the <code>-</code> operator.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.vector[<span class="op">-</span><span class="dv">1</span>] <span class="co"># all elements but the 1st</span></code></pre></div>
+<pre><code>[1]  7 99 34  0  5</code></pre>
+<p>We can access elements 2 to 4 by using the colon.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.vector[<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>] <span class="co"># the 2nd to the 4th elements</span></code></pre></div>
+<pre><code>[1]  7 99 34</code></pre>
+<p>If we want to see to specific non-adjacent elements, we can use the collect function <code>c()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.vector[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">5</span>)] <span class="co"># 2nd and 5th element</span></code></pre></div>
+<pre><code>[1] 7 0</code></pre>
+<p>No, we combine the <code>length()</code> function with the square brackets to access the last element in our vector.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.vector[<span class="kw">length</span>(my.vector)] <span class="co"># the last element</span></code></pre></div>
+<pre><code>[1] 5</code></pre>
+</div>
+<div id="data-frames" class="section level3">
+<h3><span class="header-section-number">2.1.3</span> data frames</h3>
+<p>A data frame is an object that holds data in a tabular format similar to how spreadsheets work. Variables are generally kept in columns and observations are in rows.</p>
+<p>Before we work with ready-made data, we create a small dataset ourselves. It contains the populations of the sixteen German states. We start with a vector that contains the names of those states. We call the variable <em>state</em>. Our variable shall contain text instead of numbers. In R jargon this is a character variable, sometimes referred to as a string. Using quotes, we indicate that the variable type is character. We use the <code>c()</code> function to create the vector.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create a character vector containing state names</span>
+state &lt;-<span class="st"> </span><span class="kw">c</span>(
+  <span class="st">&quot;North Rhine-Westphalia&quot;</span>,
+  <span class="st">&quot;Bavaria&quot;</span>,
+  <span class="st">&quot;Baden-Wurttemberg&quot;</span>,
+  <span class="st">&quot;Lower Saxony&quot;</span>,
+  <span class="st">&quot;Hesse&quot;</span>,
+  <span class="st">&quot;Saxony&quot;</span>,
+  <span class="st">&quot;Rhineland-Palatinate&quot;</span>,
+  <span class="st">&quot;Berlin&quot;</span>,
+  <span class="st">&quot;Schleswig-Holstein&quot;</span>,
+  <span class="st">&quot;Brandenburg&quot;</span>,
+  <span class="st">&quot;Saxony-Anhalt&quot;</span>,
+  <span class="st">&quot;Thuringia&quot;</span>,
+  <span class="st">&quot;Hamburg&quot;</span>,
+  <span class="st">&quot;Mecklenburg-Vorpommern&quot;</span>,
+  <span class="st">&quot;Saarland&quot;</span>,
+  <span class="st">&quot;Bremen&quot;</span>
+  )</code></pre></div>
+<p>Now, we create a second variable for the populations. This is a numeric vector, so we do not use the quotes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">population &lt;-<span class="st"> </span><span class="kw">c</span>(
+  <span class="dv">17865516</span>,
+  <span class="dv">12843514</span>,
+  <span class="dv">10879618</span>,
+  <span class="dv">7926599</span>,
+  <span class="dv">6176172</span>,
+  <span class="dv">4084851</span>,
+  <span class="dv">4052803</span>,
+  <span class="dv">3670622</span>,
+  <span class="dv">2858714</span>,
+  <span class="dv">2484826</span>,
+  <span class="dv">2245470</span>,
+  <span class="dv">2170714</span>,
+  <span class="dv">1787408</span>,
+  <span class="dv">1612362</span>,
+  <span class="dv">995597</span>,
+  <span class="dv">671489</span>
+)</code></pre></div>
+<p>Now with both vectors created, we combine them into a dataframe. We put our vectors in and give them names. In this case the variable names in the dataset correspond to our vector names. The name goes in front of the equal sign and the vector object name, after.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">popdata &lt;-<span class="st"> </span><span class="kw">data.frame</span>( 
+  <span class="dt">state =</span> state,
+  <span class="dt">population =</span> population
+  )</code></pre></div>
+<p>You should see the new data frame object in your global environment window. You can view the dataset in the spreadsheet form that we are all used to by clicking on the oject name.</p>
+<p>We can see the names of variables in our dataset with the names function</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(popdata)</code></pre></div>
+<pre><code>[1] &quot;state&quot;      &quot;population&quot;</code></pre>
+<p>Let’s check the variable types in our data using the <code>str()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(popdata)</code></pre></div>
+<pre><code>&#39;data.frame&#39;:   16 obs. of  2 variables:
+ $ state     : Factor w/ 16 levels &quot;Baden-Wurttemberg&quot;,..: 10 2 1 8 7 13 11 3 15 4 ...
+ $ population: num  17865516 12843514 10879618 7926599 6176172 ...</code></pre>
+<p>The variable <em>state</em> is a factor variable. R has turned the character variable into a categorical variable automatically. The variable <em>population</em> is numeric. These variable types differ. We can calculate with numeric variables only.</p>
+<p>Often we want to access certain observations (rows) or certain columns (variables) or a combination of the two without looking at the entire dataset all at once. We can use square brackets to subset data frames. In square brackets we put a row and a column coordinate separated by a comma. The row coordinate goes first and the column coordinate second. So <code>popdata[10, 2]</code> returns the 10th row and third column of the data frame. If we leave the column coordinate empty this means we would like all columns. So, <code>popdata[10,]</code> returns the 10th row of the dataset. If we leave the row coordinate empty, R returns the entire column. <code>popdata[,2]</code> returns the second column of the dataset.</p>
+<p>We can look at the first five rows of a dataset to get a better understanding of it with the colon in brackets like so: <code>popdata[1:5,]</code>. We could display the second and fifth columns of the dataset by using the <code>c()</code> function in brackets like so: <code>popdata[, c(2,5)]</code>.</p>
+<p>It’s your turn. Display all columns of the longley dataset and show rows 10 to 15. Next display all columns of the dataset and rows 4 and 7.</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r">popdata[<span class="dv">10</span><span class="op">:</span><span class="dv">15</span>, ] <span class="co"># elements in 10th to 15th row, all columns</span></code></pre></div>
+<pre><code>                    state population
+10            Brandenburg    2484826
+11          Saxony-Anhalt    2245470
+12              Thuringia    2170714
+13                Hamburg    1787408
+14 Mecklenburg-Vorpommern    1612362
+15               Saarland     995597</code></pre>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r">popdata[<span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">7</span>), ] <span class="co"># elements in 4th and 7th row, all column</span></code></pre></div>
+<pre><code>                 state population
+4         Lower Saxony    7926599
+7 Rhineland-Palatinate    4052803</code></pre>
+<p>In order to access individual columns of a data frame we can also use the dollar sign <code>$</code>. For example, let’s see how to access the <code>population</code> column.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">popdata<span class="op">$</span>population</code></pre></div>
+<pre><code> [1] 17865516 12843514 10879618  7926599  6176172  4084851  4052803
+ [8]  3670622  2858714  2484826  2245470  2170714  1787408  1612362
+[15]   995597   671489</code></pre>
+<p>Now, access the state column.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">popdata<span class="op">$</span>state</code></pre></div>
+<pre><code> [1] North Rhine-Westphalia Bavaria                Baden-Wurttemberg     
+ [4] Lower Saxony           Hesse                  Saxony                
+ [7] Rhineland-Palatinate   Berlin                 Schleswig-Holstein    
+[10] Brandenburg            Saxony-Anhalt          Thuringia             
+[13] Hamburg                Mecklenburg-Vorpommern Saarland              
+[16] Bremen                
+16 Levels: Baden-Wurttemberg Bavaria Berlin Brandenburg Bremen ... Thuringia</code></pre>
+</div>
+<div id="loading-data" class="section level3">
+<h3><span class="header-section-number">2.1.4</span> Loading data</h3>
+<p>Before you load the dataset into R, you first download it and save it locally in your <code>Stats1</code> folder. Download the data <a href="http://philippbroniecki.github.io/ML2017.io/data/BSAS_manip.RData">here</a>.</p>
+<p>We often load existing data sets into R for analysis. Data come in many different file formats such as <code>.csv</code>, <code>.tab</code>, <code>.dta</code>, etc. Today we will load a dataset which is stored in R’s native file format: <code>.RData</code>. The function to load data from this file format is called: <code>load()</code>. If you managed to set your working directory correctly just now (<code>setwd(&quot;~/Stats1&quot;</code>)), then you should just be able to run the line of code below.</p>
+<p>We load the dataset with the <code>load()</code> function like.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load perception of non-western foreigners data</span>
+<span class="kw">load</span>(<span class="st">&quot;BSAS_manip.RData&quot;</span>)</code></pre></div>
+<p>The non-western foreingers data is about the subjective perception of immigrants from non-western countries. The perception of immigrants from a context that is not similar to the own is often used as a proxy for racism. Whether this is a fair measure or not is debatable but let’s examine the data from a survey carried our in Britain.</p>
+<p>Let’s check the codebook of our data.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Variable</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">IMMBRIT</td>
+<td align="left">Out of every 100 people in Britain, how many do you think are immigrants from non-western countries?</td>
+</tr>
+<tr class="even">
+<td align="left">over.estimate</td>
+<td align="left">1 if estimate is higher than 10.7%.</td>
+</tr>
+<tr class="odd">
+<td align="left">RSex</td>
+<td align="left">1 = male, 2 = female</td>
+</tr>
+<tr class="even">
+<td align="left">RAge</td>
+<td align="left">Age of respondent</td>
+</tr>
+<tr class="odd">
+<td align="left">Househld</td>
+<td align="left">Number of people living in respondent’s household</td>
+</tr>
+<tr class="even">
+<td align="left">party identification</td>
+<td align="left">1 = Conservatives, 2 = Labour, 3 = SNP, 4 = Greens, 5 = Ukip, 6 = BNP, 7 = other</td>
+</tr>
+<tr class="odd">
+<td align="left">paper</td>
+<td align="left">Do you normally read any daily morning newspaper 3+ times/week?</td>
+</tr>
+<tr class="even">
+<td align="left">WWWhourspW</td>
+<td align="left">How many hours WWW per week?</td>
+</tr>
+<tr class="odd">
+<td align="left">religious</td>
+<td align="left">Do you regard yourself as belonging to any particular religion?</td>
+</tr>
+<tr class="even">
+<td align="left">employMonths</td>
+<td align="left">How many mnths w. present employer?</td>
+</tr>
+<tr class="odd">
+<td align="left">urban</td>
+<td align="left">Population density, 4 categories (highest density is 4, lowest is 1)</td>
+</tr>
+<tr class="even">
+<td align="left">health.good</td>
+<td align="left">How is your health in general for someone of your age? (0: bad, 1: fair, 2: fairly good, 3: good)</td>
+</tr>
+<tr class="odd">
+<td align="left">HHInc</td>
+<td align="left">Income bands for household, high number = high HH income</td>
+</tr>
+</tbody>
+</table>
+<p>We can look at the variable names in our data with the <a href="http://bit.ly/R_names"><code>names()</code></a> function.</p>
+<p>The <a href="http://bit.ly/R_dim"><code>dim()</code></a> function can be used to find out the dimensions of the dataset (dimension 1 = rows, dimension 2 = columns).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(data2)</code></pre></div>
+<pre><code>[1] 1049   19</code></pre>
+<p>So, the <a href="http://bit.ly/R_dim"><code>dim()</code></a> function tells us that we have data from 1049 respondents with 19 variables for each respondent.</p>
+<p>Let’s take a quick peek at the first 10 observations to see what the dataset looks like. By default the <a href="http://bit.ly/R_head"><code>head()</code></a> function returns the first 6 rows, but let’s tell it to return the first 10 rows instead.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(data2, <span class="dt">n =</span> <span class="dv">10</span>)</code></pre></div>
+<pre><code>   IMMBRIT over.estimate RSex RAge Househld Cons Lab SNP Ukip BNP GP
+1        1             0    1   50        2    0   1   0    0   0  0
+2       50             1    2   18        3    0   0   0    0   0  0
+3       50             1    2   60        1    0   0   0    0   0  0
+4       15             1    2   77        2    0   0   0    0   0  0
+5       20             1    2   67        1    0   0   0    0   0  0
+6       30             1    1   30        4    0   0   0    0   0  0
+7       60             1    2   56        2    0   0   1    0   0  0
+8        7             0    1   49        1    0   0   0    0   0  0
+9       30             1    1   40        4    0   0   1    0   0  0
+10       2             0    1   61        3    1   0   0    0   0  0
+   party.other paper WWWhourspW religious employMonths urban health.good
+1            0     0          1         0           72     4           1
+2            1     0          4         0           72     4           2
+3            1     0          1         0          456     3           3
+4            1     1          2         1           72     1           3
+5            1     0          1         1           72     3           3
+6            1     1         14         0           72     1           2
+7            0     0          5         1          180     1           2
+8            1     1          8         0          156     4           2
+9            0     0          3         1          264     2           2
+10           0     1          0         1           72     1           3
+   HHInc
+1     13
+2      3
+3      9
+4      8
+5      9
+6      9
+7     13
+8     14
+9     11
+10     8</code></pre>
+</div>
+<div id="plots" class="section level3">
+<h3><span class="header-section-number">2.1.5</span> Plots</h3>
+<p>We can visualize the data with the help of a boxplot, so let’s see how the perception of the number of immigrants is distributed.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># how good are we at guessing immigration</span>
+<span class="kw">boxplot</span>(
+  data2<span class="op">$</span>IMMBRIT, 
+  <span class="dt">main =</span> <span class="st">&quot;Perception of Immigration from Non-Western Countries&quot;</span>,
+  <span class="dt">ylab =</span> <span class="st">&quot;Subjective number of immigrants per 100 British&quot;</span>, 
+  <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>, <span class="dt">col =</span> <span class="st">&quot;darkgray&quot;</span>
+  )</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<p>Notice how the lower whisker is much shorter than the upper one. The distribution is right skewed. The right tail (higher values) is a lot longer. We can see this beter using a density plot. We combine R’s <code>denisty()</code> function with the <code>plot()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(
+  <span class="kw">density</span>(data2<span class="op">$</span>IMMBRIT),
+  <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,
+  <span class="dt">main =</span> <span class="st">&quot;Perception of Immigration from Non-Western Countries&quot;</span>,
+  <span class="dt">xlab =</span> <span class="st">&quot;Subjective number of immigrants per 100 British&quot;</span>
+  )</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<p>We can also plot histograms using the <code>hist()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># histogram</span>
+<span class="kw">hist</span>( data2<span class="op">$</span>employMonths, <span class="dt">main =</span> <span class="st">&quot;histogram&quot;</span>)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<p>It is plausible that perception of immigration from Non-Western countries is related to party affiliation. In our dataset, we have a few vaiables that are related to party affiliation. We can use square brackets to subset our data such that we produce a boxplot only for members of the conservative party. We have a look at the variable <em>Cons</em> using the table function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(data2<span class="op">$</span>Cons)</code></pre></div>
+<pre><code>
+  0   1 
+765 284 </code></pre>
+<p>In our data 284 respondents associate with the Conservative party and 765 do not. We create a boxplot of <em>IMMBRIT</em> but only for members of the Conservative party. We do so by using the square brackets to subset our data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># boxplot of immbrit for those observations where Cons is 1</span>
+<span class="kw">boxplot</span>(
+  data2<span class="op">$</span>IMMBRIT[data2<span class="op">$</span>Cons<span class="op">==</span><span class="dv">1</span>],
+  <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>,
+  <span class="dt">xlab =</span> <span class="st">&quot;Conservatives&quot;</span>,
+  <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>
+  )</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<p>We would now like to compare this with the Labour party. We could subset the data just like we did for the Conservative Party. We will do this. We also want to plot the two plots next to each other. We can do this with the <code>par()</code> and the <code>mfrow</code> argument. This will spilt the plot window into rows and columns. We want to columns to plot two boxplots next to each other.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># split plot window into 1 row and 2 columns</span>
+<span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
+
+<span class="co"># plot 1</span>
+<span class="kw">boxplot</span>(
+  data2<span class="op">$</span>IMMBRIT[data2<span class="op">$</span>Cons<span class="op">==</span><span class="dv">1</span>],
+  <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>,
+  <span class="dt">xlab =</span> <span class="st">&quot;Conservatives&quot;</span>,
+  <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>
+  )
+
+<span class="co"># plot 2</span>
+<span class="kw">boxplot</span>(
+  data2<span class="op">$</span>IMMBRIT[data2<span class="op">$</span>Lab<span class="op">==</span><span class="dv">1</span>],
+  <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>,
+  <span class="dt">xlab =</span> <span class="st">&quot;Labour&quot;</span>,
+  <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>
+  )</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+<p>You can play around with the non-western foreigners data on your own time. We now turn to a dataset that is integrated in R already. It is called <code>longley</code>. Use the <code>help()</code> function to see what this dataset is about</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">help</span>(longley)</code></pre></div>
+<p>Let’s create a scatterplot with the <code>Year</code> variable on the x-axis and <code>Employed</code> on the y-axis.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> longley<span class="op">$</span>Year, <span class="co"># x-axis variable</span>
+     <span class="dt">y =</span> longley<span class="op">$</span>Employed, <span class="co"># y-axis variable</span>
+     <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span> <span class="co"># no box around the plot</span>
+     )</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+<p>To create a line plot instead, we use the same function with one additional argument <code>type = &quot;l&quot;</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(longley<span class="op">$</span>Year, longley<span class="op">$</span>Employed, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<p>Create a plot that includes both points and lines.</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r"><span class="kw">plot</span>(longley<span class="op">$</span>Year, longley<span class="op">$</span>Employed, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
+</div>
+<div id="average-treatment-effect" class="section level3">
+<h3><span class="header-section-number">2.1.6</span> Average Treatment Effect</h3>
+<p>In the lecture, we estimated the average treatment effect on a small example. We will do this again here. Recall, that the average treatment effect is the difference between two means.</p>
+<p>Let’s suppose, associating with right-wing parties causes people to over-estimate the number of non-western foreigners in the Britain. Our treatment variable is whether one assoicates with the UK Independence Party. It is 1 if that is the case and 0 otherwise. Let’s inspect the variable <em>Ukip</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(data2<span class="op">$</span>Ukip)</code></pre></div>
+<pre><code>
+   0    1 
+1018   31 </code></pre>
+<p>31 respondents identify with Ukip.</p>
+<p>The average treatment effect, as we learned, would be the difference between the mean outcomes for those who received the treament minus the mean for those who did not reicive the treatment.</p>
+<p>We have all the tools to solve the problem. Let’s take the mean of the treated group first.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean.y.treated &lt;-<span class="st"> </span><span class="kw">mean</span>(data2<span class="op">$</span>IMMBRIT[data2<span class="op">$</span>Ukip <span class="op">==</span><span class="st"> </span><span class="dv">1</span>])
+mean.y.treated</code></pre></div>
+<pre><code>[1] 24.29032</code></pre>
+<p>Now, we take the mean of the second group, the untreated group.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean.y.untreated &lt;-<span class="st"> </span><span class="kw">mean</span>(data2<span class="op">$</span>IMMBRIT[data2<span class="op">$</span>Ukip <span class="op">==</span><span class="st"> </span><span class="dv">0</span>])
+mean.y.untreated</code></pre></div>
+<pre><code>[1] 29.17485</code></pre>
+<p>The treatment effect is the difference in means:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean.y.treated <span class="op">-</span><span class="st"> </span>mean.y.untreated</code></pre></div>
+<pre><code>[1] -4.88453</code></pre>
+<p>The result is surprising. Ukip members over-estimate the number of non-western foreigners less than non Ukip members. Our thory is not quite supported by the data. We should be very careful with these results, however. We used experimental language but our data is observational. A multitude of confounders could bias our estimate of the causal effect.</p>
+</div>
+<div id="exercises-1" class="section level3">
+<h3><span class="header-section-number">2.1.7</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li>Create a script and call it assignment02. Save your script.</li>
+<li>Use the <code>names()</code> function to display the variable names of the <code>longley</code> dataset.</li>
+<li>Use square brackets to access the 4th column of the dataset.</li>
+<li>Use the dollar sign to access the 4th column of the dataset.</li>
+<li>Access the two cells from row 4 and column 1 and row 6 and column 3.</li>
+<li>Using the <code>longley</code> data produce a line plot with GNP on the y-axis and population on the x-axis.</li>
+<li>Use the help function to find out how to label the y-axis “wealth” and the x-axis “population”.</li>
+<li>Create a boxplot showing the distribution of <em>IMMBRIT</em> by each party in the data and plot these in one plot next to each other.</li>
+<li>Is there a difference between women and men in terms of their subjective estimation of foreingers?</li>
+<li>What is the difference between women and men?</li>
+<li>Could you form a hypothesis out of the relationship that you see if any exists?</li>
+<li>Save your script, which should now include the answers to all the exercises.</li>
+<li>Source your script, i.e. run the entire script without error message. Clean your script if you get error messages.</li>
+</ol>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["statistics1.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
