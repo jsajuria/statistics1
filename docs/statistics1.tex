@@ -1394,8 +1394,8 @@ Hypotheses}\label{research-design-counterfactuals-forming-hypotheses}
 
 \section{Seminar}\label{seminar-1}
 
-In today's seminar, we learn working with data frames. We will create
-our own dataset, we subset dataset (access elements, rows and
+In today's seminar, we work with data frames (datasets). We will create
+our own dataset, we subset datasets (access elements, rows and
 variables). We load our first dataset into R. We also visualise data
 using the \texttt{plot()} function. Finally, we estimate a treatment
 effect in R---our first inference.
@@ -1424,7 +1424,8 @@ created:
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# Create a numeric and a character variable}
-\NormalTok{a <-}\StringTok{ }\DecValTok{5} 
+\NormalTok{a <-}\StringTok{ }\DecValTok{5} \CommentTok{# numeric}
+\NormalTok{a <-}\StringTok{ "five"} \CommentTok{# character}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1449,8 +1450,8 @@ there. Then check your workspace.
 \subsection{vectors and subsetting}\label{vectors-and-subsetting}
 
 Last week we have already worked with vectors. We created a sequence for
-example. This week, we have a look at element-wise operations and we see
-how to access elements within a vector.
+example. This week, we learn about subsetting (accessing specific
+elements of our vector).
 
 We create a vector using the \texttt{c()} function, where c stands for
 collect.
@@ -1495,7 +1496,7 @@ vector element that we access
 [1] 10
 \end{verbatim}
 
-To access all elements except the last element we use the \texttt{-}
+To access all elements except the first element, we use the \texttt{-}
 operator.
 
 \begin{Shaded}
@@ -1520,8 +1521,8 @@ We can access elements 2 to 4 by using the colon.
 [1]  7 99 34
 \end{verbatim}
 
-If we want to see to specific non-adjacent elements, we can use the
-collect function \texttt{c()}.
+We can access two specific non-adjacent elements, by using the collect
+function \texttt{c()}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1556,8 +1557,8 @@ Before we work with ready-made data, we create a small dataset
 ourselves. It contains the populations of the sixteen German states. We
 start with a vector that contains the names of those states. We call the
 variable \emph{state}. Our variable shall contain text instead of
-numbers. In R jargon this is a character variable, sometimes referred to
-as a string. Using quotes, we indicate that the variable type is
+numbers. In R jargon, this is a character variable, sometimes referred
+to as a string. Using quotes, we indicate that the variable type is
 character. We use the \texttt{c()} function to create the vector.
 
 \begin{Shaded}
@@ -1665,8 +1666,8 @@ Often we want to access certain observations (rows) or certain columns
 dataset all at once. We can use square brackets to subset data frames.
 In square brackets we put a row and a column coordinate separated by a
 comma. The row coordinate goes first and the column coordinate second.
-So \texttt{popdata{[}10,\ 2{]}} returns the 10th row and third column of
-the data frame. If we leave the column coordinate empty this means we
+So \texttt{popdata{[}10,\ 2{]}} returns the 10th row and second column
+of the data frame. If we leave the column coordinate empty this means we
 would like all columns. So, \texttt{popdata{[}10,{]}} returns the 10th
 row of the dataset. If we leave the row coordinate empty, R returns the
 entire column. \texttt{popdata{[},2{]}} returns the second column of the
@@ -1678,7 +1679,7 @@ understanding of it with the colon in brackets like so:
 columns of the dataset by using the \texttt{c()} function in brackets
 like so: \texttt{popdata{[},\ c(2,5){]}}.
 
-It's your turn. Display all columns of the longley dataset and show rows
+It's your turn. Display all columns of the popdata dataset and show rows
 10 to 15. Next display all columns of the dataset and rows 4 and 7.
 
 \begin{Shaded}
@@ -1758,7 +1759,7 @@ working directory correctly just now
 (\texttt{setwd("\textasciitilde{}/Stats1"})), then you should just be
 able to run the line of code below.
 
-We load the dataset with the \texttt{load()} function like.
+We load the dataset with the \texttt{load()} function:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1769,9 +1770,9 @@ We load the dataset with the \texttt{load()} function like.
 
 The non-western foreingers data is about the subjective perception of
 immigrants from non-western countries. The perception of immigrants from
-a context that is not similar to the own is often used as a proxy for
-racism. Whether this is a fair measure or not is debatable but let's
-examine the data from a survey carried our in Britain.
+a context that is not similar to the one's own ,is often used as a proxy
+for racism. Whether this is a fair measure or not is debatable but let's
+examine the data from a survey carried out in Britain.
 
 Let's check the codebook of our data.
 
@@ -1924,11 +1925,11 @@ We can also plot histograms using the \texttt{hist()} function.
 \includegraphics{statistics1_files/figure-latex/unnamed-chunk-71-1.pdf}
 
 It is plausible that perception of immigration from Non-Western
-countries is related to party affiliation. In our dataset, we have a few
-vaiables that are related to party affiliation. We can use square
+countries is related to party affiliation. In our dataset, we have a
+some party affiliation dummies (binary variables). We can use square
 brackets to subset our data such that we produce a boxplot only for
-members of the conservative party. We have a look at the variable
-\emph{Cons} using the table function.
+members of the Conservative Party. We have a look at the variable
+\emph{Cons} using the \texttt{table()} function first.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1942,9 +1943,9 @@ members of the conservative party. We have a look at the variable
 765 284 
 \end{verbatim}
 
-In our data 284 respondents associate with the Conservative party and
+In our data, 284 respondents associate with the Conservative party and
 765 do not. We create a boxplot of \emph{IMMBRIT} but only for members
-of the Conservative party. We do so by using the square brackets to
+of the Conservative Party. We do so by using the square brackets to
 subset our data.
 
 \begin{Shaded}
@@ -1961,12 +1962,14 @@ subset our data.
 
 \includegraphics{statistics1_files/figure-latex/unnamed-chunk-73-1.pdf}
 
-We would now like to compare this with the Labour party. We could subset
-the data just like we did for the Conservative Party. We will do this.
-We also want to plot the two plots next to each other. We can do this
-with the \texttt{par()} and the \texttt{mfrow} argument. This will spilt
-the plot window into rows and columns. We want to columns to plot two
-boxplots next to each other.
+We would now like to compare the distribution of the perception fo
+Conservatives to the distribution among Labour respondents. We can
+subset the data just like we did for the Conservative Party. In addtion,
+we want to plot the two plots next to each other, i.e., they should be
+in the same plot. We can achieve this with the \texttt{par()} function
+and the \texttt{mfrow} argument. This will spilt the plot window into
+rows and columns. We want 2 columns to plot 2 boxplots next to each
+other.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1993,10 +1996,15 @@ boxplots next to each other.
 
 \includegraphics{statistics1_files/figure-latex/unnamed-chunk-74-1.pdf}
 
+It is very hard to spot differences. The distributions are similar. The
+median for Labour respondents is larger which mean that the central
+Labour respondent over-estimates immigration more than the central
+Conservative respondent.
+
 You can play around with the non-western foreigners data on your own
 time. We now turn to a dataset that is integrated in R already. It is
 called \texttt{longley}. Use the \texttt{help()} function to see what
-this dataset is about
+this dataset is about.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2050,8 +2058,8 @@ example. We will do this again here. Recall, that the average treatment
 effect is the difference between two means.
 
 Let's suppose, associating with right-wing parties causes people to
-over-estimate the number of non-western foreigners in the Britain. Our
-treatment variable is whether one assoicates with the UK Independence
+over-estimate the number of non-western foreigners. Our treatment
+variable is whether a respondent assoicates with the UK Independence
 Party. It is 1 if that is the case and 0 otherwise. Let's inspect the
 variable \emph{Ukip}.
 
@@ -2087,7 +2095,12 @@ treated group first.
 [1] 24.29032
 \end{verbatim}
 
-Now, we take the mean of the second group, the untreated group.
+The double equal sign \texttt{==} is a logical operator and means ``is
+equal to''. R returns true or false depending on whether the respondent
+does identify with Ukip or not. The mean of \emph{IMMBRIT} is then
+computed only for respondents who accociate with Ukip.
+
+Let's take the mean of the second group, the untreated group.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2113,8 +2126,8 @@ The treatment effect is the difference in means:
 \end{verbatim}
 
 The result is surprising. Ukip members over-estimate the number of
-non-western foreigners less than non Ukip members. Our thory is not
-quite supported by the data. We should be very careful with these
+non-western foreigners less members of all other paries. Our claim is
+not quite supported by the data. We should be very careful with these
 results, however. We used experimental language but our data is
 observational. A multitude of confounders could bias our estimate of the
 causal effect.
