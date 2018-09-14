@@ -2173,5 +2173,263 @@ causal effect.
   Clean your script if you get error messages.
 \end{enumerate}
 
+\section{Solutions}\label{solutions-1}
+
+\subsection{Exercise 2}\label{exercise-2}
+
+Use the \texttt{names()} function to display the variable names of the
+\texttt{longley} dataset.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{names}\NormalTok{(longley)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "GNP.deflator" "GNP"          "Unemployed"   "Armed.Forces"
+[5] "Population"   "Year"         "Employed"    
+\end{verbatim}
+
+\subsection{Exercise 3}\label{exercise-3-1}
+
+Use square brackets to access the 4th column of the dataset.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{longley[, }\DecValTok{4}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] 159.0 145.6 161.6 165.0 309.9 359.4 354.7 335.0 304.8 285.7 279.8
+[12] 263.7 255.2 251.4 257.2 282.7
+\end{verbatim}
+
+\subsection{Exercise 4}\label{exercise-4-1}
+
+Use the dollar sign to access the 4th column of the dataset.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{longley}\OperatorTok{$}\NormalTok{Armed.Forces}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] 159.0 145.6 161.6 165.0 309.9 359.4 354.7 335.0 304.8 285.7 279.8
+[12] 263.7 255.2 251.4 257.2 282.7
+\end{verbatim}
+
+Note: There is yet another way to access the 4th column of the dataset.
+We can put the variable name into the square brackets using quotes like
+so:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{longley[, }\StringTok{"Armed.Forces"}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] 159.0 145.6 161.6 165.0 309.9 359.4 354.7 335.0 304.8 285.7 279.8
+[12] 263.7 255.2 251.4 257.2 282.7
+\end{verbatim}
+
+\subsection{Exercise 5}\label{exercise-5-1}
+
+Access the two cells from row 4 and column 1 and row 6 and column 3.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# row 4, column 1}
+\NormalTok{longley[}\DecValTok{4}\NormalTok{, }\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 89.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# row 6, column 3}
+\NormalTok{longley[}\DecValTok{6}\NormalTok{, }\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 193.2
+\end{verbatim}
+
+\subsection{Exercise 6}\label{exercise-6-1}
+
+Using the \texttt{longley} data produce a line plot with GNP on the
+y-axis and population on the x-axis.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}
+  \DataTypeTok{y =}\NormalTok{ longley}\OperatorTok{$}\NormalTok{GNP, }\CommentTok{# y-axis variable}
+  \DataTypeTok{x =}\NormalTok{ longley}\OperatorTok{$}\NormalTok{Population, }\CommentTok{# x-axis variable}
+  \DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\CommentTok{# produce a line plot}
+  \DataTypeTok{bty =} \StringTok{"n"}\NormalTok{, }\CommentTok{# no box around our plot}
+  \DataTypeTok{main =} \StringTok{"Relationship of Population Size and Size of the Economy"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-89-1.pdf}
+
+\subsection{Exercise 7}\label{exercise-7-1}
+
+Use the help function to find out how to label the y-axis ``wealth'' and
+the x-axis ``population''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?plot}
+\end{Highlighting}
+\end{Shaded}
+
+The \texttt{?} is short for the \texttt{help()} function. We see that
+the \texttt{xlab} argument lets us label the x-axis and the
+\texttt{ylab} argument lets us label the y-axis. We do so below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}
+  \DataTypeTok{y =}\NormalTok{ longley}\OperatorTok{$}\NormalTok{GNP, }\CommentTok{# y-axis variable}
+  \DataTypeTok{x =}\NormalTok{ longley}\OperatorTok{$}\NormalTok{Population, }\CommentTok{# x-axis variable}
+  \DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\CommentTok{# produce a line plot}
+  \DataTypeTok{bty =} \StringTok{"n"}\NormalTok{, }\CommentTok{# no box around our plot}
+  \DataTypeTok{main =} \StringTok{"Relationship of Population Size and Size of the Economy"}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"Population older than 14 years of age"}\NormalTok{,}
+  \DataTypeTok{ylab =} \StringTok{"Gross national product"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-91-1.pdf}
+
+\subsection{Exercise 8}\label{exercise-8-1}
+
+Create a boxplot showing the distribution of \emph{IMMBRIT} by each
+party in the data and plot these in one plot next to each other.
+
+To do that, we load the non-western foreigners dataset first.
+
+Note: You have to set your working directory that R operates in to the
+location of the dataset.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# load perception of non-western foreigners data}
+\KeywordTok{load}\NormalTok{(}\StringTok{"BSAS_manip.RData"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+We have five parties in our dataset. We plot 5 boxplots next to each
+other. Hence, we separate the plot window into 1 row and 5 columns.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# plot window to 1 row and 5 columns}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{))}
+\KeywordTok{boxplot}\NormalTok{(data2}\OperatorTok{$}\NormalTok{IMMBRIT[ data2}\OperatorTok{$}\NormalTok{Cons }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{ ], }\DataTypeTok{frame.plot =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"Tories"}\NormalTok{)}
+\KeywordTok{boxplot}\NormalTok{(data2}\OperatorTok{$}\NormalTok{IMMBRIT[ data2}\OperatorTok{$}\NormalTok{Lab }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{ ], }\DataTypeTok{frame.plot =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"Labour"}\NormalTok{)}
+\KeywordTok{boxplot}\NormalTok{(data2}\OperatorTok{$}\NormalTok{IMMBRIT[ data2}\OperatorTok{$}\NormalTok{SNP }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{ ], }\DataTypeTok{frame.plot =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{col =} \StringTok{"yellow"}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"SNP"}\NormalTok{)}
+\KeywordTok{boxplot}\NormalTok{(data2}\OperatorTok{$}\NormalTok{IMMBRIT[ data2}\OperatorTok{$}\NormalTok{Ukip }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{ ], }\DataTypeTok{frame.plot =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{col =} \StringTok{"purple"}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"Ukip"}\NormalTok{)}
+\KeywordTok{boxplot}\NormalTok{(data2}\OperatorTok{$}\NormalTok{IMMBRIT[ data2}\OperatorTok{$}\NormalTok{BNP }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{ ], }\DataTypeTok{frame.plot =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{col =} \StringTok{"darkblue"}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"BNP"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-93-1.pdf}
+
+\subsection{Exercises 9 and 10}\label{exercises-9-and-10}
+
+We combine the answer to questions 9 and 10.
+
+Question from 9: Is there a difference between women and men in terms of
+their subjective estimation of foreingers?
+
+Question from 10: What is the difference between women and men?
+
+Women's subjective estimate is the mean of \emph{IMMBRIT} across women
+and equally, men's subjective estimate is the mean of \emph{IMMBRIT}
+over all men. Let's get these numbers with the mean function and the
+square brackets.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{womens.mean <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(data2}\OperatorTok{$}\NormalTok{IMMBRIT[ data2}\OperatorTok{$}\NormalTok{RSex }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{ ])}
+\NormalTok{womens.mean}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 32.79159
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mens.mean <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(data2}\OperatorTok{$}\NormalTok{IMMBRIT[ data2}\OperatorTok{$}\NormalTok{RSex }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{ ])}
+\NormalTok{mens.mean}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 24.53766
+\end{verbatim}
+
+The difference between women and men is the difference in means. Let's
+take the difference between them. The difference in means is often
+referred to as the first difference.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{first.difference <-}\StringTok{ }\NormalTok{womens.mean }\OperatorTok{-}\StringTok{ }\NormalTok{mens.mean}
+\NormalTok{first.difference}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 8.253937
+\end{verbatim}
+
+Let's round that number. We don't like to see so many decimal places.
+You should usually present precision up to the second decimal place. We
+can use the \texttt{round()} function. The first argument is number to
+round and the second is the amount of digits.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{round}\NormalTok{(first.difference, }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 8.25
+\end{verbatim}
+
+We do find a difference between men and women. On average, women's
+estimate of the number of non-western foreingers is 8.25 greater than
+men's estimate.
+
+At this point we have established that there is a difference in our
+sample. Samples are subject to sampling variability. That means, we
+cannot yet say that the difference is systematic, i.e., British women,
+generally, think that there are more non-western foreingers than British
+men.
+
+\subsection{Exercises 11}\label{exercises-11}
+
+Could you form a hypothesis out of the relationship that you see if any
+exists?
+
+Our testable hypothesis could be: Women tend to overestimate the number
+of foreigners more than men. In our sample, women tend to estimate on
+the number of foreingers at
+
 
 \end{document}

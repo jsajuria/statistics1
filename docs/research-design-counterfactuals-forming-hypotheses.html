@@ -133,6 +133,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.1.6" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#average-treatment-effect"><i class="fa fa-check"></i><b>2.1.6</b> Average Treatment Effect</a></li>
 <li class="chapter" data-level="2.1.7" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercises-1"><i class="fa fa-check"></i><b>2.1.7</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="2.2" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#solutions-1"><i class="fa fa-check"></i><b>2.2</b> Solutions</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercise-2"><i class="fa fa-check"></i><b>2.2.1</b> Exercise 2</a></li>
+<li class="chapter" data-level="2.2.2" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercise-3-1"><i class="fa fa-check"></i><b>2.2.2</b> Exercise 3</a></li>
+<li class="chapter" data-level="2.2.3" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercise-4-1"><i class="fa fa-check"></i><b>2.2.3</b> Exercise 4</a></li>
+<li class="chapter" data-level="2.2.4" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercise-5-1"><i class="fa fa-check"></i><b>2.2.4</b> Exercise 5</a></li>
+<li class="chapter" data-level="2.2.5" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercise-6-1"><i class="fa fa-check"></i><b>2.2.5</b> Exercise 6</a></li>
+<li class="chapter" data-level="2.2.6" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercise-7-1"><i class="fa fa-check"></i><b>2.2.6</b> Exercise 7</a></li>
+<li class="chapter" data-level="2.2.7" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercise-8-1"><i class="fa fa-check"></i><b>2.2.7</b> Exercise 8</a></li>
+<li class="chapter" data-level="2.2.8" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercises-9-and-10"><i class="fa fa-check"></i><b>2.2.8</b> Exercises 9 and 10</a></li>
+<li class="chapter" data-level="2.2.9" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercises-11"><i class="fa fa-check"></i><b>2.2.9</b> Exercises 11</a></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -521,6 +532,117 @@ mean.y.untreated</code></pre></div>
 <li>Save your script, which should now include the answers to all the exercises.</li>
 <li>Source your script, i.e. run the entire script without error message. Clean your script if you get error messages.</li>
 </ol>
+
+</div>
+</div>
+<div id="solutions-1" class="section level2">
+<h2><span class="header-section-number">2.2</span> Solutions</h2>
+<div id="exercise-2" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Exercise 2</h3>
+<p>Use the <code>names()</code> function to display the variable names of the <code>longley</code> dataset.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(longley)</code></pre></div>
+<pre><code>[1] &quot;GNP.deflator&quot; &quot;GNP&quot;          &quot;Unemployed&quot;   &quot;Armed.Forces&quot;
+[5] &quot;Population&quot;   &quot;Year&quot;         &quot;Employed&quot;    </code></pre>
+</div>
+<div id="exercise-3-1" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Exercise 3</h3>
+<p>Use square brackets to access the 4th column of the dataset.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">longley[, <span class="dv">4</span>]</code></pre></div>
+<pre><code> [1] 159.0 145.6 161.6 165.0 309.9 359.4 354.7 335.0 304.8 285.7 279.8
+[12] 263.7 255.2 251.4 257.2 282.7</code></pre>
+</div>
+<div id="exercise-4-1" class="section level3">
+<h3><span class="header-section-number">2.2.3</span> Exercise 4</h3>
+<p>Use the dollar sign to access the 4th column of the dataset.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">longley<span class="op">$</span>Armed.Forces</code></pre></div>
+<pre><code> [1] 159.0 145.6 161.6 165.0 309.9 359.4 354.7 335.0 304.8 285.7 279.8
+[12] 263.7 255.2 251.4 257.2 282.7</code></pre>
+<p>Note: There is yet another way to access the 4th column of the dataset. We can put the variable name into the square brackets using quotes like so:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">longley[, <span class="st">&quot;Armed.Forces&quot;</span>]</code></pre></div>
+<pre><code> [1] 159.0 145.6 161.6 165.0 309.9 359.4 354.7 335.0 304.8 285.7 279.8
+[12] 263.7 255.2 251.4 257.2 282.7</code></pre>
+</div>
+<div id="exercise-5-1" class="section level3">
+<h3><span class="header-section-number">2.2.4</span> Exercise 5</h3>
+<p>Access the two cells from row 4 and column 1 and row 6 and column 3.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># row 4, column 1</span>
+longley[<span class="dv">4</span>, <span class="dv">1</span>]</code></pre></div>
+<pre><code>[1] 89.5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># row 6, column 3</span>
+longley[<span class="dv">6</span>, <span class="dv">3</span>]</code></pre></div>
+<pre><code>[1] 193.2</code></pre>
+</div>
+<div id="exercise-6-1" class="section level3">
+<h3><span class="header-section-number">2.2.5</span> Exercise 6</h3>
+<p>Using the <code>longley</code> data produce a line plot with GNP on the y-axis and population on the x-axis.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(
+  <span class="dt">y =</span> longley<span class="op">$</span>GNP, <span class="co"># y-axis variable</span>
+  <span class="dt">x =</span> longley<span class="op">$</span>Population, <span class="co"># x-axis variable</span>
+  <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="co"># produce a line plot</span>
+  <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="co"># no box around our plot</span>
+  <span class="dt">main =</span> <span class="st">&quot;Relationship of Population Size and Size of the Economy&quot;</span>
+)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
+</div>
+<div id="exercise-7-1" class="section level3">
+<h3><span class="header-section-number">2.2.6</span> Exercise 7</h3>
+<p>Use the help function to find out how to label the y-axis “wealth” and the x-axis “population”.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?plot</code></pre></div>
+<p>The <code>?</code> is short for the <code>help()</code> function. We see that the <code>xlab</code> argument lets us label the x-axis and the <code>ylab</code> argument lets us label the y-axis. We do so below.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(
+  <span class="dt">y =</span> longley<span class="op">$</span>GNP, <span class="co"># y-axis variable</span>
+  <span class="dt">x =</span> longley<span class="op">$</span>Population, <span class="co"># x-axis variable</span>
+  <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="co"># produce a line plot</span>
+  <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="co"># no box around our plot</span>
+  <span class="dt">main =</span> <span class="st">&quot;Relationship of Population Size and Size of the Economy&quot;</span>,
+  <span class="dt">xlab =</span> <span class="st">&quot;Population older than 14 years of age&quot;</span>,
+  <span class="dt">ylab =</span> <span class="st">&quot;Gross national product&quot;</span>
+)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
+</div>
+<div id="exercise-8-1" class="section level3">
+<h3><span class="header-section-number">2.2.7</span> Exercise 8</h3>
+<p>Create a boxplot showing the distribution of <em>IMMBRIT</em> by each party in the data and plot these in one plot next to each other.</p>
+<p>To do that, we load the non-western foreigners dataset first.</p>
+<p>Note: You have to set your working directory that R operates in to the location of the dataset.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load perception of non-western foreigners data</span>
+<span class="kw">load</span>(<span class="st">&quot;BSAS_manip.RData&quot;</span>)</code></pre></div>
+<p>We have five parties in our dataset. We plot 5 boxplots next to each other. Hence, we separate the plot window into 1 row and 5 columns.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot window to 1 row and 5 columns</span>
+<span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>))
+<span class="kw">boxplot</span>(data2<span class="op">$</span>IMMBRIT[ data2<span class="op">$</span>Cons <span class="op">==</span><span class="st"> </span><span class="dv">1</span> ], <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Tories&quot;</span>)
+<span class="kw">boxplot</span>(data2<span class="op">$</span>IMMBRIT[ data2<span class="op">$</span>Lab <span class="op">==</span><span class="st"> </span><span class="dv">1</span> ], <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Labour&quot;</span>)
+<span class="kw">boxplot</span>(data2<span class="op">$</span>IMMBRIT[ data2<span class="op">$</span>SNP <span class="op">==</span><span class="st"> </span><span class="dv">1</span> ], <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>, <span class="dt">col =</span> <span class="st">&quot;yellow&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;SNP&quot;</span>)
+<span class="kw">boxplot</span>(data2<span class="op">$</span>IMMBRIT[ data2<span class="op">$</span>Ukip <span class="op">==</span><span class="st"> </span><span class="dv">1</span> ], <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>, <span class="dt">col =</span> <span class="st">&quot;purple&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Ukip&quot;</span>)
+<span class="kw">boxplot</span>(data2<span class="op">$</span>IMMBRIT[ data2<span class="op">$</span>BNP <span class="op">==</span><span class="st"> </span><span class="dv">1</span> ], <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>, <span class="dt">col =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;BNP&quot;</span>)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
+</div>
+<div id="exercises-9-and-10" class="section level3">
+<h3><span class="header-section-number">2.2.8</span> Exercises 9 and 10</h3>
+<p>We combine the answer to questions 9 and 10.</p>
+<p>Question from 9: Is there a difference between women and men in terms of their subjective estimation of foreingers?</p>
+<p>Question from 10: What is the difference between women and men?</p>
+<p>Women’s subjective estimate is the mean of <em>IMMBRIT</em> across women and equally, men’s subjective estimate is the mean of <em>IMMBRIT</em> over all men. Let’s get these numbers with the mean function and the square brackets.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">womens.mean &lt;-<span class="st"> </span><span class="kw">mean</span>(data2<span class="op">$</span>IMMBRIT[ data2<span class="op">$</span>RSex <span class="op">==</span><span class="st"> </span><span class="dv">2</span> ])
+womens.mean</code></pre></div>
+<pre><code>[1] 32.79159</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mens.mean &lt;-<span class="st"> </span><span class="kw">mean</span>(data2<span class="op">$</span>IMMBRIT[ data2<span class="op">$</span>RSex <span class="op">==</span><span class="st"> </span><span class="dv">1</span> ])
+mens.mean</code></pre></div>
+<pre><code>[1] 24.53766</code></pre>
+<p>The difference between women and men is the difference in means. Let’s take the difference between them. The difference in means is often referred to as the first difference.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">first.difference &lt;-<span class="st"> </span>womens.mean <span class="op">-</span><span class="st"> </span>mens.mean
+first.difference</code></pre></div>
+<pre><code>[1] 8.253937</code></pre>
+<p>Let’s round that number. We don’t like to see so many decimal places. You should usually present precision up to the second decimal place. We can use the <code>round()</code> function. The first argument is number to round and the second is the amount of digits.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(first.difference, <span class="dv">2</span>)</code></pre></div>
+<pre><code>[1] 8.25</code></pre>
+<p>We do find a difference between men and women. On average, women’s estimate of the number of non-western foreingers is 8.25 greater than men’s estimate.</p>
+<p>At this point we have established that there is a difference in our sample. Samples are subject to sampling variability. That means, we cannot yet say that the difference is systematic, i.e., British women, generally, think that there are more non-western foreingers than British men.</p>
+</div>
+<div id="exercises-11" class="section level3">
+<h3><span class="header-section-number">2.2.9</span> Exercises 11</h3>
+<p>Could you form a hypothesis out of the relationship that you see if any exists?</p>
+<p>Our testable hypothesis could be: Women tend to overestimate the number of foreigners more than men. In our sample, women tend to estimate on the number of foreingers at</p>
 
 </div>
 </div>

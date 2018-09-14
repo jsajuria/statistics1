@@ -1,0 +1,150 @@
+## Solutions
+
+### Exercise 2
+
+Use the `names()` function to display the variable names of the `longley` dataset.
+
+```{r}
+names(longley)
+```
+
+### Exercise 3
+
+Use square brackets to access the 4th column of the dataset.
+
+```{r}
+longley[, 4]
+```
+
+### Exercise 4
+
+Use the dollar sign to access the 4th column of the dataset.
+
+```{r}
+longley$Armed.Forces
+```
+
+Note: There is yet another way to access the 4th column of the dataset. We can put the variable name into the square brackets using quotes like so:
+
+```{r}
+longley[, "Armed.Forces"]
+```
+
+### Exercise 5
+
+Access the two cells from row 4 and column 1 and row 6 and column 3.
+
+```{r}
+# row 4, column 1
+longley[4, 1]
+
+# row 6, column 3
+longley[6, 3]
+```
+
+### Exercise 6
+
+Using the `longley` data produce a line plot with GNP on the y-axis and population on the x-axis.
+
+```{r}
+plot(
+  y = longley$GNP, # y-axis variable
+  x = longley$Population, # x-axis variable
+  type = "l", # produce a line plot
+  bty = "n", # no box around our plot
+  main = "Relationship of Population Size and Size of the Economy"
+)
+```
+
+### Exercise 7
+
+Use the help function to find out how to label the y-axis "wealth" and the x-axis "population".
+
+```{r, eval=FALSE}
+?plot
+```
+
+The `?` is short for the `help()` function. We see that the `xlab` argument lets us label the x-axis and the `ylab` argument lets us label the y-axis. We do so below.
+
+```{r}
+plot(
+  y = longley$GNP, # y-axis variable
+  x = longley$Population, # x-axis variable
+  type = "l", # produce a line plot
+  bty = "n", # no box around our plot
+  main = "Relationship of Population Size and Size of the Economy",
+  xlab = "Population older than 14 years of age",
+  ylab = "Gross national product"
+)
+```
+
+
+### Exercise 8
+
+Create a boxplot showing the distribution of *IMMBRIT* by each party in the data and plot these in one plot next to each other.
+
+To do that, we load the non-western foreigners dataset first.
+
+Note: You have to set your working directory that R operates in to the location of the dataset. 
+
+```{r}
+# load perception of non-western foreigners data
+load("BSAS_manip.RData")
+```
+
+We have five parties in our dataset. We plot 5 boxplots next to each other. Hence, we separate the plot window into 1 row and 5 columns.
+
+```{r}
+# plot window to 1 row and 5 columns
+par(mfrow = c(1, 5))
+boxplot(data2$IMMBRIT[ data2$Cons == 1 ], frame.plot = FALSE, col = "blue", xlab = "Tories")
+boxplot(data2$IMMBRIT[ data2$Lab == 1 ], frame.plot = FALSE, col = "red", xlab = "Labour")
+boxplot(data2$IMMBRIT[ data2$SNP == 1 ], frame.plot = FALSE, col = "yellow", xlab = "SNP")
+boxplot(data2$IMMBRIT[ data2$Ukip == 1 ], frame.plot = FALSE, col = "purple", xlab = "Ukip")
+boxplot(data2$IMMBRIT[ data2$BNP == 1 ], frame.plot = FALSE, col = "darkblue", xlab = "BNP")
+```
+
+
+### Exercises 9 and 10
+
+We combine the answer to questions 9 and 10.
+
+Question from 9:
+Is there a difference between women and men in terms of their subjective estimation of foreingers?
+
+Question from 10:
+What is the difference between women and men?
+
+Women's subjective estimate is the mean of *IMMBRIT* across women and equally, men's subjective estimate is the mean of *IMMBRIT* over all men. Let's get these numbers with the mean function and the square brackets.
+
+```{r}
+womens.mean <- mean(data2$IMMBRIT[ data2$RSex == 2 ])
+womens.mean
+
+mens.mean <- mean(data2$IMMBRIT[ data2$RSex == 1 ])
+mens.mean
+```
+
+The difference between women and men is the difference in means. Let's take the difference between them. The difference in means is often referred to as the first difference.
+
+```{r}
+first.difference <- womens.mean - mens.mean
+first.difference
+```
+
+Let's round that number. We don't like to see so many decimal places. You should usually present precision up to the second decimal place. We can use the `round()` function. The first argument is number to round and the second is the amount of digits.
+
+```{r}
+round(first.difference, 2)
+```
+
+We do find a difference between men and women. On average, women's estimate of the number of non-western foreingers is `r round(first.difference, 2)` greater than men's estimate.
+
+At this point we have established that there is a difference in our sample. Samples are subject to sampling variability. That means, we cannot yet say that the difference is systematic, i.e., British women, generally, think that there are more non-western foreingers than British men.
+
+### Exercises 11
+
+Could you form a hypothesis out of the relationship that you see if any exists?
+
+Our testable hypothesis could be: Women tend to overestimate the number of foreigners more than men.
+In our sample, women tend to estimate on the number of foreingers at
