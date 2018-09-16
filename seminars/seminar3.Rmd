@@ -334,7 +334,7 @@ abline( v = upper.bound,  lty = "dashed")
 
 You do not need to run the plot function again. You can just add to the plot. Check the help function of `abline()` to see what its arguments refer to.
 
-```{r, include=FALSE}
+```{r, echo=FALSE}
 plot(
  density( draw.of.hdi.means ),
  bty = "n",

@@ -506,6 +506,7 @@ upper.bound</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">abline</span>( <span class="dt">v =</span> lower.bound, <span class="dt">lty =</span> <span class="st">&quot;dashed&quot;</span>)
 <span class="kw">abline</span>( <span class="dt">v =</span> upper.bound,  <span class="dt">lty =</span> <span class="st">&quot;dashed&quot;</span>)</code></pre></div>
 <p>You do not need to run the plot function again. You can just add to the plot. Check the help function of <code>abline()</code> to see what its arguments refer to.</p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
 <p>Fantastic! You can see that values below and above our confidence interval are quite unlikely. Those values in the tails would not occur often.</p>
 <p>Not often, but not impossible.</p>
 <p>Let’s say that we wish know the probability that we take a sample and our estimate of the mean is greater or equal 0.74. We would need to integrate over the distribution from <span class="math inline">\(-\inf\)</span> to 0.74. Fortunately R has a function that does that for us. We need the <code>pnorm()</code>. It calculates the probability of a value that is smaller or equal to the value we specify. In other words, it gives us the probability from the cumulative normal.</p>
