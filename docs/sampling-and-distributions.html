@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Statistics 1</title>
+  <meta name="description" content="Statistics 1">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Statistics 1" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Statistics 1" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="research-design-counterfactuals-forming-hypotheses.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this course</a></li>
+<li class="chapter" data-level="1" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><i class="fa fa-check"></i><b>1</b> Introduction: Measurement, Central Tendency, Dispersion, Validity, Reliability</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#seminar"><i class="fa fa-check"></i><b>1.1</b> Seminar</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#getting-started"><i class="fa fa-check"></i><b>1.1.1</b> Getting Started</a></li>
+<li class="chapter" data-level="1.1.2" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#rstudio"><i class="fa fa-check"></i><b>1.1.2</b> RStudio</a></li>
+<li class="chapter" data-level="1.1.3" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#console"><i class="fa fa-check"></i><b>1.1.3</b> Console</a></li>
+<li class="chapter" data-level="1.1.4" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#functions"><i class="fa fa-check"></i><b>1.1.4</b> Functions</a></li>
+<li class="chapter" data-level="1.1.5" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#getting-help"><i class="fa fa-check"></i><b>1.1.5</b> Getting Help</a></li>
+<li class="chapter" data-level="1.1.6" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#the-assignment-operator"><i class="fa fa-check"></i><b>1.1.6</b> The Assignment Operator</a></li>
+<li class="chapter" data-level="1.1.7" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#sequences"><i class="fa fa-check"></i><b>1.1.7</b> Sequences</a></li>
+<li class="chapter" data-level="1.1.8" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#scripts"><i class="fa fa-check"></i><b>1.1.8</b> Scripts</a></li>
+<li class="chapter" data-level="1.1.9" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#central-tendency"><i class="fa fa-check"></i><b>1.1.9</b> Central Tendency</a></li>
+<li class="chapter" data-level="1.1.10" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#dispersion"><i class="fa fa-check"></i><b>1.1.10</b> Dispersion</a></li>
+<li class="chapter" data-level="1.1.11" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercises"><i class="fa fa-check"></i><b>1.1.11</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#solutions"><i class="fa fa-check"></i><b>1.2</b> Solutions</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-3"><i class="fa fa-check"></i><b>1.2.1</b> Exercise 3</a></li>
+<li class="chapter" data-level="1.2.2" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-4"><i class="fa fa-check"></i><b>1.2.2</b> Exercise 4</a></li>
+<li class="chapter" data-level="1.2.3" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-5"><i class="fa fa-check"></i><b>1.2.3</b> Exercise 5</a></li>
+<li class="chapter" data-level="1.2.4" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-6"><i class="fa fa-check"></i><b>1.2.4</b> Exercise 6</a></li>
+<li class="chapter" data-level="1.2.5" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-7"><i class="fa fa-check"></i><b>1.2.5</b> Exercise 7</a></li>
+<li class="chapter" data-level="1.2.6" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-8"><i class="fa fa-check"></i><b>1.2.6</b> Exercise 8</a></li>
+<li class="chapter" data-level="1.2.7" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-9"><i class="fa fa-check"></i><b>1.2.7</b> Exercise 9</a></li>
+<li class="chapter" data-level="1.2.8" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-10"><i class="fa fa-check"></i><b>1.2.8</b> Exercise 10</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html"><i class="fa fa-check"></i><b>2</b> Research Design, Counterfactuals, Forming Hypotheses</a><ul>
+<li class="chapter" data-level="2.1" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#seminar-1"><i class="fa fa-check"></i><b>2.1</b> Seminar</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#setting-up"><i class="fa fa-check"></i><b>2.1.1</b> setting up</a></li>
+<li class="chapter" data-level="2.1.2" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#vectors-and-subsetting"><i class="fa fa-check"></i><b>2.1.2</b> vectors and subsetting</a></li>
+<li class="chapter" data-level="2.1.3" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#data-frames"><i class="fa fa-check"></i><b>2.1.3</b> data frames</a></li>
+<li class="chapter" data-level="2.1.4" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#loading-data"><i class="fa fa-check"></i><b>2.1.4</b> Loading data</a></li>
+<li class="chapter" data-level="2.1.5" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#plots"><i class="fa fa-check"></i><b>2.1.5</b> Plots</a></li>
+<li class="chapter" data-level="2.1.6" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#average-treatment-effect"><i class="fa fa-check"></i><b>2.1.6</b> Average Treatment Effect</a></li>
+<li class="chapter" data-level="2.1.7" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercises-1"><i class="fa fa-check"></i><b>2.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#solutions-1"><i class="fa fa-check"></i><b>2.2</b> Solutions</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercise-2"><i class="fa fa-check"></i><b>2.2.1</b> Exercise 2</a></li>
+<li class="chapter" data-level="2.2.2" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercise-3-1"><i class="fa fa-check"></i><b>2.2.2</b> Exercise 3</a></li>
+<li class="chapter" data-level="2.2.3" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercise-4-1"><i class="fa fa-check"></i><b>2.2.3</b> Exercise 4</a></li>
+<li class="chapter" data-level="2.2.4" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercise-5-1"><i class="fa fa-check"></i><b>2.2.4</b> Exercise 5</a></li>
+<li class="chapter" data-level="2.2.5" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercise-6-1"><i class="fa fa-check"></i><b>2.2.5</b> Exercise 6</a></li>
+<li class="chapter" data-level="2.2.6" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercise-7-1"><i class="fa fa-check"></i><b>2.2.6</b> Exercise 7</a></li>
+<li class="chapter" data-level="2.2.7" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercise-8-1"><i class="fa fa-check"></i><b>2.2.7</b> Exercise 8</a></li>
+<li class="chapter" data-level="2.2.8" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercises-9-and-10"><i class="fa fa-check"></i><b>2.2.8</b> Exercises 9 and 10</a></li>
+<li class="chapter" data-level="2.2.9" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercises-11"><i class="fa fa-check"></i><b>2.2.9</b> Exercises 11</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="sampling-and-distributions.html"><a href="sampling-and-distributions.html"><i class="fa fa-check"></i><b>3</b> Sampling and Distributions</a><ul>
+<li class="chapter" data-level="3.1" data-path="sampling-and-distributions.html"><a href="sampling-and-distributions.html#seminar-2"><i class="fa fa-check"></i><b>3.1</b> Seminar</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="sampling-and-distributions.html"><a href="sampling-and-distributions.html#loading-dataset-in-csv-format"><i class="fa fa-check"></i><b>3.1.1</b> Loading Dataset in CSV Format</a></li>
+<li class="chapter" data-level="3.1.2" data-path="sampling-and-distributions.html"><a href="sampling-and-distributions.html#missing-values"><i class="fa fa-check"></i><b>3.1.2</b> Missing Values</a></li>
+<li class="chapter" data-level="3.1.3" data-path="sampling-and-distributions.html"><a href="sampling-and-distributions.html#factor-variables"><i class="fa fa-check"></i><b>3.1.3</b> Factor Variables</a></li>
+<li class="chapter" data-level="3.1.4" data-path="sampling-and-distributions.html"><a href="sampling-and-distributions.html#renaming-variables"><i class="fa fa-check"></i><b>3.1.4</b> Renaming Variables</a></li>
+<li class="chapter" data-level="3.1.5" data-path="sampling-and-distributions.html"><a href="sampling-and-distributions.html#distributions"><i class="fa fa-check"></i><b>3.1.5</b> Distributions</a></li>
+<li class="chapter" data-level="3.1.6" data-path="sampling-and-distributions.html"><a href="sampling-and-distributions.html#conditional-distributions"><i class="fa fa-check"></i><b>3.1.6</b> Conditional Distributions</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics 1</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sampling-and-distributions" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Sampling and Distributions</h1>
+<div id="seminar-2" class="section level2">
+<h2><span class="header-section-number">3.1</span> Seminar</h2>
+<p>In today’s seminar, we introduce packages. We will repeat getting measures of central tendency and dispersion. We then move to estimating probabilities in marginal, joint and conditional distributions.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())
+<span class="kw">setwd</span>(<span class="st">&quot;~/PUBLG100&quot;</span>)</code></pre></div>
+<div id="loading-dataset-in-csv-format" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Loading Dataset in CSV Format</h3>
+<p>In this seminar, we load a file in comma separated format (<code>.csv</code>). The <code>load()</code> function from last week works only for the native R file format. To load our csv-file, we use the <a href="https://stat.ethz.ch/R-manual/R-devel/library/utils/html/read.table.html"><code>read.csv()</code></a> function.</p>
+<p>Our data comes from the <a href="http://qog.pol.gu.se/">Quality of Government Institute</a>. Let’s have a look at the codebook:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Variable</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">h_j</td>
+<td align="left">1 if Free Judiciary</td>
+</tr>
+<tr class="even">
+<td align="left">wdi_gdpc</td>
+<td align="left">Per capita wealth in US dollars</td>
+</tr>
+<tr class="odd">
+<td align="left">undp_hdi</td>
+<td align="left">Human development index (higher values = higher quality of life)</td>
+</tr>
+<tr class="even">
+<td align="left">wbgi_cce</td>
+<td align="left">Control of corruption index (higher values = more control of corruption)</td>
+</tr>
+<tr class="odd">
+<td align="left">wbgi_pse</td>
+<td align="left">Political stability index (higher values = more stable)</td>
+</tr>
+<tr class="even">
+<td align="left">former_col</td>
+<td align="left">1 = country was a colony once</td>
+</tr>
+<tr class="odd">
+<td align="left">lp_lat_abst</td>
+<td align="left">Latitude of country’s captial divided by 90</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">world.data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;QoG2012.csv&quot;</span>)</code></pre></div>
+<p>Go ahead and (1) check the dimensions of <code>world.data</code>, (2) the names of the variables of the dataset, (3) print the first six rows of the dataset. (</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># the dimensions: rows (observations) and columns (variables) </span>
+<span class="kw">dim</span>(world.data)</code></pre></div>
+<pre><code>[1] 194   7</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># the variable names</span>
+<span class="kw">names</span>(world.data) </code></pre></div>
+<pre><code>[1] &quot;h_j&quot;         &quot;wdi_gdpc&quot;    &quot;undp_hdi&quot;    &quot;wbgi_cce&quot;    &quot;wbgi_pse&quot;   
+[6] &quot;former_col&quot;  &quot;lp_lat_abst&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># top 6 rows of the data</span>
+<span class="kw">head</span>(world.data)</code></pre></div>
+<pre><code>  h_j   wdi_gdpc undp_hdi   wbgi_cce   wbgi_pse former_col lp_lat_abst
+1   0   628.4074       NA -1.5453584 -1.9343837          0   0.3666667
+2   0  4954.1982    0.781 -0.8538115 -0.6026081          0   0.4555556
+3   0  6349.7207    0.704 -0.7301510 -1.7336243          1   0.3111111
+4  NA         NA       NA  1.3267342  1.1980436          0   0.4700000
+5   0  2856.7517    0.381 -1.2065741 -1.4150945          1   0.1366667
+6  NA 13981.9795    0.800  0.8624368  0.7084046          1   0.1892222</code></pre>
+</div>
+<div id="missing-values" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> Missing Values</h3>
+<p>Let’s inspect the variable <em>h_j</em>. It is categorical, where 1 indicates that a country has a free judiciary. We use the <code>table()</code> function to find the frequency in each category.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(world.data<span class="op">$</span>h_j)</code></pre></div>
+<pre><code>
+  0   1 
+105  64 </code></pre>
+<p>We now know that 64 countries have a free judiciary and 105 countries do not.</p>
+<p>Conceptually the variable is nominal. To see how the variable is stored in R, we can use the <code>str()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(world.data<span class="op">$</span>h_j)</code></pre></div>
+<pre><code> int [1:194] 0 0 0 NA 0 NA 0 0 1 1 ...</code></pre>
+<p>The function returns ‘int’ which abbreviates ‘integer’, i.e., a numeric type. The function also shows us the first 10 realisations of the variable. We se zeroes and ones which are the two categories. We also see NA’s which abbreviates not available. NAs are missing values. Values can be missing for different reasons. For instance, a coder may have forgotten to code whether a country had been colonised at some point in its history or the country may be new and the categories, therefore, don’t apply. It is important for us that we cannot calculate with NAs.</p>
+<p>There are different ways of dealing with NAs. We will always delete missing values. Our dataset must maintain its rectangular structure. Hence, when we delete a missing value from one variable, we delete it for the entire row of the dataset. Consider the following example.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Row</th>
+<th align="left">Variable1</th>
+<th align="left">Variable2</th>
+<th align="left">Variable3</th>
+<th align="left">Variable4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">15</td>
+<td align="left">22</td>
+<td align="left">100</td>
+<td align="left">65</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">NA</td>
+<td align="left">17</td>
+<td align="left">26</td>
+<td align="left">75</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">27</td>
+<td align="left">NA</td>
+<td align="left">58</td>
+<td align="left">88</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">4</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">75</td>
+<td align="left">45</td>
+<td align="left">71</td>
+<td align="left">18</td>
+</tr>
+<tr class="even">
+<td align="left">6</td>
+<td align="left">18</td>
+<td align="left">16</td>
+<td align="left">99</td>
+<td align="left">91</td>
+</tr>
+</tbody>
+</table>
+<p>If we delete missing values from <em>Variable1</em>, our dataset will look like this:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Row</th>
+<th align="left">Variable1</th>
+<th align="left">Variable2</th>
+<th align="left">Variable3</th>
+<th align="left">Variable4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">15</td>
+<td align="left">22</td>
+<td align="left">100</td>
+<td align="left">65</td>
+</tr>
+<tr class="even">
+<td align="left">3</td>
+<td align="left">27</td>
+<td align="left">NA</td>
+<td align="left">58</td>
+<td align="left">88</td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">75</td>
+<td align="left">45</td>
+<td align="left">71</td>
+<td align="left">18</td>
+</tr>
+<tr class="even">
+<td align="left">6</td>
+<td align="left">18</td>
+<td align="left">16</td>
+<td align="left">99</td>
+<td align="left">91</td>
+</tr>
+</tbody>
+</table>
+<p>The new dataset is smaller than the original one. Rows 2 and 4 have been deleted. When we drop missing values from one variable in our dataset, we lose information on other variables as well. Therefore, you only want to drop missing values on variables that you are interested in. Let’s drop the missing values on our variable <em>h_j</em>. We do this in several steps.</p>
+<p>First, we introduce the <code>is.na()</code> function. We supply a vector to the function and it checks for every element, whether it is missing or not. R returns true or false. Let’s use the function on our variable.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.na</span>(world.data<span class="op">$</span>h_j)</code></pre></div>
+<pre><code>  [1] FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE
+ [12] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
+ [23]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [34] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [45] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [56] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [67]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [78] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [89] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[100]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
+[111] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+[122] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE
+[133] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
+[144] FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE
+[155] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
+[166] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
+[177] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[188] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE</code></pre>
+<p>To see the amount of missingness in the variable <em>h_j</em>, we can combine <code>is.na()</code> with the <code>table()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>( <span class="kw">is.na</span>(world.data<span class="op">$</span>h_j) )</code></pre></div>
+<pre><code>
+FALSE  TRUE 
+  169    25 </code></pre>
+<p>So, we have 25 missing values on <em>h_j</em>. Our dataset has 194 rows. Check your global environment to confirm this or use the <code>nrow()</code> function. That means, if we drop all missing values from <em>h_j</em>, the our dataset <em>world.data</em> will lose 25 rows.</p>
+<p>Before we drop the missings, we introduce the <code>which()</code> function. It returns the row indexes (the rows in the dataset) where some condition is true. So if we use <code>which()</code> and <code>is.na()</code>, we get the row numbers in the <em>world.data</em> dataset where values are missing on <em>h_j</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">which</span>( <span class="kw">is.na</span>( world.data<span class="op">$</span>h_j ) )</code></pre></div>
+<pre><code> [1]   4   6  11  22  23  67 100 108 112 120 123 129 130 131 141 146 147
+[18] 148 149 150 154 165 173 179 191</code></pre>
+<p>We said that our dataset will lose 25 rows. Let’s use the <code>length()</code> function to confirm that this is the case.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>( <span class="kw">which</span>( <span class="kw">is.na</span>( world.data<span class="op">$</span>h_j ) ) ) </code></pre></div>
+<pre><code>[1] 25</code></pre>
+<p>We have, indeed, identified 25 rows that we want to delete from our dataset.</p>
+<p>The function <code>is.na()</code> returns “TRUE” if an observation is missing. We can use the <code>!</code> operator so that the function returns “TRUE” if an observation is <strong>not</strong> missing. The <code>!</code> means not.</p>
+<p>Let’s confirm this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># true = observation is missing</span>
+<span class="kw">table</span>( <span class="kw">is.na</span>(world.data<span class="op">$</span>h_j) )</code></pre></div>
+<pre><code>
+FALSE  TRUE 
+  169    25 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># true = observations is NOT missing</span>
+<span class="kw">table</span>( <span class="op">!</span><span class="kw">is.na</span>(world.data<span class="op">$</span>h_j) )</code></pre></div>
+<pre><code>
+FALSE  TRUE 
+   25   169 </code></pre>
+<p>We now drop the rows with missings on <em>h_j</em> by overwriting our original dataset with a new dataset that is a copy of the old without the missings. We use the square brackets to subset our dataset.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">world.data &lt;-<span class="st"> </span>world.data[ <span class="op">!</span><span class="kw">is.na</span>( world.data<span class="op">$</span>h_j ) , ] </code></pre></div>
+<p>Confirm that our new <em>world.data</em> dataset has only 169 remaining.</p>
+<p>“But what if we want our original dataset back,” you ask. We have overwritten the original. It is no longer in our work environment. We have to reload the data set from the disk.</p>
+<p>Let’s do that:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">world.data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;QoG2012.csv&quot;</span>)</code></pre></div>
+<p>Right, we now have all observations back. This is important. Let’s say we need to drop missings on a variable. We do is. If a later analysis does not involve that variable, we want all the observations back. Otherwise we would have thrown away valuable information. The smaller our dataset, the less information it contains. Less information will make it harder for us to detect systematic correlations. We have to options. Either we reload the original dataset or we create a copy of the original with a different name that we could use later on. Let’s do this.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">full.dataset &lt;-<span class="st"> </span>world.data</code></pre></div>
+<p>Let’s drop missings on <em>h_j</em> in the <em>world.data</em> dataset.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">world.data &lt;-<span class="st"> </span>world.data[ <span class="op">!</span><span class="kw">is.na</span>( world.data<span class="op">$</span>h_j ) , ] </code></pre></div>
+<p>Now, if we want the full dataset back, we can overwrite <em>world.data</em> with <em>full.dataset</em>. The code would be the following:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">world.data &lt;-<span class="st"> </span>full.dataset</code></pre></div>
+<p>If you ran this line. Delete missings from <em>h_j</em> in <em>world.data</em> again.</p>
+<p>This data manipulation may seem boring but it is really important that you know how to do this. Most of the work in data science is not running statistical models but data manipulation. Most of the dataset you will work with in your jobs, as a research assistant or on you dissertation won’t be cleaned for you. You will have to do that work. It takes time and is sometimes frustrating. That’s unfortunately the same for all of us.</p>
+</div>
+<div id="factor-variables" class="section level3">
+<h3><span class="header-section-number">3.1.3</span> Factor Variables</h3>
+<p>Categorical/nominal variables can be stored as numeric variables in R. However, the values do not imply an ordering or relative importance. We often store nominal variables as factor variables in R. A factor variable is a nominal data type. The advantage of turning a variable into a factor type is that we can assign labels to the categories and that R will not calculate with the values assigned to the categories.</p>
+<p>The function <code>factor()</code> lets us turn the variable into a nominal data type. The first argument is the variable itself. The second are the category labels and the third are the levels associated with the categories. To know how those correspond, we have to scroll up and look at the codebook.</p>
+<p>We also overwrite the original numeric variable <code>h_j</code> with our nominal copy indicated by the assignment arrow <code>&lt;-</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># factorize judiciary variable</span>
+world.data<span class="op">$</span>h_j &lt;-<span class="st"> </span><span class="kw">factor</span>(world.data<span class="op">$</span>h_j, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;controlled&quot;</span>, <span class="st">&quot;free&quot;</span>), <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))
+
+<span class="co"># frequency table of judiciary variable</span>
+<span class="kw">table</span>(world.data<span class="op">$</span>h_j)</code></pre></div>
+<pre><code>
+controlled       free 
+       105         64 </code></pre>
+</div>
+<div id="renaming-variables" class="section level3">
+<h3><span class="header-section-number">3.1.4</span> Renaming Variables</h3>
+<p>We want to rename <em>h_j</em> into something more meaningful. The new name should be <em>free.judiciary</em>. We can use the <code>names()</code> function to get a vector of variable names.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(world.data)</code></pre></div>
+<pre><code>[1] &quot;h_j&quot;         &quot;wdi_gdpc&quot;    &quot;undp_hdi&quot;    &quot;wbgi_cce&quot;    &quot;wbgi_pse&quot;   
+[6] &quot;former_col&quot;  &quot;lp_lat_abst&quot;</code></pre>
+<p>We want to change the first element of that vector. We know that we can use square brackets to subset vectors. Let’s display the first element of the vector of variable names only.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(world.data)[<span class="dv">1</span>]</code></pre></div>
+<pre><code>[1] &quot;h_j&quot;</code></pre>
+<p>Now we simply change the name using the assignment arrow <code>&lt;-</code> and our new variable names goes in quotes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(world.data)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;free.judiciary&quot;</span></code></pre></div>
+<p>We now check the variable names to confirm that we successfully changed the name.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(world.data)</code></pre></div>
+<pre><code>[1] &quot;free.judiciary&quot; &quot;wdi_gdpc&quot;       &quot;undp_hdi&quot;       &quot;wbgi_cce&quot;      
+[5] &quot;wbgi_pse&quot;       &quot;former_col&quot;     &quot;lp_lat_abst&quot;   </code></pre>
+</div>
+<div id="distributions" class="section level3">
+<h3><span class="header-section-number">3.1.5</span> Distributions</h3>
+<p>A marginal distribution is the distribution of a variable by itself. Let’s look at the summary statistics of the United Nations Development Index <em>undp_hdi</em> using the <code>summary()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(world.data<span class="op">$</span>undp_hdi)</code></pre></div>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+ 0.2730  0.5272  0.7455  0.6946  0.8350  0.9560       9 </code></pre>
+<p>How nice. This returns summary stats. We see the range(minimum to maximum). We see the interquartile range (1st quartile to 3rd quartile). We also see mean and median. Finally, we see the number of NAs.</p>
+<p>Oh we forgot. We said, when we drop missing on variable, we may lose information when we work on a new variable. Let’s restore our dataset <em>world.data</em> to its original state.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">world.data &lt;-<span class="st"> </span>full.dataset</code></pre></div>
+<p>Now, we check the summary stats again.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(world.data<span class="op">$</span>undp_hdi)</code></pre></div>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+ 0.2730  0.5390  0.7510  0.6982  0.8335  0.9560      19 </code></pre>
+<p>In the smaller dataset (where we had dropped missings from <em>h_j</em>), we had 9 missings. Now, we have 19 missings. The difference is 10. Our smaller dataset had 25 rows less than the bigger dataset. Therefore, we would have thrown away 6 good observations. That is not nothing. It’s 3 percent of our data.</p>
+<p>Let’s drop missing on <em>undp_hdi</em> and rename it to <em>hdi</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">world.data &lt;-<span class="st"> </span>world.data[ <span class="kw">which</span>( <span class="op">!</span><span class="kw">is.na</span>(world.data<span class="op">$</span>undp_hdi) ) , ]</code></pre></div>
+<p>Let’s change the name.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(world.data)[<span class="dv">3</span>] &lt;-<span class="st"> &quot;hdi&quot;</span>
+<span class="kw">names</span>(world.data)</code></pre></div>
+<pre><code>[1] &quot;h_j&quot;         &quot;wdi_gdpc&quot;    &quot;hdi&quot;         &quot;wbgi_cce&quot;    &quot;wbgi_pse&quot;   
+[6] &quot;former_col&quot;  &quot;lp_lat_abst&quot;</code></pre>
+<p>Let’s take the mean of <em>hdi</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hdi.mean &lt;-<span class="st"> </span><span class="kw">mean</span>( world.data<span class="op">$</span>hdi )
+hdi.mean</code></pre></div>
+<pre><code>[1] 0.69824</code></pre>
+<p>The mean of <em>hdi</em> is the mean in the sample. We would like the mean of hdi in the population. Remember that sampling variability causes us to estimate a different mean every time we take a new sample.</p>
+<p>We learned that the means follow a distribution if we take the mean repeatedly in different samples. In expectation the population mean is the sample mean. How certain are we about the mean. Well, we need to know how the sampling distribution looks like.</p>
+<p>To find out we estimate the standard error of the mean. The standard error is the standard deviation of the sampling distribution. The name is not standard deviation but standard error to indicate that we are talking about the distribution of a statistic (the mean) and not a random variable.</p>
+<p>The formula for the standard error of the mean is:</p>
+<p><span class="math display">\[ s_{\bar{x}} = \frac{ \sigma }{ \sqrt(n) }  \]</span></p>
+<p>The <span class="math inline">\(\sigma\)</span> is the real population standard deviation of the random variable <em>hdi</em> which is unknown to us. We replace the population standard deviation with our sample estimate of it.</p>
+<p><span class="math display">\[ s_{\bar{x}} = \frac{ s }{ \sqrt(n) }  \]</span></p>
+<p>The standard error of the mean estimate is then</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">se.hdi &lt;-<span class="st"> </span><span class="kw">sd</span>(world.data<span class="op">$</span>hdi) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>( <span class="kw">nrow</span>(world.data) )
+se.hdi</code></pre></div>
+<pre><code>[1] 0.01362411</code></pre>
+<p>Okay, so the mean is 0.69824 and the standard error of the mean is 0.0136241.</p>
+<p>We know that the sampling distribution is approximately normal. That means that 95 percent of all observations are within 1.96 standard deviations (standard errors) of the mean.</p>
+<p><span class="math display">\[ \bar{x} \pm 1.96 \times s_{\bar{x}} \]</span></p>
+<p>So what is that in our case?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lower.bound &lt;-<span class="st"> </span>hdi.mean <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>se.hdi
+lower.bound</code></pre></div>
+<pre><code>[1] 0.6715367</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">upper.bound &lt;-<span class="st"> </span>hdi.mean <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>se.hdi
+upper.bound</code></pre></div>
+<pre><code>[1] 0.7249432</code></pre>
+<p>That now means the following. Were we to take samples of <em>hdi</em> again and again and again, then 95 percent of the time, the mean would be in the range from 0.6715367 to 0.7249432.</p>
+<p>What is a probability? “The long-run relative frequency,” you all scream in unison. Given that definition, you can say: “With 95 percent probability, the mean is in the range 0.6715367 to 0.7249432.”</p>
+<p>Sometimes people like to former way of phrasing this relationship better than the latter. In this case you tell them: “a probability is the long-run relative frequency of an outcome.”</p>
+<p>Now, let’s visualise our sampling distribution. We haven’t actually taken many samples, so how could we visualise the sampling distribution? Well, we know the sampling distribution looks normal. We know that the mean is our mean estimate in the sample. And finally, we know that the standard deviation is the standard error of the mean.</p>
+<p>We can randomly draw values from a normal distribution with mean 0.69824 and standard deviation 0.0136241. We do this with the <code>rnorm()</code> function. It’s first argument is the number of values to draw at random from the normal distribution. The second argument is the mean and the third is the standard deviation.</p>
+<p>Recall, that a normal distribution has two parameters that characterise it completely: the mean and the standard deviation. So with those two we can draw the distribution.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">draw.of.hdi.means &lt;-<span class="st"> </span><span class="kw">rnorm</span>( <span class="dv">1000</span>, <span class="dt">mean =</span> hdi.mean, <span class="dt">sd =</span> se.hdi )</code></pre></div>
+<p>We have just drawn 1000 mean values at random from the distribution that looks like our sampling distribution.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(
+ <span class="kw">density</span>( draw.of.hdi.means ),
+ <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,
+ <span class="dt">main =</span> <span class="st">&quot;Sampling Distribution of HDI means&quot;</span>
+)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
+<p>Beautiful Let’s add the 95 percent confidence interval around our mean estimate. The confidence interval quantifies our uncertainty. We said 95 percent of the time the mean would be in the interval from 0.6715367 to 0.7249432.&quot;</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">abline</span>( <span class="dt">v =</span> lower.bound, <span class="dt">lty =</span> <span class="st">&quot;dashed&quot;</span>)
+<span class="kw">abline</span>( <span class="dt">v =</span> upper.bound,  <span class="dt">lty =</span> <span class="st">&quot;dashed&quot;</span>)</code></pre></div>
+<p>You do not need to run the plot function again. You can just add to the plot. Check the help function of <code>abline()</code> to see what its arguments refer to.</p>
+<p>Fantastic! You can see that values below and above our confidence interval are quite unlikely. Those values in the tails would not occur often.</p>
+<p>Not often, but not impossible.</p>
+<p>Let’s say that we wish know the probability that we take a sample and our estimate of the mean is greater or equal 0.74. We would need to integrate over the distribution from <span class="math inline">\(-\inf\)</span> to 0.74. Fortunately R has a function that does that for us. We need the <code>pnorm()</code>. It calculates the probability of a value that is smaller or equal to the value we specify. In other words, it gives us the probability from the cumulative normal.</p>
+<p>As the first argument <code>pnrom()</code> wants the value; 0.74 in our case. The second and third arguments are the mean and the standard deviation that characterise the normal distribution.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pnorm</span>(<span class="fl">0.74</span>, <span class="dt">mean =</span> hdi.mean, <span class="dt">sd =</span> se.hdi)</code></pre></div>
+<pre><code>[1] 0.9989122</code></pre>
+<p>What!? The probability to draw a mean 0.74 is 99.9 percent!? That cannot be the value is so far in the tail of the distribution.</p>
+<p>Well, this is the cumulative probability of drawing a value that is equal to or smaller than 0.74. All probabilities sum to 1. So if we want to know the probability of drawing a value that is greater than 0.74, we subtract the probability, we just calculated, from 1.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">0.74</span>, <span class="dt">mean =</span> hdi.mean, <span class="dt">sd =</span> se.hdi)</code></pre></div>
+<pre><code>[1] 0.001087785</code></pre>
+<p>Right, so the probability of getting a mean of <em>hdi</em> in a sample is 0.1 percent.</p>
+</div>
+<div id="conditional-distributions" class="section level3">
+<h3><span class="header-section-number">3.1.6</span> Conditional Distributions</h3>
+<p>Let’s look at <em>hdi</em> by <em>former_col</em>. The variable <em>former_col</em> is 1 if a country is a former colony and 0 otherwise. The variable <em>hdi</em> is continuous.</p>
+<p>Before we start, we plot the marginal pdf of <em>hdi</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(
+  <span class="kw">density</span>(world.data<span class="op">$</span>hdi),
+  <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,
+  <span class="dt">main =</span> <span class="st">&quot;Marginal Distribution of HDI&quot;</span>
+)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
+<p>The distribution is bimodal. There is one peak at the higher development end and one peak at the lower development end. Could it be that these two peaks are conditional on whether a country was colonised or not? Let’s plot the conditional distributions.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(
+  <span class="kw">density</span>(world.data<span class="op">$</span>hdi[world.data<span class="op">$</span>former_col <span class="op">==</span><span class="st"> </span><span class="dv">0</span>]),
+  <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,
+  <span class="dt">main =</span> <span class="st">&quot;Conditional Distributions of HDI&quot;</span>
+)
+<span class="kw">lines</span>(<span class="kw">density</span>(world.data<span class="op">$</span>hdi), <span class="dt">lty =</span> <span class="st">&quot;dashed&quot;</span>)
+<span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;not colonised&quot;</span>, <span class="st">&quot;colonised&quot;</span>), <span class="dt">lty =</span> <span class="kw">c</span>(<span class="st">&quot;solid&quot;</span>, <span class="st">&quot;dashed&quot;</span>))</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
+<p>It’s not quite like we expected. The distribution of human development of not colonised countries is shifted to right of the distribution of colonised countries and it is clearly narrower. Interestingly though, the distribution of former colonies has a greater variance. Evidently, some former colonies are doing very well and some are doing very poorly. It seems like knowing whether a country was colonised or not tells us something about its likely development but not enough. We cannot, e.g., say colonisation is the reason why countries do poorly. Probably, there are differences among types of colonial institutions that were set up by the colonisers.</p>
+<p>Let’s move on and examine the probability that a country has .8 or more on <em>hdi</em> given that it is a former colony.</p>
+<p>We can get the cumulative probability with the <code>ecdf()</code> function. It returns the empirical cumulative distribution, i.e., the cumulative distribution of our data. We know that we can subset using square brackets. That’s all we need.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cumulative.p &lt;-<span class="st"> </span><span class="kw">ecdf</span>(world.data<span class="op">$</span>hdi[ world.data<span class="op">$</span>former_col <span class="op">==</span><span class="st"> </span><span class="dv">1</span> ])
+<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">cumulative.p</span>(.<span class="dv">8</span>)</code></pre></div>
+<pre><code>[1] 0.1666667</code></pre>
+<p>Okay, the probability that a former colony has .8 or larger on the <em>hdi</em> is 16.6 percent. Go ahead figure out the probability for not former colonies on your own.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="research-design-counterfactuals-forming-hypotheses.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["statistics1.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

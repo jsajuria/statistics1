@@ -1,0 +1,407 @@
+# Sampling and Distributions
+
+## Seminar
+
+In today's seminar, we introduce packages. We will repeat getting measures of central tendency and dispersion. We then move to estimating probabilities in marginal, joint and conditional distributions.
+
+
+```{r eval = FALSE}
+rm(list=ls())
+setwd("~/PUBLG100")
+```
+
+
+### Loading Dataset in CSV Format
+
+In this seminar, we load a file in comma separated format (`.csv`). The `load()` function from last week works only for the native R file format. To load our csv-file, we use the [`read.csv()`](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/read.table.html) function.
+
+Our data comes from the [Quality of Government Institute](http://qog.pol.gu.se/). Let's have a look at the codebook:
+
+
+```{r echo = FALSE}
+knitr::kable(tibble::tribble(
+  ~Variable,     ~Description,
+  "h_j",    "1 if Free Judiciary",
+  "wdi_gdpc",      "Per capita wealth in US dollars",
+  "undp_hdi",      "Human development index (higher values = higher quality of life)",
+  "wbgi_cce",      "Control of corruption index (higher values = more control of corruption)",
+  "wbgi_pse",    "Political stability index (higher values = more stable)",
+  "former_col",    "1 = country was a colony once",
+  "lp_lat_abst",    "Latitude of country's captial divided by 90"
+))
+```
+
+
+```{r}
+world.data <- read.csv("QoG2012.csv")
+```
+
+Go ahead and (1) check the dimensions of `world.data`, (2) the names of the variables of the dataset, (3) print the first six rows of the dataset. (
+
+```{r}
+# the dimensions: rows (observations) and columns (variables) 
+dim(world.data)
+
+# the variable names
+names(world.data) 
+
+# top 6 rows of the data
+head(world.data)
+```
+
+### Missing Values
+
+Let's inspect the variable *h_j*. It is categorical, where 1 indicates that a country has a free judiciary. We use the `table()` function to find the frequency in each category.
+
+```{r}
+table(world.data$h_j)
+```
+
+We now know that `r as.numeric(table(world.data$h_j)[2])` countries have a free judiciary and `r as.numeric(table(world.data$h_j)[1])` countries do not.
+
+Conceptually the variable is nominal. To see how the variable is stored in R, we can use the `str()` function.
+
+```{r}
+str(world.data$h_j)
+```
+
+The function returns 'int' which abbreviates 'integer', i.e., a numeric type. The function also shows us the first 10 realisations of the variable. We se zeroes and ones which are the two categories. We also see NA's which abbreviates not available. NAs are missing values. Values can be missing for different reasons. For instance, a coder may have forgotten to code whether a country had been colonised at some point in its history or the country may be new and the categories, therefore, don't apply. It is important for us that we cannot calculate with NAs.
+
+There are different ways of dealing with NAs. We will always delete missing values. Our dataset must maintain its rectangular structure. Hence, when we delete a missing value from one variable, we delete it for the entire row of the dataset. Consider the following example.
+
+```{r echo = FALSE}
+knitr::kable(tibble::tribble(
+~Row,    ~Variable1, ~Variable2, ~Variable3, ~Variable4,
+"1", "15",  "22",  "100",  "65",
+"2", "NA",  "17", "26",  "75",
+"3", "27", "NA", "58",  "88",
+"4", "NA", "NA", "4",   "NA",
+"5", "75", "45", "71",  "18",
+"6", "18", "16", "99",  "91"
+))
+```
+
+If we delete missing values from *Variable1*, our dataset will look like this:
+
+```{r echo = FALSE}
+knitr::kable(tibble::tribble(
+~Row,    ~Variable1, ~Variable2, ~Variable3, ~Variable4,
+"1", "15",  "22",  "100",  "65",
+"3", "27", "NA", "58",  "88",
+"5", "75", "45", "71",  "18",
+"6", "18", "16", "99",  "91"
+))
+```
+
+
+The new dataset is smaller than the original one. Rows 2 and 4 have been deleted. When we drop missing values from one variable in our dataset, we lose information on other variables as well. Therefore, you only want to drop missing values on variables that you are interested in. Let's drop the missing values on our variable *h_j*. We do this in several steps.
+
+First, we introduce the `is.na()` function. We supply a vector to the function and it checks for every element, whether it is missing or not. R returns true or false. Let's use the function on our variable.
+
+```{r}
+is.na(world.data$h_j)
+```
+
+To see the amount of missingness in the variable *h_j*, we can combine `is.na()` with the `table()` function. 
+
+```{r}
+table( is.na(world.data$h_j) )
+```
+
+So, we have `r as.numeric( table( is.na(world.data$h_j) )[2] )` missing values on *h_j*. Our dataset has `r nrow(world.data)` rows. Check your global environment to confirm this or use the `nrow()` function. That means, if we drop all missing values from *h_j*, the our dataset *world.data* will lose `r as.numeric( table( is.na(world.data$h_j) )[2] )` rows.
+
+Before we drop the missings, we introduce the `which()` function. It returns the row indexes (the rows in the dataset) where some condition is true. So if we use `which()` and `is.na()`, we get the row numbers in the *world.data* dataset where values are missing on *h_j*.
+
+```{r}
+which( is.na( world.data$h_j ) )
+```
+
+We said that our dataset will lose `r as.numeric( table( is.na(world.data$h_j) )[2] )` rows. Let's use the `length()` function to confirm that this is the case.
+
+```{r}
+length( which( is.na( world.data$h_j ) ) ) 
+```
+
+We have, indeed, identified `r length( which( is.na( world.data$h_j ) ) ) ` rows that we want to delete from our dataset.
+
+The function `is.na()` returns "TRUE" if an observation is missing. We can use the `!` operator so that the function returns "TRUE" if an observation is **not** missing. The `!` means not.
+
+Let's confirm this:
+
+```{r}
+# true = observation is missing
+table( is.na(world.data$h_j) )
+
+# true = observations is NOT missing
+table( !is.na(world.data$h_j) )
+```
+
+We now drop the rows with missings on *h_j* by overwriting our original dataset with a new dataset that is a copy of the old without the missings. We use the square brackets to subset our dataset.
+
+```{r}
+world.data <- world.data[ !is.na( world.data$h_j ) , ] 
+```
+
+Confirm that our new *world.data* dataset has only `r nrow(world.data)` remaining.
+
+"But what if we want our original dataset back," you ask. We have overwritten the original. It is no longer in our work environment. We have to reload the data set from the disk.
+
+Let's do that:
+
+```{r}
+world.data <- read.csv("QoG2012.csv")
+```
+
+Right, we now have all observations back. This is important. Let's say we need to drop missings on a variable. We do is. If a later analysis does not involve that variable, we want all the observations back. Otherwise we would have thrown away valuable information. The smaller our dataset, the less information it contains. Less information will make it harder for us to detect systematic correlations. We have to options. Either we reload the original dataset or we create a copy of the original with a different name that we could use later on. Let's do this.
+
+```{r}
+full.dataset <- world.data
+```
+
+Let's drop missings on *h_j* in the *world.data* dataset.
+
+```{r}
+world.data <- world.data[ !is.na( world.data$h_j ) , ] 
+```
+
+Now, if we want the full dataset back, we can overwrite *world.data* with *full.dataset*. The code would be the following:
+
+```{r, eval=FALSE}
+world.data <- full.dataset
+```
+
+If you ran this line. Delete missings from *h_j* in *world.data* again.
+
+This data manipulation may seem boring but it is really important that you know how to do this. Most of the work in data science is not running statistical models but data manipulation. Most of the dataset you will work with in your jobs, as a research assistant or on you dissertation won't be cleaned for you. You will have to do that work. It takes time and is sometimes frustrating. That's unfortunately the same for all of us.
+
+### Factor Variables
+
+Categorical/nominal variables can be stored as numeric variables in R. However, the values do not imply an ordering or relative importance. We often store nominal variables as factor variables in R. A factor variable is a nominal data type. The advantage of turning a variable into a factor type is that we can assign labels to the categories and that R will not calculate with the values assigned to the categories.
+
+The function `factor()` lets us turn the variable into a nominal data type. The first argument is the variable itself. The second are the category labels and the third are the levels associated with the categories. To know how those correspond, we have to scroll up and look at the codebook.
+
+We also overwrite the original numeric variable `h_j` with our nominal copy indicated by the assignment arrow `<-`.
+
+```{r}
+# factorize judiciary variable
+world.data$h_j <- factor(world.data$h_j, labels = c("controlled", "free"), levels = c(0,1))
+
+# frequency table of judiciary variable
+table(world.data$h_j)
+```
+
+### Renaming Variables
+
+We want to rename *h_j* into something more meaningful. The new name should be *free.judiciary*. We can use the `names()` function to get a vector of variable names. 
+
+```{r}
+names(world.data)
+```
+
+We want to change the first element of that vector. We know that we can use square brackets to subset vectors. Let's display the first element of the vector of variable names only.
+
+```{r}
+names(world.data)[1]
+```
+
+Now we simply change the name using the assignment arrow `<-` and our new variable names goes in quotes.
+
+```{r}
+names(world.data)[1] <- "free.judiciary"
+```
+
+
+We now check the variable names to confirm that we successfully changed the name.
+
+```{r}
+names(world.data)
+```
+
+
+### Distributions
+
+A marginal distribution is the distribution of a variable by itself. Let's look at the summary statistics of the United Nations Development Index *undp_hdi* using the `summary()` function.
+
+```{r}
+summary(world.data$undp_hdi)
+```
+
+How nice. This returns summary stats. We see the range(minimum to maximum). We see the interquartile range (1st quartile to 3rd quartile). We also see mean and median. Finally, we see the number of NAs.
+
+Oh we forgot. We said, when we drop missing on variable, we may lose information when we work on a new variable. Let's restore our dataset *world.data* to its original state.
+
+```{r}
+world.data <- full.dataset
+```
+
+Now, we check the summary stats again.
+
+```{r}
+summary(world.data$undp_hdi)
+```
+
+In the smaller dataset (where we had dropped missings from *h_j*), we had 9 missings. Now, we have 19 missings. The difference is 10. Our smaller dataset had 25 rows less than the bigger dataset. Therefore, we would have thrown away 6 good observations. That is not nothing. It's 3 percent of our data.
+
+Let's drop missing on *undp_hdi* and rename it to *hdi*. 
+
+```{r}
+world.data <- world.data[ which( !is.na(world.data$undp_hdi) ) , ]
+```
+
+Let's change the name.
+
+```{r}
+names(world.data)[3] <- "hdi"
+names(world.data)
+```
+
+Let's take the mean of *hdi*.
+
+```{r}
+hdi.mean <- mean( world.data$hdi )
+hdi.mean
+```
+
+The mean of *hdi* is the mean in the sample. We would like the mean of hdi in the population. Remember that sampling variability causes us to estimate a different mean every time we take a new sample.
+
+We learned that the means follow a distribution if we take the mean repeatedly in different samples. In expectation the population mean is the sample mean. How certain are we about the mean. Well, we need to know how the sampling distribution looks like.
+
+To find out we estimate the standard error of the mean. The standard error is the standard deviation of the sampling distribution. The name is not standard deviation but standard error to indicate that we are talking about the distribution of a statistic (the mean) and not a random variable.
+
+The formula for the standard error of the mean is:
+
+$$ s_{\bar{x}} = \frac{ \sigma }{ \sqrt(n) }  $$
+
+The $\sigma$ is the real population standard deviation of the random variable *hdi* which is unknown to us. We replace the population standard deviation with our sample estimate of it.
+
+$$ s_{\bar{x}} = \frac{ s }{ \sqrt(n) }  $$
+
+The standard error of the mean estimate is then
+
+```{r}
+se.hdi <- sd(world.data$hdi) / sqrt( nrow(world.data) )
+se.hdi
+```
+
+Okay, so the mean is `r hdi.mean` and the standard error of the mean is `r se.hdi`.
+
+We know that the sampling distribution is approximately normal. That means that 95 percent of all observations are within 1.96 standard deviations (standard errors) of the mean. 
+
+$$ \bar{x} \pm 1.96 \times s_{\bar{x}} $$
+
+So what is that in our case?
+
+```{r}
+lower.bound <- hdi.mean - 1.96 * se.hdi
+lower.bound
+
+upper.bound <- hdi.mean + 1.96 * se.hdi
+upper.bound
+```
+
+That now means the following. Were we to take samples of *hdi* again and again and again, then 95 percent of the time, the mean would be in the range from `r lower.bound` to `r upper.bound`.
+
+What is a probability? "The long-run relative frequency," you all scream in unison. Given that definition, you can say: "With 95 percent probability, the mean is in the range `r lower.bound` to `r upper.bound`."
+
+Sometimes people like to former way of phrasing this relationship better than the latter. In this case you tell them: "a probability is the long-run relative frequency of an outcome."
+
+Now, let's visualise our sampling distribution. We haven't actually taken many samples, so how could we visualise the sampling distribution? Well, we know the sampling distribution looks normal. We know that the mean is our mean estimate in the sample. And finally, we know that the standard deviation is the standard error of the mean.
+
+We can randomly draw values from a normal distribution with mean `r hdi.mean` and standard deviation `r se.hdi`. We do this with the `rnorm()` function. It's first argument is the number of values to draw at random from the normal distribution. The second argument is the mean and the third is the standard deviation.
+
+Recall, that a normal distribution has two parameters that characterise it completely: the mean and the standard deviation. So with those two we can draw the distribution.
+
+```{r}
+draw.of.hdi.means <- rnorm( 1000, mean = hdi.mean, sd = se.hdi )
+```
+
+We have just drawn 1000 mean values at random from the distribution that looks like our sampling distribution.
+
+```{r}
+plot(
+ density( draw.of.hdi.means ),
+ bty = "n",
+ main = "Sampling Distribution of HDI means"
+)
+```
+
+Beautiful Let's add the 95 percent confidence interval around our mean estimate. The confidence interval quantifies our uncertainty. We said 95 percent of the time the mean would be in the interval from `r lower.bound` to `r upper.bound`."
+
+```{r, eval=FALSE}
+abline( v = lower.bound, lty = "dashed")
+abline( v = upper.bound,  lty = "dashed")
+```
+
+You do not need to run the plot function again. You can just add to the plot. Check the help function of `abline()` to see what its arguments refer to.
+
+```{r, include=FALSE}
+plot(
+ density( draw.of.hdi.means ),
+ bty = "n",
+ main = "Sampling Distribution of HDI means"
+)
+abline( v = lower.bound, lty = "dashed")
+abline( v = upper.bound,  lty = "dashed")
+```
+
+Fantastic! You can see that values below and above our confidence interval are quite unlikely. Those values in the tails would not occur often.
+
+Not often, but not impossible. 
+
+Let's say that we wish know the probability that we take a sample and our estimate of the mean is greater or equal 0.74. We would need to integrate over the distribution from $-\inf$ to 0.74. Fortunately R has a function that does that for us. We need the `pnorm()`. It calculates the probability of a value that is smaller or equal to the value we specify. In other words, it gives us the probability from the cumulative normal.
+
+As the first argument `pnrom()` wants the value; 0.74 in our case. The second and third arguments are the mean and the standard deviation that characterise the normal distribution.
+
+```{r}
+pnorm(0.74, mean = hdi.mean, sd = se.hdi)
+```
+
+What!? The probability to draw a mean 0.74 is 99.9 percent!? That cannot be the value is so far in the tail of the distribution. 
+
+Well, this is the cumulative probability of drawing a value that is equal to or smaller than 0.74. All probabilities sum to 1. So if we want to know the probability of drawing a value that is greater than 0.74, we subtract the probability, we just calculated, from 1.
+
+```{r}
+1 - pnorm(0.74, mean = hdi.mean, sd = se.hdi)
+```
+
+Right, so the probability of getting a mean of *hdi* in a sample is 0.1 percent. 
+
+### Conditional Distributions
+
+Let's look at *hdi* by *former_col*. The variable *former_col* is 1 if a country is a former colony and 0 otherwise. The variable *hdi* is continuous.
+
+Before we start, we plot the marginal pdf of *hdi*.
+
+```{r}
+plot(
+  density(world.data$hdi),
+  bty = "n",
+  main = "Marginal Distribution of HDI"
+)
+```
+
+The distribution is bimodal. There is one peak at the higher development end and one peak at the lower development end. Could it be that these two peaks are conditional on whether a country was colonised or not? Let's plot the conditional distributions.
+
+```{r}
+plot(
+  density(world.data$hdi[world.data$former_col == 0]),
+  bty = "n",
+  main = "Conditional Distributions of HDI"
+)
+lines(density(world.data$hdi), lty = "dashed")
+legend("topleft", c("not colonised", "colonised"), lty = c("solid", "dashed"))
+```
+
+It's not quite like we expected. The distribution of human development of not colonised countries is shifted to right of the distribution of colonised countries and it is clearly narrower. Interestingly though, the distribution of former colonies has a greater variance. Evidently, some former colonies are doing very well and some are doing very poorly. It seems like knowing whether a country was colonised or not tells us something about its likely development but not enough. We cannot, e.g., say colonisation is the reason why countries do poorly. Probably, there are differences among types of colonial institutions that were set up by the colonisers.
+
+Let's move on and examine the probability that a country has .8 or more on *hdi* given that it is a former colony.
+
+We can get the cumulative probability with the `ecdf()` function. It returns the empirical cumulative distribution, i.e., the cumulative distribution of our data. We know that we can subset using square brackets. That's all we need.
+
+```{r}
+cumulative.p <- ecdf(world.data$hdi[ world.data$former_col == 1 ])
+1 - cumulative.p(.8)
+```
+Okay, the probability that a former colony has .8 or larger on the *hdi* is 16.6 percent. Go ahead figure out the probability for not former colonies on your own.
+
+
