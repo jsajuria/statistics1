@@ -19,9 +19,7 @@ Our data comes from the [Quality of Government Institute](http://qog.pol.gu.se/)
 
 Download the data [here](https://github.com/philippbroniecki/statistics1/raw/master/data/QoG2012.csv).
 
-Or download the data [here](https://github.com/downloads/philippbroniecki/statistics1/data/QoG2012.csv)
-
-Or [here](https://raw.github.com/philippbroniecki/statistics1/branch/master/data/QoG2012.csv)
+Or [here](https://github.com/philippbroniecki/statistics1/blob/master/data/QoG2012.csv?raw=TRUE)
 
 
 
