@@ -19,7 +19,6 @@ Our data comes from the [Quality of Government Institute](http://qog.pol.gu.se/)
 
 Download the data [here](http://philippbroniecki.github.io/statistics1.io/docs/QoG2012.csv).
 
-
 ```{r echo = FALSE}
 knitr::kable(tibble::tribble(
   ~Variable,     ~Description,
