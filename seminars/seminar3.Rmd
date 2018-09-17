@@ -17,7 +17,7 @@ In this seminar, we load a file in comma separated format (`.csv`). The `load()`
 
 Our data comes from the [Quality of Government Institute](http://qog.pol.gu.se/). Let's have a look at the codebook:
 
-Download the data [here](https://github.com/philippbroniecki/statistics1/tree/master/docs/QoG2012.csv).
+Download the data [here](http://philippbroniecki.github.io/statistics1/docs/QoG2012.dta).
 
 ```{r echo = FALSE}
 knitr::kable(tibble::tribble(
