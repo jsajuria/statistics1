@@ -17,7 +17,7 @@ In this seminar, we load a file in comma separated format (`.csv`). The `load()`
 
 Our data comes from the [Quality of Government Institute](http://qog.pol.gu.se/). Let's have a look at the codebook:
 
-Download the data [here](https://github.com/philippbroniecki/statistics1/tree/master/docs).
+Download the data [here](https://github.com/philippbroniecki/statistics1/tree/master/docs/QoG2012.csv).
 
 ```{r echo = FALSE}
 knitr::kable(tibble::tribble(
@@ -405,4 +405,7 @@ cumulative.p <- ecdf(world.data$hdi[ world.data$former_col == 1 ])
 ```
 Okay, the probability that a former colony has .8 or larger on the *hdi* is 16.6 percent. Go ahead figure out the probability for not former colonies on your own.
 
-
+### Exercises
+1. Create a script and call it assignment03. Save your script.
+2. Load the *world.data* dataset from your disk.
+3. 

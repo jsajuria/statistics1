@@ -316,7 +316,7 @@ It is very hard to spot differences. The distributions are similar. The median f
 
 You can play around with the non-western foreigners data on your own time. We now turn to a dataset that is integrated in R already. It is called `longley`. Use the `help()` function to see what this dataset is about.
 
-```{r}
+```{r, eval = FALSE}
 help(longley)
 ```
 
