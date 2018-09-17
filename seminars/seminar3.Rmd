@@ -2,7 +2,7 @@
 
 ## Seminar
 
-In today's seminar, we introduce packages. We will repeat getting measures of central tendency and dispersion. We then move to estimating probabilities in marginal, joint and conditional distributions.
+In today's seminar, we work with missing data. We will turn a numerical variable into a nominal data type. We then turn to distributions.
 
 
 ```{r eval = FALSE}
@@ -16,6 +16,8 @@ setwd("~/PUBLG100")
 In this seminar, we load a file in comma separated format (`.csv`). The `load()` function from last week works only for the native R file format. To load our csv-file, we use the [`read.csv()`](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/read.table.html) function.
 
 Our data comes from the [Quality of Government Institute](http://qog.pol.gu.se/). Let's have a look at the codebook:
+
+Download the data [here](http://philippbroniecki.github.io/statistics1.io/docs/QoG2012.csv).
 
 
 ```{r echo = FALSE}

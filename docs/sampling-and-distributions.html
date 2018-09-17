@@ -176,13 +176,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Chapter 3</span> Sampling and Distributions</h1>
 <div id="seminar-2" class="section level2">
 <h2><span class="header-section-number">3.1</span> Seminar</h2>
-<p>In today’s seminar, we introduce packages. We will repeat getting measures of central tendency and dispersion. We then move to estimating probabilities in marginal, joint and conditional distributions.</p>
+<p>In today’s seminar, we work with missing data. We will turn a numerical variable into a nominal data type. We then turn to distributions.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())
 <span class="kw">setwd</span>(<span class="st">&quot;~/PUBLG100&quot;</span>)</code></pre></div>
 <div id="loading-dataset-in-csv-format" class="section level3">
 <h3><span class="header-section-number">3.1.1</span> Loading Dataset in CSV Format</h3>
 <p>In this seminar, we load a file in comma separated format (<code>.csv</code>). The <code>load()</code> function from last week works only for the native R file format. To load our csv-file, we use the <a href="https://stat.ethz.ch/R-manual/R-devel/library/utils/html/read.table.html"><code>read.csv()</code></a> function.</p>
 <p>Our data comes from the <a href="http://qog.pol.gu.se/">Quality of Government Institute</a>. Let’s have a look at the codebook:</p>
+<p>Download the data <a href="http://philippbroniecki.github.io/statistics1.io/docs/QoG2012.csv">here</a>.</p>
 <table>
 <thead>
 <tr class="header">
