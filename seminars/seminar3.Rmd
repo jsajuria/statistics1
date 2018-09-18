@@ -409,4 +409,16 @@ Okay, the probability that a former colony has .8 or larger on the *hdi* is 16.6
 ### Exercises
 1. Create a script and call it assignment03. Save your script.
 2. Load the *world.data* dataset from your disk.
-3. 
+3. Rename the variable *wdi_gdpc* into *gdpc*.
+4. Delete missing values from *gdpc*.
+5. Inspect *former_col* and delete missing values from it.
+6. Turn *former_col* into a factor variable with the appropriate lables.
+7. Compute the probability that a county is richer than 55 000 per capita.
+8. Compute the same probability given that a country is a former colony.
+9. Compute the conditional expectation of wealth (gdp per capita) for a former colony.
+10. Compute the conditional expectation of wealth for country that is not a former colony.
+11. What is the probability that a former colony is 2 standard deviations below the mean wealth level?
+12. What is the corresponding probability for a country that has not been colonised?
+13. Compute the probability that a former colony is the wealth interval from 25 000 to 31 000.
+14. Copmute the probability that a **not** former colony is in the top 2.5 percent of the wealth distribution.
+15. At which wealth level is a country in the bottom 2.5 percent of the wealth distribution?
