@@ -45,7 +45,7 @@ summary(world.data$former_col)
 
 #### Exercise 6
 
-Turn former_col into a factor variable with the appropriate lables.
+Turn former_col into a factor variable with the appropriate labels.
 
 ```{r}
 # we check the current storage type
@@ -72,7 +72,7 @@ Compute the probability that a county is richer than 55 000 per capita.
 
 Wealth is never normally distributed. We don't even need to check. We use the `ecdf()` function for the empirical cumulative distribution.
 
-The probability that a country is richer than 55 000 is 1 minus the cumulative proability of 55000. 
+The probability that a country is richer than 55 000 is 1 minus the cumulative probability of 55000. 
 
 ```{r}
 # get the empirical cumulative distribution of wealth
@@ -87,7 +87,7 @@ The probability is 0.01. Put differently 1 percent of countries is richer than 5
 
 Compute the same probability given that a country is a former colony.
 
-The approach is simmilar but we want the conditional cumulative distribution, where the condition is that a country is a former colony.
+The approach is similar but we want the conditional cumulative distribution, where the condition is that a country is a former colony.
 
 ```{r}
 # conditional cumulative distribution
@@ -95,13 +95,13 @@ c.dist.of.wealth2 <- ecdf(world.data$gdpc[world.data$former_col == "former colon
 1 - c.dist.of.wealth2(55000)
 ```
 
-The probability is 0.009. The probability that a former colony is that rich is slighlty lower than that any country is.
+The probability is 0.009. The probability that a former colony is that rich is slightly lower than that any country is.
 
 #### Exercise 9
 
 Compute the conditional expectation of wealth (gdp per capita) for a former colony.
 
-The conditional expectation is the mean of wealth among all former colonies. We know how to do this from last week. We take the mean of wealth and subest using square brackets.
+The conditional expectation is the mean of wealth among all former colonies. We know how to do this from last week. We take the mean of wealth and subset using square brackets.
 
 ```{r}
 mean( world.data$gdpc[world.data$former_col == "former colony"] )
@@ -131,7 +131,7 @@ sd.wealth.cols <- sd(world.data$gdpc[world.data$former_col == "former colony"])
 sd.wealth.cols
 ```
 
-Interesting, the standard deviation is greater than the mean. Apparantly, former colonies are very different. Some do poorly and some extremely well.
+Interesting, the standard deviation is greater than the mean. Apparently, former colonies are very different. Some do poorly and some extremely well.
 
 Doesn't this pose a problem for the task though? How can a country's wealth be 2 standard deviations below the mean if the mean is smaller than the standard deviation? 
 
@@ -152,7 +152,7 @@ The result is similar to exercise 11. The mean is 16 415 and the standard deviat
 
 Compute the probability that a former colony is the wealth interval from 25 000 to 31 000.
 
-We compute the cumulative proabilities that a country has 31 000 and 25 000 and then take the difference.
+We compute the cumulative probabilities that a country has 31 000 and 25 000 and then take the difference.
 
 ```{r}
 # cumulative probability of 31 000
@@ -183,7 +183,7 @@ world.data[which( world.data$gdpc > 25000 & world.data$former_col == "former col
 
 That's it. There are exactly zero countries in that interval.
 
-Subsetting with 2 conditions in square brackets may be new to you. We did that with `&` operator which means "and".
+Sub-setting with 2 conditions in square brackets may be new to you. We did that with `&` operator which means "and".
 
 #### Exercise 14
 
