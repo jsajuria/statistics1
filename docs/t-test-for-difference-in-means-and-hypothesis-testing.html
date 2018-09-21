@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Statistics 1</title>
+  <meta name="description" content="Statistics 1">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Statistics 1" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Statistics 1" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="sampling-and-distributions.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this course</a></li>
+<li class="chapter" data-level="1" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><i class="fa fa-check"></i><b>1</b> Introduction: Measurement, Central Tendency, Dispersion, Validity, Reliability</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#seminar"><i class="fa fa-check"></i><b>1.1</b> Seminar</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#getting-started"><i class="fa fa-check"></i><b>1.1.1</b> Getting Started</a></li>
+<li class="chapter" data-level="1.1.2" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#rstudio"><i class="fa fa-check"></i><b>1.1.2</b> RStudio</a></li>
+<li class="chapter" data-level="1.1.3" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#console"><i class="fa fa-check"></i><b>1.1.3</b> Console</a></li>
+<li class="chapter" data-level="1.1.4" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#functions"><i class="fa fa-check"></i><b>1.1.4</b> Functions</a></li>
+<li class="chapter" data-level="1.1.5" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#getting-help"><i class="fa fa-check"></i><b>1.1.5</b> Getting Help</a></li>
+<li class="chapter" data-level="1.1.6" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#the-assignment-operator"><i class="fa fa-check"></i><b>1.1.6</b> The Assignment Operator</a></li>
+<li class="chapter" data-level="1.1.7" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#sequences"><i class="fa fa-check"></i><b>1.1.7</b> Sequences</a></li>
+<li class="chapter" data-level="1.1.8" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#scripts"><i class="fa fa-check"></i><b>1.1.8</b> Scripts</a></li>
+<li class="chapter" data-level="1.1.9" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#central-tendency"><i class="fa fa-check"></i><b>1.1.9</b> Central Tendency</a></li>
+<li class="chapter" data-level="1.1.10" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#dispersion"><i class="fa fa-check"></i><b>1.1.10</b> Dispersion</a></li>
+<li class="chapter" data-level="1.1.11" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercises"><i class="fa fa-check"></i><b>1.1.11</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#solutions"><i class="fa fa-check"></i><b>1.2</b> Solutions</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-3"><i class="fa fa-check"></i><b>1.2.1</b> Exercise 3</a></li>
+<li class="chapter" data-level="1.2.2" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-4"><i class="fa fa-check"></i><b>1.2.2</b> Exercise 4</a></li>
+<li class="chapter" data-level="1.2.3" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-5"><i class="fa fa-check"></i><b>1.2.3</b> Exercise 5</a></li>
+<li class="chapter" data-level="1.2.4" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-6"><i class="fa fa-check"></i><b>1.2.4</b> Exercise 6</a></li>
+<li class="chapter" data-level="1.2.5" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-7"><i class="fa fa-check"></i><b>1.2.5</b> Exercise 7</a></li>
+<li class="chapter" data-level="1.2.6" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-8"><i class="fa fa-check"></i><b>1.2.6</b> Exercise 8</a></li>
+<li class="chapter" data-level="1.2.7" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-9"><i class="fa fa-check"></i><b>1.2.7</b> Exercise 9</a></li>
+<li class="chapter" data-level="1.2.8" data-path="introduction-measurement-central-tendency-dispersion-validity-reliability.html"><a href="introduction-measurement-central-tendency-dispersion-validity-reliability.html#exercise-10"><i class="fa fa-check"></i><b>1.2.8</b> Exercise 10</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html"><i class="fa fa-check"></i><b>2</b> Research Design, Counterfactuals, Forming Hypotheses</a><ul>
+<li class="chapter" data-level="2.1" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#seminar-1"><i class="fa fa-check"></i><b>2.1</b> Seminar</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#setting-up"><i class="fa fa-check"></i><b>2.1.1</b> setting up</a></li>
+<li class="chapter" data-level="2.1.2" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#vectors-and-subsetting"><i class="fa fa-check"></i><b>2.1.2</b> vectors and subsetting</a></li>
+<li class="chapter" data-level="2.1.3" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#data-frames"><i class="fa fa-check"></i><b>2.1.3</b> data frames</a></li>
+<li class="chapter" data-level="2.1.4" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#loading-data"><i class="fa fa-check"></i><b>2.1.4</b> Loading data</a></li>
+<li class="chapter" data-level="2.1.5" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#plots"><i class="fa fa-check"></i><b>2.1.5</b> Plots</a></li>
+<li class="chapter" data-level="2.1.6" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#average-treatment-effect"><i class="fa fa-check"></i><b>2.1.6</b> Average Treatment Effect</a></li>
+<li class="chapter" data-level="2.1.7" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercises-1"><i class="fa fa-check"></i><b>2.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#solutions-1"><i class="fa fa-check"></i><b>2.2</b> Solutions</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercise-2"><i class="fa fa-check"></i><b>2.2.1</b> Exercise 2</a></li>
+<li class="chapter" data-level="2.2.2" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercise-3-1"><i class="fa fa-check"></i><b>2.2.2</b> Exercise 3</a></li>
+<li class="chapter" data-level="2.2.3" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercise-4-1"><i class="fa fa-check"></i><b>2.2.3</b> Exercise 4</a></li>
+<li class="chapter" data-level="2.2.4" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercise-5-1"><i class="fa fa-check"></i><b>2.2.4</b> Exercise 5</a></li>
+<li class="chapter" data-level="2.2.5" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercise-6-1"><i class="fa fa-check"></i><b>2.2.5</b> Exercise 6</a></li>
+<li class="chapter" data-level="2.2.6" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercise-7-1"><i class="fa fa-check"></i><b>2.2.6</b> Exercise 7</a></li>
+<li class="chapter" data-level="2.2.7" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercise-8-1"><i class="fa fa-check"></i><b>2.2.7</b> Exercise 8</a></li>
+<li class="chapter" data-level="2.2.8" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercises-9-and-10"><i class="fa fa-check"></i><b>2.2.8</b> Exercises 9 and 10</a></li>
+<li class="chapter" data-level="2.2.9" data-path="research-design-counterfactuals-forming-hypotheses.html"><a href="research-design-counterfactuals-forming-hypotheses.html#exercises-11"><i class="fa fa-check"></i><b>2.2.9</b> Exercises 11</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="sampling-and-distributions.html"><a href="sampling-and-distributions.html"><i class="fa fa-check"></i><b>3</b> Sampling and Distributions</a><ul>
+<li class="chapter" data-level="3.1" data-path="sampling-and-distributions.html"><a href="sampling-and-distributions.html#seminar-2"><i class="fa fa-check"></i><b>3.1</b> Seminar</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="sampling-and-distributions.html"><a href="sampling-and-distributions.html#loading-dataset-in-csv-format"><i class="fa fa-check"></i><b>3.1.1</b> Loading Dataset in CSV Format</a></li>
+<li class="chapter" data-level="3.1.2" data-path="sampling-and-distributions.html"><a href="sampling-and-distributions.html#missing-values"><i class="fa fa-check"></i><b>3.1.2</b> Missing Values</a></li>
+<li class="chapter" data-level="3.1.3" data-path="sampling-and-distributions.html"><a href="sampling-and-distributions.html#factor-variables"><i class="fa fa-check"></i><b>3.1.3</b> Factor Variables</a></li>
+<li class="chapter" data-level="3.1.4" data-path="sampling-and-distributions.html"><a href="sampling-and-distributions.html#renaming-variables"><i class="fa fa-check"></i><b>3.1.4</b> Renaming Variables</a></li>
+<li class="chapter" data-level="3.1.5" data-path="sampling-and-distributions.html"><a href="sampling-and-distributions.html#distributions"><i class="fa fa-check"></i><b>3.1.5</b> Distributions</a></li>
+<li class="chapter" data-level="3.1.6" data-path="sampling-and-distributions.html"><a href="sampling-and-distributions.html#conditional-distributions"><i class="fa fa-check"></i><b>3.1.6</b> Conditional Distributions</a></li>
+<li class="chapter" data-level="3.1.7" data-path="sampling-and-distributions.html"><a href="sampling-and-distributions.html#exercises-2"><i class="fa fa-check"></i><b>3.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="sampling-and-distributions.html"><a href="sampling-and-distributions.html#solutions-2"><i class="fa fa-check"></i><b>3.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="t-test-for-difference-in-means-and-hypothesis-testing.html"><a href="t-test-for-difference-in-means-and-hypothesis-testing.html"><i class="fa fa-check"></i><b>4</b> T-test for Difference in Means and Hypothesis Testing</a><ul>
+<li class="chapter" data-level="4.1" data-path="t-test-for-difference-in-means-and-hypothesis-testing.html"><a href="t-test-for-difference-in-means-and-hypothesis-testing.html#seminar-3"><i class="fa fa-check"></i><b>4.1</b> Seminar</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="t-test-for-difference-in-means-and-hypothesis-testing.html"><a href="t-test-for-difference-in-means-and-hypothesis-testing.html#the-standard-error"><i class="fa fa-check"></i><b>4.1.1</b> The Standard Error</a></li>
+<li class="chapter" data-level="4.1.2" data-path="t-test-for-difference-in-means-and-hypothesis-testing.html"><a href="t-test-for-difference-in-means-and-hypothesis-testing.html#t-test-one-sample-hypothesis-test"><i class="fa fa-check"></i><b>4.1.2</b> T-test (one sample hypothesis test)</a></li>
+<li class="chapter" data-level="4.1.3" data-path="t-test-for-difference-in-means-and-hypothesis-testing.html"><a href="t-test-for-difference-in-means-and-hypothesis-testing.html#t-test-difference-in-means"><i class="fa fa-check"></i><b>4.1.3</b> T-test (difference in means)</a></li>
+<li class="chapter" data-level="4.1.4" data-path="t-test-for-difference-in-means-and-hypothesis-testing.html"><a href="t-test-for-difference-in-means-and-hypothesis-testing.html#estimating-p-values-from-t-values"><i class="fa fa-check"></i><b>4.1.4</b> Estimating p values from t values</a></li>
+<li class="chapter" data-level="4.1.5" data-path="t-test-for-difference-in-means-and-hypothesis-testing.html"><a href="t-test-for-difference-in-means-and-hypothesis-testing.html#exercises-3"><i class="fa fa-check"></i><b>4.1.5</b> Exercises</a></li>
+<li class="chapter" data-level="4.1.6" data-path="t-test-for-difference-in-means-and-hypothesis-testing.html"><a href="t-test-for-difference-in-means-and-hypothesis-testing.html#optional-exercises-that-require-reading-extra-info-below"><i class="fa fa-check"></i><b>4.1.6</b> Optional Exercises that require reading Extra Info below</a></li>
+<li class="chapter" data-level="4.1.7" data-path="t-test-for-difference-in-means-and-hypothesis-testing.html"><a href="t-test-for-difference-in-means-and-hypothesis-testing.html#advanced-exercises"><i class="fa fa-check"></i><b>4.1.7</b> Advanced Exercises</a></li>
+<li class="chapter" data-level="4.1.8" data-path="t-test-for-difference-in-means-and-hypothesis-testing.html"><a href="t-test-for-difference-in-means-and-hypothesis-testing.html#extra-info"><i class="fa fa-check"></i><b>4.1.8</b> Extra Info</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics 1</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="t-test-for-difference-in-means-and-hypothesis-testing" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> T-test for Difference in Means and Hypothesis Testing</h1>
+<div id="seminar-3" class="section level2">
+<h2><span class="header-section-number">4.1</span> Seminar</h2>
+<p>Let’s remove all objects from our workspace and set the working directory.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())
+<span class="kw">setwd</span>(<span class="st">&quot;~/statistics1&quot;</span>)</code></pre></div>
+<p>We load the data from the <a href="http://qog.pol.gu.se/">Quality of Government Institute</a> again. Let’s have a look at the codebook:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Variable</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">h_j</td>
+<td align="left">1 if Free Judiciary</td>
+</tr>
+<tr class="even">
+<td align="left">wdi_gdpc</td>
+<td align="left">Per capita wealth in US dollars</td>
+</tr>
+<tr class="odd">
+<td align="left">undp_hdi</td>
+<td align="left">Human development index (higher values = higher quality of life)</td>
+</tr>
+<tr class="even">
+<td align="left">wbgi_cce</td>
+<td align="left">Control of corruption index (higher values = more control of corruption)</td>
+</tr>
+<tr class="odd">
+<td align="left">wbgi_pse</td>
+<td align="left">Political stability index (higher values = more stable)</td>
+</tr>
+<tr class="even">
+<td align="left">former_col</td>
+<td align="left">1 = country was a colony once</td>
+</tr>
+<tr class="odd">
+<td align="left">lp_lat_abst</td>
+<td align="left">Latitude of country’s captial divided by 90</td>
+</tr>
+</tbody>
+</table>
+<p>Let’s load the data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">world.data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;QoG2012.csv&quot;</span>)</code></pre></div>
+<p>We can get summary statistics of each variable in the dataset by using the <code>summary()</code> function over the dataset.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(world.data)</code></pre></div>
+<pre><code>      h_j            wdi_gdpc          undp_hdi         wbgi_cce       
+ Min.   :0.0000   Min.   :  226.2   Min.   :0.2730   Min.   :-1.69953  
+ 1st Qu.:0.0000   1st Qu.: 1768.0   1st Qu.:0.5390   1st Qu.:-0.81965  
+ Median :0.0000   Median : 5326.1   Median :0.7510   Median :-0.30476  
+ Mean   :0.3787   Mean   :10184.1   Mean   :0.6982   Mean   :-0.05072  
+ 3rd Qu.:1.0000   3rd Qu.:12976.5   3rd Qu.:0.8335   3rd Qu.: 0.50649  
+ Max.   :1.0000   Max.   :63686.7   Max.   :0.9560   Max.   : 2.44565  
+ NA&#39;s   :25       NA&#39;s   :16        NA&#39;s   :19       NA&#39;s   :2         
+    wbgi_pse          former_col      lp_lat_abst    
+ Min.   :-2.46746   Min.   :0.0000   Min.   :0.0000  
+ 1st Qu.:-0.72900   1st Qu.:0.0000   1st Qu.:0.1343  
+ Median : 0.02772   Median :1.0000   Median :0.2444  
+ Mean   :-0.03957   Mean   :0.6289   Mean   :0.2829  
+ 3rd Qu.: 0.79847   3rd Qu.:1.0000   3rd Qu.:0.4444  
+ Max.   : 1.67561   Max.   :1.0000   Max.   :0.7222  
+                                     NA&#39;s   :7       </code></pre>
+<div id="the-standard-error" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> The Standard Error</h3>
+<p>The standard error of an estimate quantifies uncertainty that is due to sampling variability. Recall that we infer from a sample to the population. Let’s have a look at <em>wdi_gdpc</em> which is gdp per capita. We re-name the variable to <em>wealth</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(world.data)[<span class="dv">2</span>] &lt;-<span class="st"> &quot;wealth&quot;</span> 
+<span class="kw">names</span>(world.data)</code></pre></div>
+<pre><code>[1] &quot;h_j&quot;         &quot;wealth&quot;      &quot;undp_hdi&quot;    &quot;wbgi_cce&quot;    &quot;wbgi_pse&quot;   
+[6] &quot;former_col&quot;  &quot;lp_lat_abst&quot;</code></pre>
+<p>Let’s look at the mean.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(world.data<span class="op">$</span>wealth)</code></pre></div>
+<pre><code>[1] NA</code></pre>
+<p>R returns NA because there are missing values on the <em>wealth</em> variable and we cannot calculate with NAs. For instance, <code>2 + NA</code> will return NA. We make a copy of the full data set and then delete missing values.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># copy of the dataset</span>
+full.data &lt;-<span class="st"> </span>world.data
+
+<span class="co"># delete rows from dataset that have missings on wealth variable</span>
+world.data &lt;-<span class="st"> </span>world.data[ <span class="op">!</span><span class="kw">is.na</span>(world.data<span class="op">$</span>wealth) , ]</code></pre></div>
+<p>Now, we compute the mean again.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(world.data<span class="op">$</span>wealth)</code></pre></div>
+<pre><code>[1] 10184.09</code></pre>
+<p>The mean estimate in our sample is ~10184.09. We are generally interested in the population. Therefore, we infer from our sample to the population. Our main problem is that samples are subject to sampling variability. If we take another sample, our mean estimate would be different. The standard error quantifies this type of uncertainty.</p>
+<p>The formula for the standard error of the mean is: <span class="math display">\[ SE(\bar{Y}) = \frac{s_Y}{\sqrt{n}}  \]</span></p>
+<p>Where <span class="math inline">\(s_Y\)</span> is the standard deviation (of <em>wealth</em>) and <span class="math inline">\(n\)</span> is the number of observations in (of <em>wealth</em>).</p>
+<p>We compute the standard error in R:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">se.y_bar &lt;-<span class="st"> </span>(<span class="kw">sd</span>(world.data<span class="op">$</span>wealth) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>( <span class="kw">length</span>(world.data<span class="op">$</span>wealth) ))</code></pre></div>
+<p>The standard error is ~922.73. The mean of the sampling distribution (recall that we get a sampling distribution if we sample repeatedly) is the population mean. The standard error is the average difference from the population mean. That means, if we take 1 sample (as we have), the average deviation in the mean estimate from the population mean is equal to the standard error.</p>
+<p>We need the standard error for hypothesis testing. You will see how in the following.</p>
+</div>
+<div id="t-test-one-sample-hypothesis-test" class="section level3">
+<h3><span class="header-section-number">4.1.2</span> T-test (one sample hypothesis test)</h3>
+<p>A knowledgeable friend declares that worldwide wealth stands at exactly 10 000 US dollars per capita today. We would like to know whether she is right and tease her relentlessly if she isn’t.</p>
+<p>So, first we take the mean of the <em>wealth</em> variable.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(world.data<span class="op">$</span>wealth)</code></pre></div>
+<pre><code>[1] 10184.09</code></pre>
+<p>Wow, our friend is quite close. Substantially, the difference of our friends claim to our estimate is small but we could still find that the difference is statistically significant (it’s a noticeable systematic difference).</p>
+<p>Because we do not have information on all countries, our 10184.09 is an estimate and the true population mean – the population here would be all countries in the world – may be 10000 as our friend claims. We test this statistically.</p>
+<p>In statistics jargon: we would like to test whether our estimate is statistically different from the 10000 figure (the null hypothesis) suggested by our friend. Put differently, we would like to know the probability that we estimate 10184.09 if the true mean of all countries is 10000.</p>
+<p>Recall, that the standard error of the mean (which is the estimate of the true standard deviation of the population mean) is estimated as:</p>
+<p><span class="math display">\[ \frac{s_{Y}}{\sqrt{n}} \]</span></p>
+<p>Before we estimate the standard error, let’s get <span class="math inline">\(n\)</span> (the number of observations). We have done this above but to make our code more readable, we save the number of observations in an object that we call <code>n</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="kw">length</span>(world.data<span class="op">$</span>wealth)
+n</code></pre></div>
+<pre><code>[1] 178</code></pre>
+<p>With the function <code>length(world.data$world)</code> we get all observations in the data. Now, let’s take the standard error of the mean again.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">se.y_bar &lt;-<span class="st"> </span><span class="kw">sd</span>(world.data<span class="op">$</span>wealth) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(n)</code></pre></div>
+<p>We know that 1 standard error is one average deviation from the population mean. The sampling distribution is approximately normal. 95 percent of the observations under the normal distribution are within 2 standard deviations of the mean.</p>
+<p>We construct the confidence interval within which the population mean lies with 95 percent probability in the following way. First, we take our mean estimate of <em>wealth</em>. That’s the sample mean and not the population mean. Second, we go 2 standard errors to the left of it. This is the lower bound of our confidence interval. Third, we go 2 standard deviations to the right of the sample mean. That is the upper bound of our confidence interval.</p>
+<p>The 95 percent confidence interval around the sample means gives the interval within which the population mean lies with 95 percent probability.</p>
+<p>We want to know what the population mean is, right? Yes, that’s right. Therefore, we want the confidence interval to be as narrow as possible. The narrower the confidence interval, the more precise we are about what the population mean is like. For instance, saying the population mean of income is between 9 950 and 10 050 is more precise than saying the population mean is between 5 000 and 15 000.</p>
+<p>We construct the confidence interval with the standard error. That means, the smaller the standard error, the more precise our estimate. The formula for the confidence interval is:</p>
+<p><span class="math display">\[ \bar{Y} \pm 1.96 \times SE(\bar{Y}) \]</span></p>
+<p>“Where does the 1.96 come from”, you ask. It’s a critical value. More on that later. For now, just recall that in a normal distribution 95 percent of all observations are within 1.96 standard errors of the mean.</p>
+<p>We now construct our confidence interval. Our sample is large enough to assume that the sampling distribution is approximately normal. So, we can go <span class="math inline">\(1.96\)</span> standard deviations to the left and to the right of the mean to construct our <span class="math inline">\(95\%\)</span> confidence interval.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lower bound</span>
+lb &lt;-<span class="st"> </span><span class="kw">mean</span>(world.data<span class="op">$</span>wealth) <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>se.y_bar
+<span class="co"># upper bound</span>
+ub &lt;-<span class="st"> </span><span class="kw">mean</span>(world.data<span class="op">$</span>wealth) <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>se.y_bar
+<span class="co"># results (the population mean lies within this interval with 95% probability)</span>
+lb <span class="co"># lower bound</span></code></pre></div>
+<pre><code>[1] 8375.531</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(world.data<span class="op">$</span>wealth) <span class="co"># sample mean</span></code></pre></div>
+<pre><code>[1] 10184.09</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ub <span class="co"># upper bound</span></code></pre></div>
+<pre><code>[1] 11992.65</code></pre>
+<p>So we are <span class="math inline">\(95\%\)</span> confident that the population average level of wealth is between 8375.53 US dollars and 11992.65 US dollars. You can see that we are not very certain about our estimate and we most definitely cannot rule out that our friend is right (she claimed that the population mean is 10 0000—that is within our interval. Hence, we cannot reject it).</p>
+<p>A different way of describing our finding is to emphasize the logic of (hypothetical) repeated sampling. In a process of repeated sampling we can expect that the confidence interval that we calculate for each sample will include the true population value <span class="math inline">\(95\%\)</span> of the time. That is equivalent to what we said earlier because a probability is the long-run relative frequency of an outcome.</p>
+<div id="the-t-value" class="section level4">
+<h4><span class="header-section-number">4.1.2.1</span> The t value</h4>
+<p>We now estimate the t value. Recall that our friend claimed that the population mean was 10 000. This is the null hypothesis that we wish to falsify. We estimated something else in our data, namely 10184.0910395. The t value is the difference between our estimate (the result we get by looking at data) and the population mean under the null hypothesis divided by the standard error of the mean.</p>
+<p><span class="math display">\[ \frac{ \bar{Y} - \mu_0 } {SE(\bar{Y})} \]</span></p>
+<p>Where <span class="math inline">\(\bar{Y}\)</span> is the mean in our data, <span class="math inline">\(\mu_0\)</span> is the population mean under the null hypothesis and <span class="math inline">\(SE(\bar{Y})\)</span> is the standard error of the mean.</p>
+<p>Okay, let’s compute this in R:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t.value &lt;-<span class="st"> </span>(<span class="kw">mean</span>(world.data<span class="op">$</span>wealth) <span class="op">-</span><span class="st"> </span><span class="dv">10000</span>) <span class="op">/</span><span class="st"> </span>se.y_bar
+t.value</code></pre></div>
+<pre><code>[1] 0.1995059</code></pre>
+<p>Look at the formula until you understand what is going on. In the numerator we take the difference between our estimate and the population mean under the null hypothesis. In expectation that difference should be 0 assuming that the null hypothesis is true. The larger that difference, the less likely that the null hypothesis is true.</p>
+<p>We divide by the standard error to transform the units of the difference into standard deviations. Before our difference was in the units of whatever variable we are looking at (US dollars in our example). By dividing by the standard error, we have normed the variable. It is now in standard deviations from the mean.</p>
+<p>Assume that the null hypothesis is true. In expectation the difference between our estimate in the data and the population mean should be <strong>0 standard deviations</strong>. The more standard deviations our estimate is away from the population mean under the null hypothesis, the less likely it is that the null hypothesis is true.</p>
+<p>Within <strong>1.96 standard deviations</strong> from the mean lie 95 percent of all observations. That means that if the difference that we estimated is further than 1.96 standard deviations from the mean, it is very unlikely that the null hypothesis is true. “How unlikely,” you ask. Well that is the p value. If our estimated difference is more than 1.96 standard deviations from the mean, then the probability that the null hypothesis is true, is less than 5 percent.</p>
+<p>Back to our t value. We estimated a t value of 0.1995059. That means that a sample estimate of <code>mean(world.data$wealth)</code> is 0.1995059 standard deviations from the population mean under the null hypothesis (10 000 in our sample).</p>
+<p>Our t value suggests that if the null hypothesis were true, our sample estimate would only be 0.1995059 standard deviations away from the population mean under the null. That is not at all unlikely. We can only reject the null hypothesis if we are more than 1.96 standard deviations away from the mean.</p>
+</div>
+<div id="the-p-value" class="section level4">
+<h4><span class="header-section-number">4.1.2.2</span> The p value</h4>
+<p>Let’s estimate the precise p-value by calculating how likely it would be to observe a t-statistic of 0.1995059 from a t-distribution with n - 1 (177) degrees of freedom.</p>
+<p>The function <code>pt(t.value, df = n-1)</code> is the cumulative probability that we get the t.value we put into the formula if the null is true. The cumulative probability is estimated as the interval from minus infinity to our t.value. So, 1 minus that probability is the probability that we see anything larger (in the right tale of the distribution). But we are testing whether the true mean is different from 10000 (including smaller). Therefore, we want the probability that we see a t.value in the right tale <em>or</em> in the left tale of the distribution. The distribution is symmetric. So we can just calculate the probability of seeing a t-value in the right tale and multiply it by 2.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span><span class="op">*</span><span class="st"> </span>( <span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pt</span>(t.value, <span class="dt">df =</span> (n<span class="op">-</span><span class="dv">1</span>) ))</code></pre></div>
+<pre><code>[1] 0.8420961</code></pre>
+<p>The p-value is way too large to reject the null hypothesis (the true population mean is 10 000). If we specified an alpha-level of 0.05 in advance, we would reject it only if the p-value was smaller than 0.05. If we specified an alpha-level of 0.01 in advance, we would reject it only if the p-value was smaller than 0.01, and so on.</p>
+<p>Let’s verify this using the the t-test function <code>t.test()</code>. The syntax of the function is:</p>
+<pre><code>t.test(formula, mu, alt, conf)</code></pre>
+<p>Lets have a look at the arguments.</p>
+<table style="width:96%;">
+<colgroup>
+<col width="12%" />
+<col width="83%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>formula</code></td>
+<td>The formula describes the relationship between the dependent and independent variables, for example: <br>• <code>dependent.variable ~ independent.variable</code>. We will do this in the t-test for the difference in means. Here, we have only one estimated mean. So, we write: <br>• <code>variable.name</code></td>
+</tr>
+<tr class="even">
+<td><code>mu</code></td>
+<td>Here, we set the null hypothesis. The null hypothesis is that the true population mean is 10000. Thus, we set <code>mu = 10000</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>alt</code></td>
+<td>There are two alternatives to the null hypothesis that the difference in means is zero. The difference could either be smaller or it could be larger than zero. To test against both alternatives, we set <code>alt = &quot;two.sided&quot;</code>.</td>
+</tr>
+<tr class="even">
+<td><code>conf</code></td>
+<td>Here, we set the level of confidence that we want in rejecting the null hypothesis. Common confidence intervals are: 95%, 99%, and 99.9%.</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(world.data<span class="op">$</span>wealth, <span class="dt">mu =</span> <span class="dv">10000</span>, <span class="dt">alt =</span> <span class="st">&quot;two.sided&quot;</span>) </code></pre></div>
+<pre><code>
+    One Sample t-test
+
+data:  world.data$wealth
+t = 0.19951, df = 177, p-value = 0.8421
+alternative hypothesis: true mean is not equal to 10000
+95 percent confidence interval:
+  8363.113 12005.069
+sample estimates:
+mean of x 
+ 10184.09 </code></pre>
+<p>The results are similar. Therefore we can conclude that we are unable to reject the null hypothesis suggested by our friend that the population mean is equal to 10000. Let’s move on to a t-test to test the difference between two estimated means.</p>
+</div>
+<div id="critical-values" class="section level4">
+<h4><span class="header-section-number">4.1.2.3</span> Critical Values</h4>
+<p>In social sciences, we usually operate with an alpha level of 0.05. That means, we reject the null hypothesis if the p value is smaller than 0.05. Or put differently, we reject the null hypothesis if the 95 percent confidence interval does not include the population mean under the null hypothesis.</p>
+<p>We said earlier that the critical value is 1.96 for an alpha level of 0.05. That is true in large samples where the distribution of the t value follows a normal distribution. 95 percent of all observations are within 1.96 standard deviations of the mean.</p>
+<pre><code>Warning: package &#39;RColorBrewer&#39; is in use and will not be installed</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="dv">0</span>, <span class="dv">1</span>), <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>), <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">yaxt =</span> <span class="st">&quot;n&quot;</span>)
+c.x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">1.96</span>, <span class="kw">seq</span>(<span class="op">-</span><span class="fl">1.96</span>, <span class="fl">1.96</span>, <span class="fl">0.01</span>), <span class="fl">1.96</span> )
+c.y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">dnorm</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="fl">1.96</span>, <span class="fl">1.96</span>, <span class="fl">0.01</span>)), <span class="dv">0</span> )
+<span class="kw">polygon</span>(c.x, c.y, <span class="dt">col=</span>c.cols[<span class="dv">3</span>])
+<span class="kw">segments</span>(<span class="dt">x0=</span><span class="op">-</span><span class="dv">3</span>,<span class="dt">y0=</span><span class="dv">0</span>,<span class="dt">x1=</span><span class="dv">3</span>,<span class="dt">y1=</span><span class="dv">0</span>)
+<span class="kw">segments</span>(<span class="dt">x0=</span><span class="dv">0</span>, <span class="dt">y0 =</span> <span class="dv">0</span>, <span class="dt">x1=</span><span class="dv">0</span>, <span class="dt">y =</span> <span class="kw">dnorm</span>(<span class="dv">0</span>), <span class="dt">lty =</span> <span class="st">&quot;dashed&quot;</span>)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
+<p>The green area under the curve covers 95 percent of all observations. There are 2.5 percent in each tail. We reject the null hypothesis if our estimate in is in the tails of the distribution. It must be further than 1.96 standard deviations from the mean. But how did we know that 95 percent of the area under the curve is within 1.96 standard deviations from the mean.</p>
+<p>We know from the cumulative probability. Separate the curve in you mind into 3 pieces. The left tail covers 2.5 percent of the area under the curve. The green middle bit covers 95 percent and the right tail again 2.5 percent. Now we do this as cumulative probabilities. The left tail ends at 2.5 percent cumulative probability. The green area ends at 97.5 percent cumulative probability and the right tail ends at 100 percent.</p>
+<p>The critical value is were the left tail ends or the right tail starts (looking at the curve from left to right). Let’s get the value where the cumulative probability of where the left tail ends, i.e., is 2.5 percent.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># value for cumulative probability 95 percent in the standard normal distribution</span>
+<span class="kw">qnorm</span>(<span class="fl">0.025</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
+<pre><code>[1] -1.959964</code></pre>
+<p>If you look at the x-axis of our curve that is indeed where the left tail starts. We add a red dot to our graph to highlight it.</p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
+<p>Now, let’s get the critical value of where the right tail starts. That is at the cumulative probability of 97.5 percent.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># value for cumulative probability 95 percent in the standard normal distribution</span>
+<span class="kw">qnorm</span>(<span class="fl">0.975</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
+<pre><code>[1] 1.959964</code></pre>
+<p>As you can see, this is the same number only positive instead of negative. That’s always the case because the normal distribution is symmetric. Let’s add that point in blue to our graph.</p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
+<p>This is how we get the critical value for the 95 percent confidence interval. As you can see our red and blue dots are the borders of the green area, the 95 percent interval around the mean. You can get the critical values for any other interval (e.g., the 99 percent interval) similar to what we did just now.</p>
+<p>We now do the same for the t distribution. In the t distribution, the critical value depends on the shape of the t distribution which is characterised by its degrees of freedom. Let’s draw a t distribution with 5 degrees of freedom.</p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
+<p>Although, it looks like a standard normal distribution, it is not. The t with 5 degrees of freedom has fatter tails. We show this by overlaying the t with a standard normal distribution.</p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
+<p>The red area is the difference between the standard normal distribution and the t distribution with 5 degrees of freedom.</p>
+<p>The tails are fatter and that means that the probabilities of getting a value somewhere in the tails is larger. Lets calculate the critical value for a t distribution with 5 degrees of freedom.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># value for cumulative probability 95 percent in the t distribution with 5 degrees of freedom</span>
+<span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dt">df =</span> <span class="dv">5</span>)</code></pre></div>
+<pre><code>[1] 2.570582</code></pre>
+<p>See how much larger that value is than 1.96. Under a t distribution with 5 degrees of freedom 95 percent of the observations around the mean are within the interval from negative 2.5705818 to positive <code>qt(0.975, df = 5)</code>.</p>
+<p>Let’s illustrate that.</p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
+<p>Remember the critical values for the t distribution are always more extreme or similar to the critical values for the standard normal distribution. If the t distribution has few degrees of freedom the critical values (for the same percentage area around the mean) are much more extreme. If the t distribution has many degrees of freedom, the critical values are very similar.</p>
+</div>
+</div>
+<div id="t-test-difference-in-means" class="section level3">
+<h3><span class="header-section-number">4.1.3</span> T-test (difference in means)</h3>
+<p>We are interested in whether there is a difference in income between countries that have an independent judiciary and countries that do not have an independent judiciary. Put more formally, we are interested in the difference between two conditional means. Recall that a conditional mean is the mean in a subpopulation such as the mean of income given that the country has a free judiciary (conditional mean 1).</p>
+<p>The t-test is the appropriate test statistic. Our interval-level dependent variable is <em>wealth</em> which is GDP per capita taken from the World Development Indicators of the World Bank. Our binary independent variable is <em>h_j</em> which is 1 if a country has a free judiciary and 0 otherwise.</p>
+<p>Let’s check the summary statistics of our dependent variable GDP per captia using the <a href="https://www.rdocumentation.org/packages/base/versions/3.4.1/topics/summary"><code>summary()</code></a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(world.data<span class="op">$</span>wealth)</code></pre></div>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  226.2  1768.0  5326.1 10184.1 12976.5 63686.7 </code></pre>
+<p>Someone claims that countries with free judiciaries are usually richer than countries with controlled judiciaries. We know from the output of the summary function that across all countries the average wealth is 10184.0910395 US dollars.</p>
+<p>We use the <code>which()</code> function from last week again to identify the row-numbers of the countries in our dataset that have free judiciaries. The code below returns the row index numbers of countries with free judiciaries.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">which</span>(world.data<span class="op">$</span>h_j<span class="op">==</span><span class="dv">1</span>)</code></pre></div>
+<pre><code> [1]   8   9  13  14  18  23  28  33  39  40  41  42  43  44  50  52  54
+[18]  55  60  70  71  72  74  75  76  77  80  82  84  85  90  93  94 104
+[35] 105 107 110 112 114 115 118 126 127 131 143 144 145 146 149 153 154
+[52] 155 157 160 163 165 166 167 168 169 170 171 178</code></pre>
+<p>Now, all we need is to index the dataset like we did last week. We access the variable that we want (<em>wealth</em>) with the dollar sign and the rows in square brackets. The code below returns the per capita wealth of the countries with a free judiciary.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>( world.data<span class="op">$</span>wealth[<span class="kw">which</span>(world.data<span class="op">$</span>h_j<span class="op">==</span><span class="dv">1</span>)])</code></pre></div>
+<pre><code>[1] 17826.59</code></pre>
+<p>Now, go ahead and find the mean per capita wealth of countries with controlled judiciaries yourself.</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r"><span class="kw">mean</span>( world.data<span class="op">$</span>wealth[<span class="kw">which</span>(world.data<span class="op">$</span>h_j<span class="op">==</span><span class="dv">0</span>)])</code></pre></div>
+<pre><code>[1] 5884.882</code></pre>
+<p>Finally, we run the t-test.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># t.test for the difference between 2 means</span>
+<span class="kw">t.test</span>(world.data<span class="op">$</span>wealth[<span class="kw">which</span>(world.data<span class="op">$</span>h_j<span class="op">==</span><span class="dv">1</span>)], <span class="co"># mean 1  </span>
+       world.data<span class="op">$</span>wealth[<span class="kw">which</span>(world.data<span class="op">$</span>h_j<span class="op">==</span><span class="dv">0</span>)], <span class="co"># mean 2</span>
+       <span class="dt">mu =</span> <span class="dv">0</span>, <span class="co"># difference under the null hypothesis</span>
+       <span class="dt">alt =</span> <span class="st">&quot;two.sided&quot;</span>,  <span class="co"># two sided test (difference in means could be smaller or larger than 0)</span>
+       <span class="dt">conf =</span> <span class="fl">0.95</span>) <span class="co"># confidence interval</span></code></pre></div>
+<pre><code>
+    Welch Two Sample t-test
+
+data:  world.data$wealth[which(world.data$h_j == 1)] and world.data$wealth[which(world.data$h_j == 0)]
+t = 6.0094, df = 98.261, p-value = 0.00000003165
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+  7998.36 15885.06
+sample estimates:
+mean of x mean of y 
+17826.591  5884.882 </code></pre>
+<p>Let’s interpret the results you get from <code>t.test()</code>. The first line tells us which groups we are comparing. In our example: Do countries with independent judiciaries have different mean income levels than countries without independent judiciaries?</p>
+<p>In the following line you see the t-value, the degrees of freedom and the p-value. Knowing the t-value and the degrees of freedom you can check in a table on t distributions how likely you were to observe this data, if the null-hypothesis was true. The p-value gives you this probability directly. For example, a p-value of 0.02 would mean that the probability of seeing this data given that there is no difference in incomes between countries with and without independent judiciaries <em>in the population</em>, is 2%. Here the p-value is much smaller than this: 3.165e-08 = 0.00000003156!</p>
+<p>In the next line you see the 95% confidence interval because we specified <code>conf=0.95</code>. If you were to take 100 samples and in each you checked the means of the two groups, 95 times the difference in means would be within the interval you see there.</p>
+<p>At the very bottom you see the means of the dependent variable by the two groups of the independent variable. These are the means that we estimated above. In our example, you see the mean income levels in countries were the executive has some control over the judiciary, and in countries were the judiciary is independent.</p>
+</div>
+<div id="estimating-p-values-from-t-values" class="section level3">
+<h3><span class="header-section-number">4.1.4</span> Estimating p values from t values</h3>
+<p>Estimating the p value is the reverse of getting a critical value. We have a t value and now we want to know what the probability is to get such a value.</p>
+<p>Let’s say that we have a t distribution with 5 degrees of freedom. We estimated a t value of 2.9. What is the corresponding p value?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pt</span>(<span class="fl">2.9</span>, <span class="dt">df =</span> <span class="dv">5</span>)</code></pre></div>
+<pre><code>[1] 0.01689535</code></pre>
+<p>This is the probability of getting a t value of 2.9 or larger given that the null hypothesis is true. <code>pt(2.9, df = 5)</code> is the cumulative probability of getting a t value of 2.9 or smaller (the white area in the plot). But we want the probability of getting a value that is as large (extreme) as 2.9 (the red area in the plot). Therefore, we do <code>1 - pt(2.9, df = 5)</code>.</p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
+<p>Clearly, the probability of getting such an extreme value (or something larger) under the assumption that the null hypothesis is true is very unlikely. The exact probability is ~0.02 (2 percent). We, therefore, think that the null hypothesis is false.</p>
+<p>Let’s estimate the p value in in a normal distribution (it’s actually better to always use the t distribution but the difference is negligible if the t distribution has many degrees of freedom).</p>
+<p>Let’s take our earlier example where we had estimated a t value of 0.1995059. Our friend claimed world income is 10 000 per capita on average and we estimated something slightly larger.</p>
+<p>Let’s check what the exact p value is in a normal distribution given a t value of 0.1995059.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">0.1995059</span>)</code></pre></div>
+<pre><code>[1] 0.4209335</code></pre>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-192-1.png" width="672" /></p>
+<p>Clearly, it was not very unlikely to find a t value of 0.1995059 under the assumption that the null hypothesis is true. Therefore, we cannot reject the null. The probability is 0.42 (42 percent)—highly likely.</p>
+</div>
+<div id="exercises-3" class="section level3">
+<h3><span class="header-section-number">4.1.5</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li>Create a new file called “assignment2.R” in your <code>PUBLG100</code> folder and write all the solutions in it.</li>
+<li>Turn former colonies into a factor variable and choose appropriate labels.</li>
+<li>How many countries were former colonies? How many were not?</li>
+<li>Find the means of political stability in countries that (1) were former colonies, (2) were not former colonies.</li>
+<li>Is the the difference in means statistically significant?</li>
+<li>In layman’s terms, are countries which were former colonies more or less stable than those that were not?</li>
+<li>How about if we choose an alpha level of 0.01?</li>
+<li>What is the level of measurement of the United Nations Development index variable <code>undp_hdi</code>?</li>
+<li>Check the claim that its true population mean is 0.85.</li>
+<li>Calculate the t statistic.</li>
+<li>Calculate the p value.</li>
+<li>Construct a confidence interval around your mean estimate.</li>
+<li>Discuss your findings in terms of the original claim. Interpret the t value, the p value, and the confidence interval.</li>
+<li>Save the script that includes all previous tasks.</li>
+<li>Source your script, i.e. run the entire script all at once without error message.</li>
+</ol>
+</div>
+<div id="optional-exercises-that-require-reading-extra-info-below" class="section level3">
+<h3><span class="header-section-number">4.1.6</span> Optional Exercises that require reading Extra Info below</h3>
+<ol style="list-style-type: decimal">
+<li>Create a scatter plot with latitude on the x-axis and political stability on the y-axis.</li>
+<li>What is the correlation coefficient of political stability and latitude?</li>
+<li>If we move away from the equator, how does political stability change?</li>
+<li>Does it matter whether we go north or south from the equator?</li>
+</ol>
+</div>
+<div id="advanced-exercises" class="section level3">
+<h3><span class="header-section-number">4.1.7</span> Advanced Exercises</h3>
+<ol style="list-style-type: decimal">
+<li>Calculate the numerical difference in means (political stability conditional on colonialization) using the <code>means()</code> function.</li>
+<li>Calculate the standard deviation of the difference in means (hint: using just the <code>sd()</code> function is incorrect in this context).</li>
+<li>Is the difference in means more than 1.96 standard deviations away from zero? Interpret the result.</li>
+<li>We claim the difference in means in terms of political stability between countries that were former colonies and those that were not is 0.3. Check this hypothesis.</li>
+<li>An angry citizen who wants to defund the Department of International Development (DFID) claims that countries that were former colonies have reached 75% of the level of wealth of countries that were not colonised. Check this claim.</li>
+</ol>
+</div>
+<div id="extra-info" class="section level3">
+<h3><span class="header-section-number">4.1.8</span> Extra Info</h3>
+<p>When we want to get an idea about how two continuous variables change together, the best way is to plot the relationship in a scatterplot. A scatterplot means that we plot one continuous variable on the x-axis and the other on the y-axis. Here, we illustrate the relation between the human development index <code>undp_hdi</code> and control of corruption <code>wbgi_cce</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># scatterplot</span>
+<span class="kw">plot</span>(world.data<span class="op">$</span>undp_hdi <span class="op">~</span><span class="st"> </span>world.data<span class="op">$</span>wbgi_cce,
+  <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dt">xmin =</span> <span class="op">-</span><span class="dv">2</span>, <span class="dt">xmax =</span> <span class="dv">3</span>),
+  <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dt">ymin =</span> <span class="dv">0</span>, <span class="dt">ymax =</span> <span class="dv">1</span>),
+  <span class="dt">frame =</span> <span class="ot">FALSE</span>,
+  <span class="dt">xlab =</span> <span class="st">&quot;World Bank Control of Corruption Index&quot;</span>,
+  <span class="dt">ylab =</span> <span class="st">&quot;UNDP Human Development Index&quot;</span>,
+  <span class="dt">main =</span> <span class="st">&quot;Relationship b/w Quality of Institutions and Quality of Life&quot;</span>
+  )</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
+<p>Sometimes people will report the correlation coefficient which is a measure of linear association and ranges from -1 to +1. Where -1 means perfect negative relation, 0 means no relation and +1 means perfect positive relation. The correlation coefficient is commonly used as as summary statistic. It’s disadvantage is that you cannot see the non-linear relations which can using a scatterplot.</p>
+<p>We take the correlation coefficient like so:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(<span class="dt">y =</span> world.data<span class="op">$</span>undp_hdi, <span class="dt">x =</span> world.data<span class="op">$</span>wbgi_cce, <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</code></pre></div>
+<pre><code>[1] 0.6813353</code></pre>
+<table style="width:96%;">
+<colgroup>
+<col width="12%" />
+<col width="83%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>x</code></td>
+<td>The x variable that you want to correlate.</td>
+</tr>
+<tr class="even">
+<td><code>y</code></td>
+<td>The y variable that you want to correlate.</td>
+</tr>
+<tr class="odd">
+<td><code>use</code></td>
+<td>How R should handle missing values. <code>use=&quot;complete.obs&quot;</code> will use only those rows where neither <code>x</code> nor <code>y</code> is missing.</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="sampling-and-distributions.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["statistics1.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
