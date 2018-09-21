@@ -386,16 +386,21 @@ Let's say that we have a t distribution with 5 degrees of freedom. We estimated 
 
 
 ```{r}
-1 - pt(2.9, df = 5)
+(1 - pt(2.9, df = 5)) *2
 ```
 
-This is the probability of getting a t value of 2.9 or larger given that the null hypothesis is true. `pt(2.9, df = 5)` is the cumulative probability of getting a t value of 2.9 or smaller (the white area in the plot). But we want the probability of getting a value that is as large (extreme) as 2.9 (the red area in the plot). Therefore, we do `1 - pt(2.9, df = 5)`.
+This is the probability of getting a t value of 2.9 or larger (or -2.9 or smaller) given that the null hypothesis is true. `pt(2.9, df = 5)` is the cumulative probability of getting a t value of 2.9 or smaller. But we want the probability of getting a value that is as large (extreme) as 2.9 or as small as -2.9. Therefore, we do `1 - pt(2.9, df = 5)`. We multiply by 2 to get both tails  `(1 - pt(2.9, df = 5))*2`
 
 ```{r, echo=FALSE}
 curve(dt(x, df=5), xlim = c(-3, 3), ylab = "", yaxt = "n", ylim = c(-0.01, .38))
 c.x <- c(qt(0.975, df = 5), seq(qt(0.975, df = 5), 3, 0.01), 3 )
 c.y <- c(0, dt(seq(qt(0.975, df = 5), 3, 0.01), df = 5), 0 )
 polygon(c.x, c.y, col=c.cols[1])
+
+c.x <- c(-3, seq(-3, qt(0.025, df = 5), 0.01), qt(0.025, df = 5) )
+c.y <- c(0, dt(seq(-3, qt(0.025, df = 5), 0.01), df = 5), 0 )
+polygon(c.x, c.y, col=c.cols[1])
+
 segments(x0=-3,y0=0,x1=3,y1=0)
 segments(x0=0, y0 = 0, x1=0, y = dnorm(0), lty = "dashed")
 ```
@@ -410,19 +415,25 @@ Let's take our earlier example where we had estimated a t value of 0.1995059. Ou
 Let's check what the exact p value is in a normal distribution given a t value of 0.1995059.
 
 ```{r}
-1 - pnorm(0.1995059)
+(1 - pnorm(0.1995059))*2
 ```
 
 ```{r, echo=FALSE}
 curve(dnorm(x, 0, 1), xlim = c(-3, 3), ylab = "", yaxt = "n")
+
 c.x <- c(0.1995059, seq(0.1995059, 3, 0.01), 3 )
 c.y <- c(0, dnorm(seq(0.1995059, 3, 0.01)), 0 )
 polygon(c.x, c.y, col=c.cols[1])
+
+c.x <- c(-3, seq(-3, -0.1995059, 0.01), -0.1995059 )
+c.y <- c(0, dnorm(seq(-3, -0.1995059, 0.01)), 0 )
+polygon(c.x, c.y, col=c.cols[1])
+
 segments(x0=-3,y0=0,x1=3,y1=0)
 segments(x0=0, y0 = 0, x1=0, y = dnorm(0), lty = "dashed")
 ```
 
-Clearly, it was not very unlikely to find a t value of 0.1995059 under the assumption that the null hypothesis is true. Therefore, we cannot reject the null. The probability is 0.42 (42 percent)---highly likely.
+Clearly, it was not very unlikely to find a t value of 0.1995059 (that's the absolute value, i.e., a t value of negative or postive 0.1995059) under the assumption that the null hypothesis is true. Therefore, we cannot reject the null. The probability is 0.84 (84 percent)---highly likely.
 
 ### Exercises
 1. Create a new file called "assignment2.R" in your `PUBLG100` folder and write all the solutions in it.

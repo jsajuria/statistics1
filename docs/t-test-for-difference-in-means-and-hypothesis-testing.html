@@ -477,18 +477,18 @@ mean of x mean of y
 <h3><span class="header-section-number">4.1.4</span> Estimating p values from t values</h3>
 <p>Estimating the p value is the reverse of getting a critical value. We have a t value and now we want to know what the probability is to get such a value.</p>
 <p>Let’s say that we have a t distribution with 5 degrees of freedom. We estimated a t value of 2.9. What is the corresponding p value?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pt</span>(<span class="fl">2.9</span>, <span class="dt">df =</span> <span class="dv">5</span>)</code></pre></div>
-<pre><code>[1] 0.01689535</code></pre>
-<p>This is the probability of getting a t value of 2.9 or larger given that the null hypothesis is true. <code>pt(2.9, df = 5)</code> is the cumulative probability of getting a t value of 2.9 or smaller (the white area in the plot). But we want the probability of getting a value that is as large (extreme) as 2.9 (the red area in the plot). Therefore, we do <code>1 - pt(2.9, df = 5)</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pt</span>(<span class="fl">2.9</span>, <span class="dt">df =</span> <span class="dv">5</span>)) <span class="op">*</span><span class="dv">2</span></code></pre></div>
+<pre><code>[1] 0.0337907</code></pre>
+<p>This is the probability of getting a t value of 2.9 or larger (or -2.9 or smaller) given that the null hypothesis is true. <code>pt(2.9, df = 5)</code> is the cumulative probability of getting a t value of 2.9 or smaller. But we want the probability of getting a value that is as large (extreme) as 2.9 or as small as -2.9. Therefore, we do <code>1 - pt(2.9, df = 5)</code>. We multiply by 2 to get both tails <code>(1 - pt(2.9, df = 5))*2</code></p>
 <p><img src="statistics1_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
 <p>Clearly, the probability of getting such an extreme value (or something larger) under the assumption that the null hypothesis is true is very unlikely. The exact probability is ~0.02 (2 percent). We, therefore, think that the null hypothesis is false.</p>
 <p>Let’s estimate the p value in in a normal distribution (it’s actually better to always use the t distribution but the difference is negligible if the t distribution has many degrees of freedom).</p>
 <p>Let’s take our earlier example where we had estimated a t value of 0.1995059. Our friend claimed world income is 10 000 per capita on average and we estimated something slightly larger.</p>
 <p>Let’s check what the exact p value is in a normal distribution given a t value of 0.1995059.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">0.1995059</span>)</code></pre></div>
-<pre><code>[1] 0.4209335</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">0.1995059</span>))<span class="op">*</span><span class="dv">2</span></code></pre></div>
+<pre><code>[1] 0.841867</code></pre>
 <p><img src="statistics1_files/figure-html/unnamed-chunk-192-1.png" width="672" /></p>
-<p>Clearly, it was not very unlikely to find a t value of 0.1995059 under the assumption that the null hypothesis is true. Therefore, we cannot reject the null. The probability is 0.42 (42 percent)—highly likely.</p>
+<p>Clearly, it was not very unlikely to find a t value of 0.1995059 (that’s the absolute value, i.e., a t value of negative or postive 0.1995059) under the assumption that the null hypothesis is true. Therefore, we cannot reject the null. The probability is 0.84 (84 percent)—highly likely.</p>
 </div>
 <div id="exercises-3" class="section level3">
 <h3><span class="header-section-number">4.1.5</span> Exercises</h3>

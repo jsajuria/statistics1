@@ -4194,7 +4194,7 @@ within 1.96 standard deviations of the mean.
 package 'RColorBrewer' successfully unpacked and MD5 sums checked
 
 The downloaded binary packages are in
-    C:\Users\phili\AppData\Local\Temp\RtmpAh67yT\downloaded_packages
+    C:\Users\phili\AppData\Local\Temp\RtmpWKszOs\downloaded_packages
 \end{verbatim}
 
 \begin{Shaded}
@@ -4465,20 +4465,21 @@ estimated a t value of 2.9. What is the corresponding p value?
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{1} \OperatorTok{-}\StringTok{ }\KeywordTok{pt}\NormalTok{(}\FloatTok{2.9}\NormalTok{, }\DataTypeTok{df =} \DecValTok{5}\NormalTok{)}
+\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\KeywordTok{pt}\NormalTok{(}\FloatTok{2.9}\NormalTok{, }\DataTypeTok{df =} \DecValTok{5}\NormalTok{)) }\OperatorTok{*}\DecValTok{2}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-[1] 0.01689535
+[1] 0.0337907
 \end{verbatim}
 
-This is the probability of getting a t value of 2.9 or larger given that
-the null hypothesis is true. \texttt{pt(2.9,\ df\ =\ 5)} is the
-cumulative probability of getting a t value of 2.9 or smaller (the white
-area in the plot). But we want the probability of getting a value that
-is as large (extreme) as 2.9 (the red area in the plot). Therefore, we
-do \texttt{1\ -\ pt(2.9,\ df\ =\ 5)}.
+This is the probability of getting a t value of 2.9 or larger (or -2.9
+or smaller) given that the null hypothesis is true.
+\texttt{pt(2.9,\ df\ =\ 5)} is the cumulative probability of getting a t
+value of 2.9 or smaller. But we want the probability of getting a value
+that is as large (extreme) as 2.9 or as small as -2.9. Therefore, we do
+\texttt{1\ -\ pt(2.9,\ df\ =\ 5)}. We multiply by 2 to get both tails
+\texttt{(1\ -\ pt(2.9,\ df\ =\ 5))*2}
 
 \includegraphics{statistics1_files/figure-latex/unnamed-chunk-190-1.pdf}
 
@@ -4500,19 +4501,21 @@ value of 0.1995059.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{1} \OperatorTok{-}\StringTok{ }\KeywordTok{pnorm}\NormalTok{(}\FloatTok{0.1995059}\NormalTok{)}
+\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\KeywordTok{pnorm}\NormalTok{(}\FloatTok{0.1995059}\NormalTok{))}\OperatorTok{*}\DecValTok{2}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-[1] 0.4209335
+[1] 0.841867
 \end{verbatim}
 
 \includegraphics{statistics1_files/figure-latex/unnamed-chunk-192-1.pdf}
 
-Clearly, it was not very unlikely to find a t value of 0.1995059 under
-the assumption that the null hypothesis is true. Therefore, we cannot
-reject the null. The probability is 0.42 (42 percent)---highly likely.
+Clearly, it was not very unlikely to find a t value of 0.1995059 (that's
+the absolute value, i.e., a t value of negative or postive 0.1995059)
+under the assumption that the null hypothesis is true. Therefore, we
+cannot reject the null. The probability is 0.84 (84 percent)---highly
+likely.
 
 \subsection{Exercises}\label{exercises-3}
 
