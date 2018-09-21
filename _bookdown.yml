@@ -18,7 +18,7 @@ rmd_files: [
   solutions/solutions2.Rmd,
 
   seminars/seminar3.Rmd,
-  #solutions/solutions3.Rmd,
+  solutions/solutions3.Rmd,
 
   #seminars/seminar4.Rmd,
   #solutions/solutions4.Rmd,
