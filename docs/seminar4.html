@@ -403,16 +403,6 @@ mean of x
 <h4><span class="header-section-number">4.1.2.3</span> Critical Values</h4>
 <p>In social sciences, we usually operate with an alpha level of 0.05. That means, we reject the null hypothesis if the p value is smaller than 0.05. Or put differently, we reject the null hypothesis if the 95 percent confidence interval does not include the population mean under the null hypothesis.</p>
 <p>We said earlier that the critical value is 1.96 for an alpha level of 0.05. That is true in large samples where the distribution of the t value follows a normal distribution. 95 percent of all observations are within 1.96 standard deviations of the mean.</p>
-<pre><code>package &#39;RColorBrewer&#39; successfully unpacked and MD5 sums checked
-
-The downloaded binary packages are in
-    C:\Users\phili\AppData\Local\Temp\RtmpWy0K5M\downloaded_packages</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="dv">0</span>, <span class="dv">1</span>), <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>), <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">yaxt =</span> <span class="st">&quot;n&quot;</span>)
-c.x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">1.96</span>, <span class="kw">seq</span>(<span class="op">-</span><span class="fl">1.96</span>, <span class="fl">1.96</span>, <span class="fl">0.01</span>), <span class="fl">1.96</span> )
-c.y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">dnorm</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="fl">1.96</span>, <span class="fl">1.96</span>, <span class="fl">0.01</span>)), <span class="dv">0</span> )
-<span class="kw">polygon</span>(c.x, c.y, <span class="dt">col=</span>c.cols[<span class="dv">3</span>])
-<span class="kw">segments</span>(<span class="dt">x0=</span><span class="op">-</span><span class="dv">3</span>,<span class="dt">y0=</span><span class="dv">0</span>,<span class="dt">x1=</span><span class="dv">3</span>,<span class="dt">y1=</span><span class="dv">0</span>)
-<span class="kw">segments</span>(<span class="dt">x0=</span><span class="dv">0</span>, <span class="dt">y0 =</span> <span class="dv">0</span>, <span class="dt">x1=</span><span class="dv">0</span>, <span class="dt">y =</span> <span class="kw">dnorm</span>(<span class="dv">0</span>), <span class="dt">lty =</span> <span class="st">&quot;dashed&quot;</span>)</code></pre></div>
 <p><img src="statistics1_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
 <p>The green area under the curve covers 95 percent of all observations. There are 2.5 percent in each tail. We reject the null hypothesis if our estimate in is in the tails of the distribution. It must be further than 1.96 standard deviations from the mean. But how did we know that 95 percent of the area under the curve is within 1.96 standard deviations from the mean.</p>
 <p>We know from the cumulative probability. Separate the curve in you mind into 3 pieces. The left tail covers 2.5 percent of the area under the curve. The green middle bit covers 95 percent and the right tail again 2.5 percent. Now we do this as cumulative probabilities. The left tail ends at 2.5 percent cumulative probability. The green area ends at 97.5 percent cumulative probability and the right tail ends at 100 percent.</p>
@@ -547,7 +537,8 @@ mean of x mean of y
 <div id="extra-info" class="section level3">
 <h3><span class="header-section-number">4.1.8</span> Extra Info</h3>
 <p>When we want to get an idea about how two continuous variables change together, the best way is to plot the relationship in a scatterplot. A scatterplot means that we plot one continuous variable on the x-axis and the other on the y-axis. Here, we illustrate the relation between the human development index <code>undp_hdi</code> and control of corruption <code>wbgi_cce</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># scatterplot</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">bg =</span> <span class="st">&#39;#fdf6e3&#39;</span>)
+<span class="co"># scatterplot</span>
 <span class="kw">plot</span>(world.data<span class="op">$</span>undp_hdi <span class="op">~</span><span class="st"> </span>world.data<span class="op">$</span>wbgi_cce,
   <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dt">xmin =</span> <span class="op">-</span><span class="dv">2</span>, <span class="dt">xmax =</span> <span class="dv">3</span>),
   <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dt">ymin =</span> <span class="dv">0</span>, <span class="dt">ymax =</span> <span class="dv">1</span>),

@@ -219,14 +219,15 @@ In social sciences, we usually operate with an alpha level of 0.05. That means, 
 
 We said earlier that the critical value is 1.96 for an alpha level of 0.05. That is true in large samples where the distribution of the t value follows a normal distribution. 95 percent of all observations are within 1.96 standard deviations of the mean.
 
-```{r, echo=FALSE}
+```{r, echo=FALSE,include=FALSE}
 options(repos=c(CRAN="https://ftp.gwdg.de/pub/misc/cran/"))
 install.packages("RColorBrewer")
 library(RColorBrewer)
 c.cols <- brewer.pal(3, "Set1")
 ```
 
-```{r}
+```{r, echo=FALSE}
+par(bg = '#fdf6e3')
 curve(dnorm(x, 0, 1), xlim = c(-3, 3), ylab = "", yaxt = "n")
 c.x <- c(-1.96, seq(-1.96, 1.96, 0.01), 1.96 )
 c.y <- c(0, dnorm(seq(-1.96, 1.96, 0.01)), 0 )
@@ -249,6 +250,7 @@ qnorm(0.025, mean = 0, sd = 1)
 If you look at the x-axis of our curve that is indeed where the left tail starts. We add a red dot to our graph to highlight it.
 
 ```{r, echo=FALSE}
+par(bg = '#fdf6e3')
 curve(dnorm(x, 0, 1), xlim = c(-3, 3), ylab = "", yaxt = "n")
 c.x <- c(-1.96, seq(-1.96, 1.96, 0.01), 1.96 )
 c.y <- c(0, dnorm(seq(-1.96, 1.96, 0.01)), 0 )
@@ -268,6 +270,7 @@ qnorm(0.975, mean = 0, sd = 1)
 As you can see, this is the same number only positive instead of negative. That's always the case because the normal distribution is symmetric. Let's add that point in blue to our graph.
 
 ```{r, echo=FALSE}
+par(bg = '#fdf6e3')
 curve(dnorm(x, 0, 1), xlim = c(-3, 3), ylab = "", yaxt = "n")
 c.x <- c(-1.96, seq(-1.96, 1.96, 0.01), 1.96 )
 c.y <- c(0, dnorm(seq(-1.96, 1.96, 0.01)), 0 )
@@ -283,12 +286,14 @@ This is how we get the critical value for the 95 percent confidence interval. As
 We now do the same for the t distribution. In the t distribution, the critical value depends on the shape of the t distribution which is characterised by its degrees of freedom. Let's draw a t distribution with 5 degrees of freedom.
 
 ```{r, echo=FALSE}
+par(bg = '#fdf6e3')
 curve(dt(x, 5), xlim = c(-3, 3), ylab = "", yaxt = "n", main = "t distribution with 5 degrees of freedom")
 ```
 
 Although, it looks like a standard normal distribution, it is not. The t with 5 degrees of freedom has fatter tails. We show this by overlaying the t with a standard normal distribution.
 
 ```{r, echo=FALSE}
+par(bg = '#fdf6e3')
 curve(dt(x, 5), xlim = c(-3, 3), ylab = "", yaxt = "n", main = "t distribution with 5 degrees of freedom")
 c.x <- c(-3, seq(-3, 3, 0.01), 3 )
 c.y <- c(0, dt(seq(-3, 3, 0.01), df = 5), 0 )
@@ -312,6 +317,7 @@ See how much larger that value is than 1.96. Under a t distribution with 5 degre
 Let's illustrate that.
 
 ```{r, echo=FALSE}
+par(bg = '#fdf6e3')
 curve(dt(x, df=5), xlim = c(-3, 3), ylab = "", yaxt = "n", ylim = c(-0.01, .38))
 c.x <- c(qt(0.025, df = 5), seq(qt(0.025, df = 5), qt(0.975, df = 5), 0.01), qt(0.975, df = 5) )
 c.y <- c(0, dt(seq(qt(0.025, df = 5), qt(0.975, df = 5), 0.01), df = 5), 0 )
@@ -392,6 +398,7 @@ Let's say that we have a t distribution with 5 degrees of freedom. We estimated 
 This is the probability of getting a t value of 2.9 or larger (or -2.9 or smaller) given that the null hypothesis is true. `pt(2.9, df = 5)` is the cumulative probability of getting a t value of 2.9 or smaller. But we want the probability of getting a value that is as large (extreme) as 2.9 or as small as -2.9. Therefore, we do `1 - pt(2.9, df = 5)`. We multiply by 2 to get both tails  `(1 - pt(2.9, df = 5))*2`
 
 ```{r, echo=FALSE}
+par(bg = '#fdf6e3')
 curve(dt(x, df=5), xlim = c(-3, 3), ylab = "", yaxt = "n", ylim = c(-0.01, .38))
 c.x <- c(qt(0.975, df = 5), seq(qt(0.975, df = 5), 3, 0.01), 3 )
 c.y <- c(0, dt(seq(qt(0.975, df = 5), 3, 0.01), df = 5), 0 )
@@ -419,6 +426,7 @@ Let's check what the exact p value is in a normal distribution given a t value o
 ```
 
 ```{r, echo=FALSE}
+par(bg = '#fdf6e3')
 curve(dnorm(x, 0, 1), xlim = c(-3, 3), ylab = "", yaxt = "n")
 
 c.x <- c(0.1995059, seq(0.1995059, 3, 0.01), 3 )
@@ -473,6 +481,7 @@ When we want to get an idea about how two continuous variables change together, 
 the human development index `undp_hdi` and control of corruption `wbgi_cce`.
 
 ```{r}
+par(bg = '#fdf6e3')
 # scatterplot
 plot(world.data$undp_hdi ~ world.data$wbgi_cce,
   xlim = c(xmin = -2, xmax = 3),
