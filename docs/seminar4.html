@@ -290,7 +290,7 @@ world.data &lt;-<span class="st"> </span>world.data[ <span class="op">!</span><s
 <div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r">se.y_bar &lt;-<span class="st"> </span>(<span class="kw">sd</span>(world.data<span class="op">$</span>wealth) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>( <span class="kw">length</span>(world.data<span class="op">$</span>wealth) ))
 se.y_bar</code></pre></div>
 <pre><code>[1] 922.7349</code></pre>
-<p>The standard error is ~922.73. The mean of the sampling distribution (recall that we get a sampling distribution if we sample repeatedly) is the population mean. The standard error is the average difference from the population mean. That means, if we take 1 sample (as we have), the average deviation in the mean estimate from the population mean is equal to the standard error.</p>
+<p>The standard error is ~922.73. The mean of the sampling distribution is the population mean (or close to it — the more samples we take, the closer is the mean of the sampling distribution to the population mean). The standard error is the average difference from the population mean. We have taken 1 sample. When taking any random sample, the average difference between the mean in that sample and population mean is the standard error.</p>
 <p>We need the standard error for hypothesis testing. You will see how in the following.</p>
 </div>
 <div id="t-test-one-sample-hypothesis-test" class="section level3">

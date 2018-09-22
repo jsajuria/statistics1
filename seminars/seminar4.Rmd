@@ -82,10 +82,9 @@ se.y_bar <- (sd(world.data$wealth) / sqrt( length(world.data$wealth) ))
 se.y_bar
 ```
 
-The standard error is ~`r round(se.y_bar,2)`. The mean of the sampling distribution (recall that we get a sampling distribution if we sample repeatedly) is the population mean. The standard error is the average difference from the population mean. That means, if we take 1 sample (as we have), the average deviation in the mean estimate from the population mean is equal to the standard error.
+The standard error is ~`r round(se.y_bar,2)`. The mean of the sampling distribution is the population mean (or close to it --- the more samples we take, the closer is the mean of the sampling distribution to the population mean). The standard error is the average difference from the population mean. We have taken 1 sample. When taking any random sample, the average difference between the mean in that sample and population mean is the standard error.
 
 We need the standard error for hypothesis testing. You will see how in the following.
-
 
 ### T-test (one sample hypothesis test)
 
