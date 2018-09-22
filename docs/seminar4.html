@@ -244,8 +244,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </tr>
 </tbody>
 </table>
-<p>Let’s load the data.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">world.data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;QoG2012.csv&quot;</span>)</code></pre></div>
+<p>Go ahead and load the data from last week yourself.</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r">world.data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;QoG2012.csv&quot;</span>)</code></pre></div>
 <p>We can get summary statistics of each variable in the dataset by using the <code>summary()</code> function over the dataset.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(world.data)</code></pre></div>
 <pre><code>      h_j            wdi_gdpc          undp_hdi         wbgi_cce       
@@ -266,28 +266,30 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
                                      NA&#39;s   :7       </code></pre>
 <div id="the-standard-error" class="section level3">
 <h3><span class="header-section-number">4.1.1</span> The Standard Error</h3>
-<p>The standard error of an estimate quantifies uncertainty that is due to sampling variability. Recall that we infer from a sample to the population. Let’s have a look at <em>wdi_gdpc</em> which is gdp per capita. We re-name the variable to <em>wealth</em>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(world.data)[<span class="dv">2</span>] &lt;-<span class="st"> &quot;wealth&quot;</span> 
+<p>The standard error of an estimate quantifies uncertainty that is due to sampling variability. Recall that we infer from a sample to the population. Let’s have a look at <em>wdi_gdpc</em> which is gdp per capita. We re-name the variable to <em>wealth</em>. Do so on your own.</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r"><span class="kw">names</span>(world.data)[<span class="dv">2</span>] &lt;-<span class="st"> &quot;wealth&quot;</span> 
 <span class="kw">names</span>(world.data)</code></pre></div>
 <pre><code>[1] &quot;h_j&quot;         &quot;wealth&quot;      &quot;undp_hdi&quot;    &quot;wbgi_cce&quot;    &quot;wbgi_pse&quot;   
 [6] &quot;former_col&quot;  &quot;lp_lat_abst&quot;</code></pre>
-<p>Let’s look at the mean.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(world.data<span class="op">$</span>wealth)</code></pre></div>
+<p>Now, have a look at the mean of the new <em>wealth</em> variable.</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r"><span class="kw">mean</span>(world.data<span class="op">$</span>wealth)</code></pre></div>
 <pre><code>[1] NA</code></pre>
-<p>R returns NA because there are missing values on the <em>wealth</em> variable and we cannot calculate with NAs. For instance, <code>2 + NA</code> will return NA. We make a copy of the full data set and then delete missing values.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># copy of the dataset</span>
+<p>R returns NA because there are missing values on the <em>wealth</em> variable and we cannot calculate with NAs. For instance, <code>2 + NA</code> will return NA. We make a copy of the full data set and then delete missing values. We did this last week. Go ahead do so on your own.</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r"><span class="co"># copy of the dataset</span>
 full.data &lt;-<span class="st"> </span>world.data
 
 <span class="co"># delete rows from dataset that have missings on wealth variable</span>
 world.data &lt;-<span class="st"> </span>world.data[ <span class="op">!</span><span class="kw">is.na</span>(world.data<span class="op">$</span>wealth) , ]</code></pre></div>
-<p>Now, we compute the mean again.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(world.data<span class="op">$</span>wealth)</code></pre></div>
+<p>Now, compute the mean of <em>wealth</em> again.</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r"><span class="kw">mean</span>(world.data<span class="op">$</span>wealth)</code></pre></div>
 <pre><code>[1] 10184.09</code></pre>
-<p>The mean estimate in our sample is ~10184.09. We are generally interested in the population. Therefore, we infer from our sample to the population. Our main problem is that samples are subject to sampling variability. If we take another sample, our mean estimate would be different. The standard error quantifies this type of uncertainty.</p>
+<p>The mean estimate in our sample is 10184.09. We are generally interested in the population. Therefore, we infer from our sample to the population. Our main problem is that samples are subject to sampling variability. If we take another sample, our mean estimate would be different. The standard error quantifies this type of uncertainty.</p>
 <p>The formula for the standard error of the mean is: <span class="math display">\[ SE(\bar{Y}) = \frac{s_Y}{\sqrt{n}}  \]</span></p>
-<p>Where <span class="math inline">\(s_Y\)</span> is the standard deviation (of <em>wealth</em>) and <span class="math inline">\(n\)</span> is the number of observations in (of <em>wealth</em>).</p>
-<p>We compute the standard error in R:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">se.y_bar &lt;-<span class="st"> </span>(<span class="kw">sd</span>(world.data<span class="op">$</span>wealth) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>( <span class="kw">length</span>(world.data<span class="op">$</span>wealth) ))</code></pre></div>
+<p>Where <span class="math inline">\(s_Y\)</span> is the standard deviation (of <em>wealth</em>) and <span class="math inline">\(n\)</span> is the number of observations (of <em>wealth</em>).</p>
+<p>Compute the standard error in R:</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r">se.y_bar &lt;-<span class="st"> </span>(<span class="kw">sd</span>(world.data<span class="op">$</span>wealth) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>( <span class="kw">length</span>(world.data<span class="op">$</span>wealth) ))
+se.y_bar</code></pre></div>
+<pre><code>[1] 922.7349</code></pre>
 <p>The standard error is ~922.73. The mean of the sampling distribution (recall that we get a sampling distribution if we sample repeatedly) is the population mean. The standard error is the average difference from the population mean. That means, if we take 1 sample (as we have), the average deviation in the mean estimate from the population mean is equal to the standard error.</p>
 <p>We need the standard error for hypothesis testing. You will see how in the following.</p>
 </div>

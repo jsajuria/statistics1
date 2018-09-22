@@ -25,9 +25,9 @@ knitr::kable(tibble::tribble(
 ))
 ```
 
-Let's load the data.
+Go ahead and load the data from last week yourself.
 
-```{r}
+```{r class.source="collapsible"}
 world.data <- read.csv("QoG2012.csv")
 ```
 
@@ -40,22 +40,22 @@ summary(world.data)
 
 ### The Standard Error
 
-The standard error of an estimate quantifies uncertainty that is due to sampling variability. Recall that we infer from a sample to the population. Let's have a look at *wdi_gdpc* which is gdp per capita. We re-name the variable to *wealth*.
+The standard error of an estimate quantifies uncertainty that is due to sampling variability. Recall that we infer from a sample to the population. Let's have a look at *wdi_gdpc* which is gdp per capita. We re-name the variable to *wealth*. Do so on your own.
 
-```{r}
+```{r class.source="collapsible"}
 names(world.data)[2] <- "wealth" 
 names(world.data)
 ```
 
-Let's look at the mean.
+Now, have a look at the mean of the new *wealth* variable.
 
-```{r}
+```{r class.source="collapsible"}
 mean(world.data$wealth)
 ```
 
-R returns NA because there are missing values on the *wealth* variable and we cannot calculate with NAs. For instance, `2 + NA` will return NA. We make a copy of the full data set and then delete missing values.
+R returns NA because there are missing values on the *wealth* variable and we cannot calculate with NAs. For instance, `2 + NA` will return NA. We make a copy of the full data set and then delete missing values. We did this last week. Go ahead do so on your own.
 
-```{r}
+```{r class.source="collapsible"}
 # copy of the dataset
 full.data <- world.data
 
@@ -63,22 +63,23 @@ full.data <- world.data
 world.data <- world.data[ !is.na(world.data$wealth) , ]
 ```
 
-Now, we compute the mean again.
+Now, compute the mean of *wealth* again.
 
-```{r}
+```{r class.source="collapsible"}
 mean(world.data$wealth)
 ```
 
-The mean estimate in our sample is ~`r round(mean(world.data$wealth), 2)`. We are generally interested in the population. Therefore, we infer from our sample to the population. Our main problem is that samples are subject to sampling variability. If we take another sample, our mean estimate would be different. The standard error quantifies this type of uncertainty.
+The mean estimate in our sample is `r round(mean(world.data$wealth), 2)`. We are generally interested in the population. Therefore, we infer from our sample to the population. Our main problem is that samples are subject to sampling variability. If we take another sample, our mean estimate would be different. The standard error quantifies this type of uncertainty.
 
 The formula for the standard error of the mean is: $$ SE(\bar{Y}) = \frac{s_Y}{\sqrt{n}}  $$
 
-Where $s_Y$ is the standard deviation (of *wealth*) and $n$ is the number of observations in (of *wealth*).
+Where $s_Y$ is the standard deviation (of *wealth*) and $n$ is the number of observations (of *wealth*).
 
-We compute the standard error in R:
+Compute the standard error in R:
 
-```{r}
+```{r class.source="collapsible"}
 se.y_bar <- (sd(world.data$wealth) / sqrt( length(world.data$wealth) ))
+se.y_bar
 ```
 
 The standard error is ~`r round(se.y_bar,2)`. The mean of the sampling distribution (recall that we get a sampling distribution if we sample repeatedly) is the population mean. The standard error is the average difference from the population mean. That means, if we take 1 sample (as we have), the average deviation in the mean estimate from the population mean is equal to the standard error.
@@ -294,7 +295,8 @@ Although, it looks like a standard normal distribution, it is not. The t with 5 
 
 ```{r, echo=FALSE}
 par(bg = '#fdf6e3')
-curve(dt(x, 5), xlim = c(-3, 3), ylab = "", yaxt = "n", main = "t distribution with 5 degrees of freedom")
+curve(dt(x, 5), xlim = c(-3, 3), ylab = "", yaxt = "n", 
+      main = "t distribution with 5 degrees of freedom", ylim = c(-0.01, .38))
 c.x <- c(-3, seq(-3, 3, 0.01), 3 )
 c.y <- c(0, dt(seq(-3, 3, 0.01), df = 5), 0 )
 polygon(c.x, c.y, col=c.cols[1])
