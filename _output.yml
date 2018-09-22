@@ -1,9 +1,8 @@
 bookdown::gitbook:
-  css: [
-    lib/bootstrap/3.3.7/css/bootstrap.min.css,
-    css/main.css,
-    css/readthedocs.css
-  ]
+  css:
+  - lib/bootstrap/3.3.7/css/bootstrap.min.css
+  - css/readthedocs.css
+  - css/custom.css
   includes:
     in_header: include/header.html
   split_by: rmd
@@ -19,7 +18,3 @@ bookdown::gitbook:
       twitter: no
       facebook: no
       all: []
-
-bookdown::pdf_book:
-  keep_tex: yes
-

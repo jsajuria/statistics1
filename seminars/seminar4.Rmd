@@ -307,7 +307,7 @@ The tails are fatter and that means that the probabilities of getting a value so
 qt(0.975, df = 5)
 ```
 
-See how much larger that value is than 1.96. Under a t distribution with 5 degrees of freedom 95 percent of the observations around the mean are within the interval from negative `r qt(0.975, df = 5)` to positive `qt(0.975, df = 5)`.
+See how much larger that value is than 1.96. Under a t distribution with 5 degrees of freedom 95 percent of the observations around the mean are within the interval from negative `r qt(0.975, df = 5)` to positive `r qt(0.975, df = 5)`.
 
 Let's illustrate that.
 
