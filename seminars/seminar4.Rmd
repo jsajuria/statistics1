@@ -295,14 +295,15 @@ We now do the same for the t distribution. In the t distribution, the critical v
 
 ```{r, echo=FALSE}
 par(bg = '#fdf6e3')
-curve(dt(x, 5), xlim = c(-3, 3), ylab = "", yaxt = "n", main = "t distribution with 5 degrees of freedom", xlab = "")
+curve(dt(x, 5), xlim = c(-3, 3), ylab = "", yaxt = "n", main = "t distribution with 5 degrees of freedom", 
+      xlab = "")
 ```
 
 Although, it looks like a standard normal distribution, it is not. The t with 5 degrees of freedom has fatter tails. We show this by overlaying the t with a standard normal distribution.
 
 ```{r, echo=FALSE}
 par(bg = '#fdf6e3')
-curve(dt(x, 5), xlim = c(-3, 3), ylab = "", yaxt = "n", 
+curve(dt(x, 5), xlim = c(-3, 3), ylab = "", yaxt = "n", xlab = "",
       main = "t distribution with 5 degrees of freedom compared to standard normal", ylim = c(-0.01, .4))
 c.x <- c(-3, seq(-3, 3, 0.01), 3 )
 c.y <- c(0, dt(seq(-3, 3, 0.01), df = 5), 0 )
