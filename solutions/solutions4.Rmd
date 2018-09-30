@@ -187,7 +187,10 @@ Calculate the p value.
 
 We have the t statistic already. We will follow the steps to get the p value. But first, take a look at what the distribution of our t statistic looks like. Our t statistic is -11.13908. This is very very far in the left tail.
 
-![](./img/our_t_statistic.png)
+```{r echo=FALSE}
+par(bg = '#fdf6e3')
+curve(dt(x, 100), xlim = c(-4, 4), ylab = "", yaxt = "n", xlab = "")
+```
 
 Step 1: We compute the cumulative probability to get our t-value or something smaller from this distribution.
 
