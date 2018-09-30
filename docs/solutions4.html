@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Statistics 1</title>
+  <meta name="description" content="Statistics 1">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Statistics 1" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Statistics 1" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="seminar4.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="lib/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/codefolding.js"></script>
+
+
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding();
+});
+</script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="lib\bootstrap\3.3.7\css\bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="css\readthedocs.css" type="text/css" />
+<link rel="stylesheet" href="css\custom.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this course</a></li>
+<li class="chapter" data-level="1" data-path="seminar1.html"><a href="seminar1.html"><i class="fa fa-check"></i><b>1</b> Introduction: Measurement, Central Tendency, Dispersion, Validity, Reliability</a><ul>
+<li class="chapter" data-level="1.1" data-path="seminar1.html"><a href="seminar1.html#seminar"><i class="fa fa-check"></i><b>1.1</b> Seminar</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="seminar1.html"><a href="seminar1.html#getting-started"><i class="fa fa-check"></i><b>1.1.1</b> Getting Started</a></li>
+<li class="chapter" data-level="1.1.2" data-path="seminar1.html"><a href="seminar1.html#rstudio"><i class="fa fa-check"></i><b>1.1.2</b> RStudio</a></li>
+<li class="chapter" data-level="1.1.3" data-path="seminar1.html"><a href="seminar1.html#console"><i class="fa fa-check"></i><b>1.1.3</b> Console</a></li>
+<li class="chapter" data-level="1.1.4" data-path="seminar1.html"><a href="seminar1.html#functions"><i class="fa fa-check"></i><b>1.1.4</b> Functions</a></li>
+<li class="chapter" data-level="1.1.5" data-path="seminar1.html"><a href="seminar1.html#getting-help"><i class="fa fa-check"></i><b>1.1.5</b> Getting Help</a></li>
+<li class="chapter" data-level="1.1.6" data-path="seminar1.html"><a href="seminar1.html#the-assignment-operator"><i class="fa fa-check"></i><b>1.1.6</b> The Assignment Operator</a></li>
+<li class="chapter" data-level="1.1.7" data-path="seminar1.html"><a href="seminar1.html#sequences"><i class="fa fa-check"></i><b>1.1.7</b> Sequences</a></li>
+<li class="chapter" data-level="1.1.8" data-path="seminar1.html"><a href="seminar1.html#scripts"><i class="fa fa-check"></i><b>1.1.8</b> Scripts</a></li>
+<li class="chapter" data-level="1.1.9" data-path="seminar1.html"><a href="seminar1.html#central-tendency"><i class="fa fa-check"></i><b>1.1.9</b> Central Tendency</a></li>
+<li class="chapter" data-level="1.1.10" data-path="seminar1.html"><a href="seminar1.html#dispersion"><i class="fa fa-check"></i><b>1.1.10</b> Dispersion</a></li>
+<li class="chapter" data-level="1.1.11" data-path="seminar1.html"><a href="seminar1.html#exercises"><i class="fa fa-check"></i><b>1.1.11</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="solutions1.html"><a href="solutions1.html"><i class="fa fa-check"></i><b>1.2</b> Solutions</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="solutions1.html"><a href="solutions1.html#exercise-3"><i class="fa fa-check"></i><b>1.2.1</b> Exercise 3</a></li>
+<li class="chapter" data-level="1.2.2" data-path="solutions1.html"><a href="solutions1.html#exercise-4"><i class="fa fa-check"></i><b>1.2.2</b> Exercise 4</a></li>
+<li class="chapter" data-level="1.2.3" data-path="solutions1.html"><a href="solutions1.html#exercise-5"><i class="fa fa-check"></i><b>1.2.3</b> Exercise 5</a></li>
+<li class="chapter" data-level="1.2.4" data-path="solutions1.html"><a href="solutions1.html#exercise-6"><i class="fa fa-check"></i><b>1.2.4</b> Exercise 6</a></li>
+<li class="chapter" data-level="1.2.5" data-path="solutions1.html"><a href="solutions1.html#exercise-7"><i class="fa fa-check"></i><b>1.2.5</b> Exercise 7</a></li>
+<li class="chapter" data-level="1.2.6" data-path="solutions1.html"><a href="solutions1.html#exercise-8"><i class="fa fa-check"></i><b>1.2.6</b> Exercise 8</a></li>
+<li class="chapter" data-level="1.2.7" data-path="solutions1.html"><a href="solutions1.html#exercise-9"><i class="fa fa-check"></i><b>1.2.7</b> Exercise 9</a></li>
+<li class="chapter" data-level="1.2.8" data-path="solutions1.html"><a href="solutions1.html#exercise-10"><i class="fa fa-check"></i><b>1.2.8</b> Exercise 10</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="seminar2.html"><a href="seminar2.html"><i class="fa fa-check"></i><b>2</b> Research Design, Counterfactuals, Forming Hypotheses</a><ul>
+<li class="chapter" data-level="2.1" data-path="seminar2.html"><a href="seminar2.html#seminar-1"><i class="fa fa-check"></i><b>2.1</b> Seminar</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="seminar2.html"><a href="seminar2.html#setting-up"><i class="fa fa-check"></i><b>2.1.1</b> setting up</a></li>
+<li class="chapter" data-level="2.1.2" data-path="seminar2.html"><a href="seminar2.html#vectors-and-subsetting"><i class="fa fa-check"></i><b>2.1.2</b> vectors and subsetting</a></li>
+<li class="chapter" data-level="2.1.3" data-path="seminar2.html"><a href="seminar2.html#data-frames"><i class="fa fa-check"></i><b>2.1.3</b> data frames</a></li>
+<li class="chapter" data-level="2.1.4" data-path="seminar2.html"><a href="seminar2.html#loading-data"><i class="fa fa-check"></i><b>2.1.4</b> Loading data</a></li>
+<li class="chapter" data-level="2.1.5" data-path="seminar2.html"><a href="seminar2.html#plots"><i class="fa fa-check"></i><b>2.1.5</b> Plots</a></li>
+<li class="chapter" data-level="2.1.6" data-path="seminar2.html"><a href="seminar2.html#average-treatment-effect"><i class="fa fa-check"></i><b>2.1.6</b> Average Treatment Effect</a></li>
+<li class="chapter" data-level="2.1.7" data-path="seminar2.html"><a href="seminar2.html#exercises-1"><i class="fa fa-check"></i><b>2.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="solutions2.html"><a href="solutions2.html"><i class="fa fa-check"></i><b>2.2</b> Solutions</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="solutions2.html"><a href="solutions2.html#exercise-2"><i class="fa fa-check"></i><b>2.2.1</b> Exercise 2</a></li>
+<li class="chapter" data-level="2.2.2" data-path="solutions2.html"><a href="solutions2.html#exercise-3-1"><i class="fa fa-check"></i><b>2.2.2</b> Exercise 3</a></li>
+<li class="chapter" data-level="2.2.3" data-path="solutions2.html"><a href="solutions2.html#exercise-4-1"><i class="fa fa-check"></i><b>2.2.3</b> Exercise 4</a></li>
+<li class="chapter" data-level="2.2.4" data-path="solutions2.html"><a href="solutions2.html#exercise-5-1"><i class="fa fa-check"></i><b>2.2.4</b> Exercise 5</a></li>
+<li class="chapter" data-level="2.2.5" data-path="solutions2.html"><a href="solutions2.html#exercise-6-1"><i class="fa fa-check"></i><b>2.2.5</b> Exercise 6</a></li>
+<li class="chapter" data-level="2.2.6" data-path="solutions2.html"><a href="solutions2.html#exercise-7-1"><i class="fa fa-check"></i><b>2.2.6</b> Exercise 7</a></li>
+<li class="chapter" data-level="2.2.7" data-path="solutions2.html"><a href="solutions2.html#exercise-8-1"><i class="fa fa-check"></i><b>2.2.7</b> Exercise 8</a></li>
+<li class="chapter" data-level="2.2.8" data-path="solutions2.html"><a href="solutions2.html#exercises-9-and-10"><i class="fa fa-check"></i><b>2.2.8</b> Exercises 9 and 10</a></li>
+<li class="chapter" data-level="2.2.9" data-path="solutions2.html"><a href="solutions2.html#exercises-11"><i class="fa fa-check"></i><b>2.2.9</b> Exercises 11</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="seminar3.html"><a href="seminar3.html"><i class="fa fa-check"></i><b>3</b> Sampling and Distributions</a><ul>
+<li class="chapter" data-level="3.1" data-path="seminar3.html"><a href="seminar3.html#seminar-2"><i class="fa fa-check"></i><b>3.1</b> Seminar</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="seminar3.html"><a href="seminar3.html#loading-dataset-in-csv-format"><i class="fa fa-check"></i><b>3.1.1</b> Loading Dataset in CSV Format</a></li>
+<li class="chapter" data-level="3.1.2" data-path="seminar3.html"><a href="seminar3.html#missing-values"><i class="fa fa-check"></i><b>3.1.2</b> Missing Values</a></li>
+<li class="chapter" data-level="3.1.3" data-path="seminar3.html"><a href="seminar3.html#factor-variables"><i class="fa fa-check"></i><b>3.1.3</b> Factor Variables</a></li>
+<li class="chapter" data-level="3.1.4" data-path="seminar3.html"><a href="seminar3.html#renaming-variables"><i class="fa fa-check"></i><b>3.1.4</b> Renaming Variables</a></li>
+<li class="chapter" data-level="3.1.5" data-path="seminar3.html"><a href="seminar3.html#distributions"><i class="fa fa-check"></i><b>3.1.5</b> Distributions</a></li>
+<li class="chapter" data-level="3.1.6" data-path="seminar3.html"><a href="seminar3.html#conditional-distributions"><i class="fa fa-check"></i><b>3.1.6</b> Conditional Distributions</a></li>
+<li class="chapter" data-level="3.1.7" data-path="seminar3.html"><a href="seminar3.html#exercises-2"><i class="fa fa-check"></i><b>3.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="solutions3.html"><a href="solutions3.html"><i class="fa fa-check"></i><b>3.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="seminar4.html"><a href="seminar4.html"><i class="fa fa-check"></i><b>4</b> T-test for Difference in Means and Hypothesis Testing</a><ul>
+<li class="chapter" data-level="4.1" data-path="seminar4.html"><a href="seminar4.html#seminar-3"><i class="fa fa-check"></i><b>4.1</b> Seminar</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="seminar4.html"><a href="seminar4.html#the-standard-error"><i class="fa fa-check"></i><b>4.1.1</b> The Standard Error</a></li>
+<li class="chapter" data-level="4.1.2" data-path="seminar4.html"><a href="seminar4.html#t-test-one-sample-hypothesis-test"><i class="fa fa-check"></i><b>4.1.2</b> T-test (one sample hypothesis test)</a></li>
+<li class="chapter" data-level="4.1.3" data-path="seminar4.html"><a href="seminar4.html#t-test-difference-in-means"><i class="fa fa-check"></i><b>4.1.3</b> T-test (difference in means)</a></li>
+<li class="chapter" data-level="4.1.4" data-path="seminar4.html"><a href="seminar4.html#estimating-p-values-from-t-values"><i class="fa fa-check"></i><b>4.1.4</b> Estimating p values from t values</a></li>
+<li class="chapter" data-level="4.1.5" data-path="seminar4.html"><a href="seminar4.html#exercises-3"><i class="fa fa-check"></i><b>4.1.5</b> Exercises</a></li>
+<li class="chapter" data-level="4.1.6" data-path="seminar4.html"><a href="seminar4.html#optional-exercises-that-require-reading-extra-info-below"><i class="fa fa-check"></i><b>4.1.6</b> Optional Exercises that require reading Extra Info below</a></li>
+<li class="chapter" data-level="4.1.7" data-path="seminar4.html"><a href="seminar4.html#advanced-exercises"><i class="fa fa-check"></i><b>4.1.7</b> Advanced Exercises</a></li>
+<li class="chapter" data-level="4.1.8" data-path="seminar4.html"><a href="seminar4.html#extra-info"><i class="fa fa-check"></i><b>4.1.8</b> Extra Info</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="solutions4.html"><a href="solutions4.html"><i class="fa fa-check"></i><b>4.2</b> Solutions</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="solutions4.html"><a href="solutions4.html#optional-exercises-that-require-reading-extra-info-below-1"><i class="fa fa-check"></i><b>4.2.1</b> Optional Exercises that require reading Extra Info below</a></li>
+<li class="chapter" data-level="4.2.2" data-path="solutions4.html"><a href="solutions4.html#advanced-exercises-1"><i class="fa fa-check"></i><b>4.2.2</b> Advanced Exercises</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics 1</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="solutions-3" class="section level2">
+<h2><span class="header-section-number">4.2</span> Solutions</h2>
+<div id="exercise-2-2" class="section level4">
+<h4><span class="header-section-number">4.2.0.1</span> Exercise 2</h4>
+<p>Turn former colonies into a factor variable and choose appropriate labels.</p>
+<p>First, we load the dataset and then factorise the former colonies variable.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load data</span>
+world.data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;QoG2012.csv&quot;</span>)
+
+<span class="co"># turn variable into a factor</span>
+world.data<span class="op">$</span>former_col &lt;-<span class="st"> </span><span class="kw">factor</span>(world.data<span class="op">$</span>former_col, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;not colonised&quot;</span>, <span class="st">&quot;was colonised&quot;</span>), <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</code></pre></div>
+</div>
+<div id="exercise-3-3" class="section level4">
+<h4><span class="header-section-number">4.2.0.2</span> Exercise 3</h4>
+<p>How many countries were former colonies? How many were not?</p>
+<p>We can get the numbers from a frequency table.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(world.data<span class="op">$</span>former_col)</code></pre></div>
+<pre><code>
+not colonised was colonised 
+           72           122 </code></pre>
+<p>122 countries were victims of colonialization.</p>
+</div>
+<div id="exercise-4-3" class="section level4">
+<h4><span class="header-section-number">4.2.0.3</span> Exercise 4</h4>
+<p>Find the means of political stability in countries that (1) were former colonies, (2) were not former colonies.</p>
+<p>We use the mean function to get the mean of political stability and subset for the groups of countries using the square brackets.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># mean of political stability in countries that were not colonised</span>
+<span class="kw">mean</span>(world.data<span class="op">$</span>wbgi_pse[world.data<span class="op">$</span>former_col<span class="op">==</span><span class="st">&quot;not colonised&quot;</span>])</code></pre></div>
+<pre><code>[1] 0.2858409</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># mean of political stability in countries that were colonised</span>
+<span class="kw">mean</span>(world.data<span class="op">$</span>wbgi_pse[world.data<span class="op">$</span>former_col<span class="op">==</span><span class="st">&quot;was colonised&quot;</span>])</code></pre></div>
+<pre><code>[1] -0.231612</code></pre>
+<p>The average level of political stability in countries that were not colonised is 0.2858409. Mean political stability in countries that were colonised is -0.231612. The variable political stability <code>wbgi_pse</code> is an index. Larger values correspond with more political stability. We see that political stability is higher in countries that were not colonised.</p>
+<p>Looking at this difference, we might conclude that the legacy of colonialism is still visible today and manifests itself in lower political stability. Let’s investigate further to see whether the difference in means is statistically significant.</p>
+</div>
+<div id="exercise-5-3" class="section level4">
+<h4><span class="header-section-number">4.2.0.4</span> Exercise 5</h4>
+<p>Is the the difference in means statistically significant?</p>
+<p>Let’s first compute the difference in means. We call it <code>fd</code> here. We could name it anything but <code>fd</code> is shorthand for first difference. Differences between two means are sometimes referred to as first differences.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fd &lt;-<span class="st"> </span><span class="kw">mean</span>(world.data<span class="op">$</span>wbgi_pse[world.data<span class="op">$</span>former_col<span class="op">==</span><span class="st">&quot;not colonised&quot;</span>]) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(world.data<span class="op">$</span>wbgi_pse[world.data<span class="op">$</span>former_col<span class="op">==</span><span class="st">&quot;was colonised&quot;</span>])
+fd</code></pre></div>
+<pre><code>[1] 0.5174529</code></pre>
+<p>The numerical difference is 0.5174529. Is this difference small or large? That is difficult to say because the variable is not measured in intuitive units (income in dollars is an example of a variable that is measured in intuitive units).</p>
+<p>Let’s look at the variable a little closer to understand this difference in substantive terms.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># the range</span>
+<span class="kw">range</span>(world.data<span class="op">$</span>wbgi_pse)</code></pre></div>
+<pre><code>[1] -2.467461  1.675609</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># the distance from the minimum to the maximum value</span>
+<span class="kw">diff</span>(<span class="kw">range</span>(world.data<span class="op">$</span>wbgi_pse))</code></pre></div>
+<pre><code>[1] 4.14307</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># the difference in means as percentage change over the range of the variable</span>
+fd <span class="op">/</span><span class="st"> </span><span class="kw">diff</span>(<span class="kw">range</span>(world.data<span class="op">$</span>wbgi_pse))</code></pre></div>
+<pre><code>[1] 0.124896</code></pre>
+<p>Doing the above was not necessary to answer the question but it is helpful to understand the variable in substantive terms. The difference in means is 0.5174529. That constitutes 0.124896 (12%) of the range of the variable. So the difference in political stability between countries that were colonies and those that were not is large.</p>
+<p>We now test whether the difference is statistically significant using the t-test.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># t test for difference in means</span>
+<span class="kw">t.test</span>(world.data<span class="op">$</span>wbgi_pse[world.data<span class="op">$</span>former_col <span class="op">==</span><span class="st"> &quot;not colonised&quot;</span>],
+       world.data<span class="op">$</span>wbgi_pse[world.data<span class="op">$</span>former_col <span class="op">==</span><span class="st"> &quot;was colonised&quot;</span>], 
+       <span class="dt">mu =</span> <span class="dv">0</span>, <span class="dt">alt =</span> <span class="st">&quot;two.sided&quot;</span>)</code></pre></div>
+<pre><code>
+    Welch Two Sample t-test
+
+data:  world.data$wbgi_pse[world.data$former_col == &quot;not colonised&quot;] and world.data$wbgi_pse[world.data$former_col == &quot;was colonised&quot;]
+t = 3.4674, df = 139.35, p-value = 0.0006992
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 0.2224004 0.8125053
+sample estimates:
+ mean of x  mean of y 
+ 0.2858409 -0.2316120 </code></pre>
+<p>As we can see, the difference is not only large it is also a noticeable systematic difference. The p value is small. Smaller than the conventional alpha level of 0.05. We can also look at the confidence interval which ranges from 0.2224004 to 0.8125053. So, if we were to repeatedly sample, the confidence interval of each sample would include the true population mean <span class="math inline">\(95\%\)</span> of the time. Or more intuitively, we are <span class="math inline">\(95\%\)</span> confident that the average population level of political stability is within our interval.</p>
+</div>
+<div id="exercise-6-3" class="section level4">
+<h4><span class="header-section-number">4.2.0.5</span> Exercise 6</h4>
+<p>In layman’s terms, are countries which were former colonies more or less stable than those that were not?</p>
+<p>The results from the t-test show that countries that were colonies are less stable than those that were not. The difference is large and systematic.</p>
+</div>
+<div id="exercise-7-2" class="section level4">
+<h4><span class="header-section-number">4.2.0.6</span> Exercise 7</h4>
+<p>How about if we choose an alpha level of 0.01?</p>
+<p>The p-value is 0.0006992. That is smaller than an alpha level of 0.01 as well. Therefore, picking an alpha level of 0.01 does not change our results.</p>
+</div>
+<div id="exercise-8-3" class="section level4">
+<h4><span class="header-section-number">4.2.0.7</span> Exercise 8</h4>
+<p>What is the level of measurement of the United Nations Development index variable <code>undp_hdi</code>?</p>
+<p>We googled <a href="http://hdr.undp.org/en/content/human-development-index-hdi">united nations human development index</a> and found that the variable is a composite index of three key dimensions: a long and healthy life, being knowledgeable and having a decent standard of living. The description goes on to tell us how the dimensions are measured and that the index is the geometric average of the components. The variable is, therefore, continuous.</p>
+</div>
+<div id="exercise-9-2" class="section level4">
+<h4><span class="header-section-number">4.2.0.8</span> Exercise 9</h4>
+<p>Check the claim that its true population mean is 0.85.</p>
+<p>Let’s estimate the mean from our sample</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(world.data<span class="op">$</span>undp_hdi)</code></pre></div>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+ 0.2730  0.5390  0.7510  0.6982  0.8335  0.9560      19 </code></pre>
+<p>Our estimate is 0.69824. The claim is that it is 0.85.</p>
+<p>Null hypothesis: The true population mean of the human development index is: 0.85. Alternative hypothesis: The true population mean is different from 0.85.</p>
+<p>We pick an alpha level of 0.05 for our test.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(world.data<span class="op">$</span>undp_hdi, <span class="dt">mu =</span> <span class="fl">0.85</span>, <span class="dt">alt =</span> <span class="st">&quot;two.sided&quot;</span>)</code></pre></div>
+<pre><code>
+    One Sample t-test
+
+data:  world.data$undp_hdi
+t = -11.139, df = 174, p-value &lt; 0.00000000000000022
+alternative hypothesis: true mean is not equal to 0.85
+95 percent confidence interval:
+ 0.6713502 0.7251298
+sample estimates:
+mean of x 
+  0.69824 </code></pre>
+<p>The p-value is lower than 0.05 and hence we reject the null hypothesis (hdi is 0.85). Looking at our confidence interval, we expect that if we were to repeatedly sample, the population mean would fall into the interval 0.6713502 to 0.7251298 <span class="math inline">\(95\%\)</span> of the time.</p>
+</div>
+<div id="exercise-10-2" class="section level4">
+<h4><span class="header-section-number">4.2.0.9</span> Exercise 10</h4>
+<p>Calculate the t statistic.</p>
+<p>We could take the t statistic from the t test above. But we are going through the individual steps here.</p>
+<p>From the <code>summary()</code> function above, we know that there are 19 missings on the variable which we drop. We create a copy of our data in the original state and then drop the missing rows from <strong>world.data</strong>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># copy of world data</span>
+world.data.full &lt;-<span class="st"> </span>world.data
+
+<span class="co"># drop missings on undp_hdi</span>
+world.data &lt;-<span class="st"> </span>world.data[ <span class="op">!</span><span class="kw">is.na</span>(world.data<span class="op">$</span>undp_hdi),  ]</code></pre></div>
+<p>Step 1: We get the number of observations.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="kw">length</span>(world.data<span class="op">$</span>undp_hdi)
+n</code></pre></div>
+<pre><code>[1] 175</code></pre>
+<p>Step 2: We calculate the standard variation of the random variable <code>undp_hdi</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># sample standard deviation of undp_hdi</span>
+sd_hdi &lt;-<span class="st"> </span><span class="kw">sd</span>(world.data<span class="op">$</span>undp_hdi)</code></pre></div>
+<p>Step 3: We calculate the standard error of the mean which is:</p>
+<p><span class="math display">\[ SE({\bar{Y}}) = \frac{ s_{Y}}  { \sqrt{n}} \]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># standard error of the mean of undp_hdi</span>
+se.y_bar &lt;-<span class="st"> </span>sd_hdi <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(n)</code></pre></div>
+<p>Step 4: We compute the t-statistic as the difference between our estimated mean and the mean under null and then divide by the standard error of the estimated mean.</p>
+<p><span class="math display">\[ t = \frac{ \bar{Y} - \mu_{0}}  { SE({\bar{Y}}) } \]</span></p>
+<p>Note: By dividing by the standard error of the estimated mean, we are making the difference of the means (our estimated mean - the mean under the null), free of the units that the variables were measured in. The t-value is the difference of the means, were its units are standard deviations.</p>
+<p>The t-value follows a t-distribution with n-1 (174) degrees of freedom. It is well approximated by a standard normal distribution.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hdi_mean &lt;-<span class="st"> </span><span class="kw">mean</span>(world.data<span class="op">$</span>undp_hdi)
+t.statistic &lt;-<span class="st"> </span>( hdi_mean <span class="op">-</span><span class="st"> </span><span class="fl">0.85</span> ) <span class="op">/</span><span class="st"> </span>se.y_bar 
+t.statistic</code></pre></div>
+<pre><code>[1] -11.13908</code></pre>
+<p>The t.statistic is -11.13908. Given that this t statistic follows a standard normal distribution approximately (because the sample is large), we would reject the null hypothesis if the t-value is more than 1.96 standard deviations away from 0. This t-value is 11 standard deviations away from zero. The t-value is very far in the tails of the distribution. It is very unlikely that we would have estimated the mean that we did estimate (0.69824) if the population average of HDI really was 0.85.</p>
+<p>We can reject the null hypothesis.</p>
+</div>
+<div id="exercise-11-1" class="section level4">
+<h4><span class="header-section-number">4.2.0.10</span> Exercise 11</h4>
+<p>Calculate the p value.</p>
+<p>We have the t statistic already. We will follow the steps to get the p value. But first, take a look at what the distribution of our t statistic looks like. Our t statistic is -11.13908. This is very very far in the left tail.</p>
+<div class="figure">
+<img src="img/our_t_statistic.png" />
+
+</div>
+<p>Step 1: We compute the cumulative probability to get our t-value or something smaller from this distribution.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cum.prob.at.least.t &lt;-<span class="st"> </span><span class="kw">pt</span>(t.statistic, <span class="dt">df =</span> (n<span class="op">-</span><span class="dv">1</span>) )
+cum.prob.at.least.t</code></pre></div>
+<pre><code>[1] 0.0000000000000000000002127538</code></pre>
+<p>Notice that our t value is negative. By calculating the probability to get a t-value as large or smaller, we alredy have the proability that we see a t value like this in the left tail. We are conducting a two-sided test. Therefore, we want the proability in the right tail as well, i.e., to see a t value that is 11.139 or larger. So in the next step we take the probability we got times 2.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cum.prob.at.least.t <span class="op">*</span><span class="st"> </span><span class="dv">2</span></code></pre></div>
+<pre><code>[1] 0.0000000000000000000004255075</code></pre>
+<p>The p value is extremely small. In fact, it is so small that the t-test did not report the correct p value either but simply stated that the p value is smaller than 2.2e-16.</p>
+<p>Notice also that in the seminar we calucated <code>(1 - pt(t.statistic, df = n-1))*2</code>. This was because our t value was positive in the seminar. Here it is negative. Here in this task, we could have calculated <code>(1 - pt(abs(t.statistic), df = n-1))*2</code> where <code>abs(t.statistic)</code> returns the absolute value of the t statistic and hence turns it into a positive number.</p>
+<p>If you do that, R will round and return the p value as 0. We are not holier than the pope and would have accepted any of these answers (0, &lt;2.2e-16, 4.255075e-22).</p>
+</div>
+<div id="exercise-12-1" class="section level4">
+<h4><span class="header-section-number">4.2.0.11</span> Exercise 12</h4>
+<p>Construct a confidence interval around your mean estimate.</p>
+<p>There are two ways to do this which yield slighly different answers.</p>
+<p>Approach 1: Our sample is large. The t statistic follows approximately a standard normal distribution. We can, therefore, use the critical value from the standard normal distribution. <span class="math inline">\(95\%\)</span> of the area under the standard normal distribution is within <span class="math inline">\(1.96\)</span> standard deviations from the mean.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lower bound</span>
+lb &lt;-<span class="st"> </span>hdi_mean <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>se.y_bar
+<span class="co"># upper bound</span>
+ub &lt;-<span class="st"> </span>hdi_mean <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>se.y_bar
+<span class="co"># results</span>
+lb</code></pre></div>
+<pre><code>[1] 0.6715367</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ub</code></pre></div>
+<pre><code>[1] 0.7249432</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># best guess of the population mean</span>
+hdi_mean</code></pre></div>
+<pre><code>[1] 0.69824</code></pre>
+<p>Our best guess of the population mean is 0.69824. We are <span class="math inline">\(95\%\)</span> confident that our interval from 0.6715367 to 0.7249432 includes the population mean.</p>
+<p>Approach 2: We get the critical value from a t distribution with n-1 (174) degrees of freedom. To find the critical value, we use the t distribution’s quantile function <code>qt(cumulative.probability, degrees of freedom)</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t.critical &lt;-<span class="st"> </span><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dt">df =</span> <span class="dv">174</span>) 
+t.critical</code></pre></div>
+<pre><code>[1] 1.973691</code></pre>
+<p>So, in our t distribution <span class="math inline">\(95\%\)</span> are within precisely 1.973691 standard deviations from the mean.</p>
+<p>Notice, that the confidence interval covers 95% of the area under the curve and is centered on the mean. There are <span class="math inline">\(2.5\%\)</span> in each tail. <code>qt()</code> gives us the critical value at the cumulative probability of whatever we enter into the function. We input .975, so we get the critical value at the point where the right tail starts.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lower bound</span>
+lb2 &lt;-<span class="st"> </span>hdi_mean <span class="op">-</span><span class="st"> </span>t.critical <span class="op">*</span><span class="st"> </span>se.y_bar
+<span class="co"># upper bound</span>
+ub2 &lt;-<span class="st"> </span>hdi_mean <span class="op">+</span><span class="st"> </span>t.critical <span class="op">*</span><span class="st"> </span>se.y_bar
+<span class="co"># results</span>
+lb2</code></pre></div>
+<pre><code>[1] 0.6713502</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ub2</code></pre></div>
+<pre><code>[1] 0.7251298</code></pre>
+<p>Using this more exact approach, we show that the <span class="math inline">\(95\%\)</span> confidence interval covers values of the human development index from 0.6713502 to 0.7251298.</p>
+</div>
+<div id="exercise-13-1" class="section level4">
+<h4><span class="header-section-number">4.2.0.12</span> Exercise 13</h4>
+<p>Discuss your findings in terms of the original claim. Interpret the t value, the p value, and the confidence interval.</p>
+<p>We can reject the original claim that the mean of HDI is 0.85. Given, an alpha level of 0.05, our large t-value (-11.13908 - the absolute value is large) implies that our estimate (0.69824) is extremely unlikely assuming that 0.85 is the population mean. From exercise 11, we know the p-value which is the probability that we have mistakenly rejected a correct null hypothesis. That probability is</p>
+<p><span class="math display">\[ 4.255075e^{-22} = 4.255075 * 10^{-22} = \frac{4.255075}{10^{22}} = 0.0000000000000000000004255075\]</span>.</p>
+<p>Our best guess of the population mean is <span class="math inline">\(0.7 \pm 0.03\)</span> (rounded to two digits).</p>
+</div>
+<div id="optional-exercises-that-require-reading-extra-info-below-1" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Optional Exercises that require reading Extra Info below</h3>
+<div id="optional-exercise-1" class="section level4">
+<h4><span class="header-section-number">4.2.1.1</span> Optional Exercise 1</h4>
+<p>Create a scatter plot with latitute on the x-axis and political stability on the y-axis.</p>
+<p>The relationship between two continuous variables is best illustrated with a scatterplot.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>( 
+  <span class="dt">y =</span> world.data<span class="op">$</span>wbgi_pse,
+  <span class="dt">x =</span> world.data<span class="op">$</span>lp_lat_abst,
+  <span class="dt">pch =</span> <span class="dv">16</span>,
+  <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,
+  <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.9</span>),
+  <span class="dt">main =</span> <span class="st">&quot;Relation between pol. stability and distance from the equator&quot;</span>,
+  <span class="dt">xlab =</span> <span class="st">&quot;Distance from equator in decimal degrees (0 to .9)&quot;</span>,
+  <span class="dt">ylab =</span> <span class="st">&quot;political stability index&quot;</span>
+  )</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-215-1.png" width="672" /></p>
+</div>
+<div id="optional-exercise-2" class="section level4">
+<h4><span class="header-section-number">4.2.1.2</span> Optional Exercise 2</h4>
+<p>What is the correlation coefficient of political stability and latitude?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(world.data<span class="op">$</span>wbgi_pse, world.data<span class="op">$</span>lp_lat_abst, <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</code></pre></div>
+<pre><code>[1] 0.4238086</code></pre>
+<p>the correlation coefficient ranges from -1 to 1 and is a measure of linear association of two continuous variables. The variables are positively related. That means, as we move away from the equator, we tend to observe higher levels of political stability.</p>
+</div>
+<div id="optional-exercise-3" class="section level4">
+<h4><span class="header-section-number">4.2.1.3</span> Optional Exercise 3</h4>
+<p>If we move away from the equator, how does political stability change?</p>
+<p>Political stability tends to increase as we move away from the equator.</p>
+</div>
+<div id="optional-exercise-4" class="section level4">
+<h4><span class="header-section-number">4.2.1.4</span> Optional Exercise 4</h4>
+<p>Does it matter whether we go north or south from the equator?</p>
+<p>It does not matter whether we go north or south. Our latitude is measured in decimal degrees. Thus, a value of 0.9 could correspond to either the North Pole or the South Pole.</p>
+</div>
+</div>
+<div id="advanced-exercises-1" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Advanced Exercises</h3>
+<p>These exercises were hard and go beyond what we expect from you at this point. Good job, if you were able to solve them!</p>
+<div id="advanced-exercise-1" class="section level4">
+<h4><span class="header-section-number">4.2.2.1</span> Advanced Exercise 1</h4>
+<p>Calculate the numerical difference in means (political stability conditional on colonialization) using the <code>means()</code> function.</p>
+<p>Notice: Earlier we dropped missing values on <strong>undp_hdi</strong>. We thereby dropped values that were not missing on <strong>wbgi_pse</strong> from the dataset. That was valuable information. Not reloading the dataset would be a mistake.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># use full dataset </span>
+world.data &lt;-<span class="st"> </span>world.data.full
+
+<span class="kw">table</span>(world.data<span class="op">$</span>former_col) <span class="co"># check the labels of the former colonies variable </span></code></pre></div>
+<pre><code>
+not colonised was colonised 
+           72           122 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># mean political stability of not colonised group</span>
+mean.not.col &lt;-<span class="st"> </span><span class="kw">mean</span>(world.data<span class="op">$</span>wbgi_pse[world.data<span class="op">$</span>former_col<span class="op">==</span><span class="st">&quot;not colonised&quot;</span>])
+mean.not.col</code></pre></div>
+<pre><code>[1] 0.2858409</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># mean political stability of colonised group</span>
+mean.was.col &lt;-<span class="st"> </span><span class="kw">mean</span>(world.data<span class="op">$</span>wbgi_pse[world.data<span class="op">$</span>former_col<span class="op">==</span><span class="st">&quot;was colonised&quot;</span>])
+mean.was.col</code></pre></div>
+<pre><code>[1] -0.231612</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># difference in means</span>
+fd &lt;-<span class="st"> </span>mean.not.col <span class="op">-</span><span class="st"> </span>mean.was.col
+fd</code></pre></div>
+<pre><code>[1] 0.5174529</code></pre>
+<p>The difference in means is 0.5174529. Countries that were not colonised are more politically stable.</p>
+</div>
+<div id="advanced-exercise-2" class="section level4">
+<h4><span class="header-section-number">4.2.2.2</span> Advanced Exercise 2</h4>
+<p>Calculate the standard deviation of the difference in means (hint: using just the <code>sd()</code> function is incorrect in this context).</p>
+<p>The standard error of the difference between two means is:</p>
+<p><span class="math display">\[ \sqrt{\frac{\sigma^2_{Y_A}}{n_A} + \frac{\sigma^2_{Y_B}}{n_B}} \]</span></p>
+<p>Where <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are the two groups.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># variance of political stability in the two groups</span>
+var_not_col &lt;-<span class="st"> </span><span class="kw">var</span>(world.data<span class="op">$</span>wbgi_pse[world.data<span class="op">$</span>former_col<span class="op">==</span><span class="st">&quot;not colonised&quot;</span>])
+var_was_col &lt;-<span class="st"> </span><span class="kw">var</span>(world.data<span class="op">$</span>wbgi_pse[world.data<span class="op">$</span>former_col<span class="op">==</span><span class="st">&quot;was colonised&quot;</span>])
+
+<span class="co"># number of observations in each group</span>
+n_not_col &lt;-<span class="st"> </span><span class="kw">length</span>(world.data<span class="op">$</span>wbgi_pse[world.data<span class="op">$</span>former_col<span class="op">==</span><span class="st">&quot;not colonised&quot;</span>])
+n_was_col &lt;-<span class="st"> </span><span class="kw">length</span>(world.data<span class="op">$</span>wbgi_pse[world.data<span class="op">$</span>former_col<span class="op">==</span><span class="st">&quot;was colonised&quot;</span>])
+
+<span class="co"># standard error of the difference in means</span>
+fd.se &lt;-<span class="st"> </span><span class="kw">sqrt</span>( (var_not_col<span class="op">/</span>n_not_col) <span class="op">+</span><span class="st"> </span>(var_was_col<span class="op">/</span>n_was_col)   )
+fd.se</code></pre></div>
+<pre><code>[1] 0.1492324</code></pre>
+<p>The standard error of the difference in means is 0.1492324.</p>
+</div>
+<div id="advanced-exercise-3" class="section level4">
+<h4><span class="header-section-number">4.2.2.3</span> Advanced Exercise 3</h4>
+<p>Is the difference in means more than <span class="math inline">\(1.96\)</span> standard deviations away from zero? Interpret the result.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fd <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>fd.se</code></pre></div>
+<pre><code>[1] 0.2189881</code></pre>
+<p>The difference in means is further than two standard deviations away from zero. Given an alpha level of 0.05, we can reject the null hypothesis that political stability is the same in countries that were colonised and those that were not.</p>
+</div>
+<div id="advanced-exercise-4" class="section level4">
+<h4><span class="header-section-number">4.2.2.4</span> Advanced Exercise 4</h4>
+<p>We claim, the difference in means in terms of political stability between countries that were former colonies and those that were not is 0.3. Check this hypothesis.</p>
+<p>We use the t-test for the difference in means to test this claim. Normally, our null would be that the difference in means is zero, i.e. there is no difference. Here, the claim is that the difference is 0.3. So, all we have to do is adjust the null hypothesis accordingly.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(world.data<span class="op">$</span>wbgi_pse[world.data<span class="op">$</span>former_col <span class="op">==</span><span class="st"> &quot;not colonised&quot;</span>],
+       world.data<span class="op">$</span>wbgi_pse[world.data<span class="op">$</span>former_col <span class="op">==</span><span class="st"> &quot;was colonised&quot;</span>], 
+       <span class="dt">mu =</span> <span class="fl">0.3</span>, <span class="dt">alt =</span> <span class="st">&quot;two.sided&quot;</span>)</code></pre></div>
+<pre><code>
+    Welch Two Sample t-test
+
+data:  world.data$wbgi_pse[world.data$former_col == &quot;not colonised&quot;] and world.data$wbgi_pse[world.data$former_col == &quot;was colonised&quot;]
+t = 1.4571, df = 139.35, p-value = 0.1473
+alternative hypothesis: true difference in means is not equal to 0.3
+95 percent confidence interval:
+ 0.2224004 0.8125053
+sample estimates:
+ mean of x  mean of y 
+ 0.2858409 -0.2316120 </code></pre>
+<p>We cannot reject the claim that the true difference in means is 0.3.</p>
+</div>
+<div id="advanced-exercise-5" class="section level4">
+<h4><span class="header-section-number">4.2.2.5</span> Advanced Exercise 5</h4>
+<p>First, we drop missings from <strong>wdi_gdpc</strong>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">world.data &lt;-<span class="st"> </span>world.data[ <span class="op">!</span><span class="kw">is.na</span>(world.data<span class="op">$</span>wdi_gdpc), ]</code></pre></div>
+<p>An angry citizen who wants to defund the Department of International Development (DFID) claims that countries that were former colonies have reached <span class="math inline">\(75\%\)</span> of the level of wealth of countries that were not colonised. Check this claim.</p>
+<p>The null hypothesis is that there is no difference between the level of wealth in countries that were former colonies and 0.75 times the level of wealth in countries that were not former colonies</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># the claim of the citizen</span>
+claim &lt;-<span class="st"> </span><span class="kw">mean</span>(world.data<span class="op">$</span>wdi_gdpc[world.data<span class="op">$</span>former_col<span class="op">==</span><span class="st">&quot;not colonised&quot;</span>]) <span class="op">*</span><span class="st"> </span><span class="fl">0.75</span> 
+claim</code></pre></div>
+<pre><code>[1] 12311.54</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># estimated level of wealth in countries that were colonised</span>
+estimate &lt;-<span class="st"> </span><span class="kw">mean</span>(world.data<span class="op">$</span>wdi_gdpc[world.data<span class="op">$</span>former_col<span class="op">==</span><span class="st">&quot;was colonised&quot;</span>])
+estimate</code></pre></div>
+<pre><code>[1] 6599.714</code></pre>
+<p>Our estimate is roughly half the angry citizen’s claim. The substantial difference is huge. To cover all our bases, let’s perform the t-test for the difference in means.</p>
+<p>How would we do this though? This one is tricky because the citizen’s claim is not actually in our data. At the same time we don’t know the true level of wealth in countries that were not colonised, we only have an estimate. We have to manipulate our data to get there.</p>
+<p>First, we create a copy of the wealth variable with a new name.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">world.data<span class="op">$</span>angry_gdp &lt;-<span class="st"> </span>world.data<span class="op">$</span>wdi_gdpc</code></pre></div>
+<p>Now, we adjust the level of wealth in the group of countries that were not colonised down to the citizen’s claim. The citizen’s claim is that we should then not find a difference in means between the two groups (“was colonised” and “not colonised”) anymore.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">world.data<span class="op">$</span>angry_gdp[world.data<span class="op">$</span>former_col<span class="op">==</span><span class="st">&quot;not colonised&quot;</span>] &lt;-<span class="st"> </span>world.data<span class="op">$</span>angry_gdp[world.data<span class="op">$</span>former_col<span class="op">==</span><span class="st">&quot;not colonised&quot;</span>] <span class="op">*</span><span class="st"> </span><span class="fl">0.75</span>
+<span class="kw">mean</span>(world.data<span class="op">$</span>angry_gdp[world.data<span class="op">$</span>former_col<span class="op">==</span><span class="st">&quot;not colonised&quot;</span>])</code></pre></div>
+<pre><code>[1] 12311.54</code></pre>
+<p>We can see that the level of mean wealth of our manipulated variable for countries that were not colonised now corresponds to the citizen’s claim. We can now check the difference in means.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(world.data<span class="op">$</span>angry_gdp[world.data<span class="op">$</span>former_col<span class="op">==</span><span class="st">&quot;not colonised&quot;</span>],
+       world.data<span class="op">$</span>angry_gdp[world.data<span class="op">$</span>former_col<span class="op">==</span><span class="st">&quot;was colonised&quot;</span>], 
+       <span class="dt">mu =</span> <span class="dv">0</span>, <span class="dt">alt =</span> <span class="st">&quot;two.sided&quot;</span>)</code></pre></div>
+<pre><code>
+    Welch Two Sample t-test
+
+data:  world.data$angry_gdp[world.data$former_col == &quot;not colonised&quot;] and world.data$angry_gdp[world.data$former_col == &quot;was colonised&quot;]
+t = 3.6218, df = 127.72, p-value = 0.0004206
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 2591.29 8832.37
+sample estimates:
+mean of x mean of y 
+12311.544  6599.714 </code></pre>
+<p>Clearly, we can reject the citizen’s claim. Our p value implies that the probability that we see this huge difference in our data, given that there really is no difference, is <span class="math inline">\(0.04\%\)</span>. Our conventional alpha level is <span class="math inline">\(5\%\)</span>.</p>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="seminar4.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["statistics1.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
