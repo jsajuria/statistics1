@@ -1,5 +1,7 @@
 # Revision: Sample Variance and Sample Standard Deviation; Hypothesis testing and Confidence Intervals
 
+In this seminar, we revise the concepts of the standard deviation, the sampling variance, hypothesis testing and confidence intervals. We will also learn some more data manipulation and working with the random number generator.
+
 ## Seminar
 
 Let's remove all objects from our workspace and set the working directory.
@@ -13,7 +15,7 @@ setwd("~/statistics1")
 
 The sample variance and sample standard deviation inform us about the degree of variability of our data. Suppose, we were to roll the dice 5 times. We could then compute the mean value that we roll. The sample standard deviation measures by how much an average roll of the dice will deviate from the mean value.
 
-We start rolling the dice, using R's random number generator and the `runif()` function. The function randomly draws numbers from a uniform distribution. In a uniform distribution each value has the same probability of being drawn. All six sides of a die should be equally likely if the die is fair. Hence, the uniform distriubtion.
+We start rolling the dice, using R's random number generator and the `runif()` function. The function randomly draws numbers from a uniform distribution. In a uniform distribution each value has the same probability of being drawn. All six sides of a die should be equally likely if the die is fair. Hence, the uniform distribution.
 
 `runif()` takes three arguments. `n` is the number of values to be drawn. `min` is the minimum value and `max` is the maximum value.
 
@@ -35,7 +37,7 @@ dice
 dice2
 ```
 
-The numbers of the first and second roll differ because we have drawn values at random. To make our results replicaple and to ensure that everyone in the seminar works with the same numbers, we set R's random number generator with the `set.seed()` function. As argument we plug in some abitrary value (it does not matter which but using a different one will lead to a different quasi-random draw).
+The numbers of the first and second roll differ because we have drawn values at random. To make our results replicate and to ensure that everyone in the seminar works with the same numbers, we set R's random number generator with the `set.seed()` function. As argument we plug in some arbitrary value (it does not matter which but using a different one will lead to a different quasi-random draw).
 
 ```{r}
 # set random number generator
@@ -86,519 +88,231 @@ dice
 table(dice)
 ```
 
-We have rolled a six relatively often. All sides should be equally likely but due to sampling variablity, we have rolled the six most often. The expected value of a die is 
+We have rolled a six relatively often. All sides should be equally likely but due to sampling variability, we have rolled the six most often. The expected value of a die is 3.5. That is: $$ 1 \times \frac{1}{6} + 2 \times \frac{1}{6} + 3 \times \frac{1}{6} + 4 \times \frac{1}{6} + 5 \times \frac{1}{6} + 6 \times \frac{1}{6} = 3.5$$
 
-
-
-
-
-
-We load the data from the [Quality of Government Institute](http://qog.pol.gu.se/) again. Let's have a look at the codebook:
-
-
-```{r echo = FALSE}
-knitr::kable(tibble::tribble(
-  ~Variable,     ~Description,
-  "h_j",    "1 if Free Judiciary",
-  "wdi_gdpc",      "Per capita wealth in US dollars",
-  "undp_hdi",      "Human development index (higher values = higher quality of life)",
-  "wbgi_cce",      "Control of corruption index (higher values = more control of corruption)",
-  "wbgi_pse",    "Political stability index (higher values = more stable)",
-  "former_col",    "1 = country was a colony once",
-  "lp_lat_abst",    "Latitude of country's captial divided by 90"
-))
-```
-
-Go ahead and load the data from last week yourself.
+We compute the mean in our sample and the standard deviation. Let's start with the mean. Do so yourself but do not use the in-built function.
 
 ```{r class.source="collapsible"}
-world.data <- read.csv("QoG2012.csv")
+dice.sum <- dice[1] + dice[2] + dice[3] + dice[4] + dice[5] + dice[6] + dice[7] + dice[8] + dice[9] + dice[10]
+dice.mean <- dice.sum / 10  
+dice.mean
 ```
 
-We can get summary statistics of each variable in the dataset by using the `summary()` function over the dataset.
+We would have gotten the same result from the `mean()` function.
+
+The sample standard deviation tells by how much an average roll of the dice differs from the estimated sample mean. Estimate the sample standard deviation on your own without using the `sd()` function. Do not copy. Type everything yourself.
+
+```{r class.source="collapsible"}
+numerator <- ( (dice[1] - dice.mean)^2 + (dice[2] - dice.mean)^2 + (dice[3] - dice.mean)^2  +
+                 (dice[4] - dice.mean)^2 + (dice[5] - dice.mean)^2 + (dice[6] - dice.mean)^2 +
+                 (dice[7] - dice.mean)^2 + (dice[8] - dice.mean)^2 + (dice[9] - dice.mean)^2 +
+                 (dice[10] - dice.mean)^2 )
+std.dev <- sqrt( (numerator / 9) )
+std.dev
+```
+
+An average deviation from the sample mean is 1.76.
+
+### T test for the sample mean
+
+Our estimate of the mean is 4. The expected value is 3.5. Is this evidence that the die is loaded? The null hypothesis is that the die is fair. The alternative hypothesis is that the die is loaded.
+
+Answer this question on your own by computing and interpreting the t value.
+
+```{r class.source="collapsible"}
+# standard error of the sample mean
+std.err <- std.dev / sqrt(10)
+
+# t value
+t.value <- (4 - 3.5) / std.err
+t.value  
+```
+
+Clearly, we cannot reject the null hypothesis. The estimated difference between our sample mean and the population mean is 0.5. This value is 0.9 standard errors away from the population mean under the null hypothesis (3.5). We do not know the critical value for the t distribution here because we are in a small sample. However, it must be bigger than 1.96. Our t value is clearly smaller, therefore, we reject the null hypothesis. That is not surprising, given that we have drawn from a uniform distribution, i.e., our sampling process was fair by definition.
+
+Let's back up. The standard error quantifies the average difference between mean estimates that are due to sampling variability (chance). Put differently, the standard error approximates the average difference between the population mean and our sample estimate.
+
+Now. Compute the variance of the mean on your own. Try yourself before you check the code.
+
+```{r class.source="collapsible"}
+# sample variance
+variance <- numerator / 9
+
+# variance of the mean
+var.mean <- variance / 10
+var.mean
+```
+
+The correct answer is 0.31. Now, compute the standard error of the mean from your variance of the mean. Try yourself.
+ 
+\[ s^2_{\bar{X}} = \frac{s_{x}^2}{n} = (\sqrt{ \frac{s_{x}}{\sqrt{n}}})^2 \]   
+
+```{r class.source="collapsible"}
+# variance of the mean
+sqrt(var.mean)
+```
+
+Let's estimate the p value from a t distribution with the correct amount of degrees of freedom.
+
+```{r class.source="collapsible"}
+p.value <- (1 - pt(t.value, df = 9))*2
+p.value
+```
+
+The probability that we roll a fair die 10 times and get a sample mean of 4 is 39 percent. That is not unlikely at all. We are far from rejecting the null hypothesis.
+
+We now construct the confidence interval around our mean estimate. To re-cap, we construct the confidence interval as:
+
+\[ \bar{Y} \pm \mathrm{critical \: value} \times  SE(\bar{Y})  \]
+
+First, we need the critical value (for an alpha level of 0.05). We get the critical value from the quantile function of the t distribution with $n-1$ degrees of freedom.
 
 ```{r}
-summary(world.data)
+qt(p = 0.975, df = 9)
 ```
+where `p` is the cumulative probability and `df` is the degrees of freedom. The critical value in a t distribution with 9 degrees of freedom is 2.262157.
 
-
-### The Standard Error
-
-The standard error of an estimate quantifies uncertainty that is due to sampling variability. Recall that we infer from a sample to the population. Let's have a look at *wdi_gdpc* which is gdp per capita. We re-name the variable to *wealth*. Do so on your own.
+Construct the lower and upper bounds of the confidence interval yourself.
 
 ```{r class.source="collapsible"}
-names(world.data)[2] <- "wealth" 
-names(world.data)
-```
-
-Now, have a look at the mean of the new *wealth* variable.
-
-```{r class.source="collapsible"}
-mean(world.data$wealth)
-```
-
-R returns NA because there are missing values on the *wealth* variable and we cannot calculate with NAs. For instance, `2 + NA` will return NA. We make a copy of the full data set and then delete missing values. We did this last week. Go ahead do so on your own.
-
-```{r class.source="collapsible"}
-# copy of the dataset
-full.data <- world.data
-
-# delete rows from dataset that have missings on wealth variable
-world.data <- world.data[ !is.na(world.data$wealth) , ]
-```
-
-Now, compute the mean of *wealth* again.
-
-```{r class.source="collapsible"}
-mean(world.data$wealth)
-```
-
-The mean estimate in our sample is `r round(mean(world.data$wealth), 2)`. We are generally interested in the population. Therefore, we infer from our sample to the population. Our main problem is that samples are subject to sampling variability. If we take another sample, our mean estimate would be different. The standard error quantifies this type of uncertainty.
-
-The formula for the standard error of the mean is: $$ SE(\bar{Y}) = \frac{s_Y}{\sqrt{n}}  $$
-
-Where $s_Y$ is the standard deviation (of *wealth*) and $n$ is the number of observations (of *wealth*).
-
-We compute the standard error in R:
-
-```{r}
-se.y_bar <- (sd(world.data$wealth) / sqrt( length(world.data$wealth) ))
-se.y_bar
-```
-
-The standard error is ~`r round(se.y_bar,2)`. The mean of the sampling distribution is the population mean (or close to it --- the more samples we take, the closer is the mean of the sampling distribution to the population mean). The standard error is the average difference from the population mean. We have taken 1 sample. When taking any random sample, the average difference between the mean in that sample and the population mean is the standard error.
-
-We need the standard error for hypothesis testing. You will see how in the following.
-
-### T-test (one sample hypothesis test)
-
-A knowledgeable friend declares that worldwide wealth stands at exactly 10 000 US dollars per capita today. We would like to know whether she is right and tease her relentlessly if she isn’t. To that end, we assume that her claim is the population mean. We then estimate the mean of *wealth* in our sample. If the difference is large enough, so that it is unlikely that it could have occurred by chance alone, we can reject her claim.
-
-So, first we take the mean of the *wealth* variable.
-
-```{r}
-mean(world.data$wealth)
-```
-
-Wow, our friend is quite close. Substantially, the difference of our friends claim to our estimate is small but we could still find that the difference is statistically significant (it's a noticeable systematic difference).
-
-Because we do not have information on all countries, our 10184.09 is an estimate and the true population mean – the population here would be all countries in the world – may be 10000 as our friend claims. We test this statistically. 
-
-In statistics jargon: we would like to test whether our estimate is statistically different from the 10000 figure (the null hypothesis) suggested by our friend. Put differently, we would like to know the probability that we estimate 10184.09 if the true mean of all countries is 10000.
-
-Recall, that the standard error of the mean (which is the estimate of the true standard deviation of the population mean) is estimated as:
-
-\[ \frac{s_{Y}}{\sqrt{n}} \]
-
-Before we estimate the standard error, let’s get $n$ (the number of observations). We have done this above but to make our code more readable, we save the number of observations in an object that we call `n`. Go ahead and do this on your own.
-
-```{r class.source="collapsible"}
-n <- length(world.data$wealth)
-n
-```
-
-With the function `length(world.data$world)` we get all observations in the data. Now, let's take the standard error of the mean again.
-
-```{r class.source="collapsible"}
-se.y_bar <- sd(world.data$wealth) / sqrt(n)
-```
-
-We know that 1 standard error is one average deviation from the population mean. The sampling distribution is approximately normal. 95 percent of the observations under the normal distribution are within 2 standard deviations of the mean.
-
-We construct the confidence interval within which the population mean lies with 95 percent probability in the following way. First, we take our mean estimate of *wealth*. That's the sample mean and not the population mean. Second, we go 2 standard errors to the left of it. This is the lower bound of our confidence interval. Third, we go 2 standard deviations to the right of the sample mean. That is the upper bound of our confidence interval.
-
-The 95 percent confidence interval around the sample means gives the interval within which the population mean lies with 95 percent probability. 
-
-We want to know what the population mean is, right? Yes, that's right. Therefore, we want the confidence interval to be as narrow as possible. The narrower the confidence interval, the more precise we are about the population mean. For instance, saying the population mean of income is between 9 950 and 10 050 is more precise than saying the population mean is between 5 000 and 15 000.
-
-We construct the confidence interval with the standard error. That means, the smaller the standard error, the more precise our estimate. The formula for the 95 percent confidence interval is:
-
-$$ \bar{Y} \pm 1.96 \times SE(\bar{Y}) $$
-
-"Where does the 1.96 come from", you ask. It's a critical value. More on that later. For now, just recall that in a normal distribution 95 percent of all observations are within 1.96 standard errors of the mean.
-
-We now construct our confidence interval. Our sample is large enough to assume that the sampling distribution is approximately normal. So, we can go $1.96$ standard deviations to the left and to the right of the mean to construct our $95\%$ confidence interval.
-
-```{r}
 # lower bound
-lb <- mean(world.data$wealth) - 1.96 * se.y_bar
+lb <- dice.mean - qt(p = 0.975, df = 9) * std.err
 # upper bound
-ub <- mean(world.data$wealth) + 1.96 * se.y_bar
-# results (the population mean lies within this interval with 95% probability)
-lb # lower bound
-mean(world.data$wealth) # sample mean
-ub # upper bound
+ub <- dice.mean + qt(p = 0.975, df = 9) * std.err
+
+# confidence interval
+lb
+ub
 ```
 
-You can make this look a little more like a table like so:
-```{r}
-ci <- cbind(lower_bound = lb, mean = mean(world.data$wealth), upper_bound = ub)
-ci
+With 95 percent probability (where the probability is the long-run relative frequency), the population mean is within the confidence interval.
+
+Clearly, the population mean under the assumption that the null hypothesis is true (3.5), is within this interval.
+
+Run a t test using the `t.test()` function yourself.
+
+```{r class.source="collapsible"}
+t.test(dice,
+       mu = 3.5,
+       conf.level = .95)
 ```
-The `cbind()` function stands for column-bind and creates a $1\times3$ matrix.
 
-So we are $95\%$ confident that the population average level of wealth is between 8375.53 US dollars and 11992.65 US dollars. You can see that we are not very certain about our estimate and we most definitely cannot rule out that our friend is right (she claimed that the population mean is 10 0000---that is within our interval). Hence, we cannot reject it. 
+The `t.test()` function is more convenient than estimating everything by hand. The results are the same.
 
-A different way of describing our finding is to emphasize the logic of (hypothetical) repeated sampling. In a process of repeated sampling we can expect that the confidence interval that we calculate for each sample will include the true population value $95\%$ of the time. That is equivalent to what we said earlier because a probability is the long-run relative frequency of an outcome.
+### T test for the difference in means
 
-#### The t value
+We will now test the difference between two dice. First, remove everything from the workspace on your own.
 
-We now estimate the t value. Recall that our friend claimed that the population mean was 10 000. This is the null hypothesis that we wish to falsify. We estimated something else in our data, namely `r mean(world.data$wealth)`. The t value is the difference between our estimate (the result we get by looking at data) and the population mean under the null hypothesis divided by the standard error of the mean.
+```{r class.source="collapsible"}
+# remove everything from the workspace
+rm(list = ls())
+```
 
-\[ \frac{ \bar{Y} - \mu_0 } {SE(\bar{Y})} \]
+Set the random number generator to 1234.
 
-Where $\bar{Y}$ is the mean in our data, $\mu_0$ is the population mean under the null hypothesis and $SE(\bar{Y})$ is the standard error of the mean.
+```{r class.source="collapsible"}
+set.seed(1234)
+```
 
-Okay, let's compute this in R:
+Generate a vector of 100 rolls of a fair dice on your own and show the results in a frequency table.
+
+```{r class.source="collapsible"}
+fair.die <- runif(n = 100, min = 1, max = 7)
+fair.die <- as.integer(fair.die)
+table(fair.die)
+```
+
+The absolute number are not that great to see the distribution of values at a glance. Create a table that shows the proportions of each outcome.
+
+```{r class.source="collapsible"}
+table(fair.die) / sum(table(fair.die))
+```
+
+Calculate the mean.
+
+```{r class.source="collapsible"}
+mean(fair.die)
+```
+
+Although, the proportions look like we rolled the lower numbers way too often, we are not too far away from the population mean (3.5).
+
+Now, we create a loaded die. We draw randomly from a normal distribution with mean 4.5 and standard deviation 1.5.
 
 ```{r}
-t.value <- (mean(world.data$wealth) - 10000) / se.y_bar
+loaded.die <- rnorm(n = 100, mean = 4.5, sd = 1.5)
+loaded.die <- as.integer(loaded.die)
+table(loaded.die)
+```
+
+Oops, we rolled 6 seven's and 1 eight. Let's change these to sixes. We use the square brackets to index the elements of the **loaded.die** vector. We use the `which()` function to identify the elements that are greater than 6. Finally, we change these values to 6.
+
+```{r}
+loaded.die[ which(loaded.die > 6) ] <- 6
+table(loaded.die)
+```
+
+Now, estimate the 2 means (of the fair die and the loaded die) yourself. Next, estimate the difference in means. You may use the `mean()` function.
+
+```{r}
+# mean in the 2 groups
+mean(fair.die)
+mean(loaded.die)
+
+# first difference (difference in means)
+fd <- mean(fair.die) - mean(loaded.die)
+fd
+```
+
+The difference suggests that we roll larger values with the loaded die. Is the difference statistically detectable? To find out, we carry out the t test for the difference in means. Our dependent interval scaled variable is the value of the roll of the dice. The our independent binary variable is whether the die is loaded or not.
+
+Compute the standard error for the difference in means on your own.
+
+\[ SE(Y_{X=0} - Y_{X=1}) = \sqrt{ \frac{s_{Y_{X=0}}^2}{n_{X=0}} + \frac{s_{Y_{X=1}}^2}{n_{X=1}}}  \]
+
+where $s_{Y_{X=0}}^2$ is the variance in the first group and $s_{Y_{X=1}}^2$ is the variance in the second group. The number of observations in the first group is $n_{X=0}$ and the number of observations in the second group is $n_{X=1}$.
+
+The result is 0.2161462. Try until you get it. You may use the `var()` function.
+
+```{r class.source="collapsible"}
+# standard error of the first difference
+se.fd <- sqrt( ((var(fair.die) / 100) + (var(loaded.die) / 100)) )
+se.fd
+```
+
+Now, that we have the standard error of the difference in means, compute the t statistic on your own (without using the `t.test()` function).
+
+```{r class.source="collapsible"}
+# standard error of the first difference
+t.value <- (mean(fair.die) - mean(loaded.die)) / se.fd
 t.value
 ```
 
-Look at the formula until you understand what is going on. In the numerator we take the difference between our estimate and the population mean under the null hypothesis. In expectation that difference should be 0---assuming that the null hypothesis is true. The larger that difference, the less likely that the null hypothesis is true.
+The t value is large and our sample size is also large. We can take the critical from a normal distribution. For an alpha level of 0.05, the critical value is $1.96$.
 
-We divide by the standard error to transform the units of the difference into standard deviations. Before we transformed the units, our difference was in the units of whatever variable we are looking at (US dollars in our example). By dividing by the standard error, we have normed the variable. Its units are now standard deviations from the mean. 
-
-Assume that the null hypothesis is true. In expectation the difference between our estimate in the data and the population mean should be **0 standard deviations**. The more standard deviations our estimate is away from the population mean under the null hypothesis, the less likely it is that the null hypothesis is true.
-
-Within **1.96 standard deviations** from the mean lie 95 percent of all observations. That means, it is very unlikely that the null hypothesis is true, if the difference that we estimated is further than 1.96 standard deviations from the mean. "How unlikely," you ask. We would need the p value, for the exact probability. However, the probability is less than 5 percent, if the estimated difference is more  than 1.96 standard deviations from the population mean under the null hypothesis.
-
-Back to our t value. We estimated a t value of `r t.value`. That means that a sample estimate of `r mean(world.data$wealth)` is `r t.value` standard deviations from the population mean under the null hypothesis---which is 10 000 in our sample.
-
-Our t value suggests that our sample estimate would only be `r t.value` standard deviations away from the population mean under the null. That is not unlikely at all. We can only reject the null hypothesis if we are more than 1.96 standard deviations away from the mean.
-
-#### The p value
-
-Let's estimate the precise p-value by calculating how likely it would be to observe a t-statistic of `r t.value` from a t-distribution with n - 1 (`r n-1`) degrees of freedom.
-
-The function `pt(t.value, df = n-1)` is the cumulative probability that we get the t.value we put into the formula if the null is true. The cumulative probability is estimated as the interval from minus infinity to our t.value. So, 1 minus that probability is the probability that we see anything larger (in the right tale of the distribution). But we are testing whether the true mean is different from 10000 (including smaller). Therefore, we want the probability that we see a t.value in the right tale *or* in the left tale of the distribution. The distribution is symmetric. So we can just calculate the probability of seeing a t-value in the right tale and multiply it by 2.
-
-```{r}
-2* ( 1 - pt(t.value, df = (n-1) ))
-```
-
-The p-value is way too large to reject the null hypothesis (the true population mean is 10 000). If we specified an alpha-level of 0.05 in advance, we would reject it only if the p-value was smaller than 0.05. If we specified an alpha-level of 0.01 in advance, we would reject it only if the p-value was smaller than 0.01, and so on.
-
-Let's verify our result using the the t-test function `t.test()`. The syntax of the function is:
-
-```
-t.test(formula, mu, alt, conf)
-```
-
-Lets have a look at the arguments.
-
-|Arguments|Description|
-|--------|-----------------------------------------------------------|
-|`formula`| Here, we input the vector that we calculate the mean of. For the one-sample t test, in our example, this is the mean of *wealth*. For the t test for the difference in means, we would input both vectors and separate them by a comma.|
-|`mu`|Here, we set the null hypothesis. The null hypothesis is that the true population mean is 10000. Thus, we set `mu = 10000`.|
-|`alt`|There are two alternatives to the null hypothesis that the difference in means is zero. The difference could either be smaller or it could be larger than zero. To test against both alternatives, we set `alt = "two.sided"`.|
-|`conf`|Here, we set the level of confidence that we want in rejecting the null hypothesis. Common confidence intervals are: 95%, 99%, and 99.9%---they correspond to alpha levels of 0.05, 0.01 and 0.001 respectively.|
-
-
-```{r}
-t.test(world.data$wealth, mu = 10000, alt = "two.sided") 
-
-```
-
-The results are similar. Therefore we can conclude that we are unable to reject the null hypothesis suggested by our friend that the population mean is equal to 10000. Let's see how we determine critical values.
-
-
-#### Critical Values
-
-In social sciences, we usually operate with an alpha level of 0.05. That means, we reject the null hypothesis if the p value is smaller than 0.05. Or put differently, we reject the null hypothesis if the 95 percent confidence interval does not include the population mean under the null hypothesis---which is always the case if our estimate is further than two standard errors from the mean under null hypothesis (usually 0).
-
-We said earlier that the critical value is 1.96 for an alpha level of 0.05. That is true in large samples where the distribution of the t value follows a normal distribution. 95 percent of all observations are within 1.96 standard deviations of the mean.
-
-```{r, echo=FALSE,include=FALSE}
-options(repos=c(CRAN="https://ftp.gwdg.de/pub/misc/cran/"))
-install.packages("RColorBrewer")
-library(RColorBrewer)
-c.cols <- brewer.pal(3, "Set1")
-```
-
-```{r, echo=FALSE}
-par(bg = '#fdf6e3')
-curve(dnorm(x, 0, 1), xlim = c(-3, 3), ylab = "", yaxt = "n", xlab = "")
-c.x <- c(-1.96, seq(-1.96, 1.96, 0.01), 1.96 )
-c.y <- c(0, dnorm(seq(-1.96, 1.96, 0.01)), 0 )
-polygon(c.x, c.y, col=c.cols[3])
-segments(x0=-3,y0=0,x1=3,y1=0)
-segments(x0=0, y0 = 0, x1=0, y = dnorm(0), lty = "dashed")
-```
-
-The green area under the curve covers 95 percent of all observations. There are 2.5 percent in each tail. We reject the null hypothesis if our estimate is in the tails of the distribution. It must be further than 1.96 standard deviations from the mean. But how did we know that 95 percent of the area under the curve is within 1.96 standard deviations from the mean?
-
-Let's separate the curve in you mind into 3 pieces. The left tail covers 2.5 percent of the area under the curve. The green middle bit covers 95 percent and the right tail again 2.5 percent. Now we do this as cumulative probabilities. The left tail ends at 2.5 percent cumulative probability. The green area ends at 97.5 percent cumulative probability and the right tail ends at 100 percent.
-
-The critical value is were the left tail ends or the right tail starts (looking at the curve from left to right). Let's get the value where the cumulative probability is 2.5 percent---where the left tail ends.
-
-```{r}
-#
-qnorm(0.025, mean = 0, sd = 1)
-```
-
-If you look at the x-axis of our curve that is indeed where the left tail ends. We add a red dot to our graph to highlight it.
-
-```{r, echo=FALSE}
-par(bg = '#fdf6e3')
-curve(dnorm(x, 0, 1), xlim = c(-3, 3), ylab = "", yaxt = "n", xlab = "")
-c.x <- c(-1.96, seq(-1.96, 1.96, 0.01), 1.96 )
-c.y <- c(0, dnorm(seq(-1.96, 1.96, 0.01)), 0 )
-polygon(c.x, c.y, col=c.cols[3])
-segments(x0=-3,y0=0,x1=3,y1=0)
-segments(x0=0, y0 = 0, x1=0, y = dnorm(0), lty = "dashed")
-points(x=qnorm(0.025, mean = 0, sd = 1), y = 0, pch = 16, cex = 2, col = c.cols[1])
-```
-
-Now, let's get the critical value of where the right tail starts. That is at the cumulative probability of 97.5 percent.
-
-```{r}
-qnorm(0.975, mean = 0, sd = 1)
-```
-
-As you can see, this is the same number, only positive instead of negative. That's always the case because the normal distribution is symmetric. Let's add that point in blue to our graph.
-
-```{r, echo=FALSE}
-par(bg = '#fdf6e3')
-curve(dnorm(x, 0, 1), xlim = c(-3, 3), ylab = "", yaxt = "n", xlab = "")
-c.x <- c(-1.96, seq(-1.96, 1.96, 0.01), 1.96 )
-c.y <- c(0, dnorm(seq(-1.96, 1.96, 0.01)), 0 )
-polygon(c.x, c.y, col=c.cols[3])
-segments(x0=-3,y0=0,x1=3,y1=0)
-segments(x0=0, y0 = 0, x1=0, y = dnorm(0), lty = "dashed")
-points(x=qnorm(0.025, mean = 0, sd = 1), y = 0, pch = 16, cex = 2, col = c.cols[1])
-points(x=qnorm(0.975, mean = 0, sd = 1), y = 0, pch = 16, cex = 2, col = c.cols[2])
-```
-
-This is how we get the critical value for the 95 percent confidence interval. By the way, back in the day you would have to look up critical values in critical values tables at the end of statistics textbooks (you can find the tables in Stock and Watson and Kellstedt and Whitten.)
-
-As you can see our red and blue dots are the borders of the green area, the 95 percent interval around the mean. You can get the critical values for any other interval (e.g., the 99 percent interval) similar to what we did just now.
-
-We now do the same for the t distribution. In the t distribution, the critical value depends on the shape of the t distribution which is characterised by its degrees of freedom. Let's draw a t distribution with 5 degrees of freedom.
-
-```{r, echo=FALSE}
-par(bg = '#fdf6e3')
-curve(dt(x, 5), xlim = c(-3, 3), ylab = "", yaxt = "n", main = "t distribution with 5 degrees of freedom", 
-      xlab = "")
-```
-
-Although, it looks like a standard normal distribution, it is not. The t with 5 degrees of freedom has fatter tails. We show this by overlaying the t with a standard normal distribution.
-
-```{r, echo=FALSE}
-par(bg = '#fdf6e3')
-curve(dt(x, 5), xlim = c(-3, 3), ylab = "", yaxt = "n", xlab = "",
-      main = "t distribution with 5 degrees of freedom compared to standard normal", ylim = c(-0.01, .4))
-c.x <- c(-3, seq(-3, 3, 0.01), 3 )
-c.y <- c(0, dt(seq(-3, 3, 0.01), df = 5), 0 )
-polygon(c.x, c.y, col=c.cols[1])
-c.x <- c(-3, seq(-3, 3, 0.01), 3 )
-c.y <- c(0, dnorm(seq(-3, 3, 0.01)), 0 )
-polygon(c.x, c.y, col=c.cols[3])
-```
-
-The red area is the difference between the standard normal distribution and the t distribution with 5 degrees of freedom.
-
-The tails are fatter and that means that the probabilities of getting a value somewhere in the tails is larger. Lets calculate the critical value for a t distribution with 5 degrees of freedom.
-
-```{r}
-# value for cumulative probability 95 percent in the t distribution with 5 degrees of freedom
-qt(0.975, df = 5)
-```
-
-See how much larger that value is than 1.96. Under a t distribution with 5 degrees of freedom 95 percent of the observations around the mean are within the interval from negative `r qt(0.975, df = 5)` to positive `r qt(0.975, df = 5)`.
-
-Let's illustrate that.
-```{r, echo=FALSE}
-par(bg = '#fdf6e3')
-curve(dt(x, df=5), xlim = c(-3, 3), ylab = "", yaxt = "n", ylim = c(-0.01, .38), xlab = "")
-c.x <- c(qt(0.025, df = 5), seq(qt(0.025, df = 5), qt(0.975, df = 5), 0.01), qt(0.975, df = 5) )
-c.y <- c(0, dt(seq(qt(0.025, df = 5), qt(0.975, df = 5), 0.01), df = 5), 0 )
-polygon(c.x, c.y, col=c.cols[3])
-segments(x0=-3,y0=0,x1=3,y1=0)
-segments(x0=0, y0 = 0, x1=0, y = dnorm(0), lty = "dashed")
-
-points(x=qt(0.025, df = 5), y = 0, pch = 16, cex = 2, col = c.cols[1])
-points(x=qt(0.975, df = 5), y = 0, pch = 16, cex = 2, col = c.cols[2])
-```
-
-Remember the critical values for the t distribution are always more extreme or similar to the critical values for the standard normal distribution. If the t distribution has few degrees of freedom, the critical values (for the same percentage area around the mean) are much more extreme. If the t distribution has many degrees of freedom, the critical values are very similar.
-
-
-### T-test (difference in means)
-
-We are interested in whether there is a difference in income between countries that have an independent judiciary and countries that do not have an independent judiciary. Put more formally, we are interested in the difference between two conditional means. Recall that a conditional mean is the mean in a subpopulation such as the mean of income given that the country has a free judiciary (conditional mean 1).
-
-The t-test is the appropriate test statistic. Our interval-level dependent variable is *wealth* which is GDP per capita taken from the World Development Indicators of the World Bank. Our binary independent variable is *h_j* which is 1 if a country has a free judiciary and 0 otherwise.
-
-Let's check the summary statistics of our dependent variable GDP per captia using the [`summary()`](https://www.rdocumentation.org/packages/base/versions/3.4.1/topics/summary).
+Construct the confidence interval for the difference in means yourself.
 
 ```{r class.source="collapsible"}
-summary(world.data$wealth)
+# lower bound
+lb <- fd - 1.96 * se.fd
+# upper bound
+ub <- fd + 1.96 * se.fd
+
+lb
+ub
 ```
 
-Someone claims that countries with free judiciaries are usually richer than countries with controlled judiciaries. From the output of the `summary()` fucntion, we know that average wealth is `r mean(world.data$wealth)` US dollars across all countries---countries with and without free judiciaries.
+The confidence interval for the difference in means ranges from -1.32 to -0.48. Clearly, the difference in means is smaller than 0. We can reject the null hypothesis that there is no difference between the loaded die and the fair die because 0 is not within the confidence interval.
 
-We use the `which()` function from last week again, to identify the row-numbers of the countries in our dataset that have free judiciaries. Use the `which()` to get the row numbers of countries with free judiciaries. 
+Let's estimate the p value: i.e., the probability that we estimate a difference in means of -0.9 given that there really is no difference between the fair die and the loaded die.
+
+The result is 3.129287e-05. Try until you get it. You can use the `pnrom()` function to get the cumulative probability from a standard normal distribution. 
 
 ```{r class.source="collapsible"}
-which(world.data$h_j==1)
+# 1st way
+pnorm( t.value ) * 2
+
+# 2nd way
+(1 - pnorm( abs(t.value) )) *2 
 ```
 
-Now, all we need is to index the dataset like we did last week. We access the variable that we want (*wealth*) with the dollar sign and the rows in square brackets. Take the mean of *wealth* for countries with a free judiciary on your own. 
-
-```{r class.source="collapsible"}
-mean( world.data$wealth[which(world.data$h_j==1)])
-```
-
-Go ahead and find the mean per capita wealth of countries with controlled judiciaries.
-
-```{r class.source="collapsible"}
-mean( world.data$wealth[which(world.data$h_j==0)])
-```
-
-Finally, we run the t-test for the difference between two means.
-
-```{r}
-# t.test for the difference between 2 means
-t.test(world.data$wealth[which(world.data$h_j==1)], # mean 1  
-       world.data$wealth[which(world.data$h_j==0)], # mean 2
-       mu = 0, # difference under the null hypothesis
-       alt = "two.sided",  # two sided test (difference in means could be smaller or larger than 0)
-       conf = 0.95) # confidence interval
-```
-
-Let's interpret the results you get from `t.test()`. The first line tells us which groups we are comparing. In our example: Do countries with independent judiciaries have different mean income levels than countries without independent judiciaries? 
-
-In the following line you see the t-value, the degrees of freedom and the p-value. Knowing the t-value and the degrees of freedom you can check in a table on t distributions how likely you were to observe this data, if the null-hypothesis was true. The p-value gives you this probability directly. For example, a p-value of 0.02 would mean that the probability of seeing this data given that there is no difference in incomes between countries with and without independent judiciaries *in the population*, is 2%. Here the p-value is much smaller than this: 3.165e-08 = 0.00000003156!
-
-In the next line you see the 95% confidence interval because we specified `conf=0.95`. If you were to take 100 samples and in each you checked the means of the two groups, 95 times the difference in means would be within the interval you see there. 
-
-At the very bottom you see the means of the dependent variable by the two groups of the independent variable. These are the means that we estimated above. In our example, you see the mean income levels in countries were the executive has some control over the judiciary, and in countries were the judiciary is independent.
-
-Note that we are analysing a bi-variate relationship. The dependent variable is *wealth* and the independent variable is *h_j*.
-
-Furthermroe, note that in the t test for the differences in means, the degrees of freedom depend on the variances in each group. You do not have to compute degrees of freedom for t tests for the differences in means yourself in this class---just use the `t.test()` function.
-
-### Estimating p values from t values
-
-Estimating the p value is the reverse of getting a critical value. We have a t value and we want to know what the probability is to get such a value or an even more extreme value.
-
-Let's say that we have a t distribution with 5 degrees of freedom. We estimated a t value of 2.9. What is the corresponding p value?
-
-
-```{r}
-(1 - pt(2.9, df = 5)) *2
-```
-
-This is the probability of getting a t value of 2.9 or larger (or -2.9 or smaller) given that the null hypothesis is true. `pt(2.9, df = 5)` is the cumulative probability of getting a t value of 2.9 or smaller. But we want the probability of getting a value that is as large (extreme) as 2.9 or as small as -2.9. Therefore, we do `1 - pt(2.9, df = 5)`. We multiply by 2 to get both tails  `(1 - pt(2.9, df = 5))*2`. This is the probability of getting a t value in the red tails of the distribution if the null hypothesis was true.
-
-```{r, echo=FALSE}
-par(bg = '#fdf6e3')
-curve(dt(x, df=5), xlim = c(-3, 3), ylab = "", yaxt = "n", ylim = c(-0.01, .38), xlab = "")
-c.x <- c(qt(0.975, df = 5), seq(qt(0.975, df = 5), 3, 0.01), 3 )
-c.y <- c(0, dt(seq(qt(0.975, df = 5), 3, 0.01), df = 5), 0 )
-polygon(c.x, c.y, col=c.cols[1])
-
-c.x <- c(-3, seq(-3, qt(0.025, df = 5), 0.01), qt(0.025, df = 5) )
-c.y <- c(0, dt(seq(-3, qt(0.025, df = 5), 0.01), df = 5), 0 )
-polygon(c.x, c.y, col=c.cols[1])
-
-segments(x0=-3,y0=0,x1=3,y1=0)
-segments(x0=0, y0 = 0, x1=0, y = dnorm(0), lty = "dashed")
-```
-
-Clearly, the probability of getting such an extreme value (or something larger) under the assumption that the null hypothesis is true is very unlikely. The exact probability is ~0.03 (3 percent). We, therefore, think that the null hypothesis is false.
-
-Let's estimate the p value in a normal distribution (it's actually better to always use the t distribution but the difference is negligible if the t distribution has many degrees of freedom).
-
-Let's take our earlier example where we had estimated a t value of 0.1995059. Our friend claimed world income is 10 000 per capita on average and we estimated something slightly larger.
-
-Let's check what the exact p value is in a normal distribution given a t value of 0.1995059.
-
-```{r}
-(1 - pnorm(0.1995059))*2
-```
-
-```{r, echo=FALSE}
-par(bg = '#fdf6e3')
-curve(dnorm(x, 0, 1), xlim = c(-3, 3), ylab = "", yaxt = "n", xlab = "")
-
-c.x <- c(0.1995059, seq(0.1995059, 3, 0.01), 3 )
-c.y <- c(0, dnorm(seq(0.1995059, 3, 0.01)), 0 )
-polygon(c.x, c.y, col=c.cols[1])
-
-c.x <- c(-3, seq(-3, -0.1995059, 0.01), -0.1995059 )
-c.y <- c(0, dnorm(seq(-3, -0.1995059, 0.01)), 0 )
-polygon(c.x, c.y, col=c.cols[1])
-
-segments(x0=-3,y0=0,x1=3,y1=0)
-segments(x0=0, y0 = 0, x1=0, y = dnorm(0), lty = "dashed")
-```
-
-Clearly, it was not very unlikely to find a t value of 0.1995059 (that's the absolute value, i.e., a t value of negative or postive 0.1995059) under the assumption that the null hypothesis is true. Therefore, we cannot reject the null. The probability is 0.84 (84 percent)---highly likely.
-
-### Exercises
-1. Create a new file called "assignment4.R" in your `statistics 1` folder and write all the solutions in it.
-2. Turn former colonies into a factor variable and choose appropriate labels.
-3. How many countries were former colonies? How many were not?
-4. Find the means of political stability in countries that (1) were former colonies, (2) were not former colonies.
-5. Is the the difference in means statistically significant?
-6. In layman’s terms, are countries which were former colonies more or less stable than those that were not?
-7. How about if we choose an alpha level of 0.01?
-8. What is the level of measurement of the United Nations Development index variable `undp_hdi`?
-9. Check the claim that its true population mean is 0.85.
-10. Calculate the t statistic.
-11. Calculate the p value.
-12. Construct a confidence interval around your mean estimate.
-13. Discuss your findings in terms of the original claim. Interpret the t value, the p value, and the confidence interval.
-14. Compute the critical value for the 99.9 percent confidence interval in a standard normal distribution.
-15. Compute the critical value for the 99.9 percent confidence interval in a t distribution with 11 degrees of freedom.
-16. Save the script that includes all previous tasks.
-17. Source your script, i.e. run the entire script all at once without error message.
-
-### Optional Exercises that require reading Extra Info below
-18. Create a scatter plot with latitude on the x-axis and political stability on the y-axis.
-19. What is the correlation coefficient of political stability and latitude?
-20. If we move away from the equator, how does political stability change?
-21. Does it matter whether we go north or south from the equator?
-
-### Advanced Exercises
-22. Calculate the numerical difference in means (political stability conditional on colonialization) using the `means()` function.
-23. Calculate the standard deviation of the difference in means (hint: using just the `sd()` function is incorrect in this context).
-24. Is the difference in means more than 1.96 standard deviations away from zero? Interpret the result.
-25. We claim the difference in means in terms of political stability between countries that were former colonies and those that were not is 0.3. Check this hypothesis.
-26. An angry citizen who wants to defund the Department of International Development (DFID) claims that countries that were former colonies have reached 75% of the level of wealth of countries that were not colonised. Check this claim.
-
-### Extra Info
-
-When we want to get an idea about how two continuous variables change together, the best way is to plot the relationship in a scatterplot. A scatterplot means that we plot one continuous variable on the x-axis and the other on the y-axis. Here, we illustrate the relation between
-the human development index `undp_hdi` and control of corruption `wbgi_cce`.
-
-```{r}
-par(bg = '#fdf6e3')
-# scatterplot
-plot(world.data$undp_hdi ~ world.data$wbgi_cce,
-  xlim = c(xmin = -2, xmax = 3),
-  ylim = c(ymin = 0, ymax = 1),
-  frame = FALSE,
-  xlab = "World Bank Control of Corruption Index",
-  ylab = "UNDP Human Development Index",
-  main = "Relationship b/w Quality of Institutions and Quality of Life"
-  )
-```
-
-Sometimes people will report the correlation coefficient which is a measure of linear association and ranges from -1 to +1. Where -1 means perfect negative relation, 0 means no relation and +1 means perfect positive relation. The correlation coefficient is commonly used as as summary statistic. It's disadvantage is that you cannot see the non-linear relations which can using a scatterplot.
-
-We take the correlation coefficient like so:
-
-
-```{r}
-cor(y = world.data$undp_hdi, x = world.data$wbgi_cce, use = "complete.obs")
-```
-
-|Argument|Description|
-|--------|-----------------------------------------------------------|
-|`x`|The x variable that you want to correlate.|
-|`y`|The y variable that you want to correlate.|
-|`use`|How R should handle missing values. `use="complete.obs"` will use only those rows where neither `x` nor `y` is missing.|
+We can reject the null hypothesis. The loaded die is different from the fair die.
