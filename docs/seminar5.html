@@ -226,20 +226,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># random draw of 10 values from a uniform distribution</span>
 dice &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">7</span>)
 dice</code></pre></div>
-<pre><code> [1] 5.788342 4.219179 2.237950 1.862791 1.619943 6.005589 6.865857
- [8] 5.305369 3.805370 1.853149</code></pre>
+<pre><code> [1] 3.745508 6.331223 6.986649 6.804357 3.038982 2.958300 2.385742
+ [8] 1.470666 1.345525 5.126055</code></pre>
 <p>We have indeed drawn 10 numbers but they are not integers as we would like—we want to simulate a die, so the values should be 1, 2, 3, 4, 5 or 6. We will return to this in a moment but for now let’s return to the randomness. Let’s draw 10 numbers again:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># random draw of 10 values from a uniform distribution</span>
 dice2 &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">7</span>)
 
 <span class="co"># first draw</span>
 dice</code></pre></div>
-<pre><code> [1] 5.788342 4.219179 2.237950 1.862791 1.619943 6.005589 6.865857
- [8] 5.305369 3.805370 1.853149</code></pre>
+<pre><code> [1] 3.745508 6.331223 6.986649 6.804357 3.038982 2.958300 2.385742
+ [8] 1.470666 1.345525 5.126055</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># second draw</span>
 dice2</code></pre></div>
-<pre><code> [1] 4.212140 2.822079 2.472033 5.125816 5.571408 5.194613 6.849671
- [8] 3.916066 1.606005 2.876375</code></pre>
+<pre><code> [1] 4.881690 4.545228 3.243174 5.582715 3.076252 5.378447 5.697619
+ [8] 3.461768 5.310100 3.810592</code></pre>
 <p>The numbers of the first and second roll differ because we have drawn values at random. To make our results replicate and to ensure that everyone in the seminar works with the same numbers, we set R’s random number generator with the <code>set.seed()</code> function. As argument we plug in some arbitrary value (it does not matter which but using a different one will lead to a different quasi-random draw).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set random number generator</span>
 <span class="kw">set.seed</span>(<span class="dv">123</span>)
@@ -462,7 +462,7 @@ lb</code></pre></div>
 <li>Create a vector of a fair die and a vector of a loaded die with (25) observations such that you cannot distinguish the dice with a difference in means test. Carry out the t-test.</li>
 <li>Re-create the dice but increase the number of observations to 1000. Does the result of the t test change?</li>
 <li><a href="https://www.cambridge.org/core/journals/journal-of-economic-history/article/ordinary-economic-voting-behavior-in-the-extraordinary-election-of-adolf-hitler/8C79A0AB9DA174B7D81A6EB313B1EDFC">Ordinary Economic Voting Behavior in the Extraordinary Election of Adolf Hitler</a> Download and then load <code>who_voted_nazi_in_1932.csv</code>. <a href="https://philippbroniecki.github.io/statistics1/data/who_voted_nazi_in_1932.csv" type = "button" class = "btn btn-lg btn-primary" download>who voted nazi in 1932 data</a></li>
-<li>Estimate the conditional mean vote shares for the Nazis in the 1932 election by class (blue-collor, white-collor, domestic unemployed, self-employed)</li>
+<li>Estimate the conditional mean vote shares for the Nazis in the 1932 election by class (blue-collar, white-collar, domestic, unemployed, self-employed)</li>
 <li>Construct confidence intervals around the means.</li>
 <li>Are there differences between the groups? Use the appropriate statistical test to find out.</li>
 <li>Calculate t values and p values on your own (without using the t test)</li>
