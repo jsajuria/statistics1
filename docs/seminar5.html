@@ -190,6 +190,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.1.1" data-path="seminar5.html"><a href="seminar5.html#sample-variance-and-sample-standard-deviation"><i class="fa fa-check"></i><b>5.1.1</b> Sample Variance and Sample Standard Deviation</a></li>
 <li class="chapter" data-level="5.1.2" data-path="seminar5.html"><a href="seminar5.html#t-test-for-the-sample-mean"><i class="fa fa-check"></i><b>5.1.2</b> T test for the sample mean</a></li>
 <li class="chapter" data-level="5.1.3" data-path="seminar5.html"><a href="seminar5.html#t-test-for-the-difference-in-means"><i class="fa fa-check"></i><b>5.1.3</b> T test for the difference in means</a></li>
+<li class="chapter" data-level="5.1.4" data-path="seminar5.html"><a href="seminar5.html#exercises-4"><i class="fa fa-check"></i><b>5.1.4</b> Exercises</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -225,20 +226,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># random draw of 10 values from a uniform distribution</span>
 dice &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">7</span>)
 dice</code></pre></div>
-<pre><code> [1] 4.567915 2.522914 3.243140 3.775680 1.836413 3.417044 4.640272
- [8] 3.699540 5.459958 6.876152</code></pre>
+<pre><code> [1] 1.893920 6.578885 1.428173 2.408565 6.071334 6.073640 3.049178
+ [8] 4.051284 5.089516 6.536705</code></pre>
 <p>We have indeed drawn 10 numbers but they are not integers as we would like—we want to simulate a die, so the values should be 1, 2, 3, 4, 5 or 6. We will return to this in a moment but for now let’s return to the randomness. Let’s draw 10 numbers again:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># random draw of 10 values from a uniform distribution</span>
 dice2 &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">7</span>)
 
 <span class="co"># first draw</span>
 dice</code></pre></div>
-<pre><code> [1] 4.567915 2.522914 3.243140 3.775680 1.836413 3.417044 4.640272
- [8] 3.699540 5.459958 6.876152</code></pre>
+<pre><code> [1] 1.893920 6.578885 1.428173 2.408565 6.071334 6.073640 3.049178
+ [8] 4.051284 5.089516 6.536705</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># second draw</span>
 dice2</code></pre></div>
-<pre><code> [1] 1.809652 3.912364 1.086838 1.846046 1.408954 2.427714 4.248594
- [8] 2.196586 6.938039 4.098245</code></pre>
+<pre><code> [1] 2.277512 6.722287 3.286317 5.592572 4.655312 6.213791 5.734646
+ [8] 5.291041 1.545707 1.768446</code></pre>
 <p>The numbers of the first and second roll differ because we have drawn values at random. To make our results replicate and to ensure that everyone in the seminar works with the same numbers, we set R’s random number generator with the <code>set.seed()</code> function. As argument we plug in some arbitrary value (it does not matter which but using a different one will lead to a different quasi-random draw).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set random number generator</span>
 <span class="kw">set.seed</span>(<span class="dv">123</span>)
@@ -454,6 +455,16 @@ lb</code></pre></div>
 (<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>( <span class="kw">abs</span>(t.value) )) <span class="op">*</span><span class="dv">2</span> </code></pre></div>
 <pre><code>[1] 0.00003129287</code></pre>
 <p>We can reject the null hypothesis. The loaded die is different from the fair die.</p>
+</div>
+<div id="exercises-4" class="section level3">
+<h3><span class="header-section-number">5.1.4</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li>Create a vector of a fair die and a vector of a loaded die with (25) observations such that you cannot distinguish the dice with a difference in means test. Carry out the t-test.</li>
+<li>Re-create the dice but increase the number of observations to 1000. Does the result of the t test change?</li>
+</ol>
+<p></br></p>
+<p><a href="https://www.cambridge.org/core/journals/journal-of-economic-history/article/ordinary-economic-voting-behavior-in-the-extraordinary-election-of-adolf-hitler/8C79A0AB9DA174B7D81A6EB313B1EDFC">Ordinary Economic Voting Behavior in the Extraordinary Election of Adolf Hitler</a> Download and then load <code>who_voted_nazi_in_1932.csv</code>.</p>
+<p><a href="https://philippbroniecki.github.io/statistics1/data/who_voted_nazi_in_1932.csv" type = "button" class = "btn btn-lg btn-primary" download>who voted nazi in 1932 data</a></p>
 
 </div>
 </div>
