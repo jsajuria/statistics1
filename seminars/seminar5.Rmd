@@ -321,12 +321,10 @@ We can reject the null hypothesis. The loaded die is different from the fair die
 
 1. Create a vector of a fair die and a vector of a loaded die with (25) observations such that you cannot distinguish the dice with a difference in means test. Carry out the t-test.
 2. Re-create the dice but increase the number of observations to 1000. Does the result of the t test change?
-
-</br>
-
-[Ordinary Economic Voting Behavior in the Extraordinary Election of Adolf Hitler](https://www.cambridge.org/core/journals/journal-of-economic-history/article/ordinary-economic-voting-behavior-in-the-extraordinary-election-of-adolf-hitler/8C79A0AB9DA174B7D81A6EB313B1EDFC) Download and then load `who_voted_nazi_in_1932.csv`. 
-
+3. [Ordinary Economic Voting Behavior in the Extraordinary Election of Adolf Hitler](https://www.cambridge.org/core/journals/journal-of-economic-history/article/ordinary-economic-voting-behavior-in-the-extraordinary-election-of-adolf-hitler/8C79A0AB9DA174B7D81A6EB313B1EDFC) Download and then load `who_voted_nazi_in_1932.csv`. 
 <a href="https://philippbroniecki.github.io/statistics1/data/who_voted_nazi_in_1932.csv" type = "button" class = "btn btn-lg btn-primary" download>who voted nazi in 1932 data</a>
-
-3. 
-
+4. Estimate the conditional mean vote shares for the Nazis in the 1932 election by class (blue-collor, white-collor, domestic unemployed, self-employed)
+5. Construct confidence intervals around the means.
+6. Are there differences between the groups? Use the appropriate statistical test to find out.
+7. Calculate t values and p values on your own (without using the t test)
+8. Interpret your results substantially.
