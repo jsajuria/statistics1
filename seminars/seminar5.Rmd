@@ -316,3 +316,16 @@ pnorm( t.value ) * 2
 ```
 
 We can reject the null hypothesis. The loaded die is different from the fair die.
+
+### Exercises
+
+1. Create a vector of a fair die and a vector of a loaded die with (25) observations such that you cannot distinguish the dice with a difference in means test. Carry out the t-test.
+2. Re-create the dice but increase the number of observations to 1000. Does the result of the t test change?
+
+</br>
+
+[Ordinary Economic Voting Behavior in the Extraordinary Election of Adolf Hitler](https://www.cambridge.org/core/journals/journal-of-economic-history/article/ordinary-economic-voting-behavior-in-the-extraordinary-election-of-adolf-hitler/8C79A0AB9DA174B7D81A6EB313B1EDFC) Download and then load `who_voted_nazi_in_1932.csv`. 
+
+
+
+
