@@ -390,7 +390,7 @@ plot(
   bty = "n",
   main = "Conditional Distributions of HDI"
 )
-lines(density(world.data$hdi), lty = "dashed")
+lines(density(world.data$hdi[world.data$former_col == 1]), lty = "dashed")
 legend("topleft", c("not colonised", "colonised"), lty = c("solid", "dashed"))
 ```
 
