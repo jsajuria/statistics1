@@ -1,5 +1,13 @@
 # Introduction: Measurement, Central Tendency, Dispersion, Validity, Reliability
 
+```{r package_options, include=FALSE}
+knitr::opts_knit$set(global.par = TRUE)
+```
+
+```{r, include = FALSE}
+par(bg = '#fdf6e3')
+```
+
 ## Seminar
 
 In this seminar session, we introduce working with R. We illustrate some basic functionality and help you familiarise yourself with the look and feel of RStudio. Measures of central tendency and dispersion are easy to calculate in R. We focus on introducing the logic of R first and then describe how central tendency and dispersion are calculated in the end of the seminar.

@@ -183,6 +183,10 @@ We can reject the null hypothesis.
 
 #### Exercise 11
 
+```{r, include = FALSE}
+par(bg = '#fdf6e3')
+```
+
 Calculate the p value.
 
 We have the t statistic already. We will follow the steps to get the p value. But first, take a look at what the distribution of our t statistic looks like. Our t statistic is -11.13908. This is very very far in the left tail.

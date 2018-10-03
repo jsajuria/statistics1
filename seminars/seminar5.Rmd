@@ -11,6 +11,11 @@ rm(list=ls())
 setwd("~/statistics1")
 ```
 
+```{r, include = FALSE}
+par(bg = '#fdf6e3')
+```
+
+
 ### Sample Variance and Sample Standard Deviation
 
 The sample variance and sample standard deviation inform us about the degree of variability of our data. Suppose, we were to roll the dice 5 times. We could then compute the mean value that we roll. The sample standard deviation measures by how much an average roll of the dice will deviate from the mean value.

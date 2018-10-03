@@ -1,5 +1,10 @@
 # Sampling and Distributions
 
+```{r, include = FALSE}
+par(bg = '#fdf6e3')
+par(mfrow=c(1,1))
+```
+
 ## Seminar
 
 In today's seminar, we work with missing data. We will turn a numerical variable into a nominal data type. We then turn to distributions.

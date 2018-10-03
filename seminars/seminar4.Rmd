@@ -1,5 +1,9 @@
 # T-test for Difference in Means and Hypothesis Testing
 
+```{r, include = FALSE}
+par(bg = '#fdf6e3')
+```
+
 ## Seminar
 
 Let's remove all objects from our workspace and set the working directory.
@@ -492,7 +496,6 @@ When we want to get an idea about how two continuous variables change together, 
 the human development index `undp_hdi` and control of corruption `wbgi_cce`.
 
 ```{r}
-par(bg = '#fdf6e3')
 # scatterplot
 plot(world.data$undp_hdi ~ world.data$wbgi_cce,
   xlim = c(xmin = -2, xmax = 3),

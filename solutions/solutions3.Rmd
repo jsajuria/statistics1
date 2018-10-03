@@ -1,5 +1,9 @@
 ## Solutions
 
+```{r, include = FALSE}
+par(bg = '#fdf6e3')
+```
+
 #### Exercise 2
 
 Load the world.data dataset from your disk.

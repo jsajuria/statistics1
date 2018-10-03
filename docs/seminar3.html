@@ -540,12 +540,12 @@ upper.bound</code></pre></div>
  <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,
  <span class="dt">main =</span> <span class="st">&quot;Sampling Distribution of HDI means&quot;</span>
 )</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
 <p>Beautiful Let’s add the 95 percent confidence interval around our mean estimate. The confidence interval quantifies our uncertainty. We said 95 percent of the time the mean would be in the interval from 0.6715367 to 0.7249432.&quot;</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">abline</span>( <span class="dt">v =</span> lower.bound, <span class="dt">lty =</span> <span class="st">&quot;dashed&quot;</span>)
 <span class="kw">abline</span>( <span class="dt">v =</span> upper.bound,  <span class="dt">lty =</span> <span class="st">&quot;dashed&quot;</span>)</code></pre></div>
 <p>You do not need to run the plot function again. You can just add to the plot. Check the help function of <code>abline()</code> to see what its arguments refer to.</p>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-138-1.png" width="672" /></p>
 <p>Fantastic! You can see that values below and above our confidence interval are quite unlikely. Those values in the tails would not occur often.</p>
 <p>Not often, but not impossible.</p>
 <p>Let’s say that we wish know the probability that we take a sample and our estimate of the mean is greater or equal 0.74. We would need to integrate over the distribution from <span class="math inline">\(-\inf\)</span> to 0.74. Fortunately R has a function that does that for us. We need the <code>pnorm()</code>. It calculates the probability of a value that is smaller or equal to the value we specify. In other words, it gives us the probability from the cumulative normal.</p>
@@ -567,7 +567,7 @@ upper.bound</code></pre></div>
   <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,
   <span class="dt">main =</span> <span class="st">&quot;Marginal Distribution of HDI&quot;</span>
 )</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-141-1.png" width="672" /></p>
 <p>The distribution is bimodal. There is one peak at the higher development end and one peak at the lower development end. Could it be that these two peaks are conditional on whether a country was colonised or not? Let’s plot the conditional distributions.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(
   <span class="kw">density</span>(world.data<span class="op">$</span>hdi[world.data<span class="op">$</span>former_col <span class="op">==</span><span class="st"> </span><span class="dv">0</span>]),
@@ -576,7 +576,7 @@ upper.bound</code></pre></div>
 )
 <span class="kw">lines</span>(<span class="kw">density</span>(world.data<span class="op">$</span>hdi[world.data<span class="op">$</span>former_col <span class="op">==</span><span class="st"> </span><span class="dv">1</span>]), <span class="dt">lty =</span> <span class="st">&quot;dashed&quot;</span>)
 <span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;not colonised&quot;</span>, <span class="st">&quot;colonised&quot;</span>), <span class="dt">lty =</span> <span class="kw">c</span>(<span class="st">&quot;solid&quot;</span>, <span class="st">&quot;dashed&quot;</span>))</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
 <p>It’s not quite like we expected. The distribution of human development of not colonised countries is shifted to right of the distribution of colonised countries and it is clearly narrower. Interestingly though, the distribution of former colonies has a greater variance. Evidently, some former colonies are doing very well and some are doing very poorly. It seems like knowing whether a country was colonised or not tells us something about its likely development but not enough. We cannot, e.g., say colonisation is the reason why countries do poorly. Probably, there are differences among types of colonial institutions that were set up by the colonisers.</p>
 <p>Let’s move on and examine the probability that a country has .8 or more on <em>hdi</em> given that it is a former colony.</p>
 <p>We can get the cumulative probability with the <code>ecdf()</code> function. It returns the empirical cumulative distribution, i.e., the cumulative distribution of our data. We know that we can subset using square brackets. That’s all we need.</p>

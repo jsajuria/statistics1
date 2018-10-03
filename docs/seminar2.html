@@ -476,7 +476,7 @@ state &lt;-<span class="st"> </span><span class="kw">c</span>(
   <span class="dt">ylab =</span> <span class="st">&quot;Subjective number of immigrants per 100 British&quot;</span>, 
   <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>, <span class="dt">col =</span> <span class="st">&quot;darkgray&quot;</span>
   )</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
 <p>Notice how the lower whisker is much shorter than the upper one. The distribution is right skewed. The right tail (higher values) is a lot longer. We can see this beter using a density plot. We combine R’s <code>denisty()</code> function with the <code>plot()</code> function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(
   <span class="kw">density</span>(data2<span class="op">$</span>IMMBRIT),
@@ -484,11 +484,11 @@ state &lt;-<span class="st"> </span><span class="kw">c</span>(
   <span class="dt">main =</span> <span class="st">&quot;Perception of Immigration from Non-Western Countries&quot;</span>,
   <span class="dt">xlab =</span> <span class="st">&quot;Subjective number of immigrants per 100 British&quot;</span>
   )</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
 <p>We can also plot histograms using the <code>hist()</code> function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># histogram</span>
 <span class="kw">hist</span>( data2<span class="op">$</span>employMonths, <span class="dt">main =</span> <span class="st">&quot;histogram&quot;</span>)</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
 <p>It is plausible that perception of immigration from Non-Western countries is related to party affiliation. In our dataset, we have a some party affiliation dummies (binary variables). We can use square brackets to subset our data such that we produce a boxplot only for members of the Conservative Party. We have a look at the variable <em>Cons</em> using the <code>table()</code> function first.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(data2<span class="op">$</span>Cons)</code></pre></div>
 <pre><code>
@@ -502,7 +502,7 @@ state &lt;-<span class="st"> </span><span class="kw">c</span>(
   <span class="dt">xlab =</span> <span class="st">&quot;Conservatives&quot;</span>,
   <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>
   )</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
 <p>We would now like to compare the distribution of the perception fo Conservatives to the distribution among Labour respondents. We can subset the data just like we did for the Conservative Party. In addtion, we want to plot the two plots next to each other, i.e., they should be in the same plot. We can achieve this with the <code>par()</code> function and the <code>mfrow</code> argument. This will spilt the plot window into rows and columns. We want 2 columns to plot 2 boxplots next to each other.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># split plot window into 1 row and 2 columns</span>
 <span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
@@ -522,7 +522,7 @@ state &lt;-<span class="st"> </span><span class="kw">c</span>(
   <span class="dt">xlab =</span> <span class="st">&quot;Labour&quot;</span>,
   <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>
   )</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
 <p>It is very hard to spot differences. The distributions are similar. The median for Labour respondents is larger which mean that the central Labour respondent over-estimates immigration more than the central Conservative respondent.</p>
 <p>You can play around with the non-western foreigners data on your own time. We now turn to a dataset that is integrated in R already. It is called <code>longley</code>. Use the <code>help()</code> function to see what this dataset is about.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">help</span>(longley)</code></pre></div>
@@ -531,13 +531,13 @@ state &lt;-<span class="st"> </span><span class="kw">c</span>(
      <span class="dt">y =</span> longley<span class="op">$</span>Employed, <span class="co"># y-axis variable</span>
      <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span> <span class="co"># no box around the plot</span>
      )</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
 <p>To create a line plot instead, we use the same function with one additional argument <code>type = &quot;l&quot;</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(longley<span class="op">$</span>Year, longley<span class="op">$</span>Employed, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
 <p>Create a plot that includes both points and lines.</p>
 <div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r"><span class="kw">plot</span>(longley<span class="op">$</span>Year, longley<span class="op">$</span>Employed, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>)</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
 </div>
 <div id="average-treatment-effect" class="section level3">
 <h3><span class="header-section-number">2.1.6</span> Average Treatment Effect</h3>

@@ -1,5 +1,9 @@
 ## Solutions
 
+```{r, include = FALSE}
+par(bg = '#fdf6e3')
+```
+
 ### Exercise 2
 
 Use the `names()` function to display the variable names of the `longley` dataset.

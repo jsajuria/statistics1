@@ -1,5 +1,9 @@
 ## Solutions
 
+```{r, include = FALSE}
+par(bg = '#fdf6e3')
+```
+  
 #### Exercise 1
 
 Create a vector of a fair die and a vector of a loaded die with (25) observations such that you cannot distinguish the dice with a difference in means test. Carry out the t-test.
@@ -64,11 +68,22 @@ df <- read.csv("who_voted_nazi_in_1932.csv")
 
 #### Exercise 4
 
-Estimate the conditional mean vote shares for the Nazis in the 1932 election by class (blue-collar, white-collar, domestic, unemployed, self-employed)
+Estimate the means and illustrate the distribution of potential voter shares by class.
 
 ```{r}
+# self-employed
+mean(df$shareself)
+# blue-collar
+mean(df$shareblue)
+# white-collar
+mean(df$sharewhite)
+# domestically employed
+mean(df$sharedomestic)
+# unemployed
+mean(df$shareunemployed)
 
-df$
+# illustrate distributions
+plot(density(df$shareblue), main ="", xlab="", ylab="")
 
 ```
 

@@ -423,7 +423,7 @@ mean of x
 <h4><span class="header-section-number">4.1.2.3</span> Critical Values</h4>
 <p>In social sciences, we usually operate with an alpha level of 0.05. That means, we reject the null hypothesis if the p value is smaller than 0.05. Or put differently, we reject the null hypothesis if the 95 percent confidence interval does not include the population mean under the null hypothesis—which is always the case if our estimate is further than two standard errors from the mean under null hypothesis (usually 0).</p>
 <p>We said earlier that the critical value is 1.96 for an alpha level of 0.05. That is true in large samples where the distribution of the t value follows a normal distribution. 95 percent of all observations are within 1.96 standard deviations of the mean.</p>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
 <p>The green area under the curve covers 95 percent of all observations. There are 2.5 percent in each tail. We reject the null hypothesis if our estimate is in the tails of the distribution. It must be further than 1.96 standard deviations from the mean. But how did we know that 95 percent of the area under the curve is within 1.96 standard deviations from the mean?</p>
 <p>Let’s separate the curve in you mind into 3 pieces. The left tail covers 2.5 percent of the area under the curve. The green middle bit covers 95 percent and the right tail again 2.5 percent. Now we do this as cumulative probabilities. The left tail ends at 2.5 percent cumulative probability. The green area ends at 97.5 percent cumulative probability and the right tail ends at 100 percent.</p>
 <p>The critical value is were the left tail ends or the right tail starts (looking at the curve from left to right). Let’s get the value where the cumulative probability is 2.5 percent—where the left tail ends.</p>
@@ -431,25 +431,25 @@ mean of x
 <span class="kw">qnorm</span>(<span class="fl">0.025</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
 <pre><code>[1] -1.959964</code></pre>
 <p>If you look at the x-axis of our curve that is indeed where the left tail ends. We add a red dot to our graph to highlight it.</p>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
 <p>Now, let’s get the critical value of where the right tail starts. That is at the cumulative probability of 97.5 percent.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qnorm</span>(<span class="fl">0.975</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
 <pre><code>[1] 1.959964</code></pre>
 <p>As you can see, this is the same number, only positive instead of negative. That’s always the case because the normal distribution is symmetric. Let’s add that point in blue to our graph.</p>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-188-1.png" width="672" /></p>
 <p>This is how we get the critical value for the 95 percent confidence interval. By the way, back in the day you would have to look up critical values in critical values tables at the end of statistics textbooks (you can find the tables in Stock and Watson and Kellstedt and Whitten.)</p>
 <p>As you can see our red and blue dots are the borders of the green area, the 95 percent interval around the mean. You can get the critical values for any other interval (e.g., the 99 percent interval) similar to what we did just now.</p>
 <p>We now do the same for the t distribution. In the t distribution, the critical value depends on the shape of the t distribution which is characterised by its degrees of freedom. Let’s draw a t distribution with 5 degrees of freedom.</p>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
 <p>Although, it looks like a standard normal distribution, it is not. The t with 5 degrees of freedom has fatter tails. We show this by overlaying the t with a standard normal distribution.</p>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
 <p>The red area is the difference between the standard normal distribution and the t distribution with 5 degrees of freedom.</p>
 <p>The tails are fatter and that means that the probabilities of getting a value somewhere in the tails is larger. Lets calculate the critical value for a t distribution with 5 degrees of freedom.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># value for cumulative probability 95 percent in the t distribution with 5 degrees of freedom</span>
 <span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dt">df =</span> <span class="dv">5</span>)</code></pre></div>
 <pre><code>[1] 2.570582</code></pre>
 <p>See how much larger that value is than 1.96. Under a t distribution with 5 degrees of freedom 95 percent of the observations around the mean are within the interval from negative 2.5705818 to positive 2.5705818.</p>
-<p>Let’s illustrate that. <img src="statistics1_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
+<p>Let’s illustrate that. <img src="statistics1_files/figure-html/unnamed-chunk-192-1.png" width="672" /></p>
 <p>Remember the critical values for the t distribution are always more extreme or similar to the critical values for the standard normal distribution. If the t distribution has few degrees of freedom, the critical values (for the same percentage area around the mean) are much more extreme. If the t distribution has many degrees of freedom, the critical values are very similar.</p>
 </div>
 </div>
@@ -506,14 +506,14 @@ mean of x mean of y
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pt</span>(<span class="fl">2.9</span>, <span class="dt">df =</span> <span class="dv">5</span>)) <span class="op">*</span><span class="dv">2</span></code></pre></div>
 <pre><code>[1] 0.0337907</code></pre>
 <p>This is the probability of getting a t value of 2.9 or larger (or -2.9 or smaller) given that the null hypothesis is true. <code>pt(2.9, df = 5)</code> is the cumulative probability of getting a t value of 2.9 or smaller. But we want the probability of getting a value that is as large (extreme) as 2.9 or as small as -2.9. Therefore, we do <code>1 - pt(2.9, df = 5)</code>. We multiply by 2 to get both tails <code>(1 - pt(2.9, df = 5))*2</code>. This is the probability of getting a t value in the red tails of the distribution if the null hypothesis was true.</p>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-191-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-199-1.png" width="672" /></p>
 <p>Clearly, the probability of getting such an extreme value (or something larger) under the assumption that the null hypothesis is true is very unlikely. The exact probability is ~0.03 (3 percent). We, therefore, think that the null hypothesis is false.</p>
 <p>Let’s estimate the p value in a normal distribution (it’s actually better to always use the t distribution but the difference is negligible if the t distribution has many degrees of freedom).</p>
 <p>Let’s take our earlier example where we had estimated a t value of 0.1995059. Our friend claimed world income is 10 000 per capita on average and we estimated something slightly larger.</p>
 <p>Let’s check what the exact p value is in a normal distribution given a t value of 0.1995059.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">0.1995059</span>))<span class="op">*</span><span class="dv">2</span></code></pre></div>
 <pre><code>[1] 0.841867</code></pre>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-201-1.png" width="672" /></p>
 <p>Clearly, it was not very unlikely to find a t value of 0.1995059 (that’s the absolute value, i.e., a t value of negative or postive 0.1995059) under the assumption that the null hypothesis is true. Therefore, we cannot reject the null. The probability is 0.84 (84 percent)—highly likely.</p>
 </div>
 <div id="exercises-3" class="section level3">
@@ -560,8 +560,7 @@ mean of x mean of y
 <div id="extra-info" class="section level3">
 <h3><span class="header-section-number">4.1.8</span> Extra Info</h3>
 <p>When we want to get an idea about how two continuous variables change together, the best way is to plot the relationship in a scatterplot. A scatterplot means that we plot one continuous variable on the x-axis and the other on the y-axis. Here, we illustrate the relation between the human development index <code>undp_hdi</code> and control of corruption <code>wbgi_cce</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">bg =</span> <span class="st">&#39;#fdf6e3&#39;</span>)
-<span class="co"># scatterplot</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># scatterplot</span>
 <span class="kw">plot</span>(world.data<span class="op">$</span>undp_hdi <span class="op">~</span><span class="st"> </span>world.data<span class="op">$</span>wbgi_cce,
   <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dt">xmin =</span> <span class="op">-</span><span class="dv">2</span>, <span class="dt">xmax =</span> <span class="dv">3</span>),
   <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dt">ymin =</span> <span class="dv">0</span>, <span class="dt">ymax =</span> <span class="dv">1</span>),
@@ -570,7 +569,7 @@ mean of x mean of y
   <span class="dt">ylab =</span> <span class="st">&quot;UNDP Human Development Index&quot;</span>,
   <span class="dt">main =</span> <span class="st">&quot;Relationship b/w Quality of Institutions and Quality of Life&quot;</span>
   )</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-194-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-202-1.png" width="672" /></p>
 <p>Sometimes people will report the correlation coefficient which is a measure of linear association and ranges from -1 to +1. Where -1 means perfect negative relation, 0 means no relation and +1 means perfect positive relation. The correlation coefficient is commonly used as as summary statistic. It’s disadvantage is that you cannot see the non-linear relations which can using a scatterplot.</p>
 <p>We take the correlation coefficient like so:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(<span class="dt">y =</span> world.data<span class="op">$</span>undp_hdi, <span class="dt">x =</span> world.data<span class="op">$</span>wbgi_cce, <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</code></pre></div>

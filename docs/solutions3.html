@@ -339,7 +339,7 @@ p1 <span class="op">-</span><span class="st"> </span>p2</code></pre></div>
 <pre><code>[1] 0</code></pre>
 <p>The answer is again: 0. Let’s have a look at the distribution to see what’s going on there.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">density</span>( world.data<span class="op">$</span>gdpc[world.data<span class="op">$</span>former_col <span class="op">==</span><span class="st"> &quot;former colony&quot;</span>] ))</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-152-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
 <p>It seems like there are no countries in that interval. Let’s check:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># let&#39;s look at summary stats first</span>
 <span class="kw">summary</span>(world.data<span class="op">$</span>gdpc[ world.data<span class="op">$</span>former_col <span class="op">==</span><span class="st"> &quot;former colony&quot;</span>  ])</code></pre></div>
