@@ -323,8 +323,29 @@ We can reject the null hypothesis. The loaded die is different from the fair die
 2. Re-create the dice but increase the number of observations to 1000. Does the result of the t test change?
 3. [Ordinary Economic Voting Behavior in the Extraordinary Election of Adolf Hitler](https://www.cambridge.org/core/journals/journal-of-economic-history/article/ordinary-economic-voting-behavior-in-the-extraordinary-election-of-adolf-hitler/8C79A0AB9DA174B7D81A6EB313B1EDFC) Download and then load `who_voted_nazi_in_1932.csv`. 
 <a href="https://github.com/philippbroniecki/statistics1/blob/master/data/who_voted_nazi_in_1932.csv?raw=TRUE" type = "button" class = "btn btn-lg btn-primary" download>who voted nazi in 1932 data</a>
-4. Estimate the conditional mean vote shares for the Nazis in the 1932 election by class (blue-collar, white-collar, domestic, unemployed, self-employed)
-5. Construct confidence intervals around the means.
+</br>
+Codebook:
+</br>
+
+  |Variable|Description|
+  |--------|-------------------------------------|
+  |sharenazis  |Percent of the vote Nazis received in the district|
+  |nazivote |Number of Nazi votes|
+  |nvoter |Total number of eligible voters|
+  |shareblue   |Percent of blue-collar potential voters|
+  |sharewhite  |Percent of white-collar potential voters |
+  |shareself  |Percent of self-employed potential voters |
+  |sharedomestic |Percent of domestically employed potential voters |
+  |shareunemployed  |Percent of unemployed potential voters |
+
+4. Estimate the means and illustrate the distribution of potential voter shares by class.
+5. Estimate the mean vote shares for the Nazis in districts where the share of blue-collar voters was above the mean (30.82) and below it. 
+6. Construct confidence intervals around the means.
 6. Are there differences between the groups? Use the appropriate statistical test to find out.
 7. Calculate t values and p values on your own (without using the t test)
 8. Interpret your results substantially.
+9. Estimate the mean vote shares for the Nazis in districts where the share of white-collar voters was above the mean (11.423) and below it.
+10. Construct confidence intervals around the means.
+11. Are there differences between the groups? Use the appropriate statistical test to find out.
+12. Calculate t values and p values on your own (without using the t test)
+13. Interpret your results substantially.

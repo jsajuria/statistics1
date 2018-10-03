@@ -1,0 +1,80 @@
+## Solutions
+
+#### Exercise 1
+
+Create a vector of a fair die and a vector of a loaded die with (25) observations such that you cannot distinguish the dice with a difference in means test. Carry out the t-test.
+
+```{r}
+# set random number generator
+set.seed(123456)
+
+# fair die
+die1 <- as.integer(runif(25, min = 1, max = 7))
+# loaded die
+
+die2 <- as.integer(rnorm(25, mean = 5, sd = 1.5))
+die2[which(die2 < 0)] <- 0
+die2[which(die2 > 6)] <- 6
+
+# tables of proportions in each category for both dice
+table(die1) / sum(table(die1))
+table(die2) / sum(table(die2))
+
+# check whether difference in means is detectable or not
+t.test(die1, die2)
+```
+
+Assuming that higher rolls of the die are better, the loaded die gives us better results than the fair die. The fair die has a mean of 3.64 and the loaded die as mean of 4.32. We cannot reject the null hypothesis that there is no difference between the fair die and the loaded die. The p value is 0.16 which is larger than our default alpha level of 0.05.
+
+#### Exercise 2
+
+Re-create the dice but increase the number of observations to 1000. Does the result of the t test change?
+
+```{r}
+# set random number generator
+set.seed(123456)
+
+# fair die
+die1 <- as.integer(runif(1000, min = 1, max = 7))
+# loaded die
+
+die2 <- as.integer(rnorm(1000, mean = 5, sd = 1.5))
+die2[which(die2 < 0)] <- 0
+die2[which(die2 > 6)] <- 6
+
+# tables of proportions in each category for both dice
+table(die1) / sum(table(die1))
+table(die2) / sum(table(die2))
+
+# check whether difference in means is detectable or not
+t.test(die1, die2)
+```
+
+The difference in means is clearly detected now. The p value is extremely small. Hence, we can reject the null hypothesis that there is no difference in means. 
+
+The difference in this exercise and the previous one is the sample size. When we increase the sample size, our standard error decreases. Therefore, we can detect a smaller effects (differences). The larger the sample size, the easier it is to detect significant differences. If the sample size is very very large, everything becomes significant (we can detect even miniscule differences).
+
+#### Exercise 3
+
+Ordinary Economic Voting Behavior in the Extraordinary Election of Adolf Hitler Download and then load who_voted_nazi_in_1932.csv.
+
+```{r}
+df <- read.csv("who_voted_nazi_in_1932.csv")
+```
+
+#### Exercise 4
+
+Estimate the conditional mean vote shares for the Nazis in the 1932 election by class (blue-collar, white-collar, domestic, unemployed, self-employed)
+
+```{r}
+
+df$
+
+```
+
+
+
+
+
+
+
