@@ -226,20 +226,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># random draw of 10 values from a uniform distribution</span>
 dice &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">7</span>)
 dice</code></pre></div>
-<pre><code> [1] 2.578478 2.424640 2.734525 4.675536 2.197909 3.016627 4.610175
- [8] 2.593407 4.216073 6.148036</code></pre>
+<pre><code> [1] 6.640378 2.189532 4.821519 3.257642 4.557970 6.690696 1.288204
+ [8] 2.798534 6.189091 6.935661</code></pre>
 <p>We have indeed drawn 10 numbers but they are not integers as we would like—we want to simulate a die, so the values should be 1, 2, 3, 4, 5 or 6. We will return to this in a moment but for now let’s return to the randomness. Let’s draw 10 numbers again:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># random draw of 10 values from a uniform distribution</span>
 dice2 &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">7</span>)
 
 <span class="co"># first draw</span>
 dice</code></pre></div>
-<pre><code> [1] 2.578478 2.424640 2.734525 4.675536 2.197909 3.016627 4.610175
- [8] 2.593407 4.216073 6.148036</code></pre>
+<pre><code> [1] 6.640378 2.189532 4.821519 3.257642 4.557970 6.690696 1.288204
+ [8] 2.798534 6.189091 6.935661</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># second draw</span>
 dice2</code></pre></div>
-<pre><code> [1] 1.890750 2.763561 6.760424 6.958079 3.476230 6.457420 3.353731
- [8] 3.636359 4.646626 5.126358</code></pre>
+<pre><code> [1] 4.340900 2.377338 6.051753 2.057706 3.223371 4.883000 4.499110
+ [8] 6.898732 6.112942 6.303342</code></pre>
 <p>The numbers of the first and second roll differ because we have drawn values at random. To make our results replicate and to ensure that everyone in the seminar works with the same numbers, we set R’s random number generator with the <code>set.seed()</code> function. As argument we plug in some arbitrary value (it does not matter which but using a different one will lead to a different quasi-random draw).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set random number generator</span>
 <span class="kw">set.seed</span>(<span class="dv">123</span>)
@@ -318,7 +318,7 @@ std.err &lt;-<span class="st"> </span>std.dev <span class="op">/</span><span cla
 t.value &lt;-<span class="st"> </span>(<span class="dv">4</span> <span class="op">-</span><span class="st"> </span><span class="fl">3.5</span>) <span class="op">/</span><span class="st"> </span>std.err
 t.value  </code></pre></div>
 <pre><code>[1] 0.8964215</code></pre>
-<p>Clearly, we cannot reject the null hypothesis. The estimated difference between our sample mean and the population mean is 0.5. This value is 0.9 standard errors away from the population mean under the null hypothesis (3.5). We do not know the critical value for the t distribution here because we are in a small sample. However, it must be bigger than 1.96. Our t value is clearly smaller, therefore, we reject the null hypothesis. That is not surprising, given that we have drawn from a uniform distribution, i.e., our sampling process was fair by definition.</p>
+<p>Clearly, we cannot reject the null hypothesis. The estimated difference between our sample mean and the population mean is 0.5. This value is 0.9 standard errors away from the population mean under the null hypothesis (3.5). We do not know the critical value for the t distribution here because we are in a small sample. However, it must be bigger than 1.96. Our t value is clearly smaller, therefore, we <strong><em>cannot</em></strong> reject the null hypothesis. That is not surprising, given that we have drawn from a uniform distribution, i.e., our sampling process was fair by definition.</p>
 <p>Let’s back up. The standard error quantifies the average difference between mean estimates that are due to sampling variability (chance). Put differently, the standard error approximates the average difference between the population mean and our sample estimate.</p>
 <p>Now. Compute the variance of the mean on your own. Try yourself before you check the code.</p>
 <div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r"><span class="co"># sample variance</span>

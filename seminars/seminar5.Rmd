@@ -128,7 +128,7 @@ t.value <- (4 - 3.5) / std.err
 t.value  
 ```
 
-Clearly, we cannot reject the null hypothesis. The estimated difference between our sample mean and the population mean is 0.5. This value is 0.9 standard errors away from the population mean under the null hypothesis (3.5). We do not know the critical value for the t distribution here because we are in a small sample. However, it must be bigger than 1.96. Our t value is clearly smaller, therefore, we reject the null hypothesis. That is not surprising, given that we have drawn from a uniform distribution, i.e., our sampling process was fair by definition.
+Clearly, we cannot reject the null hypothesis. The estimated difference between our sample mean and the population mean is 0.5. This value is 0.9 standard errors away from the population mean under the null hypothesis (3.5). We do not know the critical value for the t distribution here because we are in a small sample. However, it must be bigger than 1.96. Our t value is clearly smaller, therefore, we ***cannot*** reject the null hypothesis. That is not surprising, given that we have drawn from a uniform distribution, i.e., our sampling process was fair by definition.
 
 Let's back up. The standard error quantifies the average difference between mean estimates that are due to sampling variability (chance). Put differently, the standard error approximates the average difference between the population mean and our sample estimate.
 
