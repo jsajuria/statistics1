@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Statistics 1</title>
+  <meta name="description" content="Statistics 1">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Statistics 1" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Statistics 1" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="seminar5.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="lib/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/codefolding.js"></script>
+
+
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding();
+});
+</script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="lib\bootstrap\3.3.7\css\bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="css\readthedocs.css" type="text/css" />
+<link rel="stylesheet" href="css\custom.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this course</a></li>
+<li class="chapter" data-level="1" data-path="seminar1.html"><a href="seminar1.html"><i class="fa fa-check"></i><b>1</b> Introduction: Measurement, Central Tendency, Dispersion, Validity, Reliability</a><ul>
+<li class="chapter" data-level="1.1" data-path="seminar1.html"><a href="seminar1.html#seminar"><i class="fa fa-check"></i><b>1.1</b> Seminar</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="seminar1.html"><a href="seminar1.html#getting-started"><i class="fa fa-check"></i><b>1.1.1</b> Getting Started</a></li>
+<li class="chapter" data-level="1.1.2" data-path="seminar1.html"><a href="seminar1.html#rstudio"><i class="fa fa-check"></i><b>1.1.2</b> RStudio</a></li>
+<li class="chapter" data-level="1.1.3" data-path="seminar1.html"><a href="seminar1.html#console"><i class="fa fa-check"></i><b>1.1.3</b> Console</a></li>
+<li class="chapter" data-level="1.1.4" data-path="seminar1.html"><a href="seminar1.html#functions"><i class="fa fa-check"></i><b>1.1.4</b> Functions</a></li>
+<li class="chapter" data-level="1.1.5" data-path="seminar1.html"><a href="seminar1.html#getting-help"><i class="fa fa-check"></i><b>1.1.5</b> Getting Help</a></li>
+<li class="chapter" data-level="1.1.6" data-path="seminar1.html"><a href="seminar1.html#the-assignment-operator"><i class="fa fa-check"></i><b>1.1.6</b> The Assignment Operator</a></li>
+<li class="chapter" data-level="1.1.7" data-path="seminar1.html"><a href="seminar1.html#sequences"><i class="fa fa-check"></i><b>1.1.7</b> Sequences</a></li>
+<li class="chapter" data-level="1.1.8" data-path="seminar1.html"><a href="seminar1.html#scripts"><i class="fa fa-check"></i><b>1.1.8</b> Scripts</a></li>
+<li class="chapter" data-level="1.1.9" data-path="seminar1.html"><a href="seminar1.html#central-tendency"><i class="fa fa-check"></i><b>1.1.9</b> Central Tendency</a></li>
+<li class="chapter" data-level="1.1.10" data-path="seminar1.html"><a href="seminar1.html#dispersion"><i class="fa fa-check"></i><b>1.1.10</b> Dispersion</a></li>
+<li class="chapter" data-level="1.1.11" data-path="seminar1.html"><a href="seminar1.html#exercises"><i class="fa fa-check"></i><b>1.1.11</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="solutions1.html"><a href="solutions1.html"><i class="fa fa-check"></i><b>1.2</b> Solutions</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="solutions1.html"><a href="solutions1.html#exercise-3"><i class="fa fa-check"></i><b>1.2.1</b> Exercise 3</a></li>
+<li class="chapter" data-level="1.2.2" data-path="solutions1.html"><a href="solutions1.html#exercise-4"><i class="fa fa-check"></i><b>1.2.2</b> Exercise 4</a></li>
+<li class="chapter" data-level="1.2.3" data-path="solutions1.html"><a href="solutions1.html#exercise-5"><i class="fa fa-check"></i><b>1.2.3</b> Exercise 5</a></li>
+<li class="chapter" data-level="1.2.4" data-path="solutions1.html"><a href="solutions1.html#exercise-6"><i class="fa fa-check"></i><b>1.2.4</b> Exercise 6</a></li>
+<li class="chapter" data-level="1.2.5" data-path="solutions1.html"><a href="solutions1.html#exercise-7"><i class="fa fa-check"></i><b>1.2.5</b> Exercise 7</a></li>
+<li class="chapter" data-level="1.2.6" data-path="solutions1.html"><a href="solutions1.html#exercise-8"><i class="fa fa-check"></i><b>1.2.6</b> Exercise 8</a></li>
+<li class="chapter" data-level="1.2.7" data-path="solutions1.html"><a href="solutions1.html#exercise-9"><i class="fa fa-check"></i><b>1.2.7</b> Exercise 9</a></li>
+<li class="chapter" data-level="1.2.8" data-path="solutions1.html"><a href="solutions1.html#exercise-10"><i class="fa fa-check"></i><b>1.2.8</b> Exercise 10</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="seminar2.html"><a href="seminar2.html"><i class="fa fa-check"></i><b>2</b> Research Design, Counterfactuals, Forming Hypotheses</a><ul>
+<li class="chapter" data-level="2.1" data-path="seminar2.html"><a href="seminar2.html#seminar-1"><i class="fa fa-check"></i><b>2.1</b> Seminar</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="seminar2.html"><a href="seminar2.html#setting-up"><i class="fa fa-check"></i><b>2.1.1</b> setting up</a></li>
+<li class="chapter" data-level="2.1.2" data-path="seminar2.html"><a href="seminar2.html#vectors-and-subsetting"><i class="fa fa-check"></i><b>2.1.2</b> vectors and subsetting</a></li>
+<li class="chapter" data-level="2.1.3" data-path="seminar2.html"><a href="seminar2.html#data-frames"><i class="fa fa-check"></i><b>2.1.3</b> data frames</a></li>
+<li class="chapter" data-level="2.1.4" data-path="seminar2.html"><a href="seminar2.html#loading-data"><i class="fa fa-check"></i><b>2.1.4</b> Loading data</a></li>
+<li class="chapter" data-level="2.1.5" data-path="seminar2.html"><a href="seminar2.html#plots"><i class="fa fa-check"></i><b>2.1.5</b> Plots</a></li>
+<li class="chapter" data-level="2.1.6" data-path="seminar2.html"><a href="seminar2.html#average-treatment-effect"><i class="fa fa-check"></i><b>2.1.6</b> Average Treatment Effect</a></li>
+<li class="chapter" data-level="2.1.7" data-path="seminar2.html"><a href="seminar2.html#exercises-1"><i class="fa fa-check"></i><b>2.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="solutions2.html"><a href="solutions2.html"><i class="fa fa-check"></i><b>2.2</b> Solutions</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="solutions2.html"><a href="solutions2.html#exercise-2"><i class="fa fa-check"></i><b>2.2.1</b> Exercise 2</a></li>
+<li class="chapter" data-level="2.2.2" data-path="solutions2.html"><a href="solutions2.html#exercise-3-1"><i class="fa fa-check"></i><b>2.2.2</b> Exercise 3</a></li>
+<li class="chapter" data-level="2.2.3" data-path="solutions2.html"><a href="solutions2.html#exercise-4-1"><i class="fa fa-check"></i><b>2.2.3</b> Exercise 4</a></li>
+<li class="chapter" data-level="2.2.4" data-path="solutions2.html"><a href="solutions2.html#exercise-5-1"><i class="fa fa-check"></i><b>2.2.4</b> Exercise 5</a></li>
+<li class="chapter" data-level="2.2.5" data-path="solutions2.html"><a href="solutions2.html#exercise-6-1"><i class="fa fa-check"></i><b>2.2.5</b> Exercise 6</a></li>
+<li class="chapter" data-level="2.2.6" data-path="solutions2.html"><a href="solutions2.html#exercise-7-1"><i class="fa fa-check"></i><b>2.2.6</b> Exercise 7</a></li>
+<li class="chapter" data-level="2.2.7" data-path="solutions2.html"><a href="solutions2.html#exercise-8-1"><i class="fa fa-check"></i><b>2.2.7</b> Exercise 8</a></li>
+<li class="chapter" data-level="2.2.8" data-path="solutions2.html"><a href="solutions2.html#exercises-9-and-10"><i class="fa fa-check"></i><b>2.2.8</b> Exercises 9 and 10</a></li>
+<li class="chapter" data-level="2.2.9" data-path="solutions2.html"><a href="solutions2.html#exercises-11"><i class="fa fa-check"></i><b>2.2.9</b> Exercises 11</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="seminar3.html"><a href="seminar3.html"><i class="fa fa-check"></i><b>3</b> Sampling and Distributions</a><ul>
+<li class="chapter" data-level="3.1" data-path="seminar3.html"><a href="seminar3.html#seminar-2"><i class="fa fa-check"></i><b>3.1</b> Seminar</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="seminar3.html"><a href="seminar3.html#loading-dataset-in-csv-format"><i class="fa fa-check"></i><b>3.1.1</b> Loading Dataset in CSV Format</a></li>
+<li class="chapter" data-level="3.1.2" data-path="seminar3.html"><a href="seminar3.html#missing-values"><i class="fa fa-check"></i><b>3.1.2</b> Missing Values</a></li>
+<li class="chapter" data-level="3.1.3" data-path="seminar3.html"><a href="seminar3.html#factor-variables"><i class="fa fa-check"></i><b>3.1.3</b> Factor Variables</a></li>
+<li class="chapter" data-level="3.1.4" data-path="seminar3.html"><a href="seminar3.html#renaming-variables"><i class="fa fa-check"></i><b>3.1.4</b> Renaming Variables</a></li>
+<li class="chapter" data-level="3.1.5" data-path="seminar3.html"><a href="seminar3.html#distributions"><i class="fa fa-check"></i><b>3.1.5</b> Distributions</a></li>
+<li class="chapter" data-level="3.1.6" data-path="seminar3.html"><a href="seminar3.html#conditional-distributions"><i class="fa fa-check"></i><b>3.1.6</b> Conditional Distributions</a></li>
+<li class="chapter" data-level="3.1.7" data-path="seminar3.html"><a href="seminar3.html#exercises-2"><i class="fa fa-check"></i><b>3.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="solutions3.html"><a href="solutions3.html"><i class="fa fa-check"></i><b>3.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="seminar4.html"><a href="seminar4.html"><i class="fa fa-check"></i><b>4</b> T-test for Difference in Means and Hypothesis Testing</a><ul>
+<li class="chapter" data-level="4.1" data-path="seminar4.html"><a href="seminar4.html#seminar-3"><i class="fa fa-check"></i><b>4.1</b> Seminar</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="seminar4.html"><a href="seminar4.html#the-standard-error"><i class="fa fa-check"></i><b>4.1.1</b> The Standard Error</a></li>
+<li class="chapter" data-level="4.1.2" data-path="seminar4.html"><a href="seminar4.html#t-test-one-sample-hypothesis-test"><i class="fa fa-check"></i><b>4.1.2</b> T-test (one sample hypothesis test)</a></li>
+<li class="chapter" data-level="4.1.3" data-path="seminar4.html"><a href="seminar4.html#t-test-difference-in-means"><i class="fa fa-check"></i><b>4.1.3</b> T-test (difference in means)</a></li>
+<li class="chapter" data-level="4.1.4" data-path="seminar4.html"><a href="seminar4.html#estimating-p-values-from-t-values"><i class="fa fa-check"></i><b>4.1.4</b> Estimating p values from t values</a></li>
+<li class="chapter" data-level="4.1.5" data-path="seminar4.html"><a href="seminar4.html#exercises-3"><i class="fa fa-check"></i><b>4.1.5</b> Exercises</a></li>
+<li class="chapter" data-level="4.1.6" data-path="seminar4.html"><a href="seminar4.html#optional-exercises-that-require-reading-extra-info-below"><i class="fa fa-check"></i><b>4.1.6</b> Optional Exercises that require reading Extra Info below</a></li>
+<li class="chapter" data-level="4.1.7" data-path="seminar4.html"><a href="seminar4.html#advanced-exercises"><i class="fa fa-check"></i><b>4.1.7</b> Advanced Exercises</a></li>
+<li class="chapter" data-level="4.1.8" data-path="seminar4.html"><a href="seminar4.html#extra-info"><i class="fa fa-check"></i><b>4.1.8</b> Extra Info</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="solutions4.html"><a href="solutions4.html"><i class="fa fa-check"></i><b>4.2</b> Solutions</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="solutions4.html"><a href="solutions4.html#optional-exercises-that-require-reading-extra-info-below-1"><i class="fa fa-check"></i><b>4.2.1</b> Optional Exercises that require reading Extra Info below</a></li>
+<li class="chapter" data-level="4.2.2" data-path="solutions4.html"><a href="solutions4.html#advanced-exercises-1"><i class="fa fa-check"></i><b>4.2.2</b> Advanced Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="seminar5.html"><a href="seminar5.html"><i class="fa fa-check"></i><b>5</b> Revision: Sample Variance and Sample Standard Deviation; Hypothesis testing and Confidence Intervals</a><ul>
+<li class="chapter" data-level="5.1" data-path="seminar5.html"><a href="seminar5.html#seminar-4"><i class="fa fa-check"></i><b>5.1</b> Seminar</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="seminar5.html"><a href="seminar5.html#sample-variance-and-sample-standard-deviation"><i class="fa fa-check"></i><b>5.1.1</b> Sample Variance and Sample Standard Deviation</a></li>
+<li class="chapter" data-level="5.1.2" data-path="seminar5.html"><a href="seminar5.html#t-test-for-the-sample-mean"><i class="fa fa-check"></i><b>5.1.2</b> T test for the sample mean</a></li>
+<li class="chapter" data-level="5.1.3" data-path="seminar5.html"><a href="seminar5.html#t-test-for-the-difference-in-means"><i class="fa fa-check"></i><b>5.1.3</b> T test for the difference in means</a></li>
+<li class="chapter" data-level="5.1.4" data-path="seminar5.html"><a href="seminar5.html#exercises-4"><i class="fa fa-check"></i><b>5.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="solutions5.html"><a href="solutions5.html"><i class="fa fa-check"></i><b>5.2</b> Solutions</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics 1</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="solutions-4" class="section level2">
+<h2><span class="header-section-number">5.2</span> Solutions</h2>
+<div id="exercise-1" class="section level4">
+<h4><span class="header-section-number">5.2.0.1</span> Exercise 1</h4>
+<p>Create a vector of a fair die and a vector of a loaded die with (25) observations such that you cannot distinguish the dice with a difference in means test. Carry out the t-test.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set random number generator</span>
+<span class="kw">set.seed</span>(<span class="dv">123456</span>)
+
+<span class="co"># fair die</span>
+die1 &lt;-<span class="st"> </span><span class="kw">as.integer</span>(<span class="kw">runif</span>(<span class="dv">25</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">7</span>))
+<span class="co"># loaded die</span>
+
+die2 &lt;-<span class="st"> </span><span class="kw">as.integer</span>(<span class="kw">rnorm</span>(<span class="dv">25</span>, <span class="dt">mean =</span> <span class="dv">5</span>, <span class="dt">sd =</span> <span class="fl">1.5</span>))
+die2[<span class="kw">which</span>(die2 <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)] &lt;-<span class="st"> </span><span class="dv">0</span>
+die2[<span class="kw">which</span>(die2 <span class="op">&gt;</span><span class="st"> </span><span class="dv">6</span>)] &lt;-<span class="st"> </span><span class="dv">6</span>
+
+<span class="co"># tables of proportions in each category for both dice</span>
+<span class="kw">table</span>(die1) <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(<span class="kw">table</span>(die1))</code></pre></div>
+<pre><code>die1
+   1    2    3    4    5    6 
+0.16 0.16 0.20 0.08 0.16 0.24 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(die2) <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(<span class="kw">table</span>(die2))</code></pre></div>
+<pre><code>die2
+   1    2    3    4    5    6 
+0.08 0.04 0.16 0.20 0.24 0.28 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># check whether difference in means is detectable or not</span>
+<span class="kw">t.test</span>(die1, die2)</code></pre></div>
+<pre><code>
+    Welch Two Sample t-test
+
+data:  die1 and die2
+t = -1.4118, df = 46.578, p-value = 0.1647
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -1.6492142  0.2892142
+sample estimates:
+mean of x mean of y 
+     3.64      4.32 </code></pre>
+<p>Assuming that higher rolls of the die are better, the loaded die gives us better results than the fair die. The fair die has a mean of 3.64 and the loaded die as mean of 4.32. We cannot reject the null hypothesis that there is no difference between the fair die and the loaded die. The p value is 0.16 which is larger than our default alpha level of 0.05.</p>
+</div>
+<div id="exercise-2-3" class="section level4">
+<h4><span class="header-section-number">5.2.0.2</span> Exercise 2</h4>
+<p>Re-create the dice but increase the number of observations to 1000. Does the result of the t test change?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set random number generator</span>
+<span class="kw">set.seed</span>(<span class="dv">123456</span>)
+
+<span class="co"># fair die</span>
+die1 &lt;-<span class="st"> </span><span class="kw">as.integer</span>(<span class="kw">runif</span>(<span class="dv">1000</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">7</span>))
+<span class="co"># loaded die</span>
+
+die2 &lt;-<span class="st"> </span><span class="kw">as.integer</span>(<span class="kw">rnorm</span>(<span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">5</span>, <span class="dt">sd =</span> <span class="fl">1.5</span>))
+die2[<span class="kw">which</span>(die2 <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)] &lt;-<span class="st"> </span><span class="dv">0</span>
+die2[<span class="kw">which</span>(die2 <span class="op">&gt;</span><span class="st"> </span><span class="dv">6</span>)] &lt;-<span class="st"> </span><span class="dv">6</span>
+
+<span class="co"># tables of proportions in each category for both dice</span>
+<span class="kw">table</span>(die1) <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(<span class="kw">table</span>(die1))</code></pre></div>
+<pre><code>die1
+    1     2     3     4     5     6 
+0.172 0.155 0.168 0.176 0.161 0.168 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(die2) <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(<span class="kw">table</span>(die2))</code></pre></div>
+<pre><code>die2
+    0     1     2     3     4     5     6 
+0.006 0.016 0.071 0.164 0.239 0.252 0.252 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># check whether difference in means is detectable or not</span>
+<span class="kw">t.test</span>(die1, die2)</code></pre></div>
+<pre><code>
+    Welch Two Sample t-test
+
+data:  die1 and die2
+t = -12.72, df = 1892.4, p-value &lt; 0.00000000000000022
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -1.009909 -0.740091
+sample estimates:
+mean of x mean of y 
+    3.503     4.378 </code></pre>
+<p>The difference in means is clearly detected now. The p value is extremely small. Hence, we can reject the null hypothesis that there is no difference in means.</p>
+<p>The difference in this exercise and the previous one is the sample size. When we increase the sample size, our standard error decreases. Therefore, we can detect a smaller effects (differences). The larger the sample size, the easier it is to detect significant differences. If the sample size is very very large, everything becomes significant (we can detect even minuscule differences).</p>
+</div>
+<div id="exercise-3-4" class="section level4">
+<h4><span class="header-section-number">5.2.0.3</span> Exercise 3</h4>
+<p>Ordinary Economic Voting Behavior in the Extraordinary Election of Adolf Hitler Download and then load who_voted_nazi_in_1932.csv.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;who_voted_nazi_in_1932.csv&quot;</span>)</code></pre></div>
+</div>
+<div id="exercise-4-4" class="section level4">
+<h4><span class="header-section-number">5.2.0.4</span> Exercise 4</h4>
+<p>Estimate the means and illustrate the distribution of potential voter shares by class.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># self-employed</span>
+<span class="kw">mean</span>(df<span class="op">$</span>shareself)</code></pre></div>
+<pre><code>[1] 18.58871</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># blue-collar</span>
+<span class="kw">mean</span>(df<span class="op">$</span>shareblue)</code></pre></div>
+<pre><code>[1] 30.82347</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># white-collar</span>
+<span class="kw">mean</span>(df<span class="op">$</span>sharewhite)</code></pre></div>
+<pre><code>[1] 11.42254</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># domestically employed</span>
+<span class="kw">mean</span>(df<span class="op">$</span>sharedomestic)</code></pre></div>
+<pre><code>[1] 25.44283</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># unemployed</span>
+<span class="kw">mean</span>(df<span class="op">$</span>shareunemployed)</code></pre></div>
+<pre><code>[1] 13.72245</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># illustrate distributions</span>
+<span class="kw">plot</span>(<span class="kw">density</span>(df<span class="op">$</span>shareblue), 
+     <span class="dt">main =</span><span class="st">&quot;&quot;</span>, 
+     <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>, 
+     <span class="dt">ylab=</span><span class="st">&quot;&quot;</span>, 
+     <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>),
+     <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,
+     <span class="dt">lwd =</span> <span class="fl">1.5</span>)
+<span class="kw">lines</span>(<span class="kw">density</span>(df<span class="op">$</span>sharewhite), <span class="dt">col =</span> <span class="dv">2</span>, <span class="dt">lwd =</span> <span class="fl">1.5</span>)
+<span class="kw">lines</span>(<span class="kw">density</span>(df<span class="op">$</span>shareself), <span class="dt">col =</span> <span class="dv">3</span>, <span class="dt">lwd =</span> <span class="fl">1.5</span>)
+<span class="kw">lines</span>(<span class="kw">density</span>(df<span class="op">$</span>sharedomestic), <span class="dt">col =</span> <span class="dv">4</span>, <span class="dt">lwd =</span> <span class="fl">1.5</span>)
+<span class="kw">lines</span>(<span class="kw">density</span>(df<span class="op">$</span>shareunemployed), <span class="dt">col =</span> <span class="dv">5</span>, <span class="dt">lwd =</span> <span class="fl">1.5</span>)
+<span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="dt">col =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>), <span class="dt">lty =</span> <span class="st">&quot;solid&quot;</span>,
+       <span class="kw">c</span>(<span class="st">&quot;Blue-Collar&quot;</span>, <span class="st">&quot;White-Collar&quot;</span>, <span class="st">&quot;Self-Employed&quot;</span>,
+         <span class="st">&quot;Domestic&quot;</span>, <span class="st">&quot;Unemployed&quot;</span>))</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-270-1.png" width="672" /></p>
+</div>
+<div id="exercise-5-4" class="section level4">
+<h4><span class="header-section-number">5.2.0.5</span> Exercise 5</h4>
+<p>Estimate the mean vote shares for the Nazis in districts where the share of blue-collar voters was above the mean (30.82) and below it.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># many blue-collar workers</span>
+share.in.blue.high &lt;-<span class="st"> </span><span class="kw">mean</span>(df<span class="op">$</span>sharenazis[ df<span class="op">$</span>shareblue <span class="op">&gt;</span><span class="st"> </span><span class="kw">mean</span>(df<span class="op">$</span>shareblue) ])
+share.in.blue.high</code></pre></div>
+<pre><code>[1] 41.97132</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># fewer blue-collar workers</span>
+share.in.blue.low &lt;-<span class="st"> </span><span class="kw">mean</span>(df<span class="op">$</span>sharenazis[ df<span class="op">$</span>shareblue <span class="op">&lt;</span><span class="st"> </span><span class="kw">mean</span>(df<span class="op">$</span>shareblue) ])
+share.in.blue.low</code></pre></div>
+<pre><code>[1] 41.19673</code></pre>
+</div>
+<div id="exercise-6-4" class="section level4">
+<h4><span class="header-section-number">5.2.0.6</span> Exercise 6</h4>
+<p>Construct confidence intervals around the means.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ci blue-collar workers high</span>
+se.blue.high &lt;-<span class="st"> </span><span class="kw">sd</span>(df<span class="op">$</span>sharenazis[ df<span class="op">$</span>shareblue <span class="op">&gt;</span><span class="st"> </span><span class="kw">mean</span>(df<span class="op">$</span>shareblue) ]) <span class="op">/</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">sqrt</span>( <span class="kw">length</span>(df<span class="op">$</span>sharenazis[ df<span class="op">$</span>shareblue <span class="op">&gt;</span><span class="st"> </span><span class="kw">mean</span>(df<span class="op">$</span>shareblue) ]) )
+
+<span class="co"># lower bound</span>
+share.in.blue.high <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>se.blue.high</code></pre></div>
+<pre><code>[1] 40.90744</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># upper bound</span>
+share.in.blue.high <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>se.blue.high</code></pre></div>
+<pre><code>[1] 43.03521</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ci blue-collar workers low</span>
+se.blue.high &lt;-<span class="st"> </span><span class="kw">sd</span>(df<span class="op">$</span>sharenazis[ df<span class="op">$</span>shareblue <span class="op">&lt;</span><span class="st"> </span><span class="kw">mean</span>(df<span class="op">$</span>shareblue) ]) <span class="op">/</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">sqrt</span>( <span class="kw">length</span>(df<span class="op">$</span>sharenazis[ df<span class="op">$</span>shareblue <span class="op">&lt;</span><span class="st"> </span><span class="kw">mean</span>(df<span class="op">$</span>shareblue) ]) )
+
+<span class="co"># lower bound</span>
+share.in.blue.high <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>se.blue.high</code></pre></div>
+<pre><code>[1] 40.75962</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># upper bound</span>
+share.in.blue.high <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>se.blue.high</code></pre></div>
+<pre><code>[1] 43.18303</code></pre>
+</div>
+<div id="exercise-7-3" class="section level4">
+<h4><span class="header-section-number">5.2.0.7</span> Exercise 7</h4>
+<p>Are there differences between the groups? Use the appropriate statistical test to find out.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># t-test for difference in means</span>
+<span class="kw">t.test</span>(df<span class="op">$</span>sharenazis[ df<span class="op">$</span>shareblue <span class="op">&gt;</span><span class="st"> </span><span class="kw">mean</span>(df<span class="op">$</span>shareblue) ],
+       df<span class="op">$</span>sharenazis[ df<span class="op">$</span>shareblue <span class="op">&lt;</span><span class="st"> </span><span class="kw">mean</span>(df<span class="op">$</span>shareblue) ])</code></pre></div>
+<pre><code>
+    Welch Two Sample t-test
+
+data:  df$sharenazis[df$shareblue &gt; mean(df$shareblue)] and df$sharenazis[df$shareblue &lt; mean(df$shareblue)]
+t = 0.94153, df = 673.93, p-value = 0.3468
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.8407583  2.3899379
+sample estimates:
+mean of x mean of y 
+ 41.97132  41.19673 </code></pre>
+<p>We cannot reject the null hypothesis that there is no difference in means.</p>
+</div>
+<div id="exercise-8-4" class="section level4">
+<h4><span class="header-section-number">5.2.0.8</span> Exercise 8</h4>
+<p>Calculate t values and p values on your own (without using the t test)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># standard error of the difference in means</span>
+se.fd &lt;-<span class="st"> </span><span class="kw">sqrt</span>(  (<span class="kw">var</span>(df<span class="op">$</span>sharenazis[ df<span class="op">$</span>shareblue <span class="op">&gt;</span><span class="st"> </span><span class="kw">mean</span>(df<span class="op">$</span>shareblue)]) <span class="op">/</span><span class="st"> </span>
+<span class="st">                   </span><span class="kw">length</span>(df<span class="op">$</span>sharenazis[ df<span class="op">$</span>shareblue <span class="op">&gt;</span><span class="st"> </span><span class="kw">mean</span>(df<span class="op">$</span>shareblue)])) <span class="op">+</span>
+<span class="st">                  </span>(<span class="kw">var</span>(df<span class="op">$</span>sharenazis[ df<span class="op">$</span>shareblue <span class="op">&lt;</span><span class="st"> </span><span class="kw">mean</span>(df<span class="op">$</span>shareblue)]) <span class="op">/</span><span class="st"> </span>
+<span class="st">                     </span><span class="kw">length</span>(df<span class="op">$</span>sharenazis[ df<span class="op">$</span>shareblue <span class="op">&lt;</span><span class="st"> </span><span class="kw">mean</span>(df<span class="op">$</span>shareblue)])))
+
+<span class="co"># t value</span>
+t.val &lt;-<span class="st"> </span>(share.in.blue.high <span class="op">-</span><span class="st"> </span>share.in.blue.low) <span class="op">/</span><span class="st"> </span>se.fd
+
+<span class="co"># p value</span>
+(<span class="dv">1</span><span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(t.val))<span class="op">*</span><span class="dv">2</span></code></pre></div>
+<pre><code>[1] 0.3464331</code></pre>
+</div>
+<div id="exercise-9-3" class="section level4">
+<h4><span class="header-section-number">5.2.0.9</span> Exercise 9</h4>
+<p>Interpret your results substantially.</p>
+<p>A common hypothesis is that it was blue-collar workers who voted en-masse for Hitler. However, when comparing districts where the share of blue-collar workers is above the mean to districts where the share is below the mean, we do not see any difference in the vote share of Nazis.</p>
+<p>Based on this comparison, we would not conclude that a high share of blue-collar workers made the difference between a good and a bad result for the National Socialist Party.</p>
+</div>
+<div id="exercise-10-3" class="section level4">
+<h4><span class="header-section-number">5.2.0.10</span> Exercise 10</h4>
+<p>Estimate the mean vote shares for the Nazis in districts where the share of white-collar voters was above the mean (11.423) and below it.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># clear workspace</span>
+<span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())
+
+<span class="co"># re-load data</span>
+df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;who_voted_nazi_in_1932.csv&quot;</span>)
+
+<span class="co"># vector nazi vote share in places where white-collar workers was above the mean</span>
+n.share.high.wc &lt;-<span class="st"> </span>df<span class="op">$</span>sharenazis[ df<span class="op">$</span>sharewhite <span class="op">&gt;</span><span class="st"> </span><span class="kw">mean</span>(df<span class="op">$</span>sharewhite) ]
+
+<span class="co"># vector nazi vote share in places where white-collar workers was below the mean</span>
+n.share.low.wc &lt;-<span class="st"> </span>df<span class="op">$</span>sharenazis[ df<span class="op">$</span>sharewhite <span class="op">&lt;</span><span class="st"> </span><span class="kw">mean</span>(df<span class="op">$</span>sharewhite) ]
+
+<span class="co"># high white-collar group mean</span>
+<span class="kw">mean</span>(n.share.high.wc)</code></pre></div>
+<pre><code>[1] 37.83325</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># low white-collar group mean</span>
+<span class="kw">mean</span>(n.share.low.wc)</code></pre></div>
+<pre><code>[1] 43.38576</code></pre>
+</div>
+<div id="exercise-11-2" class="section level4">
+<h4><span class="header-section-number">5.2.0.11</span> Exercise 11</h4>
+<p>Construct confidence intervals around the means.</p>
+<p>We do this first for the group with a share of white-collar workers.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># number of districts with high white-collar share</span>
+num.high.wc &lt;-<span class="st"> </span><span class="kw">length</span>(n.share.high.wc)
+
+<span class="co"># standard error for high group</span>
+se.high.wc &lt;-<span class="st"> </span><span class="kw">sd</span>(n.share.high.wc) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(num.high.wc)
+
+<span class="co"># lower bound</span>
+<span class="kw">mean</span>(n.share.high.wc) <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>se.high.wc</code></pre></div>
+<pre><code>[1] 36.81174</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># upper bound</span>
+<span class="kw">mean</span>(n.share.high.wc) <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>se.high.wc</code></pre></div>
+<pre><code>[1] 38.85476</code></pre>
+<p>Now, we construct the confidence interval around the mean for the group with a low share of white-collar workers.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># number of districts with low white-collar share</span>
+num.low.wc &lt;-<span class="st"> </span><span class="kw">length</span>(n.share.low.wc)
+
+<span class="co"># standard error for low group</span>
+se.low.wc &lt;-<span class="st"> </span><span class="kw">sd</span>(n.share.low.wc) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(num.low.wc)
+
+<span class="co"># lower bound</span>
+<span class="kw">mean</span>(n.share.low.wc) <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>se.low.wc</code></pre></div>
+<pre><code>[1] 42.32525</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># upper bound</span>
+<span class="kw">mean</span>(n.share.low.wc) <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>se.low.wc</code></pre></div>
+<pre><code>[1] 44.44627</code></pre>
+</div>
+<div id="exercise-12-2" class="section level4">
+<h4><span class="header-section-number">5.2.0.12</span> Exercise 12</h4>
+<p>Are there differences between the groups? Use the appropriate statistical test to find out.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(n.share.high.wc, n.share.low.wc)</code></pre></div>
+<pre><code>
+    Welch Two Sample t-test
+
+data:  n.share.high.wc and n.share.low.wc
+t = -7.3909, df = 612.69, p-value = 0.0000000000004802
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -7.027862 -4.077152
+sample estimates:
+mean of x mean of y 
+ 37.83325  43.38576 </code></pre>
+<p>The t test shows that the difference in means is statistically significant. In districts with a high share of white-collar workers the share for the Nazis is lower.</p>
+</div>
+<div id="exercise-13-2" class="section level4">
+<h4><span class="header-section-number">5.2.0.13</span> Exercise 13</h4>
+<p>Calculate t values and p values on your own (without using the t test)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># variance in high white-collar group</span>
+var.high.wc &lt;-<span class="st"> </span><span class="kw">var</span>(n.share.high.wc)
+
+<span class="co"># variance in low white-collar group</span>
+var.low.wc &lt;-<span class="st"> </span><span class="kw">var</span>(n.share.low.wc)
+
+
+<span class="co"># standard error of the difference in means</span>
+se.fd &lt;-<span class="st"> </span><span class="kw">sqrt</span>( ((var.high.wc<span class="op">/</span>num.high.wc) <span class="op">+</span><span class="st"> </span>(var.low.wc<span class="op">/</span>num.low.wc))   )
+
+<span class="co"># t value</span>
+t.val &lt;-<span class="st"> </span>(<span class="kw">mean</span>(n.share.high.wc) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(n.share.low.wc)) <span class="op">/</span><span class="st"> </span>se.fd
+
+<span class="co"># p value</span>
+<span class="kw">pnorm</span>(t.val) <span class="op">*</span><span class="st"> </span><span class="dv">2</span></code></pre></div>
+<pre><code>[1] 0.0000000000001457993</code></pre>
+</div>
+<div id="exercise-14-1" class="section level4">
+<h4><span class="header-section-number">5.2.0.14</span> Exercise 14</h4>
+<p>Interpret your results substantially.</p>
+<p>We reject the null hypothesis that there is no difference between districts with a low share of white-collar workers and districts with a high share of white-collar workers. In districts where the share of white-collar workers was high, the share for the Nazis was 5.6 percentage points lower.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="seminar5.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["statistics1.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
