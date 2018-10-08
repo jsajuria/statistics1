@@ -56,7 +56,7 @@ t.test(die1, die2)
 
 The difference in means is clearly detected now. The p value is extremely small. Hence, we can reject the null hypothesis that there is no difference in means. 
 
-The difference in this exercise and the previous one is the sample size. When we increase the sample size, our standard error decreases. Therefore, we can detect a smaller effects (differences). The larger the sample size, the easier it is to detect significant differences. If the sample size is very very large, everything becomes significant (we can detect even miniscule differences).
+The difference in this exercise and the previous one is the sample size. When we increase the sample size, our standard error decreases. Therefore, we can detect a smaller effects (differences). The larger the sample size, the easier it is to detect significant differences. If the sample size is very very large, everything becomes significant (we can detect even minuscule differences).
 
 #### Exercise 3
 
@@ -83,13 +83,197 @@ mean(df$sharedomestic)
 mean(df$shareunemployed)
 
 # illustrate distributions
-plot(density(df$shareblue), main ="", xlab="", ylab="")
+plot(density(df$shareblue), 
+     main ="", 
+     xlab="", 
+     ylab="", 
+     ylim = c(0, 0.1),
+     bty = "n",
+     lwd = 1.5)
+lines(density(df$sharewhite), col = 2, lwd = 1.5)
+lines(density(df$shareself), col = 3, lwd = 1.5)
+lines(density(df$sharedomestic), col = 4, lwd = 1.5)
+lines(density(df$shareunemployed), col = 5, lwd = 1.5)
+legend("topright", col = c(1,2,3,4,5), lty = "solid",
+       c("Blue-Collar", "White-Collar", "Self-Employed",
+         "Domestic", "Unemployed"))
+```
 
+#### Exercise 5
+
+Estimate the mean vote shares for the Nazis in districts where the share of blue-collar voters was above the mean (30.82) and below it.
+
+```{r}
+# many blue-collar workers
+share.in.blue.high <- mean(df$sharenazis[ df$shareblue > mean(df$shareblue) ])
+share.in.blue.high
+
+# fewer blue-collar workers
+share.in.blue.low <- mean(df$sharenazis[ df$shareblue < mean(df$shareblue) ])
+share.in.blue.low
+```
+
+#### Exercise 6
+
+Construct confidence intervals around the means.
+
+```{r}
+# ci blue-collar workers high
+se.blue.high <- sd(df$sharenazis[ df$shareblue > mean(df$shareblue) ]) / 
+  sqrt( length(df$sharenazis[ df$shareblue > mean(df$shareblue) ]) )
+
+# lower bound
+share.in.blue.high - 1.96 * se.blue.high
+# upper bound
+share.in.blue.high + 1.96 * se.blue.high
+
+
+# ci blue-collar workers low
+se.blue.high <- sd(df$sharenazis[ df$shareblue < mean(df$shareblue) ]) / 
+  sqrt( length(df$sharenazis[ df$shareblue < mean(df$shareblue) ]) )
+
+# lower bound
+share.in.blue.high - 1.96 * se.blue.high
+# upper bound
+share.in.blue.high + 1.96 * se.blue.high
+```
+
+#### Exercise 7
+
+Are there differences between the groups? Use the appropriate statistical test to find out.
+
+```{r}
+# t-test for difference in means
+t.test(df$sharenazis[ df$shareblue > mean(df$shareblue) ],
+       df$sharenazis[ df$shareblue < mean(df$shareblue) ])
+```
+
+We cannot reject the null hypothesis that there is no difference in means.
+
+#### Exercise 8
+
+Calculate t values and p values on your own (without using the t test)
+
+```{r}
+# standard error of the difference in means
+se.fd <- sqrt(  (var(df$sharenazis[ df$shareblue > mean(df$shareblue)]) / 
+                   length(df$sharenazis[ df$shareblue > mean(df$shareblue)])) +
+                  (var(df$sharenazis[ df$shareblue < mean(df$shareblue)]) / 
+                     length(df$sharenazis[ df$shareblue < mean(df$shareblue)])))
+
+# t value
+t.val <- (share.in.blue.high - share.in.blue.low) / se.fd
+
+# p value
+(1- pnorm(t.val))*2
 ```
 
 
+#### Exercise 9
+
+Interpret your results substantially.
+
+A common hypothesis is that it was blue-collar workers who voted en-masse for Hitler. However, when comparing districts where the share of blue-collar workers is above the mean to districts where the share is below the mean, we do not see any difference in the vote share of Nazis.
+
+Based on this comparison, we would not conclude that a high share of blue-collar workers made the difference between a good and a bad result for the National Socialist Party.
+
+#### Exercise 10
+
+Estimate the mean vote shares for the Nazis in districts where the share of white-collar voters was above the mean (11.423) and below it.
+
+```{r}
+# clear workspace
+rm(list=ls())
+
+# re-load data
+df <- read.csv("who_voted_nazi_in_1932.csv")
+
+# vector nazi vote share in places where white-collar workers was above the mean
+n.share.high.wc <- df$sharenazis[ df$sharewhite > mean(df$sharewhite) ]
+
+# vector nazi vote share in places where white-collar workers was below the mean
+n.share.low.wc <- df$sharenazis[ df$sharewhite < mean(df$sharewhite) ]
+
+# high white-collar group mean
+mean(n.share.high.wc)
+
+# low white-collar group mean
+mean(n.share.low.wc)
+```
+
+#### Exercise 11
+
+Construct confidence intervals around the means.
+
+We do this first for the group with a share of white-collar workers.
+
+```{r}
+# number of districts with high white-collar share
+num.high.wc <- length(n.share.high.wc)
+
+# standard error for high group
+se.high.wc <- sd(n.share.high.wc) / sqrt(num.high.wc)
+
+# lower bound
+mean(n.share.high.wc) - 1.96 * se.high.wc
+
+# upper bound
+mean(n.share.high.wc) + 1.96 * se.high.wc
+```
+
+Now, we construct the confidence interval around the mean for the group with a low share of white-collar workers.
+
+```{r}
+# number of districts with low white-collar share
+num.low.wc <- length(n.share.low.wc)
+
+# standard error for low group
+se.low.wc <- sd(n.share.low.wc) / sqrt(num.low.wc)
+
+# lower bound
+mean(n.share.low.wc) - 1.96 * se.low.wc
+
+# upper bound
+mean(n.share.low.wc) + 1.96 * se.low.wc
+```
+
+#### Exercise 12
+
+Are there differences between the groups? Use the appropriate statistical test to find out.
+
+```{r}
+t.test(n.share.high.wc, n.share.low.wc)
+```
+
+The t test shows that the difference in means is statistically significant. In districts with a high share of white-collar workers the share for the Nazis is lower.
+
+#### Exercise 13
+
+Calculate t values and p values on your own (without using the t test)
+
+```{r}
+# variance in high white-collar group
+var.high.wc <- var(n.share.high.wc)
+
+# variance in low white-collar group
+var.low.wc <- var(n.share.low.wc)
 
 
+# standard error of the difference in means
+se.fd <- sqrt( ((var.high.wc/num.high.wc) + (var.low.wc/num.low.wc))   )
+
+# t value
+t.val <- (mean(n.share.high.wc) - mean(n.share.low.wc)) / se.fd
+
+# p value
+pnorm(t.val) * 2
+```
+
+#### Exercise 14
+
+Interpret your results substantially.
+
+We reject the null hypothesis that there is no difference between districts with a low share of white-collar workers and districts with a high share of white-collar workers. In districts where the share of white-collar workers was high, the share for the Nazis was 5.6 percentage points lower.
 
 
 
