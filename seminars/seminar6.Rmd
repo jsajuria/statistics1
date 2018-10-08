@@ -229,7 +229,7 @@ which is the same as the result we obtained from the `predict()` function! The g
 
 ### Exercises
 
-1.	Open a new script and save it as assignment4.
+1.	Open a new script and save it as assignment6.
 2.	Clear your workspace.
 3.	Load the non-western foreigners dataset from week 2.
 4.	Estimate a model that explains subjective number of immigrants per 100 British citizens using only one independent variable. Justify your choice. (You do not have to pick the best variable but try to make a reasonable argument why more of x should lead to more/less of y).
