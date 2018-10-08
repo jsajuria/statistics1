@@ -26,8 +26,7 @@ library(texreg)
 We will use a dataset collected by the US census bureau that contains several socioeconomic indicators. You can load the dataset directly from the internet.
 
 ```{r}
-
-dat <- read.csv("communities.csv")
+dat <- read.csv("https://raw.githubusercontent.com/philippbroniecki/statistics1/master/data/communities.csv")
 ```
 
 We will be exploring the relationship between the unemployment rate and low education. The variable names for these variables are not terribly clear and so first we will rename these variables using the `names()` function and the `which()` function from last week.
@@ -61,10 +60,11 @@ We can begin by drawing a scatterplot with the percentage of unemployed people o
 
 ```{r}
 plot(
-  UnemploymentRate ~ NoHighSchool, data = dat,
+  y = dat$UnemploymentRate,
+  x = dat$NoHighSchool, 
   xlab = "Adults without High School education (%)",
   ylab = "Unemployment (%)",
-  frame.plot = FALSE,
+  bty = "n",
   pch = 16,
   col = rgb(red = 110, green = 200, blue = 110, alpha = 80, maxColorValue = 255)
 )
@@ -191,7 +191,7 @@ What does this table tell us?
 
 Finally, and this is something that might help with your coursework, let's save the same output as a Microsoft Word document using [`htmlreg()`](http://bit.ly/R_texreg).
 
-```{r}
+```{r, eval = FALSE}
 htmlreg(list(model1, model2), file = "Regressions_on_Unemployment.doc")
 ```
 
