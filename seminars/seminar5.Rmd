@@ -1,356 +1,347 @@
-# Revision: Sample Variance and Sample Standard Deviation; Hypothesis testing and Confidence Intervals
+# Multiple linear regression models (I)
 
-In this seminar, we revise the concepts of the standard deviation, the sampling variance, hypothesis testing and confidence intervals. We will also learn some more data manipulation and working with the random number generator.
+```{r echo=FALSE, results='asis'}
+chapter_header(week = 5)
+```
 
 ## Seminar
 
-Let's remove all objects from our workspace and set the working directory.
-
-```{r eval = FALSE}
-rm(list=ls())
-setwd("~/statistics1")
+```{r message=FALSE}
+library(foreign) 
+library(texreg)
 ```
-
-```{r, include = FALSE}
-par(bg = '#fdf6e3')
-```
-
-
-### Sample Variance and Sample Standard Deviation
-
-The sample variance and sample standard deviation inform us about the degree of variability of our data. Suppose, we were to roll the dice 5 times. We could then compute the mean value that we roll. The sample standard deviation measures by how much an average roll of the dice will deviate from the mean value.
-
-We start rolling the dice, using R's random number generator and the `runif()` function. The function randomly draws numbers from a uniform distribution. In a uniform distribution each value has the same probability of being drawn. All six sides of a die should be equally likely if the die is fair. Hence, the uniform distribution.
-
-`runif()` takes three arguments. `n` is the number of values to be drawn. `min` is the minimum value and `max` is the maximum value.
 
 ```{r}
-# random draw of 10 values from a uniform distribution
-dice <- runif(n = 10, min = 1, max = 7)
-dice
-```
-
-We have indeed drawn 10 numbers but they are not integers as we would like---we want to simulate a die, so the values should be 1, 2, 3, 4, 5 or 6. We will return to this in a moment but for now let's return to the randomness. Let's draw 10 numbers again:
-
-```{r}
-# random draw of 10 values from a uniform distribution
-dice2 <- runif(n = 10, min = 1, max = 7)
-
-# first draw
-dice
-# second draw
-dice2
-```
-
-The numbers of the first and second roll differ because we have drawn values at random. To make our results replicate and to ensure that everyone in the seminar works with the same numbers, we set R's random number generator with the `set.seed()` function. As argument we plug in some arbitrary value (it does not matter which but using a different one will lead to a different quasi-random draw).
-
-```{r}
-# set random number generator
-set.seed(123)
-
-# random draw of 10 values from a uniform distribution
-dice <- runif(n = 10, min = 1, max = 7)
-dice
-```
-
-You should all have the same values. If not, run `set.seed()` again and then do the random draw once. If you do it more than once, the numbers will change. Let's see how this works:
-
-```{r}
-# set random number generator
-set.seed(123)
-
-# 1st random draw of 10 values from a uniform distribution
-dice <- runif(n = 10, min = 1, max = 7)
-dice
-
-# 2nd random draw of 10 values from a uniform distribution
-dice2 <- runif(n = 10, min = 1, max = 7)
-dice2
-
-# reset random number generator
-set.seed(123)
-
-# 3rd random draw of 10 values from a uniform distribution
-dice3 <- runif(n = 10, min = 1, max = 7)
-dice3
-
-# 4th random draw of 10 values from a uniform distribution
-dice4 <- runif(n = 10, min = 1, max = 7)
-dice4
-```
-
-As you can see, the the draws from **dice** and **dice3** are the same and the draws from **dice2** and **dice4** are the same as well. Let's make the values integers with the `as.integer()` function which simply cuts off all decimal places.
-
-```{r}
-# reset random number generator
-set.seed(123)
-# random draw of 10 numbers from a uniform distribution with minimum 1 and maximum 7
-dice <- runif(10, 1, 7)
-# cut off decimals places
-dice <- as.integer(dice)
-dice
-# frequency of dice rolls
-table(dice)
-```
-
-We have rolled a six relatively often. All sides should be equally likely but due to sampling variability, we have rolled the six most often. The expected value of a die is 3.5. That is: $$ 1 \times \frac{1}{6} + 2 \times \frac{1}{6} + 3 \times \frac{1}{6} + 4 \times \frac{1}{6} + 5 \times \frac{1}{6} + 6 \times \frac{1}{6} = 3.5$$
-
-We compute the mean in our sample and the standard deviation. Let's start with the mean. Do so yourself but do not use the in-built function.
-
-```{r class.source="collapsible"}
-dice.sum <- dice[1] + dice[2] + dice[3] + dice[4] + dice[5] + dice[6] + dice[7] + dice[8] + dice[9] + dice[10]
-dice.mean <- dice.sum / 10  
-dice.mean
-```
-
-We would have gotten the same result from the `mean()` function.
-
-The sample standard deviation tells by how much an average roll of the dice differs from the estimated sample mean. Estimate the sample standard deviation on your own without using the `sd()` function. Do not copy. Type everything yourself.
-
-```{r class.source="collapsible"}
-numerator <- ( (dice[1] - dice.mean)^2 + (dice[2] - dice.mean)^2 + (dice[3] - dice.mean)^2  +
-                 (dice[4] - dice.mean)^2 + (dice[5] - dice.mean)^2 + (dice[6] - dice.mean)^2 +
-                 (dice[7] - dice.mean)^2 + (dice[8] - dice.mean)^2 + (dice[9] - dice.mean)^2 +
-                 (dice[10] - dice.mean)^2 )
-std.dev <- sqrt( (numerator / 9) )
-std.dev
-```
-
-An average deviation from the sample mean is 1.76.
-
-### T test for the sample mean
-
-Our estimate of the mean is 4. The expected value is 3.5. Is this evidence that the die is loaded? The null hypothesis is that the die is fair. The alternative hypothesis is that the die is loaded.
-
-Answer this question on your own by computing and interpreting the t value.
-
-```{r class.source="collapsible"}
-# standard error of the sample mean
-std.err <- std.dev / sqrt(10)
-
-# t value
-t.value <- (4 - 3.5) / std.err
-t.value  
-```
-
-Clearly, we cannot reject the null hypothesis. The estimated difference between our sample mean and the population mean is 0.5. This value is 0.9 standard errors away from the population mean under the null hypothesis (3.5). We do not know the critical value for the t distribution here because we are in a small sample. However, it must be bigger than 1.96. Our t value is clearly smaller, therefore, we ***cannot*** reject the null hypothesis. That is not surprising, given that we have drawn from a uniform distribution, i.e., our sampling process was fair by definition.
-
-Let's back up. The standard error quantifies the average difference between mean estimates that are due to sampling variability (chance). Put differently, the standard error approximates the average difference between the population mean and our sample estimate.
-
-Now. Compute the variance of the mean on your own. Try yourself before you check the code.
-
-```{r class.source="collapsible"}
-# sample variance
-variance <- numerator / 9
-
-# variance of the mean
-var.mean <- variance / 10
-var.mean
-```
-
-The correct answer is 0.31. Now, compute the standard error of the mean from your variance of the mean. Try yourself.
- 
-\[ s^2_{\bar{X}} = \frac{s_{x}^2}{n} = (\sqrt{ \frac{s_{x}}{\sqrt{n}}})^2 \]   
-
-```{r class.source="collapsible"}
-# variance of the mean
-sqrt(var.mean)
-```
-
-Let's estimate the p value from a t distribution with the correct amount of degrees of freedom.
-
-```{r class.source="collapsible"}
-p.value <- (1 - pt(t.value, df = 9))*2
-p.value
-```
-
-The probability that we roll a fair die 10 times and get a sample mean of 4 is 39 percent. That is not unlikely at all. We are far from rejecting the null hypothesis.
-
-We now construct the confidence interval around our mean estimate. To re-cap, we construct the confidence interval as:
-
-\[ \bar{Y} \pm \mathrm{critical \: value} \times  SE(\bar{Y})  \]
-
-First, we need the critical value (for an alpha level of 0.05). We get the critical value from the quantile function of the t distribution with $n-1$ degrees of freedom.
-
-```{r}
-qt(p = 0.975, df = 9)
-```
-where `p` is the cumulative probability and `df` is the degrees of freedom. The critical value in a t distribution with 9 degrees of freedom is 2.262157.
-
-Construct the lower and upper bounds of the confidence interval yourself.
-
-```{r class.source="collapsible"}
-# lower bound
-lb <- dice.mean - qt(p = 0.975, df = 9) * std.err
-# upper bound
-ub <- dice.mean + qt(p = 0.975, df = 9) * std.err
-
-# confidence interval
-lb
-ub
-```
-
-With 95 percent probability (where the probability is the long-run relative frequency), the population mean is within the confidence interval.
-
-Clearly, the population mean under the assumption that the null hypothesis is true (3.5), is within this interval.
-
-Run a t test using the `t.test()` function yourself.
-
-```{r class.source="collapsible"}
-t.test(dice,
-       mu = 3.5,
-       conf.level = .95)
-```
-
-The `t.test()` function is more convenient than estimating everything by hand. The results are the same.
-
-### T test for the difference in means
-
-We will now test the difference between two dice. First, remove everything from the workspace on your own.
-
-```{r class.source="collapsible"}
-# remove everything from the workspace
 rm(list = ls())
 ```
 
-Set the random number generator to 1234.
+### Loading, Understanding and Cleaning our Data
 
-```{r class.source="collapsible"}
-set.seed(1234)
+Today, we load the full standard (cross-sectional) dataset from the Quality of Government Institute (this is a newer version that the one we used in week 3). This is a great data source for comparativist political science research. The codebook is available from their main  [website](http://qog.pol.gu.se/data/datadownloads/qogstandarddata). You can also find time-series and cross-section data sets on this page.
+
+The dataset is in stata format (`.dta`). Loading it requires the `foreign` library and the `read.dta()` function which operates similar to `read.csv()`.
+
+Let's load the data set
+```{r}
+# load dataset in Stata format from online source
+world_data <- read.dta("http://uclspp.github.io/PUBLG100/data/qog_std_cs_jan15.dta")
+
+# check the dimensions of the dataset
+dim(world_data)
 ```
 
-Generate a vector of 100 rolls of a fair dice on your own and show the results in a frequency table.
+The dataset contains many variables. We will select a subset of variables that we want to work with. We are interested in political stability. Specifically, we want to find out what predicts the level of political stability. Therefore, `political_stability` is our dependent variable (also called response variable, left-hand-side variable, explained/predicted variable). We will also select a variable that identifies each row (observation) in the dataset uniquely: `cname` which is the name of the country. Potential predictors (independent variables, right-hand-side variables, covariates) are: 
 
-```{r class.source="collapsible"}
-fair.die <- runif(n = 100, min = 1, max = 7)
-fair.die <- as.integer(fair.die)
-table(fair.die)
-```
+1. `lp_lat_abst` is the distance to the equator which we rename into `latitude`
+1. `dr_ing` is an index for the level of globalization which we rename to `globalization`
+1. `ti_cpi` is Transparency International's Corruptions Perceptions Index, renamed to `institutions_quality` (larger values mean better quality institutions, i.e. less corruption)
+1. `br_dem` is a factor variable stating whether the relevant country is a democracy or not (with labels `"1. Democracy"` and `"0. Dictatorship"`)
 
-The absolute number are not that great to see the distribution of values at a glance. Create a table that shows the proportions of each outcome.
+Our dependent variable:
 
-```{r class.source="collapsible"}
-table(fair.die) / sum(table(fair.die))
-```
+- `wbgi_pse` which we rename into `political_stability` (larger values mean more stability)
 
-Calculate the mean.
-
-```{r class.source="collapsible"}
-mean(fair.die)
-```
-
-Although, the proportions look like we rolled the lower numbers way too often, we are not too far away from the population mean (3.5).
-
-Now, we create a loaded die. We draw randomly from a normal distribution with mean 4.5 and standard deviation 1.5.
+One approach of selecting a subset of variables we're interested in, is to use the square bracket [`[ ]` operator](http://bit.ly/R_extract). But first, we rename the variables we care about like we did last week.
 
 ```{r}
-loaded.die <- rnorm(n = 100, mean = 4.5, sd = 1.5)
-loaded.die <- as.integer(loaded.die)
-table(loaded.die)
+names(world_data)[which(names(world_data) == "cname")] <- "country"
+names(world_data)[which(names(world_data) == "wbgi_pse")] <- "political_stability"
+names(world_data)[which(names(world_data) == "lp_lat_abst")] <- "latitude"
+names(world_data)[which(names(world_data) == "dr_ig")] <- "globalization"
+names(world_data)[which(names(world_data) == "chga_demo")] <- "democracy"
+names(world_data)[which(names(world_data) == "ti_cpi")] <- "institutions_quality"
 ```
 
-Oops, we rolled 6 seven's and 1 eight. Let's change these to sixes. We use the square brackets to index the elements of the **loaded.die** vector. We use the `which()` function to identify the elements that are greater than 6. Finally, we change these values to 6.
+Now, we take our subset. We will create an object named `keep` which is a vector of the variable names that we would like to keep for the analysis. We can then use this vector to subset our `world_data` object by including it within the square parentheses:
 
 ```{r}
-loaded.die[ which(loaded.die > 6) ] <- 6
-table(loaded.die)
+keep <- c("country", "political_stability", "latitude", "globalization","democracy", "institutions_quality")
+world_data <- world_data[, keep]
 ```
 
-Now, estimate the 2 means (of the fair die and the loaded die) yourself. Next, estimate the difference in means. You may use the `mean()` function.
+Let's make sure we've got everything we need
 
 ```{r}
-# mean in the 2 groups
-mean(fair.die)
-mean(loaded.die)
-
-# first difference (difference in means)
-fd <- mean(fair.die) - mean(loaded.die)
-fd
+head(world_data)
 ```
 
-The difference suggests that we roll larger values with the loaded die. Is the difference statistically detectable? To find out, we carry out the t test for the difference in means. Our dependent interval scaled variable is the value of the roll of the dice. The our independent binary variable is whether the die is loaded or not.
+The function `summary()` lets you summarize data sets. We will look at the dataset now. When the dataset is small in the sense that you have few variables (columns) then this is a very good way to get a good overview. It gives you an idea about the level of measurement of the variables and the scale. `country`, for example, is a character variable as opposed to a number. Countries do not have any order, so the level of measurement is categorical. 
 
-Compute the standard error for the difference in means on your own.
+If you think about the next variable, political stability, and how one could measure it you know there is an order implicit in the measurement: more or less stability. From there, what you need to know is whether the more or less is ordinal or interval scaled. Checking `political_stability` you see a range from roughly -3 to 1.5. The variable is numerical and has decimal places. This tells you that the variable is at least interval scaled. You will not see ordinally scaled variables with decimal places. Examine the summaries of the other variables and determine their level of measurement.
 
-\[ SE(Y_{X=0} - Y_{X=1}) = \sqrt{ \frac{s_{Y_{X=0}}^2}{n_{X=0}} + \frac{s_{Y_{X=1}}^2}{n_{X=1}}}  \]
+```{r}
+summary(world_data)
+```
 
-where $s_{Y_{X=0}}^2$ is the variance in the first group and $s_{Y_{X=1}}^2$ is the variance in the second group. The number of observations in the first group is $n_{X=0}$ and the number of observations in the second group is $n_{X=1}$.
+The variables `latitude`, `globalization` and `inst_quality` have 12 missing values each marked as `NA`. `democracy` has 1 missing value. Missing values could cause trouble because operations including an `NA` will produce `NA` as a result (e.g.: `1 + NA = NA`). We will drop these missing values from our data set using the `is.na()` function and square brackets. The exlamation mark in front of `is.na()` means "not". So, we keep all rows that are not NA's on the variable `latitude`.
 
-The result is 0.2161462. Try until you get it. You may use the `var()` function.
+```{r}
+world_data <- world_data[ !is.na(world_data$latitude) ,]
+```
+
+Generally, we want to make sure we drop missing values only from variables that we care about. Now that you have seen how to do this, drop missings from `globalization`, `institutions_quality`, and `democracy` yourself.
+
 
 ```{r class.source="collapsible"}
-# standard error of the first difference
-se.fd <- sqrt( ((var(fair.die) / 100) + (var(loaded.die) / 100)) )
-se.fd
+world_data <- world_data[ !is.na(world_data$globalization) ,]
+world_data <- world_data[ !is.na(world_data$institutions_quality) ,]
+world_data <- world_data[ !is.na(world_data$democracy) ,]
 ```
 
-Now, that we have the standard error of the difference in means, compute the t statistic on your own (without using the `t.test()` function).
-
-```{r class.source="collapsible"}
-# standard error of the first difference
-t.value <- (mean(fair.die) - mean(loaded.die)) / se.fd
-t.value
+```{r}
+summary(world_data)
 ```
 
-The t value is large and our sample size is also large. We can take the critical from a normal distribution. For an alpha level of 0.05, the critical value is $1.96$.
+Let's look at the output of `summary(world_data)` again and check the range of the variable `latitude`. It is between `0` and `1`. The codebook clarifies that the latitude of a country's capital has been divided by `90` to get a variable that ranges from `0` to `1`. This would make interpretation difficult. When interpreting the effect of such a variable a unit change (a change of `1`) covers the entire range or put differently, it is a change from a country at the equator to a country at one of the poles. 
 
-Construct the confidence interval for the difference in means yourself.
+<img src="./img/latitude.png" width="280"> 
 
-```{r class.source="collapsible"}
-# lower bound
-lb <- fd - 1.96 * se.fd
-# upper bound
-ub <- fd + 1.96 * se.fd
+We therefore multiply by `90` again. This will turn the units of the `latitude` variable into degrees again which makes interpretation easier.
 
-lb
-ub
+```{r}
+# transform latitude variable
+world_data$latitude <- world_data$latitude * 90
 ```
 
-The confidence interval for the difference in means ranges from -1.32 to -0.48. Clearly, the difference in means is smaller than 0. We can reject the null hypothesis that there is no difference between the loaded die and the fair die because 0 is not within the confidence interval.
+### Estimating a Bivariate Regression
 
-Let's estimate the p value: i.e., the probability that we estimate a difference in means of -0.9 given that there really is no difference between the fair die and the loaded die.
+Is there a correlation between the distance of a country to the equator and the level of political stability? Both political stability (dependent variable) and distance to the equator (independent variable) are continuous. Therefore, we will get an idea about the relationship using a scatter plot. 
 
-The result is 3.129287e-05. Try until you get it. You can use the `pnrom()` function to get the cumulative probability from a standard normal distribution. 
-
-```{r class.source="collapsible"}
-# 1st way
-pnorm( t.value ) * 2
-
-# 2nd way
-(1 - pnorm( abs(t.value) )) *2 
+```{r}
+plot(political_stability ~ latitude, data = world_data)
 ```
 
-We can reject the null hypothesis. The loaded die is different from the fair die.
+Looking at the cloud of points suggests that there might be a positive relationship: increases in our independent variable `latitude` appear to be associated with increases in the dependent variable `political_stability` (the further from the equator, the more stable). 
+
+We can fit a line of best fit through the points. To do this we must estimate the bivariate regression model with the `lm()` function and then plot the line using the `abline()` function.
+
+```{r}
+latitude_model <- lm(political_stability ~ latitude, data = world_data)
+
+# add the line
+plot(political_stability ~ latitude, data = world_data)
+abline(latitude_model)
+```
+
+We can also view a simple summary of the regression by using the `screenreg` function:
+
+```{r}
+# regression output
+screenreg(latitude_model)
+```
+
+Thinking back to last week, how can we interpret this regression ouput?
+
+  - The coefficient for the variable `latitude` ($\beta_1$) indicates that a one-unit increase in a country's latitude is associated with a `0.02` increase in the measure of political stability, on average. Question: Is this association statistically significant at the 95% confidence level?
+  - The coefficient for the `(intercept)` term ($\beta_0$) indicates that the average level of political stability for a country with a latitude of 0 is $-0.58$ (where `latitude = 0` is a country positioned at the equator)
+  - The $R^2$ of the model is 0.11. This implies that 11% of the variation in the dependent variable (political stability) is explained by the independent variable (latitude) in the model.
+
+### Multivariate Regression
+
+The regression above suggests that there is a significant association between these variables However, as good social scientistis, we probably do not think that the distance of a country from the equator is a theoretically relevant variable for explaining political stability. This is because there is no plausible causal link between the two. We should therefore consider other variables to include in our model. 
+
+We will include the index of globalization (higher values mean more integration with the rest of the world), the quality of institutions, and the indicator for whether the country is a democracy. For all of these variables we can come up with a theoretical story for their effect on political stability. 
+
+To specify a *multiple* linear regression model, the only thing we need to change is what we pass to the `formula` argument of the `lm()` function. In particular, if we wish to add additional explanatory variables, the formula argument will take the following form:
+
+```{r, eval=FALSE}
+
+dependent.variable ~ independent.variable.1 + independent.variable.2 ... independent.variable.k
+
+```
+
+where `k` indicates the total number of independent variables we would like to include in the model. In the example here, our model would therefore look like the following:
+
+
+```{r}
+# model with more explanatory variables
+inst_model <- lm(political_stability ~ latitude + globalization + institutions_quality + democracy, 
+                 data = world_data)
+
+```
+
+Remember, `political_stability` is our dependent variable, as before, and now we have four independent variables: `latitude`, `globalization`, `democracy` and `institutions_quality`. Again, just as with the bivariate model, we can view the summarised output of the regression by using `screenreg()`. As we now have two models (a simple regression model, and a multiple regression model), we can join them together using the `list()` function, and then put all of that inside `screenreg()`.
+
+```{r}
+screenreg(list(latitude_model, inst_model))
+```
+
+Including the two new predictors leads to substantial changes. 
+
+  - First, we now explain 50% of the variance of our dependent variable instead of just 11%. 
+  - Second, the effect of the distance to the equator is no longer significant. 
+  - Third, better quality institutions are associated with more political stability. In particular, a one-unit increase in the measure of instituion quality (which ranges from 1 to 10) is associated with a 0.34 increase in the measure for political stability.
+  - Fourth, there is no significant relationship between globalization and political stability in this data.
+  - Fifth, there is no significant relationship between democracy and political stability in this data.
+
+### Joint Significance Test (F-statistic)
+
+Whenever you add variables to your model, you will explain more of the variance in the dependent variable. That means, using your data, your model will better predict outcomes. We would like to know whether the difference (the added explanatory power) is statistically significant. The null hypothesis is that the added explanatory power is zero and the p-value gives us the probability of observing such a difference as the one we actually computed assuming that null hypothesis (no difference) is true.
+
+The F-test is a joint hypothesis test that lets us compute that p-value. Two conditions must be fulfilled to run an F-test:
+
+| Conditions for F-test model comparison| 
+|----------------------------------------------------------------------|
+| Both models must be estimated from the same sample! If your added variables contain lots of missing values and therefore your `n` (number of observations) are reduced substantially, you are not estimating from the same sample.|
+| The models must be nested. That means, the model with more variables must contain all of the variables that are also in the model with fewer variables.|
+
+We specify two models: a restricted model and an unrestricted model. The restricted model is the one with fewer variables. The unrestricted model is the one including the extra variables. We say restricted model because we are "restricting" it to NOT depend on the extra variables. Once we estimated those two models we compare the residual sum of squares (RSS). The RSS is the sum over the squared deviations from the regression line and that is the unexplained error. The restricted model (fewer variables) is always expected to have a larger RSS than the unrestricted model. Notice that this is same as saying: the restricted model (fewer variables) has less explanatory power. 
+
+We test whether the reduction in the RSS is statistically significant using a distribution called "F distribution". If it is, the added variables are jointly (but not necessarily individually) significant. You do not need to know how to calculate p-values from the F distribution, as we can use the `anova()` function in R to do this for us.
+
+```{r}
+anova(latitude_model, inst_model)
+```
+
+<img src="./img/AnalysisofVarianceTable.png"  width="1000">
+
+As we can see from the output, the p-value here is *very* small, which means that we can reject the null hypothesis that the unrestricted model has no more explanatory power than the restricted model.
+
+### Predicting outcome conditional on institutional quality
+
+Just as we did with the simple regression model last week, we can use the fitted model object to calculate the fitted values of our dependent variable for different values of our explanatory variables. To do so, we again use the `predict()` function.
+
+We proceed in three steps. 
+
+1. We set the values of the covariates for which we would like to produce fitted values.
+    - You will need to set covariate values for *every* explanatory variable that you included in your model.
+    - As only one of our variables has a significant relationship with the outcome in the multiple regression model that we estimated above, we are really only interested in that variable (`institutions_quality`).
+    - Therefore, we will calculate fitted values over the range of `institutions_quality`, while setting the values of `latitude` and `globalization` to their mean values.
+    - As `democracy` is a factor variable, we cannot use the mean value. Instead, we will set `democracy` to be equal to `"1. Democracy"` which is the label for democratic countries
+1. We calculate the fitted values.
+1. We report the results (here we will produce a plot).
+
+
+For step one, the following code produces a `data.frame` of new covariate values for which we would like to calculate a fitted value from our model:
+```{r}
+## Set the values for the explanatory variables
+data_for_fitted_values <- data.frame(institutions_quality = seq(from = 1.4, to = 9.3, by = 1),
+                                     globalization = mean(world_data$globalization),
+                                     latitude = mean(world_data$latitude),
+                                     democracy = "1. Democracy"
+                                     )
+```
+
+Here, we have set the `institutions_quality` variable to vary between 1.4 and 9.3, with increments of 1 unit. We have set `globalization` to be equal to the mean value of `globalization` in the `world_data` object, and `latitude` to be equal to the mean value of `latitude` in the `world_data` object. Finally, we have set `democracy` to be equal to `"1. Democracy"` (the value for democratic countries). We have then put all of these values into a new `data.frame` called `data_for_fitted_values` which we will pass to the `predict()` function. 
+
+Before we do that, let's just take a quick look at the `data_for_fitted_values` object:
+
+```{r}
+head(data_for_fitted_values)
+```
+
+As you can see, this has produced a data.frame in which every observation has a different value of `institutions_quality` but the same value for `latitude`, `globalization`, and `democracy`.
+
+We can now calculate the fitted values for each of these combinations of our explanatory variables by passing the `data_for_fitted_values` object to the `newdata` argument of the `predict()` function.
+```{r}
+# Calculate the fitted values
+fitted_values <- predict(inst_model, newdata = data_for_fitted_values)
+
+## Save the fitted values as a new variable in the data_for_fitted_values object
+
+data_for_fitted_values$fitted_values <- fitted_values
+
+```
+
+We can now look again at the `data_for_fitted_values` object:
+
+```{r}
+head(data_for_fitted_values)
+```
+
+Hey presto! Now, for each of our explanatory variable combinations, we have the corresponding fitted values as calculated from our estimated regression.
+
+Finally, we can plot these values:
+
+```{r}
+plot(
+  fitted_values ~ institutions_quality, # Specify the formula for the plot (dependent.variable ~ independent.variable)
+  data = data_for_fitted_values, # Specify the data to use for the plot
+  xlab = "Institution Quality", # Specify the X-axis title
+  ylab = "Fitted value for political stability", # Specify the Y-axis title
+  frame.plot = FALSE, # The frame.plot = FALSE argument removes the box from around the plot
+  col = "blue", # The col argument specifies the color
+  type = "l", # type = "l" will produce a line plot, rather than the default scatter plot
+  lwd = 3 # lwd = 3 will increase the thinkness of the line on the plot
+)
+```
+
+We could also use the output from our model to plot two separate lines of fitted values: one for democracies, and one for dictatorships. We have already done this for democracies, so the following code constructs a `data.frame` of fitted values for dictatorships:
+
+```{r}
+## Set the values for the explanatory variables
+data_for_fitted_values_dictator <- data.frame(institutions_quality = seq(from = 1.4, to = 9.3, by = 1),
+                                     globalization = mean(world_data$globalization),
+                                     latitude = mean(world_data$latitude),
+                                     democracy = "0. Dictatorship"
+                                     )
+
+# Calculate the fitted values
+fitted_values_dictator <- predict(inst_model, newdata = data_for_fitted_values_dictator)
+
+## Save the fitted values as a new variable in the data_for_fitted_values object
+
+data_for_fitted_values_dictator$fitted_values <- fitted_values_dictator
+
+## Take a look at the output
+head(data_for_fitted_values_dictator)
+```
+
+Now that we have calculated these fitted values, we can add the line for dictatorships to the plot we created above using the `lines()` function:
+
+```{r}
+
+## Create the same plot as above for fitted values over the range of institution quality for democracies
+plot(
+  fitted_values ~ institutions_quality, # Specify the formula for the plot (dependent.variable ~ independent.variable)
+  data = data_for_fitted_values, # Specify the data to use for the plot
+  xlab = "Institution Quality", # Specify the X-axis title
+  ylab = "Fitted value for political stability", # Specify the Y-axis title
+  frame.plot = FALSE, # The frame.plot = FALSE argument removes the box from around the plot
+  col = "blue", # The col argument specifies the color
+  type = "l", # type = "l" will produce a line plot, rather than the default scatter plot
+  lwd = 3 # lwd = 3 will increase the thinkness of the line on the plot
+)
+
+## Add an additional line of fitted values over the range of institution quality for dictatorships
+lines(x = data_for_fitted_values_dictator$institutions_quality, 
+      y = data_for_fitted_values_dictator$fitted_values,
+      col = "red",
+      lwd = 3)
+
+```
+
+We can see from the plot that the fitted values for democracies (blue line) are almost exactly the same as those for dictatorships (red line). This is reassuring, as the estimated coefficient on the democracy variable was very small (0.04) and was not statistically significantly different from 0. Often, however, it can be very illuminating to construct plots like this where we construct a line to indicate how our predicted values for Y vary across one of our explanatory variables (here, institution quality), and we create different lines for different values of another explanatory variable (here, democracy/dictatorship).
+
+
+
+### Additional Resources
+
+<div class="container btn-container">
+<a href="http://altaf.shinyapps.io/shiny-statistics" type="button" class="btn btn-primary">Visualizing Distributions</a>
+</div>
 
 ### Exercises
 
-1. Create a vector of a fair die and a vector of a loaded die with (25) observations such that you cannot distinguish the dice with a difference in means test. Carry out the t-test.
-2. Re-create the dice but increase the number of observations to 1000. Does the result of the t test change?
-3. [Ordinary Economic Voting Behavior in the Extraordinary Election of Adolf Hitler](https://www.cambridge.org/core/journals/journal-of-economic-history/article/ordinary-economic-voting-behavior-in-the-extraordinary-election-of-adolf-hitler/8C79A0AB9DA174B7D81A6EB313B1EDFC) Download and then load `who_voted_nazi_in_1932.csv`. 
-<a href="https://github.com/philippbroniecki/statistics1/blob/master/data/who_voted_nazi_in_1932.csv?raw=TRUE" type = "button" class = "btn btn-lg btn-primary" download>who voted nazi in 1932 data</a>
-</br>
-Codebook:
-</br>
+1.	Open a new script and save it as assignment5. 
+2.	Go to the [QoG website](http://qog.pol.gu.se/data/datadownloads/qogstandarddata) and download the standard data and the accompanying codebook.
+3.	Pretend that you are writing a research paper. Select one dependent variable that you want to explain with a statistical model.
+4.	Run a simple regression (with one explanatory variable) on that dependent variable and justify your choice of explanatory variable. This will require you to think about the outcome that you are trying to explain, and what you think will be a good predictor for that outcome.
+5.	Add some additional explanatory variables (no more than 5) to your model and justify the choice again.
+6.	Carry out the F-test to check whether the new model explains more than the old model.
+7.	Produce a regression table of the better model.
+8.	Interpret the output of the better model. State your expectations and whether they were met.
+9.	Calculate fitted values whilst varying at least one of your continuous explanatory variables.
+10.	Plot the result.
+11.	Interpret the plot.
+12.	Source your entire script. If it produces errors, clean your script.
 
-  |Variable|Description|
-  |--------|-------------------------------------|
-  |sharenazis  |Percent of the vote Nazis received in the district|
-  |nazivote |Number of Nazi votes|
-  |nvoter |Total number of eligible voters|
-  |shareblue   |Percent of blue-collar potential voters|
-  |sharewhite  |Percent of white-collar potential voters |
-  |shareself  |Percent of self-employed potential voters |
-  |sharedomestic |Percent of domestically employed potential voters |
-  |shareunemployed  |Percent of unemployed potential voters |
+### Midterm Preparation
 
-4. Estimate the means and illustrate the distribution of potential voter shares by class.
-5. Estimate the mean vote shares for the Nazis in districts where the share of blue-collar voters was above the mean (30.82) and below it. 
-6. Construct confidence intervals around the means.
-6. Are there differences between the groups? Use the appropriate statistical test to find out.
-7. Calculate t values and p values on your own (without using the t test)
-8. Interpret your results substantially.
-9. Estimate the mean vote shares for the Nazis in districts where the share of white-collar voters was above the mean (11.423) and below it.
-10. Construct confidence intervals around the means.
-11. Are there differences between the groups? Use the appropriate statistical test to find out.
-12. Calculate t values and p values on your own (without using the t test)
-13. Interpret your results substantially.
+We wrote a midterm sample for you to get a feeling for the format. For section 3, you need to also download the dataset below. 
+
+<div class="container btn-container">
+  <a href="http://philippbroniecki.github.io/philippbroniecki.github.io/assets/data/sample_midterm_question.pdf" type = "button" class = "btn btn-lg btn-primary">Midterm Sample Questions</a>
+  <a href="http://philippbroniecki.github.io/philippbroniecki.github.io/assets/data/econ_data.RData" type = "button" class = "btn btn-lg btn-primary">Midterm Sample Dataset</a>
+  <a href="http://philippbroniecki.github.io/philippbroniecki.github.io/assets/data/midterm_revision.pdf" type = "button" class = "btn btn-lg btn-primary">Midterm Revision Slides</a>
+</div>
