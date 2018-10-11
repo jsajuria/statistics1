@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Statistics 1</title>
+  <meta name="description" content="Statistics 1">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Statistics 1" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Statistics 1" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="solutions6.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="lib/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/codefolding.js"></script>
+
+
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding();
+});
+</script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="lib\bootstrap\3.3.7\css\bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="css\readthedocs.css" type="text/css" />
+<link rel="stylesheet" href="css\custom.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this course</a></li>
+<li class="chapter" data-level="1" data-path="seminar1.html"><a href="seminar1.html"><i class="fa fa-check"></i><b>1</b> Introduction: Measurement, Central Tendency, Dispersion, Validity, Reliability</a><ul>
+<li class="chapter" data-level="1.1" data-path="seminar1.html"><a href="seminar1.html#seminar"><i class="fa fa-check"></i><b>1.1</b> Seminar</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="seminar1.html"><a href="seminar1.html#getting-started"><i class="fa fa-check"></i><b>1.1.1</b> Getting Started</a></li>
+<li class="chapter" data-level="1.1.2" data-path="seminar1.html"><a href="seminar1.html#rstudio"><i class="fa fa-check"></i><b>1.1.2</b> RStudio</a></li>
+<li class="chapter" data-level="1.1.3" data-path="seminar1.html"><a href="seminar1.html#console"><i class="fa fa-check"></i><b>1.1.3</b> Console</a></li>
+<li class="chapter" data-level="1.1.4" data-path="seminar1.html"><a href="seminar1.html#functions"><i class="fa fa-check"></i><b>1.1.4</b> Functions</a></li>
+<li class="chapter" data-level="1.1.5" data-path="seminar1.html"><a href="seminar1.html#getting-help"><i class="fa fa-check"></i><b>1.1.5</b> Getting Help</a></li>
+<li class="chapter" data-level="1.1.6" data-path="seminar1.html"><a href="seminar1.html#the-assignment-operator"><i class="fa fa-check"></i><b>1.1.6</b> The Assignment Operator</a></li>
+<li class="chapter" data-level="1.1.7" data-path="seminar1.html"><a href="seminar1.html#sequences"><i class="fa fa-check"></i><b>1.1.7</b> Sequences</a></li>
+<li class="chapter" data-level="1.1.8" data-path="seminar1.html"><a href="seminar1.html#scripts"><i class="fa fa-check"></i><b>1.1.8</b> Scripts</a></li>
+<li class="chapter" data-level="1.1.9" data-path="seminar1.html"><a href="seminar1.html#central-tendency"><i class="fa fa-check"></i><b>1.1.9</b> Central Tendency</a></li>
+<li class="chapter" data-level="1.1.10" data-path="seminar1.html"><a href="seminar1.html#dispersion"><i class="fa fa-check"></i><b>1.1.10</b> Dispersion</a></li>
+<li class="chapter" data-level="1.1.11" data-path="seminar1.html"><a href="seminar1.html#exercises"><i class="fa fa-check"></i><b>1.1.11</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="solutions1.html"><a href="solutions1.html"><i class="fa fa-check"></i><b>1.2</b> Solutions</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="solutions1.html"><a href="solutions1.html#exercise-3"><i class="fa fa-check"></i><b>1.2.1</b> Exercise 3</a></li>
+<li class="chapter" data-level="1.2.2" data-path="solutions1.html"><a href="solutions1.html#exercise-4"><i class="fa fa-check"></i><b>1.2.2</b> Exercise 4</a></li>
+<li class="chapter" data-level="1.2.3" data-path="solutions1.html"><a href="solutions1.html#exercise-5"><i class="fa fa-check"></i><b>1.2.3</b> Exercise 5</a></li>
+<li class="chapter" data-level="1.2.4" data-path="solutions1.html"><a href="solutions1.html#exercise-6"><i class="fa fa-check"></i><b>1.2.4</b> Exercise 6</a></li>
+<li class="chapter" data-level="1.2.5" data-path="solutions1.html"><a href="solutions1.html#exercise-7"><i class="fa fa-check"></i><b>1.2.5</b> Exercise 7</a></li>
+<li class="chapter" data-level="1.2.6" data-path="solutions1.html"><a href="solutions1.html#exercise-8"><i class="fa fa-check"></i><b>1.2.6</b> Exercise 8</a></li>
+<li class="chapter" data-level="1.2.7" data-path="solutions1.html"><a href="solutions1.html#exercise-9"><i class="fa fa-check"></i><b>1.2.7</b> Exercise 9</a></li>
+<li class="chapter" data-level="1.2.8" data-path="solutions1.html"><a href="solutions1.html#exercise-10"><i class="fa fa-check"></i><b>1.2.8</b> Exercise 10</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="seminar2.html"><a href="seminar2.html"><i class="fa fa-check"></i><b>2</b> Research Design, Counterfactuals, Forming Hypotheses</a><ul>
+<li class="chapter" data-level="2.1" data-path="seminar2.html"><a href="seminar2.html#seminar-1"><i class="fa fa-check"></i><b>2.1</b> Seminar</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="seminar2.html"><a href="seminar2.html#setting-up"><i class="fa fa-check"></i><b>2.1.1</b> setting up</a></li>
+<li class="chapter" data-level="2.1.2" data-path="seminar2.html"><a href="seminar2.html#vectors-and-subsetting"><i class="fa fa-check"></i><b>2.1.2</b> vectors and subsetting</a></li>
+<li class="chapter" data-level="2.1.3" data-path="seminar2.html"><a href="seminar2.html#data-frames"><i class="fa fa-check"></i><b>2.1.3</b> data frames</a></li>
+<li class="chapter" data-level="2.1.4" data-path="seminar2.html"><a href="seminar2.html#loading-data"><i class="fa fa-check"></i><b>2.1.4</b> Loading data</a></li>
+<li class="chapter" data-level="2.1.5" data-path="seminar2.html"><a href="seminar2.html#plots"><i class="fa fa-check"></i><b>2.1.5</b> Plots</a></li>
+<li class="chapter" data-level="2.1.6" data-path="seminar2.html"><a href="seminar2.html#average-treatment-effect"><i class="fa fa-check"></i><b>2.1.6</b> Average Treatment Effect</a></li>
+<li class="chapter" data-level="2.1.7" data-path="seminar2.html"><a href="seminar2.html#exercises-1"><i class="fa fa-check"></i><b>2.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="solutions2.html"><a href="solutions2.html"><i class="fa fa-check"></i><b>2.2</b> Solutions</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="solutions2.html"><a href="solutions2.html#exercise-2"><i class="fa fa-check"></i><b>2.2.1</b> Exercise 2</a></li>
+<li class="chapter" data-level="2.2.2" data-path="solutions2.html"><a href="solutions2.html#exercise-3-1"><i class="fa fa-check"></i><b>2.2.2</b> Exercise 3</a></li>
+<li class="chapter" data-level="2.2.3" data-path="solutions2.html"><a href="solutions2.html#exercise-4-1"><i class="fa fa-check"></i><b>2.2.3</b> Exercise 4</a></li>
+<li class="chapter" data-level="2.2.4" data-path="solutions2.html"><a href="solutions2.html#exercise-5-1"><i class="fa fa-check"></i><b>2.2.4</b> Exercise 5</a></li>
+<li class="chapter" data-level="2.2.5" data-path="solutions2.html"><a href="solutions2.html#exercise-6-1"><i class="fa fa-check"></i><b>2.2.5</b> Exercise 6</a></li>
+<li class="chapter" data-level="2.2.6" data-path="solutions2.html"><a href="solutions2.html#exercise-7-1"><i class="fa fa-check"></i><b>2.2.6</b> Exercise 7</a></li>
+<li class="chapter" data-level="2.2.7" data-path="solutions2.html"><a href="solutions2.html#exercise-8-1"><i class="fa fa-check"></i><b>2.2.7</b> Exercise 8</a></li>
+<li class="chapter" data-level="2.2.8" data-path="solutions2.html"><a href="solutions2.html#exercises-9-and-10"><i class="fa fa-check"></i><b>2.2.8</b> Exercises 9 and 10</a></li>
+<li class="chapter" data-level="2.2.9" data-path="solutions2.html"><a href="solutions2.html#exercises-11"><i class="fa fa-check"></i><b>2.2.9</b> Exercises 11</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="seminar3.html"><a href="seminar3.html"><i class="fa fa-check"></i><b>3</b> Sampling and Distributions</a><ul>
+<li class="chapter" data-level="3.1" data-path="seminar3.html"><a href="seminar3.html#seminar-2"><i class="fa fa-check"></i><b>3.1</b> Seminar</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="seminar3.html"><a href="seminar3.html#loading-dataset-in-csv-format"><i class="fa fa-check"></i><b>3.1.1</b> Loading Dataset in CSV Format</a></li>
+<li class="chapter" data-level="3.1.2" data-path="seminar3.html"><a href="seminar3.html#missing-values"><i class="fa fa-check"></i><b>3.1.2</b> Missing Values</a></li>
+<li class="chapter" data-level="3.1.3" data-path="seminar3.html"><a href="seminar3.html#factor-variables"><i class="fa fa-check"></i><b>3.1.3</b> Factor Variables</a></li>
+<li class="chapter" data-level="3.1.4" data-path="seminar3.html"><a href="seminar3.html#renaming-variables"><i class="fa fa-check"></i><b>3.1.4</b> Renaming Variables</a></li>
+<li class="chapter" data-level="3.1.5" data-path="seminar3.html"><a href="seminar3.html#distributions"><i class="fa fa-check"></i><b>3.1.5</b> Distributions</a></li>
+<li class="chapter" data-level="3.1.6" data-path="seminar3.html"><a href="seminar3.html#conditional-distributions"><i class="fa fa-check"></i><b>3.1.6</b> Conditional Distributions</a></li>
+<li class="chapter" data-level="3.1.7" data-path="seminar3.html"><a href="seminar3.html#exercises-2"><i class="fa fa-check"></i><b>3.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="solutions3.html"><a href="solutions3.html"><i class="fa fa-check"></i><b>3.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="seminar4.html"><a href="seminar4.html"><i class="fa fa-check"></i><b>4</b> T-test for Difference in Means and Hypothesis Testing</a><ul>
+<li class="chapter" data-level="4.1" data-path="seminar4.html"><a href="seminar4.html#seminar-3"><i class="fa fa-check"></i><b>4.1</b> Seminar</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="seminar4.html"><a href="seminar4.html#the-standard-error"><i class="fa fa-check"></i><b>4.1.1</b> The Standard Error</a></li>
+<li class="chapter" data-level="4.1.2" data-path="seminar4.html"><a href="seminar4.html#t-test-one-sample-hypothesis-test"><i class="fa fa-check"></i><b>4.1.2</b> T-test (one sample hypothesis test)</a></li>
+<li class="chapter" data-level="4.1.3" data-path="seminar4.html"><a href="seminar4.html#t-test-difference-in-means"><i class="fa fa-check"></i><b>4.1.3</b> T-test (difference in means)</a></li>
+<li class="chapter" data-level="4.1.4" data-path="seminar4.html"><a href="seminar4.html#estimating-p-values-from-t-values"><i class="fa fa-check"></i><b>4.1.4</b> Estimating p values from t values</a></li>
+<li class="chapter" data-level="4.1.5" data-path="seminar4.html"><a href="seminar4.html#exercises-3"><i class="fa fa-check"></i><b>4.1.5</b> Exercises</a></li>
+<li class="chapter" data-level="4.1.6" data-path="seminar4.html"><a href="seminar4.html#optional-exercises-that-require-reading-extra-info-below"><i class="fa fa-check"></i><b>4.1.6</b> Optional Exercises that require reading Extra Info below</a></li>
+<li class="chapter" data-level="4.1.7" data-path="seminar4.html"><a href="seminar4.html#advanced-exercises"><i class="fa fa-check"></i><b>4.1.7</b> Advanced Exercises</a></li>
+<li class="chapter" data-level="4.1.8" data-path="seminar4.html"><a href="seminar4.html#extra-info"><i class="fa fa-check"></i><b>4.1.8</b> Extra Info</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="solutions4.html"><a href="solutions4.html"><i class="fa fa-check"></i><b>4.2</b> Solutions</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="solutions4.html"><a href="solutions4.html#optional-exercises-that-require-reading-extra-info-below-1"><i class="fa fa-check"></i><b>4.2.1</b> Optional Exercises that require reading Extra Info below</a></li>
+<li class="chapter" data-level="4.2.2" data-path="solutions4.html"><a href="solutions4.html#advanced-exercises-1"><i class="fa fa-check"></i><b>4.2.2</b> Advanced Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="seminar5.html"><a href="seminar5.html"><i class="fa fa-check"></i><b>5</b> Revision: Sample Variance and Sample Standard Deviation; Hypothesis testing and Confidence Intervals</a><ul>
+<li class="chapter" data-level="5.1" data-path="seminar5.html"><a href="seminar5.html#seminar-4"><i class="fa fa-check"></i><b>5.1</b> Seminar</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="seminar5.html"><a href="seminar5.html#sample-variance-and-sample-standard-deviation"><i class="fa fa-check"></i><b>5.1.1</b> Sample Variance and Sample Standard Deviation</a></li>
+<li class="chapter" data-level="5.1.2" data-path="seminar5.html"><a href="seminar5.html#t-test-for-the-sample-mean"><i class="fa fa-check"></i><b>5.1.2</b> T test for the sample mean</a></li>
+<li class="chapter" data-level="5.1.3" data-path="seminar5.html"><a href="seminar5.html#t-test-for-the-difference-in-means"><i class="fa fa-check"></i><b>5.1.3</b> T test for the difference in means</a></li>
+<li class="chapter" data-level="5.1.4" data-path="seminar5.html"><a href="seminar5.html#exercises-4"><i class="fa fa-check"></i><b>5.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="solutions5.html"><a href="solutions5.html"><i class="fa fa-check"></i><b>5.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="seminar6.html"><a href="seminar6.html"><i class="fa fa-check"></i><b>6</b> Bivariate linear regression models</a><ul>
+<li class="chapter" data-level="6.1" data-path="seminar6.html"><a href="seminar6.html#seminar-5"><i class="fa fa-check"></i><b>6.1</b> Seminar</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="seminar6.html"><a href="seminar6.html#packages"><i class="fa fa-check"></i><b>6.1.1</b> Packages</a></li>
+<li class="chapter" data-level="6.1.2" data-path="seminar6.html"><a href="seminar6.html#fitted-values"><i class="fa fa-check"></i><b>6.1.2</b> Fitted values</a></li>
+<li class="chapter" data-level="6.1.3" data-path="seminar6.html"><a href="seminar6.html#additional-resources"><i class="fa fa-check"></i><b>6.1.3</b> Additional Resources</a></li>
+<li class="chapter" data-level="6.1.4" data-path="seminar6.html"><a href="seminar6.html#exercises-5"><i class="fa fa-check"></i><b>6.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="solutions6.html"><a href="solutions6.html"><i class="fa fa-check"></i><b>6.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="seminar7.html"><a href="seminar7.html"><i class="fa fa-check"></i><b>7</b> Multiple linear regression models (I)</a><ul>
+<li class="chapter" data-level="7.1" data-path="seminar7.html"><a href="seminar7.html#seminar-6"><i class="fa fa-check"></i><b>7.1</b> Seminar</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="seminar7.html"><a href="seminar7.html#loading-understanding-and-cleaning-our-data"><i class="fa fa-check"></i><b>7.1.1</b> Loading, Understanding and Cleaning our Data</a></li>
+<li class="chapter" data-level="7.1.2" data-path="seminar7.html"><a href="seminar7.html#estimating-a-bivariate-regression"><i class="fa fa-check"></i><b>7.1.2</b> Estimating a Bivariate Regression</a></li>
+<li class="chapter" data-level="7.1.3" data-path="seminar7.html"><a href="seminar7.html#multivariate-regression"><i class="fa fa-check"></i><b>7.1.3</b> Multivariate Regression</a></li>
+<li class="chapter" data-level="7.1.4" data-path="seminar7.html"><a href="seminar7.html#joint-significance-test-f-statistic"><i class="fa fa-check"></i><b>7.1.4</b> Joint Significance Test (F-statistic)</a></li>
+<li class="chapter" data-level="7.1.5" data-path="seminar7.html"><a href="seminar7.html#predicting-outcome-conditional-on-institutional-quality"><i class="fa fa-check"></i><b>7.1.5</b> Predicting outcome conditional on institutional quality</a></li>
+<li class="chapter" data-level="7.1.6" data-path="seminar7.html"><a href="seminar7.html#additional-resources-1"><i class="fa fa-check"></i><b>7.1.6</b> Additional Resources</a></li>
+<li class="chapter" data-level="7.1.7" data-path="seminar7.html"><a href="seminar7.html#exercises-6"><i class="fa fa-check"></i><b>7.1.7</b> Exercises</a></li>
+<li class="chapter" data-level="7.1.8" data-path="seminar7.html"><a href="seminar7.html#midterm-preparation"><i class="fa fa-check"></i><b>7.1.8</b> Midterm Preparation</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics 1</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="multiple-linear-regression-models-i" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> Multiple linear regression models (I)</h1>
+<div id="seminar-6" class="section level2">
+<h2><span class="header-section-number">7.1</span> Seminar</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(foreign) 
+<span class="kw">library</span>(texreg)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</code></pre></div>
+<div id="loading-understanding-and-cleaning-our-data" class="section level3">
+<h3><span class="header-section-number">7.1.1</span> Loading, Understanding and Cleaning our Data</h3>
+<p>Today, we load the full standard (cross-sectional) dataset from the Quality of Government Institute (this is a newer version that the one we used in week 3). This is a great data source for comparativist political science research. The codebook is available from their main <a href="http://qog.pol.gu.se/data/datadownloads/qogstandarddata">website</a>. You can also find time-series and cross-section data sets on this page.</p>
+<p>The dataset is in stata format (<code>.dta</code>). Loading it requires the <code>foreign</code> library and the <code>read.dta()</code> function which operates similar to <code>read.csv()</code>.</p>
+<p>Let’s load the data set</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load dataset in Stata format from online source</span>
+world_data &lt;-<span class="st"> </span><span class="kw">read.dta</span>(<span class="st">&quot;https://github.com/philippbroniecki/statistics1/raw/master/data/qog_std_cs_jan15.dta&quot;</span>)
+
+<span class="co"># check the dimensions of the dataset</span>
+<span class="kw">dim</span>(world_data)</code></pre></div>
+<pre><code>[1]  193 2037</code></pre>
+<p>The dataset contains many variables. We will select a subset of variables that we want to work with. We are interested in political stability. Specifically, we want to find out what predicts the level of political stability. Therefore, <code>political_stability</code> is our dependent variable (also called response variable, left-hand-side variable, explained/predicted variable). We will also select a variable that identifies each row (observation) in the dataset uniquely: <code>cname</code> which is the name of the country. Potential predictors (independent variables, right-hand-side variables, covariates) are:</p>
+<ol style="list-style-type: decimal">
+<li><code>lp_lat_abst</code> is the distance to the equator which we rename into <code>latitude</code></li>
+<li><code>dr_ing</code> is an index for the level of globalization which we rename to <code>globalization</code></li>
+<li><code>ti_cpi</code> is Transparency International’s Corruptions Perceptions Index, renamed to <code>institutions_quality</code> (larger values mean better quality institutions, i.e. less corruption)</li>
+<li><code>br_dem</code> is a factor variable stating whether the relevant country is a democracy or not (with labels <code>&quot;1. Democracy&quot;</code> and <code>&quot;0. Dictatorship&quot;</code>)</li>
+</ol>
+<p>Our dependent variable:</p>
+<ul>
+<li><code>wbgi_pse</code> which we rename into <code>political_stability</code> (larger values mean more stability)</li>
+</ul>
+<p>One approach of selecting a subset of variables we’re interested in, is to use the square bracket <a href="http://bit.ly/R_extract"><code>[ ]</code> operator</a>. But first, we rename the variables we care about like we did last week.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(world_data)[<span class="kw">which</span>(<span class="kw">names</span>(world_data) <span class="op">==</span><span class="st"> &quot;cname&quot;</span>)] &lt;-<span class="st"> &quot;country&quot;</span>
+<span class="kw">names</span>(world_data)[<span class="kw">which</span>(<span class="kw">names</span>(world_data) <span class="op">==</span><span class="st"> &quot;wbgi_pse&quot;</span>)] &lt;-<span class="st"> &quot;political_stability&quot;</span>
+<span class="kw">names</span>(world_data)[<span class="kw">which</span>(<span class="kw">names</span>(world_data) <span class="op">==</span><span class="st"> &quot;lp_lat_abst&quot;</span>)] &lt;-<span class="st"> &quot;latitude&quot;</span>
+<span class="kw">names</span>(world_data)[<span class="kw">which</span>(<span class="kw">names</span>(world_data) <span class="op">==</span><span class="st"> &quot;dr_ig&quot;</span>)] &lt;-<span class="st"> &quot;globalization&quot;</span>
+<span class="kw">names</span>(world_data)[<span class="kw">which</span>(<span class="kw">names</span>(world_data) <span class="op">==</span><span class="st"> &quot;chga_demo&quot;</span>)] &lt;-<span class="st"> &quot;democracy&quot;</span>
+<span class="kw">names</span>(world_data)[<span class="kw">which</span>(<span class="kw">names</span>(world_data) <span class="op">==</span><span class="st"> &quot;ti_cpi&quot;</span>)] &lt;-<span class="st"> &quot;institutions_quality&quot;</span></code></pre></div>
+<p>Now, we take our subset. We will create an object named <code>keep</code> which is a vector of the variable names that we would like to keep for the analysis. We can then use this vector to subset our <code>world_data</code> object by including it within the square parentheses:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">keep &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;country&quot;</span>, <span class="st">&quot;political_stability&quot;</span>, <span class="st">&quot;latitude&quot;</span>, <span class="st">&quot;globalization&quot;</span>,<span class="st">&quot;democracy&quot;</span>, <span class="st">&quot;institutions_quality&quot;</span>)
+world_data &lt;-<span class="st"> </span>world_data[, keep]</code></pre></div>
+<p>Let’s make sure we’ve got everything we need</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(world_data)</code></pre></div>
+<pre><code>              country political_stability  latitude globalization
+1         Afghanistan          -2.5498192 0.3666667      31.46042
+2             Albania          -0.1913142 0.4555556      58.32265
+3             Algeria          -1.2624909 0.3111111      52.37114
+4             Andorra           1.3064846 0.4700000            NA
+5              Angola          -0.2163249 0.1366667      44.73296
+6 Antigua and Barbuda           0.9319394 0.1892222      48.15911
+        democracy institutions_quality
+1 0. Dictatorship                  1.4
+2    1. Democracy                  3.3
+3 0. Dictatorship                  2.9
+4    1. Democracy                   NA
+5 0. Dictatorship                  1.9
+6    1. Democracy                   NA</code></pre>
+<p>The function <code>summary()</code> lets you summarize data sets. We will look at the dataset now. When the dataset is small in the sense that you have few variables (columns) then this is a very good way to get a good overview. It gives you an idea about the level of measurement of the variables and the scale. <code>country</code>, for example, is a character variable as opposed to a number. Countries do not have any order, so the level of measurement is categorical.</p>
+<p>If you think about the next variable, political stability, and how one could measure it you know there is an order implicit in the measurement: more or less stability. From there, what you need to know is whether the more or less is ordinal or interval scaled. Checking <code>political_stability</code> you see a range from roughly -3 to 1.5. The variable is numerical and has decimal places. This tells you that the variable is at least interval scaled. You will not see ordinally scaled variables with decimal places. Examine the summaries of the other variables and determine their level of measurement.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(world_data)</code></pre></div>
+<pre><code>   country          political_stability    latitude      globalization  
+ Length:193         Min.   :-3.10637    Min.   :0.0000   Min.   :24.35  
+ Class :character   1st Qu.:-0.72686    1st Qu.:0.1444   1st Qu.:45.22  
+ Mode  :character   Median :-0.01900    Median :0.2444   Median :54.99  
+                    Mean   :-0.06079    Mean   :0.2865   Mean   :57.15  
+                    3rd Qu.: 0.78486    3rd Qu.:0.4444   3rd Qu.:68.34  
+                    Max.   : 1.57240    Max.   :0.7222   Max.   :92.30  
+                                        NA&#39;s   :12       NA&#39;s   :12     
+           democracy   institutions_quality
+ 0. Dictatorship: 74   Min.   :1.010       
+ 1. Democracy   :118   1st Qu.:2.400       
+ NA&#39;s           :  1   Median :3.300       
+                       Mean   :3.988       
+                       3rd Qu.:5.100       
+                       Max.   :9.300       
+                       NA&#39;s   :12          </code></pre>
+<p>The variables <code>latitude</code>, <code>globalization</code> and <code>inst_quality</code> have 12 missing values each marked as <code>NA</code>. <code>democracy</code> has 1 missing value. Missing values could cause trouble because operations including an <code>NA</code> will produce <code>NA</code> as a result (e.g.: <code>1 + NA = NA</code>). We will drop these missing values from our data set using the <code>is.na()</code> function and square brackets. The exlamation mark in front of <code>is.na()</code> means “not”. So, we keep all rows that are not NA’s on the variable <code>latitude</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">world_data &lt;-<span class="st"> </span>world_data[ <span class="op">!</span><span class="kw">is.na</span>(world_data<span class="op">$</span>latitude) ,]</code></pre></div>
+<p>Generally, we want to make sure we drop missing values only from variables that we care about. Now that you have seen how to do this, drop missings from <code>globalization</code>, <code>institutions_quality</code>, and <code>democracy</code> yourself.</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r">world_data &lt;-<span class="st"> </span>world_data[ <span class="op">!</span><span class="kw">is.na</span>(world_data<span class="op">$</span>globalization) ,]
+world_data &lt;-<span class="st"> </span>world_data[ <span class="op">!</span><span class="kw">is.na</span>(world_data<span class="op">$</span>institutions_quality) ,]
+world_data &lt;-<span class="st"> </span>world_data[ <span class="op">!</span><span class="kw">is.na</span>(world_data<span class="op">$</span>democracy) ,]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(world_data)</code></pre></div>
+<pre><code>   country          political_stability    latitude      globalization  
+ Length:170         Min.   :-2.67338    Min.   :0.0000   Min.   :25.46  
+ Class :character   1st Qu.:-0.79223    1st Qu.:0.1386   1st Qu.:46.05  
+ Mode  :character   Median :-0.03174    Median :0.2500   Median :55.87  
+                    Mean   :-0.12018    Mean   :0.2865   Mean   :57.93  
+                    3rd Qu.: 0.66968    3rd Qu.:0.4444   3rd Qu.:69.02  
+                    Max.   : 1.48047    Max.   :0.7222   Max.   :92.30  
+           democracy   institutions_quality
+ 0. Dictatorship: 67   Min.   :1.400       
+ 1. Democracy   :103   1st Qu.:2.500       
+                       Median :3.300       
+                       Mean   :4.050       
+                       3rd Qu.:5.175       
+                       Max.   :9.300       </code></pre>
+<p>Let’s look at the output of <code>summary(world_data)</code> again and check the range of the variable <code>latitude</code>. It is between <code>0</code> and <code>1</code>. The codebook clarifies that the latitude of a country’s capital has been divided by <code>90</code> to get a variable that ranges from <code>0</code> to <code>1</code>. This would make interpretation difficult. When interpreting the effect of such a variable a unit change (a change of <code>1</code>) covers the entire range or put differently, it is a change from a country at the equator to a country at one of the poles.</p>
+<p><img src="img/latitude.png" width="280"></p>
+<p>We therefore multiply by <code>90</code> again. This will turn the units of the <code>latitude</code> variable into degrees again which makes interpretation easier.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># transform latitude variable</span>
+world_data<span class="op">$</span>latitude &lt;-<span class="st"> </span>world_data<span class="op">$</span>latitude <span class="op">*</span><span class="st"> </span><span class="dv">90</span></code></pre></div>
+</div>
+<div id="estimating-a-bivariate-regression" class="section level3">
+<h3><span class="header-section-number">7.1.2</span> Estimating a Bivariate Regression</h3>
+<p>Is there a correlation between the distance of a country to the equator and the level of political stability? Both political stability (dependent variable) and distance to the equator (independent variable) are continuous. Therefore, we will get an idea about the relationship using a scatter plot.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(political_stability <span class="op">~</span><span class="st"> </span>latitude, <span class="dt">data =</span> world_data)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-325-1.png" width="672" /></p>
+<p>Looking at the cloud of points suggests that there might be a positive relationship: increases in our independent variable <code>latitude</code> appear to be associated with increases in the dependent variable <code>political_stability</code> (the further from the equator, the more stable).</p>
+<p>We can fit a line of best fit through the points. To do this we must estimate the bivariate regression model with the <code>lm()</code> function and then plot the line using the <code>abline()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">latitude_model &lt;-<span class="st"> </span><span class="kw">lm</span>(political_stability <span class="op">~</span><span class="st"> </span>latitude, <span class="dt">data =</span> world_data)
+
+<span class="co"># add the line</span>
+<span class="kw">plot</span>(political_stability <span class="op">~</span><span class="st"> </span>latitude, <span class="dt">data =</span> world_data)
+<span class="kw">abline</span>(latitude_model)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-326-1.png" width="672" /></p>
+<p>We can also view a simple summary of the regression by using the <code>screenreg</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># regression output</span>
+<span class="kw">screenreg</span>(latitude_model)</code></pre></div>
+<pre><code>
+=======================
+             Model 1   
+-----------------------
+(Intercept)   -0.58 ***
+              (0.12)   
+latitude       0.02 ***
+              (0.00)   
+-----------------------
+R^2            0.11    
+Adj. R^2       0.10    
+Num. obs.    170       
+RMSE           0.89    
+=======================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>Thinking back to last week, how can we interpret this regression ouput?</p>
+<ul>
+<li>The coefficient for the variable <code>latitude</code> (<span class="math inline">\(\beta_1\)</span>) indicates that a one-unit increase in a country’s latitude is associated with a <code>0.02</code> increase in the measure of political stability, on average. Question: Is this association statistically significant at the 95% confidence level?</li>
+<li>The coefficient for the <code>(intercept)</code> term (<span class="math inline">\(\beta_0\)</span>) indicates that the average level of political stability for a country with a latitude of 0 is <span class="math inline">\(-0.58\)</span> (where <code>latitude = 0</code> is a country positioned at the equator)</li>
+<li>The <span class="math inline">\(R^2\)</span> of the model is 0.11. This implies that 11% of the variation in the dependent variable (political stability) is explained by the independent variable (latitude) in the model.</li>
+</ul>
+</div>
+<div id="multivariate-regression" class="section level3">
+<h3><span class="header-section-number">7.1.3</span> Multivariate Regression</h3>
+<p>The regression above suggests that there is a significant association between these variables However, as good social scientistis, we probably do not think that the distance of a country from the equator is a theoretically relevant variable for explaining political stability. This is because there is no plausible causal link between the two. We should therefore consider other variables to include in our model.</p>
+<p>We will include the index of globalization (higher values mean more integration with the rest of the world), the quality of institutions, and the indicator for whether the country is a democracy. For all of these variables we can come up with a theoretical story for their effect on political stability.</p>
+<p>To specify a <em>multiple</em> linear regression model, the only thing we need to change is what we pass to the <code>formula</code> argument of the <code>lm()</code> function. In particular, if we wish to add additional explanatory variables, the formula argument will take the following form:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dependent.variable <span class="op">~</span><span class="st"> </span>independent.variable.<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>independent.variable.<span class="dv">2</span> ... independent.variable.k</code></pre></div>
+<p>where <code>k</code> indicates the total number of independent variables we would like to include in the model. In the example here, our model would therefore look like the following:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># model with more explanatory variables</span>
+inst_model &lt;-<span class="st"> </span><span class="kw">lm</span>(political_stability <span class="op">~</span><span class="st"> </span>latitude <span class="op">+</span><span class="st"> </span>globalization <span class="op">+</span><span class="st"> </span>institutions_quality <span class="op">+</span><span class="st"> </span>democracy, 
+                 <span class="dt">data =</span> world_data)</code></pre></div>
+<p>Remember, <code>political_stability</code> is our dependent variable, as before, and now we have four independent variables: <code>latitude</code>, <code>globalization</code>, <code>democracy</code> and <code>institutions_quality</code>. Again, just as with the bivariate model, we can view the summarised output of the regression by using <code>screenreg()</code>. As we now have two models (a simple regression model, and a multiple regression model), we can join them together using the <code>list()</code> function, and then put all of that inside <code>screenreg()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">screenreg</span>(<span class="kw">list</span>(latitude_model, inst_model))</code></pre></div>
+<pre><code>
+=============================================
+                       Model 1     Model 2   
+---------------------------------------------
+(Intercept)             -0.58 ***   -1.25 ***
+                        (0.12)      (0.20)   
+latitude                 0.02 ***    0.00    
+                        (0.00)      (0.00)   
+globalization                       -0.00    
+                                    (0.01)   
+institutions_quality                 0.34 ***
+                                    (0.04)   
+democracy1. Democracy                0.04    
+                                    (0.11)   
+---------------------------------------------
+R^2                      0.11        0.50    
+Adj. R^2                 0.10        0.49    
+Num. obs.              170         170       
+RMSE                     0.89        0.67    
+=============================================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>Including the two new predictors leads to substantial changes.</p>
+<ul>
+<li>First, we now explain 50% of the variance of our dependent variable instead of just 11%.</li>
+<li>Second, the effect of the distance to the equator is no longer significant.</li>
+<li>Third, better quality institutions are associated with more political stability. In particular, a one-unit increase in the measure of instituion quality (which ranges from 1 to 10) is associated with a 0.34 increase in the measure for political stability.</li>
+<li>Fourth, there is no significant relationship between globalization and political stability in this data.</li>
+<li>Fifth, there is no significant relationship between democracy and political stability in this data.</li>
+</ul>
+</div>
+<div id="joint-significance-test-f-statistic" class="section level3">
+<h3><span class="header-section-number">7.1.4</span> Joint Significance Test (F-statistic)</h3>
+<p>Whenever you add variables to your model, you will explain more of the variance in the dependent variable. That means, using your data, your model will better predict outcomes. We would like to know whether the difference (the added explanatory power) is statistically significant. The null hypothesis is that the added explanatory power is zero and the p-value gives us the probability of observing such a difference as the one we actually computed assuming that null hypothesis (no difference) is true.</p>
+<p>The F-test is a joint hypothesis test that lets us compute that p-value. Two conditions must be fulfilled to run an F-test:</p>
+<table style="width:99%;">
+<colgroup>
+<col width="98%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Conditions for F-test model comparison</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Both models must be estimated from the same sample! If your added variables contain lots of missing values and therefore your <code>n</code> (number of observations) are reduced substantially, you are not estimating from the same sample.</td>
+</tr>
+<tr class="even">
+<td>The models must be nested. That means, the model with more variables must contain all of the variables that are also in the model with fewer variables.</td>
+</tr>
+</tbody>
+</table>
+<p>We specify two models: a restricted model and an unrestricted model. The restricted model is the one with fewer variables. The unrestricted model is the one including the extra variables. We say restricted model because we are “restricting” it to NOT depend on the extra variables. Once we estimated those two models we compare the residual sum of squares (RSS). The RSS is the sum over the squared deviations from the regression line and that is the unexplained error. The restricted model (fewer variables) is always expected to have a larger RSS than the unrestricted model. Notice that this is same as saying: the restricted model (fewer variables) has less explanatory power.</p>
+<p>We test whether the reduction in the RSS is statistically significant using a distribution called “F distribution”. If it is, the added variables are jointly (but not necessarily individually) significant. You do not need to know how to calculate p-values from the F distribution, as we can use the <code>anova()</code> function in R to do this for us.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(latitude_model, inst_model)</code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Model 1: political_stability ~ latitude
+Model 2: political_stability ~ latitude + globalization + institutions_quality + 
+    democracy
+  Res.Df     RSS Df Sum of Sq      F                Pr(&gt;F)    
+1    168 133.121                                              
+2    165  74.229  3    58.892 43.636 &lt; 0.00000000000000022 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p><img src="img/AnalysisofVarianceTable.png"  width="1000"></p>
+<p>As we can see from the output, the p-value here is <em>very</em> small, which means that we can reject the null hypothesis that the unrestricted model has no more explanatory power than the restricted model.</p>
+</div>
+<div id="predicting-outcome-conditional-on-institutional-quality" class="section level3">
+<h3><span class="header-section-number">7.1.5</span> Predicting outcome conditional on institutional quality</h3>
+<p>Just as we did with the simple regression model last week, we can use the fitted model object to calculate the fitted values of our dependent variable for different values of our explanatory variables. To do so, we again use the <code>predict()</code> function.</p>
+<p>We proceed in three steps.</p>
+<ol style="list-style-type: decimal">
+<li>We set the values of the covariates for which we would like to produce fitted values.
+<ul>
+<li>You will need to set covariate values for <em>every</em> explanatory variable that you included in your model.</li>
+<li>As only one of our variables has a significant relationship with the outcome in the multiple regression model that we estimated above, we are really only interested in that variable (<code>institutions_quality</code>).</li>
+<li>Therefore, we will calculate fitted values over the range of <code>institutions_quality</code>, while setting the values of <code>latitude</code> and <code>globalization</code> to their mean values.</li>
+<li>As <code>democracy</code> is a factor variable, we cannot use the mean value. Instead, we will set <code>democracy</code> to be equal to <code>&quot;1. Democracy&quot;</code> which is the label for democratic countries</li>
+</ul></li>
+<li>We calculate the fitted values.</li>
+<li>We report the results (here we will produce a plot).</li>
+</ol>
+<p>For step one, the following code produces a <code>data.frame</code> of new covariate values for which we would like to calculate a fitted value from our model:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Set the values for the explanatory variables
+data_for_fitted_values &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">institutions_quality =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="fl">1.4</span>, <span class="dt">to =</span> <span class="fl">9.3</span>, <span class="dt">by =</span> <span class="dv">1</span>),
+                                     <span class="dt">globalization =</span> <span class="kw">mean</span>(world_data<span class="op">$</span>globalization),
+                                     <span class="dt">latitude =</span> <span class="kw">mean</span>(world_data<span class="op">$</span>latitude),
+                                     <span class="dt">democracy =</span> <span class="st">&quot;1. Democracy&quot;</span>
+                                     )</code></pre></div>
+<p>Here, we have set the <code>institutions_quality</code> variable to vary between 1.4 and 9.3, with increments of 1 unit. We have set <code>globalization</code> to be equal to the mean value of <code>globalization</code> in the <code>world_data</code> object, and <code>latitude</code> to be equal to the mean value of <code>latitude</code> in the <code>world_data</code> object. Finally, we have set <code>democracy</code> to be equal to <code>&quot;1. Democracy&quot;</code> (the value for democratic countries). We have then put all of these values into a new <code>data.frame</code> called <code>data_for_fitted_values</code> which we will pass to the <code>predict()</code> function.</p>
+<p>Before we do that, let’s just take a quick look at the <code>data_for_fitted_values</code> object:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(data_for_fitted_values)</code></pre></div>
+<pre><code>  institutions_quality globalization latitude    democracy
+1                  1.4      57.93053 25.78218 1. Democracy
+2                  2.4      57.93053 25.78218 1. Democracy
+3                  3.4      57.93053 25.78218 1. Democracy
+4                  4.4      57.93053 25.78218 1. Democracy
+5                  5.4      57.93053 25.78218 1. Democracy
+6                  6.4      57.93053 25.78218 1. Democracy</code></pre>
+<p>As you can see, this has produced a data.frame in which every observation has a different value of <code>institutions_quality</code> but the same value for <code>latitude</code>, <code>globalization</code>, and <code>democracy</code>.</p>
+<p>We can now calculate the fitted values for each of these combinations of our explanatory variables by passing the <code>data_for_fitted_values</code> object to the <code>newdata</code> argument of the <code>predict()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calculate the fitted values</span>
+fitted_values &lt;-<span class="st"> </span><span class="kw">predict</span>(inst_model, <span class="dt">newdata =</span> data_for_fitted_values)
+
+## Save the fitted values as a new variable in the data_for_fitted_values object
+
+data_for_fitted_values<span class="op">$</span>fitted_values &lt;-<span class="st"> </span>fitted_values</code></pre></div>
+<p>We can now look again at the <code>data_for_fitted_values</code> object:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(data_for_fitted_values)</code></pre></div>
+<pre><code>  institutions_quality globalization latitude    democracy fitted_values
+1                  1.4      57.93053 25.78218 1. Democracy   -1.00319887
+2                  2.4      57.93053 25.78218 1. Democracy   -0.66431685
+3                  3.4      57.93053 25.78218 1. Democracy   -0.32543483
+4                  4.4      57.93053 25.78218 1. Democracy    0.01344719
+5                  5.4      57.93053 25.78218 1. Democracy    0.35232921
+6                  6.4      57.93053 25.78218 1. Democracy    0.69121123</code></pre>
+<p>Hey presto! Now, for each of our explanatory variable combinations, we have the corresponding fitted values as calculated from our estimated regression.</p>
+<p>Finally, we can plot these values:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(
+  fitted_values <span class="op">~</span><span class="st"> </span>institutions_quality, <span class="co"># Specify the formula for the plot (dependent.variable ~ independent.variable)</span>
+  <span class="dt">data =</span> data_for_fitted_values, <span class="co"># Specify the data to use for the plot</span>
+  <span class="dt">xlab =</span> <span class="st">&quot;Institution Quality&quot;</span>, <span class="co"># Specify the X-axis title</span>
+  <span class="dt">ylab =</span> <span class="st">&quot;Fitted value for political stability&quot;</span>, <span class="co"># Specify the Y-axis title</span>
+  <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>, <span class="co"># The frame.plot = FALSE argument removes the box from around the plot</span>
+  <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="co"># The col argument specifies the color</span>
+  <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="co"># type = &quot;l&quot; will produce a line plot, rather than the default scatter plot</span>
+  <span class="dt">lwd =</span> <span class="dv">3</span> <span class="co"># lwd = 3 will increase the thinkness of the line on the plot</span>
+)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-336-1.png" width="672" /></p>
+<p>We could also use the output from our model to plot two separate lines of fitted values: one for democracies, and one for dictatorships. We have already done this for democracies, so the following code constructs a <code>data.frame</code> of fitted values for dictatorships:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Set the values for the explanatory variables
+data_for_fitted_values_dictator &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">institutions_quality =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="fl">1.4</span>, <span class="dt">to =</span> <span class="fl">9.3</span>, <span class="dt">by =</span> <span class="dv">1</span>),
+                                     <span class="dt">globalization =</span> <span class="kw">mean</span>(world_data<span class="op">$</span>globalization),
+                                     <span class="dt">latitude =</span> <span class="kw">mean</span>(world_data<span class="op">$</span>latitude),
+                                     <span class="dt">democracy =</span> <span class="st">&quot;0. Dictatorship&quot;</span>
+                                     )
+
+<span class="co"># Calculate the fitted values</span>
+fitted_values_dictator &lt;-<span class="st"> </span><span class="kw">predict</span>(inst_model, <span class="dt">newdata =</span> data_for_fitted_values_dictator)
+
+## Save the fitted values as a new variable in the data_for_fitted_values object
+
+data_for_fitted_values_dictator<span class="op">$</span>fitted_values &lt;-<span class="st"> </span>fitted_values_dictator
+
+## Take a look at the output
+<span class="kw">head</span>(data_for_fitted_values_dictator)</code></pre></div>
+<pre><code>  institutions_quality globalization latitude       democracy
+1                  1.4      57.93053 25.78218 0. Dictatorship
+2                  2.4      57.93053 25.78218 0. Dictatorship
+3                  3.4      57.93053 25.78218 0. Dictatorship
+4                  4.4      57.93053 25.78218 0. Dictatorship
+5                  5.4      57.93053 25.78218 0. Dictatorship
+6                  6.4      57.93053 25.78218 0. Dictatorship
+  fitted_values
+1   -1.04148517
+2   -0.70260315
+3   -0.36372113
+4   -0.02483911
+5    0.31404291
+6    0.65292493</code></pre>
+<p>Now that we have calculated these fitted values, we can add the line for dictatorships to the plot we created above using the <code>lines()</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Create the same plot as above for fitted values over the range of institution quality for democracies
+<span class="kw">plot</span>(
+  fitted_values <span class="op">~</span><span class="st"> </span>institutions_quality, <span class="co"># Specify the formula for the plot (dependent.variable ~ independent.variable)</span>
+  <span class="dt">data =</span> data_for_fitted_values, <span class="co"># Specify the data to use for the plot</span>
+  <span class="dt">xlab =</span> <span class="st">&quot;Institution Quality&quot;</span>, <span class="co"># Specify the X-axis title</span>
+  <span class="dt">ylab =</span> <span class="st">&quot;Fitted value for political stability&quot;</span>, <span class="co"># Specify the Y-axis title</span>
+  <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>, <span class="co"># The frame.plot = FALSE argument removes the box from around the plot</span>
+  <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="co"># The col argument specifies the color</span>
+  <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="co"># type = &quot;l&quot; will produce a line plot, rather than the default scatter plot</span>
+  <span class="dt">lwd =</span> <span class="dv">3</span> <span class="co"># lwd = 3 will increase the thinkness of the line on the plot</span>
+)
+
+## Add an additional line of fitted values over the range of institution quality for dictatorships
+<span class="kw">lines</span>(<span class="dt">x =</span> data_for_fitted_values_dictator<span class="op">$</span>institutions_quality, 
+      <span class="dt">y =</span> data_for_fitted_values_dictator<span class="op">$</span>fitted_values,
+      <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>,
+      <span class="dt">lwd =</span> <span class="dv">3</span>)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-338-1.png" width="672" /></p>
+<p>We can see from the plot that the fitted values for democracies (blue line) are almost exactly the same as those for dictatorships (red line). This is reassuring, as the estimated coefficient on the democracy variable was very small (0.04) and was not statistically significantly different from 0. Often, however, it can be very illuminating to construct plots like this where we construct a line to indicate how our predicted values for Y vary across one of our explanatory variables (here, institution quality), and we create different lines for different values of another explanatory variable (here, democracy/dictatorship).</p>
+</div>
+<div id="additional-resources-1" class="section level3">
+<h3><span class="header-section-number">7.1.6</span> Additional Resources</h3>
+<div class="container btn-container">
+<p><a href="http://altaf.shinyapps.io/shiny-statistics" type="button" class="btn btn-primary">Visualizing Distributions</a></p>
+</div>
+</div>
+<div id="exercises-6" class="section level3">
+<h3><span class="header-section-number">7.1.7</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li>Open a new script and save it as assignment5.</li>
+<li>Go to the <a href="http://qog.pol.gu.se/data/datadownloads/qogstandarddata">QoG website</a> and download the standard data and the accompanying codebook.</li>
+<li>Pretend that you are writing a research paper. Select one dependent variable that you want to explain with a statistical model.</li>
+<li>Run a simple regression (with one explanatory variable) on that dependent variable and justify your choice of explanatory variable. This will require you to think about the outcome that you are trying to explain, and what you think will be a good predictor for that outcome.</li>
+<li>Add some additional explanatory variables (no more than 5) to your model and justify the choice again.</li>
+<li>Carry out the F-test to check whether the new model explains more than the old model.</li>
+<li>Produce a regression table of the better model.</li>
+<li>Interpret the output of the better model. State your expectations and whether they were met.</li>
+<li>Calculate fitted values whilst varying at least one of your continuous explanatory variables.</li>
+<li>Plot the result.</li>
+<li>Interpret the plot.</li>
+<li>Source your entire script. If it produces errors, clean your script.</li>
+</ol>
+</div>
+<div id="midterm-preparation" class="section level3">
+<h3><span class="header-section-number">7.1.8</span> Midterm Preparation</h3>
+<p>We wrote a midterm preparation exercise for you. It envolves working a little bit with data (in section 3). You will obviously not get questions where you work with R, so you can skip that part of section 3 if you want.</p>
+<div class="container btn-container">
+<p><a href="http://philippbroniecki.github.io/philippbroniecki.github.io/assets/data/midterm_prep.pdf" type = "button" class = "btn btn-lg btn-primary">Midterm Preparatory Questions</a> <a href="http://philippbroniecki.github.io/philippbroniecki.github.io/assets/data/econ_data.RData" type = "button" class = "btn btn-lg btn-primary">Prepartory Questions Dataset</a></p>
+</div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="solutions6.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["statistics1.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
