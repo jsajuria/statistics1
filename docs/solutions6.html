@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
+<link rel="prev" href="seminar6.html">
 
-<link rel="next" href="seminar1.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -220,34 +220,145 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Statistics 1</h1>
+<div id="solutions-5" class="section level2">
+<h2><span class="header-section-number">6.2</span> Solutions</h2>
+<div id="exercise-3-5" class="section level4">
+<h4><span class="header-section-number">6.2.0.1</span> Exercise 3</h4>
+<p>Load the non-western foreigners dataset from week 2.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;BSAS_manip.RData&quot;</span>)</code></pre></div>
 </div>
-<div id="about-this-course" class="section level1 unnumbered">
-<h1>About this course</h1>
-<p>This course is an introduction to data science. We have three primary aims. First, to introduce you to the logic of quantitative research design. Second, to familiarise you with statistical models that scientists and policy-makers use to answer social science questions. Third, to help you acquire the necessary skills to conduct your own quantitative research projects. No prior statistical knowledge is assumed. We will use the statistical software R and RStudio on top.</p>
-<p>My <strong>office hours are Mondays from 4 pm to 6 pm in room 140</strong>. You can drop-in in groups. There is no need to book in advance. Please make use of the office hours.</p>
-<hr />
-<div class="container btn-container">
-<button type="button" class="btn btn-lg btn-primary" onclick="window.open('https://github.com/philippbroniecki/statistics1/raw/master/admin/syllabus.pdf');">
-Syllabus
-</button>
-<button type="button" class="btn btn-lg btn-info" onclick="window.open('https://moodle.hertie-school.org/');">
-Moodle
-</button>
-<button type="button" class="btn btn-lg btn-success" onclick="window.open('https://piazza.com/class/jldqza78wzv1mz');">
-Piazza
-</button>
+<div id="exercise-4-5" class="section level4">
+<h4><span class="header-section-number">6.2.0.2</span> Exercise 4</h4>
+<p>Estimate a model that explains subjective number of immigrants per 100 British citizens using only one independent variable. Justify your choice. (You do not have to pick the best variable but try to make a reasonable argument why more of x should lead to more/less of y).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(IMMBRIT <span class="op">~</span><span class="st"> </span>RAge, <span class="dt">data =</span> data2)</code></pre></div>
+<p>We use age as predictor variable. We argue that older people are less positive towards immigration and tend to overestimate the number of immigrants to overemphasize the problem. We, therefore, expect a positive relationship between age and the perception of immigration.</p>
 </div>
+<div id="exercise-5-5" class="section level4">
+<h4><span class="header-section-number">6.2.0.3</span> Exercise 5</h4>
+<p>Plot a scatterplot of the relationship and add the regression line to the plot.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(
+  <span class="dt">y =</span> data2<span class="op">$</span>IMMBRIT,
+  <span class="dt">x =</span> data2<span class="op">$</span>RAge,
+  <span class="dt">xlab =</span> <span class="st">&quot;age&quot;</span>,
+  <span class="dt">ylab =</span> <span class="st">&quot;immigration perception&quot;</span>,
+  <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>,
+  <span class="dt">pch =</span> <span class="dv">16</span>,
+  <span class="dt">col =</span> <span class="kw">rgb</span>(<span class="dt">red =</span> <span class="dv">110</span>, <span class="dt">green =</span> <span class="dv">200</span>, <span class="dt">blue =</span> <span class="dv">110</span>, <span class="dt">alpha =</span> <span class="dv">80</span>, <span class="dt">maxColorValue =</span> <span class="dv">255</span>)
+)
+<span class="kw">abline</span>(m1, <span class="dt">lwd =</span> <span class="dv">3</span>,
+       <span class="dt">col =</span> <span class="kw">rgb</span>(<span class="dt">red =</span> <span class="dv">230</span>, <span class="dt">green =</span> <span class="dv">150</span>, <span class="dt">blue =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="dv">255</span>, <span class="dt">maxColorValue =</span> <span class="dv">255</span>))</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-305-1.png" width="672" /></p>
+<p>The regression line slopes downward, ever so slightly, pointing towards a tiny negative relationship. The residuals seem to be extraordinarily large. It seems, that the relation between age and immigration perception is weak at best. This is more consistent with no relationship.</p>
+</div>
+<div id="exercise-6-5" class="section level4">
+<h4><span class="header-section-number">6.2.0.4</span> Exercise 6</h4>
+<p>Interpret the regression output and try to imagine that you are communicating your results to someone who does not know anything about statistics.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(texreg)
+<span class="kw">screenreg</span>(m1)</code></pre></div>
+<pre><code>
+========================
+             Model 1    
+------------------------
+(Intercept)    31.38 ***
+               (1.95)   
+RAge           -0.05    
+               (0.04)   
+------------------------
+R^2             0.00    
+Adj. R^2        0.00    
+Num. obs.    1049       
+RMSE           21.06    
+========================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>We cannot, with sufficient confidence, rule out that age and immigration perception are unrelated (<span class="math inline">\(p &gt; 0.05\)</span>).</p>
+<p>As we will learn next week, <span class="math inline">\(R^2\)</span> indicates, that our model does a terrible job at predicting the perception of immigration. We could predict the outcome (perception of immigration) equally well without our model.</p>
+<p>Suppose, our best guess of <code>IMMBRIT</code> for any age is just the mean of <code>IMMBRIT</code>. The quality of that prediction (in statistics jargon, the naive guess) would be as good as the predictions we get from our model.</p>
+</div>
+<div id="exercise-7-4" class="section level4">
+<h4><span class="header-section-number">6.2.0.5</span> Exercise 7</h4>
+<p>Estimate another model (i.e. choose a different independent variable) on the same dependent variable. Justify the choice.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m2 &lt;-<span class="st"> </span><span class="kw">lm</span>(IMMBRIT <span class="op">~</span><span class="st"> </span>HHInc, <span class="dt">data =</span> data2)</code></pre></div>
+<p>We choose income as the predictor in our second model. We conjecture that on average, wealthier people are more educated and hence have a more realistic view of immigration. Furthermore, they tend to face less competition from immigration and, therefore, tend not to exaggerate the level of immigration. We expect that the wealthier the respondent, the lower the respondent’s estimate of immigration.</p>
+</div>
+<div id="exercise-8-5" class="section level4">
+<h4><span class="header-section-number">6.2.0.6</span> Exercise 8</h4>
+<p>Interpret the new regression output.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">screenreg</span>(m2)</code></pre></div>
+<pre><code>
+========================
+             Model 1    
+------------------------
+(Intercept)    43.12 ***
+               (1.41)   
+HHInc          -1.47 ***
+               (0.13)   
+------------------------
+R^2             0.10    
+Adj. R^2        0.10    
+Num. obs.    1049       
+RMSE           19.94    
+========================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>In line with our expectation, wealthier people perceive immigration to be lower than poorer people. The relationship is significant at the five percent level. We explain a tenth of the variance in the perception of immigration with our model (you will learn this next week). Considering that this model is very small (we use only one predictor variable), we do quite well at predicting the outcome.</p>
+</div>
+<div id="exercise-9-4" class="section level4">
+<h4><span class="header-section-number">6.2.0.7</span> Exercise 9</h4>
+<p>Compare the two models and explain which one you would choose.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">screenreg</span>( <span class="kw">list</span>(m1, m2))</code></pre></div>
+<pre><code>
+=====================================
+             Model 1      Model 2    
+-------------------------------------
+(Intercept)    31.38 ***    43.12 ***
+               (1.95)       (1.41)   
+RAge           -0.05                 
+               (0.04)                
+HHInc                       -1.47 ***
+                            (0.13)   
+-------------------------------------
+R^2             0.00         0.10    
+Adj. R^2        0.00         0.10    
+Num. obs.    1049         1049       
+RMSE           21.06        19.94    
+=====================================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>From what we have learned so far, we would look at the coefficients in our models. In the first, Age was insignificant. In the second, income is. Therefore, the second model is better at explaining perception on immigration. We learn nothing about potential causes of overestimating immigration from model one, whereas from model two, we do.</p>
+</div>
+<div id="exercise-10-4" class="section level4">
+<h4><span class="header-section-number">6.2.0.8</span> Exercise 10</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">htmlreg</span>( <span class="kw">list</span>(m1, m2), <span class="dt">file =</span> <span class="st">&quot;regressions_on_immigration_perception.doc&quot;</span>)</code></pre></div>
+</div>
+<div id="exercise-11-3" class="section level4">
+<h4><span class="header-section-number">6.2.0.9</span> Exercise 11</h4>
+<p>Consider the following table. This analysis asks whether individuals who have spent longer in education have higher yearly earnings. The analysis is based on a sample of 300 individuals. The dependent variable in this analysis is the yearly income of the individual in UK pounds (<code>earnings</code>). The independent variable measures the number of years the individual spent in full-time education (<code>education</code>).</p>
+<ul>
+<li>Interpret the coefficient on the <code>education</code> variable.</li>
+</ul>
+<p>For each additional year of education we expect earnings to go up by 1270.81 pounds on average.</p>
+<ul>
+<li>Using the values given in the table, calculate the test-statistic</li>
+</ul>
+<p>We compute the t value using the formula: <span class="math display">\[ \frac{\bar{Y_{HA}}-\mu_{H_{0}}}{ \sigma_{\bar{Y_{HA}}} } \]</span></p>
+<p>So, we take the alternative hypothesis (our estimate of the effect of education) minus the mean under the null hypothesis and divide the result by the standard error of our estimate. Unless stated otherwise, the null hypothesis is that there is no effect of education on income, i.e. the null is zero.</p>
+<p>The coefficient estimate here is <span class="math inline">\(1270.81\)</span> and its standard error is <span class="math inline">\(160.97\)</span>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="fl">1270.81</span> <span class="op">/</span><span class="st"> </span><span class="fl">160.97</span></code></pre></div>
+<pre><code>[1] 7.894701</code></pre>
+<p>The t value is 7.89.</p>
+<ul>
+<li>Can we reject the null hypothesis of no effect at the 95% confidence level? (Just looking at the stars is not sufficient here! How can we work out the result of the hypothesis test?)</li>
+</ul>
+<p>We have 300 observations in our sample and because we estimate two parameters, 298 degrees of freedom. A t distribution with 298 degrees of freedom is well approximated by the standard normal distribution. Under the normal distribution <span class="math inline">\(95\%\)</span> are within <span class="math inline">\(1.96\)</span> standard deviations from the mean. Our t value is more extreme than that. Our estimate is <span class="math inline">\(7.89\)</span> standard deviations from the mean. It is unlikely to observe such an extreme value by chance (assuming the null hypothesis, there is no relation between education and income, is true). We therefore, reject the null hypothesis at 5 percent level.</p>
 
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
+<a href="seminar6.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="seminar1.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
