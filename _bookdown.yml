@@ -47,9 +47,6 @@ rmd_files: [
   # datasets
   #datasets.Rmd,
   
-  # midterm revision
-  # midtermrevision.Rmd
-  
   # FAQs
   #FAQs.Rmd
 ]
