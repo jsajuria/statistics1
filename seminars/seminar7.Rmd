@@ -340,5 +340,5 @@ We wrote a midterm preparation exercise for you. It envolves working a little bi
 <div class="container btn-container">
   <a href="http://philippbroniecki.github.io/philippbroniecki.github.io/assets/data/midterm_prep.pdf" type = "button" class = "btn btn-lg btn-primary">Midterm Preparatory Questions</a>
   <a href="http://philippbroniecki.github.io/philippbroniecki.github.io/assets/data/econ_data.RData" type = "button" class = "btn btn-lg btn-primary">Prepartory Questions Dataset</a>
-  <a href="http://philippbroniecki.github.io/philippbroniecki.github.io/assets/data/midterm_prep_response.pdf" type = "button" class = "btn btn-lg btn-primary">Prepartory Questions Dataset</a>
+  <a href="http://philippbroniecki.github.io/philippbroniecki.github.io/assets/data/midterm_prep_response.pdf" type = "button" class = "btn btn-lg btn-primary">Midterm Preparatory Response</a>
 </div>
