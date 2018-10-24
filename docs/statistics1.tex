@@ -113,14 +113,15 @@
 }
 
 \setlength{\droptitle}{-2em}
-  \title{Statistics 1}
-  \pretitle{\vspace{\droptitle}\centering\huge}
-  \posttitle{\par}
-  \author{}
-  \preauthor{}\postauthor{}
-  \date{}
-  \predate{}\postdate{}
 
+  \title{Statistics 1}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{}
+    \preauthor{}\postauthor{}
+    \date{}
+    \predate{}\postdate{}
+  
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[section]
@@ -5626,8 +5627,8 @@ is the maximum value.
 \end{Shaded}
 
 \begin{verbatim}
- [1] 3.476298 4.146796 6.492647 2.583479 6.167914 6.794068 6.452794
- [8] 1.392720 6.677943 2.517762
+ [1] 2.390113 3.199818 2.535570 6.059051 3.867442 5.555044 5.012353
+ [8] 5.587161 1.973469 3.974729
 \end{verbatim}
 
 We have indeed drawn 10 numbers but they are not integers as we would
@@ -5646,8 +5647,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 3.476298 4.146796 6.492647 2.583479 6.167914 6.794068 6.452794
- [8] 1.392720 6.677943 2.517762
+ [1] 2.390113 3.199818 2.535570 6.059051 3.867442 5.555044 5.012353
+ [8] 5.587161 1.973469 3.974729
 \end{verbatim}
 
 \begin{Shaded}
@@ -5658,8 +5659,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 1.374400 3.656762 4.967877 2.737349 2.138014 3.434245 1.682275
- [8] 1.088820 5.070714 2.445558
+ [1] 5.841186 4.668781 1.138153 1.995750 4.170118 3.668103 5.556507
+ [8] 5.376902 3.032745 3.459710
 \end{verbatim}
 
 The numbers of the first and second roll differ because we have drawn
@@ -8677,6 +8678,547 @@ if you want.
 
 Midterm Preparatory Questions Prepartory Questions Dataset Midterm
 Preparatory Response
+
+\subsection{Solutions}\label{solutions-6}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(texreg)}
+\end{Highlighting}
+\end{Shaded}
+
+\paragraph{Exercise 2}\label{exercise-2-4}
+
+You can download the data and load from your local disk but since it is
+available online, we download it directly from the Quality of Government
+Institute website.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"http://www.qogdata.pol.gu.se/data/qog_std_cs_jan17.csv"}\NormalTok{, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\paragraph{Exercise 3}\label{exercise-3-6}
+
+Pretend that you are writing a research paper. Select one dependent
+variable that you want to explain with a statistical model.
+
+We are interested in explaining the quality of government idicator,
+where larger values indicate better overall governance. Before we go on
+to check what predicts better governance, we will take a look at the
+variable and remove NA's. We will also rename the variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# rename}
+\KeywordTok{names}\NormalTok{(df)[}\KeywordTok{which}\NormalTok{(}\KeywordTok{names}\NormalTok{(df) }\OperatorTok{==}\StringTok{ "icrg_qog"}\NormalTok{)] <-}\StringTok{ "gov_quality"}
+
+\CommentTok{# look at DV}
+\KeywordTok{summary}\NormalTok{(df}\OperatorTok{$}\NormalTok{gov_quality) }\CommentTok{# 55 NA's}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+0.08333 0.38889 0.47222 0.52540 0.63194 0.97222      55 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# create a copy of full dataset}
+\NormalTok{df.full <-}\StringTok{ }\NormalTok{df}
+
+\CommentTok{# drop NA's}
+\NormalTok{df <-}\StringTok{ }\NormalTok{df[ }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(df}\OperatorTok{$}\NormalTok{gov_quality), ]}
+\end{Highlighting}
+\end{Shaded}
+
+The range of the quality of government variable is 0 to 1. We will
+re-scale to 0 - 100 to make results easier to interpret.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df}\OperatorTok{$}\NormalTok{gov_quality <-}\StringTok{ }\NormalTok{df}\OperatorTok{$}\NormalTok{gov_quality }\OperatorTok{*}\StringTok{ }\DecValTok{100}
+\end{Highlighting}
+\end{Shaded}
+
+\paragraph{Exercise 4}\label{exercise-4-6}
+
+From Putnam's ``bowling alone'', we know of the theory of the importance
+of social capital for successful democratic governance. We, therefore,
+choose the social capital indicator \texttt{bti\_sc}, where larger
+values stand for more social capital. We expect better governance in
+countries where social capital is higher. Before we estimate the model,
+we look at the variable, remove missings, and rename it.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# look at IV}
+\KeywordTok{summary}\NormalTok{(df}\OperatorTok{$}\NormalTok{bti_sc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+  1.000   4.000   5.000   5.324   6.000   9.000      34 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# remove NA's}
+\NormalTok{df <-}\StringTok{ }\NormalTok{df[ }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(df}\OperatorTok{$}\NormalTok{bti_sc), ]}
+
+\CommentTok{# rename}
+\KeywordTok{names}\NormalTok{(df)[}\KeywordTok{which}\NormalTok{(}\KeywordTok{names}\NormalTok{(df) }\OperatorTok{==}\StringTok{ "bti_sc"}\NormalTok{)] <-}\StringTok{ "social_capital"}
+\end{Highlighting}
+\end{Shaded}
+
+Our sample size is down to 105 countries. This is still a decent sample
+size. However, we would like to avoid loosing many more observations.
+Smaller sample sizes are a danger to inference (through increased
+variance - effects are less likely to be discovered and if they are,
+they are more likely to be over-estimates).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# linear model}
+\NormalTok{m1 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(gov_quality }\OperatorTok{~}\StringTok{ }\NormalTok{social_capital, }\DataTypeTok{data =}\NormalTok{ df)}
+\KeywordTok{screenreg}\NormalTok{(m1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+==========================
+                Model 1   
+--------------------------
+(Intercept)      24.68 ***
+                 (4.02)   
+social_capital    3.73 ***
+                 (0.72)   
+--------------------------
+R^2               0.21    
+Adj. R^2          0.20    
+Num. obs.       105       
+RMSE             12.41    
+==========================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+Firstly, the intercept is not meaningful in this case because social
+capital ranges from 1 to 9, i.e.~there is no country with 0 social
+capital.
+
+The coefficient of social capital is positive and significant. Dividing
+the estimate by the standard error yields the t value which is 5.2. At a
+conventional alpha level of 0.05, we reject the null hypothesis when t
+is more extreme than \(\pm\) 1.96. This is the case here. In line with
+our expectation, more social capital increases the quality of governance
+on average by 3.73 points (on a 0 - 100 scale).
+
+Increasing social capital by one point of its scale is a substantial
+amount (1/9 or 11\(\%\) of its range). So, if social capital increases
+by a substantial amount, does governance also go up by a substantial
+amount? A 3.73 point change on a 0-100 scale is 3.73/101 or 4\(\%\).
+That is still a substantial change considering that we are measuring how
+well governed an entire country is.
+
+\paragraph{Exercise 5}\label{exercise-5-6}
+
+Add some additional explanatory variables (no more than 5) to your model
+and justify the choice again.
+
+We have not talked about this in the lecture before and it will not be a
+hurdle in the midterm. However, it is important that you keep an eye on
+sample size. If the sample size becomes too small it is unlikely that
+you can make meaningful statements about the world. We, therefore,
+selected variables with an eye on the missing values and their
+theoretical importance. If you see studies that are based on small
+samples, be suspicious.
+
+Firstly, we used infant mortality as a general indicator for development
+in the sense that basic health can be provided. We expect that if health
+conditions get worse than that should affect the capacity to govern
+negatively because it points to a basic lack of resources. We include a
+variable that measures conflict intensity. Violent conflict seriously,
+impedes the ability to govern. Finally, we added an index for the
+freedom of the press. The press is often considered to be the forth
+column in a state (besides the legislative, executive, and judicial
+branches). The function is to check the government. A role, that can be
+best fulfilled by a free press. This will lead to a more accountable
+government which we conjecture increases the quality of government.
+
+We rename the variables and drop missing values on them.
+
+Note: To make models comparable, they should be based on the same
+sample. So, after we dropped missing values, we have to re-run our
+bivariate model as well.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# renaming}
+\KeywordTok{names}\NormalTok{(df)[}\KeywordTok{which}\NormalTok{(}\KeywordTok{names}\NormalTok{(df)}\OperatorTok{==}\StringTok{"wef_imort"}\NormalTok{)] <-}\StringTok{ "infant_mortality"}
+\KeywordTok{names}\NormalTok{(df)[}\KeywordTok{which}\NormalTok{(}\KeywordTok{names}\NormalTok{(df)}\OperatorTok{==}\StringTok{"fh_fotpsc"}\NormalTok{)] <-}\StringTok{ "press_freedom"}
+\KeywordTok{names}\NormalTok{(df)[}\KeywordTok{which}\NormalTok{(}\KeywordTok{names}\NormalTok{(df)}\OperatorTok{==}\StringTok{"bti_ci"}\NormalTok{)] <-}\StringTok{ "conflict_intensity"}
+
+\KeywordTok{summary}\NormalTok{(df}\OperatorTok{$}\NormalTok{infant_mortality) }\CommentTok{# infant mortality}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+   2.00    9.30   17.30   27.73   42.80  119.20      12 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(df}\OperatorTok{$}\NormalTok{press_freedom) }\CommentTok{# freedom of the press index}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  16.00   41.00   57.00   55.57   68.00   97.00 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(df}\OperatorTok{$}\NormalTok{conflict_intensity) }\CommentTok{# conflict intensity}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  1.000   3.000   4.000   4.762   6.000  10.000 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# drop missings}
+\NormalTok{df <-}\StringTok{ }\NormalTok{df[ }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(df}\OperatorTok{$}\NormalTok{infant_mortality) ,]}
+
+\CommentTok{# re-run model 1 with new sample and check differences}
+\NormalTok{m1.rerun <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(gov_quality }\OperatorTok{~}\StringTok{ }\NormalTok{social_capital, }\DataTypeTok{data =}\NormalTok{ df)}
+\KeywordTok{screenreg}\NormalTok{( }\KeywordTok{list}\NormalTok{(m1, m1.rerun) )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+=====================================
+                Model 1     Model 2  
+-------------------------------------
+(Intercept)      24.68 ***  30.11 ***
+                 (4.02)     (4.52)   
+social_capital    3.73 ***   2.93 ***
+                 (0.72)     (0.79)   
+-------------------------------------
+R^2               0.21       0.13    
+Adj. R^2          0.20       0.12    
+Num. obs.       105         93       
+RMSE             12.41      12.03    
+=====================================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+As you can see, the difference is not small. This is less than ideal.
+R\^{}2 goes down by alot and the magnitude of social capital also
+changes. There is not much you can do (without advanced stats) except
+being transparent about the differences.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# add new control variables}
+\NormalTok{m2 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(gov_quality }\OperatorTok{~}\StringTok{ }\NormalTok{social_capital }\OperatorTok{+}\StringTok{ }\NormalTok{infant_mortality }\OperatorTok{+}\StringTok{ }\NormalTok{press_freedom }\OperatorTok{+}\StringTok{ }\NormalTok{conflict_intensity, }\DataTypeTok{data =}\NormalTok{ df )}
+\KeywordTok{screenreg}\NormalTok{(}\KeywordTok{list}\NormalTok{(m1.rerun, m2))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+=========================================
+                    Model 1    Model 2   
+-----------------------------------------
+(Intercept)         30.11 ***   64.29 ***
+                    (4.52)     (12.74)   
+social_capital       2.93 ***   -0.08    
+                    (0.79)      (1.27)   
+infant_mortality                -0.23 ***
+                                (0.05)   
+press_freedom                   -0.10    
+                                (0.10)   
+conflict_intensity              -1.29    
+                                (0.66)   
+-----------------------------------------
+R^2                  0.13        0.39    
+Adj. R^2             0.12        0.37    
+Num. obs.           93          93       
+RMSE                12.03       10.21    
+=========================================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+\paragraph{Exercise 6}\label{exercise-6-6}
+
+Carry out the F-test to check whether the new model explains more than
+the old model.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# f-test}
+\KeywordTok{anova}\NormalTok{(m1.rerun, m2) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Analysis of Variance Table
+
+Model 1: gov_quality ~ social_capital
+Model 2: gov_quality ~ social_capital + infant_mortality + press_freedom + 
+    conflict_intensity
+  Res.Df   RSS Df Sum of Sq    F       Pr(>F)    
+1     91 13170                                   
+2     88  9169  3    4000.9 12.8 0.0000005133 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+As we saw by comparing R\^{}2, the bigger model explains a lot more
+variance in the quality of government. The f-test shows that this
+difference is not due to chance. The p value is smaller than 0.05,
+hence, we reject the null that the small model and the larger model
+really explain the same. Another way to put this is: the variables we
+have added are jointly significant.
+
+\paragraph{Exercise 7}\label{exercise-7-5}
+
+Produce a regression table of the better model.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{htmlreg}\NormalTok{(m2, }\DataTypeTok{file =} \StringTok{"regression_quality_of_government.doc"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+The table was written to the file 'regression_quality_of_government.doc'.
+\end{verbatim}
+
+\paragraph{Exercise 8}\label{exercise-8-6}
+
+Interpret the output of the better model. State your expectations and
+whether they were met.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{screenreg}\NormalTok{( }\KeywordTok{list}\NormalTok{(m1.rerun, m2))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+=========================================
+                    Model 1    Model 2   
+-----------------------------------------
+(Intercept)         30.11 ***   64.29 ***
+                    (4.52)     (12.74)   
+social_capital       2.93 ***   -0.08    
+                    (0.79)      (1.27)   
+infant_mortality                -0.23 ***
+                                (0.05)   
+press_freedom                   -0.10    
+                                (0.10)   
+conflict_intensity              -1.29    
+                                (0.66)   
+-----------------------------------------
+R^2                  0.13        0.39    
+Adj. R^2             0.12        0.37    
+Num. obs.           93          93       
+RMSE                12.03       10.21    
+=========================================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+Our re-run bivariate model explains 13\(\%\) of the variance of the
+quality of government. This is not bad for a small model. By adding our
+three variables, we increased explained variance to 40\(\%\) which is a
+large increase. Our new model seems to explain quality of government
+much better than the smaller model.
+
+The intercept is not meaningful in either model. The coefficient of
+social capital is no longer significant (its standard error is larger in
+absolute terms than the coefficient estimate). We, therefore, do find
+evidence for the effect of social capital when we control basic health,
+press freedom, and conflict intensity also. Neither press freedom nor
+conflict intensity reach conventional levels of significance (both
+coefficients are less than 1.96 standard deviations away from zero). We
+find that the worth the health conditions, the less well governed a
+country will be. Infant mortality is measured in deaths/ 1000 live
+births. If that proportion increases by 10, the government index
+decreases by 2.3 which corresponds to roughly 2\(\%\) of its range.
+
+\paragraph{Exercise 9}\label{exercise-9-5}
+
+Calculate fitted values whilst varying at least one of your continuous
+explanatory variables.
+
+We only have one significant variable. It does not make sense to vary
+insignificant variables because, we cannot reject the null that their
+effect is zero. We vary infant mortality from minimum to maximum.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# see minimum and maximum of infant mortality}
+\KeywordTok{summary}\NormalTok{(df}\OperatorTok{$}\NormalTok{infant_mortality)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   2.00    9.30   17.30   27.73   42.80  119.20 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# set our covariates}
+\NormalTok{covariates <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
+  \DataTypeTok{social_capital =} \KeywordTok{mean}\NormalTok{(df}\OperatorTok{$}\NormalTok{social_capital), }
+  \DataTypeTok{infant_mortality =} \KeywordTok{seq}\NormalTok{(}\DataTypeTok{from =} \DecValTok{2}\NormalTok{, }\DataTypeTok{to =} \DecValTok{120}\NormalTok{, }\DataTypeTok{by =} \DecValTok{1}\NormalTok{),}
+  \DataTypeTok{press_freedom =} \KeywordTok{mean}\NormalTok{(df}\OperatorTok{$}\NormalTok{press_freedom),}
+  \DataTypeTok{conflict_intensity =} \KeywordTok{mean}\NormalTok{(df}\OperatorTok{$}\NormalTok{conflict_intensity)}
+\NormalTok{  )}
+
+\CommentTok{# check that everything looks okay}
+\KeywordTok{head}\NormalTok{(covariates) }\CommentTok{# looks fine}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  social_capital infant_mortality press_freedom conflict_intensity
+1       5.473118                2      53.92473           4.612903
+2       5.473118                3      53.92473           4.612903
+3       5.473118                4      53.92473           4.612903
+4       5.473118                5      53.92473           4.612903
+5       5.473118                6      53.92473           4.612903
+6       5.473118                7      53.92473           4.612903
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# calculate fitted values using predict()}
+\NormalTok{fitted.vals <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(m2, }\DataTypeTok{newdata =}\NormalTok{ covariates)}
+
+\CommentTok{# attch the fitted values to our covariates data}
+\NormalTok{covariates}\OperatorTok{$}\NormalTok{fitted.vals <-}\StringTok{ }\NormalTok{fitted.vals}
+
+\CommentTok{# hooray, for each scenario a predicted outcome}
+\KeywordTok{head}\NormalTok{(covariates)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  social_capital infant_mortality press_freedom conflict_intensity
+1       5.473118                2      53.92473           4.612903
+2       5.473118                3      53.92473           4.612903
+3       5.473118                4      53.92473           4.612903
+4       5.473118                5      53.92473           4.612903
+5       5.473118                6      53.92473           4.612903
+6       5.473118                7      53.92473           4.612903
+  fitted.vals
+1    52.19227
+2    51.95759
+3    51.72292
+4    51.48825
+5    51.25358
+6    51.01891
+\end{verbatim}
+
+\paragraph{Exercise 10}\label{exercise-10-5}
+
+Plot the result.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}
+  \DataTypeTok{y =}\NormalTok{ covariates}\OperatorTok{$}\NormalTok{fitted.vals,}
+  \DataTypeTok{x =}\NormalTok{ covariates}\OperatorTok{$}\NormalTok{infant_mortality, }
+  \DataTypeTok{frame.plot =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{main =} \StringTok{"Effect of infant mortality on quality of government"}\NormalTok{,}
+  \DataTypeTok{ylab =} \StringTok{"quality of government"}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"infant mortality per 100 live births"}\NormalTok{,}
+  \DataTypeTok{type =} \StringTok{"l"}\NormalTok{,}
+  \DataTypeTok{lwd =} \DecValTok{2}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-353-1.pdf}
+
+\paragraph{Exercise 11}\label{exercise-11-4}
+
+Interpret the plot.
+
+We interpret the simple plot including just the rgression line. It
+illustrates the strong negative relation between infant mortality, our
+proxy for basic health and resource conditions, and the quality of
+government generally. At 20 deaths per 1000 live births, we predict
+quality of government at roughly 48. At 100 deaths per 1000 live births,
+quality of government is predicted to be at roughly 33 only. Therefore,
+quality of government decreased by 31\(\%\) (\(\frac{48-33}{48}\)), a
+substantial amount.
+
+\paragraph{Extra Info (not relevant for
+midterm)}\label{extra-info-not-relevant-for-midterm}
+
+Below, we will show you how you could illustrate the confidence interval
+around the prediction. This is not necessary for the midterm but usefule
+to know. We can set the option \texttt{se.fit\ =\ TRUE} which will
+return standard errors for the prediction as well.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prediction.with.se <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(m2, }\DataTypeTok{newdata =}\NormalTok{ covariates, }\DataTypeTok{se.fit =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+We can extract the standard error with the dollar sign and add them to
+our \texttt{covariates} dataset.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{covariates}\OperatorTok{$}\NormalTok{se.of.y <-}\StringTok{ }\NormalTok{prediction.with.se}\OperatorTok{$}\NormalTok{se.fit}
+\end{Highlighting}
+\end{Shaded}
+
+Now, we can draw confidence intervals.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}
+  \DataTypeTok{y =}\NormalTok{ covariates}\OperatorTok{$}\NormalTok{fitted.vals, }
+  \DataTypeTok{x=}\NormalTok{ covariates}\OperatorTok{$}\NormalTok{infant_mortality,}
+  \DataTypeTok{frame.plot =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{main =} \StringTok{"Effect of infant mortality on quality of government"}\NormalTok{,}
+  \DataTypeTok{ylab =} \StringTok{"quality of government"}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"infant mortality per 100 live births"}\NormalTok{,}
+  \DataTypeTok{type =} \StringTok{"l"}\NormalTok{,}
+  \DataTypeTok{lwd =} \DecValTok{2}
+\NormalTok{)}
+\CommentTok{# add lines for confidence intervals}
+\CommentTok{# upper bound}
+\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ covariates}\OperatorTok{$}\NormalTok{infant_mortality, }\DataTypeTok{y =}\NormalTok{ covariates}\OperatorTok{$}\NormalTok{fitted.vals }\OperatorTok{+}\StringTok{ }\FloatTok{1.96} \OperatorTok{*}\StringTok{ }\NormalTok{covariates}\OperatorTok{$}\NormalTok{se.of.y, }
+      \DataTypeTok{lty =} \StringTok{"dashed"}\NormalTok{, }\DataTypeTok{lwd =} \FloatTok{1.5}\NormalTok{)}
+\CommentTok{# lower bound}
+\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ covariates}\OperatorTok{$}\NormalTok{infant_mortality, }\DataTypeTok{y =}\NormalTok{ covariates}\OperatorTok{$}\NormalTok{fitted.vals }\OperatorTok{-}\StringTok{ }\FloatTok{1.96} \OperatorTok{*}\StringTok{ }\NormalTok{covariates}\OperatorTok{$}\NormalTok{se.of.y, }
+      \DataTypeTok{lty =} \StringTok{"dashed"}\NormalTok{, }\DataTypeTok{lwd =} \FloatTok{1.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-356-1.pdf}
+
+This was purely for your enjoyment and you won't be tested on it. It
+just illustrates the uncertainty of the predictions.
 
 
 \end{document}

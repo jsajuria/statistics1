@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Statistics 1</title>
+  <meta name="description" content="Statistics 1">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Statistics 1" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Statistics 1" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="seminar7.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="lib/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/codefolding.js"></script>
+
+
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding();
+});
+</script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="lib\bootstrap\3.3.7\css\bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="css\readthedocs.css" type="text/css" />
+<link rel="stylesheet" href="css\custom.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this course</a></li>
+<li class="chapter" data-level="1" data-path="seminar1.html"><a href="seminar1.html"><i class="fa fa-check"></i><b>1</b> Introduction: Measurement, Central Tendency, Dispersion, Validity, Reliability</a><ul>
+<li class="chapter" data-level="1.1" data-path="seminar1.html"><a href="seminar1.html#seminar"><i class="fa fa-check"></i><b>1.1</b> Seminar</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="seminar1.html"><a href="seminar1.html#getting-started"><i class="fa fa-check"></i><b>1.1.1</b> Getting Started</a></li>
+<li class="chapter" data-level="1.1.2" data-path="seminar1.html"><a href="seminar1.html#rstudio"><i class="fa fa-check"></i><b>1.1.2</b> RStudio</a></li>
+<li class="chapter" data-level="1.1.3" data-path="seminar1.html"><a href="seminar1.html#console"><i class="fa fa-check"></i><b>1.1.3</b> Console</a></li>
+<li class="chapter" data-level="1.1.4" data-path="seminar1.html"><a href="seminar1.html#functions"><i class="fa fa-check"></i><b>1.1.4</b> Functions</a></li>
+<li class="chapter" data-level="1.1.5" data-path="seminar1.html"><a href="seminar1.html#getting-help"><i class="fa fa-check"></i><b>1.1.5</b> Getting Help</a></li>
+<li class="chapter" data-level="1.1.6" data-path="seminar1.html"><a href="seminar1.html#the-assignment-operator"><i class="fa fa-check"></i><b>1.1.6</b> The Assignment Operator</a></li>
+<li class="chapter" data-level="1.1.7" data-path="seminar1.html"><a href="seminar1.html#sequences"><i class="fa fa-check"></i><b>1.1.7</b> Sequences</a></li>
+<li class="chapter" data-level="1.1.8" data-path="seminar1.html"><a href="seminar1.html#scripts"><i class="fa fa-check"></i><b>1.1.8</b> Scripts</a></li>
+<li class="chapter" data-level="1.1.9" data-path="seminar1.html"><a href="seminar1.html#central-tendency"><i class="fa fa-check"></i><b>1.1.9</b> Central Tendency</a></li>
+<li class="chapter" data-level="1.1.10" data-path="seminar1.html"><a href="seminar1.html#dispersion"><i class="fa fa-check"></i><b>1.1.10</b> Dispersion</a></li>
+<li class="chapter" data-level="1.1.11" data-path="seminar1.html"><a href="seminar1.html#exercises"><i class="fa fa-check"></i><b>1.1.11</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="solutions1.html"><a href="solutions1.html"><i class="fa fa-check"></i><b>1.2</b> Solutions</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="solutions1.html"><a href="solutions1.html#exercise-3"><i class="fa fa-check"></i><b>1.2.1</b> Exercise 3</a></li>
+<li class="chapter" data-level="1.2.2" data-path="solutions1.html"><a href="solutions1.html#exercise-4"><i class="fa fa-check"></i><b>1.2.2</b> Exercise 4</a></li>
+<li class="chapter" data-level="1.2.3" data-path="solutions1.html"><a href="solutions1.html#exercise-5"><i class="fa fa-check"></i><b>1.2.3</b> Exercise 5</a></li>
+<li class="chapter" data-level="1.2.4" data-path="solutions1.html"><a href="solutions1.html#exercise-6"><i class="fa fa-check"></i><b>1.2.4</b> Exercise 6</a></li>
+<li class="chapter" data-level="1.2.5" data-path="solutions1.html"><a href="solutions1.html#exercise-7"><i class="fa fa-check"></i><b>1.2.5</b> Exercise 7</a></li>
+<li class="chapter" data-level="1.2.6" data-path="solutions1.html"><a href="solutions1.html#exercise-8"><i class="fa fa-check"></i><b>1.2.6</b> Exercise 8</a></li>
+<li class="chapter" data-level="1.2.7" data-path="solutions1.html"><a href="solutions1.html#exercise-9"><i class="fa fa-check"></i><b>1.2.7</b> Exercise 9</a></li>
+<li class="chapter" data-level="1.2.8" data-path="solutions1.html"><a href="solutions1.html#exercise-10"><i class="fa fa-check"></i><b>1.2.8</b> Exercise 10</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="seminar2.html"><a href="seminar2.html"><i class="fa fa-check"></i><b>2</b> Research Design, Counterfactuals, Forming Hypotheses</a><ul>
+<li class="chapter" data-level="2.1" data-path="seminar2.html"><a href="seminar2.html#seminar-1"><i class="fa fa-check"></i><b>2.1</b> Seminar</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="seminar2.html"><a href="seminar2.html#setting-up"><i class="fa fa-check"></i><b>2.1.1</b> setting up</a></li>
+<li class="chapter" data-level="2.1.2" data-path="seminar2.html"><a href="seminar2.html#vectors-and-subsetting"><i class="fa fa-check"></i><b>2.1.2</b> vectors and subsetting</a></li>
+<li class="chapter" data-level="2.1.3" data-path="seminar2.html"><a href="seminar2.html#data-frames"><i class="fa fa-check"></i><b>2.1.3</b> data frames</a></li>
+<li class="chapter" data-level="2.1.4" data-path="seminar2.html"><a href="seminar2.html#loading-data"><i class="fa fa-check"></i><b>2.1.4</b> Loading data</a></li>
+<li class="chapter" data-level="2.1.5" data-path="seminar2.html"><a href="seminar2.html#plots"><i class="fa fa-check"></i><b>2.1.5</b> Plots</a></li>
+<li class="chapter" data-level="2.1.6" data-path="seminar2.html"><a href="seminar2.html#average-treatment-effect"><i class="fa fa-check"></i><b>2.1.6</b> Average Treatment Effect</a></li>
+<li class="chapter" data-level="2.1.7" data-path="seminar2.html"><a href="seminar2.html#exercises-1"><i class="fa fa-check"></i><b>2.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="solutions2.html"><a href="solutions2.html"><i class="fa fa-check"></i><b>2.2</b> Solutions</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="solutions2.html"><a href="solutions2.html#exercise-2"><i class="fa fa-check"></i><b>2.2.1</b> Exercise 2</a></li>
+<li class="chapter" data-level="2.2.2" data-path="solutions2.html"><a href="solutions2.html#exercise-3-1"><i class="fa fa-check"></i><b>2.2.2</b> Exercise 3</a></li>
+<li class="chapter" data-level="2.2.3" data-path="solutions2.html"><a href="solutions2.html#exercise-4-1"><i class="fa fa-check"></i><b>2.2.3</b> Exercise 4</a></li>
+<li class="chapter" data-level="2.2.4" data-path="solutions2.html"><a href="solutions2.html#exercise-5-1"><i class="fa fa-check"></i><b>2.2.4</b> Exercise 5</a></li>
+<li class="chapter" data-level="2.2.5" data-path="solutions2.html"><a href="solutions2.html#exercise-6-1"><i class="fa fa-check"></i><b>2.2.5</b> Exercise 6</a></li>
+<li class="chapter" data-level="2.2.6" data-path="solutions2.html"><a href="solutions2.html#exercise-7-1"><i class="fa fa-check"></i><b>2.2.6</b> Exercise 7</a></li>
+<li class="chapter" data-level="2.2.7" data-path="solutions2.html"><a href="solutions2.html#exercise-8-1"><i class="fa fa-check"></i><b>2.2.7</b> Exercise 8</a></li>
+<li class="chapter" data-level="2.2.8" data-path="solutions2.html"><a href="solutions2.html#exercises-9-and-10"><i class="fa fa-check"></i><b>2.2.8</b> Exercises 9 and 10</a></li>
+<li class="chapter" data-level="2.2.9" data-path="solutions2.html"><a href="solutions2.html#exercises-11"><i class="fa fa-check"></i><b>2.2.9</b> Exercises 11</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="seminar3.html"><a href="seminar3.html"><i class="fa fa-check"></i><b>3</b> Sampling and Distributions</a><ul>
+<li class="chapter" data-level="3.1" data-path="seminar3.html"><a href="seminar3.html#seminar-2"><i class="fa fa-check"></i><b>3.1</b> Seminar</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="seminar3.html"><a href="seminar3.html#loading-dataset-in-csv-format"><i class="fa fa-check"></i><b>3.1.1</b> Loading Dataset in CSV Format</a></li>
+<li class="chapter" data-level="3.1.2" data-path="seminar3.html"><a href="seminar3.html#missing-values"><i class="fa fa-check"></i><b>3.1.2</b> Missing Values</a></li>
+<li class="chapter" data-level="3.1.3" data-path="seminar3.html"><a href="seminar3.html#factor-variables"><i class="fa fa-check"></i><b>3.1.3</b> Factor Variables</a></li>
+<li class="chapter" data-level="3.1.4" data-path="seminar3.html"><a href="seminar3.html#renaming-variables"><i class="fa fa-check"></i><b>3.1.4</b> Renaming Variables</a></li>
+<li class="chapter" data-level="3.1.5" data-path="seminar3.html"><a href="seminar3.html#distributions"><i class="fa fa-check"></i><b>3.1.5</b> Distributions</a></li>
+<li class="chapter" data-level="3.1.6" data-path="seminar3.html"><a href="seminar3.html#conditional-distributions"><i class="fa fa-check"></i><b>3.1.6</b> Conditional Distributions</a></li>
+<li class="chapter" data-level="3.1.7" data-path="seminar3.html"><a href="seminar3.html#exercises-2"><i class="fa fa-check"></i><b>3.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="solutions3.html"><a href="solutions3.html"><i class="fa fa-check"></i><b>3.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="seminar4.html"><a href="seminar4.html"><i class="fa fa-check"></i><b>4</b> T-test for Difference in Means and Hypothesis Testing</a><ul>
+<li class="chapter" data-level="4.1" data-path="seminar4.html"><a href="seminar4.html#seminar-3"><i class="fa fa-check"></i><b>4.1</b> Seminar</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="seminar4.html"><a href="seminar4.html#the-standard-error"><i class="fa fa-check"></i><b>4.1.1</b> The Standard Error</a></li>
+<li class="chapter" data-level="4.1.2" data-path="seminar4.html"><a href="seminar4.html#t-test-one-sample-hypothesis-test"><i class="fa fa-check"></i><b>4.1.2</b> T-test (one sample hypothesis test)</a></li>
+<li class="chapter" data-level="4.1.3" data-path="seminar4.html"><a href="seminar4.html#t-test-difference-in-means"><i class="fa fa-check"></i><b>4.1.3</b> T-test (difference in means)</a></li>
+<li class="chapter" data-level="4.1.4" data-path="seminar4.html"><a href="seminar4.html#estimating-p-values-from-t-values"><i class="fa fa-check"></i><b>4.1.4</b> Estimating p values from t values</a></li>
+<li class="chapter" data-level="4.1.5" data-path="seminar4.html"><a href="seminar4.html#exercises-3"><i class="fa fa-check"></i><b>4.1.5</b> Exercises</a></li>
+<li class="chapter" data-level="4.1.6" data-path="seminar4.html"><a href="seminar4.html#optional-exercises-that-require-reading-extra-info-below"><i class="fa fa-check"></i><b>4.1.6</b> Optional Exercises that require reading Extra Info below</a></li>
+<li class="chapter" data-level="4.1.7" data-path="seminar4.html"><a href="seminar4.html#advanced-exercises"><i class="fa fa-check"></i><b>4.1.7</b> Advanced Exercises</a></li>
+<li class="chapter" data-level="4.1.8" data-path="seminar4.html"><a href="seminar4.html#extra-info"><i class="fa fa-check"></i><b>4.1.8</b> Extra Info</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="solutions4.html"><a href="solutions4.html"><i class="fa fa-check"></i><b>4.2</b> Solutions</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="solutions4.html"><a href="solutions4.html#optional-exercises-that-require-reading-extra-info-below-1"><i class="fa fa-check"></i><b>4.2.1</b> Optional Exercises that require reading Extra Info below</a></li>
+<li class="chapter" data-level="4.2.2" data-path="solutions4.html"><a href="solutions4.html#advanced-exercises-1"><i class="fa fa-check"></i><b>4.2.2</b> Advanced Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="seminar5.html"><a href="seminar5.html"><i class="fa fa-check"></i><b>5</b> Revision: Sample Variance and Sample Standard Deviation; Hypothesis testing and Confidence Intervals</a><ul>
+<li class="chapter" data-level="5.1" data-path="seminar5.html"><a href="seminar5.html#seminar-4"><i class="fa fa-check"></i><b>5.1</b> Seminar</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="seminar5.html"><a href="seminar5.html#sample-variance-and-sample-standard-deviation"><i class="fa fa-check"></i><b>5.1.1</b> Sample Variance and Sample Standard Deviation</a></li>
+<li class="chapter" data-level="5.1.2" data-path="seminar5.html"><a href="seminar5.html#t-test-for-the-sample-mean"><i class="fa fa-check"></i><b>5.1.2</b> T test for the sample mean</a></li>
+<li class="chapter" data-level="5.1.3" data-path="seminar5.html"><a href="seminar5.html#t-test-for-the-difference-in-means"><i class="fa fa-check"></i><b>5.1.3</b> T test for the difference in means</a></li>
+<li class="chapter" data-level="5.1.4" data-path="seminar5.html"><a href="seminar5.html#exercises-4"><i class="fa fa-check"></i><b>5.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="solutions5.html"><a href="solutions5.html"><i class="fa fa-check"></i><b>5.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="seminar6.html"><a href="seminar6.html"><i class="fa fa-check"></i><b>6</b> Bivariate linear regression models</a><ul>
+<li class="chapter" data-level="6.1" data-path="seminar6.html"><a href="seminar6.html#seminar-5"><i class="fa fa-check"></i><b>6.1</b> Seminar</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="seminar6.html"><a href="seminar6.html#packages"><i class="fa fa-check"></i><b>6.1.1</b> Packages</a></li>
+<li class="chapter" data-level="6.1.2" data-path="seminar6.html"><a href="seminar6.html#fitted-values"><i class="fa fa-check"></i><b>6.1.2</b> Fitted values</a></li>
+<li class="chapter" data-level="6.1.3" data-path="seminar6.html"><a href="seminar6.html#additional-resources"><i class="fa fa-check"></i><b>6.1.3</b> Additional Resources</a></li>
+<li class="chapter" data-level="6.1.4" data-path="seminar6.html"><a href="seminar6.html#exercises-5"><i class="fa fa-check"></i><b>6.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="solutions6.html"><a href="solutions6.html"><i class="fa fa-check"></i><b>6.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="seminar7.html"><a href="seminar7.html"><i class="fa fa-check"></i><b>7</b> Multiple linear regression models (I)</a><ul>
+<li class="chapter" data-level="7.1" data-path="seminar7.html"><a href="seminar7.html#seminar-6"><i class="fa fa-check"></i><b>7.1</b> Seminar</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="seminar7.html"><a href="seminar7.html#loading-understanding-and-cleaning-our-data"><i class="fa fa-check"></i><b>7.1.1</b> Loading, Understanding and Cleaning our Data</a></li>
+<li class="chapter" data-level="7.1.2" data-path="seminar7.html"><a href="seminar7.html#estimating-a-bivariate-regression"><i class="fa fa-check"></i><b>7.1.2</b> Estimating a Bivariate Regression</a></li>
+<li class="chapter" data-level="7.1.3" data-path="seminar7.html"><a href="seminar7.html#multivariate-regression"><i class="fa fa-check"></i><b>7.1.3</b> Multivariate Regression</a></li>
+<li class="chapter" data-level="7.1.4" data-path="seminar7.html"><a href="seminar7.html#joint-significance-test-f-statistic"><i class="fa fa-check"></i><b>7.1.4</b> Joint Significance Test (F-statistic)</a></li>
+<li class="chapter" data-level="7.1.5" data-path="seminar7.html"><a href="seminar7.html#predicting-outcome-conditional-on-institutional-quality"><i class="fa fa-check"></i><b>7.1.5</b> Predicting outcome conditional on institutional quality</a></li>
+<li class="chapter" data-level="7.1.6" data-path="seminar7.html"><a href="seminar7.html#additional-resources-1"><i class="fa fa-check"></i><b>7.1.6</b> Additional Resources</a></li>
+<li class="chapter" data-level="7.1.7" data-path="seminar7.html"><a href="seminar7.html#exercises-6"><i class="fa fa-check"></i><b>7.1.7</b> Exercises</a></li>
+<li class="chapter" data-level="7.1.8" data-path="seminar7.html"><a href="seminar7.html#midterm-preparation"><i class="fa fa-check"></i><b>7.1.8</b> Midterm Preparation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="solutions7.html"><a href="solutions7.html"><i class="fa fa-check"></i><b>7.2</b> Solutions</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics 1</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="solutions-6" class="section level2">
+<h2><span class="header-section-number">7.2</span> Solutions</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(texreg)</code></pre></div>
+<div id="exercise-2-4" class="section level4">
+<h4><span class="header-section-number">7.2.0.1</span> Exercise 2</h4>
+<p>You can download the data and load from your local disk but since it is available online, we download it directly from the Quality of Government Institute website.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://www.qogdata.pol.gu.se/data/qog_std_cs_jan17.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</code></pre></div>
+</div>
+<div id="exercise-3-6" class="section level4">
+<h4><span class="header-section-number">7.2.0.2</span> Exercise 3</h4>
+<p>Pretend that you are writing a research paper. Select one dependent variable that you want to explain with a statistical model.</p>
+<p>We are interested in explaining the quality of government idicator, where larger values indicate better overall governance. Before we go on to check what predicts better governance, we will take a look at the variable and remove NA’s. We will also rename the variable.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># rename</span>
+<span class="kw">names</span>(df)[<span class="kw">which</span>(<span class="kw">names</span>(df) <span class="op">==</span><span class="st"> &quot;icrg_qog&quot;</span>)] &lt;-<span class="st"> &quot;gov_quality&quot;</span>
+
+<span class="co"># look at DV</span>
+<span class="kw">summary</span>(df<span class="op">$</span>gov_quality) <span class="co"># 55 NA&#39;s</span></code></pre></div>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+0.08333 0.38889 0.47222 0.52540 0.63194 0.97222      55 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create a copy of full dataset</span>
+df.full &lt;-<span class="st"> </span>df
+
+<span class="co"># drop NA&#39;s</span>
+df &lt;-<span class="st"> </span>df[ <span class="op">!</span><span class="kw">is.na</span>(df<span class="op">$</span>gov_quality), ]</code></pre></div>
+<p>The range of the quality of government variable is 0 to 1. We will re-scale to 0 - 100 to make results easier to interpret.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>gov_quality &lt;-<span class="st"> </span>df<span class="op">$</span>gov_quality <span class="op">*</span><span class="st"> </span><span class="dv">100</span></code></pre></div>
+</div>
+<div id="exercise-4-6" class="section level4">
+<h4><span class="header-section-number">7.2.0.3</span> Exercise 4</h4>
+<p>From Putnam’s “bowling alone”, we know of the theory of the importance of social capital for successful democratic governance. We, therefore, choose the social capital indicator <code>bti_sc</code>, where larger values stand for more social capital. We expect better governance in countries where social capital is higher. Before we estimate the model, we look at the variable, remove missings, and rename it.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># look at IV</span>
+<span class="kw">summary</span>(df<span class="op">$</span>bti_sc)</code></pre></div>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+  1.000   4.000   5.000   5.324   6.000   9.000      34 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># remove NA&#39;s</span>
+df &lt;-<span class="st"> </span>df[ <span class="op">!</span><span class="kw">is.na</span>(df<span class="op">$</span>bti_sc), ]
+
+<span class="co"># rename</span>
+<span class="kw">names</span>(df)[<span class="kw">which</span>(<span class="kw">names</span>(df) <span class="op">==</span><span class="st"> &quot;bti_sc&quot;</span>)] &lt;-<span class="st"> &quot;social_capital&quot;</span></code></pre></div>
+<p>Our sample size is down to 105 countries. This is still a decent sample size. However, we would like to avoid loosing many more observations. Smaller sample sizes are a danger to inference (through increased variance - effects are less likely to be discovered and if they are, they are more likely to be over-estimates).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># linear model</span>
+m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(gov_quality <span class="op">~</span><span class="st"> </span>social_capital, <span class="dt">data =</span> df)
+<span class="kw">screenreg</span>(m1)</code></pre></div>
+<pre><code>
+==========================
+                Model 1   
+--------------------------
+(Intercept)      24.68 ***
+                 (4.02)   
+social_capital    3.73 ***
+                 (0.72)   
+--------------------------
+R^2               0.21    
+Adj. R^2          0.20    
+Num. obs.       105       
+RMSE             12.41    
+==========================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>Firstly, the intercept is not meaningful in this case because social capital ranges from 1 to 9, i.e. there is no country with 0 social capital.</p>
+<p>The coefficient of social capital is positive and significant. Dividing the estimate by the standard error yields the t value which is 5.2. At a conventional alpha level of 0.05, we reject the null hypothesis when t is more extreme than <span class="math inline">\(\pm\)</span> 1.96. This is the case here. In line with our expectation, more social capital increases the quality of governance on average by 3.73 points (on a 0 - 100 scale).</p>
+<p>Increasing social capital by one point of its scale is a substantial amount (1/9 or 11<span class="math inline">\(\%\)</span> of its range). So, if social capital increases by a substantial amount, does governance also go up by a substantial amount? A 3.73 point change on a 0-100 scale is 3.73/101 or 4<span class="math inline">\(\%\)</span>. That is still a substantial change considering that we are measuring how well governed an entire country is.</p>
+</div>
+<div id="exercise-5-6" class="section level4">
+<h4><span class="header-section-number">7.2.0.4</span> Exercise 5</h4>
+<p>Add some additional explanatory variables (no more than 5) to your model and justify the choice again.</p>
+<p>We have not talked about this in the lecture before and it will not be a hurdle in the midterm. However, it is important that you keep an eye on sample size. If the sample size becomes too small it is unlikely that you can make meaningful statements about the world. We, therefore, selected variables with an eye on the missing values and their theoretical importance. If you see studies that are based on small samples, be suspicious.</p>
+<p>Firstly, we used infant mortality as a general indicator for development in the sense that basic health can be provided. We expect that if health conditions get worse than that should affect the capacity to govern negatively because it points to a basic lack of resources. We include a variable that measures conflict intensity. Violent conflict seriously, impedes the ability to govern. Finally, we added an index for the freedom of the press. The press is often considered to be the forth column in a state (besides the legislative, executive, and judicial branches). The function is to check the government. A role, that can be best fulfilled by a free press. This will lead to a more accountable government which we conjecture increases the quality of government.</p>
+<p>We rename the variables and drop missing values on them.</p>
+<p>Note: To make models comparable, they should be based on the same sample. So, after we dropped missing values, we have to re-run our bivariate model as well.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># renaming</span>
+<span class="kw">names</span>(df)[<span class="kw">which</span>(<span class="kw">names</span>(df)<span class="op">==</span><span class="st">&quot;wef_imort&quot;</span>)] &lt;-<span class="st"> &quot;infant_mortality&quot;</span>
+<span class="kw">names</span>(df)[<span class="kw">which</span>(<span class="kw">names</span>(df)<span class="op">==</span><span class="st">&quot;fh_fotpsc&quot;</span>)] &lt;-<span class="st"> &quot;press_freedom&quot;</span>
+<span class="kw">names</span>(df)[<span class="kw">which</span>(<span class="kw">names</span>(df)<span class="op">==</span><span class="st">&quot;bti_ci&quot;</span>)] &lt;-<span class="st"> &quot;conflict_intensity&quot;</span>
+
+<span class="kw">summary</span>(df<span class="op">$</span>infant_mortality) <span class="co"># infant mortality</span></code></pre></div>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+   2.00    9.30   17.30   27.73   42.80  119.20      12 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(df<span class="op">$</span>press_freedom) <span class="co"># freedom of the press index</span></code></pre></div>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  16.00   41.00   57.00   55.57   68.00   97.00 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(df<span class="op">$</span>conflict_intensity) <span class="co"># conflict intensity</span></code></pre></div>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  1.000   3.000   4.000   4.762   6.000  10.000 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># drop missings</span>
+df &lt;-<span class="st"> </span>df[ <span class="op">!</span><span class="kw">is.na</span>(df<span class="op">$</span>infant_mortality) ,]
+
+<span class="co"># re-run model 1 with new sample and check differences</span>
+m1.rerun &lt;-<span class="st"> </span><span class="kw">lm</span>(gov_quality <span class="op">~</span><span class="st"> </span>social_capital, <span class="dt">data =</span> df)
+<span class="kw">screenreg</span>( <span class="kw">list</span>(m1, m1.rerun) )</code></pre></div>
+<pre><code>
+=====================================
+                Model 1     Model 2  
+-------------------------------------
+(Intercept)      24.68 ***  30.11 ***
+                 (4.02)     (4.52)   
+social_capital    3.73 ***   2.93 ***
+                 (0.72)     (0.79)   
+-------------------------------------
+R^2               0.21       0.13    
+Adj. R^2          0.20       0.12    
+Num. obs.       105         93       
+RMSE             12.41      12.03    
+=====================================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>As you can see, the difference is not small. This is less than ideal. R^2 goes down by alot and the magnitude of social capital also changes. There is not much you can do (without advanced stats) except being transparent about the differences.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># add new control variables</span>
+m2 &lt;-<span class="st"> </span><span class="kw">lm</span>(gov_quality <span class="op">~</span><span class="st"> </span>social_capital <span class="op">+</span><span class="st"> </span>infant_mortality <span class="op">+</span><span class="st"> </span>press_freedom <span class="op">+</span><span class="st"> </span>conflict_intensity, <span class="dt">data =</span> df )
+<span class="kw">screenreg</span>(<span class="kw">list</span>(m1.rerun, m2))</code></pre></div>
+<pre><code>
+=========================================
+                    Model 1    Model 2   
+-----------------------------------------
+(Intercept)         30.11 ***   64.29 ***
+                    (4.52)     (12.74)   
+social_capital       2.93 ***   -0.08    
+                    (0.79)      (1.27)   
+infant_mortality                -0.23 ***
+                                (0.05)   
+press_freedom                   -0.10    
+                                (0.10)   
+conflict_intensity              -1.29    
+                                (0.66)   
+-----------------------------------------
+R^2                  0.13        0.39    
+Adj. R^2             0.12        0.37    
+Num. obs.           93          93       
+RMSE                12.03       10.21    
+=========================================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+</div>
+<div id="exercise-6-6" class="section level4">
+<h4><span class="header-section-number">7.2.0.5</span> Exercise 6</h4>
+<p>Carry out the F-test to check whether the new model explains more than the old model.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># f-test</span>
+<span class="kw">anova</span>(m1.rerun, m2) </code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Model 1: gov_quality ~ social_capital
+Model 2: gov_quality ~ social_capital + infant_mortality + press_freedom + 
+    conflict_intensity
+  Res.Df   RSS Df Sum of Sq    F       Pr(&gt;F)    
+1     91 13170                                   
+2     88  9169  3    4000.9 12.8 0.0000005133 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>As we saw by comparing R^2, the bigger model explains a lot more variance in the quality of government. The f-test shows that this difference is not due to chance. The p value is smaller than 0.05, hence, we reject the null that the small model and the larger model really explain the same. Another way to put this is: the variables we have added are jointly significant.</p>
+</div>
+<div id="exercise-7-5" class="section level4">
+<h4><span class="header-section-number">7.2.0.6</span> Exercise 7</h4>
+<p>Produce a regression table of the better model.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">htmlreg</span>(m2, <span class="dt">file =</span> <span class="st">&quot;regression_quality_of_government.doc&quot;</span>)</code></pre></div>
+<pre><code>The table was written to the file &#39;regression_quality_of_government.doc&#39;.</code></pre>
+</div>
+<div id="exercise-8-6" class="section level4">
+<h4><span class="header-section-number">7.2.0.7</span> Exercise 8</h4>
+<p>Interpret the output of the better model. State your expectations and whether they were met.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">screenreg</span>( <span class="kw">list</span>(m1.rerun, m2))</code></pre></div>
+<pre><code>
+=========================================
+                    Model 1    Model 2   
+-----------------------------------------
+(Intercept)         30.11 ***   64.29 ***
+                    (4.52)     (12.74)   
+social_capital       2.93 ***   -0.08    
+                    (0.79)      (1.27)   
+infant_mortality                -0.23 ***
+                                (0.05)   
+press_freedom                   -0.10    
+                                (0.10)   
+conflict_intensity              -1.29    
+                                (0.66)   
+-----------------------------------------
+R^2                  0.13        0.39    
+Adj. R^2             0.12        0.37    
+Num. obs.           93          93       
+RMSE                12.03       10.21    
+=========================================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>Our re-run bivariate model explains 13<span class="math inline">\(\%\)</span> of the variance of the quality of government. This is not bad for a small model. By adding our three variables, we increased explained variance to 40<span class="math inline">\(\%\)</span> which is a large increase. Our new model seems to explain quality of government much better than the smaller model.</p>
+<p>The intercept is not meaningful in either model. The coefficient of social capital is no longer significant (its standard error is larger in absolute terms than the coefficient estimate). We, therefore, do find evidence for the effect of social capital when we control basic health, press freedom, and conflict intensity also. Neither press freedom nor conflict intensity reach conventional levels of significance (both coefficients are less than 1.96 standard deviations away from zero). We find that the worth the health conditions, the less well governed a country will be. Infant mortality is measured in deaths/ 1000 live births. If that proportion increases by 10, the government index decreases by 2.3 which corresponds to roughly 2<span class="math inline">\(\%\)</span> of its range.</p>
+</div>
+<div id="exercise-9-5" class="section level4">
+<h4><span class="header-section-number">7.2.0.8</span> Exercise 9</h4>
+<p>Calculate fitted values whilst varying at least one of your continuous explanatory variables.</p>
+<p>We only have one significant variable. It does not make sense to vary insignificant variables because, we cannot reject the null that their effect is zero. We vary infant mortality from minimum to maximum.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># see minimum and maximum of infant mortality</span>
+<span class="kw">summary</span>(df<span class="op">$</span>infant_mortality)</code></pre></div>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   2.00    9.30   17.30   27.73   42.80  119.20 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set our covariates</span>
+covariates &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">social_capital =</span> <span class="kw">mean</span>(df<span class="op">$</span>social_capital), 
+  <span class="dt">infant_mortality =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">2</span>, <span class="dt">to =</span> <span class="dv">120</span>, <span class="dt">by =</span> <span class="dv">1</span>),
+  <span class="dt">press_freedom =</span> <span class="kw">mean</span>(df<span class="op">$</span>press_freedom),
+  <span class="dt">conflict_intensity =</span> <span class="kw">mean</span>(df<span class="op">$</span>conflict_intensity)
+  )
+
+<span class="co"># check that everything looks okay</span>
+<span class="kw">head</span>(covariates) <span class="co"># looks fine</span></code></pre></div>
+<pre><code>  social_capital infant_mortality press_freedom conflict_intensity
+1       5.473118                2      53.92473           4.612903
+2       5.473118                3      53.92473           4.612903
+3       5.473118                4      53.92473           4.612903
+4       5.473118                5      53.92473           4.612903
+5       5.473118                6      53.92473           4.612903
+6       5.473118                7      53.92473           4.612903</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculate fitted values using predict()</span>
+fitted.vals &lt;-<span class="st"> </span><span class="kw">predict</span>(m2, <span class="dt">newdata =</span> covariates)
+
+<span class="co"># attch the fitted values to our covariates data</span>
+covariates<span class="op">$</span>fitted.vals &lt;-<span class="st"> </span>fitted.vals
+
+<span class="co"># hooray, for each scenario a predicted outcome</span>
+<span class="kw">head</span>(covariates)</code></pre></div>
+<pre><code>  social_capital infant_mortality press_freedom conflict_intensity
+1       5.473118                2      53.92473           4.612903
+2       5.473118                3      53.92473           4.612903
+3       5.473118                4      53.92473           4.612903
+4       5.473118                5      53.92473           4.612903
+5       5.473118                6      53.92473           4.612903
+6       5.473118                7      53.92473           4.612903
+  fitted.vals
+1    52.19227
+2    51.95759
+3    51.72292
+4    51.48825
+5    51.25358
+6    51.01891</code></pre>
+</div>
+<div id="exercise-10-5" class="section level4">
+<h4><span class="header-section-number">7.2.0.9</span> Exercise 10</h4>
+<p>Plot the result.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(
+  <span class="dt">y =</span> covariates<span class="op">$</span>fitted.vals,
+  <span class="dt">x =</span> covariates<span class="op">$</span>infant_mortality, 
+  <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>,
+  <span class="dt">main =</span> <span class="st">&quot;Effect of infant mortality on quality of government&quot;</span>,
+  <span class="dt">ylab =</span> <span class="st">&quot;quality of government&quot;</span>,
+  <span class="dt">xlab =</span> <span class="st">&quot;infant mortality per 100 live births&quot;</span>,
+  <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>,
+  <span class="dt">lwd =</span> <span class="dv">2</span>
+)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-353-1.png" width="672" /></p>
+</div>
+<div id="exercise-11-4" class="section level4">
+<h4><span class="header-section-number">7.2.0.10</span> Exercise 11</h4>
+<p>Interpret the plot.</p>
+<p>We interpret the simple plot including just the rgression line. It illustrates the strong negative relation between infant mortality, our proxy for basic health and resource conditions, and the quality of government generally. At 20 deaths per 1000 live births, we predict quality of government at roughly 48. At 100 deaths per 1000 live births, quality of government is predicted to be at roughly 33 only. Therefore, quality of government decreased by 31<span class="math inline">\(\%\)</span> (<span class="math inline">\(\frac{48-33}{48}\)</span>), a substantial amount.</p>
+</div>
+<div id="extra-info-not-relevant-for-midterm" class="section level4">
+<h4><span class="header-section-number">7.2.0.11</span> Extra Info (not relevant for midterm)</h4>
+<p>Below, we will show you how you could illustrate the confidence interval around the prediction. This is not necessary for the midterm but usefule to know. We can set the option <code>se.fit = TRUE</code> which will return standard errors for the prediction as well.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prediction.with.se &lt;-<span class="st"> </span><span class="kw">predict</span>(m2, <span class="dt">newdata =</span> covariates, <span class="dt">se.fit =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>We can extract the standard error with the dollar sign and add them to our <code>covariates</code> dataset.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">covariates<span class="op">$</span>se.of.y &lt;-<span class="st"> </span>prediction.with.se<span class="op">$</span>se.fit</code></pre></div>
+<p>Now, we can draw confidence intervals.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(
+  <span class="dt">y =</span> covariates<span class="op">$</span>fitted.vals, 
+  <span class="dt">x=</span> covariates<span class="op">$</span>infant_mortality,
+  <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>,
+  <span class="dt">main =</span> <span class="st">&quot;Effect of infant mortality on quality of government&quot;</span>,
+  <span class="dt">ylab =</span> <span class="st">&quot;quality of government&quot;</span>,
+  <span class="dt">xlab =</span> <span class="st">&quot;infant mortality per 100 live births&quot;</span>,
+  <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>,
+  <span class="dt">lwd =</span> <span class="dv">2</span>
+)
+<span class="co"># add lines for confidence intervals</span>
+<span class="co"># upper bound</span>
+<span class="kw">lines</span>(<span class="dt">x =</span> covariates<span class="op">$</span>infant_mortality, <span class="dt">y =</span> covariates<span class="op">$</span>fitted.vals <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>covariates<span class="op">$</span>se.of.y, 
+      <span class="dt">lty =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">lwd =</span> <span class="fl">1.5</span>)
+<span class="co"># lower bound</span>
+<span class="kw">lines</span>(<span class="dt">x =</span> covariates<span class="op">$</span>infant_mortality, <span class="dt">y =</span> covariates<span class="op">$</span>fitted.vals <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>covariates<span class="op">$</span>se.of.y, 
+      <span class="dt">lty =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">lwd =</span> <span class="fl">1.5</span>)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-356-1.png" width="672" /></p>
+<p>This was purely for your enjoyment and you won’t be tested on it. It just illustrates the uncertainty of the predictions.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="seminar7.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["statistics1.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
