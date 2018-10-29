@@ -361,7 +361,7 @@ screenreg( m2 )
 ```
 
 \begin{align}
-\hat{y} & = & \beta_{0} + \beta_{1} * \mathrm{wbgi_cce} + \beta_{2} \times \mathrm{former\_col} + \beta_{3} \times \mathrm{wbgi_cce} \times \mathrm{former\_col} \\
+\hat{y} & = & \beta_{0} + \beta_{1} \times \mathrm{wbgi_cce} + \beta_{2} \times \mathrm{former\_col} + \beta_{3} \times \mathrm{wbgi_cce} \times \mathrm{former\_col} \\
 \hat{y} & = & 0.79 + 0.08 \times \mathrm{wbgi_cce}  + -0.12 \times \mathrm{former\_col} + 0.05 \times \mathrm{wbgi_cce} \times \mathrm{former\_col} 
 \end{align}
 

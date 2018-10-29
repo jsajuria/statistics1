@@ -603,7 +603,7 @@ yhat2 &lt;-<span class="st"> </span><span class="kw">predict</span>(m2, <span cl
 <p>As you can see, the line is steeper for ex colonies than for countries that were never colonised. That means the effect of institutional quality on human development is conditional on colonial past. Institutional quality matters more in ex colonies.</p>
 <p>Let’s examine the effect sizes of institutional quality conditional on colonial past.</p>
 <span class="math display">\[\begin{align}
-\hat{y} &amp; = &amp; \beta_{0} + \beta_{1} * \mathrm{wbgi_cce} + \beta_{2} \times \mathrm{former\_col} + \beta_{3} \times \mathrm{wbgi_cce} \times \mathrm{former\_col} \\
+\hat{y} &amp; = &amp; \beta_{0} + \beta_{1} \times \mathrm{wbgi_cce} + \beta_{2} \times \mathrm{former\_col} + \beta_{3} \times \mathrm{wbgi_cce} \times \mathrm{former\_col} \\
 \hat{y} &amp; = &amp; 0.79 + 0.08 \times \mathrm{wbgi_cce}  + -0.12 \times \mathrm{former\_col} + 0.05 \times \mathrm{wbgi_cce} \times \mathrm{former\_col} 
 \end{align}\]</span>
 <p>There are now two scenarios. First, we look at never coloines or second, we look at ex colonies. Let’s look at never colonies first.</p>
