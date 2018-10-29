@@ -5627,8 +5627,8 @@ is the maximum value.
 \end{Shaded}
 
 \begin{verbatim}
- [1] 1.901703 5.810085 1.822596 6.537214 2.206165 3.432042 3.606873
- [8] 2.276101 4.004733 5.137250
+ [1] 2.248723 4.997031 3.581000 4.409012 2.549762 2.330003 6.676908
+ [8] 6.455162 1.871447 2.198861
 \end{verbatim}
 
 We have indeed drawn 10 numbers but they are not integers as we would
@@ -5647,8 +5647,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 1.901703 5.810085 1.822596 6.537214 2.206165 3.432042 3.606873
- [8] 2.276101 4.004733 5.137250
+ [1] 2.248723 4.997031 3.581000 4.409012 2.549762 2.330003 6.676908
+ [8] 6.455162 1.871447 2.198861
 \end{verbatim}
 
 \begin{Shaded}
@@ -5659,8 +5659,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 1.106345 5.919188 2.044662 3.952111 2.681598 1.203274 4.268018
- [8] 5.827894 2.257340 4.323015
+ [1] 4.016949 5.890080 3.227390 4.936845 5.609302 1.246661 6.680331
+ [8] 3.600188 5.451921 2.388413
 \end{verbatim}
 
 The numbers of the first and second roll differ because we have drawn
@@ -9220,8 +9220,8 @@ Now, we can draw confidence intervals.
 This was purely for your enjoyment and you won't be tested on it. It
 just illustrates the uncertainty of the predictions.
 
-\section{Measures of Fit, Interactions, Non-Linearities, Fixed
-Effects}\label{measures-of-fit-interactions-non-linearities-fixed-effects}
+\section{Multiple linear regression models
+(II)}\label{multiple-linear-regression-models-ii}
 
 \subsection{Seminar}\label{seminar-7}
 
@@ -9479,7 +9479,7 @@ RMSE           0.13
 *** p < 0.001, ** p < 0.01, * p < 0.05
 \end{verbatim}
 
-THe coefficient of \textbf{wdi\_gdpc} is indeed significant. Let's plot
+The coefficient of \textbf{wdi\_gdpc} is indeed significant. Let's plot
 the relationship in a scatterplot and draw the regression line.
 
 \begin{Shaded}
@@ -9496,9 +9496,9 @@ the relationship in a scatterplot and draw the regression line.
 
 \includegraphics{statistics1_files/figure-latex/unnamed-chunk-369-1.pdf}
 
-This model looks awful. We overpredict quality of live for poor
-countries. We underpredict for medium wealth levels and overpredict for
-rich countries. We will return to this problem later.
+This model looks awful. We over-predict quality of live for poor
+countries. We under-predict for medium wealth levels and over-predict
+for rich countries. We will return to this problem later.
 
 For now, you should see that using the variability in \textbf{wdi\_gdpc}
 we actually explain some of the variability in \textbf{undp\_hdi}. We do
@@ -9516,8 +9516,8 @@ line. Hence, we take the regression equation
 \(\hat{Y} = 0.5855759 + 0.000102 \times \textrm{GDP per capita}\) and
 plug in the value of \textbf{wdi\_gdpc} for every row in the dataset.
 
-Actually, R has already done that for us. We can acess the fitted values
-from our model object \texttt{m1} like so.
+Actually, R has already done that for us. We can access the fitted
+values from our model object \texttt{m1} like so.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9634,7 +9634,7 @@ squares, i.e., \[R^2 = \frac{ESS}{TSS}\].
 
 You may have already noticed that R\^{}2 looks very similar to the
 correlation coefficient. That's right. In fact, we can quickly estimate
-R\^{}2 by taking the squared correlation between our fittded values and
+R\^{}2 by taking the squared correlation between our fitted values and
 the actual outcomes.
 
 \begin{Shaded}
@@ -9688,7 +9688,7 @@ included political stability, we would multiply R\^{}2 by
 Since the formula for adjusted R\^{}2 is:
 \[ 1 - \frac{n-1}{n-k-1} \times \frac{\mathrm{Sum\;of\;unexplained\;variability}}{\mathrm{Sum\;of\;total\;variability}} \]
 
-we can estimate adjusted R\^{}2 by rearanging the formula to:
+we can estimate adjusted R\^{}2 by rearranging the formula to:
 
 \[ 1 - (1-R^2) \times \frac{n-1}{n-k-1} \] Let's compute adjusted R\^{}2
 directly from R\^{}2:
@@ -9712,7 +9712,7 @@ Let's create a scatterplot between \texttt{wbgi\_cce} and
 \texttt{undp\_hdi} and color the points based on the value of
 \texttt{former\_col}.
 
-NOTE: We're using \texttt{pch\ =\ 16} to plot solid cicles. You can see
+NOTE: We're using \texttt{pch\ =\ 16} to plot solid circles. You can see
 other available styles by typing \texttt{?points} or
 \texttt{help(points)} at the console.
 
@@ -9816,8 +9816,9 @@ institutions from \texttt{-1.7} to \texttt{2.5} which is roughly the
 minimum to the maximum of the variable.
 
 NOTE: We know the range of values for \texttt{wbgi\_cce} from the
-summary statistics we obtained after loading the dataset at the begining
-of the seminar. You can also use the \texttt{range()} function.
+summary statistics we obtained after loading the dataset at the
+beginning of the seminar. You can also use the \texttt{range()}
+function.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9957,7 +9958,7 @@ colonial past.
 
 \begin{align}
 \hat{y} & = & \beta_{0} + \beta_{1} * \mathrm{wbgi_cce} + \beta_{2} \times \mathrm{former\_col} + \beta_{3} \times \mathrm{wbgi_cce} \times \mathrm{former\_col} \\
-\hat{y} & = & 0.79 + 0.08 * \mathrm{wbgi_cce}  + -0.12 * \mathrm{former\_col} + 0.05 * \mathrm{wbgi_cce} \times \mathrm{former\_col} 
+\hat{y} & = & 0.79 + 0.08 \times \mathrm{wbgi_cce}  + -0.12 \times \mathrm{former\_col} + 0.05 \times \mathrm{wbgi_cce} \times \mathrm{former\_col} 
 \end{align}
 
 There are now two scenarios. First, we look at never coloines or second,

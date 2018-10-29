@@ -216,7 +216,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="solutions7.html"><a href="solutions7.html"><i class="fa fa-check"></i><b>7.2</b> Solutions</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="seminar8.html"><a href="seminar8.html"><i class="fa fa-check"></i><b>8</b> Measures of Fit, Interactions, Non-Linearities, Fixed Effects</a><ul>
+<li class="chapter" data-level="8" data-path="seminar8.html"><a href="seminar8.html"><i class="fa fa-check"></i><b>8</b> Multiple linear regression models (II)</a><ul>
 <li class="chapter" data-level="8.1" data-path="seminar8.html"><a href="seminar8.html#seminar-7"><i class="fa fa-check"></i><b>8.1</b> Seminar</a><ul>
 <li class="chapter" data-level="8.1.1" data-path="seminar8.html"><a href="seminar8.html#loading-data-1"><i class="fa fa-check"></i><b>8.1.1</b> Loading Data</a></li>
 <li class="chapter" data-level="8.1.2" data-path="seminar8.html"><a href="seminar8.html#r-squared"><i class="fa fa-check"></i><b>8.1.2</b> R Squared</a></li>
@@ -244,8 +244,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="measures-of-fit-interactions-non-linearities-fixed-effects" class="section level1">
-<h1><span class="header-section-number">Chapter 8</span> Measures of Fit, Interactions, Non-Linearities, Fixed Effects</h1>
+<div id="multiple-linear-regression-models-ii" class="section level1">
+<h1><span class="header-section-number">Chapter 8</span> Multiple linear regression models (II)</h1>
 <div id="seminar-7" class="section level2">
 <h2><span class="header-section-number">8.1</span> Seminar</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(foreign) 
@@ -380,7 +380,7 @@ Num. obs.    158
 RMSE           0.13    
 =======================
 *** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
-<p>THe coefficient of <strong>wdi_gdpc</strong> is indeed significant. Let’s plot the relationship in a scatterplot and draw the regression line.</p>
+<p>The coefficient of <strong>wdi_gdpc</strong> is indeed significant. Let’s plot the relationship in a scatterplot and draw the regression line.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># the scatterplot</span>
 <span class="kw">plot</span>(<span class="dt">x =</span> a<span class="op">$</span>wdi_gdpc,
      <span class="dt">y =</span> a<span class="op">$</span>undp_hdi,
@@ -389,10 +389,10 @@ RMSE           0.13
 <span class="co"># the regression line</span>
 <span class="kw">abline</span>(m1, <span class="dt">col =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)</code></pre></div>
 <p><img src="statistics1_files/figure-html/unnamed-chunk-369-1.png" width="672" /></p>
-<p>This model looks awful. We overpredict quality of live for poor countries. We underpredict for medium wealth levels and overpredict for rich countries. We will return to this problem later.</p>
+<p>This model looks awful. We over-predict quality of live for poor countries. We under-predict for medium wealth levels and over-predict for rich countries. We will return to this problem later.</p>
 <p>For now, you should see that using the variability in <strong>wdi_gdpc</strong> we actually explain some of the variability in <strong>undp_hdi</strong>. We do not explain all of the variability. There are still differences between our predictions (the points on the line) and actual outcomes. Were we to explain all of the variability, all of the points would be on the line. They are not. They never will be in real-life applications. The social world is complex. However, we can ask: “How much of the variability in <strong>undp_hdi</strong> do we explain using the variability in <strong>wdi_gdpc</strong>.</p>
 <p>To answer this question, we first extract a fitted value for every observation in the dataset. Recall that a fitted value is a point on the line. Hence, we take the regression equation <span class="math inline">\(\hat{Y} = 0.5855759 + 0.000102 \times \textrm{GDP per capita}\)</span> and plug in the value of <strong>wdi_gdpc</strong> for every row in the dataset.</p>
-<p>Actually, R has already done that for us. We can acess the fitted values from our model object <code>m1</code> like so.</p>
+<p>Actually, R has already done that for us. We can access the fitted values from our model object <code>m1</code> like so.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fitted.vals &lt;-<span class="st"> </span>m1<span class="op">$</span>fitted.values</code></pre></div>
 <p>Now, we take the same steps as we did earlier. We take the deviations between the actual outcome of <strong>undp_hdi</strong> and our model predictions (the fitted values). These differences are the mistakes, we make they are called residuals.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># residuals</span>
@@ -432,7 +432,7 @@ R.sq</code></pre></div>
 </div>
 <div id="r-squared---approach-4" class="section level4">
 <h4><span class="header-section-number">8.1.2.3</span> R Squared - Approach 4</h4>
-<p>You may have already noticed that R^2 looks very similar to the correlation coefficient. That’s right. In fact, we can quickly estimate R^2 by taking the squared correlation between our fittded values and the actual outcomes.</p>
+<p>You may have already noticed that R^2 looks very similar to the correlation coefficient. That’s right. In fact, we can quickly estimate R^2 by taking the squared correlation between our fitted values and the actual outcomes.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">R.sq &lt;-<span class="st"> </span><span class="kw">cor</span>(m1<span class="op">$</span>fitted.values, a<span class="op">$</span>undp_hdi)<span class="op">^</span><span class="dv">2</span>
 R.sq</code></pre></div>
 <pre><code>[1] 0.4990749</code></pre>
@@ -452,7 +452,7 @@ adj.R.sq &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op
 adj.R.sq</code></pre></div>
 <pre><code>[1] 0.4958638</code></pre>
 <p>Since the formula for adjusted R^2 is: <span class="math display">\[ 1 - \frac{n-1}{n-k-1} \times \frac{\mathrm{Sum\;of\;unexplained\;variability}}{\mathrm{Sum\;of\;total\;variability}} \]</span></p>
-<p>we can estimate adjusted R^2 by rearanging the formula to:</p>
+<p>we can estimate adjusted R^2 by rearranging the formula to:</p>
 <p><span class="math display">\[ 1 - (1-R^2) \times \frac{n-1}{n-k-1} \]</span> Let’s compute adjusted R^2 directly from R^2:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">adj.R.sq &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>R.sq) <span class="op">*</span><span class="st"> </span>penalty
 adj.R.sq</code></pre></div>
@@ -462,7 +462,7 @@ adj.R.sq</code></pre></div>
 <div id="the-relationship-between-institutional-quality-and-quality-of-life-by-colonial-past" class="section level3">
 <h3><span class="header-section-number">8.1.3</span> The Relationship between Institutional Quality and Quality of Life by Colonial Past</h3>
 <p>Let’s create a scatterplot between <code>wbgi_cce</code> and <code>undp_hdi</code> and color the points based on the value of <code>former_col</code>.</p>
-<p>NOTE: We’re using <code>pch = 16</code> to plot solid cicles. You can see other available styles by typing <code>?points</code> or <code>help(points)</code> at the console.</p>
+<p>NOTE: We’re using <code>pch = 16</code> to plot solid circles. You can see other available styles by typing <code>?points</code> or <code>help(points)</code> at the console.</p>
 <p>Copy the plot command in the seminar, you can go over it at home.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># main plot</span>
 <span class="kw">plot</span>(
@@ -531,7 +531,7 @@ RMSE                   0.12
 ===============================
 *** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
 <p>We set our covariate <code>former_col</code> to countries that weren’t colonized and then second, to ex colonies. We vary the quality of institutions from <code>-1.7</code> to <code>2.5</code> which is roughly the minimum to the maximum of the variable.</p>
-<p>NOTE: We know the range of values for <code>wbgi_cce</code> from the summary statistics we obtained after loading the dataset at the begining of the seminar. You can also use the <code>range()</code> function.</p>
+<p>NOTE: We know the range of values for <code>wbgi_cce</code> from the summary statistics we obtained after loading the dataset at the beginning of the seminar. You can also use the <code>range()</code> function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># minimum and maximum of the quality of institutions</span>
 <span class="kw">range</span>(a<span class="op">$</span>wbgi_cce)</code></pre></div>
 <pre><code>[1] -1.699529  2.445654</code></pre>
@@ -604,7 +604,7 @@ yhat2 &lt;-<span class="st"> </span><span class="kw">predict</span>(m2, <span cl
 <p>Let’s examine the effect sizes of institutional quality conditional on colonial past.</p>
 <span class="math display">\[\begin{align}
 \hat{y} &amp; = &amp; \beta_{0} + \beta_{1} * \mathrm{wbgi_cce} + \beta_{2} \times \mathrm{former\_col} + \beta_{3} \times \mathrm{wbgi_cce} \times \mathrm{former\_col} \\
-\hat{y} &amp; = &amp; 0.79 + 0.08 * \mathrm{wbgi_cce}  + -0.12 * \mathrm{former\_col} + 0.05 * \mathrm{wbgi_cce} \times \mathrm{former\_col} 
+\hat{y} &amp; = &amp; 0.79 + 0.08 \times \mathrm{wbgi_cce}  + -0.12 \times \mathrm{former\_col} + 0.05 \times \mathrm{wbgi_cce} \times \mathrm{former\_col} 
 \end{align}\]</span>
 <p>There are now two scenarios. First, we look at never coloines or second, we look at ex colonies. Let’s look at never colonies first.</p>
 <p>If a country was never a colony, all terms that are multiplied with <code>former_col</code> drop out.</p>
