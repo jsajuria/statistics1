@@ -5627,8 +5627,8 @@ is the maximum value.
 \end{Shaded}
 
 \begin{verbatim}
- [1] 2.390113 3.199818 2.535570 6.059051 3.867442 5.555044 5.012353
- [8] 5.587161 1.973469 3.974729
+ [1] 1.901703 5.810085 1.822596 6.537214 2.206165 3.432042 3.606873
+ [8] 2.276101 4.004733 5.137250
 \end{verbatim}
 
 We have indeed drawn 10 numbers but they are not integers as we would
@@ -5647,8 +5647,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 2.390113 3.199818 2.535570 6.059051 3.867442 5.555044 5.012353
- [8] 5.587161 1.973469 3.974729
+ [1] 1.901703 5.810085 1.822596 6.537214 2.206165 3.432042 3.606873
+ [8] 2.276101 4.004733 5.137250
 \end{verbatim}
 
 \begin{Shaded}
@@ -5659,8 +5659,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 5.841186 4.668781 1.138153 1.995750 4.170118 3.668103 5.556507
- [8] 5.376902 3.032745 3.459710
+ [1] 1.106345 5.919188 2.044662 3.952111 2.681598 1.203274 4.268018
+ [8] 5.827894 2.257340 4.323015
 \end{verbatim}
 
 The numbers of the first and second roll differ because we have drawn
@@ -9219,6 +9219,1442 @@ Now, we can draw confidence intervals.
 
 This was purely for your enjoyment and you won't be tested on it. It
 just illustrates the uncertainty of the predictions.
+
+\section{Measures of Fit, Interactions, Non-Linearities, Fixed
+Effects}\label{measures-of-fit-interactions-non-linearities-fixed-effects}
+
+\subsection{Seminar}\label{seminar-7}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(foreign) }
+\KeywordTok{library}\NormalTok{(texreg)}
+\end{Highlighting}
+\end{Shaded}
+
+In case library(\texttt{texreg}) throws an error message, you have to
+install the package first. A package is like an app on your mobile. It
+adds additional functionality. You need to install it only once. To
+install the package run \texttt{install.packages("texreg")}. Then load
+the library \texttt{library(texreg)}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rm}\NormalTok{(}\DataTypeTok{list =} \KeywordTok{ls}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Loading Data}\label{loading-data-1}
+
+We will use the small version of the Quality of Government data from
+2012 again (\texttt{QoG2012.csv}) with four variables:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.10\columnwidth}\raggedright\strut
+Variable\strut
+\end{minipage} & \begin{minipage}[b]{0.84\columnwidth}\raggedright\strut
+Description\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+\texttt{former\_col}\strut
+\end{minipage} & \begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+0 = not a former colony 1 = former colony\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+\texttt{undp\_hdi}\strut
+\end{minipage} & \begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+UNDP Human Development Index. Higher values mean better quality of
+life\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+\texttt{wbgi\_cce}\strut
+\end{minipage} & \begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+Control of corruption. Higher values mean better control of
+corruption\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+\texttt{wdi\_gdpc}\strut
+\end{minipage} & \begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+GDP per capita in US dollars\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"QoG2012.csv"}\NormalTok{)}
+\KeywordTok{names}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "h_j"         "wdi_gdpc"    "undp_hdi"    "wbgi_cce"    "wbgi_pse"   
+[6] "former_col"  "lp_lat_abst"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+      h_j            wdi_gdpc          undp_hdi         wbgi_cce       
+ Min.   :0.0000   Min.   :  226.2   Min.   :0.2730   Min.   :-1.69953  
+ 1st Qu.:0.0000   1st Qu.: 1768.0   1st Qu.:0.5390   1st Qu.:-0.81965  
+ Median :0.0000   Median : 5326.1   Median :0.7510   Median :-0.30476  
+ Mean   :0.3787   Mean   :10184.1   Mean   :0.6982   Mean   :-0.05072  
+ 3rd Qu.:1.0000   3rd Qu.:12976.5   3rd Qu.:0.8335   3rd Qu.: 0.50649  
+ Max.   :1.0000   Max.   :63686.7   Max.   :0.9560   Max.   : 2.44565  
+ NA's   :25       NA's   :16        NA's   :19       NA's   :2         
+    wbgi_pse          former_col      lp_lat_abst    
+ Min.   :-2.46746   Min.   :0.0000   Min.   :0.0000  
+ 1st Qu.:-0.72900   1st Qu.:0.0000   1st Qu.:0.1343  
+ Median : 0.02772   Median :1.0000   Median :0.2444  
+ Mean   :-0.03957   Mean   :0.6289   Mean   :0.2829  
+ 3rd Qu.: 0.79847   3rd Qu.:1.0000   3rd Qu.:0.4444  
+ Max.   : 1.67561   Max.   :1.0000   Max.   :0.7222  
+                                     NA's   :7       
+\end{verbatim}
+
+Let's create a copy of the dataset and then remove all missing values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# copy of original dataset}
+\NormalTok{a.full <-}\StringTok{ }\NormalTok{a}
+\end{Highlighting}
+\end{Shaded}
+
+To remove all missing values at once, we use the \texttt{apply()}
+function. It is very useful to repeat the same operations on all rows or
+columns of a dataset. The \texttt{apply()} function takes the following
+arguments:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+argument & description\tabularnewline
+\midrule
+\endhead
+\texttt{X} & the name of the dataset on which we want to repeat the
+operation on\tabularnewline
+\texttt{MARGIN} & 1 = rows, 2 = columns\tabularnewline
+\texttt{FUN} & operation that we want to repeat\tabularnewline
+\bottomrule
+\end{longtable}
+
+So for example, \texttt{apply(X\ =\ a,\ MARGIN\ =\ 1,\ FUN\ =\ mean\ )}
+would return the mean value for every row. We will define our own
+operation. First, \texttt{!is.na()} means ``is not missing''. The
+function returns true or false for every cell. We want to keep rows
+where none of the observations are missings. Therefore, we use the
+\texttt{all()} function which is true if all cells are not missing.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# drop all missing values}
+\NormalTok{a <-}\StringTok{ }\NormalTok{a[}\KeywordTok{apply}\NormalTok{(a, }\DecValTok{1}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{all}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(x)) ), ]}
+\end{Highlighting}
+\end{Shaded}
+
+If you do not fully understand this code, don't worry. It deletes rows
+from a dataset whenever a value on any variable is missing.
+
+\subsubsection{R Squared}\label{r-squared}
+
+Let's say, we want to predict the quality of life. Our variable that
+approximates this is called \textbf{undp\_hdi} (the United Nations human
+development index). The variable is continuous and has a theoretical
+range from 0 to 1. Larger values correspond to better life quality.
+
+If we did not have any information on a country, our best prediction for
+every country would be the mean of \textbf{undp\_hdi}. We would make
+some mistakes. But on average, this would be our best prediction. Let's
+confirm that this is the case.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# mean of undp_hdi}
+\NormalTok{y_bar <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(a}\OperatorTok{$}\NormalTok{undp_hdi)}
+\KeywordTok{round}\NormalTok{(y_bar, }\DataTypeTok{digits =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.69
+\end{verbatim}
+
+Our mean is 0.69. If we predict the mean for every country, we will make
+some mistakes. These mistakes are the differences between the actual
+values of \textbf{undp\_hdi} in every country and the mean of
+\textbf{undp\_hdi}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# deviations from the mean}
+\NormalTok{deviations.from.ybar <-}\StringTok{ }\NormalTok{(a}\OperatorTok{$}\NormalTok{undp_hdi }\OperatorTok{-}\StringTok{ }\NormalTok{y_bar) }
+\end{Highlighting}
+\end{Shaded}
+
+It's always going to be true that the sum of the average deviations is
+0. This is a property of the mean.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# sum of deviations from ybar is always zero (or extremely close to 0)}
+\KeywordTok{sum}\NormalTok{(deviations.from.ybar)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.000000000000002553513
+\end{verbatim}
+
+We will now square the deviations from the mean.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# squared deviations from the mean}
+\NormalTok{sq.deviations.from.ybar <-}\StringTok{ }\NormalTok{deviations.from.ybar}\OperatorTok{^}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+The squared deviations from the mean capture the overall variability of
+our variable \textbf{undp\_hdi}. At this point you should see that what
+we did so far, is the first step to getting variance. Dividing the sum
+of the squared deviations by \(n-1\) would give us the variance of
+\textbf{undp\_hdi}. The variance quantifies the variability of a
+variable.
+
+Let's do this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{total.variance <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(sq.deviations.from.ybar) }\OperatorTok{/}\StringTok{ }\NormalTok{(}\KeywordTok{length}\NormalTok{(a}\OperatorTok{$}\NormalTok{undp_hdi) }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{)}
+\NormalTok{total.variance}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.03434449
+\end{verbatim}
+
+The overall variance of \textbf{undp\_hdi} is 0.0343445.
+
+Let's say, we have additional information about a country like for
+example its wealth. Wealth is measured by the variable
+\textbf{wdi\_gdpc}. We now run a linear model where we predict
+\textbf{undp\_hdi} using the information in \textbf{wdi\_gdpc}. If the
+regression coefficient of \textbf{wdi\_gdpc} is significant, that means
+that both variables are related. This in turn means that we can explain
+some of the variability in \textbf{undp\_hdi} using variability in
+\textbf{wdi\_gdpc}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# we regress undp_hdi on wdi_gdpc}
+\NormalTok{m1 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{( undp_hdi }\OperatorTok{~}\StringTok{ }\NormalTok{wdi_gdpc, }\DataTypeTok{data =}\NormalTok{ a )}
+\KeywordTok{screenreg}\NormalTok{(m1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+=======================
+             Model 1   
+-----------------------
+(Intercept)    0.59 ***
+              (0.01)   
+wdi_gdpc       0.00 ***
+              (0.00)   
+-----------------------
+R^2            0.50    
+Adj. R^2       0.50    
+Num. obs.    158       
+RMSE           0.13    
+=======================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+THe coefficient of \textbf{wdi\_gdpc} is indeed significant. Let's plot
+the relationship in a scatterplot and draw the regression line.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# the scatterplot}
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ a}\OperatorTok{$}\NormalTok{wdi_gdpc,}
+     \DataTypeTok{y =}\NormalTok{ a}\OperatorTok{$}\NormalTok{undp_hdi,}
+     \DataTypeTok{xlab =} \StringTok{"GDP per captia in US dollars"}\NormalTok{,}
+     \DataTypeTok{ylab =} \StringTok{"Human Development Index"}\NormalTok{)}
+\CommentTok{# the regression line}
+\KeywordTok{abline}\NormalTok{(m1, }\DataTypeTok{col =} \StringTok{"darkgreen"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-369-1.pdf}
+
+This model looks awful. We overpredict quality of live for poor
+countries. We underpredict for medium wealth levels and overpredict for
+rich countries. We will return to this problem later.
+
+For now, you should see that using the variability in \textbf{wdi\_gdpc}
+we actually explain some of the variability in \textbf{undp\_hdi}. We do
+not explain all of the variability. There are still differences between
+our predictions (the points on the line) and actual outcomes. Were we to
+explain all of the variability, all of the points would be on the line.
+They are not. They never will be in real-life applications. The social
+world is complex. However, we can ask: ``How much of the variability in
+\textbf{undp\_hdi} do we explain using the variability in
+\textbf{wdi\_gdpc}.
+
+To answer this question, we first extract a fitted value for every
+observation in the dataset. Recall that a fitted value is a point on the
+line. Hence, we take the regression equation
+\(\hat{Y} = 0.5855759 + 0.000102 \times \textrm{GDP per capita}\) and
+plug in the value of \textbf{wdi\_gdpc} for every row in the dataset.
+
+Actually, R has already done that for us. We can acess the fitted values
+from our model object \texttt{m1} like so.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fitted.vals <-}\StringTok{ }\NormalTok{m1}\OperatorTok{$}\NormalTok{fitted.values}
+\end{Highlighting}
+\end{Shaded}
+
+Now, we take the same steps as we did earlier. We take the deviations
+between the actual outcome of \textbf{undp\_hdi} and our model
+predictions (the fitted values). These differences are the mistakes, we
+make they are called residuals.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# residuals}
+\NormalTok{resids <-}\StringTok{ }\NormalTok{(a}\OperatorTok{$}\NormalTok{undp_hdi }\OperatorTok{-}\StringTok{ }\NormalTok{fitted.vals)}
+\end{Highlighting}
+\end{Shaded}
+
+Actually, R did that for us as well. We could have accessed the
+residuals as \texttt{m1\$residuals}. We again square the deviations
+between the model predictions and the actual outcomes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# squared residuals}
+\NormalTok{sq.resids <-}\StringTok{ }\NormalTok{resids}\OperatorTok{^}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+The squared residuals are the variability in \textbf{undp\_hdi} which we
+have \emph{NOT} explained with the variability in \textbf{wdi\_gdpc}.
+
+R\^{}2 is then: 1 - unexplained variability / total variability. R\^{}2,
+therefore, answers the question ``how much of the total variability in
+\textbf{undp\_hdi} do we explain using variability in
+\textbf{wdi\_gdpc}.''
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{R.sq <-}\StringTok{ }\DecValTok{1} \OperatorTok{-}\StringTok{ }\KeywordTok{sum}\NormalTok{(sq.resids) }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(sq.deviations.from.ybar)}
+\NormalTok{R.sq}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.4990749
+\end{verbatim}
+
+We have successfully estimated R\^{}2. There are other ways to get
+there. For instance, we could compare the variances instead of sums of
+squared deviations.
+
+Note: The difference between our estimate of R\^{}2 and the one from the
+regression table is due to rounding error. We get the same value if we
+use the \texttt{round()} function to round to 2 digits like so:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{round}\NormalTok{(R.sq, }\DataTypeTok{digits =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.5
+\end{verbatim}
+
+\paragraph{R Squared - Approach 2}\label{r-squared---approach-2}
+
+Let's take the unexplained variance of \textbf{undp\_hdi} instead of the
+unexplained sum of squares.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# unexplained variance}
+\NormalTok{unexplained.variance <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(sq.resids) }\OperatorTok{/}\StringTok{ }\NormalTok{(}\KeywordTok{length}\NormalTok{(sq.resids) }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+R\^{}2 is then 1 - unexplained variance over total variance.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{R.sq <-}\StringTok{ }\DecValTok{1}\OperatorTok{-}\StringTok{ }\NormalTok{unexplained.variance }\OperatorTok{/}\StringTok{ }\NormalTok{total.variance}
+\NormalTok{R.sq}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.4990749
+\end{verbatim}
+
+\paragraph{R Squared - Approach 3}\label{r-squared---approach-3}
+
+Let's use the explained sum of squares instead of the unexplained sum of
+squares, i.e., \[R^2 = \frac{ESS}{TSS}\].
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# explained sum of squares}
+\NormalTok{ESS <-}\StringTok{ }\KeywordTok{sum}\NormalTok{((fitted.vals }\OperatorTok{-}\StringTok{ }\NormalTok{y_bar)}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
+
+\CommentTok{# R^2}
+\NormalTok{R.sq <-}\StringTok{ }\NormalTok{ESS}\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(sq.deviations.from.ybar)}
+\NormalTok{R.sq}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.4990749
+\end{verbatim}
+
+\paragraph{R Squared - Approach 4}\label{r-squared---approach-4}
+
+You may have already noticed that R\^{}2 looks very similar to the
+correlation coefficient. That's right. In fact, we can quickly estimate
+R\^{}2 by taking the squared correlation between our fittded values and
+the actual outcomes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{R.sq <-}\StringTok{ }\KeywordTok{cor}\NormalTok{(m1}\OperatorTok{$}\NormalTok{fitted.values, a}\OperatorTok{$}\NormalTok{undp_hdi)}\OperatorTok{^}\DecValTok{2}
+\NormalTok{R.sq}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.4990749
+\end{verbatim}
+
+\paragraph{Adjusted R\^{}2}\label{adjusted-r2}
+
+R\^{}2 always weakly increases if we include more X variables into our
+model. The reason is that the correlation between two variables is never
+exactly zero. That means in any sample, two variables are always related
+to some degree. They may not be related in the same way in the
+population, however. So, the relationship between two variables that we
+see in our sample may just be noise.
+
+Yet, R\^{}2 increases whenever two variables are correlated. R\^{}2
+never decreases. Adjusted R\^{}2 accounts for the number of predictors
+that we have added two our model by adding a penalty that increases as
+we increase the number of X variables in our model. The penalty looks
+like this:
+
+We multiply R\^{}2 by \(\frac{n-1}{n-k-1}\), where \(n\) is the number
+of observations and \(k\) is the number of X variables. So, assuming our
+sample size is 158 and we add 1 predictor to our model that so far only
+included political stability, we would multiply R\^{}2 by
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# number of observations}
+\NormalTok{n <-}\StringTok{ }\KeywordTok{length}\NormalTok{(sq.resids)}
+\CommentTok{# number of X variables}
+\NormalTok{k <-}\StringTok{ }\KeywordTok{length}\NormalTok{(m1}\OperatorTok{$}\NormalTok{coefficients) }\OperatorTok{-}\StringTok{ }\DecValTok{1}
+\CommentTok{# penalty}
+\NormalTok{penalty <-}\StringTok{ }\NormalTok{(n}\OperatorTok{-}\DecValTok{1}\NormalTok{) }\OperatorTok{/}\StringTok{ }\NormalTok{(n}\OperatorTok{-}\NormalTok{k}\OperatorTok{-}\DecValTok{1}\NormalTok{)}
+\NormalTok{adj.R.sq <-}\StringTok{ }\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{penalty }\OperatorTok{*}\StringTok{ }\NormalTok{(}\KeywordTok{sum}\NormalTok{(sq.resids) }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(sq.deviations.from.ybar))}
+\NormalTok{adj.R.sq}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.4958638
+\end{verbatim}
+
+Since the formula for adjusted R\^{}2 is:
+\[ 1 - \frac{n-1}{n-k-1} \times \frac{\mathrm{Sum\;of\;unexplained\;variability}}{\mathrm{Sum\;of\;total\;variability}} \]
+
+we can estimate adjusted R\^{}2 by rearanging the formula to:
+
+\[ 1 - (1-R^2) \times \frac{n-1}{n-k-1} \] Let's compute adjusted R\^{}2
+directly from R\^{}2:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{adj.R.sq <-}\StringTok{ }\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{R.sq) }\OperatorTok{*}\StringTok{ }\NormalTok{penalty}
+\NormalTok{adj.R.sq}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.4958638
+\end{verbatim}
+
+\subsubsection{The Relationship between Institutional Quality and
+Quality of Life by Colonial
+Past}\label{the-relationship-between-institutional-quality-and-quality-of-life-by-colonial-past}
+
+Let's create a scatterplot between \texttt{wbgi\_cce} and
+\texttt{undp\_hdi} and color the points based on the value of
+\texttt{former\_col}.
+
+NOTE: We're using \texttt{pch\ =\ 16} to plot solid cicles. You can see
+other available styles by typing \texttt{?points} or
+\texttt{help(points)} at the console.
+
+Copy the plot command in the seminar, you can go over it at home.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# main plot}
+\KeywordTok{plot}\NormalTok{(}
+  \DataTypeTok{x =}\NormalTok{ a}\OperatorTok{$}\NormalTok{wbgi_cce,}
+  \DataTypeTok{y =}\NormalTok{ a}\OperatorTok{$}\NormalTok{undp_hdi, }
+  \DataTypeTok{col =} \KeywordTok{factor}\NormalTok{(a}\OperatorTok{$}\NormalTok{former_col),}
+  \DataTypeTok{pch =} \DecValTok{16}\NormalTok{,}
+  \DataTypeTok{cex =} \FloatTok{1.2}\NormalTok{,}
+  \DataTypeTok{bty =} \StringTok{"n"}\NormalTok{,}
+  \DataTypeTok{main =} \StringTok{"Relation between institutional quality and hdi by colonial past"}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"quality of institutions"}\NormalTok{,}
+  \DataTypeTok{ylab =} \StringTok{"human development index"}
+\NormalTok{  )}
+\CommentTok{# add a legend}
+\KeywordTok{legend}\NormalTok{(}
+  \StringTok{"bottomright"}\NormalTok{,  }\CommentTok{# position fo legend}
+  \DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"ex colonies"}\NormalTok{, }\StringTok{"not colonised"}\NormalTok{), }\CommentTok{# what to seperate by }
+  \DataTypeTok{col =} \KeywordTok{factor}\NormalTok{(a}\OperatorTok{$}\NormalTok{former_col), }\CommentTok{# colors of legend labels}
+  \DataTypeTok{pch =} \DecValTok{16}\NormalTok{, }\CommentTok{# dot type}
+  \DataTypeTok{bty =} \StringTok{"n"} \CommentTok{# no box around the legend}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-381-1.pdf}
+
+To explain the level of development with quality of institutions is
+intuitive. We could add the colonial past dummy, to control for
+potential confounders. Including a dummy gives us the difference between
+former colonies and not former colonies. It therefore shifts the
+regression line parallelly. We have looked at binary variables in the
+last weeks. To see the effect of a dummy again, refer to the extra info
+at the bottom of page.
+
+\subsubsection{Interactions: Continuous and
+Binary}\label{interactions-continuous-and-binary}
+
+From the plot above, we can tell that the slope of the line (the effect
+of institutional quality) is probably different in countries that were
+colonies and those that were not. We say: the effect of institutional
+quality is conditional on colonial past.
+
+To specify an interaction term, we use the asterisk (\texttt{*})
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.04\columnwidth}\raggedright\strut
+\strut
+\end{minipage} & \begin{minipage}[b]{0.72\columnwidth}\raggedright\strut
+Example\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.04\columnwidth}\raggedright\strut
+\texttt{*}\strut
+\end{minipage} & \begin{minipage}[t]{0.72\columnwidth}\raggedright\strut
+\texttt{A*B} - In addition to the interaction term (A*B), both the
+constituents (A and B) are automatically included.\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m2 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(undp_hdi }\OperatorTok{~}\StringTok{ }\NormalTok{wbgi_cce }\OperatorTok{*}\StringTok{ }\NormalTok{former_col, }\DataTypeTok{data =}\NormalTok{ a)}
+\KeywordTok{screenreg}\NormalTok{( m2 )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+===============================
+                     Model 1   
+-------------------------------
+(Intercept)            0.79 ***
+                      (0.02)   
+wbgi_cce               0.07 ***
+                      (0.01)   
+former_col            -0.13 ***
+                      (0.02)   
+wbgi_cce:former_col    0.06 ** 
+                      (0.02)   
+-------------------------------
+R^2                    0.59    
+Adj. R^2               0.58    
+Num. obs.            158       
+RMSE                   0.12    
+===============================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+We set our covariate \texttt{former\_col} to countries that weren't
+colonized and then second, to ex colonies. We vary the quality of
+institutions from \texttt{-1.7} to \texttt{2.5} which is roughly the
+minimum to the maximum of the variable.
+
+NOTE: We know the range of values for \texttt{wbgi\_cce} from the
+summary statistics we obtained after loading the dataset at the begining
+of the seminar. You can also use the \texttt{range()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# minimum and maximum of the quality of institutions}
+\KeywordTok{range}\NormalTok{(a}\OperatorTok{$}\NormalTok{wbgi_cce)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] -1.699529  2.445654
+\end{verbatim}
+
+We now illustrate what the interaction effect does. To anticipate, the
+effect of the quality of institutions is now conditional on colonial
+past. That means, the two regression lines will have different slopes.
+
+We make use of the \texttt{predict()} function to draw both regression
+lines into our plot. First, we need to vary the institutional quality
+variable from its minimum to its maximum. We use the \texttt{seq()}
+(sequence) function to create 10 different institutional quality values.
+Second, we create two separate covariate datasets. In the first, x1, we
+set the \texttt{former\_col} variable to never colonies. In the second,
+x2, we set the same variable to ex colonies. We then predict the fitted
+values \texttt{y\_hat1}, not colonised countries, and \texttt{y\_hat2},
+ex colonies.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# sequence of 10 institutional quality values}
+\NormalTok{institutions_seq <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DataTypeTok{from =} \OperatorTok{-}\FloatTok{1.7}\NormalTok{, }\DataTypeTok{to =} \FloatTok{2.5}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{10}\NormalTok{)}
+
+\CommentTok{# covariates for not colonies}
+\NormalTok{x1 <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{former_col =} \DecValTok{0}\NormalTok{, }\DataTypeTok{wbgi_cce =}\NormalTok{ institutions_seq)}
+\CommentTok{# look at our covariates}
+\KeywordTok{head}\NormalTok{(x1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  former_col   wbgi_cce
+1          0 -1.7000000
+2          0 -1.2333333
+3          0 -0.7666667
+4          0 -0.3000000
+5          0  0.1666667
+6          0  0.6333333
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# covariates for colonies}
+\NormalTok{x2 <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{former_col =} \DecValTok{1}\NormalTok{, }\DataTypeTok{wbgi_cce =}\NormalTok{ institutions_seq)}
+\CommentTok{# look at our covariates}
+\KeywordTok{head}\NormalTok{(x2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  former_col   wbgi_cce
+1          1 -1.7000000
+2          1 -1.2333333
+3          1 -0.7666667
+4          1 -0.3000000
+5          1  0.1666667
+6          1  0.6333333
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# predict fitted values for countries that weren't colonised }
+\NormalTok{yhat1 <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(m2, }\DataTypeTok{newdata =}\NormalTok{ x1)}
+
+\CommentTok{# predict fitted values for countries that were colonised}
+\NormalTok{yhat2 <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(m2, }\DataTypeTok{newdata =}\NormalTok{ x2)}
+\end{Highlighting}
+\end{Shaded}
+
+We now have the predicted outcomes for varying institutional quality.
+Once for the countries that were former colonies and once for the
+countries that were not.
+
+We will re-draw our earlier plot. In addition, right below the
+\texttt{plot()} function, we use the \texttt{lines()} function to add
+the two regression lines. The function needs to arguments \texttt{x} and
+\texttt{y} which represent the coordinates on the respective axes. On
+the x axis we vary our independent variable quality of institutions. On
+the y axis, we vary the predicted outcomes.
+
+We add two more arguments to our \texttt{lines()} function. The line
+width is controlled with \texttt{lwd} and we set the colour is
+controlled with \texttt{col} which we set to the first and second
+colours in the colour palette respectively.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# main plot}
+\KeywordTok{plot}\NormalTok{(}
+  \DataTypeTok{y =}\NormalTok{ a}\OperatorTok{$}\NormalTok{undp_hdi,}
+  \DataTypeTok{x =}\NormalTok{ a}\OperatorTok{$}\NormalTok{wbgi_cce, }
+  \DataTypeTok{frame.plot =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{col =} \KeywordTok{factor}\NormalTok{(a}\OperatorTok{$}\NormalTok{former_col),}
+  \DataTypeTok{pch =} \DecValTok{16}\NormalTok{,}
+  \DataTypeTok{cex =} \FloatTok{1.2}\NormalTok{,}
+  \DataTypeTok{bty =} \StringTok{"n"}\NormalTok{,}
+  \DataTypeTok{main =} \StringTok{"Relation between institutional quality and hdi by colonial past"}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"quality of institutions"}\NormalTok{,}
+  \DataTypeTok{ylab =} \StringTok{"human development index"}
+\NormalTok{  )}
+
+\CommentTok{# add the regression line for the countries that weren't colonised}
+\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ institutions_seq, }\DataTypeTok{y =}\NormalTok{ yhat1, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{, }\DataTypeTok{col =} \DecValTok{1}\NormalTok{)}
+
+\CommentTok{# add the regression line for the ex colony countries}
+\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ institutions_seq, }\DataTypeTok{y =}\NormalTok{ yhat2, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{, }\DataTypeTok{col =} \DecValTok{2}\NormalTok{)}
+
+\CommentTok{# add a legend}
+\KeywordTok{legend}\NormalTok{(}
+  \StringTok{"bottomright"}\NormalTok{,  }\CommentTok{# position fo legend}
+  \DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"not colonised"}\NormalTok{, }\StringTok{"ex colony"}\NormalTok{), }\CommentTok{# what to seperate by }
+  \DataTypeTok{col =} \KeywordTok{factor}\NormalTok{(a}\OperatorTok{$}\NormalTok{former_col), }\CommentTok{# colors of legend labels}
+  \DataTypeTok{pch =} \DecValTok{16}\NormalTok{, }\CommentTok{# dot type}
+  \DataTypeTok{lwd =} \DecValTok{2}\NormalTok{, }\CommentTok{# line width in legend}
+  \DataTypeTok{bty =} \StringTok{"n"} \CommentTok{# no box around the legend}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-385-1.pdf}
+
+As you can see, the line is steeper for ex colonies than for countries
+that were never colonised. That means the effect of institutional
+quality on human development is conditional on colonial past.
+Institutional quality matters more in ex colonies.
+
+Let's examine the effect sizes of institutional quality conditional on
+colonial past.
+
+\begin{align}
+\hat{y} & = & \beta_{0} + \beta_{1} * \mathrm{wbgi_cce} + \beta_{2} \times \mathrm{former\_col} + \beta_{3} \times \mathrm{wbgi_cce} \times \mathrm{former\_col} \\
+\hat{y} & = & 0.79 + 0.08 * \mathrm{wbgi_cce}  + -0.12 * \mathrm{former\_col} + 0.05 * \mathrm{wbgi_cce} \times \mathrm{former\_col} 
+\end{align}
+
+There are now two scenarios. First, we look at never coloines or second,
+we look at ex colonies. Let's look at never colonies first.
+
+If a country was never a colony, all terms that are multiplied with
+\texttt{former\_col} drop out.
+
+\begin{align}
+\hat{y} & = & 0.79 + 0.08 \times \mathrm{wbgi_cce} + -0.12 \times 0  + 0.05 \times 0  \\
+\hat{y} & = & 0.79 + 0.08 \times \mathrm{wbgi_cce}
+\end{align}
+
+Therefore, the effect of the quality of institutions (measured by
+\textbf{wbgi\_cce}) in never colonies is just the coefficient of
+\texttt{wbgi\_cce} \(\beta_1 = 0.08\).
+
+In the second scenario, we are looking at ex colonies. In this case none
+of the terms drop out. From our original equation:
+
+\begin{align}
+\hat{y} & = & 0.79 + 0.08 \times \mathrm{wbgi_cce} + -0.12 \times \mathrm{former\_col} + 0.05 \times \mathrm{wbgi_cce} \times \mathrm{former\_col} \\
+\hat{y} & = & 0.79 + 0.08 \times \mathrm{wbgi_cce} + -0.12 \times 1  + 0.05 \times \mathrm{wbgi_cce} \times 1 \\
+\hat{y} & = & 0.79 -0.12 + 0.08 \times \mathrm{wbgi_cce} + 0.05 \times \mathrm{wbgi_cce} \\
+\hat{y} & = & 0.67 + 0.08 \times \mathrm{wbgi_cce} + 0.05 \times \mathrm{wbgi_cce}
+\end{align}
+
+The effect of the quality of institutions is then:
+\(\beta_1 + \beta_3 = 0.08 + 0.05 = 0.13\).
+
+The numbers also tell us that the effect of the quality of institutions
+is bigger in ex colonies. For never colonies the effect is \(0.08\) for
+every unit-increase in institutional quality. For ex colonies, the
+corresponding effect is \(0.13\).
+
+The table below summarises the interaction of a continuous variable with
+a binary variable in the context of our regression model.
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\begin{minipage}[b]{0.26\columnwidth}\raggedright\strut
+Ex Colony\strut
+\end{minipage} & \begin{minipage}[b]{0.35\columnwidth}\raggedright\strut
+Intercept\strut
+\end{minipage} & \begin{minipage}[b]{0.30\columnwidth}\raggedright\strut
+Slope\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.26\columnwidth}\raggedright\strut
+0 = never colony\strut
+\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\raggedright\strut
+\(\beta_0\) \(= 0.79\)\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright\strut
+\(\beta_1\) \(= 0.08\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.26\columnwidth}\raggedright\strut
+1 = ex colony\strut
+\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\raggedright\strut
+\(\beta_0 + \beta_2\) = \(0.79 + -0.12 = 0.67\)\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright\strut
+\(\beta_1 + \beta_3\) \(= 0.08 + 0.05 = 0.13\)\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\subsubsection{Non-Linearities}\label{non-linearities}
+
+We can use interactions to model non-linearities. Let's suppose we want
+to illustrate the relationship between GDP per capita and the human
+development index.
+
+We draw a scatter plot to investigate the relationship between the
+quality of life (hdi) and wealth (gdp/captia).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}
+\NormalTok{  a}\OperatorTok{$}\NormalTok{undp_hdi,}
+\NormalTok{  a}\OperatorTok{$}\NormalTok{wdi_gdpc,}
+  \DataTypeTok{pch =} \DecValTok{16}\NormalTok{,}
+  \DataTypeTok{frame.plot =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{col =} \StringTok{"grey"}\NormalTok{,}
+  \DataTypeTok{main =} \StringTok{"Relationship between the quality of life and wealth"}\NormalTok{,}
+  \DataTypeTok{ylab =} \StringTok{"Human development index"}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"GDP per capita"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-387-1.pdf}
+
+It's easy to see, that the relationship between GDP per captia and the
+Human Development Index is not linear. Increases in wealth rapidly
+increase the quality of life in poor societies. The richer the country,
+the less pronounced the effect of additional wealth. We would
+mis-specify our model if we do not take the non-linear relationship into
+account.
+
+Let's go ahead and mis-specify our model :-)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# a mis-specified model}
+\NormalTok{bad.model <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(undp_hdi }\OperatorTok{~}\StringTok{ }\NormalTok{wdi_gdpc, }\DataTypeTok{data =}\NormalTok{ a)}
+\KeywordTok{screenreg}\NormalTok{( bad.model )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+=======================
+             Model 1   
+-----------------------
+(Intercept)    0.59 ***
+              (0.01)   
+wdi_gdpc       0.00 ***
+              (0.00)   
+-----------------------
+R^2            0.50    
+Adj. R^2       0.50    
+Num. obs.    158       
+RMSE           0.13    
+=======================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+We detect a significant linear relationship. The effect may look small
+because the coefficient rounded to two digits is zero. But remember,
+this is the effect of increasing GDP/capita by \(1\) US dollar on the
+quality of life. That effect is naturally small but it is probably not
+small when we increase wealth by \(1000\) US dollars.
+
+However, our model would also entail that for every increase in
+GDP/capita, the quality of life increases on average by the same amount.
+We saw from our plot that this is not the case. The effect of GDP/capita
+on the quality of life is conditional on the level of GDP/capita. If
+that sounds like an interaction to you, then that is great because, we
+will model the non-linearity by raising the GDP/capita to a higher
+power. That is in effect an interaction of the variable with itself.
+GDP/capita raised to the second power, e.g.~is GDP/capita * GDP/capita.
+
+\paragraph{Polynomials}\label{polynomials}
+
+We know from school that polynomials like \(x^2\), \(x^3\) and so on are
+not linear. In fact, \(x^2\) can make one bend, \(x^3\) can make two
+bends and so on.
+
+Our plot looks like the relationship is quadratic. So, we use the
+\texttt{poly()} function in our linear model to raise GDP/capita to the
+second power like so: \texttt{poly(wdi\_gdpc,\ 2).}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{better.model <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(undp_hdi }\OperatorTok{~}\StringTok{ }\KeywordTok{poly}\NormalTok{(wdi_gdpc, }\DecValTok{2}\NormalTok{), }\DataTypeTok{data =}\NormalTok{ a)}
+\KeywordTok{screenreg}\NormalTok{( }\KeywordTok{list}\NormalTok{(bad.model, better.model), }
+           \DataTypeTok{custom.model.names =} \KeywordTok{c}\NormalTok{(}\StringTok{"bad model"}\NormalTok{, }\StringTok{"better model"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+============================================
+                    bad model   better model
+--------------------------------------------
+(Intercept)           0.59 ***    0.69 ***  
+                     (0.01)      (0.01)     
+wdi_gdpc              0.00 ***              
+                     (0.00)                 
+poly(wdi_gdpc, 2)1                1.64 ***  
+                                 (0.11)     
+poly(wdi_gdpc, 2)2               -0.98 ***  
+                                 (0.11)     
+--------------------------------------------
+R^2                   0.50        0.68      
+Adj. R^2              0.50        0.67      
+Num. obs.           158         158         
+RMSE                  0.13        0.11      
+============================================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+It is important to note, that in the better model the effect of
+GDP/capita is no longer easy to interpret. We cannot say for every
+increase in GDP/capita by one dollar, the quality of life increases on
+average by this much. No, the effect of GDP/capita depends on how rich a
+country was to begin with.
+
+It looks like our model that includes the quadratic term has a much
+better fit. The adjusted R\^{}2 increases by a lot. Furthermore, the
+quadratic term, \texttt{poly(gdp\_capita,\ 2)2} is significant. That
+indicates that newly added variable improves model fit. We can run an
+F-test with \texttt{anova()} function which will return the same result.
+The F-test would be useful when we add more than one new variable,
+e.g.~we could have raised GDP\_captia to the power of 5 which would have
+added four new variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# f test}
+\KeywordTok{anova}\NormalTok{(bad.model, better.model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Analysis of Variance Table
+
+Model 1: undp_hdi ~ wdi_gdpc
+Model 2: undp_hdi ~ poly(wdi_gdpc, 2)
+  Res.Df    RSS Df Sum of Sq      F                Pr(>F)    
+1    156 2.7010                                              
+2    155 1.7384  1   0.96263 85.831 < 0.00000000000000022 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+We can interpret the effect of wealth (GDP/capita) on the quality of
+life (human development index) by predicting the fitted values of the
+human development index given a certain level of GDP/capita. We will
+vary GDP/captia from its minimum in the data to its maximum and the plot
+the results which is a good way to illustrate a non-linear relationship.
+
+Step 1: We find the minimum and maximum values of GDP/capita.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# find minimum and maximum of per capita gdp}
+\KeywordTok{range}\NormalTok{(a}\OperatorTok{$}\NormalTok{wdi_gdpc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1]   226.235 63686.676
+\end{verbatim}
+
+Step 2: We predict fitted values for varying levels of GDP/captia (let's
+create 100 predictions).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# our sequence of 100 GDP/capita values}
+\NormalTok{gdp_seq <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DataTypeTok{from =} \DecValTok{226}\NormalTok{, }\DataTypeTok{to =} \DecValTok{63686}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{100}\NormalTok{)}
+
+\CommentTok{# we set our covarite values (here we only have one covariate: GDP/captia)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{wdi_gdpc =}\NormalTok{ gdp_seq)}
+
+\CommentTok{# we predict the outcome (human development index) for each of the 100 GDP levels}
+\NormalTok{y_hat <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(better.model, }\DataTypeTok{newdata =}\NormalTok{ x)}
+\end{Highlighting}
+\end{Shaded}
+
+Step 3: Now that we have created our predictions. We plot again and then
+we add the \texttt{bad.model} using \texttt{abline} and we add our
+non-linear version \texttt{better.model} using the \texttt{lines()}
+function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}
+  \DataTypeTok{x =}\NormalTok{ a}\OperatorTok{$}\NormalTok{undp_hdi, }
+  \DataTypeTok{y =}\NormalTok{ a}\OperatorTok{$}\NormalTok{wdi_gdpc,}
+  \DataTypeTok{pch =} \DecValTok{16}\NormalTok{,}
+  \DataTypeTok{frame.plot =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{col =} \StringTok{"grey"}\NormalTok{,}
+  \DataTypeTok{main =} \StringTok{"Relationship between the quality of life and wealth"}\NormalTok{,}
+  \DataTypeTok{ylab =} \StringTok{"Human development index"}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"GDP per capita"}
+\NormalTok{  )}
+
+\CommentTok{# the bad model}
+\KeywordTok{abline}\NormalTok{(bad.model, }\DataTypeTok{col =} \DecValTok{1}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+
+\CommentTok{# better model}
+\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ gdp_seq, }\DataTypeTok{y =}\NormalTok{ y_hat, }\DataTypeTok{col =} \DecValTok{2}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-393-1.pdf}
+
+At home, we want you to estimate \texttt{even.better.model} with
+GDP/capita raised to the power of three to determine whether the data
+fit improves. Show this visually and with an F test.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# estimate even better model with gdp/capita^3}
+\NormalTok{even.better.model <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(undp_hdi }\OperatorTok{~}\StringTok{ }\KeywordTok{poly}\NormalTok{(wdi_gdpc, }\DecValTok{3}\NormalTok{), }\DataTypeTok{data =}\NormalTok{ a)}
+
+\CommentTok{# f test}
+\KeywordTok{anova}\NormalTok{(better.model, even.better.model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Analysis of Variance Table
+
+Model 1: undp_hdi ~ poly(wdi_gdpc, 2)
+Model 2: undp_hdi ~ poly(wdi_gdpc, 3)
+  Res.Df    RSS Df Sum of Sq      F          Pr(>F)    
+1    155 1.7384                                        
+2    154 1.3346  1    0.4038 46.595 0.0000000001888 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# so, our even better.model is statistically significantly even better}
+
+\CommentTok{# we predict the outcome (human development index) for each of the 100 GDP levels}
+\NormalTok{y_hat2 <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(even.better.model, }\DataTypeTok{newdata =}\NormalTok{ x)}
+
+\KeywordTok{plot}\NormalTok{(}
+  \DataTypeTok{y =}\NormalTok{ a}\OperatorTok{$}\NormalTok{undp_hdi,}
+  \DataTypeTok{x =}\NormalTok{ a}\OperatorTok{$}\NormalTok{wdi_gdpc, }
+  \DataTypeTok{pch =} \DecValTok{16}\NormalTok{,}
+  \DataTypeTok{frame.plot =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{col =} \StringTok{"grey"}\NormalTok{,}
+  \DataTypeTok{main =} \StringTok{"Relationship between the quality of life and wealth"}\NormalTok{,}
+  \DataTypeTok{ylab =} \StringTok{"Human development index"}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"GDP per capita"}
+\NormalTok{  )}
+
+\CommentTok{# the bad model}
+\KeywordTok{abline}\NormalTok{(bad.model, }\DataTypeTok{col =} \DecValTok{1}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+
+\CommentTok{# better model}
+\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ gdp_seq, }\DataTypeTok{y =}\NormalTok{ y_hat, }\DataTypeTok{col =} \DecValTok{2}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+
+\CommentTok{# even better model}
+\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ gdp_seq, }\DataTypeTok{y =}\NormalTok{ y_hat2, }\DataTypeTok{col =} \DecValTok{3}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-394-1.pdf}
+
+We generate an even better fit with the cubic, however it still looks
+somewhat strange. The cubic is being wagged around by its tail. The few
+extreme values cause the strange shape. This is a common problem with
+polynomials. We move on to an alternative.
+
+\paragraph{Log-transformations}\label{log-transformations}
+
+Many non-linear relationships actually do look linear on the log scale.
+We can illustrate this by taking the natural logarithm of GDP/captia and
+plot the relationship between quality of life and our transformed GDP
+variable.
+
+Note: Some of you will remember from your school calculators that you
+have an ln button and a log button where ln takes the natural logarithm
+and log takes the logarithm with base 10. The natural logarithm
+represents relations that occur frequently in the world and R takes the
+natural logarithm with the \texttt{log()} function by default.
+
+Below, we plot the same plot from before but we wrap
+\texttt{gdp\_capita} in the \texttt{log()} function which log-transforms
+the variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}
+  \DataTypeTok{y =}\NormalTok{ a}\OperatorTok{$}\NormalTok{undp_hdi,}
+  \DataTypeTok{x =} \KeywordTok{log}\NormalTok{(a}\OperatorTok{$}\NormalTok{wdi_gdpc), }
+  \DataTypeTok{pch =} \DecValTok{16}\NormalTok{,}
+  \DataTypeTok{frame.plot =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{col =} \StringTok{"grey"}\NormalTok{,}
+  \DataTypeTok{main =} \StringTok{"Relationship between the quality of life and wealth on the log scale"}\NormalTok{,}
+  \DataTypeTok{ylab =} \StringTok{"Human development index"}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"Logged gdp/capita"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-395-1.pdf}
+
+As you can see, the relationship now looks linear and we get the best
+fit to the data if we run our model with log-transformed gdp.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# run model with log-transformed gdp}
+\NormalTok{best.model <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(undp_hdi }\OperatorTok{~}\StringTok{ }\KeywordTok{log}\NormalTok{(wdi_gdpc), }\DataTypeTok{data =}\NormalTok{ a)}
+
+\CommentTok{# let's check our model}
+\KeywordTok{screenreg}\NormalTok{( }\KeywordTok{list}\NormalTok{(bad.model, better.model, even.better.model, best.model),}
+           \DataTypeTok{custom.model.names =} \KeywordTok{c}\NormalTok{(}\StringTok{"Bad Model"}\NormalTok{, }\StringTok{"Better Model"}\NormalTok{, }\StringTok{"Even Better Model"}\NormalTok{, }\StringTok{"Best Model"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+===========================================================================
+                    Bad Model   Better Model  Even Better Model  Best Model
+---------------------------------------------------------------------------
+(Intercept)           0.59 ***    0.69 ***      0.69 ***          -0.37 ***
+                     (0.01)      (0.01)        (0.01)             (0.04)   
+wdi_gdpc              0.00 ***                                             
+                     (0.00)                                                
+poly(wdi_gdpc, 2)1                1.64 ***                                 
+                                 (0.11)                                    
+poly(wdi_gdpc, 2)2               -0.98 ***                                 
+                                 (0.11)                                    
+poly(wdi_gdpc, 3)1                              1.64 ***                   
+                                               (0.09)                      
+poly(wdi_gdpc, 3)2                             -0.98 ***                   
+                                               (0.09)                      
+poly(wdi_gdpc, 3)3                              0.64 ***                   
+                                               (0.09)                      
+log(wdi_gdpc)                                                      0.13 ***
+                                                                  (0.00)   
+---------------------------------------------------------------------------
+R^2                   0.50        0.68          0.75               0.82    
+Adj. R^2              0.50        0.67          0.75               0.82    
+Num. obs.           158         158           158                158       
+RMSE                  0.13        0.11          0.09               0.08    
+===========================================================================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+Polynomials can be useful for modelling non-linearities. However, for
+each power we add an additional parameter that needs to be estimated.
+This reduces the degrees of freedom. If we can get a linear relationship
+on the log scale, one advantage is that we lose only one degree of
+freedom. Furthermore, we gain interpretability. The relationship is
+linear on the log scale of gdp/capita. This means we can interpret the
+effect of gdp/captia as: For an increase of gdp/captia by one percent,
+the quality of life increases by \(\frac{0.12}{100}\) points on average.
+The effect is very large because \texttt{human\_development} only varies
+from \(0\) to \(1\).
+
+To assess model fit, the f test is not very helpful here because, the
+initial model and the log-transformed model estimate the same number of
+parameters (the difference in the degrees of freedom is 0). Therefore,
+we rely on adjusted R\^{}2 for interpretation of model fit. It penalises
+for additional parameters. According to our adjusted R\^{}2, the
+log-transformed model provides the best model fit.
+
+To illustrate that this is the case, we return to our plot and show the
+model fit graphically.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# fitted values for the log model (best model)}
+\NormalTok{y_hat3 <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(best.model, }\DataTypeTok{newdata =}\NormalTok{ x)}
+
+\CommentTok{# plot showing the fits}
+\KeywordTok{plot}\NormalTok{(}
+  \DataTypeTok{y =}\NormalTok{ a}\OperatorTok{$}\NormalTok{undp_hdi,}
+  \DataTypeTok{x =}\NormalTok{ a}\OperatorTok{$}\NormalTok{wdi_gdpc, }
+  \DataTypeTok{pch =} \DecValTok{16}\NormalTok{,}
+  \DataTypeTok{frame.plot =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{col =} \StringTok{"grey"}\NormalTok{,}
+  \DataTypeTok{main =} \StringTok{"Relationship between the quality of life and wealth"}\NormalTok{,}
+  \DataTypeTok{ylab =} \StringTok{"Human development index"}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"GDP per capita"}
+\NormalTok{  )}
+
+\CommentTok{# the bad model}
+\KeywordTok{abline}\NormalTok{(bad.model, }\DataTypeTok{col =} \DecValTok{1}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+
+\CommentTok{# better model}
+\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ gdp_seq, }\DataTypeTok{y =}\NormalTok{ y_hat, }\DataTypeTok{col =} \DecValTok{2}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+
+\CommentTok{# even better model}
+\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ gdp_seq, }\DataTypeTok{y =}\NormalTok{ y_hat2, }\DataTypeTok{col =} \DecValTok{3}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+
+\CommentTok{# best model}
+\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ gdp_seq, }\DataTypeTok{y =}\NormalTok{ y_hat3, }\DataTypeTok{col =} \DecValTok{4}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-397-1.pdf}
+
+The dark purple line shows the log-transformed model. It clearly fits
+the data best.
+
+\subsubsection{Exercises}\label{exercises-7}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Using \texttt{better\ model}, where we included the square of
+  GDP/capita, what is the effect of:
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    an increase of GDP/capita from 5000 to 15000?
+  \item
+    an increase of GDP/capita from 25000 to 35000?
+  \end{enumerate}
+\item
+  You can see that the curve in our quadratic plot curves down when
+  countries become very rich. Speculate whether that results make sense
+  and what the reason for this might be.
+\item
+  Raise GDP/captia to the highest power using the \texttt{poly()} that
+  significantly improves model fit.
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    Does your new model solve the potentially artefical down-curve for
+    rich countries?
+  \item
+    Does the new model improve upon the old model?
+  \item
+    Plot the new model.
+  \end{enumerate}
+\item
+  Estimate a model where \texttt{wbgi\_pse} (political stability) is the
+  response variable and \texttt{h\_j} and \texttt{former\_col} are the
+  explanatory variables. Include an interaction between your explanatory
+  variables. What is the marginal effect of:
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    An independent judiciary when the country is a former colony?
+  \item
+    An independent judiciary when the country was not colonized?
+  \item
+    Does the interaction between \texttt{h\_j} and \texttt{former\_col}
+    improve model fit?
+  \end{enumerate}
+\item
+  Run a model on the human development index (\texttt{hdi}), interacting
+  an independent judiciary (\texttt{h\_j}) and
+  \texttt{institutions\_quality}. What is the effect of quality of
+  institutions:
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    In countries without an independent judiciary?
+  \item
+    When there is an independent judiciary?
+  \item
+    Illustrate your results.
+  \item
+    Does the interaction improve model fit?
+  \end{enumerate}
+\item
+  Clear your workspace and download the California Test Score Data used
+  by Stock and Watson.
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    Download `caschool.dta' Dataset
+  \item
+    Draw a scatterplot between \texttt{avginc} and \texttt{testscr}
+    variables.
+  \item
+    Run two regressions with \texttt{testscr} as the dependent variable.
+    c.a. In the first model use \texttt{avginc} as the independent
+    variable. c.b. In the second model use quadratic \texttt{avginc} as
+    the independent variable.
+  \item
+    Test whether the quadratic model fits the data better.
+  \end{enumerate}
+\end{enumerate}
+
+\subsubsection{Extra Info: Dummy Variables
+Repetition}\label{extra-info-dummy-variables-repetition}
+
+The variable \texttt{ex\_colony} is binary. It takes on two values:
+``never colonies'' or ``ex colonies''. The first value, ``never
+colonies'' is the baseline. When the variable takes on the value ``ex
+colonies'', we end up with an intercept shift. Consequently, we get a
+second parallel regression line.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model1 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(human_development }\OperatorTok{~}\StringTok{ }\NormalTok{institutions_quality }\OperatorTok{+}\StringTok{ }\NormalTok{ex_colony, }\DataTypeTok{data =}\NormalTok{ world_data)}
+\KeywordTok{screenreg}\NormalTok{(model1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+================================
+                      Model 1   
+--------------------------------
+(Intercept)             0.77 ***
+                       (0.02)   
+institutions_quality    0.10 ***
+                       (0.01)   
+ex_colonyex colonies   -0.11 ***
+                       (0.02)   
+--------------------------------
+R^2                     0.54    
+Adj. R^2                0.54    
+Num. obs.             172       
+RMSE                    0.12    
+================================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+\paragraph{The Effect of a Dummy
+Variable}\label{the-effect-of-a-dummy-variable}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\begin{minipage}[b]{0.26\columnwidth}\raggedright\strut
+Ex Colony\strut
+\end{minipage} & \begin{minipage}[b]{0.35\columnwidth}\raggedright\strut
+Intercept\strut
+\end{minipage} & \begin{minipage}[b]{0.30\columnwidth}\raggedright\strut
+Slope\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.26\columnwidth}\raggedright\strut
+0 = not a former colony\strut
+\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\raggedright\strut
+\texttt{Intercept} + (\texttt{ex\_colonyex\ colonies} * 0)= 0.77 +
+(-0.11 * 0)= 0.77\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright\strut
+\texttt{institutions\_quality} = 0.10\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.26\columnwidth}\raggedright\strut
+1 = former colony\strut
+\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\raggedright\strut
+\texttt{Intercept} + (\texttt{ex\_colonyex\ colonies} * 1)= 0.77 +
+(-0.11 * 1)= 0.66\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright\strut
+\texttt{institutions\_quality} = 0.10\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+To illustrate the effect of a dummy we can access the coefficients of
+our \texttt{lm} model directly with the \texttt{coefficients()}
+function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model_coef <-}\StringTok{ }\KeywordTok{coefficients}\NormalTok{(model1)}
+\NormalTok{model_coef}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+         (Intercept) institutions_quality ex_colonyex colonies 
+           0.7734319            0.1021146           -0.1140925 
+\end{verbatim}
+
+We can use the square brackets \texttt{{[}\ {]}} to access individual
+coefficients.
+
+To illustrate the effect of a dummy we draw a scatterplot and then use
+\texttt{abline()} to draw two regression lines, one with
+\texttt{ex\_colonyex\ colonies\ ==\ "never\ colony"} and another with
+\texttt{ex\_colony\ ==\ "former\ colony"}.
+
+Instead of passing the model as the first argument to \texttt{abline()},
+we can just pass the intercept and slope as two separate arguments.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}
+\NormalTok{  human_development }\OperatorTok{~}\StringTok{ }\NormalTok{institutions_quality, }
+  \DataTypeTok{data =}\NormalTok{ world_data,}
+  \DataTypeTok{frame.plot =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{col =}\NormalTok{ ex_colony,}
+  \DataTypeTok{pch =} \DecValTok{16}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"Quality of institutions"}\NormalTok{,}
+  \DataTypeTok{ylab =} \StringTok{"Human development index"}\NormalTok{,}
+  \DataTypeTok{main =} \StringTok{"Effect of a binary variable"}
+\NormalTok{  )}
+
+\CommentTok{# the regression line when ex_colony = never colony}
+\KeywordTok{abline}\NormalTok{(model_coef[}\DecValTok{1}\NormalTok{], model_coef[}\DecValTok{2}\NormalTok{], }\DataTypeTok{col =} \DecValTok{1}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+
+\CommentTok{# the regression line when ex_colony = ex colony}
+\KeywordTok{abline}\NormalTok{(model_coef[}\DecValTok{1}\NormalTok{] }\OperatorTok{+}\StringTok{ }\NormalTok{model_coef[}\DecValTok{3}\NormalTok{], model_coef[}\DecValTok{2}\NormalTok{], }\DataTypeTok{col =} \DecValTok{2}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+
+\CommentTok{# add a legend to the plot}
+\KeywordTok{legend}\NormalTok{(}
+  \StringTok{"bottomright"}\NormalTok{, }
+  \DataTypeTok{legend =} \KeywordTok{levels}\NormalTok{(world_data}\OperatorTok{$}\NormalTok{ex_colony), }
+  \DataTypeTok{col =}\NormalTok{ world_data}\OperatorTok{$}\NormalTok{ex_colony,}
+  \DataTypeTok{lwd =} \DecValTok{2}\NormalTok{,   }\CommentTok{# line width = 1 for adding a line to the legend}
+  \DataTypeTok{pch =} \DecValTok{16}\NormalTok{,}
+  \DataTypeTok{bty =} \StringTok{"n"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-402-1.pdf}
 
 
 \end{document}

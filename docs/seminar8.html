@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Statistics 1</title>
+  <meta name="description" content="Statistics 1">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Statistics 1" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Statistics 1" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="solutions7.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="lib/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/codefolding.js"></script>
+
+
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding();
+});
+</script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="lib\bootstrap\3.3.7\css\bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="css\readthedocs.css" type="text/css" />
+<link rel="stylesheet" href="css\custom.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this course</a></li>
+<li class="chapter" data-level="1" data-path="seminar1.html"><a href="seminar1.html"><i class="fa fa-check"></i><b>1</b> Introduction: Measurement, Central Tendency, Dispersion, Validity, Reliability</a><ul>
+<li class="chapter" data-level="1.1" data-path="seminar1.html"><a href="seminar1.html#seminar"><i class="fa fa-check"></i><b>1.1</b> Seminar</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="seminar1.html"><a href="seminar1.html#getting-started"><i class="fa fa-check"></i><b>1.1.1</b> Getting Started</a></li>
+<li class="chapter" data-level="1.1.2" data-path="seminar1.html"><a href="seminar1.html#rstudio"><i class="fa fa-check"></i><b>1.1.2</b> RStudio</a></li>
+<li class="chapter" data-level="1.1.3" data-path="seminar1.html"><a href="seminar1.html#console"><i class="fa fa-check"></i><b>1.1.3</b> Console</a></li>
+<li class="chapter" data-level="1.1.4" data-path="seminar1.html"><a href="seminar1.html#functions"><i class="fa fa-check"></i><b>1.1.4</b> Functions</a></li>
+<li class="chapter" data-level="1.1.5" data-path="seminar1.html"><a href="seminar1.html#getting-help"><i class="fa fa-check"></i><b>1.1.5</b> Getting Help</a></li>
+<li class="chapter" data-level="1.1.6" data-path="seminar1.html"><a href="seminar1.html#the-assignment-operator"><i class="fa fa-check"></i><b>1.1.6</b> The Assignment Operator</a></li>
+<li class="chapter" data-level="1.1.7" data-path="seminar1.html"><a href="seminar1.html#sequences"><i class="fa fa-check"></i><b>1.1.7</b> Sequences</a></li>
+<li class="chapter" data-level="1.1.8" data-path="seminar1.html"><a href="seminar1.html#scripts"><i class="fa fa-check"></i><b>1.1.8</b> Scripts</a></li>
+<li class="chapter" data-level="1.1.9" data-path="seminar1.html"><a href="seminar1.html#central-tendency"><i class="fa fa-check"></i><b>1.1.9</b> Central Tendency</a></li>
+<li class="chapter" data-level="1.1.10" data-path="seminar1.html"><a href="seminar1.html#dispersion"><i class="fa fa-check"></i><b>1.1.10</b> Dispersion</a></li>
+<li class="chapter" data-level="1.1.11" data-path="seminar1.html"><a href="seminar1.html#exercises"><i class="fa fa-check"></i><b>1.1.11</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="solutions1.html"><a href="solutions1.html"><i class="fa fa-check"></i><b>1.2</b> Solutions</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="solutions1.html"><a href="solutions1.html#exercise-3"><i class="fa fa-check"></i><b>1.2.1</b> Exercise 3</a></li>
+<li class="chapter" data-level="1.2.2" data-path="solutions1.html"><a href="solutions1.html#exercise-4"><i class="fa fa-check"></i><b>1.2.2</b> Exercise 4</a></li>
+<li class="chapter" data-level="1.2.3" data-path="solutions1.html"><a href="solutions1.html#exercise-5"><i class="fa fa-check"></i><b>1.2.3</b> Exercise 5</a></li>
+<li class="chapter" data-level="1.2.4" data-path="solutions1.html"><a href="solutions1.html#exercise-6"><i class="fa fa-check"></i><b>1.2.4</b> Exercise 6</a></li>
+<li class="chapter" data-level="1.2.5" data-path="solutions1.html"><a href="solutions1.html#exercise-7"><i class="fa fa-check"></i><b>1.2.5</b> Exercise 7</a></li>
+<li class="chapter" data-level="1.2.6" data-path="solutions1.html"><a href="solutions1.html#exercise-8"><i class="fa fa-check"></i><b>1.2.6</b> Exercise 8</a></li>
+<li class="chapter" data-level="1.2.7" data-path="solutions1.html"><a href="solutions1.html#exercise-9"><i class="fa fa-check"></i><b>1.2.7</b> Exercise 9</a></li>
+<li class="chapter" data-level="1.2.8" data-path="solutions1.html"><a href="solutions1.html#exercise-10"><i class="fa fa-check"></i><b>1.2.8</b> Exercise 10</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="seminar2.html"><a href="seminar2.html"><i class="fa fa-check"></i><b>2</b> Research Design, Counterfactuals, Forming Hypotheses</a><ul>
+<li class="chapter" data-level="2.1" data-path="seminar2.html"><a href="seminar2.html#seminar-1"><i class="fa fa-check"></i><b>2.1</b> Seminar</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="seminar2.html"><a href="seminar2.html#setting-up"><i class="fa fa-check"></i><b>2.1.1</b> setting up</a></li>
+<li class="chapter" data-level="2.1.2" data-path="seminar2.html"><a href="seminar2.html#vectors-and-subsetting"><i class="fa fa-check"></i><b>2.1.2</b> vectors and subsetting</a></li>
+<li class="chapter" data-level="2.1.3" data-path="seminar2.html"><a href="seminar2.html#data-frames"><i class="fa fa-check"></i><b>2.1.3</b> data frames</a></li>
+<li class="chapter" data-level="2.1.4" data-path="seminar2.html"><a href="seminar2.html#loading-data"><i class="fa fa-check"></i><b>2.1.4</b> Loading data</a></li>
+<li class="chapter" data-level="2.1.5" data-path="seminar2.html"><a href="seminar2.html#plots"><i class="fa fa-check"></i><b>2.1.5</b> Plots</a></li>
+<li class="chapter" data-level="2.1.6" data-path="seminar2.html"><a href="seminar2.html#average-treatment-effect"><i class="fa fa-check"></i><b>2.1.6</b> Average Treatment Effect</a></li>
+<li class="chapter" data-level="2.1.7" data-path="seminar2.html"><a href="seminar2.html#exercises-1"><i class="fa fa-check"></i><b>2.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="solutions2.html"><a href="solutions2.html"><i class="fa fa-check"></i><b>2.2</b> Solutions</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="solutions2.html"><a href="solutions2.html#exercise-2"><i class="fa fa-check"></i><b>2.2.1</b> Exercise 2</a></li>
+<li class="chapter" data-level="2.2.2" data-path="solutions2.html"><a href="solutions2.html#exercise-3-1"><i class="fa fa-check"></i><b>2.2.2</b> Exercise 3</a></li>
+<li class="chapter" data-level="2.2.3" data-path="solutions2.html"><a href="solutions2.html#exercise-4-1"><i class="fa fa-check"></i><b>2.2.3</b> Exercise 4</a></li>
+<li class="chapter" data-level="2.2.4" data-path="solutions2.html"><a href="solutions2.html#exercise-5-1"><i class="fa fa-check"></i><b>2.2.4</b> Exercise 5</a></li>
+<li class="chapter" data-level="2.2.5" data-path="solutions2.html"><a href="solutions2.html#exercise-6-1"><i class="fa fa-check"></i><b>2.2.5</b> Exercise 6</a></li>
+<li class="chapter" data-level="2.2.6" data-path="solutions2.html"><a href="solutions2.html#exercise-7-1"><i class="fa fa-check"></i><b>2.2.6</b> Exercise 7</a></li>
+<li class="chapter" data-level="2.2.7" data-path="solutions2.html"><a href="solutions2.html#exercise-8-1"><i class="fa fa-check"></i><b>2.2.7</b> Exercise 8</a></li>
+<li class="chapter" data-level="2.2.8" data-path="solutions2.html"><a href="solutions2.html#exercises-9-and-10"><i class="fa fa-check"></i><b>2.2.8</b> Exercises 9 and 10</a></li>
+<li class="chapter" data-level="2.2.9" data-path="solutions2.html"><a href="solutions2.html#exercises-11"><i class="fa fa-check"></i><b>2.2.9</b> Exercises 11</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="seminar3.html"><a href="seminar3.html"><i class="fa fa-check"></i><b>3</b> Sampling and Distributions</a><ul>
+<li class="chapter" data-level="3.1" data-path="seminar3.html"><a href="seminar3.html#seminar-2"><i class="fa fa-check"></i><b>3.1</b> Seminar</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="seminar3.html"><a href="seminar3.html#loading-dataset-in-csv-format"><i class="fa fa-check"></i><b>3.1.1</b> Loading Dataset in CSV Format</a></li>
+<li class="chapter" data-level="3.1.2" data-path="seminar3.html"><a href="seminar3.html#missing-values"><i class="fa fa-check"></i><b>3.1.2</b> Missing Values</a></li>
+<li class="chapter" data-level="3.1.3" data-path="seminar3.html"><a href="seminar3.html#factor-variables"><i class="fa fa-check"></i><b>3.1.3</b> Factor Variables</a></li>
+<li class="chapter" data-level="3.1.4" data-path="seminar3.html"><a href="seminar3.html#renaming-variables"><i class="fa fa-check"></i><b>3.1.4</b> Renaming Variables</a></li>
+<li class="chapter" data-level="3.1.5" data-path="seminar3.html"><a href="seminar3.html#distributions"><i class="fa fa-check"></i><b>3.1.5</b> Distributions</a></li>
+<li class="chapter" data-level="3.1.6" data-path="seminar3.html"><a href="seminar3.html#conditional-distributions"><i class="fa fa-check"></i><b>3.1.6</b> Conditional Distributions</a></li>
+<li class="chapter" data-level="3.1.7" data-path="seminar3.html"><a href="seminar3.html#exercises-2"><i class="fa fa-check"></i><b>3.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="solutions3.html"><a href="solutions3.html"><i class="fa fa-check"></i><b>3.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="seminar4.html"><a href="seminar4.html"><i class="fa fa-check"></i><b>4</b> T-test for Difference in Means and Hypothesis Testing</a><ul>
+<li class="chapter" data-level="4.1" data-path="seminar4.html"><a href="seminar4.html#seminar-3"><i class="fa fa-check"></i><b>4.1</b> Seminar</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="seminar4.html"><a href="seminar4.html#the-standard-error"><i class="fa fa-check"></i><b>4.1.1</b> The Standard Error</a></li>
+<li class="chapter" data-level="4.1.2" data-path="seminar4.html"><a href="seminar4.html#t-test-one-sample-hypothesis-test"><i class="fa fa-check"></i><b>4.1.2</b> T-test (one sample hypothesis test)</a></li>
+<li class="chapter" data-level="4.1.3" data-path="seminar4.html"><a href="seminar4.html#t-test-difference-in-means"><i class="fa fa-check"></i><b>4.1.3</b> T-test (difference in means)</a></li>
+<li class="chapter" data-level="4.1.4" data-path="seminar4.html"><a href="seminar4.html#estimating-p-values-from-t-values"><i class="fa fa-check"></i><b>4.1.4</b> Estimating p values from t values</a></li>
+<li class="chapter" data-level="4.1.5" data-path="seminar4.html"><a href="seminar4.html#exercises-3"><i class="fa fa-check"></i><b>4.1.5</b> Exercises</a></li>
+<li class="chapter" data-level="4.1.6" data-path="seminar4.html"><a href="seminar4.html#optional-exercises-that-require-reading-extra-info-below"><i class="fa fa-check"></i><b>4.1.6</b> Optional Exercises that require reading Extra Info below</a></li>
+<li class="chapter" data-level="4.1.7" data-path="seminar4.html"><a href="seminar4.html#advanced-exercises"><i class="fa fa-check"></i><b>4.1.7</b> Advanced Exercises</a></li>
+<li class="chapter" data-level="4.1.8" data-path="seminar4.html"><a href="seminar4.html#extra-info"><i class="fa fa-check"></i><b>4.1.8</b> Extra Info</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="solutions4.html"><a href="solutions4.html"><i class="fa fa-check"></i><b>4.2</b> Solutions</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="solutions4.html"><a href="solutions4.html#optional-exercises-that-require-reading-extra-info-below-1"><i class="fa fa-check"></i><b>4.2.1</b> Optional Exercises that require reading Extra Info below</a></li>
+<li class="chapter" data-level="4.2.2" data-path="solutions4.html"><a href="solutions4.html#advanced-exercises-1"><i class="fa fa-check"></i><b>4.2.2</b> Advanced Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="seminar5.html"><a href="seminar5.html"><i class="fa fa-check"></i><b>5</b> Revision: Sample Variance and Sample Standard Deviation; Hypothesis testing and Confidence Intervals</a><ul>
+<li class="chapter" data-level="5.1" data-path="seminar5.html"><a href="seminar5.html#seminar-4"><i class="fa fa-check"></i><b>5.1</b> Seminar</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="seminar5.html"><a href="seminar5.html#sample-variance-and-sample-standard-deviation"><i class="fa fa-check"></i><b>5.1.1</b> Sample Variance and Sample Standard Deviation</a></li>
+<li class="chapter" data-level="5.1.2" data-path="seminar5.html"><a href="seminar5.html#t-test-for-the-sample-mean"><i class="fa fa-check"></i><b>5.1.2</b> T test for the sample mean</a></li>
+<li class="chapter" data-level="5.1.3" data-path="seminar5.html"><a href="seminar5.html#t-test-for-the-difference-in-means"><i class="fa fa-check"></i><b>5.1.3</b> T test for the difference in means</a></li>
+<li class="chapter" data-level="5.1.4" data-path="seminar5.html"><a href="seminar5.html#exercises-4"><i class="fa fa-check"></i><b>5.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="solutions5.html"><a href="solutions5.html"><i class="fa fa-check"></i><b>5.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="seminar6.html"><a href="seminar6.html"><i class="fa fa-check"></i><b>6</b> Bivariate linear regression models</a><ul>
+<li class="chapter" data-level="6.1" data-path="seminar6.html"><a href="seminar6.html#seminar-5"><i class="fa fa-check"></i><b>6.1</b> Seminar</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="seminar6.html"><a href="seminar6.html#packages"><i class="fa fa-check"></i><b>6.1.1</b> Packages</a></li>
+<li class="chapter" data-level="6.1.2" data-path="seminar6.html"><a href="seminar6.html#fitted-values"><i class="fa fa-check"></i><b>6.1.2</b> Fitted values</a></li>
+<li class="chapter" data-level="6.1.3" data-path="seminar6.html"><a href="seminar6.html#additional-resources"><i class="fa fa-check"></i><b>6.1.3</b> Additional Resources</a></li>
+<li class="chapter" data-level="6.1.4" data-path="seminar6.html"><a href="seminar6.html#exercises-5"><i class="fa fa-check"></i><b>6.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="solutions6.html"><a href="solutions6.html"><i class="fa fa-check"></i><b>6.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="seminar7.html"><a href="seminar7.html"><i class="fa fa-check"></i><b>7</b> Multiple linear regression models (I)</a><ul>
+<li class="chapter" data-level="7.1" data-path="seminar7.html"><a href="seminar7.html#seminar-6"><i class="fa fa-check"></i><b>7.1</b> Seminar</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="seminar7.html"><a href="seminar7.html#loading-understanding-and-cleaning-our-data"><i class="fa fa-check"></i><b>7.1.1</b> Loading, Understanding and Cleaning our Data</a></li>
+<li class="chapter" data-level="7.1.2" data-path="seminar7.html"><a href="seminar7.html#estimating-a-bivariate-regression"><i class="fa fa-check"></i><b>7.1.2</b> Estimating a Bivariate Regression</a></li>
+<li class="chapter" data-level="7.1.3" data-path="seminar7.html"><a href="seminar7.html#multivariate-regression"><i class="fa fa-check"></i><b>7.1.3</b> Multivariate Regression</a></li>
+<li class="chapter" data-level="7.1.4" data-path="seminar7.html"><a href="seminar7.html#joint-significance-test-f-statistic"><i class="fa fa-check"></i><b>7.1.4</b> Joint Significance Test (F-statistic)</a></li>
+<li class="chapter" data-level="7.1.5" data-path="seminar7.html"><a href="seminar7.html#predicting-outcome-conditional-on-institutional-quality"><i class="fa fa-check"></i><b>7.1.5</b> Predicting outcome conditional on institutional quality</a></li>
+<li class="chapter" data-level="7.1.6" data-path="seminar7.html"><a href="seminar7.html#additional-resources-1"><i class="fa fa-check"></i><b>7.1.6</b> Additional Resources</a></li>
+<li class="chapter" data-level="7.1.7" data-path="seminar7.html"><a href="seminar7.html#exercises-6"><i class="fa fa-check"></i><b>7.1.7</b> Exercises</a></li>
+<li class="chapter" data-level="7.1.8" data-path="seminar7.html"><a href="seminar7.html#midterm-preparation"><i class="fa fa-check"></i><b>7.1.8</b> Midterm Preparation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="solutions7.html"><a href="solutions7.html"><i class="fa fa-check"></i><b>7.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="seminar8.html"><a href="seminar8.html"><i class="fa fa-check"></i><b>8</b> Measures of Fit, Interactions, Non-Linearities, Fixed Effects</a><ul>
+<li class="chapter" data-level="8.1" data-path="seminar8.html"><a href="seminar8.html#seminar-7"><i class="fa fa-check"></i><b>8.1</b> Seminar</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="seminar8.html"><a href="seminar8.html#loading-data-1"><i class="fa fa-check"></i><b>8.1.1</b> Loading Data</a></li>
+<li class="chapter" data-level="8.1.2" data-path="seminar8.html"><a href="seminar8.html#r-squared"><i class="fa fa-check"></i><b>8.1.2</b> R Squared</a></li>
+<li class="chapter" data-level="8.1.3" data-path="seminar8.html"><a href="seminar8.html#the-relationship-between-institutional-quality-and-quality-of-life-by-colonial-past"><i class="fa fa-check"></i><b>8.1.3</b> The Relationship between Institutional Quality and Quality of Life by Colonial Past</a></li>
+<li class="chapter" data-level="8.1.4" data-path="seminar8.html"><a href="seminar8.html#interactions-continuous-and-binary"><i class="fa fa-check"></i><b>8.1.4</b> Interactions: Continuous and Binary</a></li>
+<li class="chapter" data-level="8.1.5" data-path="seminar8.html"><a href="seminar8.html#non-linearities"><i class="fa fa-check"></i><b>8.1.5</b> Non-Linearities</a></li>
+<li class="chapter" data-level="8.1.6" data-path="seminar8.html"><a href="seminar8.html#exercises-7"><i class="fa fa-check"></i><b>8.1.6</b> Exercises</a></li>
+<li class="chapter" data-level="8.1.7" data-path="seminar8.html"><a href="seminar8.html#extra-info-dummy-variables-repetition"><i class="fa fa-check"></i><b>8.1.7</b> Extra Info: Dummy Variables Repetition</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics 1</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="measures-of-fit-interactions-non-linearities-fixed-effects" class="section level1">
+<h1><span class="header-section-number">Chapter 8</span> Measures of Fit, Interactions, Non-Linearities, Fixed Effects</h1>
+<div id="seminar-7" class="section level2">
+<h2><span class="header-section-number">8.1</span> Seminar</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(foreign) 
+<span class="kw">library</span>(texreg)</code></pre></div>
+<p>In case library(<code>texreg</code>) throws an error message, you have to install the package first. A package is like an app on your mobile. It adds additional functionality. You need to install it only once. To install the package run <code>install.packages(&quot;texreg&quot;)</code>. Then load the library <code>library(texreg)</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</code></pre></div>
+<div id="loading-data-1" class="section level3">
+<h3><span class="header-section-number">8.1.1</span> Loading Data</h3>
+<p>We will use the small version of the Quality of Government data from 2012 again (<code>QoG2012.csv</code>) with four variables:</p>
+<table>
+<colgroup>
+<col width="10%" />
+<col width="89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>former_col</code></td>
+<td>0 = not a former colony <br> 1 = former colony</td>
+</tr>
+<tr class="even">
+<td><code>undp_hdi</code></td>
+<td>UNDP Human Development Index. Higher values mean better quality of life</td>
+</tr>
+<tr class="odd">
+<td><code>wbgi_cce</code></td>
+<td>Control of corruption. Higher values mean better control of corruption</td>
+</tr>
+<tr class="even">
+<td><code>wdi_gdpc</code></td>
+<td>GDP per capita in US dollars</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;QoG2012.csv&quot;</span>)
+<span class="kw">names</span>(a)</code></pre></div>
+<pre><code>[1] &quot;h_j&quot;         &quot;wdi_gdpc&quot;    &quot;undp_hdi&quot;    &quot;wbgi_cce&quot;    &quot;wbgi_pse&quot;   
+[6] &quot;former_col&quot;  &quot;lp_lat_abst&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(a)</code></pre></div>
+<pre><code>      h_j            wdi_gdpc          undp_hdi         wbgi_cce       
+ Min.   :0.0000   Min.   :  226.2   Min.   :0.2730   Min.   :-1.69953  
+ 1st Qu.:0.0000   1st Qu.: 1768.0   1st Qu.:0.5390   1st Qu.:-0.81965  
+ Median :0.0000   Median : 5326.1   Median :0.7510   Median :-0.30476  
+ Mean   :0.3787   Mean   :10184.1   Mean   :0.6982   Mean   :-0.05072  
+ 3rd Qu.:1.0000   3rd Qu.:12976.5   3rd Qu.:0.8335   3rd Qu.: 0.50649  
+ Max.   :1.0000   Max.   :63686.7   Max.   :0.9560   Max.   : 2.44565  
+ NA&#39;s   :25       NA&#39;s   :16        NA&#39;s   :19       NA&#39;s   :2         
+    wbgi_pse          former_col      lp_lat_abst    
+ Min.   :-2.46746   Min.   :0.0000   Min.   :0.0000  
+ 1st Qu.:-0.72900   1st Qu.:0.0000   1st Qu.:0.1343  
+ Median : 0.02772   Median :1.0000   Median :0.2444  
+ Mean   :-0.03957   Mean   :0.6289   Mean   :0.2829  
+ 3rd Qu.: 0.79847   3rd Qu.:1.0000   3rd Qu.:0.4444  
+ Max.   : 1.67561   Max.   :1.0000   Max.   :0.7222  
+                                     NA&#39;s   :7       </code></pre>
+<p>Let’s create a copy of the dataset and then remove all missing values.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># copy of original dataset</span>
+a.full &lt;-<span class="st"> </span>a</code></pre></div>
+<p>To remove all missing values at once, we use the <code>apply()</code> function. It is very useful to repeat the same operations on all rows or columns of a dataset. The <code>apply()</code> function takes the following arguments:</p>
+<table>
+<thead>
+<tr class="header">
+<th>argument</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>X</code></td>
+<td>the name of the dataset on which we want to repeat the operation on</td>
+</tr>
+<tr class="even">
+<td><code>MARGIN</code></td>
+<td>1 = rows, 2 = columns</td>
+</tr>
+<tr class="odd">
+<td><code>FUN</code></td>
+<td>operation that we want to repeat</td>
+</tr>
+</tbody>
+</table>
+<p>So for example, <code>apply(X = a, MARGIN = 1, FUN = mean )</code> would return the mean value for every row. We will define our own operation. First, <code>!is.na()</code> means “is not missing”. The function returns true or false for every cell. We want to keep rows where none of the observations are missings. Therefore, we use the <code>all()</code> function which is true if all cells are not missing.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># drop all missing values</span>
+a &lt;-<span class="st"> </span>a[<span class="kw">apply</span>(a, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="kw">all</span>(<span class="op">!</span><span class="kw">is.na</span>(x)) ), ]</code></pre></div>
+<p>If you do not fully understand this code, don’t worry. It deletes rows from a dataset whenever a value on any variable is missing.</p>
+</div>
+<div id="r-squared" class="section level3">
+<h3><span class="header-section-number">8.1.2</span> R Squared</h3>
+<p>Let’s say, we want to predict the quality of life. Our variable that approximates this is called <strong>undp_hdi</strong> (the United Nations human development index). The variable is continuous and has a theoretical range from 0 to 1. Larger values correspond to better life quality.</p>
+<p>If we did not have any information on a country, our best prediction for every country would be the mean of <strong>undp_hdi</strong>. We would make some mistakes. But on average, this would be our best prediction. Let’s confirm that this is the case.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># mean of undp_hdi</span>
+y_bar &lt;-<span class="st"> </span><span class="kw">mean</span>(a<span class="op">$</span>undp_hdi)
+<span class="kw">round</span>(y_bar, <span class="dt">digits =</span> <span class="dv">2</span>)</code></pre></div>
+<pre><code>[1] 0.69</code></pre>
+<p>Our mean is 0.69. If we predict the mean for every country, we will make some mistakes. These mistakes are the differences between the actual values of <strong>undp_hdi</strong> in every country and the mean of <strong>undp_hdi</strong>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># deviations from the mean</span>
+deviations.from.ybar &lt;-<span class="st"> </span>(a<span class="op">$</span>undp_hdi <span class="op">-</span><span class="st"> </span>y_bar) </code></pre></div>
+<p>It’s always going to be true that the sum of the average deviations is 0. This is a property of the mean.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># sum of deviations from ybar is always zero (or extremely close to 0)</span>
+<span class="kw">sum</span>(deviations.from.ybar)</code></pre></div>
+<pre><code>[1] 0.000000000000002553513</code></pre>
+<p>We will now square the deviations from the mean.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># squared deviations from the mean</span>
+sq.deviations.from.ybar &lt;-<span class="st"> </span>deviations.from.ybar<span class="op">^</span><span class="dv">2</span></code></pre></div>
+<p>The squared deviations from the mean capture the overall variability of our variable <strong>undp_hdi</strong>. At this point you should see that what we did so far, is the first step to getting variance. Dividing the sum of the squared deviations by <span class="math inline">\(n-1\)</span> would give us the variance of <strong>undp_hdi</strong>. The variance quantifies the variability of a variable.</p>
+<p>Let’s do this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">total.variance &lt;-<span class="st"> </span><span class="kw">sum</span>(sq.deviations.from.ybar) <span class="op">/</span><span class="st"> </span>(<span class="kw">length</span>(a<span class="op">$</span>undp_hdi) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)
+total.variance</code></pre></div>
+<pre><code>[1] 0.03434449</code></pre>
+<p>The overall variance of <strong>undp_hdi</strong> is 0.0343445.</p>
+<p>Let’s say, we have additional information about a country like for example its wealth. Wealth is measured by the variable <strong>wdi_gdpc</strong>. We now run a linear model where we predict <strong>undp_hdi</strong> using the information in <strong>wdi_gdpc</strong>. If the regression coefficient of <strong>wdi_gdpc</strong> is significant, that means that both variables are related. This in turn means that we can explain some of the variability in <strong>undp_hdi</strong> using variability in <strong>wdi_gdpc</strong>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># we regress undp_hdi on wdi_gdpc</span>
+m1 &lt;-<span class="st"> </span><span class="kw">lm</span>( undp_hdi <span class="op">~</span><span class="st"> </span>wdi_gdpc, <span class="dt">data =</span> a )
+<span class="kw">screenreg</span>(m1)</code></pre></div>
+<pre><code>
+=======================
+             Model 1   
+-----------------------
+(Intercept)    0.59 ***
+              (0.01)   
+wdi_gdpc       0.00 ***
+              (0.00)   
+-----------------------
+R^2            0.50    
+Adj. R^2       0.50    
+Num. obs.    158       
+RMSE           0.13    
+=======================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>THe coefficient of <strong>wdi_gdpc</strong> is indeed significant. Let’s plot the relationship in a scatterplot and draw the regression line.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># the scatterplot</span>
+<span class="kw">plot</span>(<span class="dt">x =</span> a<span class="op">$</span>wdi_gdpc,
+     <span class="dt">y =</span> a<span class="op">$</span>undp_hdi,
+     <span class="dt">xlab =</span> <span class="st">&quot;GDP per captia in US dollars&quot;</span>,
+     <span class="dt">ylab =</span> <span class="st">&quot;Human Development Index&quot;</span>)
+<span class="co"># the regression line</span>
+<span class="kw">abline</span>(m1, <span class="dt">col =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-369-1.png" width="672" /></p>
+<p>This model looks awful. We overpredict quality of live for poor countries. We underpredict for medium wealth levels and overpredict for rich countries. We will return to this problem later.</p>
+<p>For now, you should see that using the variability in <strong>wdi_gdpc</strong> we actually explain some of the variability in <strong>undp_hdi</strong>. We do not explain all of the variability. There are still differences between our predictions (the points on the line) and actual outcomes. Were we to explain all of the variability, all of the points would be on the line. They are not. They never will be in real-life applications. The social world is complex. However, we can ask: “How much of the variability in <strong>undp_hdi</strong> do we explain using the variability in <strong>wdi_gdpc</strong>.</p>
+<p>To answer this question, we first extract a fitted value for every observation in the dataset. Recall that a fitted value is a point on the line. Hence, we take the regression equation <span class="math inline">\(\hat{Y} = 0.5855759 + 0.000102 \times \textrm{GDP per capita}\)</span> and plug in the value of <strong>wdi_gdpc</strong> for every row in the dataset.</p>
+<p>Actually, R has already done that for us. We can acess the fitted values from our model object <code>m1</code> like so.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fitted.vals &lt;-<span class="st"> </span>m1<span class="op">$</span>fitted.values</code></pre></div>
+<p>Now, we take the same steps as we did earlier. We take the deviations between the actual outcome of <strong>undp_hdi</strong> and our model predictions (the fitted values). These differences are the mistakes, we make they are called residuals.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># residuals</span>
+resids &lt;-<span class="st"> </span>(a<span class="op">$</span>undp_hdi <span class="op">-</span><span class="st"> </span>fitted.vals)</code></pre></div>
+<p>Actually, R did that for us as well. We could have accessed the residuals as <code>m1$residuals</code>. We again square the deviations between the model predictions and the actual outcomes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># squared residuals</span>
+sq.resids &lt;-<span class="st"> </span>resids<span class="op">^</span><span class="dv">2</span></code></pre></div>
+<p>The squared residuals are the variability in <strong>undp_hdi</strong> which we have <em>NOT</em> explained with the variability in <strong>wdi_gdpc</strong>.</p>
+<p>R^2 is then: 1 - unexplained variability / total variability. R^2, therefore, answers the question “how much of the total variability in <strong>undp_hdi</strong> do we explain using variability in <strong>wdi_gdpc</strong>.”</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">R.sq &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">sum</span>(sq.resids) <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(sq.deviations.from.ybar)
+R.sq</code></pre></div>
+<pre><code>[1] 0.4990749</code></pre>
+<p>We have successfully estimated R^2. There are other ways to get there. For instance, we could compare the variances instead of sums of squared deviations.</p>
+<p>Note: The difference between our estimate of R^2 and the one from the regression table is due to rounding error. We get the same value if we use the <code>round()</code> function to round to 2 digits like so:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(R.sq, <span class="dt">digits =</span> <span class="dv">2</span>)</code></pre></div>
+<pre><code>[1] 0.5</code></pre>
+<div id="r-squared---approach-2" class="section level4">
+<h4><span class="header-section-number">8.1.2.1</span> R Squared - Approach 2</h4>
+<p>Let’s take the unexplained variance of <strong>undp_hdi</strong> instead of the unexplained sum of squares.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># unexplained variance</span>
+unexplained.variance &lt;-<span class="st"> </span><span class="kw">sum</span>(sq.resids) <span class="op">/</span><span class="st"> </span>(<span class="kw">length</span>(sq.resids) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</code></pre></div>
+<p>R^2 is then 1 - unexplained variance over total variance.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">R.sq &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">-</span><span class="st"> </span>unexplained.variance <span class="op">/</span><span class="st"> </span>total.variance
+R.sq</code></pre></div>
+<pre><code>[1] 0.4990749</code></pre>
+</div>
+<div id="r-squared---approach-3" class="section level4">
+<h4><span class="header-section-number">8.1.2.2</span> R Squared - Approach 3</h4>
+<p>Let’s use the explained sum of squares instead of the unexplained sum of squares, i.e., <span class="math display">\[R^2 = \frac{ESS}{TSS}\]</span>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># explained sum of squares</span>
+ESS &lt;-<span class="st"> </span><span class="kw">sum</span>((fitted.vals <span class="op">-</span><span class="st"> </span>y_bar)<span class="op">^</span><span class="dv">2</span>)
+
+<span class="co"># R^2</span>
+R.sq &lt;-<span class="st"> </span>ESS<span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(sq.deviations.from.ybar)
+R.sq</code></pre></div>
+<pre><code>[1] 0.4990749</code></pre>
+</div>
+<div id="r-squared---approach-4" class="section level4">
+<h4><span class="header-section-number">8.1.2.3</span> R Squared - Approach 4</h4>
+<p>You may have already noticed that R^2 looks very similar to the correlation coefficient. That’s right. In fact, we can quickly estimate R^2 by taking the squared correlation between our fittded values and the actual outcomes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">R.sq &lt;-<span class="st"> </span><span class="kw">cor</span>(m1<span class="op">$</span>fitted.values, a<span class="op">$</span>undp_hdi)<span class="op">^</span><span class="dv">2</span>
+R.sq</code></pre></div>
+<pre><code>[1] 0.4990749</code></pre>
+</div>
+<div id="adjusted-r2" class="section level4">
+<h4><span class="header-section-number">8.1.2.4</span> Adjusted R^2</h4>
+<p>R^2 always weakly increases if we include more X variables into our model. The reason is that the correlation between two variables is never exactly zero. That means in any sample, two variables are always related to some degree. They may not be related in the same way in the population, however. So, the relationship between two variables that we see in our sample may just be noise.</p>
+<p>Yet, R^2 increases whenever two variables are correlated. R^2 never decreases. Adjusted R^2 accounts for the number of predictors that we have added two our model by adding a penalty that increases as we increase the number of X variables in our model. The penalty looks like this:</p>
+<p>We multiply R^2 by <span class="math inline">\(\frac{n-1}{n-k-1}\)</span>, where <span class="math inline">\(n\)</span> is the number of observations and <span class="math inline">\(k\)</span> is the number of X variables. So, assuming our sample size is 158 and we add 1 predictor to our model that so far only included political stability, we would multiply R^2 by</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># number of observations</span>
+n &lt;-<span class="st"> </span><span class="kw">length</span>(sq.resids)
+<span class="co"># number of X variables</span>
+k &lt;-<span class="st"> </span><span class="kw">length</span>(m1<span class="op">$</span>coefficients) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>
+<span class="co"># penalty</span>
+penalty &lt;-<span class="st"> </span>(n<span class="op">-</span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span>(n<span class="op">-</span>k<span class="op">-</span><span class="dv">1</span>)
+adj.R.sq &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>penalty <span class="op">*</span><span class="st"> </span>(<span class="kw">sum</span>(sq.resids) <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(sq.deviations.from.ybar))
+adj.R.sq</code></pre></div>
+<pre><code>[1] 0.4958638</code></pre>
+<p>Since the formula for adjusted R^2 is: <span class="math display">\[ 1 - \frac{n-1}{n-k-1} \times \frac{\mathrm{Sum\;of\;unexplained\;variability}}{\mathrm{Sum\;of\;total\;variability}} \]</span></p>
+<p>we can estimate adjusted R^2 by rearanging the formula to:</p>
+<p><span class="math display">\[ 1 - (1-R^2) \times \frac{n-1}{n-k-1} \]</span> Let’s compute adjusted R^2 directly from R^2:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">adj.R.sq &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>R.sq) <span class="op">*</span><span class="st"> </span>penalty
+adj.R.sq</code></pre></div>
+<pre><code>[1] 0.4958638</code></pre>
+</div>
+</div>
+<div id="the-relationship-between-institutional-quality-and-quality-of-life-by-colonial-past" class="section level3">
+<h3><span class="header-section-number">8.1.3</span> The Relationship between Institutional Quality and Quality of Life by Colonial Past</h3>
+<p>Let’s create a scatterplot between <code>wbgi_cce</code> and <code>undp_hdi</code> and color the points based on the value of <code>former_col</code>.</p>
+<p>NOTE: We’re using <code>pch = 16</code> to plot solid cicles. You can see other available styles by typing <code>?points</code> or <code>help(points)</code> at the console.</p>
+<p>Copy the plot command in the seminar, you can go over it at home.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># main plot</span>
+<span class="kw">plot</span>(
+  <span class="dt">x =</span> a<span class="op">$</span>wbgi_cce,
+  <span class="dt">y =</span> a<span class="op">$</span>undp_hdi, 
+  <span class="dt">col =</span> <span class="kw">factor</span>(a<span class="op">$</span>former_col),
+  <span class="dt">pch =</span> <span class="dv">16</span>,
+  <span class="dt">cex =</span> <span class="fl">1.2</span>,
+  <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,
+  <span class="dt">main =</span> <span class="st">&quot;Relation between institutional quality and hdi by colonial past&quot;</span>,
+  <span class="dt">xlab =</span> <span class="st">&quot;quality of institutions&quot;</span>,
+  <span class="dt">ylab =</span> <span class="st">&quot;human development index&quot;</span>
+  )
+<span class="co"># add a legend</span>
+<span class="kw">legend</span>(
+  <span class="st">&quot;bottomright&quot;</span>,  <span class="co"># position fo legend</span>
+  <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;ex colonies&quot;</span>, <span class="st">&quot;not colonised&quot;</span>), <span class="co"># what to seperate by </span>
+  <span class="dt">col =</span> <span class="kw">factor</span>(a<span class="op">$</span>former_col), <span class="co"># colors of legend labels</span>
+  <span class="dt">pch =</span> <span class="dv">16</span>, <span class="co"># dot type</span>
+  <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span> <span class="co"># no box around the legend</span>
+  )</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-381-1.png" width="672" /></p>
+<p>To explain the level of development with quality of institutions is intuitive. We could add the colonial past dummy, to control for potential confounders. Including a dummy gives us the difference between former colonies and not former colonies. It therefore shifts the regression line parallelly. We have looked at binary variables in the last weeks. To see the effect of a dummy again, refer to the extra info at the bottom of page.</p>
+</div>
+<div id="interactions-continuous-and-binary" class="section level3">
+<h3><span class="header-section-number">8.1.4</span> Interactions: Continuous and Binary</h3>
+<p>From the plot above, we can tell that the slope of the line (the effect of institutional quality) is probably different in countries that were colonies and those that were not. We say: the effect of institutional quality is conditional on colonial past.</p>
+<p>To specify an interaction term, we use the asterisk (<code>*</code>)</p>
+<table style="width:81%;">
+<colgroup>
+<col width="4%" />
+<col width="76%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>*</code></td>
+<td><code>A*B</code> - In addition to the interaction term (A*B), both the constituents (A and B) are automatically included.</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m2 &lt;-<span class="st"> </span><span class="kw">lm</span>(undp_hdi <span class="op">~</span><span class="st"> </span>wbgi_cce <span class="op">*</span><span class="st"> </span>former_col, <span class="dt">data =</span> a)
+<span class="kw">screenreg</span>( m2 )</code></pre></div>
+<pre><code>
+===============================
+                     Model 1   
+-------------------------------
+(Intercept)            0.79 ***
+                      (0.02)   
+wbgi_cce               0.07 ***
+                      (0.01)   
+former_col            -0.13 ***
+                      (0.02)   
+wbgi_cce:former_col    0.06 ** 
+                      (0.02)   
+-------------------------------
+R^2                    0.59    
+Adj. R^2               0.58    
+Num. obs.            158       
+RMSE                   0.12    
+===============================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>We set our covariate <code>former_col</code> to countries that weren’t colonized and then second, to ex colonies. We vary the quality of institutions from <code>-1.7</code> to <code>2.5</code> which is roughly the minimum to the maximum of the variable.</p>
+<p>NOTE: We know the range of values for <code>wbgi_cce</code> from the summary statistics we obtained after loading the dataset at the begining of the seminar. You can also use the <code>range()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># minimum and maximum of the quality of institutions</span>
+<span class="kw">range</span>(a<span class="op">$</span>wbgi_cce)</code></pre></div>
+<pre><code>[1] -1.699529  2.445654</code></pre>
+<p>We now illustrate what the interaction effect does. To anticipate, the effect of the quality of institutions is now conditional on colonial past. That means, the two regression lines will have different slopes.</p>
+<p>We make use of the <code>predict()</code> function to draw both regression lines into our plot. First, we need to vary the institutional quality variable from its minimum to its maximum. We use the <code>seq()</code> (sequence) function to create 10 different institutional quality values. Second, we create two separate covariate datasets. In the first, x1, we set the <code>former_col</code> variable to never colonies. In the second, x2, we set the same variable to ex colonies. We then predict the fitted values <code>y_hat1</code>, not colonised countries, and <code>y_hat2</code>, ex colonies.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># sequence of 10 institutional quality values</span>
+institutions_seq &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="op">-</span><span class="fl">1.7</span>, <span class="dt">to =</span> <span class="fl">2.5</span>, <span class="dt">length.out =</span> <span class="dv">10</span>)
+
+<span class="co"># covariates for not colonies</span>
+x1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">former_col =</span> <span class="dv">0</span>, <span class="dt">wbgi_cce =</span> institutions_seq)
+<span class="co"># look at our covariates</span>
+<span class="kw">head</span>(x1)</code></pre></div>
+<pre><code>  former_col   wbgi_cce
+1          0 -1.7000000
+2          0 -1.2333333
+3          0 -0.7666667
+4          0 -0.3000000
+5          0  0.1666667
+6          0  0.6333333</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># covariates for colonies</span>
+x2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">former_col =</span> <span class="dv">1</span>, <span class="dt">wbgi_cce =</span> institutions_seq)
+<span class="co"># look at our covariates</span>
+<span class="kw">head</span>(x2)</code></pre></div>
+<pre><code>  former_col   wbgi_cce
+1          1 -1.7000000
+2          1 -1.2333333
+3          1 -0.7666667
+4          1 -0.3000000
+5          1  0.1666667
+6          1  0.6333333</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># predict fitted values for countries that weren&#39;t colonised </span>
+yhat1 &lt;-<span class="st"> </span><span class="kw">predict</span>(m2, <span class="dt">newdata =</span> x1)
+
+<span class="co"># predict fitted values for countries that were colonised</span>
+yhat2 &lt;-<span class="st"> </span><span class="kw">predict</span>(m2, <span class="dt">newdata =</span> x2)</code></pre></div>
+<p>We now have the predicted outcomes for varying institutional quality. Once for the countries that were former colonies and once for the countries that were not.</p>
+<p>We will re-draw our earlier plot. In addition, right below the <code>plot()</code> function, we use the <code>lines()</code> function to add the two regression lines. The function needs to arguments <code>x</code> and <code>y</code> which represent the coordinates on the respective axes. On the x axis we vary our independent variable quality of institutions. On the y axis, we vary the predicted outcomes.</p>
+<p>We add two more arguments to our <code>lines()</code> function. The line width is controlled with <code>lwd</code> and we set the colour is controlled with <code>col</code> which we set to the first and second colours in the colour palette respectively.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># main plot</span>
+<span class="kw">plot</span>(
+  <span class="dt">y =</span> a<span class="op">$</span>undp_hdi,
+  <span class="dt">x =</span> a<span class="op">$</span>wbgi_cce, 
+  <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>,
+  <span class="dt">col =</span> <span class="kw">factor</span>(a<span class="op">$</span>former_col),
+  <span class="dt">pch =</span> <span class="dv">16</span>,
+  <span class="dt">cex =</span> <span class="fl">1.2</span>,
+  <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,
+  <span class="dt">main =</span> <span class="st">&quot;Relation between institutional quality and hdi by colonial past&quot;</span>,
+  <span class="dt">xlab =</span> <span class="st">&quot;quality of institutions&quot;</span>,
+  <span class="dt">ylab =</span> <span class="st">&quot;human development index&quot;</span>
+  )
+
+<span class="co"># add the regression line for the countries that weren&#39;t colonised</span>
+<span class="kw">lines</span>(<span class="dt">x =</span> institutions_seq, <span class="dt">y =</span> yhat1, <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="dv">1</span>)
+
+<span class="co"># add the regression line for the ex colony countries</span>
+<span class="kw">lines</span>(<span class="dt">x =</span> institutions_seq, <span class="dt">y =</span> yhat2, <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="dv">2</span>)
+
+<span class="co"># add a legend</span>
+<span class="kw">legend</span>(
+  <span class="st">&quot;bottomright&quot;</span>,  <span class="co"># position fo legend</span>
+  <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;not colonised&quot;</span>, <span class="st">&quot;ex colony&quot;</span>), <span class="co"># what to seperate by </span>
+  <span class="dt">col =</span> <span class="kw">factor</span>(a<span class="op">$</span>former_col), <span class="co"># colors of legend labels</span>
+  <span class="dt">pch =</span> <span class="dv">16</span>, <span class="co"># dot type</span>
+  <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="co"># line width in legend</span>
+  <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span> <span class="co"># no box around the legend</span>
+  )</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-385-1.png" width="672" /></p>
+<p>As you can see, the line is steeper for ex colonies than for countries that were never colonised. That means the effect of institutional quality on human development is conditional on colonial past. Institutional quality matters more in ex colonies.</p>
+<p>Let’s examine the effect sizes of institutional quality conditional on colonial past.</p>
+<span class="math display">\[\begin{align}
+\hat{y} &amp; = &amp; \beta_{0} + \beta_{1} * \mathrm{wbgi_cce} + \beta_{2} \times \mathrm{former\_col} + \beta_{3} \times \mathrm{wbgi_cce} \times \mathrm{former\_col} \\
+\hat{y} &amp; = &amp; 0.79 + 0.08 * \mathrm{wbgi_cce}  + -0.12 * \mathrm{former\_col} + 0.05 * \mathrm{wbgi_cce} \times \mathrm{former\_col} 
+\end{align}\]</span>
+<p>There are now two scenarios. First, we look at never coloines or second, we look at ex colonies. Let’s look at never colonies first.</p>
+<p>If a country was never a colony, all terms that are multiplied with <code>former_col</code> drop out.</p>
+<span class="math display">\[\begin{align}
+\hat{y} &amp; = &amp; 0.79 + 0.08 \times \mathrm{wbgi_cce} + -0.12 \times 0  + 0.05 \times 0  \\
+\hat{y} &amp; = &amp; 0.79 + 0.08 \times \mathrm{wbgi_cce}
+\end{align}\]</span>
+<p>Therefore, the effect of the quality of institutions (measured by <strong>wbgi_cce</strong>) in never colonies is just the coefficient of <code>wbgi_cce</code> <span class="math inline">\(\beta_1 = 0.08\)</span>.</p>
+<p>In the second scenario, we are looking at ex colonies. In this case none of the terms drop out. From our original equation:</p>
+<span class="math display">\[\begin{align}
+\hat{y} &amp; = &amp; 0.79 + 0.08 \times \mathrm{wbgi_cce} + -0.12 \times \mathrm{former\_col} + 0.05 \times \mathrm{wbgi_cce} \times \mathrm{former\_col} \\
+\hat{y} &amp; = &amp; 0.79 + 0.08 \times \mathrm{wbgi_cce} + -0.12 \times 1  + 0.05 \times \mathrm{wbgi_cce} \times 1 \\
+\hat{y} &amp; = &amp; 0.79 -0.12 + 0.08 \times \mathrm{wbgi_cce} + 0.05 \times \mathrm{wbgi_cce} \\
+\hat{y} &amp; = &amp; 0.67 + 0.08 \times \mathrm{wbgi_cce} + 0.05 \times \mathrm{wbgi_cce}
+\end{align}\]</span>
+<p>The effect of the quality of institutions is then: <span class="math inline">\(\beta_1 + \beta_3 = 0.08 + 0.05 = 0.13\)</span>.</p>
+<p>The numbers also tell us that the effect of the quality of institutions is bigger in ex colonies. For never colonies the effect is <span class="math inline">\(0.08\)</span> for every unit-increase in institutional quality. For ex colonies, the corresponding effect is <span class="math inline">\(0.13\)</span>.</p>
+<p>The table below summarises the interaction of a continuous variable with a binary variable in the context of our regression model.</p>
+<table>
+<colgroup>
+<col width="28%" />
+<col width="38%" />
+<col width="32%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Ex Colony</th>
+<th>Intercept</th>
+<th>Slope</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0 = never colony</td>
+<td><span class="math inline">\(\beta_0\)</span> <br> <span class="math inline">\(= 0.79\)</span></td>
+<td><span class="math inline">\(\beta_1\)</span> <br> <span class="math inline">\(= 0.08\)</span></td>
+</tr>
+<tr class="even">
+<td>1 = ex colony</td>
+<td><span class="math inline">\(\beta_0 + \beta_2\)</span> <br> = <span class="math inline">\(0.79 + -0.12 = 0.67\)</span></td>
+<td><span class="math inline">\(\beta_1 + \beta_3\)</span> <br> <span class="math inline">\(= 0.08 + 0.05 = 0.13\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="non-linearities" class="section level3">
+<h3><span class="header-section-number">8.1.5</span> Non-Linearities</h3>
+<p>We can use interactions to model non-linearities. Let’s suppose we want to illustrate the relationship between GDP per capita and the human development index.</p>
+<p>We draw a scatter plot to investigate the relationship between the quality of life (hdi) and wealth (gdp/captia).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(
+  a<span class="op">$</span>undp_hdi,
+  a<span class="op">$</span>wdi_gdpc,
+  <span class="dt">pch =</span> <span class="dv">16</span>,
+  <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>,
+  <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>,
+  <span class="dt">main =</span> <span class="st">&quot;Relationship between the quality of life and wealth&quot;</span>,
+  <span class="dt">ylab =</span> <span class="st">&quot;Human development index&quot;</span>,
+  <span class="dt">xlab =</span> <span class="st">&quot;GDP per capita&quot;</span>
+  )</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-387-1.png" width="672" /></p>
+<p>It’s easy to see, that the relationship between GDP per captia and the Human Development Index is not linear. Increases in wealth rapidly increase the quality of life in poor societies. The richer the country, the less pronounced the effect of additional wealth. We would mis-specify our model if we do not take the non-linear relationship into account.</p>
+<p>Let’s go ahead and mis-specify our model :-)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a mis-specified model</span>
+bad.model &lt;-<span class="st"> </span><span class="kw">lm</span>(undp_hdi <span class="op">~</span><span class="st"> </span>wdi_gdpc, <span class="dt">data =</span> a)
+<span class="kw">screenreg</span>( bad.model )</code></pre></div>
+<pre><code>
+=======================
+             Model 1   
+-----------------------
+(Intercept)    0.59 ***
+              (0.01)   
+wdi_gdpc       0.00 ***
+              (0.00)   
+-----------------------
+R^2            0.50    
+Adj. R^2       0.50    
+Num. obs.    158       
+RMSE           0.13    
+=======================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>We detect a significant linear relationship. The effect may look small because the coefficient rounded to two digits is zero. But remember, this is the effect of increasing GDP/capita by <span class="math inline">\(1\)</span> US dollar on the quality of life. That effect is naturally small but it is probably not small when we increase wealth by <span class="math inline">\(1000\)</span> US dollars.</p>
+<p>However, our model would also entail that for every increase in GDP/capita, the quality of life increases on average by the same amount. We saw from our plot that this is not the case. The effect of GDP/capita on the quality of life is conditional on the level of GDP/capita. If that sounds like an interaction to you, then that is great because, we will model the non-linearity by raising the GDP/capita to a higher power. That is in effect an interaction of the variable with itself. GDP/capita raised to the second power, e.g. is GDP/capita * GDP/capita.</p>
+<div id="polynomials" class="section level4">
+<h4><span class="header-section-number">8.1.5.1</span> Polynomials</h4>
+<p>We know from school that polynomials like <span class="math inline">\(x^2\)</span>, <span class="math inline">\(x^3\)</span> and so on are not linear. In fact, <span class="math inline">\(x^2\)</span> can make one bend, <span class="math inline">\(x^3\)</span> can make two bends and so on.</p>
+<p>Our plot looks like the relationship is quadratic. So, we use the <code>poly()</code> function in our linear model to raise GDP/capita to the second power like so: <code>poly(wdi_gdpc, 2).</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">better.model &lt;-<span class="st"> </span><span class="kw">lm</span>(undp_hdi <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(wdi_gdpc, <span class="dv">2</span>), <span class="dt">data =</span> a)
+<span class="kw">screenreg</span>( <span class="kw">list</span>(bad.model, better.model), 
+           <span class="dt">custom.model.names =</span> <span class="kw">c</span>(<span class="st">&quot;bad model&quot;</span>, <span class="st">&quot;better model&quot;</span>))</code></pre></div>
+<pre><code>
+============================================
+                    bad model   better model
+--------------------------------------------
+(Intercept)           0.59 ***    0.69 ***  
+                     (0.01)      (0.01)     
+wdi_gdpc              0.00 ***              
+                     (0.00)                 
+poly(wdi_gdpc, 2)1                1.64 ***  
+                                 (0.11)     
+poly(wdi_gdpc, 2)2               -0.98 ***  
+                                 (0.11)     
+--------------------------------------------
+R^2                   0.50        0.68      
+Adj. R^2              0.50        0.67      
+Num. obs.           158         158         
+RMSE                  0.13        0.11      
+============================================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>It is important to note, that in the better model the effect of GDP/capita is no longer easy to interpret. We cannot say for every increase in GDP/capita by one dollar, the quality of life increases on average by this much. No, the effect of GDP/capita depends on how rich a country was to begin with.</p>
+<p>It looks like our model that includes the quadratic term has a much better fit. The adjusted R^2 increases by a lot. Furthermore, the quadratic term, <code>poly(gdp_capita, 2)2</code> is significant. That indicates that newly added variable improves model fit. We can run an F-test with <code>anova()</code> function which will return the same result. The F-test would be useful when we add more than one new variable, e.g. we could have raised GDP_captia to the power of 5 which would have added four new variables.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># f test</span>
+<span class="kw">anova</span>(bad.model, better.model)</code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Model 1: undp_hdi ~ wdi_gdpc
+Model 2: undp_hdi ~ poly(wdi_gdpc, 2)
+  Res.Df    RSS Df Sum of Sq      F                Pr(&gt;F)    
+1    156 2.7010                                              
+2    155 1.7384  1   0.96263 85.831 &lt; 0.00000000000000022 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>We can interpret the effect of wealth (GDP/capita) on the quality of life (human development index) by predicting the fitted values of the human development index given a certain level of GDP/capita. We will vary GDP/captia from its minimum in the data to its maximum and the plot the results which is a good way to illustrate a non-linear relationship.</p>
+<p>Step 1: We find the minimum and maximum values of GDP/capita.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># find minimum and maximum of per capita gdp</span>
+<span class="kw">range</span>(a<span class="op">$</span>wdi_gdpc)</code></pre></div>
+<pre><code>[1]   226.235 63686.676</code></pre>
+<p>Step 2: We predict fitted values for varying levels of GDP/captia (let’s create 100 predictions).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># our sequence of 100 GDP/capita values</span>
+gdp_seq &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">226</span>, <span class="dt">to =</span> <span class="dv">63686</span>, <span class="dt">length.out =</span> <span class="dv">100</span>)
+
+<span class="co"># we set our covarite values (here we only have one covariate: GDP/captia)</span>
+x &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">wdi_gdpc =</span> gdp_seq)
+
+<span class="co"># we predict the outcome (human development index) for each of the 100 GDP levels</span>
+y_hat &lt;-<span class="st"> </span><span class="kw">predict</span>(better.model, <span class="dt">newdata =</span> x)</code></pre></div>
+<p>Step 3: Now that we have created our predictions. We plot again and then we add the <code>bad.model</code> using <code>abline</code> and we add our non-linear version <code>better.model</code> using the <code>lines()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(
+  <span class="dt">x =</span> a<span class="op">$</span>undp_hdi, 
+  <span class="dt">y =</span> a<span class="op">$</span>wdi_gdpc,
+  <span class="dt">pch =</span> <span class="dv">16</span>,
+  <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>,
+  <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>,
+  <span class="dt">main =</span> <span class="st">&quot;Relationship between the quality of life and wealth&quot;</span>,
+  <span class="dt">ylab =</span> <span class="st">&quot;Human development index&quot;</span>,
+  <span class="dt">xlab =</span> <span class="st">&quot;GDP per capita&quot;</span>
+  )
+
+<span class="co"># the bad model</span>
+<span class="kw">abline</span>(bad.model, <span class="dt">col =</span> <span class="dv">1</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)
+
+<span class="co"># better model</span>
+<span class="kw">lines</span>(<span class="dt">x =</span> gdp_seq, <span class="dt">y =</span> y_hat, <span class="dt">col =</span> <span class="dv">2</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-393-1.png" width="672" /></p>
+<p>At home, we want you to estimate <code>even.better.model</code> with GDP/capita raised to the power of three to determine whether the data fit improves. Show this visually and with an F test.</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r"><span class="co"># estimate even better model with gdp/capita^3</span>
+even.better.model &lt;-<span class="st"> </span><span class="kw">lm</span>(undp_hdi <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(wdi_gdpc, <span class="dv">3</span>), <span class="dt">data =</span> a)
+
+<span class="co"># f test</span>
+<span class="kw">anova</span>(better.model, even.better.model)</code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Model 1: undp_hdi ~ poly(wdi_gdpc, 2)
+Model 2: undp_hdi ~ poly(wdi_gdpc, 3)
+  Res.Df    RSS Df Sum of Sq      F          Pr(&gt;F)    
+1    155 1.7384                                        
+2    154 1.3346  1    0.4038 46.595 0.0000000001888 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r"><span class="co"># so, our even better.model is statistically significantly even better</span>
+
+<span class="co"># we predict the outcome (human development index) for each of the 100 GDP levels</span>
+y_hat2 &lt;-<span class="st"> </span><span class="kw">predict</span>(even.better.model, <span class="dt">newdata =</span> x)
+
+<span class="kw">plot</span>(
+  <span class="dt">y =</span> a<span class="op">$</span>undp_hdi,
+  <span class="dt">x =</span> a<span class="op">$</span>wdi_gdpc, 
+  <span class="dt">pch =</span> <span class="dv">16</span>,
+  <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>,
+  <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>,
+  <span class="dt">main =</span> <span class="st">&quot;Relationship between the quality of life and wealth&quot;</span>,
+  <span class="dt">ylab =</span> <span class="st">&quot;Human development index&quot;</span>,
+  <span class="dt">xlab =</span> <span class="st">&quot;GDP per capita&quot;</span>
+  )
+
+<span class="co"># the bad model</span>
+<span class="kw">abline</span>(bad.model, <span class="dt">col =</span> <span class="dv">1</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)
+
+<span class="co"># better model</span>
+<span class="kw">lines</span>(<span class="dt">x =</span> gdp_seq, <span class="dt">y =</span> y_hat, <span class="dt">col =</span> <span class="dv">2</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)
+
+<span class="co"># even better model</span>
+<span class="kw">lines</span>(<span class="dt">x =</span> gdp_seq, <span class="dt">y =</span> y_hat2, <span class="dt">col =</span> <span class="dv">3</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-394-1.png" width="672" /></p>
+<p>We generate an even better fit with the cubic, however it still looks somewhat strange. The cubic is being wagged around by its tail. The few extreme values cause the strange shape. This is a common problem with polynomials. We move on to an alternative.</p>
+</div>
+<div id="log-transformations" class="section level4">
+<h4><span class="header-section-number">8.1.5.2</span> Log-transformations</h4>
+<p>Many non-linear relationships actually do look linear on the log scale. We can illustrate this by taking the natural logarithm of GDP/captia and plot the relationship between quality of life and our transformed GDP variable.</p>
+<p>Note: Some of you will remember from your school calculators that you have an ln button and a log button where ln takes the natural logarithm and log takes the logarithm with base 10. The natural logarithm represents relations that occur frequently in the world and R takes the natural logarithm with the <code>log()</code> function by default.</p>
+<p>Below, we plot the same plot from before but we wrap <code>gdp_capita</code> in the <code>log()</code> function which log-transforms the variable.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(
+  <span class="dt">y =</span> a<span class="op">$</span>undp_hdi,
+  <span class="dt">x =</span> <span class="kw">log</span>(a<span class="op">$</span>wdi_gdpc), 
+  <span class="dt">pch =</span> <span class="dv">16</span>,
+  <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>,
+  <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>,
+  <span class="dt">main =</span> <span class="st">&quot;Relationship between the quality of life and wealth on the log scale&quot;</span>,
+  <span class="dt">ylab =</span> <span class="st">&quot;Human development index&quot;</span>,
+  <span class="dt">xlab =</span> <span class="st">&quot;Logged gdp/capita&quot;</span>
+  )</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-395-1.png" width="672" /></p>
+<p>As you can see, the relationship now looks linear and we get the best fit to the data if we run our model with log-transformed gdp.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># run model with log-transformed gdp</span>
+best.model &lt;-<span class="st"> </span><span class="kw">lm</span>(undp_hdi <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(wdi_gdpc), <span class="dt">data =</span> a)
+
+<span class="co"># let&#39;s check our model</span>
+<span class="kw">screenreg</span>( <span class="kw">list</span>(bad.model, better.model, even.better.model, best.model),
+           <span class="dt">custom.model.names =</span> <span class="kw">c</span>(<span class="st">&quot;Bad Model&quot;</span>, <span class="st">&quot;Better Model&quot;</span>, <span class="st">&quot;Even Better Model&quot;</span>, <span class="st">&quot;Best Model&quot;</span>))</code></pre></div>
+<pre><code>
+===========================================================================
+                    Bad Model   Better Model  Even Better Model  Best Model
+---------------------------------------------------------------------------
+(Intercept)           0.59 ***    0.69 ***      0.69 ***          -0.37 ***
+                     (0.01)      (0.01)        (0.01)             (0.04)   
+wdi_gdpc              0.00 ***                                             
+                     (0.00)                                                
+poly(wdi_gdpc, 2)1                1.64 ***                                 
+                                 (0.11)                                    
+poly(wdi_gdpc, 2)2               -0.98 ***                                 
+                                 (0.11)                                    
+poly(wdi_gdpc, 3)1                              1.64 ***                   
+                                               (0.09)                      
+poly(wdi_gdpc, 3)2                             -0.98 ***                   
+                                               (0.09)                      
+poly(wdi_gdpc, 3)3                              0.64 ***                   
+                                               (0.09)                      
+log(wdi_gdpc)                                                      0.13 ***
+                                                                  (0.00)   
+---------------------------------------------------------------------------
+R^2                   0.50        0.68          0.75               0.82    
+Adj. R^2              0.50        0.67          0.75               0.82    
+Num. obs.           158         158           158                158       
+RMSE                  0.13        0.11          0.09               0.08    
+===========================================================================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>Polynomials can be useful for modelling non-linearities. However, for each power we add an additional parameter that needs to be estimated. This reduces the degrees of freedom. If we can get a linear relationship on the log scale, one advantage is that we lose only one degree of freedom. Furthermore, we gain interpretability. The relationship is linear on the log scale of gdp/capita. This means we can interpret the effect of gdp/captia as: For an increase of gdp/captia by one percent, the quality of life increases by <span class="math inline">\(\frac{0.12}{100}\)</span> points on average. The effect is very large because <code>human_development</code> only varies from <span class="math inline">\(0\)</span> to <span class="math inline">\(1\)</span>.</p>
+<p>To assess model fit, the f test is not very helpful here because, the initial model and the log-transformed model estimate the same number of parameters (the difference in the degrees of freedom is 0). Therefore, we rely on adjusted R^2 for interpretation of model fit. It penalises for additional parameters. According to our adjusted R^2, the log-transformed model provides the best model fit.</p>
+<p>To illustrate that this is the case, we return to our plot and show the model fit graphically.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># fitted values for the log model (best model)</span>
+y_hat3 &lt;-<span class="st"> </span><span class="kw">predict</span>(best.model, <span class="dt">newdata =</span> x)
+
+<span class="co"># plot showing the fits</span>
+<span class="kw">plot</span>(
+  <span class="dt">y =</span> a<span class="op">$</span>undp_hdi,
+  <span class="dt">x =</span> a<span class="op">$</span>wdi_gdpc, 
+  <span class="dt">pch =</span> <span class="dv">16</span>,
+  <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>,
+  <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>,
+  <span class="dt">main =</span> <span class="st">&quot;Relationship between the quality of life and wealth&quot;</span>,
+  <span class="dt">ylab =</span> <span class="st">&quot;Human development index&quot;</span>,
+  <span class="dt">xlab =</span> <span class="st">&quot;GDP per capita&quot;</span>
+  )
+
+<span class="co"># the bad model</span>
+<span class="kw">abline</span>(bad.model, <span class="dt">col =</span> <span class="dv">1</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)
+
+<span class="co"># better model</span>
+<span class="kw">lines</span>(<span class="dt">x =</span> gdp_seq, <span class="dt">y =</span> y_hat, <span class="dt">col =</span> <span class="dv">2</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)
+
+<span class="co"># even better model</span>
+<span class="kw">lines</span>(<span class="dt">x =</span> gdp_seq, <span class="dt">y =</span> y_hat2, <span class="dt">col =</span> <span class="dv">3</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)
+
+<span class="co"># best model</span>
+<span class="kw">lines</span>(<span class="dt">x =</span> gdp_seq, <span class="dt">y =</span> y_hat3, <span class="dt">col =</span> <span class="dv">4</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-397-1.png" width="672" /></p>
+<p>The dark purple line shows the log-transformed model. It clearly fits the data best.</p>
+</div>
+</div>
+<div id="exercises-7" class="section level3">
+<h3><span class="header-section-number">8.1.6</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li>Using <code>better model</code>, where we included the square of GDP/capita, what is the effect of:
+<ol style="list-style-type: lower-alpha">
+<li>an increase of GDP/capita from 5000 to 15000?</li>
+<li>an increase of GDP/capita from 25000 to 35000?</li>
+</ol></li>
+<li>You can see that the curve in our quadratic plot curves down when countries become very rich. Speculate whether that results make sense and what the reason for this might be.</li>
+<li>Raise GDP/captia to the highest power using the <code>poly()</code> that significantly improves model fit.
+<ol style="list-style-type: lower-alpha">
+<li>Does your new model solve the potentially artefical down-curve for rich countries?</li>
+<li>Does the new model improve upon the old model?</li>
+<li>Plot the new model.</li>
+</ol></li>
+<li>Estimate a model where <code>wbgi_pse</code> (political stability) is the response variable and <code>h_j</code> and <code>former_col</code> are the explanatory variables. Include an interaction between your explanatory variables. What is the marginal effect of:
+<ol style="list-style-type: lower-alpha">
+<li>An independent judiciary when the country is a former colony?</li>
+<li>An independent judiciary when the country was not colonized?</li>
+<li>Does the interaction between <code>h_j</code> and <code>former_col</code> improve model fit?</li>
+</ol></li>
+<li>Run a model on the human development index (<code>hdi</code>), interacting an independent judiciary (<code>h_j</code>) and <code>institutions_quality</code>. What is the effect of quality of institutions:
+<ol style="list-style-type: lower-alpha">
+<li>In countries without an independent judiciary?</li>
+<li>When there is an independent judiciary?</li>
+<li>Illustrate your results.</li>
+<li>Does the interaction improve model fit?</li>
+</ol></li>
+<li>Clear your workspace and download the California Test Score Data used by Stock and Watson.
+<ol style="list-style-type: lower-alpha">
+<li><a href="http://uclspp.github.io/PUBLG100/data/caschool.dta" type="button" class="btn btn-success">Download ‘caschool.dta’ Dataset</a></li>
+<li>Draw a scatterplot between <code>avginc</code> and <code>testscr</code> variables.</li>
+<li>Run two regressions with <code>testscr</code> as the dependent variable. c.a. In the first model use <code>avginc</code> as the independent variable. c.b. In the second model use quadratic <code>avginc</code> as the independent variable.</li>
+<li>Test whether the quadratic model fits the data better.</li>
+</ol></li>
+</ol>
+</div>
+<div id="extra-info-dummy-variables-repetition" class="section level3">
+<h3><span class="header-section-number">8.1.7</span> Extra Info: Dummy Variables Repetition</h3>
+<p>The variable <code>ex_colony</code> is binary. It takes on two values: “never colonies” or “ex colonies”. The first value, “never colonies” is the baseline. When the variable takes on the value “ex colonies”, we end up with an intercept shift. Consequently, we get a second parallel regression line.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(human_development <span class="op">~</span><span class="st"> </span>institutions_quality <span class="op">+</span><span class="st"> </span>ex_colony, <span class="dt">data =</span> world_data)
+<span class="kw">screenreg</span>(model1)</code></pre></div>
+<pre><code>
+================================
+                      Model 1   
+--------------------------------
+(Intercept)             0.77 ***
+                       (0.02)   
+institutions_quality    0.10 ***
+                       (0.01)   
+ex_colonyex colonies   -0.11 ***
+                       (0.02)   
+--------------------------------
+R^2                     0.54    
+Adj. R^2                0.54    
+Num. obs.             172       
+RMSE                    0.12    
+================================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<div id="the-effect-of-a-dummy-variable" class="section level4">
+<h4><span class="header-section-number">8.1.7.1</span> The Effect of a Dummy Variable</h4>
+<table>
+<colgroup>
+<col width="28%" />
+<col width="38%" />
+<col width="32%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Ex Colony</th>
+<th>Intercept</th>
+<th>Slope</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0 = not a former colony</td>
+<td><code>Intercept</code> + (<code>ex_colonyex colonies</code> * 0)<br>= 0.77 + (-0.11 * 0)<br>= 0.77</td>
+<td><code>institutions_quality</code><br> = 0.10</td>
+</tr>
+<tr class="even">
+<td>1 = former colony</td>
+<td><code>Intercept</code> + (<code>ex_colonyex colonies</code> * 1)<br>= 0.77 + (-0.11 * 1)<br>= 0.66</td>
+<td><code>institutions_quality</code><br> = 0.10</td>
+</tr>
+</tbody>
+</table>
+<p>To illustrate the effect of a dummy we can access the coefficients of our <code>lm</code> model directly with the <code>coefficients()</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model_coef &lt;-<span class="st"> </span><span class="kw">coefficients</span>(model1)
+model_coef</code></pre></div>
+<pre><code>         (Intercept) institutions_quality ex_colonyex colonies 
+           0.7734319            0.1021146           -0.1140925 </code></pre>
+<p>We can use the square brackets <code>[ ]</code> to access individual coefficients.</p>
+<p><img src="img/lm_coefficients.png"  width="400"></p>
+<p>To illustrate the effect of a dummy we draw a scatterplot and then use <code>abline()</code> to draw two regression lines, one with <code>ex_colonyex colonies == &quot;never colony&quot;</code> and another with <code>ex_colony == &quot;former colony&quot;</code>.</p>
+<p>Instead of passing the model as the first argument to <code>abline()</code>, we can just pass the intercept and slope as two separate arguments.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(
+  human_development <span class="op">~</span><span class="st"> </span>institutions_quality, 
+  <span class="dt">data =</span> world_data,
+  <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>,
+  <span class="dt">col =</span> ex_colony,
+  <span class="dt">pch =</span> <span class="dv">16</span>,
+  <span class="dt">xlab =</span> <span class="st">&quot;Quality of institutions&quot;</span>,
+  <span class="dt">ylab =</span> <span class="st">&quot;Human development index&quot;</span>,
+  <span class="dt">main =</span> <span class="st">&quot;Effect of a binary variable&quot;</span>
+  )
+
+<span class="co"># the regression line when ex_colony = never colony</span>
+<span class="kw">abline</span>(model_coef[<span class="dv">1</span>], model_coef[<span class="dv">2</span>], <span class="dt">col =</span> <span class="dv">1</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)
+
+<span class="co"># the regression line when ex_colony = ex colony</span>
+<span class="kw">abline</span>(model_coef[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>model_coef[<span class="dv">3</span>], model_coef[<span class="dv">2</span>], <span class="dt">col =</span> <span class="dv">2</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)
+
+<span class="co"># add a legend to the plot</span>
+<span class="kw">legend</span>(
+  <span class="st">&quot;bottomright&quot;</span>, 
+  <span class="dt">legend =</span> <span class="kw">levels</span>(world_data<span class="op">$</span>ex_colony), 
+  <span class="dt">col =</span> world_data<span class="op">$</span>ex_colony,
+  <span class="dt">lwd =</span> <span class="dv">2</span>,   <span class="co"># line width = 1 for adding a line to the legend</span>
+  <span class="dt">pch =</span> <span class="dv">16</span>,
+  <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>
+  )</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-402-1.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="solutions7.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["statistics1.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
