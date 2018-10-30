@@ -2,7 +2,7 @@
 
 ## Seminar
 
-In the first part of this seminar, we cover R^2, adjusted R^2. In the second, we cover interactions. First, an interaction between continuous and binary independent variable and second, between two continuous variables. We also show the F test.
+In the first part of this seminar, we cover R^2 and adjusted R^2. In the second, we cover interactions. First, an interaction between continuous and binary independent variable and second, between two continuous variables. We also show the F test.
 
 To start with, load the `foreign` library and the `texreg` library. 
 
@@ -11,7 +11,7 @@ library(foreign) # to load non-native file formats
 library(texreg) # to create better looking regression tables
 ```
 
-In case library(`texreg`) throws an error message, you have to install the package first. A package is like an app on your mobile. It adds additional functionality. You need to install it only once. To install the package run `install.packages("texreg")`. Then load the library `library(texreg)`.
+In case `library(texreg)` throws an error message, you have to install the package first. A package is like an app on your mobile. It adds additional functionality. You need to install it only once. To install the package run `install.packages("texreg")`. Then load the library `library(texreg)`.
 
 ```{r}
 rm(list = ls())
@@ -60,9 +60,9 @@ If you do not fully understand this code, don't worry. It deletes rows from a da
 
 ### R Squared
 
-Let's say, we want to predict the quality of life. Our variable that approximates this is called ***undp_hdi*** (the United Nations human development index). The variable is continuous and has a theoretical range from 0 to 1. Larger values correspond to better life quality.
+Let's say, we want to predict the quality of life. Our variable that approximates this is called *undp_hdi* (the United Nations human development index). The variable is continuous and has a theoretical range from 0 to 1. Larger values correspond to better life quality.
 
-If we did not have any information on a country, our best prediction for every country would be the mean of ***undp_hdi***. We would make some mistakes. But on average, this would be our best prediction. Let's confirm that this is the case.
+If we did not have any information on a country, our best prediction for every country would be the mean of *undp_hdi*. We would make some mistakes. But on average, this would be our best prediction. Let's confirm that this is the case.
 
 ```{r}
 # mean of undp_hdi

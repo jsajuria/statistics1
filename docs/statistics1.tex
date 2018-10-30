@@ -5627,8 +5627,8 @@ is the maximum value.
 \end{Shaded}
 
 \begin{verbatim}
- [1] 6.506130 4.663583 1.669951 5.577962 5.250446 1.596955 5.222414
- [8] 1.569553 6.008602 4.262257
+ [1] 2.306350 6.145876 5.160935 3.891749 2.391266 4.119968 5.304291
+ [8] 3.603352 6.762416 3.209352
 \end{verbatim}
 
 We have indeed drawn 10 numbers but they are not integers as we would
@@ -5647,8 +5647,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 6.506130 4.663583 1.669951 5.577962 5.250446 1.596955 5.222414
- [8] 1.569553 6.008602 4.262257
+ [1] 2.306350 6.145876 5.160935 3.891749 2.391266 4.119968 5.304291
+ [8] 3.603352 6.762416 3.209352
 \end{verbatim}
 
 \begin{Shaded}
@@ -5659,8 +5659,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 1.263024 4.498971 2.361404 1.829062 4.896476 2.843880 6.880668
- [8] 4.600142 5.497118 5.960136
+ [1] 1.724199 6.457378 2.890711 4.368469 4.570530 6.829376 2.844799
+ [8] 4.557464 3.491512 3.607149
 \end{verbatim}
 
 The numbers of the first and second roll differ because we have drawn
@@ -9225,8 +9225,8 @@ just illustrates the uncertainty of the predictions.
 
 \subsection{Seminar}\label{seminar-7}
 
-In the first part of this seminar, we cover R\^{}2, adjusted R\^{}2. In
-the second, we cover interactions. First, an interaction between
+In the first part of this seminar, we cover R\^{}2 and adjusted R\^{}2.
+In the second, we cover interactions. First, an interaction between
 continuous and binary independent variable and second, between two
 continuous variables. We also show the F test.
 
@@ -9240,7 +9240,7 @@ library.
 \end{Highlighting}
 \end{Shaded}
 
-In case library(\texttt{texreg}) throws an error message, you have to
+In case \texttt{library(texreg)} throws an error message, you have to
 install the package first. A package is like an app on your mobile. It
 adds additional functionality. You need to install it only once. To
 install the package run \texttt{install.packages("texreg")}. Then load
@@ -9374,15 +9374,14 @@ from a dataset whenever a value on any variable is missing.
 \subsubsection{R Squared}\label{r-squared}
 
 Let's say, we want to predict the quality of life. Our variable that
-approximates this is called \textbf{\emph{undp\_hdi}} (the United
-Nations human development index). The variable is continuous and has a
-theoretical range from 0 to 1. Larger values correspond to better life
-quality.
+approximates this is called \emph{undp\_hdi} (the United Nations human
+development index). The variable is continuous and has a theoretical
+range from 0 to 1. Larger values correspond to better life quality.
 
 If we did not have any information on a country, our best prediction for
-every country would be the mean of \textbf{\emph{undp\_hdi}}. We would
-make some mistakes. But on average, this would be our best prediction.
-Let's confirm that this is the case.
+every country would be the mean of \emph{undp\_hdi}. We would make some
+mistakes. But on average, this would be our best prediction. Let's
+confirm that this is the case.
 
 \begin{Shaded}
 \begin{Highlighting}[]

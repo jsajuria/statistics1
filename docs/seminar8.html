@@ -248,11 +248,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Chapter 8</span> Multiple linear regression models (II)</h1>
 <div id="seminar-7" class="section level2">
 <h2><span class="header-section-number">8.1</span> Seminar</h2>
-<p>In the first part of this seminar, we cover R^2, adjusted R^2. In the second, we cover interactions. First, an interaction between continuous and binary independent variable and second, between two continuous variables. We also show the F test.</p>
+<p>In the first part of this seminar, we cover R^2 and adjusted R^2. In the second, we cover interactions. First, an interaction between continuous and binary independent variable and second, between two continuous variables. We also show the F test.</p>
 <p>To start with, load the <code>foreign</code> library and the <code>texreg</code> library.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(foreign) <span class="co"># to load non-native file formats</span>
 <span class="kw">library</span>(texreg) <span class="co"># to create better looking regression tables</span></code></pre></div>
-<p>In case library(<code>texreg</code>) throws an error message, you have to install the package first. A package is like an app on your mobile. It adds additional functionality. You need to install it only once. To install the package run <code>install.packages(&quot;texreg&quot;)</code>. Then load the library <code>library(texreg)</code>.</p>
+<p>In case <code>library(texreg)</code> throws an error message, you have to install the package first. A package is like an app on your mobile. It adds additional functionality. You need to install it only once. To install the package run <code>install.packages(&quot;texreg&quot;)</code>. Then load the library <code>library(texreg)</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</code></pre></div>
 <div id="loading-data-1" class="section level3">
 <h3><span class="header-section-number">8.1.1</span> Loading Data</h3>
