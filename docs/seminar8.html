@@ -341,13 +341,13 @@ a &lt;-<span class="st"> </span>a[<span class="kw">apply</span>(a, <span class="
 </div>
 <div id="r-squared" class="section level3">
 <h3><span class="header-section-number">8.1.2</span> R Squared</h3>
-<p>Let’s say, we want to predict the quality of life. Our variable that approximates this is called <strong><em>undp_hdi</em></strong> (the United Nations human development index). The variable is continuous and has a theoretical range from 0 to 1. Larger values correspond to better life quality.</p>
-<p>If we did not have any information on a country, our best prediction for every country would be the mean of <strong><em>undp_hdi</em></strong>. We would make some mistakes. But on average, this would be our best prediction. Let’s confirm that this is the case.</p>
+<p>Let’s say, we want to predict the quality of life. Our variable that approximates this is called <em>undp_hdi</em> (the United Nations human development index). The variable is continuous and has a theoretical range from 0 to 1. Larger values correspond to better life quality.</p>
+<p>If we did not have any information on a country, our best prediction for every country would be the mean of <em>undp_hdi</em>. We would make some mistakes. But on average, this would be our best prediction. Let’s confirm that this is the case.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># mean of undp_hdi</span>
 y_bar &lt;-<span class="st"> </span><span class="kw">mean</span>(a<span class="op">$</span>undp_hdi)
 <span class="kw">round</span>(y_bar, <span class="dt">digits =</span> <span class="dv">2</span>)</code></pre></div>
 <pre><code>[1] 0.69</code></pre>
-<p>Our mean is 0.69. If we predict the mean for every country, we will make some mistakes. These mistakes are the differences between the actual values of <strong><em>undp_hdi</em></strong> in every country and the mean of <strong><em>undp_hdi</em></strong>.</p>
+<p>Our mean is 0.69. If we predict the mean for every country, we will make some mistakes. These mistakes are the differences between the actual values of <em>undp_hdi</em> in every country and the mean of <em>undp_hdi</em>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># deviations from the mean</span>
 deviations.from.ybar &lt;-<span class="st"> </span>(a<span class="op">$</span>undp_hdi <span class="op">-</span><span class="st"> </span>y_bar) </code></pre></div>
 <p>It’s always going to be true that the sum of the average deviations is 0. This is a property of the mean.</p>
@@ -357,13 +357,13 @@ deviations.from.ybar &lt;-<span class="st"> </span>(a<span class="op">$</span>un
 <p>We will now square the deviations from the mean.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># squared deviations from the mean</span>
 sq.deviations.from.ybar &lt;-<span class="st"> </span>deviations.from.ybar<span class="op">^</span><span class="dv">2</span></code></pre></div>
-<p>The squared deviations from the mean capture the overall variability of our variable <strong><em>undp_hdi</em></strong>. At this point you should see that what we did so far, is the first step to getting variance. Dividing the sum of the squared deviations by <span class="math inline">\(n-1\)</span> would give us the variance of <strong><em>undp_hdi</em></strong>. The variance quantifies the variability of a variable.</p>
+<p>The squared deviations from the mean capture the overall variability of our variable <em>undp_hdi</em>. At this point you should see that what we did so far, is the first step to getting variance. Dividing the sum of the squared deviations by <span class="math inline">\(n-1\)</span> would give us the variance of <em>undp_hdi</em>. The variance quantifies the variability of a variable.</p>
 <p>Let’s do this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">total.variance &lt;-<span class="st"> </span><span class="kw">sum</span>(sq.deviations.from.ybar) <span class="op">/</span><span class="st"> </span>(<span class="kw">length</span>(a<span class="op">$</span>undp_hdi) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)
 total.variance</code></pre></div>
 <pre><code>[1] 0.03434449</code></pre>
-<p>The overall variance of <strong><em>undp_hdi</em></strong> is 0.0343445.</p>
-<p>Let’s say, we have additional information about a country like for example its wealth. Wealth is measured by the variable <strong><em>wdi_gdpc</em></strong>. We now run a linear model where we predict <strong><em>undp_hdi</em></strong> using the information in <strong><em>wdi_gdpc</em></strong>. If the regression coefficient of <strong><em>wdi_gdpc</em></strong> is significant, that means that both variables are related. This in turn means that we can explain some of the variability in <strong><em>undp_hdi</em></strong> using variability in <strong><em>wdi_gdpc</em></strong>.</p>
+<p>The overall variance of <em>undp_hdi</em> is 0.0343445.</p>
+<p>Let’s say, we have additional information about a country like for example its wealth. Wealth is measured by the variable <em>wdi_gdpc</em>. We now run a linear model where we predict <em>undp_hdi</em> using the information in <em>wdi_gdpc</em>. If the regression coefficient of <em>wdi_gdpc</em> is significant, that means that both variables are related. This in turn means that we can explain some of the variability in <em>undp_hdi</em> using variability in <em>wdi_gdpc</em>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># we regress undp_hdi on wdi_gdpc</span>
 m1 &lt;-<span class="st"> </span><span class="kw">lm</span>( undp_hdi <span class="op">~</span><span class="st"> </span>wdi_gdpc, <span class="dt">data =</span> a )
 <span class="kw">screenreg</span>(m1)</code></pre></div>
@@ -382,7 +382,7 @@ Num. obs.    158
 RMSE           0.13    
 =======================
 *** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
-<p>The coefficient of <strong><em>wdi_gdpc</em></strong> is indeed significant. Let’s plot the relationship in a scatterplot and draw the regression line.</p>
+<p>The coefficient of <em>wdi_gdpc</em> is indeed significant. Let’s plot the relationship in a scatterplot and draw the regression line.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># the scatterplot</span>
 <span class="kw">plot</span>(<span class="dt">x =</span> a<span class="op">$</span>wdi_gdpc,
      <span class="dt">y =</span> a<span class="op">$</span>undp_hdi,
@@ -392,18 +392,18 @@ RMSE           0.13
 <span class="kw">abline</span>(m1, <span class="dt">col =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)</code></pre></div>
 <p><img src="statistics1_files/figure-html/unnamed-chunk-369-1.png" width="672" /></p>
 <p>This model looks awful. We over-predict quality of live for poor countries. We under-predict for medium wealth levels and over-predict for rich countries. We will return to this problem later.</p>
-<p>For now, you should see that using the variability in <strong><em>wdi_gdpc</em></strong> we actually explain some of the variability in <strong><em>undp_hdi</em></strong>. We do not explain all of the variability. There are still differences between our predictions (the points on the line) and actual outcomes. Were we to explain all of the variability, all of the points would be on the line. They are not. They never will be in real-life applications. The social world is complex. However, we can ask: “How much of the variability in <strong><em>undp_hdi</em></strong> do we explain using the variability in <strong><em>wdi_gdpc</em></strong>.</p>
-<p>To answer this question, we first extract a fitted value for every observation in the dataset. Recall that a fitted value is a point on the line. Hence, we take the regression equation <span class="math inline">\(\hat{Y} = 0.5855759 + 0.000102 \times \textrm{GDP per capita}\)</span> and plug in the value of <strong><em>wdi_gdpc</em></strong> for every row in the dataset.</p>
+<p>For now, you should see that using the variability in <em>wdi_gdpc</em> we actually explain some of the variability in <em>undp_hdi</em>. We do not explain all of the variability. There are still differences between our predictions (the points on the line) and actual outcomes. Were we to explain all of the variability, all of the points would be on the line. They are not. They never will be in real-life applications. The social world is complex. However, we can ask: “How much of the variability in <em>undp_hdi</em> do we explain using the variability in <em>wdi_gdpc</em>.</p>
+<p>To answer this question, we first extract a fitted value for every observation in the dataset. Recall that a fitted value is a point on the line. Hence, we take the regression equation <span class="math inline">\(\hat{Y} = 0.5855759 + 0.000102 \times \textrm{GDP per capita}\)</span> and plug in the value of <em>wdi_gdpc</em> for every row in the dataset.</p>
 <p>Actually, R has already done that for us. We can access the fitted values from our model object <code>m1</code> like so.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fitted.vals &lt;-<span class="st"> </span>m1<span class="op">$</span>fitted.values</code></pre></div>
-<p>Now, we take the same steps as we did earlier. We take the deviations between the actual outcome of <strong><em>undp_hdi</em></strong> and our model predictions (the fitted values). These differences are the mistakes, we make they are called residuals.</p>
+<p>Now, we take the same steps as we did earlier. We take the deviations between the actual outcome of <em>undp_hdi</em> and our model predictions (the fitted values). These differences are the mistakes, we make they are called residuals.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># residuals</span>
 resids &lt;-<span class="st"> </span>(a<span class="op">$</span>undp_hdi <span class="op">-</span><span class="st"> </span>fitted.vals)</code></pre></div>
 <p>Actually, R did that for us as well. We could have accessed the residuals as <code>m1$residuals</code>. We again square the deviations between the model predictions and the actual outcomes.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># squared residuals</span>
 sq.resids &lt;-<span class="st"> </span>resids<span class="op">^</span><span class="dv">2</span></code></pre></div>
-<p>The squared residuals are the variability in <strong><em>undp_hdi</em></strong> which we have <em>NOT</em> explained with the variability in <strong><em>wdi_gdpc</em></strong>.</p>
-<p>R^2 is then: 1 - unexplained variability / total variability. R^2, therefore, answers the question “how much of the total variability in <strong><em>undp_hdi</em></strong> do we explain using variability in <strong><em>wdi_gdpc</em></strong>.”</p>
+<p>The squared residuals are the variability in <em>undp_hdi</em> which we have <em>NOT</em> explained with the variability in <em>wdi_gdpc</em>.</p>
+<p>R^2 is then: 1 - unexplained variability / total variability. R^2, therefore, answers the question “how much of the total variability in <em>undp_hdi</em> do we explain using variability in <em>wdi_gdpc</em>.”</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">R.sq &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">sum</span>(sq.resids) <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(sq.deviations.from.ybar)
 R.sq</code></pre></div>
 <pre><code>[1] 0.4990749</code></pre>
@@ -413,7 +413,7 @@ R.sq</code></pre></div>
 <pre><code>[1] 0.5</code></pre>
 <div id="r-squared---approach-2" class="section level4">
 <h4><span class="header-section-number">8.1.2.1</span> R Squared - Approach 2</h4>
-<p>Let’s take the unexplained variance of <strong><em>undp_hdi</em></strong> instead of the unexplained sum of squares.</p>
+<p>Let’s take the unexplained variance of <em>undp_hdi</em> instead of the unexplained sum of squares.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># unexplained variance</span>
 unexplained.variance &lt;-<span class="st"> </span><span class="kw">sum</span>(sq.resids) <span class="op">/</span><span class="st"> </span>(<span class="kw">length</span>(sq.resids) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</code></pre></div>
 <p>R^2 is then 1 - unexplained variance over total variance.</p>
@@ -614,7 +614,7 @@ yhat2 &lt;-<span class="st"> </span><span class="kw">predict</span>(m2, <span cl
 \hat{y} &amp; = &amp; 0.79 + 0.08 \times \mathrm{wbgi_cce} + -0.12 \times 0  + 0.05 \times 0  \\
 \hat{y} &amp; = &amp; 0.79 + 0.08 \times \mathrm{wbgi_cce}
 \end{align}\]</span>
-<p>Therefore, the effect of the quality of institutions (measured by <strong>wbgi_cce</strong>) in never colonies is just the coefficient of <code>wbgi_cce</code> <span class="math inline">\(\beta_1 = 0.08\)</span>.</p>
+<p>Therefore, the effect of the quality of institutions (measured by <em>wbgi_cce</em>) in never colonies is just the coefficient of <code>wbgi_cce</code> <span class="math inline">\(\beta_1 = 0.08\)</span>.</p>
 <p>In the second scenario, we are looking at ex colonies. In this case none of the terms drop out. From our original equation:</p>
 <span class="math display">\[\begin{align}
 \hat{y} &amp; = &amp; 0.79 + 0.08 \times \mathrm{wbgi_cce} + -0.12 \times \mathrm{former\_col} + 0.05 \times \mathrm{wbgi_cce} \times \mathrm{former\_col} \\

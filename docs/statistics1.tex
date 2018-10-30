@@ -5627,8 +5627,8 @@ is the maximum value.
 \end{Shaded}
 
 \begin{verbatim}
- [1] 2.306350 6.145876 5.160935 3.891749 2.391266 4.119968 5.304291
- [8] 3.603352 6.762416 3.209352
+ [1] 5.843582 3.542866 5.548386 5.917123 3.851856 2.040016 3.087642
+ [8] 1.213291 5.969721 3.809420
 \end{verbatim}
 
 We have indeed drawn 10 numbers but they are not integers as we would
@@ -5647,8 +5647,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 2.306350 6.145876 5.160935 3.891749 2.391266 4.119968 5.304291
- [8] 3.603352 6.762416 3.209352
+ [1] 5.843582 3.542866 5.548386 5.917123 3.851856 2.040016 3.087642
+ [8] 1.213291 5.969721 3.809420
 \end{verbatim}
 
 \begin{Shaded}
@@ -5659,8 +5659,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 1.724199 6.457378 2.890711 4.368469 4.570530 6.829376 2.844799
- [8] 4.557464 3.491512 3.607149
+ [1] 6.774116 6.071745 6.151463 4.765166 1.250423 4.681061 6.340679
+ [8] 3.205550 4.108115 4.061521
 \end{verbatim}
 
 The numbers of the first and second roll differ because we have drawn
@@ -9397,8 +9397,8 @@ confirm that this is the case.
 
 Our mean is 0.69. If we predict the mean for every country, we will make
 some mistakes. These mistakes are the differences between the actual
-values of \textbf{\emph{undp\_hdi}} in every country and the mean of
-\textbf{\emph{undp\_hdi}}.
+values of \emph{undp\_hdi} in every country and the mean of
+\emph{undp\_hdi}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9431,11 +9431,10 @@ We will now square the deviations from the mean.
 \end{Shaded}
 
 The squared deviations from the mean capture the overall variability of
-our variable \textbf{\emph{undp\_hdi}}. At this point you should see
-that what we did so far, is the first step to getting variance. Dividing
-the sum of the squared deviations by \(n-1\) would give us the variance
-of \textbf{\emph{undp\_hdi}}. The variance quantifies the variability of
-a variable.
+our variable \emph{undp\_hdi}. At this point you should see that what we
+did so far, is the first step to getting variance. Dividing the sum of
+the squared deviations by \(n-1\) would give us the variance of
+\emph{undp\_hdi}. The variance quantifies the variability of a variable.
 
 Let's do this:
 
@@ -9450,17 +9449,15 @@ Let's do this:
 [1] 0.03434449
 \end{verbatim}
 
-The overall variance of \textbf{\emph{undp\_hdi}} is 0.0343445.
+The overall variance of \emph{undp\_hdi} is 0.0343445.
 
 Let's say, we have additional information about a country like for
-example its wealth. Wealth is measured by the variable
-\textbf{\emph{wdi\_gdpc}}. We now run a linear model where we predict
-\textbf{\emph{undp\_hdi}} using the information in
-\textbf{\emph{wdi\_gdpc}}. If the regression coefficient of
-\textbf{\emph{wdi\_gdpc}} is significant, that means that both variables
-are related. This in turn means that we can explain some of the
-variability in \textbf{\emph{undp\_hdi}} using variability in
-\textbf{\emph{wdi\_gdpc}}.
+example its wealth. Wealth is measured by the variable \emph{wdi\_gdpc}.
+We now run a linear model where we predict \emph{undp\_hdi} using the
+information in \emph{wdi\_gdpc}. If the regression coefficient of
+\emph{wdi\_gdpc} is significant, that means that both variables are
+related. This in turn means that we can explain some of the variability
+in \emph{undp\_hdi} using variability in \emph{wdi\_gdpc}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9488,9 +9485,8 @@ RMSE           0.13
 *** p < 0.001, ** p < 0.01, * p < 0.05
 \end{verbatim}
 
-The coefficient of \textbf{\emph{wdi\_gdpc}} is indeed significant.
-Let's plot the relationship in a scatterplot and draw the regression
-line.
+The coefficient of \emph{wdi\_gdpc} is indeed significant. Let's plot
+the relationship in a scatterplot and draw the regression line.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9510,22 +9506,21 @@ This model looks awful. We over-predict quality of live for poor
 countries. We under-predict for medium wealth levels and over-predict
 for rich countries. We will return to this problem later.
 
-For now, you should see that using the variability in
-\textbf{\emph{wdi\_gdpc}} we actually explain some of the variability in
-\textbf{\emph{undp\_hdi}}. We do not explain all of the variability.
-There are still differences between our predictions (the points on the
-line) and actual outcomes. Were we to explain all of the variability,
-all of the points would be on the line. They are not. They never will be
-in real-life applications. The social world is complex. However, we can
-ask: ``How much of the variability in \textbf{\emph{undp\_hdi}} do we
-explain using the variability in \textbf{\emph{wdi\_gdpc}}.
+For now, you should see that using the variability in \emph{wdi\_gdpc}
+we actually explain some of the variability in \emph{undp\_hdi}. We do
+not explain all of the variability. There are still differences between
+our predictions (the points on the line) and actual outcomes. Were we to
+explain all of the variability, all of the points would be on the line.
+They are not. They never will be in real-life applications. The social
+world is complex. However, we can ask: ``How much of the variability in
+\emph{undp\_hdi} do we explain using the variability in
+\emph{wdi\_gdpc}.
 
 To answer this question, we first extract a fitted value for every
 observation in the dataset. Recall that a fitted value is a point on the
 line. Hence, we take the regression equation
 \(\hat{Y} = 0.5855759 + 0.000102 \times \textrm{GDP per capita}\) and
-plug in the value of \textbf{\emph{wdi\_gdpc}} for every row in the
-dataset.
+plug in the value of \emph{wdi\_gdpc} for every row in the dataset.
 
 Actually, R has already done that for us. We can access the fitted
 values from our model object \texttt{m1} like so.
@@ -9537,9 +9532,9 @@ values from our model object \texttt{m1} like so.
 \end{Shaded}
 
 Now, we take the same steps as we did earlier. We take the deviations
-between the actual outcome of \textbf{\emph{undp\_hdi}} and our model
-predictions (the fitted values). These differences are the mistakes, we
-make they are called residuals.
+between the actual outcome of \emph{undp\_hdi} and our model predictions
+(the fitted values). These differences are the mistakes, we make they
+are called residuals.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9559,14 +9554,12 @@ between the model predictions and the actual outcomes.
 \end{Highlighting}
 \end{Shaded}
 
-The squared residuals are the variability in \textbf{\emph{undp\_hdi}}
-which we have \emph{NOT} explained with the variability in
-\textbf{\emph{wdi\_gdpc}}.
+The squared residuals are the variability in \emph{undp\_hdi} which we
+have \emph{NOT} explained with the variability in \emph{wdi\_gdpc}.
 
 R\^{}2 is then: 1 - unexplained variability / total variability. R\^{}2,
 therefore, answers the question ``how much of the total variability in
-\textbf{\emph{undp\_hdi}} do we explain using variability in
-\textbf{\emph{wdi\_gdpc}}.''
+\emph{undp\_hdi} do we explain using variability in \emph{wdi\_gdpc}.''
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9599,8 +9592,8 @@ use the \texttt{round()} function to round to 2 digits like so:
 
 \paragraph{R Squared - Approach 2}\label{r-squared---approach-2}
 
-Let's take the unexplained variance of \textbf{\emph{undp\_hdi}} instead
-of the unexplained sum of squares.
+Let's take the unexplained variance of \emph{undp\_hdi} instead of the
+unexplained sum of squares.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9985,7 +9978,7 @@ If a country was never a colony, all terms that are multiplied with
 \end{align}
 
 Therefore, the effect of the quality of institutions (measured by
-\textbf{wbgi\_cce}) in never colonies is just the coefficient of
+\emph{wbgi\_cce}) in never colonies is just the coefficient of
 \texttt{wbgi\_cce} \(\beta_1 = 0.08\).
 
 In the second scenario, we are looking at ex colonies. In this case none
