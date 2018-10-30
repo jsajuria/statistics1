@@ -2,9 +2,13 @@
 
 ## Seminar
 
+In the first part of this seminar, we cover R^2, adjusted R^2. In the second, we cover interactions. First, an interaction between continuous and binary independent variable and second, between two continuous variables. We also show the F test.
+
+To start with, load the `foreign` library and the `texreg` library. 
+
 ```{r message=FALSE}
-library(foreign) 
-library(texreg)
+library(foreign) # to load non-native file formats
+library(texreg) # to create better looking regression tables
 ```
 
 In case library(`texreg`) throws an error message, you have to install the package first. A package is like an app on your mobile. It adds additional functionality. You need to install it only once. To install the package run `install.packages("texreg")`. Then load the library `library(texreg)`.
@@ -56,9 +60,9 @@ If you do not fully understand this code, don't worry. It deletes rows from a da
 
 ### R Squared
 
-Let's say, we want to predict the quality of life. Our variable that approximates this is called **undp_hdi** (the United Nations human development index). The variable is continuous and has a theoretical range from 0 to 1. Larger values correspond to better life quality.
+Let's say, we want to predict the quality of life. Our variable that approximates this is called ***undp_hdi*** (the United Nations human development index). The variable is continuous and has a theoretical range from 0 to 1. Larger values correspond to better life quality.
 
-If we did not have any information on a country, our best prediction for every country would be the mean of **undp_hdi**. We would make some mistakes. But on average, this would be our best prediction. Let's confirm that this is the case.
+If we did not have any information on a country, our best prediction for every country would be the mean of ***undp_hdi***. We would make some mistakes. But on average, this would be our best prediction. Let's confirm that this is the case.
 
 ```{r}
 # mean of undp_hdi
@@ -66,7 +70,7 @@ y_bar <- mean(a$undp_hdi)
 round(y_bar, digits = 2)
 ```
 
-Our mean is `r round(y_bar, digits = 2)`. If we predict the mean for every country, we will make some mistakes. These mistakes are the differences between the actual values of **undp_hdi** in every country and the mean of **undp_hdi**. 
+Our mean is `r round(y_bar, digits = 2)`. If we predict the mean for every country, we will make some mistakes. These mistakes are the differences between the actual values of ***undp_hdi*** in every country and the mean of ***undp_hdi***. 
 
 ```{r}
 # deviations from the mean
@@ -87,7 +91,7 @@ We will now square the deviations from the mean.
 sq.deviations.from.ybar <- deviations.from.ybar^2
 ```
 
-The squared deviations from the mean capture the overall variability of our variable **undp_hdi**. At this point you should see that what we did so far, is the first step to getting variance. Dividing the sum of the squared deviations by $n-1$ would give us the variance of **undp_hdi**. The variance quantifies the variability of a variable.
+The squared deviations from the mean capture the overall variability of our variable ***undp_hdi***. At this point you should see that what we did so far, is the first step to getting variance. Dividing the sum of the squared deviations by $n-1$ would give us the variance of ***undp_hdi***. The variance quantifies the variability of a variable.
 
 Let's do this:
 ```{r}
@@ -95,9 +99,9 @@ total.variance <- sum(sq.deviations.from.ybar) / (length(a$undp_hdi) - 1)
 total.variance
 ```
 
-The overall variance of **undp_hdi** is `r total.variance`.
+The overall variance of ***undp_hdi*** is `r total.variance`.
 
-Let's say, we have additional information about a country like for example its wealth. Wealth is measured by the variable **wdi_gdpc**. We now run a linear model where we predict **undp_hdi** using the information in **wdi_gdpc**. If the regression coefficient of **wdi_gdpc** is significant, that means that both variables are related. This in turn means that we can explain some of the variability in **undp_hdi** using variability in **wdi_gdpc**.
+Let's say, we have additional information about a country like for example its wealth. Wealth is measured by the variable ***wdi_gdpc***. We now run a linear model where we predict ***undp_hdi*** using the information in ***wdi_gdpc***. If the regression coefficient of ***wdi_gdpc*** is significant, that means that both variables are related. This in turn means that we can explain some of the variability in ***undp_hdi*** using variability in ***wdi_gdpc***.
 
 ```{r}
 # we regress undp_hdi on wdi_gdpc
@@ -105,7 +109,7 @@ m1 <- lm( undp_hdi ~ wdi_gdpc, data = a )
 screenreg(m1)
 ```
 
-The coefficient of **wdi_gdpc** is indeed significant. Let's plot the relationship in a scatterplot and draw the regression line.
+The coefficient of ***wdi_gdpc*** is indeed significant. Let's plot the relationship in a scatterplot and draw the regression line.
 
 ```{r}
 # the scatterplot
@@ -119,9 +123,9 @@ abline(m1, col = "darkgreen", lwd = 3)
 
 This model looks awful. We over-predict quality of live for poor countries. We under-predict for medium wealth levels and over-predict for rich countries. We will return to this problem later.
 
-For now, you should see that using the variability in **wdi_gdpc** we actually explain some of the variability in **undp_hdi**. We do not explain all of the variability. There are still differences between our predictions (the points on the line) and actual outcomes. Were we to explain all of the variability, all of the points would be on the line. They are not. They never will be in real-life applications. The social world is complex. However, we can ask: "How much of the variability in **undp_hdi** do we explain using the variability in **wdi_gdpc**.
+For now, you should see that using the variability in ***wdi_gdpc*** we actually explain some of the variability in ***undp_hdi***. We do not explain all of the variability. There are still differences between our predictions (the points on the line) and actual outcomes. Were we to explain all of the variability, all of the points would be on the line. They are not. They never will be in real-life applications. The social world is complex. However, we can ask: "How much of the variability in ***undp_hdi*** do we explain using the variability in ***wdi_gdpc***.
 
-To answer this question, we first extract a fitted value for every observation in the dataset. Recall that a fitted value is a point on the line. Hence, we take the regression equation $\hat{Y} = 0.5855759 + 0.000102 \times \textrm{GDP per capita}$ and plug in the value of **wdi_gdpc** for every row in the dataset.
+To answer this question, we first extract a fitted value for every observation in the dataset. Recall that a fitted value is a point on the line. Hence, we take the regression equation $\hat{Y} = 0.5855759 + 0.000102 \times \textrm{GDP per capita}$ and plug in the value of ***wdi_gdpc*** for every row in the dataset.
 
 Actually, R has already done that for us. We can access the fitted values from our model object `m1` like so.
 
@@ -129,7 +133,7 @@ Actually, R has already done that for us. We can access the fitted values from o
 fitted.vals <- m1$fitted.values
 ```
 
-Now, we take the same steps as we did earlier. We take the deviations between the actual outcome of **undp_hdi** and our model predictions (the fitted values). These differences are the mistakes, we make they are called residuals.
+Now, we take the same steps as we did earlier. We take the deviations between the actual outcome of ***undp_hdi*** and our model predictions (the fitted values). These differences are the mistakes, we make they are called residuals.
 
 ```{r}
 # residuals
@@ -143,9 +147,9 @@ Actually, R did that for us as well. We could have accessed the residuals as `m1
 sq.resids <- resids^2
 ```
 
-The squared residuals are the variability in **undp_hdi** which we have *NOT* explained with the variability in **wdi_gdpc**.
+The squared residuals are the variability in ***undp_hdi*** which we have *NOT* explained with the variability in ***wdi_gdpc***.
 
-R^2 is then: 1 - unexplained variability / total variability. R^2, therefore, answers the question "how much of the total variability in **undp_hdi** do we explain using variability in **wdi_gdpc**."
+R^2 is then: 1 - unexplained variability / total variability. R^2, therefore, answers the question "how much of the total variability in ***undp_hdi*** do we explain using variability in ***wdi_gdpc***."
 
 ```{R}
 R.sq <- 1 - sum(sq.resids) / sum(sq.deviations.from.ybar)
@@ -162,7 +166,7 @@ round(R.sq, digits = 2)
 
 #### R Squared - Approach 2
 
-Let's take the unexplained variance of **undp_hdi** instead of the unexplained sum of squares.
+Let's take the unexplained variance of ***undp_hdi*** instead of the unexplained sum of squares.
 
 ```{R}
 # unexplained variance
@@ -405,8 +409,8 @@ We draw a scatter plot to investigate the relationship between the quality of li
 
 ```{r}
 plot(
-  a$undp_hdi,
-  a$wdi_gdpc,
+  y = a$undp_hdi,
+  x = a$wdi_gdpc,
   pch = 16,
   frame.plot = FALSE,
   col = "grey",
@@ -478,8 +482,8 @@ Step 3: Now that we have created our predictions. We plot again and then we add 
 
 ```{r}
 plot(
-  x = a$undp_hdi, 
-  y = a$wdi_gdpc,
+  y = a$undp_hdi, 
+  x = a$wdi_gdpc,
   pch = 16,
   frame.plot = FALSE,
   col = "grey",

@@ -5627,8 +5627,8 @@ is the maximum value.
 \end{Shaded}
 
 \begin{verbatim}
- [1] 2.839686 3.592840 4.769447 3.147742 2.546828 5.420083 1.981832
- [8] 1.452778 3.528960 5.753211
+ [1] 6.506130 4.663583 1.669951 5.577962 5.250446 1.596955 5.222414
+ [8] 1.569553 6.008602 4.262257
 \end{verbatim}
 
 We have indeed drawn 10 numbers but they are not integers as we would
@@ -5647,8 +5647,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 2.839686 3.592840 4.769447 3.147742 2.546828 5.420083 1.981832
- [8] 1.452778 3.528960 5.753211
+ [1] 6.506130 4.663583 1.669951 5.577962 5.250446 1.596955 5.222414
+ [8] 1.569553 6.008602 4.262257
 \end{verbatim}
 
 \begin{Shaded}
@@ -5659,8 +5659,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 5.736287 4.890059 1.230940 4.717736 6.924187 6.448532 2.870224
- [8] 3.495076 4.478792 4.909299
+ [1] 1.263024 4.498971 2.361404 1.829062 4.896476 2.843880 6.880668
+ [8] 4.600142 5.497118 5.960136
 \end{verbatim}
 
 The numbers of the first and second roll differ because we have drawn
@@ -9225,10 +9225,18 @@ just illustrates the uncertainty of the predictions.
 
 \subsection{Seminar}\label{seminar-7}
 
+In the first part of this seminar, we cover R\^{}2, adjusted R\^{}2. In
+the second, we cover interactions. First, an interaction between
+continuous and binary independent variable and second, between two
+continuous variables. We also show the F test.
+
+To start with, load the \texttt{foreign} library and the \texttt{texreg}
+library.
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(foreign) }
-\KeywordTok{library}\NormalTok{(texreg)}
+\KeywordTok{library}\NormalTok{(foreign) }\CommentTok{# to load non-native file formats}
+\KeywordTok{library}\NormalTok{(texreg) }\CommentTok{# to create better looking regression tables}
 \end{Highlighting}
 \end{Shaded}
 
@@ -9366,14 +9374,15 @@ from a dataset whenever a value on any variable is missing.
 \subsubsection{R Squared}\label{r-squared}
 
 Let's say, we want to predict the quality of life. Our variable that
-approximates this is called \textbf{undp\_hdi} (the United Nations human
-development index). The variable is continuous and has a theoretical
-range from 0 to 1. Larger values correspond to better life quality.
+approximates this is called \textbf{\emph{undp\_hdi}} (the United
+Nations human development index). The variable is continuous and has a
+theoretical range from 0 to 1. Larger values correspond to better life
+quality.
 
 If we did not have any information on a country, our best prediction for
-every country would be the mean of \textbf{undp\_hdi}. We would make
-some mistakes. But on average, this would be our best prediction. Let's
-confirm that this is the case.
+every country would be the mean of \textbf{\emph{undp\_hdi}}. We would
+make some mistakes. But on average, this would be our best prediction.
+Let's confirm that this is the case.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9389,8 +9398,8 @@ confirm that this is the case.
 
 Our mean is 0.69. If we predict the mean for every country, we will make
 some mistakes. These mistakes are the differences between the actual
-values of \textbf{undp\_hdi} in every country and the mean of
-\textbf{undp\_hdi}.
+values of \textbf{\emph{undp\_hdi}} in every country and the mean of
+\textbf{\emph{undp\_hdi}}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9423,11 +9432,11 @@ We will now square the deviations from the mean.
 \end{Shaded}
 
 The squared deviations from the mean capture the overall variability of
-our variable \textbf{undp\_hdi}. At this point you should see that what
-we did so far, is the first step to getting variance. Dividing the sum
-of the squared deviations by \(n-1\) would give us the variance of
-\textbf{undp\_hdi}. The variance quantifies the variability of a
-variable.
+our variable \textbf{\emph{undp\_hdi}}. At this point you should see
+that what we did so far, is the first step to getting variance. Dividing
+the sum of the squared deviations by \(n-1\) would give us the variance
+of \textbf{\emph{undp\_hdi}}. The variance quantifies the variability of
+a variable.
 
 Let's do this:
 
@@ -9442,16 +9451,17 @@ Let's do this:
 [1] 0.03434449
 \end{verbatim}
 
-The overall variance of \textbf{undp\_hdi} is 0.0343445.
+The overall variance of \textbf{\emph{undp\_hdi}} is 0.0343445.
 
 Let's say, we have additional information about a country like for
 example its wealth. Wealth is measured by the variable
-\textbf{wdi\_gdpc}. We now run a linear model where we predict
-\textbf{undp\_hdi} using the information in \textbf{wdi\_gdpc}. If the
-regression coefficient of \textbf{wdi\_gdpc} is significant, that means
-that both variables are related. This in turn means that we can explain
-some of the variability in \textbf{undp\_hdi} using variability in
-\textbf{wdi\_gdpc}.
+\textbf{\emph{wdi\_gdpc}}. We now run a linear model where we predict
+\textbf{\emph{undp\_hdi}} using the information in
+\textbf{\emph{wdi\_gdpc}}. If the regression coefficient of
+\textbf{\emph{wdi\_gdpc}} is significant, that means that both variables
+are related. This in turn means that we can explain some of the
+variability in \textbf{\emph{undp\_hdi}} using variability in
+\textbf{\emph{wdi\_gdpc}}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9479,8 +9489,9 @@ RMSE           0.13
 *** p < 0.001, ** p < 0.01, * p < 0.05
 \end{verbatim}
 
-The coefficient of \textbf{wdi\_gdpc} is indeed significant. Let's plot
-the relationship in a scatterplot and draw the regression line.
+The coefficient of \textbf{\emph{wdi\_gdpc}} is indeed significant.
+Let's plot the relationship in a scatterplot and draw the regression
+line.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9500,21 +9511,22 @@ This model looks awful. We over-predict quality of live for poor
 countries. We under-predict for medium wealth levels and over-predict
 for rich countries. We will return to this problem later.
 
-For now, you should see that using the variability in \textbf{wdi\_gdpc}
-we actually explain some of the variability in \textbf{undp\_hdi}. We do
-not explain all of the variability. There are still differences between
-our predictions (the points on the line) and actual outcomes. Were we to
-explain all of the variability, all of the points would be on the line.
-They are not. They never will be in real-life applications. The social
-world is complex. However, we can ask: ``How much of the variability in
-\textbf{undp\_hdi} do we explain using the variability in
-\textbf{wdi\_gdpc}.
+For now, you should see that using the variability in
+\textbf{\emph{wdi\_gdpc}} we actually explain some of the variability in
+\textbf{\emph{undp\_hdi}}. We do not explain all of the variability.
+There are still differences between our predictions (the points on the
+line) and actual outcomes. Were we to explain all of the variability,
+all of the points would be on the line. They are not. They never will be
+in real-life applications. The social world is complex. However, we can
+ask: ``How much of the variability in \textbf{\emph{undp\_hdi}} do we
+explain using the variability in \textbf{\emph{wdi\_gdpc}}.
 
 To answer this question, we first extract a fitted value for every
 observation in the dataset. Recall that a fitted value is a point on the
 line. Hence, we take the regression equation
 \(\hat{Y} = 0.5855759 + 0.000102 \times \textrm{GDP per capita}\) and
-plug in the value of \textbf{wdi\_gdpc} for every row in the dataset.
+plug in the value of \textbf{\emph{wdi\_gdpc}} for every row in the
+dataset.
 
 Actually, R has already done that for us. We can access the fitted
 values from our model object \texttt{m1} like so.
@@ -9526,7 +9538,7 @@ values from our model object \texttt{m1} like so.
 \end{Shaded}
 
 Now, we take the same steps as we did earlier. We take the deviations
-between the actual outcome of \textbf{undp\_hdi} and our model
+between the actual outcome of \textbf{\emph{undp\_hdi}} and our model
 predictions (the fitted values). These differences are the mistakes, we
 make they are called residuals.
 
@@ -9548,13 +9560,14 @@ between the model predictions and the actual outcomes.
 \end{Highlighting}
 \end{Shaded}
 
-The squared residuals are the variability in \textbf{undp\_hdi} which we
-have \emph{NOT} explained with the variability in \textbf{wdi\_gdpc}.
+The squared residuals are the variability in \textbf{\emph{undp\_hdi}}
+which we have \emph{NOT} explained with the variability in
+\textbf{\emph{wdi\_gdpc}}.
 
 R\^{}2 is then: 1 - unexplained variability / total variability. R\^{}2,
 therefore, answers the question ``how much of the total variability in
-\textbf{undp\_hdi} do we explain using variability in
-\textbf{wdi\_gdpc}.''
+\textbf{\emph{undp\_hdi}} do we explain using variability in
+\textbf{\emph{wdi\_gdpc}}.''
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9587,8 +9600,8 @@ use the \texttt{round()} function to round to 2 digits like so:
 
 \paragraph{R Squared - Approach 2}\label{r-squared---approach-2}
 
-Let's take the unexplained variance of \textbf{undp\_hdi} instead of the
-unexplained sum of squares.
+Let's take the unexplained variance of \textbf{\emph{undp\_hdi}} instead
+of the unexplained sum of squares.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10037,8 +10050,8 @@ quality of life (hdi) and wealth (gdp/captia).
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{plot}\NormalTok{(}
-\NormalTok{  a}\OperatorTok{$}\NormalTok{undp_hdi,}
-\NormalTok{  a}\OperatorTok{$}\NormalTok{wdi_gdpc,}
+  \DataTypeTok{y =}\NormalTok{ a}\OperatorTok{$}\NormalTok{undp_hdi,}
+  \DataTypeTok{x =}\NormalTok{ a}\OperatorTok{$}\NormalTok{wdi_gdpc,}
   \DataTypeTok{pch =} \DecValTok{16}\NormalTok{,}
   \DataTypeTok{frame.plot =} \OtherTok{FALSE}\NormalTok{,}
   \DataTypeTok{col =} \StringTok{"grey"}\NormalTok{,}
@@ -10218,8 +10231,8 @@ function.
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{plot}\NormalTok{(}
-  \DataTypeTok{x =}\NormalTok{ a}\OperatorTok{$}\NormalTok{undp_hdi, }
-  \DataTypeTok{y =}\NormalTok{ a}\OperatorTok{$}\NormalTok{wdi_gdpc,}
+  \DataTypeTok{y =}\NormalTok{ a}\OperatorTok{$}\NormalTok{undp_hdi, }
+  \DataTypeTok{x =}\NormalTok{ a}\OperatorTok{$}\NormalTok{wdi_gdpc,}
   \DataTypeTok{pch =} \DecValTok{16}\NormalTok{,}
   \DataTypeTok{frame.plot =} \OtherTok{FALSE}\NormalTok{,}
   \DataTypeTok{col =} \StringTok{"grey"}\NormalTok{,}
