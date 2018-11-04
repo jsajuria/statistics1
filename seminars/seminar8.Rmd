@@ -257,7 +257,7 @@ plot(
 # add a legend
 legend(
   "bottomright",  # position fo legend
-  legend = c("ex colonies", "not colonised"), # what to seperate by 
+  legend = c("not colonised", "ex colonies"), # what to seperate by 
   col = factor(a$former_col), # colors of legend labels
   pch = 16, # dot type
   bty = "n" # no box around the legend
