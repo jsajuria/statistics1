@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Statistics 1</title>
+  <meta name="description" content="Statistics 1">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Statistics 1" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Statistics 1" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="seminar8.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="lib/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/codefolding.js"></script>
+
+
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding();
+});
+</script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="lib\bootstrap\3.3.7\css\bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="css\readthedocs.css" type="text/css" />
+<link rel="stylesheet" href="css\custom.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this course</a></li>
+<li class="chapter" data-level="1" data-path="seminar1.html"><a href="seminar1.html"><i class="fa fa-check"></i><b>1</b> Introduction: Measurement, Central Tendency, Dispersion, Validity, Reliability</a><ul>
+<li class="chapter" data-level="1.1" data-path="seminar1.html"><a href="seminar1.html#seminar"><i class="fa fa-check"></i><b>1.1</b> Seminar</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="seminar1.html"><a href="seminar1.html#getting-started"><i class="fa fa-check"></i><b>1.1.1</b> Getting Started</a></li>
+<li class="chapter" data-level="1.1.2" data-path="seminar1.html"><a href="seminar1.html#rstudio"><i class="fa fa-check"></i><b>1.1.2</b> RStudio</a></li>
+<li class="chapter" data-level="1.1.3" data-path="seminar1.html"><a href="seminar1.html#console"><i class="fa fa-check"></i><b>1.1.3</b> Console</a></li>
+<li class="chapter" data-level="1.1.4" data-path="seminar1.html"><a href="seminar1.html#functions"><i class="fa fa-check"></i><b>1.1.4</b> Functions</a></li>
+<li class="chapter" data-level="1.1.5" data-path="seminar1.html"><a href="seminar1.html#getting-help"><i class="fa fa-check"></i><b>1.1.5</b> Getting Help</a></li>
+<li class="chapter" data-level="1.1.6" data-path="seminar1.html"><a href="seminar1.html#the-assignment-operator"><i class="fa fa-check"></i><b>1.1.6</b> The Assignment Operator</a></li>
+<li class="chapter" data-level="1.1.7" data-path="seminar1.html"><a href="seminar1.html#sequences"><i class="fa fa-check"></i><b>1.1.7</b> Sequences</a></li>
+<li class="chapter" data-level="1.1.8" data-path="seminar1.html"><a href="seminar1.html#scripts"><i class="fa fa-check"></i><b>1.1.8</b> Scripts</a></li>
+<li class="chapter" data-level="1.1.9" data-path="seminar1.html"><a href="seminar1.html#central-tendency"><i class="fa fa-check"></i><b>1.1.9</b> Central Tendency</a></li>
+<li class="chapter" data-level="1.1.10" data-path="seminar1.html"><a href="seminar1.html#dispersion"><i class="fa fa-check"></i><b>1.1.10</b> Dispersion</a></li>
+<li class="chapter" data-level="1.1.11" data-path="seminar1.html"><a href="seminar1.html#exercises"><i class="fa fa-check"></i><b>1.1.11</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="solutions1.html"><a href="solutions1.html"><i class="fa fa-check"></i><b>1.2</b> Solutions</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="solutions1.html"><a href="solutions1.html#exercise-3"><i class="fa fa-check"></i><b>1.2.1</b> Exercise 3</a></li>
+<li class="chapter" data-level="1.2.2" data-path="solutions1.html"><a href="solutions1.html#exercise-4"><i class="fa fa-check"></i><b>1.2.2</b> Exercise 4</a></li>
+<li class="chapter" data-level="1.2.3" data-path="solutions1.html"><a href="solutions1.html#exercise-5"><i class="fa fa-check"></i><b>1.2.3</b> Exercise 5</a></li>
+<li class="chapter" data-level="1.2.4" data-path="solutions1.html"><a href="solutions1.html#exercise-6"><i class="fa fa-check"></i><b>1.2.4</b> Exercise 6</a></li>
+<li class="chapter" data-level="1.2.5" data-path="solutions1.html"><a href="solutions1.html#exercise-7"><i class="fa fa-check"></i><b>1.2.5</b> Exercise 7</a></li>
+<li class="chapter" data-level="1.2.6" data-path="solutions1.html"><a href="solutions1.html#exercise-8"><i class="fa fa-check"></i><b>1.2.6</b> Exercise 8</a></li>
+<li class="chapter" data-level="1.2.7" data-path="solutions1.html"><a href="solutions1.html#exercise-9"><i class="fa fa-check"></i><b>1.2.7</b> Exercise 9</a></li>
+<li class="chapter" data-level="1.2.8" data-path="solutions1.html"><a href="solutions1.html#exercise-10"><i class="fa fa-check"></i><b>1.2.8</b> Exercise 10</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="seminar2.html"><a href="seminar2.html"><i class="fa fa-check"></i><b>2</b> Research Design, Counterfactuals, Forming Hypotheses</a><ul>
+<li class="chapter" data-level="2.1" data-path="seminar2.html"><a href="seminar2.html#seminar-1"><i class="fa fa-check"></i><b>2.1</b> Seminar</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="seminar2.html"><a href="seminar2.html#setting-up"><i class="fa fa-check"></i><b>2.1.1</b> setting up</a></li>
+<li class="chapter" data-level="2.1.2" data-path="seminar2.html"><a href="seminar2.html#vectors-and-subsetting"><i class="fa fa-check"></i><b>2.1.2</b> vectors and subsetting</a></li>
+<li class="chapter" data-level="2.1.3" data-path="seminar2.html"><a href="seminar2.html#data-frames"><i class="fa fa-check"></i><b>2.1.3</b> data frames</a></li>
+<li class="chapter" data-level="2.1.4" data-path="seminar2.html"><a href="seminar2.html#loading-data"><i class="fa fa-check"></i><b>2.1.4</b> Loading data</a></li>
+<li class="chapter" data-level="2.1.5" data-path="seminar2.html"><a href="seminar2.html#plots"><i class="fa fa-check"></i><b>2.1.5</b> Plots</a></li>
+<li class="chapter" data-level="2.1.6" data-path="seminar2.html"><a href="seminar2.html#average-treatment-effect"><i class="fa fa-check"></i><b>2.1.6</b> Average Treatment Effect</a></li>
+<li class="chapter" data-level="2.1.7" data-path="seminar2.html"><a href="seminar2.html#exercises-1"><i class="fa fa-check"></i><b>2.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="solutions2.html"><a href="solutions2.html"><i class="fa fa-check"></i><b>2.2</b> Solutions</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="solutions2.html"><a href="solutions2.html#exercise-2"><i class="fa fa-check"></i><b>2.2.1</b> Exercise 2</a></li>
+<li class="chapter" data-level="2.2.2" data-path="solutions2.html"><a href="solutions2.html#exercise-3-1"><i class="fa fa-check"></i><b>2.2.2</b> Exercise 3</a></li>
+<li class="chapter" data-level="2.2.3" data-path="solutions2.html"><a href="solutions2.html#exercise-4-1"><i class="fa fa-check"></i><b>2.2.3</b> Exercise 4</a></li>
+<li class="chapter" data-level="2.2.4" data-path="solutions2.html"><a href="solutions2.html#exercise-5-1"><i class="fa fa-check"></i><b>2.2.4</b> Exercise 5</a></li>
+<li class="chapter" data-level="2.2.5" data-path="solutions2.html"><a href="solutions2.html#exercise-6-1"><i class="fa fa-check"></i><b>2.2.5</b> Exercise 6</a></li>
+<li class="chapter" data-level="2.2.6" data-path="solutions2.html"><a href="solutions2.html#exercise-7-1"><i class="fa fa-check"></i><b>2.2.6</b> Exercise 7</a></li>
+<li class="chapter" data-level="2.2.7" data-path="solutions2.html"><a href="solutions2.html#exercise-8-1"><i class="fa fa-check"></i><b>2.2.7</b> Exercise 8</a></li>
+<li class="chapter" data-level="2.2.8" data-path="solutions2.html"><a href="solutions2.html#exercises-9-and-10"><i class="fa fa-check"></i><b>2.2.8</b> Exercises 9 and 10</a></li>
+<li class="chapter" data-level="2.2.9" data-path="solutions2.html"><a href="solutions2.html#exercises-11"><i class="fa fa-check"></i><b>2.2.9</b> Exercises 11</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="seminar3.html"><a href="seminar3.html"><i class="fa fa-check"></i><b>3</b> Sampling and Distributions</a><ul>
+<li class="chapter" data-level="3.1" data-path="seminar3.html"><a href="seminar3.html#seminar-2"><i class="fa fa-check"></i><b>3.1</b> Seminar</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="seminar3.html"><a href="seminar3.html#loading-dataset-in-csv-format"><i class="fa fa-check"></i><b>3.1.1</b> Loading Dataset in CSV Format</a></li>
+<li class="chapter" data-level="3.1.2" data-path="seminar3.html"><a href="seminar3.html#missing-values"><i class="fa fa-check"></i><b>3.1.2</b> Missing Values</a></li>
+<li class="chapter" data-level="3.1.3" data-path="seminar3.html"><a href="seminar3.html#factor-variables"><i class="fa fa-check"></i><b>3.1.3</b> Factor Variables</a></li>
+<li class="chapter" data-level="3.1.4" data-path="seminar3.html"><a href="seminar3.html#renaming-variables"><i class="fa fa-check"></i><b>3.1.4</b> Renaming Variables</a></li>
+<li class="chapter" data-level="3.1.5" data-path="seminar3.html"><a href="seminar3.html#distributions"><i class="fa fa-check"></i><b>3.1.5</b> Distributions</a></li>
+<li class="chapter" data-level="3.1.6" data-path="seminar3.html"><a href="seminar3.html#conditional-distributions"><i class="fa fa-check"></i><b>3.1.6</b> Conditional Distributions</a></li>
+<li class="chapter" data-level="3.1.7" data-path="seminar3.html"><a href="seminar3.html#exercises-2"><i class="fa fa-check"></i><b>3.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="solutions3.html"><a href="solutions3.html"><i class="fa fa-check"></i><b>3.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="seminar4.html"><a href="seminar4.html"><i class="fa fa-check"></i><b>4</b> T-test for Difference in Means and Hypothesis Testing</a><ul>
+<li class="chapter" data-level="4.1" data-path="seminar4.html"><a href="seminar4.html#seminar-3"><i class="fa fa-check"></i><b>4.1</b> Seminar</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="seminar4.html"><a href="seminar4.html#the-standard-error"><i class="fa fa-check"></i><b>4.1.1</b> The Standard Error</a></li>
+<li class="chapter" data-level="4.1.2" data-path="seminar4.html"><a href="seminar4.html#t-test-one-sample-hypothesis-test"><i class="fa fa-check"></i><b>4.1.2</b> T-test (one sample hypothesis test)</a></li>
+<li class="chapter" data-level="4.1.3" data-path="seminar4.html"><a href="seminar4.html#t-test-difference-in-means"><i class="fa fa-check"></i><b>4.1.3</b> T-test (difference in means)</a></li>
+<li class="chapter" data-level="4.1.4" data-path="seminar4.html"><a href="seminar4.html#estimating-p-values-from-t-values"><i class="fa fa-check"></i><b>4.1.4</b> Estimating p values from t values</a></li>
+<li class="chapter" data-level="4.1.5" data-path="seminar4.html"><a href="seminar4.html#exercises-3"><i class="fa fa-check"></i><b>4.1.5</b> Exercises</a></li>
+<li class="chapter" data-level="4.1.6" data-path="seminar4.html"><a href="seminar4.html#optional-exercises-that-require-reading-extra-info-below"><i class="fa fa-check"></i><b>4.1.6</b> Optional Exercises that require reading Extra Info below</a></li>
+<li class="chapter" data-level="4.1.7" data-path="seminar4.html"><a href="seminar4.html#advanced-exercises"><i class="fa fa-check"></i><b>4.1.7</b> Advanced Exercises</a></li>
+<li class="chapter" data-level="4.1.8" data-path="seminar4.html"><a href="seminar4.html#extra-info"><i class="fa fa-check"></i><b>4.1.8</b> Extra Info</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="solutions4.html"><a href="solutions4.html"><i class="fa fa-check"></i><b>4.2</b> Solutions</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="solutions4.html"><a href="solutions4.html#optional-exercises-that-require-reading-extra-info-below-1"><i class="fa fa-check"></i><b>4.2.1</b> Optional Exercises that require reading Extra Info below</a></li>
+<li class="chapter" data-level="4.2.2" data-path="solutions4.html"><a href="solutions4.html#advanced-exercises-1"><i class="fa fa-check"></i><b>4.2.2</b> Advanced Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="seminar5.html"><a href="seminar5.html"><i class="fa fa-check"></i><b>5</b> Revision: Sample Variance and Sample Standard Deviation; Hypothesis testing and Confidence Intervals</a><ul>
+<li class="chapter" data-level="5.1" data-path="seminar5.html"><a href="seminar5.html#seminar-4"><i class="fa fa-check"></i><b>5.1</b> Seminar</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="seminar5.html"><a href="seminar5.html#sample-variance-and-sample-standard-deviation"><i class="fa fa-check"></i><b>5.1.1</b> Sample Variance and Sample Standard Deviation</a></li>
+<li class="chapter" data-level="5.1.2" data-path="seminar5.html"><a href="seminar5.html#t-test-for-the-sample-mean"><i class="fa fa-check"></i><b>5.1.2</b> T test for the sample mean</a></li>
+<li class="chapter" data-level="5.1.3" data-path="seminar5.html"><a href="seminar5.html#t-test-for-the-difference-in-means"><i class="fa fa-check"></i><b>5.1.3</b> T test for the difference in means</a></li>
+<li class="chapter" data-level="5.1.4" data-path="seminar5.html"><a href="seminar5.html#exercises-4"><i class="fa fa-check"></i><b>5.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="solutions5.html"><a href="solutions5.html"><i class="fa fa-check"></i><b>5.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="seminar6.html"><a href="seminar6.html"><i class="fa fa-check"></i><b>6</b> Bivariate linear regression models</a><ul>
+<li class="chapter" data-level="6.1" data-path="seminar6.html"><a href="seminar6.html#seminar-5"><i class="fa fa-check"></i><b>6.1</b> Seminar</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="seminar6.html"><a href="seminar6.html#packages"><i class="fa fa-check"></i><b>6.1.1</b> Packages</a></li>
+<li class="chapter" data-level="6.1.2" data-path="seminar6.html"><a href="seminar6.html#fitted-values"><i class="fa fa-check"></i><b>6.1.2</b> Fitted values</a></li>
+<li class="chapter" data-level="6.1.3" data-path="seminar6.html"><a href="seminar6.html#additional-resources"><i class="fa fa-check"></i><b>6.1.3</b> Additional Resources</a></li>
+<li class="chapter" data-level="6.1.4" data-path="seminar6.html"><a href="seminar6.html#exercises-5"><i class="fa fa-check"></i><b>6.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="solutions6.html"><a href="solutions6.html"><i class="fa fa-check"></i><b>6.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="seminar7.html"><a href="seminar7.html"><i class="fa fa-check"></i><b>7</b> Multiple linear regression models (I)</a><ul>
+<li class="chapter" data-level="7.1" data-path="seminar7.html"><a href="seminar7.html#seminar-6"><i class="fa fa-check"></i><b>7.1</b> Seminar</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="seminar7.html"><a href="seminar7.html#loading-understanding-and-cleaning-our-data"><i class="fa fa-check"></i><b>7.1.1</b> Loading, Understanding and Cleaning our Data</a></li>
+<li class="chapter" data-level="7.1.2" data-path="seminar7.html"><a href="seminar7.html#estimating-a-bivariate-regression"><i class="fa fa-check"></i><b>7.1.2</b> Estimating a Bivariate Regression</a></li>
+<li class="chapter" data-level="7.1.3" data-path="seminar7.html"><a href="seminar7.html#multivariate-regression"><i class="fa fa-check"></i><b>7.1.3</b> Multivariate Regression</a></li>
+<li class="chapter" data-level="7.1.4" data-path="seminar7.html"><a href="seminar7.html#joint-significance-test-f-statistic"><i class="fa fa-check"></i><b>7.1.4</b> Joint Significance Test (F-statistic)</a></li>
+<li class="chapter" data-level="7.1.5" data-path="seminar7.html"><a href="seminar7.html#predicting-outcome-conditional-on-institutional-quality"><i class="fa fa-check"></i><b>7.1.5</b> Predicting outcome conditional on institutional quality</a></li>
+<li class="chapter" data-level="7.1.6" data-path="seminar7.html"><a href="seminar7.html#additional-resources-1"><i class="fa fa-check"></i><b>7.1.6</b> Additional Resources</a></li>
+<li class="chapter" data-level="7.1.7" data-path="seminar7.html"><a href="seminar7.html#exercises-6"><i class="fa fa-check"></i><b>7.1.7</b> Exercises</a></li>
+<li class="chapter" data-level="7.1.8" data-path="seminar7.html"><a href="seminar7.html#midterm-preparation"><i class="fa fa-check"></i><b>7.1.8</b> Midterm Preparation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="seminar8.html"><a href="seminar8.html"><i class="fa fa-check"></i><b>8</b> Multiple linear regression models (II)</a><ul>
+<li class="chapter" data-level="8.1" data-path="seminar8.html"><a href="seminar8.html#seminar-7"><i class="fa fa-check"></i><b>8.1</b> Seminar</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="seminar8.html"><a href="seminar8.html#loading-data-1"><i class="fa fa-check"></i><b>8.1.1</b> Loading Data</a></li>
+<li class="chapter" data-level="8.1.2" data-path="seminar8.html"><a href="seminar8.html#r-squared"><i class="fa fa-check"></i><b>8.1.2</b> R Squared</a></li>
+<li class="chapter" data-level="8.1.3" data-path="seminar8.html"><a href="seminar8.html#the-relationship-between-institutional-quality-and-quality-of-life-by-colonial-past"><i class="fa fa-check"></i><b>8.1.3</b> The Relationship between Institutional Quality and Quality of Life by Colonial Past</a></li>
+<li class="chapter" data-level="8.1.4" data-path="seminar8.html"><a href="seminar8.html#interactions-continuous-and-binary"><i class="fa fa-check"></i><b>8.1.4</b> Interactions: Continuous and Binary</a></li>
+<li class="chapter" data-level="8.1.5" data-path="seminar8.html"><a href="seminar8.html#non-linearities"><i class="fa fa-check"></i><b>8.1.5</b> Non-Linearities</a></li>
+<li class="chapter" data-level="8.1.6" data-path="seminar8.html"><a href="seminar8.html#exercises-7"><i class="fa fa-check"></i><b>8.1.6</b> Exercises</a></li>
+<li class="chapter" data-level="8.1.7" data-path="seminar8.html"><a href="seminar8.html#extra-info-dummy-variables-repetition"><i class="fa fa-check"></i><b>8.1.7</b> Extra Info: Dummy Variables Repetition</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="seminar9.html"><a href="seminar9.html"><i class="fa fa-check"></i><b>9</b> Regression Assumptions</a><ul>
+<li class="chapter" data-level="9.1" data-path="seminar9.html"><a href="seminar9.html#seminar-8"><i class="fa fa-check"></i><b>9.1</b> Seminar</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="seminar9.html"><a href="seminar9.html#required-packages"><i class="fa fa-check"></i><b>9.1.1</b> Required Packages</a></li>
+<li class="chapter" data-level="9.1.2" data-path="seminar9.html"><a href="seminar9.html#omitted-variable-bias"><i class="fa fa-check"></i><b>9.1.2</b> Omitted Variable Bias</a></li>
+<li class="chapter" data-level="9.1.3" data-path="seminar9.html"><a href="seminar9.html#detecting-non-linearity"><i class="fa fa-check"></i><b>9.1.3</b> Detecting non-linearity</a></li>
+<li class="chapter" data-level="9.1.4" data-path="seminar9.html"><a href="seminar9.html#heteroskedasticity"><i class="fa fa-check"></i><b>9.1.4</b> Heteroskedasticity</a></li>
+<li class="chapter" data-level="9.1.5" data-path="seminar9.html"><a href="seminar9.html#exercises-8"><i class="fa fa-check"></i><b>9.1.5</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics 1</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="regression-assumptions" class="section level1">
+<h1><span class="header-section-number">Chapter 9</span> Regression Assumptions</h1>
+<div id="seminar-8" class="section level2">
+<h2><span class="header-section-number">9.1</span> Seminar</h2>
+<p>Clear the environment and set the working directory.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())
+<span class="kw">setwd</span>(<span class="st">&quot;Your directory&quot;</span>)</code></pre></div>
+<div id="required-packages" class="section level3">
+<h3><span class="header-section-number">9.1.1</span> Required Packages</h3>
+<p>Today, we need two new packages: <code>lmtest</code> and <code>sandwich</code>. We’ll explain the functionality offered by each package as we go along. We load the the libraries up front and you need to install <code>lmtest</code> and <code>sandwich</code> once.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;lmtest&quot;</span>)
+<span class="kw">install.packages</span>(<span class="st">&quot;sandwich&quot;</span>)</code></pre></div>
+<p>Now load the libraries.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lmtest)
+<span class="kw">library</span>(sandwich)
+<span class="kw">library</span>(texreg)</code></pre></div>
+</div>
+<div id="omitted-variable-bias" class="section level3">
+<h3><span class="header-section-number">9.1.2</span> Omitted Variable Bias</h3>
+<ul>
+<li><a href="http://tylervigen.com/spurious-correlations">Spurious Correlations</a></li>
+</ul>
+<p>We have already dealt with OVB at length, but it is worth going over another (silly) example here for revision purposes (we talked about this example in class as well).</p>
+<div id="ice-cream-and-shark-attacks" class="section level4">
+<h4><span class="header-section-number">9.1.2.1</span> <img src="img/shark.png" /> Ice Cream and Shark Attacks</h4>
+<p>Does ice cream consumption increase the likelihood of being attacked by a shark? Let’s explore a dataset of shark attacks, ice cream sales and monthly temperatures collected over 7 years to find out.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">shark_attacks &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;shark_attacks.csv&quot;</span>)
+<span class="kw">head</span>(shark_attacks)</code></pre></div>
+<pre><code>  Year Month SharkAttacks Temperature IceCreamSales
+1 2008     1           25        11.9            76
+2 2008     2           28        15.2            79
+3 2008     3           32        17.2            91
+4 2008     4           35        18.5            95
+5 2008     5           38        19.4           103
+6 2008     6           41        22.1           108</code></pre>
+<p>Run a linear model to see the effects of ice cream consumption on shark attacks.</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r">model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(SharkAttacks <span class="op">~</span><span class="st"> </span>IceCreamSales, <span class="dt">data =</span> shark_attacks)
+<span class="kw">screenreg</span>(model1)</code></pre></div>
+<pre><code>
+========================
+               Model 1  
+------------------------
+(Intercept)     4.35    
+               (5.24)   
+IceCreamSales   0.34 ***
+               (0.06)   
+------------------------
+R^2             0.29    
+Adj. R^2        0.28    
+Num. obs.      84       
+RMSE            7.17    
+========================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>Let’s check pairwise correlation between ice cream consumption, average monthly temperatures and shark attacks.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(shark_attacks[, <span class="kw">c</span>(<span class="st">&quot;SharkAttacks&quot;</span>, <span class="st">&quot;Temperature&quot;</span>, <span class="st">&quot;IceCreamSales&quot;</span>)])</code></pre></div>
+<pre><code>              SharkAttacks Temperature IceCreamSales
+SharkAttacks     1.0000000   0.7169660     0.5343576
+Temperature      0.7169660   1.0000000     0.5957694
+IceCreamSales    0.5343576   0.5957694     1.0000000</code></pre>
+<p>It looks like there’s high correlation between average monthly temperatures and shark attacks, and also between ice cream consumption and monthly temperatures, so let’s add the <code>Temperature</code> variable to our model.</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r">model2 &lt;-<span class="st"> </span><span class="kw">lm</span>(SharkAttacks <span class="op">~</span><span class="st"> </span>IceCreamSales <span class="op">+</span><span class="st"> </span>Temperature, <span class="dt">data =</span> shark_attacks)</code></pre></div>
+<p>Now compare it to the first model.</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r"><span class="kw">screenreg</span>(<span class="kw">list</span>(model1, model2))</code></pre></div>
+<pre><code>
+===================================
+               Model 1    Model 2  
+-----------------------------------
+(Intercept)     4.35       0.57    
+               (5.24)     (4.31)   
+IceCreamSales   0.34 ***   0.10    
+               (0.06)     (0.06)   
+Temperature                1.29 ***
+                          (0.20)   
+-----------------------------------
+R^2             0.29       0.53    
+Adj. R^2        0.28       0.52    
+Num. obs.      84         84       
+RMSE            7.17       5.84    
+===================================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>The second model shows that once we control for monthly temperatures, ice cream consumption has no effect on the number of shark attacks.</p>
+<p>What was the bias in the coefficient of <code>IceCreamSales</code> in the model where we did not control for <code>Temperature</code>?</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r"><span class="co"># coefficient in new model minus coefficient in old model</span>
+<span class="fl">0.10</span> <span class="op">-</span><span class="st">  </span><span class="fl">0.34</span></code></pre></div>
+<pre><code>[1] -0.24</code></pre>
+<p>We overestimated the effect by 0.24, more than two thirds of the effect. We know that the real effect of selling ice cream on shark attacks is exactly 0 (unless for some reason sharks really like icecream). The two phenomena are unrelated. Our estimate, although insignificant, is still an over-estimate.</p>
+</div>
+</div>
+<div id="detecting-non-linearity" class="section level3">
+<h3><span class="header-section-number">9.1.3</span> Detecting non-linearity</h3>
+<p>For this part of the problem set, we will be using data on the results of the German Bundestag elections in 2017. You can load this data directly from GitHub using the following command:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">german_results &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/UCLSPP/datasets/master/data/german_election_results.csv&quot;</span>) </code></pre></div>
+<p>Note, the data contains weird looking German characters. If you want them properly displayed, load the data using its character encoding utf-8 like so: <code>german_results &lt;- read.csv(&quot;https://raw.githubusercontent.com/UCLSPP/datasets/master/data/german_election_results.csv&quot;, fileEncoding = &quot;utf-8&quot;)</code>. It’s usually not a problem because it only messes up the names of the districts.</p>
+<p>We should again quickly see the variables that are included in the data using the <code>head()</code> function (or any other way you prefer):</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r"><span class="kw">head</span>(german_results)</code></pre></div>
+<pre><code>                             district      CDU      SPD      AfD Die.Linke
+1             Flensburg â\200“ Schleswig 39.99930 28.01454 6.214686  7.129180
+2 Nordfriesland â\200“ Dithmarschen Nord 45.14833 25.15210 5.881031  5.150071
+3     Steinburg â\200“ Dithmarschen SÃ¼d 41.87862 26.14625 7.642704  5.481995
+4              Rendsburg-EckernfÃ¶rde 42.68043 28.87215 6.826306  5.172259
+5                                Kiel 30.50011 31.05149 6.136603  7.376207
+6               PlÃ¶n â\200“ NeumÃ¼nster 40.69998 28.91278 7.834377  5.371334
+      Grune       FDP unemploymentrate migrantfraction catholicfraction
+1 10.512869  6.544773             7.16            10.0              5.1
+2  9.453158  8.051428             7.05             8.0              5.2
+3  6.716686 11.033518             6.30             9.2              4.2
+4  8.954402  6.455395             5.18             8.5              4.9
+5 14.403295  7.462318             9.65            18.0              7.3
+6  8.993862  7.187579             6.72            10.8              5.6</code></pre>
+<p>For this problem, we are going to be interested in modelling the share of the vote won by the SPD in each of the 299 electoral districts. This variable is named <code>SPD</code> in the <code>german_results</code> data.frame. Let’s build a linear regression model with two predictors: <code>migrantfraction</code> and <code>catholicfraction</code>, both of which are measured on a range from 0 to 100 percent.</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r"><span class="co"># model on SPD</span>
+spd_linear_model &lt;-<span class="st"> </span><span class="kw">lm</span>(SPD <span class="op">~</span><span class="st"> </span>migrantfraction <span class="op">+</span><span class="st"> </span>catholicfraction , <span class="dt">data =</span> german_results)
+
+<span class="co"># show model</span>
+<span class="kw">screenreg</span>(spd_linear_model)</code></pre></div>
+<pre><code>
+============================
+                  Model 1   
+----------------------------
+(Intercept)        19.47 ***
+                   (1.07)   
+migrantfraction     0.38 ***
+                   (0.05)   
+catholicfraction   -0.06 ** 
+                   (0.02)   
+----------------------------
+R^2                 0.16    
+Adj. R^2            0.16    
+Num. obs.         299       
+RMSE                7.62    
+============================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>The model suggests that the fraction of migrants in a district is positively related to the popularity of the SPD in that district, and that there is a negative relationship between the fraction of catholics in a district and the SPD vote share. More precisely, the model tells us the for each additional percentage point of migrants, the SPD’s vote share increases by 0.38 points, holding constant the fraction of Catholics. Conversely, for each additional percentage point of Catholics, the SPD’s share of the vote increases by -0.06 points, holding constant the fraction of migrants.</p>
+<p>As discussed in lecture, it is often useful to examine plots of the <em>model residuals</em> to determine whether there is evidence of a non-linear relationship between our dependent variable and our independent variables. Recall that the sample residuals are the difference between the observed values of Y and the predicted values of Y given our model: <span class="math inline">\(u_i = Y_i - \hat{Y}_i\)</span></p>
+<p>We can calculate the residuals for each observation in our data that we used to estimate the model by applying the <code>residuals()</code> function to the model object. Let’s do this now, and assign the output to be a new variable in the <code>german_results</code> data frame.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get the residuals</span>
+german_results<span class="op">$</span>residuals &lt;-<span class="st"> </span>spd_linear_model<span class="op">$</span>residuals</code></pre></div>
+<p>Assume you wanted to estimate the residuals from the fitted values. Do so on your own. Hint: You can get fitted values (model predictions for each observation in the data) as <code>spd_linear_model$fitted.values</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r">german_results<span class="op">$</span>residuals2 &lt;-<span class="st"> </span>german_results<span class="op">$</span>SPD <span class="op">-</span><span class="st"> </span>spd_linear_model<span class="op">$</span>fitted.values</code></pre></div>
+<p>Assess whehter both methods lead to the same result. Hint: There is rounding error, so both methods may not produce similar results numericaly. Confirm that the results are equivalent nonetheless.</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r"><span class="co"># correlation coefficient</span>
+<span class="kw">cor</span>(german_results<span class="op">$</span>residuals, german_results<span class="op">$</span>residuals2)</code></pre></div>
+<pre><code>[1] 1</code></pre>
+<p>To assess whether there is evidence for non-linearity, it can be helpful to plot the residuals against the continuous explanatory variables in our model. Remember, the assumptions behind OLS models suggest that the residuals should be randomly distributed around zero for all values of X: <span class="math inline">\(E(u_i|X_i) = 0\)</span>. So, any pattern that deviates from this randomness suggests that we may have misspecified our model.</p>
+<p>Let’s plot the residuals from <code>spd_linear_model</code> against the two independent variables in our data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
+<span class="kw">plot</span>(<span class="dt">y =</span> german_results<span class="op">$</span>residuals,
+     <span class="dt">x =</span> german_results<span class="op">$</span>catholicfraction,
+     <span class="dt">xlab =</span> <span class="st">&quot;Catholic Fraction&quot;</span>,
+     <span class="dt">ylab =</span> <span class="st">&quot;Residuals&quot;</span>,
+     <span class="dt">frame.plot =</span> F,
+     <span class="dt">pch =</span> <span class="dv">19</span>,
+     <span class="dt">cex =</span> .<span class="dv">7</span>,
+     <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>)
+<span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>)
+
+<span class="kw">plot</span>(<span class="dt">y =</span> german_results<span class="op">$</span>residuals,
+     <span class="dt">x =</span> german_results<span class="op">$</span>migrantfraction,
+     <span class="dt">xlab =</span> <span class="st">&quot;Migrant Fraction&quot;</span>,
+     <span class="dt">ylab =</span> <span class="st">&quot;Residuals&quot;</span>,
+     <span class="dt">frame.plot =</span> F,
+     <span class="dt">pch =</span> <span class="dv">19</span>,
+     <span class="dt">cex =</span> .<span class="dv">7</span>,
+     <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>)
+<span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-401-1.png" width="672" /></p>
+<p>What can we conclude from these plots? In the left-hand plot, the residuals seem to be distributed fairly randomly around zero for all values of <code>catholicfraction</code>: there does not appear to be evidence of non-linearity for this variable.</p>
+<p>In the right-hand plot, however, it seems that the residuals are mostly negative for both low and high levels of the <code>migrantfraction</code> variable, but evenly spread around zero for the more moderate range of this variable. This pattern of residuals does seem to deviate from the OLS assumptions to a certain degree, and therefore suggests that we might want to try to account for this possible non-linearity in our model.</p>
+<p>One way of doing this is to include a polynomial term (we will use <span class="math inline">\(X^2\)</span> here) in our model, as we did last week. Let’s do that now, and then <code>screenreg()</code> the results. Try on your own:</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r">spd_non_linear_model &lt;-<span class="st"> </span><span class="kw">lm</span>(SPD <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(migrantfraction,<span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>catholicfraction , <span class="dt">data =</span> german_results)
+<span class="kw">screenreg</span>(spd_non_linear_model)</code></pre></div>
+<pre><code>
+=====================================
+                           Model 1   
+-------------------------------------
+(Intercept)                 28.57 ***
+                            (0.75)   
+poly(migrantfraction, 2)1   66.31 ***
+                            (7.28)   
+poly(migrantfraction, 2)2  -58.19 ***
+                            (7.71)   
+catholicfraction            -0.13 ***
+                            (0.02)   
+-------------------------------------
+R^2                          0.30    
+Adj. R^2                     0.29    
+Num. obs.                  299       
+RMSE                         6.99    
+=====================================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>The coefficient on the squared term (<code>poly(migrantfraction, 2)2</code>) is significant, which indicates that there is evidence of a non-linear relationship between <code>migrantfraction</code> and SPD vote share in our data. This suggests that our interpretation of the residual plot above was correct, and that including the squared term is an important modification to our model. (You might also note that the Adjusted <span class="math inline">\(R^2\)</span> has nearly doubled with the inclusion of <span class="math inline">\(X^2\)</span>, again suggesting that the non-linear adjustment is important.)</p>
+<p>We can now repeat the same residual-plotting exersise with the residuals from our new model, to see if we are closer to meeting the OLS assumption that the error term is randomly distributed around zero for all values of X. Try on your own:</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r">german_results<span class="op">$</span>residuals_model_two &lt;-<span class="st"> </span><span class="kw">residuals</span>(spd_non_linear_model)
+
+<span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
+<span class="kw">plot</span>(<span class="dt">y =</span> german_results<span class="op">$</span>residuals_model_two,
+     <span class="dt">x =</span> german_results<span class="op">$</span>catholicfraction,
+     <span class="dt">xlab =</span> <span class="st">&quot;Catholic Fraction&quot;</span>,
+     <span class="dt">ylab =</span> <span class="st">&quot;Residuals&quot;</span>,
+     <span class="dt">frame.plot =</span> F,
+     <span class="dt">pch =</span> <span class="dv">19</span>,
+     <span class="dt">cex =</span> .<span class="dv">7</span>,
+     <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>)
+<span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>)
+
+<span class="kw">plot</span>(<span class="dt">y =</span> german_results<span class="op">$</span>residuals_model_two,
+     <span class="dt">x =</span> german_results<span class="op">$</span>migrantfraction,
+     <span class="dt">xlab =</span> <span class="st">&quot;Migrant Fraction&quot;</span>,
+     <span class="dt">ylab =</span> <span class="st">&quot;Residuals&quot;</span>,
+     <span class="dt">frame.plot =</span> F,
+     <span class="dt">pch =</span> <span class="dv">19</span>,
+     <span class="dt">cex =</span> .<span class="dv">7</span>,
+     <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>)
+<span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-403-1.png" width="672" /></p>
+<p>The right-hand plot now looks much better: the residuals seem randomly distributed around zero for all values of the <code>migrantfraction</code> variable, and there is no clearly distinguishable pattern anymore.</p>
+<p>You can also inspect how the model does overall. Repeat the previous exercise but plot the fitted values on the x-axis. What can we conclude?</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))
+<span class="kw">plot</span>(<span class="dt">y =</span> german_results<span class="op">$</span>residuals_model_two,
+     <span class="dt">x =</span> spd_non_linear_model<span class="op">$</span>fitted.values,
+     <span class="dt">xlab =</span> <span class="st">&quot;Migrant Fraction&quot;</span>,
+     <span class="dt">ylab =</span> <span class="st">&quot;Residuals&quot;</span>,
+     <span class="dt">frame.plot =</span> F,
+     <span class="dt">pch =</span> <span class="dv">19</span>,
+     <span class="dt">cex =</span> .<span class="dv">7</span>,
+     <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>)
+<span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-404-1.png" width="672" /></p>
+<p>Overall, it looks like conditional mean independence is satisfied.</p>
+</div>
+<div id="heteroskedasticity" class="section level3">
+<h3><span class="header-section-number">9.1.4</span> Heteroskedasticity</h3>
+<p>In order to understand heteroskedasticity, let’s start by loading a sample of the U.S. Current Population Survey (CPS) from 2013. The dataset contains 2989 observations of full-time workers with variables including age, gender, years of education and income reported in hourly earnings.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cps &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;cps2013.csv&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(cps)</code></pre></div>
+<pre><code>  age gender education    income
+1  30   Male        13 12.019231
+2  30   Male        12  9.857142
+3  30   Male        12  8.241758
+4  29 Female        12 10.096154
+5  30   Male        14 24.038462
+6  30   Male        16 23.668638</code></pre>
+<p>We plot income by years of education.</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r"><span class="kw">plot</span>(
+  <span class="dt">y =</span> cps<span class="op">$</span>income,
+  <span class="dt">x =</span> cps<span class="op">$</span>education,
+  <span class="dt">xlab =</span> <span class="st">&quot;level of education&quot;</span>,
+  <span class="dt">pch =</span> <span class="dv">19</span>, 
+  <span class="dt">cex =</span> <span class="dv">1</span>, 
+  <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,
+  <span class="dt">col =</span> <span class="kw">rgb</span>(<span class="dv">180</span>,<span class="dv">0</span>,<span class="dv">180</span>,<span class="dv">30</span>, <span class="dt">maxColorValue =</span> <span class="dv">255</span>)
+  )</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-407-1.png" width="672" /></p>
+<p>The dots in this plot largely overlap because education is only collected for full years. It’s therefore a bit hard to see the amount of observations that have 12 years of education and income 20. You can make it easier to see the amount of points by adding sine random noise to the education variable. So for example, for everyone with twelve years of eductation, we add or subtract a small amount at random. We will still be able to tell the education categories apart. We use this <code>jitter()</code> function to do this. We choose a small number of noise to add such that we can see the number of observations better and education categories are still visible. You have to play around to find a good number. Try on your own.</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r"><span class="kw">plot</span>(
+  <span class="dt">y =</span> cps<span class="op">$</span>income,
+  <span class="dt">x =</span> <span class="kw">jitter</span>(cps<span class="op">$</span>education, <span class="fl">1.5</span>),
+  <span class="dt">xlab =</span> <span class="st">&quot;level of education&quot;</span>,
+  <span class="dt">pch =</span> <span class="dv">19</span>, 
+  <span class="dt">cex =</span> <span class="dv">1</span>, 
+  <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,
+  <span class="dt">col =</span> <span class="kw">rgb</span>(<span class="dv">180</span>,<span class="dv">0</span>,<span class="dv">180</span>,<span class="dv">30</span>, <span class="dt">maxColorValue =</span> <span class="dv">255</span>)
+  )</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-408-1.png" width="672" /></p>
+<p>We can see that the range of values for income have a larger spread as the level of education increases. Intuitively this makes sense as people with more education tend to have more opportunities and are employed in a wider range of professions. But how does this larger spread affect the regression model?</p>
+<p>Let’s run linear regression and take a look at the results to find out the answer.</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r">model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(income <span class="op">~</span><span class="st"> </span>education, <span class="dt">data =</span> cps)
+<span class="kw">summary</span>(model1)</code></pre></div>
+<pre><code>
+Call:
+lm(formula = income ~ education, data = cps)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-23.035  -6.086  -1.573   3.900  60.446 
+
+Coefficients:
+            Estimate Std. Error t value             Pr(&gt;|t|)    
+(Intercept) -5.37508    1.03258  -5.206          0.000000207 ***
+education    1.75638    0.07397  23.745 &lt; 0.0000000000000002 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 9.496 on 2987 degrees of freedom
+Multiple R-squared:  0.1588,    Adjusted R-squared:  0.1585 
+F-statistic: 563.8 on 1 and 2987 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+<p>The model tells us the for each additional year of education, the income increases by 1.756.</p>
+<p>Now let’s plot the fitted model on our scatter plot of observations.</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r"><span class="kw">plot</span>(
+  <span class="dt">y =</span> cps<span class="op">$</span>income, 
+  <span class="dt">x =</span> <span class="kw">jitter</span>(cps<span class="op">$</span>education,<span class="fl">1.5</span>),
+  <span class="dt">xlab =</span> <span class="st">&quot;level of education&quot;</span>,
+  <span class="dt">pch =</span> <span class="dv">19</span>, 
+  <span class="dt">cex =</span> <span class="dv">1</span>, 
+  <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,
+  <span class="dt">col =</span> <span class="kw">rgb</span>(<span class="dv">180</span>,<span class="dv">0</span>,<span class="dv">180</span>,<span class="dv">30</span>, <span class="dt">maxColorValue =</span> <span class="dv">255</span>)
+  )
+<span class="kw">abline</span>(model1, <span class="dt">col =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-410-1.png" width="672" /></p>
+<p>Looking at the fitted model, we can see that the errors (i.e. the differences between the predicted value and the observed value) increase as the level of education increases. This is what is known as <em>heteroskedasticity</em> or <em>heteroskedastic errors</em>. In plain language it simply means that the variability of the error term is not constant across the entire range of our observations.</p>
+<p>Another way to visualize this is by plotting residuals against the fitted values.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(
+  <span class="dt">y =</span> model1<span class="op">$</span>residuals,
+  <span class="dt">x =</span> <span class="kw">jitter</span>(model1<span class="op">$</span>fitted.values, <span class="fl">1.5</span>),
+  <span class="dt">pch =</span> <span class="dv">19</span>,
+  <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,
+  <span class="dt">xlab =</span> <span class="st">&quot;predicted income&quot;</span>,
+  <span class="dt">ylab =</span> <span class="st">&quot;residuals (difference b/w truth and prediction)&quot;</span>,
+  <span class="dt">col =</span> <span class="kw">rgb</span>(<span class="dv">180</span>,<span class="dv">0</span>,<span class="dv">180</span>,<span class="dv">30</span>, <span class="dt">maxColorValue =</span> <span class="dv">255</span>),
+  <span class="dt">main =</span> <span class="st">&quot;Residuals vs. Fitted&quot;</span>)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-411-1.png" width="672" /></p>
+<p>Again, we can see that residuals are not constant and increase as the fitted values increase. In addition to visual inspection, we can also test for heteroskedasticity using the Breusch-Pagan Test from the <a href="http://bit.ly/R_lmtest"><code>lmtest</code></a> package we loaded at the beginning.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bptest</span>(model1)</code></pre></div>
+<pre><code>
+    studentized Breusch-Pagan test
+
+data:  model1
+BP = 76.679, df = 1, p-value &lt; 0.00000000000000022</code></pre>
+<p>The null hypothesis for the Breusch-Pagan test is that the variance of the error term is constant, or in other words, the errors are homoskedestic. By looking at the <em>p-value</em> from Breusch-Pagan test we can determine whether we have heteroskedastic errors or not.</p>
+<p>The <em>p-value</em> tells us that we can reject the null hypothesis of homoskedestic errors. Once we’ve determined that we’re dealing with heteroskedastic errors, we can correct them using the <a href="http://bit.ly/R_coeftest"><code>coeftest()</code></a> function from the <a href="http://bit.ly/R_lmtest"><code>lmtest</code></a> package.</p>
+<p>Here is a list of arguments for the <a href="http://bit.ly/R_coeftest"><code>coeftest()</code></a> function:</p>
+<pre><code>coeftest(model, vcov)</code></pre>
+<table style="width:99%;">
+<colgroup>
+<col width="12%" />
+<col width="86%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>model</code></td>
+<td>This is the estimated model obtained from <a href="http://bit.ly/R_lm"><code>lm()</code></a>.</td>
+</tr>
+<tr class="even">
+<td><code>vcov</code></td>
+<td>Covariance matrix. The simplest way to obtain heteroskedasticity-consistent covariance matrix is by using the <a href="http://bit.ly/R_vcovHC"><code>vcovHC()</code></a> function from the <a href="http://bit.ly/R_sandwich"><code>sandwich</code></a> package. The result from <a href="http://bit.ly/R_vcovHC"><code>vcovHC()</code></a> can be directly passed to <a href="http://bit.ly/R_coeftest"><code>coeftest()</code></a> as the second argument.</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">screenreg</span>(<span class="kw">coeftest</span>(model1, <span class="dt">vcov =</span> <span class="kw">vcovHC</span>(model1)))</code></pre></div>
+<pre><code>
+======================
+             Model 1  
+----------------------
+(Intercept)  -5.38 ***
+             (1.05)   
+education     1.76 ***
+             (0.08)   
+======================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>After correcting for heteroskedasticity we can see that the standard error for the independent variable <code>education</code> have increased from 0.074 to 0.08. Even though this increase might seem very small, remember that it is relative to the scale of the independent variable. Since the standard error is the measure of precision for the esitmated coefficients, an increase in standard error means that our original estiamte wasn’t as good as we thought it was before we corrected for heteroskedasticity.</p>
+<p>Now that we can get heteroskedastic corrected standard errors, how would you present them in a publication (or in your dissertation or the final exam)? Fortunately, all <a href="http://bit.ly/R_texreg"><code>textreg</code></a> functions such as <a href="http://bit.ly/R_screenreg"><code>screenreg()</code></a> or <a href="http://bit.ly/R_htmlreg"><code>htmlreg()</code></a> allow us to easily override the <em>standard errors</em> and <em>p-value</em> in the resulting output.</p>
+<p>We first need to save the result from <code>coeftest()</code> to an object and then override the output from <code>screenreg()</code> by extracting the two columns of interest.</p>
+<p>The corrected <em>standard errors</em> are in column <code>2</code> of the object returned by <code>coeftest()</code> and the associated <em>p-values</em> are in column <code>4</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">corrected_errors &lt;-<span class="st"> </span><span class="kw">coeftest</span>(model1, <span class="dt">vcov =</span> <span class="kw">vcovHC</span>(model1)) 
+
+<span class="kw">screenreg</span>(model1, 
+          <span class="dt">override.se =</span> corrected_errors[, <span class="dv">2</span>], 
+          <span class="dt">override.pval =</span> corrected_errors[, <span class="dv">4</span>])</code></pre></div>
+<pre><code>
+========================
+             Model 1    
+------------------------
+(Intercept)    -5.38 ***
+               (1.05)   
+education       1.76 ***
+               (0.08)   
+------------------------
+R^2             0.16    
+Adj. R^2        0.16    
+Num. obs.    2989       
+RMSE            9.50    
+========================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+</div>
+<div id="exercises-8" class="section level3">
+<h3><span class="header-section-number">9.1.5</span> Exercises</h3>
+<p><a href="http://journals.sagepub.com/doi/suppl/10.1177/0022002708330881">Does Indiscriminate Violence Incite Insurgent Attacks?</a> Download and then load <code>chechen.csv</code>.</p>
+<p><a href="https://uclspp.github.io/datasets/data/chechen.csv" type = "button" class = "btn btn-lg btn-primary" download>chechen data</a></p>
+<p></br></p>
+Jason Lyall:
+<blockquote>
+Does a state’s use of indiscriminate violence incite insurgent attacks? To date, most existing theories and empirical studies have concluded that such violence is highly counterproductive because it creates new grievances while forcing victims to seek security, if not safety, in rebel arms. This proposition is tested using Russian artillery fire in Chechnya (2000 to 2005) to estimate indiscriminate violence’s effect on subsequent patterns of insurgent attacks […].
+</blockquote>
+<p></br> Codebook: </br></p>
+<table style="width:65%;">
+<colgroup>
+<col width="12%" />
+<col width="52%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>vilno</td>
+<td>unique village number</td>
+</tr>
+<tr class="even">
+<td>disno</td>
+<td>unique distric number</td>
+</tr>
+<tr class="odd">
+<td>treat</td>
+<td>Russian artillery shelling of cechan village</td>
+</tr>
+<tr class="even">
+<td>poverty</td>
+<td>estimated need (3 is highest)</td>
+</tr>
+<tr class="odd">
+<td>pop2000</td>
+<td>population in 2000</td>
+</tr>
+<tr class="even">
+<td>lpop2000</td>
+<td>logged population in 2000</td>
+</tr>
+<tr class="odd">
+<td>pret</td>
+<td>pre-treatment insurgent attacks</td>
+</tr>
+<tr class="even">
+<td>post</td>
+<td>post-treatment insurgent attacks</td>
+</tr>
+<tr class="odd">
+<td>diff</td>
+<td>post minus pret</td>
+</tr>
+<tr class="even">
+<td>groznyy</td>
+<td>1 if in groznyy</td>
+</tr>
+<tr class="odd">
+<td>elevation</td>
+<td>in meters</td>
+</tr>
+<tr class="even">
+<td>lelev</td>
+<td>logged elevation</td>
+</tr>
+<tr class="odd">
+<td>tariq</td>
+<td>Tariqa (1=Naq.)</td>
+</tr>
+<tr class="even">
+<td>nn</td>
+<td>distance to nearest neighbour (km)</td>
+</tr>
+<tr class="odd">
+<td>lnn</td>
+<td>logged distance to nearest neighbour</td>
+</tr>
+<tr class="even">
+<td>reb</td>
+<td>rebel (1 = Basayev)</td>
+</tr>
+<tr class="odd">
+<td>garrison</td>
+<td>(1 = Russian base present)</td>
+</tr>
+<tr class="even">
+<td>vildays</td>
+<td>days to first insurgent attack after treatment</td>
+</tr>
+<tr class="odd">
+<td>deaths</td>
+<td>estimated number of individuals killed during Russian artillery shelling</td>
+</tr>
+<tr class="even">
+<td>deathsd</td>
+<td>1 indicates that individuals were killed during shelling</td>
+</tr>
+<tr class="odd">
+<td>wounded</td>
+<td>estimated number of individuals wounded during Russian artillery shelling</td>
+</tr>
+<tr class="even">
+<td>woundedd</td>
+<td>1 indicates that individuals were wounded during Russian artillery shelling</td>
+</tr>
+<tr class="odd">
+<td>fail</td>
+<td>1 if insurgent attack is observed in 90 days after artillery shelling</td>
+</tr>
+<tr class="even">
+<td>swept</td>
+<td>1 indicates village was swept in 90 days prior to artillery shelling</td>
+</tr>
+<tr class="odd">
+<td>prop</td>
+<td>estimated number of structures destroyed during shelling</td>
+</tr>
+<tr class="even">
+<td>propd</td>
+<td>1 indicates that property was destroyed during shelling</td>
+</tr>
+<tr class="odd">
+<td>lprop</td>
+<td>logged number of estimated structures destroyed or damaged during shelling</td>
+</tr>
+<tr class="even">
+<td>history</td>
+<td>number of times village had been shelled in the past</td>
+</tr>
+<tr class="odd">
+<td>historyd</td>
+<td>1 indicates that village had been shelled in the past</td>
+</tr>
+<tr class="even">
+<td>lhistory</td>
+<td>logged number of times village had been shelled</td>
+</tr>
+<tr class="odd">
+<td>change</td>
+<td>1 if DD is increase: 0 if no change, -1 if DD decreases</td>
+</tr>
+<tr class="even">
+<td>decrease</td>
+<td>1 if decrease recorded, 0 if not</td>
+</tr>
+<tr class="odd">
+<td>increase</td>
+<td>1 if increase in DD recorded, 0 if not</td>
+</tr>
+<tr class="even">
+<td>abandon</td>
+<td>number of neighbours within 5km^2 radius</td>
+</tr>
+</tbody>
+</table>
+<p></br></p>
+<p>The dataset comes from an article in the Journal of Conflict Resolution. Use the codebook above for the tasks and if anything is unclear, refer to the article that we have linked to above.</p>
+<ol style="list-style-type: decimal">
+<li>Load <code>chechen.csv</code>.</li>
+<li>Run a bivariate regression model with <code>diff</code> as the dependent variable and <code>treat</code> as the predictor.</li>
+<li>Control for additional variables. Discuss your choice of variables and refer to omitted variable bias.</li>
+<li>Discuss the improvement in model fit and use the appropriate test statistic.</li>
+<li>Check for non-linearity and if there is solve the problem.</li>
+<li>Check for heteroskedasticity and if there is solve the problem.</li>
+<li>Thoroughly compare the models, and interpret the outcome in substantial as well statistical terms - do not forget to talk about model fit. What are the implications of this?</li>
+</ol>
+<p></br></p>
+<p><a href="https://www.cambridge.org/core/journals/journal-of-economic-history/article/ordinary-economic-voting-behavior-in-the-extraordinary-election-of-adolf-hitler/8C79A0AB9DA174B7D81A6EB313B1EDFC">Ordinary Economic Voting Behavior in the Extraordinary Election of Adolf Hitler</a> Download and then load <code>who_voted_nazi_in_1932.csv</code>.</p>
+<p><a href="https://uclspp.github.io/datasets/data/who_voted_nazi_in_1932.csv" type = "button" class = "btn btn-lg btn-primary" download>who voted nazi in 1932 data</a></p>
+<p></br></p>
+<blockquote>
+The goal of analysis is to investigate which types of voters (based on their occupation category) cast ballots for the Nazis. One hypothesis says that the Nazis received much support from blue-collar workers. Since the data do not directly tell us how many blue-collar workers voted for the Nazis, we must infer this information using a statistical analysis […].
+</blockquote>
+<p>The data contains aggregate voting behaviour from 681 voting districts.</p>
+<p></br> Codebook: </br></p>
+<table>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>sharenazis</td>
+<td>Percent of the vote Nazis received in the district</td>
+</tr>
+<tr class="even">
+<td>nazivote</td>
+<td>Number of Nazi votes</td>
+</tr>
+<tr class="odd">
+<td>nvoter</td>
+<td>Total number of eligible voters</td>
+</tr>
+<tr class="even">
+<td>shareblue</td>
+<td>Percent of blue-collar potential voters</td>
+</tr>
+<tr class="odd">
+<td>sharewhite</td>
+<td>Percent of white-collar potential voters</td>
+</tr>
+<tr class="even">
+<td>shareself</td>
+<td>Percent of self-employed potential voters</td>
+</tr>
+<tr class="odd">
+<td>sharedomestic</td>
+<td>Percent of domestically employed potential voters</td>
+</tr>
+<tr class="even">
+<td>shareunemployed</td>
+<td>Percent of unemployed potential voters</td>
+</tr>
+</tbody>
+</table>
+<ol start="8" style="list-style-type: decimal">
+<li>Load <code>who_voted_nazi_in_1932.csv</code>.</li>
+<li>Run a bivariate model to test whether blue-collar voters voted for the Nazis.</li>
+<li>Control for additional variables. Discuss your choice of variables and refer to omitted variable bias.</li>
+<li>Can you fit a model using <code>shareblue</code>, <code>sharewhite</code>, <code>shareself</code>, <code>sharedomestic</code>, and <code>shareunemployed</code> as predictors? Why or why not?</li>
+<li>Check for heteroskedasticity and if there is solve the problem.</li>
+<li>Interpret your models.</li>
+</ol>
+<p></br></p>
+<p>Load the Massachusetts Test Scores dataset <code>MA_Schools.csv</code> from your PUBLG100 folder.</p>
+<p>The dataset contains <code>16</code> variables, but we’re only interested in the following:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>score8</td>
+<td>8th grade scores</td>
+</tr>
+<tr class="even">
+<td>stratio</td>
+<td>Student-teacher ratio</td>
+</tr>
+<tr class="odd">
+<td>english</td>
+<td>% English learners</td>
+</tr>
+<tr class="even">
+<td>lunch</td>
+<td>% Receiving lunch subsidy</td>
+</tr>
+<tr class="odd">
+<td>income</td>
+<td>Average district income</td>
+</tr>
+</tbody>
+</table>
+<ol start="14" style="list-style-type: decimal">
+<li>Fit a model to explain the relationship between percentage of English learners and average 8th grade scores.</li>
+<li>Plot the model and the regression line.</li>
+<li>Check for correlation between the variables listed above to see if there are other variables that should be included in the model.
+<ul>
+<li>HINT: There are some missing values in the dataset. Remove the NA’s from the dataset like we have seen previously.</li>
+</ul>
+<ol style="list-style-type: lower-alpha">
+<li>Add two variables from the list above that are highly correlated with both the independent and the dependent variable and run a linear regression again.</li>
+</ol></li>
+<li>Compare the two models. Did the first model suffer from omitted variable bias?</li>
+<li>Plot the residuals against the fitted values from the second model to visually check for heteroskedasticity.</li>
+<li>Run the Breusch-Pagan Test to see whether the model suffers from heteroskedastic errors.</li>
+<li>Correct for heteroskedasticity (if needed) and present the results with corrected standard errors and p-values.</li>
+<li>Save everything and source your script. If you get error messages, clean your script.</li>
+</ol>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="seminar8.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["statistics1.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

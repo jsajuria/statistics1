@@ -5627,8 +5627,8 @@ is the maximum value.
 \end{Shaded}
 
 \begin{verbatim}
- [1] 6.871934 3.731935 4.374814 1.688750 3.707675 5.235138 3.414265
- [8] 2.100459 2.166858 5.501552
+ [1] 3.139090 6.424829 2.061919 1.941946 5.979947 5.961752 2.637821
+ [8] 1.071156 6.098825 1.694422
 \end{verbatim}
 
 We have indeed drawn 10 numbers but they are not integers as we would
@@ -5647,8 +5647,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 6.871934 3.731935 4.374814 1.688750 3.707675 5.235138 3.414265
- [8] 2.100459 2.166858 5.501552
+ [1] 3.139090 6.424829 2.061919 1.941946 5.979947 5.961752 2.637821
+ [8] 1.071156 6.098825 1.694422
 \end{verbatim}
 
 \begin{Shaded}
@@ -5659,8 +5659,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 5.701267 3.663256 5.044373 6.007837 6.200290 1.073329 4.335080
- [8] 3.001303 6.590101 6.680359
+ [1] 4.621894 3.806171 3.045458 4.204994 5.187980 2.319311 6.362910
+ [8] 3.725839 4.536423 3.768513
 \end{verbatim}
 
 The numbers of the first and second roll differ because we have drawn
@@ -7900,14 +7900,15 @@ You can also find time-series and cross-section data sets on this page.
 
 The dataset is in stata format (\texttt{.dta}). Loading it requires the
 \texttt{foreign} library and the \texttt{read.dta()} function which
-operates similar to \texttt{read.csv()}.
+operates similar to \texttt{read.csv()}. Download the data
+\href{https://github.com/philippbroniecki/statistics1/blob/master/data/qog_std_cs_jan15.dta?raw=TRUE}{here}
 
 Let's load the data set
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# load dataset in Stata format from online source}
-\NormalTok{world_data <-}\StringTok{ }\KeywordTok{read.dta}\NormalTok{(}\StringTok{"https://github.com/philippbroniecki/statistics1/raw/master/data/qog_std_cs_jan15.dta"}\NormalTok{)}
+\NormalTok{world_data <-}\StringTok{ }\KeywordTok{read.dta}\NormalTok{(}\StringTok{"qog_std_cs_jan15.dta"}\NormalTok{)}
 
 \CommentTok{# check the dimensions of the dataset}
 \KeywordTok{dim}\NormalTok{(world_data)}
@@ -8679,547 +8680,6 @@ if you want.
 Midterm Preparatory Questions Prepartory Questions Dataset Midterm
 Preparatory Response
 
-\subsection{Solutions}\label{solutions-6}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(texreg)}
-\end{Highlighting}
-\end{Shaded}
-
-\paragraph{Exercise 2}\label{exercise-2-4}
-
-You can download the data and load from your local disk but since it is
-available online, we download it directly from the Quality of Government
-Institute website.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{df <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"http://www.qogdata.pol.gu.se/data/qog_std_cs_jan17.csv"}\NormalTok{, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\paragraph{Exercise 3}\label{exercise-3-6}
-
-Pretend that you are writing a research paper. Select one dependent
-variable that you want to explain with a statistical model.
-
-We are interested in explaining the quality of government idicator,
-where larger values indicate better overall governance. Before we go on
-to check what predicts better governance, we will take a look at the
-variable and remove NA's. We will also rename the variable.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# rename}
-\KeywordTok{names}\NormalTok{(df)[}\KeywordTok{which}\NormalTok{(}\KeywordTok{names}\NormalTok{(df) }\OperatorTok{==}\StringTok{ "icrg_qog"}\NormalTok{)] <-}\StringTok{ "gov_quality"}
-
-\CommentTok{# look at DV}
-\KeywordTok{summary}\NormalTok{(df}\OperatorTok{$}\NormalTok{gov_quality) }\CommentTok{# 55 NA's}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-0.08333 0.38889 0.47222 0.52540 0.63194 0.97222      55 
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# create a copy of full dataset}
-\NormalTok{df.full <-}\StringTok{ }\NormalTok{df}
-
-\CommentTok{# drop NA's}
-\NormalTok{df <-}\StringTok{ }\NormalTok{df[ }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(df}\OperatorTok{$}\NormalTok{gov_quality), ]}
-\end{Highlighting}
-\end{Shaded}
-
-The range of the quality of government variable is 0 to 1. We will
-re-scale to 0 - 100 to make results easier to interpret.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{df}\OperatorTok{$}\NormalTok{gov_quality <-}\StringTok{ }\NormalTok{df}\OperatorTok{$}\NormalTok{gov_quality }\OperatorTok{*}\StringTok{ }\DecValTok{100}
-\end{Highlighting}
-\end{Shaded}
-
-\paragraph{Exercise 4}\label{exercise-4-6}
-
-From Putnam's ``bowling alone'', we know of the theory of the importance
-of social capital for successful democratic governance. We, therefore,
-choose the social capital indicator \texttt{bti\_sc}, where larger
-values stand for more social capital. We expect better governance in
-countries where social capital is higher. Before we estimate the model,
-we look at the variable, remove missings, and rename it.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# look at IV}
-\KeywordTok{summary}\NormalTok{(df}\OperatorTok{$}\NormalTok{bti_sc)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-  1.000   4.000   5.000   5.324   6.000   9.000      34 
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# remove NA's}
-\NormalTok{df <-}\StringTok{ }\NormalTok{df[ }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(df}\OperatorTok{$}\NormalTok{bti_sc), ]}
-
-\CommentTok{# rename}
-\KeywordTok{names}\NormalTok{(df)[}\KeywordTok{which}\NormalTok{(}\KeywordTok{names}\NormalTok{(df) }\OperatorTok{==}\StringTok{ "bti_sc"}\NormalTok{)] <-}\StringTok{ "social_capital"}
-\end{Highlighting}
-\end{Shaded}
-
-Our sample size is down to 105 countries. This is still a decent sample
-size. However, we would like to avoid loosing many more observations.
-Smaller sample sizes are a danger to inference (through increased
-variance - effects are less likely to be discovered and if they are,
-they are more likely to be over-estimates).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# linear model}
-\NormalTok{m1 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(gov_quality }\OperatorTok{~}\StringTok{ }\NormalTok{social_capital, }\DataTypeTok{data =}\NormalTok{ df)}
-\KeywordTok{screenreg}\NormalTok{(m1)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-
-==========================
-                Model 1   
---------------------------
-(Intercept)      24.68 ***
-                 (4.02)   
-social_capital    3.73 ***
-                 (0.72)   
---------------------------
-R^2               0.21    
-Adj. R^2          0.20    
-Num. obs.       105       
-RMSE             12.41    
-==========================
-*** p < 0.001, ** p < 0.01, * p < 0.05
-\end{verbatim}
-
-Firstly, the intercept is not meaningful in this case because social
-capital ranges from 1 to 9, i.e.~there is no country with 0 social
-capital.
-
-The coefficient of social capital is positive and significant. Dividing
-the estimate by the standard error yields the t value which is 5.2. At a
-conventional alpha level of 0.05, we reject the null hypothesis when t
-is more extreme than \(\pm\) 1.96. This is the case here. In line with
-our expectation, more social capital increases the quality of governance
-on average by 3.73 points (on a 0 - 100 scale).
-
-Increasing social capital by one point of its scale is a substantial
-amount (1/9 or 11\(\%\) of its range). So, if social capital increases
-by a substantial amount, does governance also go up by a substantial
-amount? A 3.73 point change on a 0-100 scale is 3.73/101 or 4\(\%\).
-That is still a substantial change considering that we are measuring how
-well governed an entire country is.
-
-\paragraph{Exercise 5}\label{exercise-5-6}
-
-Add some additional explanatory variables (no more than 5) to your model
-and justify the choice again.
-
-We have not talked about this in the lecture before and it will not be a
-hurdle in the midterm. However, it is important that you keep an eye on
-sample size. If the sample size becomes too small it is unlikely that
-you can make meaningful statements about the world. We, therefore,
-selected variables with an eye on the missing values and their
-theoretical importance. If you see studies that are based on small
-samples, be suspicious.
-
-Firstly, we used infant mortality as a general indicator for development
-in the sense that basic health can be provided. We expect that if health
-conditions get worse than that should affect the capacity to govern
-negatively because it points to a basic lack of resources. We include a
-variable that measures conflict intensity. Violent conflict seriously,
-impedes the ability to govern. Finally, we added an index for the
-freedom of the press. The press is often considered to be the forth
-column in a state (besides the legislative, executive, and judicial
-branches). The function is to check the government. A role, that can be
-best fulfilled by a free press. This will lead to a more accountable
-government which we conjecture increases the quality of government.
-
-We rename the variables and drop missing values on them.
-
-Note: To make models comparable, they should be based on the same
-sample. So, after we dropped missing values, we have to re-run our
-bivariate model as well.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# renaming}
-\KeywordTok{names}\NormalTok{(df)[}\KeywordTok{which}\NormalTok{(}\KeywordTok{names}\NormalTok{(df)}\OperatorTok{==}\StringTok{"wef_imort"}\NormalTok{)] <-}\StringTok{ "infant_mortality"}
-\KeywordTok{names}\NormalTok{(df)[}\KeywordTok{which}\NormalTok{(}\KeywordTok{names}\NormalTok{(df)}\OperatorTok{==}\StringTok{"fh_fotpsc"}\NormalTok{)] <-}\StringTok{ "press_freedom"}
-\KeywordTok{names}\NormalTok{(df)[}\KeywordTok{which}\NormalTok{(}\KeywordTok{names}\NormalTok{(df)}\OperatorTok{==}\StringTok{"bti_ci"}\NormalTok{)] <-}\StringTok{ "conflict_intensity"}
-
-\KeywordTok{summary}\NormalTok{(df}\OperatorTok{$}\NormalTok{infant_mortality) }\CommentTok{# infant mortality}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-   2.00    9.30   17.30   27.73   42.80  119.20      12 
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(df}\OperatorTok{$}\NormalTok{press_freedom) }\CommentTok{# freedom of the press index}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  16.00   41.00   57.00   55.57   68.00   97.00 
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(df}\OperatorTok{$}\NormalTok{conflict_intensity) }\CommentTok{# conflict intensity}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  1.000   3.000   4.000   4.762   6.000  10.000 
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# drop missings}
-\NormalTok{df <-}\StringTok{ }\NormalTok{df[ }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(df}\OperatorTok{$}\NormalTok{infant_mortality) ,]}
-
-\CommentTok{# re-run model 1 with new sample and check differences}
-\NormalTok{m1.rerun <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(gov_quality }\OperatorTok{~}\StringTok{ }\NormalTok{social_capital, }\DataTypeTok{data =}\NormalTok{ df)}
-\KeywordTok{screenreg}\NormalTok{( }\KeywordTok{list}\NormalTok{(m1, m1.rerun) )}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-
-=====================================
-                Model 1     Model 2  
--------------------------------------
-(Intercept)      24.68 ***  30.11 ***
-                 (4.02)     (4.52)   
-social_capital    3.73 ***   2.93 ***
-                 (0.72)     (0.79)   
--------------------------------------
-R^2               0.21       0.13    
-Adj. R^2          0.20       0.12    
-Num. obs.       105         93       
-RMSE             12.41      12.03    
-=====================================
-*** p < 0.001, ** p < 0.01, * p < 0.05
-\end{verbatim}
-
-As you can see, the difference is not small. This is less than ideal.
-R\^{}2 goes down by alot and the magnitude of social capital also
-changes. There is not much you can do (without advanced stats) except
-being transparent about the differences.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# add new control variables}
-\NormalTok{m2 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(gov_quality }\OperatorTok{~}\StringTok{ }\NormalTok{social_capital }\OperatorTok{+}\StringTok{ }\NormalTok{infant_mortality }\OperatorTok{+}\StringTok{ }\NormalTok{press_freedom }\OperatorTok{+}\StringTok{ }\NormalTok{conflict_intensity, }\DataTypeTok{data =}\NormalTok{ df )}
-\KeywordTok{screenreg}\NormalTok{(}\KeywordTok{list}\NormalTok{(m1.rerun, m2))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-
-=========================================
-                    Model 1    Model 2   
------------------------------------------
-(Intercept)         30.11 ***   64.29 ***
-                    (4.52)     (12.74)   
-social_capital       2.93 ***   -0.08    
-                    (0.79)      (1.27)   
-infant_mortality                -0.23 ***
-                                (0.05)   
-press_freedom                   -0.10    
-                                (0.10)   
-conflict_intensity              -1.29    
-                                (0.66)   
------------------------------------------
-R^2                  0.13        0.39    
-Adj. R^2             0.12        0.37    
-Num. obs.           93          93       
-RMSE                12.03       10.21    
-=========================================
-*** p < 0.001, ** p < 0.01, * p < 0.05
-\end{verbatim}
-
-\paragraph{Exercise 6}\label{exercise-6-6}
-
-Carry out the F-test to check whether the new model explains more than
-the old model.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# f-test}
-\KeywordTok{anova}\NormalTok{(m1.rerun, m2) }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-Analysis of Variance Table
-
-Model 1: gov_quality ~ social_capital
-Model 2: gov_quality ~ social_capital + infant_mortality + press_freedom + 
-    conflict_intensity
-  Res.Df   RSS Df Sum of Sq    F       Pr(>F)    
-1     91 13170                                   
-2     88  9169  3    4000.9 12.8 0.0000005133 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-\end{verbatim}
-
-As we saw by comparing R\^{}2, the bigger model explains a lot more
-variance in the quality of government. The f-test shows that this
-difference is not due to chance. The p value is smaller than 0.05,
-hence, we reject the null that the small model and the larger model
-really explain the same. Another way to put this is: the variables we
-have added are jointly significant.
-
-\paragraph{Exercise 7}\label{exercise-7-5}
-
-Produce a regression table of the better model.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{htmlreg}\NormalTok{(m2, }\DataTypeTok{file =} \StringTok{"regression_quality_of_government.doc"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-The table was written to the file 'regression_quality_of_government.doc'.
-\end{verbatim}
-
-\paragraph{Exercise 8}\label{exercise-8-6}
-
-Interpret the output of the better model. State your expectations and
-whether they were met.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{screenreg}\NormalTok{( }\KeywordTok{list}\NormalTok{(m1.rerun, m2))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-
-=========================================
-                    Model 1    Model 2   
------------------------------------------
-(Intercept)         30.11 ***   64.29 ***
-                    (4.52)     (12.74)   
-social_capital       2.93 ***   -0.08    
-                    (0.79)      (1.27)   
-infant_mortality                -0.23 ***
-                                (0.05)   
-press_freedom                   -0.10    
-                                (0.10)   
-conflict_intensity              -1.29    
-                                (0.66)   
------------------------------------------
-R^2                  0.13        0.39    
-Adj. R^2             0.12        0.37    
-Num. obs.           93          93       
-RMSE                12.03       10.21    
-=========================================
-*** p < 0.001, ** p < 0.01, * p < 0.05
-\end{verbatim}
-
-Our re-run bivariate model explains 13\(\%\) of the variance of the
-quality of government. This is not bad for a small model. By adding our
-three variables, we increased explained variance to 40\(\%\) which is a
-large increase. Our new model seems to explain quality of government
-much better than the smaller model.
-
-The intercept is not meaningful in either model. The coefficient of
-social capital is no longer significant (its standard error is larger in
-absolute terms than the coefficient estimate). We, therefore, do find
-evidence for the effect of social capital when we control basic health,
-press freedom, and conflict intensity also. Neither press freedom nor
-conflict intensity reach conventional levels of significance (both
-coefficients are less than 1.96 standard deviations away from zero). We
-find that the worth the health conditions, the less well governed a
-country will be. Infant mortality is measured in deaths/ 1000 live
-births. If that proportion increases by 10, the government index
-decreases by 2.3 which corresponds to roughly 2\(\%\) of its range.
-
-\paragraph{Exercise 9}\label{exercise-9-5}
-
-Calculate fitted values whilst varying at least one of your continuous
-explanatory variables.
-
-We only have one significant variable. It does not make sense to vary
-insignificant variables because, we cannot reject the null that their
-effect is zero. We vary infant mortality from minimum to maximum.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# see minimum and maximum of infant mortality}
-\KeywordTok{summary}\NormalTok{(df}\OperatorTok{$}\NormalTok{infant_mortality)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-   2.00    9.30   17.30   27.73   42.80  119.20 
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# set our covariates}
-\NormalTok{covariates <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
-  \DataTypeTok{social_capital =} \KeywordTok{mean}\NormalTok{(df}\OperatorTok{$}\NormalTok{social_capital), }
-  \DataTypeTok{infant_mortality =} \KeywordTok{seq}\NormalTok{(}\DataTypeTok{from =} \DecValTok{2}\NormalTok{, }\DataTypeTok{to =} \DecValTok{120}\NormalTok{, }\DataTypeTok{by =} \DecValTok{1}\NormalTok{),}
-  \DataTypeTok{press_freedom =} \KeywordTok{mean}\NormalTok{(df}\OperatorTok{$}\NormalTok{press_freedom),}
-  \DataTypeTok{conflict_intensity =} \KeywordTok{mean}\NormalTok{(df}\OperatorTok{$}\NormalTok{conflict_intensity)}
-\NormalTok{  )}
-
-\CommentTok{# check that everything looks okay}
-\KeywordTok{head}\NormalTok{(covariates) }\CommentTok{# looks fine}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-  social_capital infant_mortality press_freedom conflict_intensity
-1       5.473118                2      53.92473           4.612903
-2       5.473118                3      53.92473           4.612903
-3       5.473118                4      53.92473           4.612903
-4       5.473118                5      53.92473           4.612903
-5       5.473118                6      53.92473           4.612903
-6       5.473118                7      53.92473           4.612903
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# calculate fitted values using predict()}
-\NormalTok{fitted.vals <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(m2, }\DataTypeTok{newdata =}\NormalTok{ covariates)}
-
-\CommentTok{# attch the fitted values to our covariates data}
-\NormalTok{covariates}\OperatorTok{$}\NormalTok{fitted.vals <-}\StringTok{ }\NormalTok{fitted.vals}
-
-\CommentTok{# hooray, for each scenario a predicted outcome}
-\KeywordTok{head}\NormalTok{(covariates)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-  social_capital infant_mortality press_freedom conflict_intensity
-1       5.473118                2      53.92473           4.612903
-2       5.473118                3      53.92473           4.612903
-3       5.473118                4      53.92473           4.612903
-4       5.473118                5      53.92473           4.612903
-5       5.473118                6      53.92473           4.612903
-6       5.473118                7      53.92473           4.612903
-  fitted.vals
-1    52.19227
-2    51.95759
-3    51.72292
-4    51.48825
-5    51.25358
-6    51.01891
-\end{verbatim}
-
-\paragraph{Exercise 10}\label{exercise-10-5}
-
-Plot the result.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{plot}\NormalTok{(}
-  \DataTypeTok{y =}\NormalTok{ covariates}\OperatorTok{$}\NormalTok{fitted.vals,}
-  \DataTypeTok{x =}\NormalTok{ covariates}\OperatorTok{$}\NormalTok{infant_mortality, }
-  \DataTypeTok{frame.plot =} \OtherTok{FALSE}\NormalTok{,}
-  \DataTypeTok{main =} \StringTok{"Effect of infant mortality on quality of government"}\NormalTok{,}
-  \DataTypeTok{ylab =} \StringTok{"quality of government"}\NormalTok{,}
-  \DataTypeTok{xlab =} \StringTok{"infant mortality per 100 live births"}\NormalTok{,}
-  \DataTypeTok{type =} \StringTok{"l"}\NormalTok{,}
-  \DataTypeTok{lwd =} \DecValTok{2}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{statistics1_files/figure-latex/unnamed-chunk-353-1.pdf}
-
-\paragraph{Exercise 11}\label{exercise-11-4}
-
-Interpret the plot.
-
-We interpret the simple plot including just the rgression line. It
-illustrates the strong negative relation between infant mortality, our
-proxy for basic health and resource conditions, and the quality of
-government generally. At 20 deaths per 1000 live births, we predict
-quality of government at roughly 48. At 100 deaths per 1000 live births,
-quality of government is predicted to be at roughly 33 only. Therefore,
-quality of government decreased by 31\(\%\) (\(\frac{48-33}{48}\)), a
-substantial amount.
-
-\paragraph{Extra Info (not relevant for
-midterm)}\label{extra-info-not-relevant-for-midterm}
-
-Below, we will show you how you could illustrate the confidence interval
-around the prediction. This is not necessary for the midterm but usefule
-to know. We can set the option \texttt{se.fit\ =\ TRUE} which will
-return standard errors for the prediction as well.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{prediction.with.se <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(m2, }\DataTypeTok{newdata =}\NormalTok{ covariates, }\DataTypeTok{se.fit =} \OtherTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-We can extract the standard error with the dollar sign and add them to
-our \texttt{covariates} dataset.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{covariates}\OperatorTok{$}\NormalTok{se.of.y <-}\StringTok{ }\NormalTok{prediction.with.se}\OperatorTok{$}\NormalTok{se.fit}
-\end{Highlighting}
-\end{Shaded}
-
-Now, we can draw confidence intervals.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{plot}\NormalTok{(}
-  \DataTypeTok{y =}\NormalTok{ covariates}\OperatorTok{$}\NormalTok{fitted.vals, }
-  \DataTypeTok{x=}\NormalTok{ covariates}\OperatorTok{$}\NormalTok{infant_mortality,}
-  \DataTypeTok{frame.plot =} \OtherTok{FALSE}\NormalTok{,}
-  \DataTypeTok{main =} \StringTok{"Effect of infant mortality on quality of government"}\NormalTok{,}
-  \DataTypeTok{ylab =} \StringTok{"quality of government"}\NormalTok{,}
-  \DataTypeTok{xlab =} \StringTok{"infant mortality per 100 live births"}\NormalTok{,}
-  \DataTypeTok{type =} \StringTok{"l"}\NormalTok{,}
-  \DataTypeTok{lwd =} \DecValTok{2}
-\NormalTok{)}
-\CommentTok{# add lines for confidence intervals}
-\CommentTok{# upper bound}
-\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ covariates}\OperatorTok{$}\NormalTok{infant_mortality, }\DataTypeTok{y =}\NormalTok{ covariates}\OperatorTok{$}\NormalTok{fitted.vals }\OperatorTok{+}\StringTok{ }\FloatTok{1.96} \OperatorTok{*}\StringTok{ }\NormalTok{covariates}\OperatorTok{$}\NormalTok{se.of.y, }
-      \DataTypeTok{lty =} \StringTok{"dashed"}\NormalTok{, }\DataTypeTok{lwd =} \FloatTok{1.5}\NormalTok{)}
-\CommentTok{# lower bound}
-\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ covariates}\OperatorTok{$}\NormalTok{infant_mortality, }\DataTypeTok{y =}\NormalTok{ covariates}\OperatorTok{$}\NormalTok{fitted.vals }\OperatorTok{-}\StringTok{ }\FloatTok{1.96} \OperatorTok{*}\StringTok{ }\NormalTok{covariates}\OperatorTok{$}\NormalTok{se.of.y, }
-      \DataTypeTok{lty =} \StringTok{"dashed"}\NormalTok{, }\DataTypeTok{lwd =} \FloatTok{1.5}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{statistics1_files/figure-latex/unnamed-chunk-356-1.pdf}
-
-This was purely for your enjoyment and you won't be tested on it. It
-just illustrates the uncertainty of the predictions.
-
 \section{Multiple linear regression models
 (II)}\label{multiple-linear-regression-models-ii}
 
@@ -9500,7 +8960,7 @@ the relationship in a scatterplot and draw the regression line.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{statistics1_files/figure-latex/unnamed-chunk-369-1.pdf}
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-351-1.pdf}
 
 This model looks awful. We over-predict quality of live for poor
 countries. We under-predict for medium wealth levels and over-predict
@@ -9748,7 +9208,7 @@ Copy the plot command in the seminar, you can go over it at home.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{statistics1_files/figure-latex/unnamed-chunk-381-1.pdf}
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-363-1.pdf}
 
 To explain the level of development with quality of institutions is
 intuitive. We could add the colonial past dummy, to control for
@@ -9951,7 +9411,7 @@ colours in the colour palette respectively.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{statistics1_files/figure-latex/unnamed-chunk-385-1.pdf}
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-367-1.pdf}
 
 As you can see, the line is steeper for ex colonies than for countries
 that were never colonised. That means the effect of institutional
@@ -10054,7 +9514,7 @@ quality of life (hdi) and wealth (gdp/captia).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{statistics1_files/figure-latex/unnamed-chunk-387-1.pdf}
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-369-1.pdf}
 
 It's easy to see, that the relationship between GDP per captia and the
 Human Development Index is not linear. Increases in wealth rapidly
@@ -10241,7 +9701,7 @@ function.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{statistics1_files/figure-latex/unnamed-chunk-393-1.pdf}
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-375-1.pdf}
 
 At home, we want you to estimate \texttt{even.better.model} with
 GDP/capita raised to the power of three to determine whether the data
@@ -10298,7 +9758,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{statistics1_files/figure-latex/unnamed-chunk-394-1.pdf}
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-376-1.pdf}
 
 We generate an even better fit with the cubic, however it still looks
 somewhat strange. The cubic is being wagged around by its tail. The few
@@ -10337,7 +9797,7 @@ the variable.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{statistics1_files/figure-latex/unnamed-chunk-395-1.pdf}
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-377-1.pdf}
 
 As you can see, the relationship now looks linear and we get the best
 fit to the data if we run our model with log-transformed gdp.
@@ -10435,7 +9895,7 @@ model fit graphically.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{statistics1_files/figure-latex/unnamed-chunk-397-1.pdf}
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-379-1.pdf}
 
 The dark purple line shows the log-transformed model. It clearly fits
 the data best.
@@ -10660,7 +10120,1136 @@ we can just pass the intercept and slope as two separate arguments.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{statistics1_files/figure-latex/unnamed-chunk-402-1.pdf}
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-384-1.pdf}
+
+\section{Regression Assumptions}\label{regression-assumptions}
+
+\subsection{Seminar}\label{seminar-8}
+
+Clear the environment and set the working directory.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rm}\NormalTok{(}\DataTypeTok{list =} \KeywordTok{ls}\NormalTok{())}
+\KeywordTok{setwd}\NormalTok{(}\StringTok{"Your directory"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Required Packages}\label{required-packages}
+
+Today, we need two new packages: \texttt{lmtest} and \texttt{sandwich}.
+We'll explain the functionality offered by each package as we go along.
+We load the the libraries up front and you need to install
+\texttt{lmtest} and \texttt{sandwich} once.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"lmtest"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"sandwich"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Now load the libraries.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(lmtest)}
+\KeywordTok{library}\NormalTok{(sandwich)}
+\KeywordTok{library}\NormalTok{(texreg)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Omitted Variable Bias}\label{omitted-variable-bias}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{http://tylervigen.com/spurious-correlations}{Spurious
+  Correlations}
+\end{itemize}
+
+We have already dealt with OVB at length, but it is worth going over
+another (silly) example here for revision purposes (we talked about this
+example in class as well).
+
+\paragraph[ Ice Cream and Shark
+Attacks]{\texorpdfstring{\protect\includegraphics{./img/shark.png} Ice
+Cream and Shark
+Attacks}{ Ice Cream and Shark Attacks}}\label{ice-cream-and-shark-attacks}
+
+Does ice cream consumption increase the likelihood of being attacked by
+a shark? Let's explore a dataset of shark attacks, ice cream sales and
+monthly temperatures collected over 7 years to find out.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{shark_attacks <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"shark_attacks.csv"}\NormalTok{)}
+\KeywordTok{head}\NormalTok{(shark_attacks)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  Year Month SharkAttacks Temperature IceCreamSales
+1 2008     1           25        11.9            76
+2 2008     2           28        15.2            79
+3 2008     3           32        17.2            91
+4 2008     4           35        18.5            95
+5 2008     5           38        19.4           103
+6 2008     6           41        22.1           108
+\end{verbatim}
+
+Run a linear model to see the effects of ice cream consumption on shark
+attacks.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model1 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(SharkAttacks }\OperatorTok{~}\StringTok{ }\NormalTok{IceCreamSales, }\DataTypeTok{data =}\NormalTok{ shark_attacks)}
+\KeywordTok{screenreg}\NormalTok{(model1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+========================
+               Model 1  
+------------------------
+(Intercept)     4.35    
+               (5.24)   
+IceCreamSales   0.34 ***
+               (0.06)   
+------------------------
+R^2             0.29    
+Adj. R^2        0.28    
+Num. obs.      84       
+RMSE            7.17    
+========================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+Let's check pairwise correlation between ice cream consumption, average
+monthly temperatures and shark attacks.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cor}\NormalTok{(shark_attacks[, }\KeywordTok{c}\NormalTok{(}\StringTok{"SharkAttacks"}\NormalTok{, }\StringTok{"Temperature"}\NormalTok{, }\StringTok{"IceCreamSales"}\NormalTok{)])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+              SharkAttacks Temperature IceCreamSales
+SharkAttacks     1.0000000   0.7169660     0.5343576
+Temperature      0.7169660   1.0000000     0.5957694
+IceCreamSales    0.5343576   0.5957694     1.0000000
+\end{verbatim}
+
+It looks like there's high correlation between average monthly
+temperatures and shark attacks, and also between ice cream consumption
+and monthly temperatures, so let's add the \texttt{Temperature} variable
+to our model.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model2 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(SharkAttacks }\OperatorTok{~}\StringTok{ }\NormalTok{IceCreamSales }\OperatorTok{+}\StringTok{ }\NormalTok{Temperature, }\DataTypeTok{data =}\NormalTok{ shark_attacks)}
+\end{Highlighting}
+\end{Shaded}
+
+Now compare it to the first model.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{screenreg}\NormalTok{(}\KeywordTok{list}\NormalTok{(model1, model2))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+===================================
+               Model 1    Model 2  
+-----------------------------------
+(Intercept)     4.35       0.57    
+               (5.24)     (4.31)   
+IceCreamSales   0.34 ***   0.10    
+               (0.06)     (0.06)   
+Temperature                1.29 ***
+                          (0.20)   
+-----------------------------------
+R^2             0.29       0.53    
+Adj. R^2        0.28       0.52    
+Num. obs.      84         84       
+RMSE            7.17       5.84    
+===================================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+The second model shows that once we control for monthly temperatures,
+ice cream consumption has no effect on the number of shark attacks.
+
+What was the bias in the coefficient of \texttt{IceCreamSales} in the
+model where we did not control for \texttt{Temperature}?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# coefficient in new model minus coefficient in old model}
+\FloatTok{0.10} \OperatorTok{-}\StringTok{  }\FloatTok{0.34}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] -0.24
+\end{verbatim}
+
+We overestimated the effect by 0.24, more than two thirds of the effect.
+We know that the real effect of selling ice cream on shark attacks is
+exactly 0 (unless for some reason sharks really like icecream). The two
+phenomena are unrelated. Our estimate, although insignificant, is still
+an over-estimate.
+
+\subsubsection{Detecting non-linearity}\label{detecting-non-linearity}
+
+For this part of the problem set, we will be using data on the results
+of the German Bundestag elections in 2017. You can load this data
+directly from GitHub using the following command:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{german_results <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"https://raw.githubusercontent.com/UCLSPP/datasets/master/data/german_election_results.csv"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+Note, the data contains weird looking German characters. If you want
+them properly displayed, load the data using its character encoding
+utf-8 like so:
+\texttt{german\_results\ \textless{}-\ read.csv("https://raw.githubusercontent.com/UCLSPP/datasets/master/data/german\_election\_results.csv",\ fileEncoding\ =\ "utf-8")}.
+It's usually not a problem because it only messes up the names of the
+districts.
+
+We should again quickly see the variables that are included in the data
+using the \texttt{head()} function (or any other way you prefer):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(german_results)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+                             district      CDU      SPD      AfD Die.Linke
+1             Flensburg â\200“ Schleswig 39.99930 28.01454 6.214686  7.129180
+2 Nordfriesland â\200“ Dithmarschen Nord 45.14833 25.15210 5.881031  5.150071
+3     Steinburg â\200“ Dithmarschen SÃ¼d 41.87862 26.14625 7.642704  5.481995
+4              Rendsburg-EckernfÃ¶rde 42.68043 28.87215 6.826306  5.172259
+5                                Kiel 30.50011 31.05149 6.136603  7.376207
+6               PlÃ¶n â\200“ NeumÃ¼nster 40.69998 28.91278 7.834377  5.371334
+      Grune       FDP unemploymentrate migrantfraction catholicfraction
+1 10.512869  6.544773             7.16            10.0              5.1
+2  9.453158  8.051428             7.05             8.0              5.2
+3  6.716686 11.033518             6.30             9.2              4.2
+4  8.954402  6.455395             5.18             8.5              4.9
+5 14.403295  7.462318             9.65            18.0              7.3
+6  8.993862  7.187579             6.72            10.8              5.6
+\end{verbatim}
+
+For this problem, we are going to be interested in modelling the share
+of the vote won by the SPD in each of the 299 electoral districts. This
+variable is named \texttt{SPD} in the \texttt{german\_results}
+data.frame. Let's build a linear regression model with two predictors:
+\texttt{migrantfraction} and \texttt{catholicfraction}, both of which
+are measured on a range from 0 to 100 percent.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# model on SPD}
+\NormalTok{spd_linear_model <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(SPD }\OperatorTok{~}\StringTok{ }\NormalTok{migrantfraction }\OperatorTok{+}\StringTok{ }\NormalTok{catholicfraction , }\DataTypeTok{data =}\NormalTok{ german_results)}
+
+\CommentTok{# show model}
+\KeywordTok{screenreg}\NormalTok{(spd_linear_model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+============================
+                  Model 1   
+----------------------------
+(Intercept)        19.47 ***
+                   (1.07)   
+migrantfraction     0.38 ***
+                   (0.05)   
+catholicfraction   -0.06 ** 
+                   (0.02)   
+----------------------------
+R^2                 0.16    
+Adj. R^2            0.16    
+Num. obs.         299       
+RMSE                7.62    
+============================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+The model suggests that the fraction of migrants in a district is
+positively related to the popularity of the SPD in that district, and
+that there is a negative relationship between the fraction of catholics
+in a district and the SPD vote share. More precisely, the model tells us
+the for each additional percentage point of migrants, the SPD's vote
+share increases by 0.38 points, holding constant the fraction of
+Catholics. Conversely, for each additional percentage point of
+Catholics, the SPD's share of the vote increases by -0.06 points,
+holding constant the fraction of migrants.
+
+As discussed in lecture, it is often useful to examine plots of the
+\emph{model residuals} to determine whether there is evidence of a
+non-linear relationship between our dependent variable and our
+independent variables. Recall that the sample residuals are the
+difference between the observed values of Y and the predicted values of
+Y given our model: \(u_i = Y_i - \hat{Y}_i\)
+
+We can calculate the residuals for each observation in our data that we
+used to estimate the model by applying the \texttt{residuals()} function
+to the model object. Let's do this now, and assign the output to be a
+new variable in the \texttt{german\_results} data frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# get the residuals}
+\NormalTok{german_results}\OperatorTok{$}\NormalTok{residuals <-}\StringTok{ }\NormalTok{spd_linear_model}\OperatorTok{$}\NormalTok{residuals}
+\end{Highlighting}
+\end{Shaded}
+
+Assume you wanted to estimate the residuals from the fitted values. Do
+so on your own. Hint: You can get fitted values (model predictions for
+each observation in the data) as
+\texttt{spd\_linear\_model\$fitted.values}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{german_results}\OperatorTok{$}\NormalTok{residuals2 <-}\StringTok{ }\NormalTok{german_results}\OperatorTok{$}\NormalTok{SPD }\OperatorTok{-}\StringTok{ }\NormalTok{spd_linear_model}\OperatorTok{$}\NormalTok{fitted.values}
+\end{Highlighting}
+\end{Shaded}
+
+Assess whehter both methods lead to the same result. Hint: There is
+rounding error, so both methods may not produce similar results
+numericaly. Confirm that the results are equivalent nonetheless.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# correlation coefficient}
+\KeywordTok{cor}\NormalTok{(german_results}\OperatorTok{$}\NormalTok{residuals, german_results}\OperatorTok{$}\NormalTok{residuals2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 1
+\end{verbatim}
+
+To assess whether there is evidence for non-linearity, it can be helpful
+to plot the residuals against the continuous explanatory variables in
+our model. Remember, the assumptions behind OLS models suggest that the
+residuals should be randomly distributed around zero for all values of
+X: \(E(u_i|X_i) = 0\). So, any pattern that deviates from this
+randomness suggests that we may have misspecified our model.
+
+Let's plot the residuals from \texttt{spd\_linear\_model} against the
+two independent variables in our data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ german_results}\OperatorTok{$}\NormalTok{residuals,}
+     \DataTypeTok{x =}\NormalTok{ german_results}\OperatorTok{$}\NormalTok{catholicfraction,}
+     \DataTypeTok{xlab =} \StringTok{"Catholic Fraction"}\NormalTok{,}
+     \DataTypeTok{ylab =} \StringTok{"Residuals"}\NormalTok{,}
+     \DataTypeTok{frame.plot =}\NormalTok{ F,}
+     \DataTypeTok{pch =} \DecValTok{19}\NormalTok{,}
+     \DataTypeTok{cex =}\NormalTok{ .}\DecValTok{7}\NormalTok{,}
+     \DataTypeTok{col =} \StringTok{"grey"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h =} \DecValTok{0}\NormalTok{)}
+
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ german_results}\OperatorTok{$}\NormalTok{residuals,}
+     \DataTypeTok{x =}\NormalTok{ german_results}\OperatorTok{$}\NormalTok{migrantfraction,}
+     \DataTypeTok{xlab =} \StringTok{"Migrant Fraction"}\NormalTok{,}
+     \DataTypeTok{ylab =} \StringTok{"Residuals"}\NormalTok{,}
+     \DataTypeTok{frame.plot =}\NormalTok{ F,}
+     \DataTypeTok{pch =} \DecValTok{19}\NormalTok{,}
+     \DataTypeTok{cex =}\NormalTok{ .}\DecValTok{7}\NormalTok{,}
+     \DataTypeTok{col =} \StringTok{"grey"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h =} \DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-401-1.pdf}
+
+What can we conclude from these plots? In the left-hand plot, the
+residuals seem to be distributed fairly randomly around zero for all
+values of \texttt{catholicfraction}: there does not appear to be
+evidence of non-linearity for this variable.
+
+In the right-hand plot, however, it seems that the residuals are mostly
+negative for both low and high levels of the \texttt{migrantfraction}
+variable, but evenly spread around zero for the more moderate range of
+this variable. This pattern of residuals does seem to deviate from the
+OLS assumptions to a certain degree, and therefore suggests that we
+might want to try to account for this possible non-linearity in our
+model.
+
+One way of doing this is to include a polynomial term (we will use
+\(X^2\) here) in our model, as we did last week. Let's do that now, and
+then \texttt{screenreg()} the results. Try on your own:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spd_non_linear_model <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(SPD }\OperatorTok{~}\StringTok{ }\KeywordTok{poly}\NormalTok{(migrantfraction,}\DecValTok{2}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{catholicfraction , }\DataTypeTok{data =}\NormalTok{ german_results)}
+\KeywordTok{screenreg}\NormalTok{(spd_non_linear_model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+=====================================
+                           Model 1   
+-------------------------------------
+(Intercept)                 28.57 ***
+                            (0.75)   
+poly(migrantfraction, 2)1   66.31 ***
+                            (7.28)   
+poly(migrantfraction, 2)2  -58.19 ***
+                            (7.71)   
+catholicfraction            -0.13 ***
+                            (0.02)   
+-------------------------------------
+R^2                          0.30    
+Adj. R^2                     0.29    
+Num. obs.                  299       
+RMSE                         6.99    
+=====================================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+The coefficient on the squared term
+(\texttt{poly(migrantfraction,\ 2)2}) is significant, which indicates
+that there is evidence of a non-linear relationship between
+\texttt{migrantfraction} and SPD vote share in our data. This suggests
+that our interpretation of the residual plot above was correct, and that
+including the squared term is an important modification to our model.
+(You might also note that the Adjusted \(R^2\) has nearly doubled with
+the inclusion of \(X^2\), again suggesting that the non-linear
+adjustment is important.)
+
+We can now repeat the same residual-plotting exersise with the residuals
+from our new model, to see if we are closer to meeting the OLS
+assumption that the error term is randomly distributed around zero for
+all values of X. Try on your own:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{german_results}\OperatorTok{$}\NormalTok{residuals_model_two <-}\StringTok{ }\KeywordTok{residuals}\NormalTok{(spd_non_linear_model)}
+
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ german_results}\OperatorTok{$}\NormalTok{residuals_model_two,}
+     \DataTypeTok{x =}\NormalTok{ german_results}\OperatorTok{$}\NormalTok{catholicfraction,}
+     \DataTypeTok{xlab =} \StringTok{"Catholic Fraction"}\NormalTok{,}
+     \DataTypeTok{ylab =} \StringTok{"Residuals"}\NormalTok{,}
+     \DataTypeTok{frame.plot =}\NormalTok{ F,}
+     \DataTypeTok{pch =} \DecValTok{19}\NormalTok{,}
+     \DataTypeTok{cex =}\NormalTok{ .}\DecValTok{7}\NormalTok{,}
+     \DataTypeTok{col =} \StringTok{"grey"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h =} \DecValTok{0}\NormalTok{)}
+
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ german_results}\OperatorTok{$}\NormalTok{residuals_model_two,}
+     \DataTypeTok{x =}\NormalTok{ german_results}\OperatorTok{$}\NormalTok{migrantfraction,}
+     \DataTypeTok{xlab =} \StringTok{"Migrant Fraction"}\NormalTok{,}
+     \DataTypeTok{ylab =} \StringTok{"Residuals"}\NormalTok{,}
+     \DataTypeTok{frame.plot =}\NormalTok{ F,}
+     \DataTypeTok{pch =} \DecValTok{19}\NormalTok{,}
+     \DataTypeTok{cex =}\NormalTok{ .}\DecValTok{7}\NormalTok{,}
+     \DataTypeTok{col =} \StringTok{"grey"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h =} \DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-403-1.pdf}
+
+The right-hand plot now looks much better: the residuals seem randomly
+distributed around zero for all values of the \texttt{migrantfraction}
+variable, and there is no clearly distinguishable pattern anymore.
+
+You can also inspect how the model does overall. Repeat the previous
+exercise but plot the fitted values on the x-axis. What can we conclude?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ german_results}\OperatorTok{$}\NormalTok{residuals_model_two,}
+     \DataTypeTok{x =}\NormalTok{ spd_non_linear_model}\OperatorTok{$}\NormalTok{fitted.values,}
+     \DataTypeTok{xlab =} \StringTok{"Migrant Fraction"}\NormalTok{,}
+     \DataTypeTok{ylab =} \StringTok{"Residuals"}\NormalTok{,}
+     \DataTypeTok{frame.plot =}\NormalTok{ F,}
+     \DataTypeTok{pch =} \DecValTok{19}\NormalTok{,}
+     \DataTypeTok{cex =}\NormalTok{ .}\DecValTok{7}\NormalTok{,}
+     \DataTypeTok{col =} \StringTok{"grey"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h =} \DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-404-1.pdf}
+
+Overall, it looks like conditional mean independence is satisfied.
+
+\subsubsection{Heteroskedasticity}\label{heteroskedasticity}
+
+In order to understand heteroskedasticity, let's start by loading a
+sample of the U.S. Current Population Survey (CPS) from 2013. The
+dataset contains 2989 observations of full-time workers with variables
+including age, gender, years of education and income reported in hourly
+earnings.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cps <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"cps2013.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(cps)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  age gender education    income
+1  30   Male        13 12.019231
+2  30   Male        12  9.857142
+3  30   Male        12  8.241758
+4  29 Female        12 10.096154
+5  30   Male        14 24.038462
+6  30   Male        16 23.668638
+\end{verbatim}
+
+We plot income by years of education.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}
+  \DataTypeTok{y =}\NormalTok{ cps}\OperatorTok{$}\NormalTok{income,}
+  \DataTypeTok{x =}\NormalTok{ cps}\OperatorTok{$}\NormalTok{education,}
+  \DataTypeTok{xlab =} \StringTok{"level of education"}\NormalTok{,}
+  \DataTypeTok{pch =} \DecValTok{19}\NormalTok{, }
+  \DataTypeTok{cex =} \DecValTok{1}\NormalTok{, }
+  \DataTypeTok{bty =} \StringTok{"n"}\NormalTok{,}
+  \DataTypeTok{col =} \KeywordTok{rgb}\NormalTok{(}\DecValTok{180}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{180}\NormalTok{,}\DecValTok{30}\NormalTok{, }\DataTypeTok{maxColorValue =} \DecValTok{255}\NormalTok{)}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-407-1.pdf}
+
+The dots in this plot largely overlap because education is only
+collected for full years. It's therefore a bit hard to see the amount of
+observations that have 12 years of education and income 20. You can make
+it easier to see the amount of points by adding sine random noise to the
+education variable. So for example, for everyone with twelve years of
+eductation, we add or subtract a small amount at random. We will still
+be able to tell the education categories apart. We use this
+\texttt{jitter()} function to do this. We choose a small number of noise
+to add such that we can see the number of observations better and
+education categories are still visible. You have to play around to find
+a good number. Try on your own.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}
+  \DataTypeTok{y =}\NormalTok{ cps}\OperatorTok{$}\NormalTok{income,}
+  \DataTypeTok{x =} \KeywordTok{jitter}\NormalTok{(cps}\OperatorTok{$}\NormalTok{education, }\FloatTok{1.5}\NormalTok{),}
+  \DataTypeTok{xlab =} \StringTok{"level of education"}\NormalTok{,}
+  \DataTypeTok{pch =} \DecValTok{19}\NormalTok{, }
+  \DataTypeTok{cex =} \DecValTok{1}\NormalTok{, }
+  \DataTypeTok{bty =} \StringTok{"n"}\NormalTok{,}
+  \DataTypeTok{col =} \KeywordTok{rgb}\NormalTok{(}\DecValTok{180}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{180}\NormalTok{,}\DecValTok{30}\NormalTok{, }\DataTypeTok{maxColorValue =} \DecValTok{255}\NormalTok{)}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-408-1.pdf}
+
+We can see that the range of values for income have a larger spread as
+the level of education increases. Intuitively this makes sense as people
+with more education tend to have more opportunities and are employed in
+a wider range of professions. But how does this larger spread affect the
+regression model?
+
+Let's run linear regression and take a look at the results to find out
+the answer.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model1 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(income }\OperatorTok{~}\StringTok{ }\NormalTok{education, }\DataTypeTok{data =}\NormalTok{ cps)}
+\KeywordTok{summary}\NormalTok{(model1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+Call:
+lm(formula = income ~ education, data = cps)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-23.035  -6.086  -1.573   3.900  60.446 
+
+Coefficients:
+            Estimate Std. Error t value             Pr(>|t|)    
+(Intercept) -5.37508    1.03258  -5.206          0.000000207 ***
+education    1.75638    0.07397  23.745 < 0.0000000000000002 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 9.496 on 2987 degrees of freedom
+Multiple R-squared:  0.1588,    Adjusted R-squared:  0.1585 
+F-statistic: 563.8 on 1 and 2987 DF,  p-value: < 0.00000000000000022
+\end{verbatim}
+
+The model tells us the for each additional year of education, the income
+increases by 1.756.
+
+Now let's plot the fitted model on our scatter plot of observations.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}
+  \DataTypeTok{y =}\NormalTok{ cps}\OperatorTok{$}\NormalTok{income, }
+  \DataTypeTok{x =} \KeywordTok{jitter}\NormalTok{(cps}\OperatorTok{$}\NormalTok{education,}\FloatTok{1.5}\NormalTok{),}
+  \DataTypeTok{xlab =} \StringTok{"level of education"}\NormalTok{,}
+  \DataTypeTok{pch =} \DecValTok{19}\NormalTok{, }
+  \DataTypeTok{cex =} \DecValTok{1}\NormalTok{, }
+  \DataTypeTok{bty =} \StringTok{"n"}\NormalTok{,}
+  \DataTypeTok{col =} \KeywordTok{rgb}\NormalTok{(}\DecValTok{180}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{180}\NormalTok{,}\DecValTok{30}\NormalTok{, }\DataTypeTok{maxColorValue =} \DecValTok{255}\NormalTok{)}
+\NormalTok{  )}
+\KeywordTok{abline}\NormalTok{(model1, }\DataTypeTok{col =} \StringTok{"darkblue"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-410-1.pdf}
+
+Looking at the fitted model, we can see that the errors (i.e.~the
+differences between the predicted value and the observed value) increase
+as the level of education increases. This is what is known as
+\emph{heteroskedasticity} or \emph{heteroskedastic errors}. In plain
+language it simply means that the variability of the error term is not
+constant across the entire range of our observations.
+
+Another way to visualize this is by plotting residuals against the
+fitted values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}
+  \DataTypeTok{y =}\NormalTok{ model1}\OperatorTok{$}\NormalTok{residuals,}
+  \DataTypeTok{x =} \KeywordTok{jitter}\NormalTok{(model1}\OperatorTok{$}\NormalTok{fitted.values, }\FloatTok{1.5}\NormalTok{),}
+  \DataTypeTok{pch =} \DecValTok{19}\NormalTok{,}
+  \DataTypeTok{bty =} \StringTok{"n"}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"predicted income"}\NormalTok{,}
+  \DataTypeTok{ylab =} \StringTok{"residuals (difference b/w truth and prediction)"}\NormalTok{,}
+  \DataTypeTok{col =} \KeywordTok{rgb}\NormalTok{(}\DecValTok{180}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{180}\NormalTok{,}\DecValTok{30}\NormalTok{, }\DataTypeTok{maxColorValue =} \DecValTok{255}\NormalTok{),}
+  \DataTypeTok{main =} \StringTok{"Residuals vs. Fitted"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-411-1.pdf}
+
+Again, we can see that residuals are not constant and increase as the
+fitted values increase. In addition to visual inspection, we can also
+test for heteroskedasticity using the Breusch-Pagan Test from the
+\href{http://bit.ly/R_lmtest}{\texttt{lmtest}} package we loaded at the
+beginning.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{bptest}\NormalTok{(model1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    studentized Breusch-Pagan test
+
+data:  model1
+BP = 76.679, df = 1, p-value < 0.00000000000000022
+\end{verbatim}
+
+The null hypothesis for the Breusch-Pagan test is that the variance of
+the error term is constant, or in other words, the errors are
+homoskedestic. By looking at the \emph{p-value} from Breusch-Pagan test
+we can determine whether we have heteroskedastic errors or not.
+
+The \emph{p-value} tells us that we can reject the null hypothesis of
+homoskedestic errors. Once we've determined that we're dealing with
+heteroskedastic errors, we can correct them using the
+\href{http://bit.ly/R_coeftest}{\texttt{coeftest()}} function from the
+\href{http://bit.ly/R_lmtest}{\texttt{lmtest}} package.
+
+Here is a list of arguments for the
+\href{http://bit.ly/R_coeftest}{\texttt{coeftest()}} function:
+
+\begin{verbatim}
+coeftest(model, vcov)
+\end{verbatim}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.12\columnwidth}\raggedright\strut
+Argument\strut
+\end{minipage} & \begin{minipage}[b]{0.81\columnwidth}\raggedright\strut
+Description\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+\texttt{model}\strut
+\end{minipage} & \begin{minipage}[t]{0.81\columnwidth}\raggedright\strut
+This is the estimated model obtained from
+\href{http://bit.ly/R_lm}{\texttt{lm()}}.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+\texttt{vcov}\strut
+\end{minipage} & \begin{minipage}[t]{0.81\columnwidth}\raggedright\strut
+Covariance matrix. The simplest way to obtain
+heteroskedasticity-consistent covariance matrix is by using the
+\href{http://bit.ly/R_vcovHC}{\texttt{vcovHC()}} function from the
+\href{http://bit.ly/R_sandwich}{\texttt{sandwich}} package. The result
+from \href{http://bit.ly/R_vcovHC}{\texttt{vcovHC()}} can be directly
+passed to \href{http://bit.ly/R_coeftest}{\texttt{coeftest()}} as the
+second argument.\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{screenreg}\NormalTok{(}\KeywordTok{coeftest}\NormalTok{(model1, }\DataTypeTok{vcov =} \KeywordTok{vcovHC}\NormalTok{(model1)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+======================
+             Model 1  
+----------------------
+(Intercept)  -5.38 ***
+             (1.05)   
+education     1.76 ***
+             (0.08)   
+======================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+After correcting for heteroskedasticity we can see that the standard
+error for the independent variable \texttt{education} have increased
+from 0.074 to 0.08. Even though this increase might seem very small,
+remember that it is relative to the scale of the independent variable.
+Since the standard error is the measure of precision for the esitmated
+coefficients, an increase in standard error means that our original
+estiamte wasn't as good as we thought it was before we corrected for
+heteroskedasticity.
+
+Now that we can get heteroskedastic corrected standard errors, how would
+you present them in a publication (or in your dissertation or the final
+exam)? Fortunately, all \href{http://bit.ly/R_texreg}{\texttt{textreg}}
+functions such as \href{http://bit.ly/R_screenreg}{\texttt{screenreg()}}
+or \href{http://bit.ly/R_htmlreg}{\texttt{htmlreg()}} allow us to easily
+override the \emph{standard errors} and \emph{p-value} in the resulting
+output.
+
+We first need to save the result from \texttt{coeftest()} to an object
+and then override the output from \texttt{screenreg()} by extracting the
+two columns of interest.
+
+The corrected \emph{standard errors} are in column \texttt{2} of the
+object returned by \texttt{coeftest()} and the associated
+\emph{p-values} are in column \texttt{4}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{corrected_errors <-}\StringTok{ }\KeywordTok{coeftest}\NormalTok{(model1, }\DataTypeTok{vcov =} \KeywordTok{vcovHC}\NormalTok{(model1)) }
+
+\KeywordTok{screenreg}\NormalTok{(model1, }
+          \DataTypeTok{override.se =}\NormalTok{ corrected_errors[, }\DecValTok{2}\NormalTok{], }
+          \DataTypeTok{override.pval =}\NormalTok{ corrected_errors[, }\DecValTok{4}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+========================
+             Model 1    
+------------------------
+(Intercept)    -5.38 ***
+               (1.05)   
+education       1.76 ***
+               (0.08)   
+------------------------
+R^2             0.16    
+Adj. R^2        0.16    
+Num. obs.    2989       
+RMSE            9.50    
+========================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+\subsubsection{Exercises}\label{exercises-8}
+
+\href{http://journals.sagepub.com/doi/suppl/10.1177/0022002708330881}{Does
+Indiscriminate Violence Incite Insurgent Attacks?} Download and then
+load \texttt{chechen.csv}.
+
+chechen data
+
+Jason Lyall:
+
+Does a state's use of indiscriminate violence incite insurgent attacks?
+To date, most existing theories and empirical studies have concluded
+that such violence is highly counterproductive because it creates new
+grievances while forcing victims to seek security, if not safety, in
+rebel arms. This proposition is tested using Russian artillery fire in
+Chechnya (2000 to 2005) to estimate indiscriminate violence's effect on
+subsequent patterns of insurgent attacks {[}\ldots{}{]}.
+
+ Codebook:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.12\columnwidth}\raggedright\strut
+Variable\strut
+\end{minipage} & \begin{minipage}[b]{0.50\columnwidth}\raggedright\strut
+Description\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+vilno\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+unique village number\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+disno\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+unique distric number\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+treat\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+Russian artillery shelling of cechan village\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+poverty\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+estimated need (3 is highest)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+pop2000\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+population in 2000\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+lpop2000\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+logged population in 2000\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+pret\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+pre-treatment insurgent attacks\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+post\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+post-treatment insurgent attacks\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+diff\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+post minus pret\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+groznyy\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+1 if in groznyy\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+elevation\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+in meters\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+lelev\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+logged elevation\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+tariq\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+Tariqa (1=Naq.)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+nn\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+distance to nearest neighbour (km)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+lnn\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+logged distance to nearest neighbour\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+reb\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+rebel (1 = Basayev)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+garrison\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+(1 = Russian base present)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+vildays\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+days to first insurgent attack after treatment\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+deaths\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+estimated number of individuals killed during Russian artillery
+shelling\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+deathsd\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+1 indicates that individuals were killed during shelling\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+wounded\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+estimated number of individuals wounded during Russian artillery
+shelling\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+woundedd\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+1 indicates that individuals were wounded during Russian artillery
+shelling\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+fail\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+1 if insurgent attack is observed in 90 days after artillery
+shelling\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+swept\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+1 indicates village was swept in 90 days prior to artillery
+shelling\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+prop\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+estimated number of structures destroyed during shelling\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+propd\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+1 indicates that property was destroyed during shelling\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+lprop\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+logged number of estimated structures destroyed or damaged during
+shelling\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+history\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+number of times village had been shelled in the past\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+historyd\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+1 indicates that village had been shelled in the past\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+lhistory\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+logged number of times village had been shelled\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+change\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+1 if DD is increase: 0 if no change, -1 if DD decreases\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+decrease\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+1 if decrease recorded, 0 if not\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+increase\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+1 if increase in DD recorded, 0 if not\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+abandon\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright\strut
+number of neighbours within 5km\^{}2 radius\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+The dataset comes from an article in the Journal of Conflict Resolution.
+Use the codebook above for the tasks and if anything is unclear, refer
+to the article that we have linked to above.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Load \texttt{chechen.csv}.
+\item
+  Run a bivariate regression model with \texttt{diff} as the dependent
+  variable and \texttt{treat} as the predictor.
+\item
+  Control for additional variables. Discuss your choice of variables and
+  refer to omitted variable bias.
+\item
+  Discuss the improvement in model fit and use the appropriate test
+  statistic.
+\item
+  Check for non-linearity and if there is solve the problem.
+\item
+  Check for heteroskedasticity and if there is solve the problem.
+\item
+  Thoroughly compare the models, and interpret the outcome in
+  substantial as well statistical terms - do not forget to talk about
+  model fit. What are the implications of this?
+\end{enumerate}
+
+\href{https://www.cambridge.org/core/journals/journal-of-economic-history/article/ordinary-economic-voting-behavior-in-the-extraordinary-election-of-adolf-hitler/8C79A0AB9DA174B7D81A6EB313B1EDFC}{Ordinary
+Economic Voting Behavior in the Extraordinary Election of Adolf Hitler}
+Download and then load \texttt{who\_voted\_nazi\_in\_1932.csv}.
+
+who voted nazi in 1932 data
+
+The goal of analysis is to investigate which types of voters (based on
+their occupation category) cast ballots for the Nazis. One hypothesis
+says that the Nazis received much support from blue-collar workers.
+Since the data do not directly tell us how many blue-collar workers
+voted for the Nazis, we must infer this information using a statistical
+analysis {[}\ldots{}{]}.
+
+The data contains aggregate voting behaviour from 681 voting districts.
+
+ Codebook:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Variable & Description\tabularnewline
+\midrule
+\endhead
+sharenazis & Percent of the vote Nazis received in the
+district\tabularnewline
+nazivote & Number of Nazi votes\tabularnewline
+nvoter & Total number of eligible voters\tabularnewline
+shareblue & Percent of blue-collar potential voters\tabularnewline
+sharewhite & Percent of white-collar potential voters\tabularnewline
+shareself & Percent of self-employed potential voters\tabularnewline
+sharedomestic & Percent of domestically employed potential
+voters\tabularnewline
+shareunemployed & Percent of unemployed potential voters\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  Load \texttt{who\_voted\_nazi\_in\_1932.csv}.
+\item
+  Run a bivariate model to test whether blue-collar voters voted for the
+  Nazis.
+\item
+  Control for additional variables. Discuss your choice of variables and
+  refer to omitted variable bias.
+\item
+  Can you fit a model using \texttt{shareblue}, \texttt{sharewhite},
+  \texttt{shareself}, \texttt{sharedomestic}, and
+  \texttt{shareunemployed} as predictors? Why or why not?
+\item
+  Check for heteroskedasticity and if there is solve the problem.
+\item
+  Interpret your models.
+\end{enumerate}
+
+Load the Massachusetts Test Scores dataset \texttt{MA\_Schools.csv} from
+your PUBLG100 folder.
+
+The dataset contains \texttt{16} variables, but we're only interested in
+the following:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Variable & Description\tabularnewline
+\midrule
+\endhead
+score8 & 8th grade scores\tabularnewline
+stratio & Student-teacher ratio\tabularnewline
+english & \% English learners\tabularnewline
+lunch & \% Receiving lunch subsidy\tabularnewline
+income & Average district income\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{13}
+\tightlist
+\item
+  Fit a model to explain the relationship between percentage of English
+  learners and average 8th grade scores.
+\item
+  Plot the model and the regression line.
+\item
+  Check for correlation between the variables listed above to see if
+  there are other variables that should be included in the model.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    HINT: There are some missing values in the dataset. Remove the NA's
+    from the dataset like we have seen previously.
+  \end{itemize}
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    Add two variables from the list above that are highly correlated
+    with both the independent and the dependent variable and run a
+    linear regression again.
+  \end{enumerate}
+\item
+  Compare the two models. Did the first model suffer from omitted
+  variable bias?
+\item
+  Plot the residuals against the fitted values from the second model to
+  visually check for heteroskedasticity.
+\item
+  Run the Breusch-Pagan Test to see whether the model suffers from
+  heteroskedastic errors.
+\item
+  Correct for heteroskedasticity (if needed) and present the results
+  with corrected standard errors and p-values.
+\item
+  Save everything and source your script. If you get error messages,
+  clean your script.
+\end{enumerate}
 
 
 \end{document}

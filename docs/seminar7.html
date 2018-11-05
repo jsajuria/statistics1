@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="solutions6.html">
-<link rel="next" href="solutions7.html">
+<link rel="next" href="seminar8.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -214,7 +214,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.1.7" data-path="seminar7.html"><a href="seminar7.html#exercises-6"><i class="fa fa-check"></i><b>7.1.7</b> Exercises</a></li>
 <li class="chapter" data-level="7.1.8" data-path="seminar7.html"><a href="seminar7.html#midterm-preparation"><i class="fa fa-check"></i><b>7.1.8</b> Midterm Preparation</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="solutions7.html"><a href="solutions7.html"><i class="fa fa-check"></i><b>7.2</b> Solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="seminar8.html"><a href="seminar8.html"><i class="fa fa-check"></i><b>8</b> Multiple linear regression models (II)</a><ul>
 <li class="chapter" data-level="8.1" data-path="seminar8.html"><a href="seminar8.html#seminar-7"><i class="fa fa-check"></i><b>8.1</b> Seminar</a><ul>
@@ -225,6 +224,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.1.5" data-path="seminar8.html"><a href="seminar8.html#non-linearities"><i class="fa fa-check"></i><b>8.1.5</b> Non-Linearities</a></li>
 <li class="chapter" data-level="8.1.6" data-path="seminar8.html"><a href="seminar8.html#exercises-7"><i class="fa fa-check"></i><b>8.1.6</b> Exercises</a></li>
 <li class="chapter" data-level="8.1.7" data-path="seminar8.html"><a href="seminar8.html#extra-info-dummy-variables-repetition"><i class="fa fa-check"></i><b>8.1.7</b> Extra Info: Dummy Variables Repetition</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="seminar9.html"><a href="seminar9.html"><i class="fa fa-check"></i><b>9</b> Regression Assumptions</a><ul>
+<li class="chapter" data-level="9.1" data-path="seminar9.html"><a href="seminar9.html#seminar-8"><i class="fa fa-check"></i><b>9.1</b> Seminar</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="seminar9.html"><a href="seminar9.html#required-packages"><i class="fa fa-check"></i><b>9.1.1</b> Required Packages</a></li>
+<li class="chapter" data-level="9.1.2" data-path="seminar9.html"><a href="seminar9.html#omitted-variable-bias"><i class="fa fa-check"></i><b>9.1.2</b> Omitted Variable Bias</a></li>
+<li class="chapter" data-level="9.1.3" data-path="seminar9.html"><a href="seminar9.html#detecting-non-linearity"><i class="fa fa-check"></i><b>9.1.3</b> Detecting non-linearity</a></li>
+<li class="chapter" data-level="9.1.4" data-path="seminar9.html"><a href="seminar9.html#heteroskedasticity"><i class="fa fa-check"></i><b>9.1.4</b> Heteroskedasticity</a></li>
+<li class="chapter" data-level="9.1.5" data-path="seminar9.html"><a href="seminar9.html#exercises-8"><i class="fa fa-check"></i><b>9.1.5</b> Exercises</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -254,10 +262,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="loading-understanding-and-cleaning-our-data" class="section level3">
 <h3><span class="header-section-number">7.1.1</span> Loading, Understanding and Cleaning our Data</h3>
 <p>Today, we load the full standard (cross-sectional) dataset from the Quality of Government Institute (this is a newer version that the one we used in week 3). This is a great data source for comparativist political science research. The codebook is available from their main <a href="http://qog.pol.gu.se/data/datadownloads/qogstandarddata">website</a>. You can also find time-series and cross-section data sets on this page.</p>
-<p>The dataset is in stata format (<code>.dta</code>). Loading it requires the <code>foreign</code> library and the <code>read.dta()</code> function which operates similar to <code>read.csv()</code>.</p>
+<p>The dataset is in stata format (<code>.dta</code>). Loading it requires the <code>foreign</code> library and the <code>read.dta()</code> function which operates similar to <code>read.csv()</code>. Download the data <a href="https://github.com/philippbroniecki/statistics1/blob/master/data/qog_std_cs_jan15.dta?raw=TRUE">here</a></p>
 <p>Let’s load the data set</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load dataset in Stata format from online source</span>
-world_data &lt;-<span class="st"> </span><span class="kw">read.dta</span>(<span class="st">&quot;https://github.com/philippbroniecki/statistics1/raw/master/data/qog_std_cs_jan15.dta&quot;</span>)
+world_data &lt;-<span class="st"> </span><span class="kw">read.dta</span>(<span class="st">&quot;qog_std_cs_jan15.dta&quot;</span>)
 
 <span class="co"># check the dimensions of the dataset</span>
 <span class="kw">dim</span>(world_data)</code></pre></div>
@@ -609,13 +617,14 @@ data_for_fitted_values_dictator<span class="op">$</span>fitted_values &lt;-<span
 
 </div>
 </div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
 <a href="solutions6.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="solutions7.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="seminar8.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

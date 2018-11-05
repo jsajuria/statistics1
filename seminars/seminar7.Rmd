@@ -15,12 +15,12 @@ rm(list = ls())
 
 Today, we load the full standard (cross-sectional) dataset from the Quality of Government Institute (this is a newer version that the one we used in week 3). This is a great data source for comparativist political science research. The codebook is available from their main  [website](http://qog.pol.gu.se/data/datadownloads/qogstandarddata). You can also find time-series and cross-section data sets on this page.
 
-The dataset is in stata format (`.dta`). Loading it requires the `foreign` library and the `read.dta()` function which operates similar to `read.csv()`.
+The dataset is in stata format (`.dta`). Loading it requires the `foreign` library and the `read.dta()` function which operates similar to `read.csv()`. Download the data [here](https://github.com/philippbroniecki/statistics1/blob/master/data/qog_std_cs_jan15.dta?raw=TRUE)
 
 Let's load the data set
 ```{r}
 # load dataset in Stata format from online source
-world_data <- read.dta("https://github.com/philippbroniecki/statistics1/raw/master/data/qog_std_cs_jan15.dta")
+world_data <- read.dta("qog_std_cs_jan15.dta")
 
 # check the dimensions of the dataset
 dim(world_data)

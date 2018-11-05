@@ -30,12 +30,12 @@ rmd_files: [
   solutions/solutions6.Rmd,
 
   seminars/seminar7.Rmd,
-  solutions/solutions7.Rmd,
+  #solutions/solutions7.Rmd,
 
   seminars/seminar8.Rmd,
   #solutions/solutions8.Rmd,
 
-  #seminars/seminar9.Rmd,
+  seminars/seminar9.Rmd,
   #solutions/solutions9.Rmd,
 
   # optional material

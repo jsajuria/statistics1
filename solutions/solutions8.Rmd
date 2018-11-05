@@ -1,0 +1,479 @@
+
+## Solutions
+
+```{r eval = FALSE}
+rm(list = ls())
+```
+
+### Question 1
+Using `better model`, where we included the square of GDP/capita, what is the effect of:
+    a. an increase of GDP/capita from 5000 to 15000?
+    b. an increase of GDP/capita from 25000 to 35000?
+
+```{r}
+# load world data 
+a <- read.csv("QoG2012.csv")
+
+# rename variables
+names(a)[which(names(a)=="undp_hdi")] <- "human_development"
+names(a)[which(names(a)=="wbgi_cce")] <- "institutions_quality"
+names(a)[which(names(a)=="wdi_gdpc")] <- "gdp_capita"
+
+# drop missings
+a <- a[ !is.na(a$gdp_capita), ]
+a <- a[ !is.na(a$human_development), ]
+a <- a[ !is.na(a$institutions_quality), ]
+
+# create factor again
+a$former_col <- factor(a$former_col, labels = c("never colonies", "ex colonies"))
+
+# re-run better modes
+better.model <- lm(human_development ~ poly(gdp_capita, 2), data = a)
+```
+
+For a. we make two predictions. One, where gdp/capita is 5000 and one where it is 15000.
+
+```{r}
+y_hat1 <- predict(better.model, newdata = data.frame(gdp_capita = 5000))
+# predicted quality of life if gdp/capita is 5000
+y_hat1
+ 
+y_hat2 <- predict(better.model, newdata = data.frame(gdp_capita = 15000))
+# predicted quality of life if gdp/capita is 15000
+y_hat2
+```
+
+The effect of raising gdp/capita from 5000 to 15000 is the difference between our two predictions (called the first difference).
+
+```{r}
+y_hat2 - y_hat1
+```
+
+The quality of life imporves by 0.18 according to our model when we raise gdp/capita from 5000 to 15000. Given that the human development index ranges from 0 - 1 (theoretical range), the effect is extremely large.
+
+
+For b. we go through the same procedure.
+
+```{r}
+y_hat1 <- predict(better.model, newdata = data.frame(gdp_capita = 25000))
+y_hat2 <- predict(better.model, newdata = data.frame(gdp_capita = 35000))
+y_hat2 - y_hat1
+```
+The quality of life improves by only 0.04 when we increase gdp/capita by 10 000 US\$. Although, the increase in wealth was 10 000 in both scenarios, the effect is a lot more effective if the society is not already rich.
+
+2. You can see that the curve in our quadratic plot curves down when countries become very rich. Speculate whether that results make sense and what the reason for this might be.
+
+### Question 2
+You can see that the curve in our quadratic plot curves down when countries become very rich. Speculate whether that results make sense and what the reason for this might be.
+
+The downward curve does not make sense because it does not reflect a relationship that we actually observe in our data. The decline in life quality is due to the functional form of the square of gdp. It has to slope down at some point. We would not want to draw the conclusion that increasing wealth at some point leads to decline in the quality of life.
+
+
+### Question 3
+Raise GDP/captia to the highest power using the `poly()` that significantly improves model fit.
+    a. Does your new model solve the potentially artefical down-curve for rich countries?
+    b. Does the new model improve upon the old model?
+    c. Plot the new model.
+
+To answer that question, we raise gdp/capita by one and compare model fit until adding another power does not improve model fit.
+
+```{r}
+# power of 3
+m.p3 <- lm(human_development ~ poly(gdp_capita, 3), data = a)
+# compare cubic with quadratic using f test
+anova(better.model, m.p3) # p < 0.05, so cubic is better
+
+# power of 4
+m.p4 <- lm(human_development ~ poly(gdp_capita, 4), data = a)
+# compare models using f test
+anova(m.p3, m.p4) # p < 0.05, so new model is better
+
+# power of 5
+m.p5 <- lm(human_development ~ poly(gdp_capita, 5), data = a)
+# compare models using f test
+anova(m.p4, m.p5) # p < 0.05, so new model is better
+
+# power of 6
+m.p6 <- lm(human_development ~ poly(gdp_capita, 6), data = a)
+# compare models using f test
+anova(m.p5, m.p6) # p < 0.05, so new model is better
+
+# power of 7
+m.p7 <- lm(human_development ~ poly(gdp_capita, 7), data = a)
+# compare models using f test
+anova(m.p6, m.p7) # p < 0.05, so new model is better
+
+# power of 8
+m.p8 <- lm(human_development ~ poly(gdp_capita, 8), data = a)
+# compare models using f test
+anova(m.p7, m.p8) # p > 0.05, so new model is worse!
+```
+
+The result is that raising gdp/captia to the power of seven provides the best model fit. We had to manually add powers of gdp to find the answer. For those of you are interested, there is a programmatic way to solve this problem quicker by writing a loop. We show you how to do so below. If you are interested, play around with this but you will not be required to be able to do this (we will not test you on this).
+
+```{r class.source="collapsible"}
+# the initial modle to compare to
+comparison.model <- better.model
+p <- 0.05 # setting a p-value
+power <- 2 # the initial power
+
+# loop until p is larger than 0.05
+while(p <= 0.05){
+  # raise the power by 1
+  power <- power + 1
+  # fit the new model with the power raised up by 1
+  current.model <- lm(human_development ~ poly(gdp_capita, power), data = a)
+  # run the f-test
+  f <- anova(comparison.model, current.model)
+  # extract p value
+  p <- f$`Pr(>F)`[2]
+  # comparison model becomes the current model if current model is better
+  if (p <= 0.05) comparison.model <- current.model
+}
+screenreg(comparison.model)
+```
+
+    a. Does your new model solve the potentially artefical down-curve for rich countries?
+    b. Does the new model improve upon the old model?
+    c. Plot the new model.
+
+    
+We plot the polynomial to answer a) . To do so, we vary gdp/capita from its minimum to the maximum. This is the value of gdp values that we plot on the x axis. We use the `predict()` function to predict outcomes($\hat{Y}$).
+
+```{r}
+# our sequence of 100 GDP/capita values
+gdp_seq <- seq(from = 226, to = 63686, length.out = 100)
+
+# we set our covarite values (here we only have one covariate: GDP/captia)
+x <- data.frame(gdp_capita = gdp_seq)
+
+# we predict the outcome (human development index) for each of the 100 GDP levels
+y_hat <- predict(m.p7, newdata = x)
+
+# plot
+plot(
+  y = a$human_development,
+  x = a$gdp_capita, 
+  pch = 16,
+  frame.plot = FALSE,
+  col = "grey",
+  main = "Relationship between the quality of life and wealth",
+  ylab = "Human development index",
+  xlab = "GDP per capita"
+  )
+
+# plot polynomial
+lines(x = gdp_seq, y = y_hat, lwd = 3, col = 1)
+```
+
+
+The model fit improves when we fit a 7th degree polynomial to the data. A seventh degree polynomial is very flexible, it can fit the points well. However, it is very important to remember that we have a sample of data. This sample is subject to sampling variability. That means our sample contains some ideosyncratic aspects that do not reflect the systematic pattern between GDP/captia and the human development index. We call the systematic pattern the "signal" and the random ideosyncratic bit "noise". 
+
+Our 7th degree polynomial is too flexible. It fits the data **in our sample** too well. We almost certainly fit our model not just to the signal but also to the noise. We want to be parsimonious with our use of polynomials. Without advanced statistics, the general advise is to stay clear of higher degree polynomials. In published articles you often see a quadratic term. You may see a cubic term. Anything above is unusual.
+
+
+### Question 4
+Estimate a model where `wbgi_pse` (political stability) is the response variable and `h_j` and `former_col` are the explanatory variables. Include an interaction between your explanatory variables. What is the marginal effect of:
+    a. An independent judiciary when the country is a former colony?
+    b. An independent judiciary when the country was not colonized?
+    c. Does the interaction between `h_j` and `former_col` improve model fit?
+
+```{r}    
+m1 <- lm(wbgi_pse ~ h_j + former_col, data = a)
+screenreg(m1)
+```
+    
+In this setting, an interaction does not make sense. We run a model on political stability (dependent variable). Our only two independent variables are the judiciary (`h_j`) and colonial past (`former_col`). With these two binary variables only, we have 4 possible combinations:
+
+
+Judiciary = 0 and Ex colony = 0: $\beta_0 = -0.32$ </br>
+Judiciary = 1 and Ex colony = 0: $\beta_0 + \beta_1 =  0.58$ </br>
+Judiciary = 0 and Ex colony = 1: $\beta_0 + \beta_2 = -0.55$ </br>
+Judiciary = 1 and Ex colony = 1: $\beta_0 + \beta_1 + \beta_2 = 0.35$
+
+
+In the model gives us information on all four possible combinations and we would not interact the dummy variables.    
+
+
+### Question 5
+Run a model on the human development index (hdi), interacting an independent judiciary (h_j) and control of corruption (corruption_control). What is the effect of control of corruption:
+    a. In countries without an independent judiciary?
+    b. When there is an independent judiciary?
+    c. Illustrate your results.
+    d. Does the interaction improve model fit?
+
+
+```{r}
+m1 <- lm(human_development ~ institutions_quality * h_j, data = a)
+screenreg(m1)
+```
+
+a. What is the effect of quality of institutions in countries without an independent judiciary?
+
+The effect of institutions quality is $\beta_1 = 0.10$.
+
+b. What is the effect of quality of institutions when there is an independent judiciary?
+
+The effect of institutions quality is $\beta_1 + \beta_3 = 0.10 + 0.01 = 0.11$.
+
+c. Illustrate your results.
+ 
+```{r}
+# vary institutions quality
+summary(a$institutions_quality)
+
+# sequence of quality of institutions
+inst.qual <- seq(-1.7, 2.4, length.out = 100)
+
+# set covariates when free judiciary is 0
+x1 <- data.frame(institutions_quality = inst.qual, h_j = 0)
+
+# set covariates when free judiciary is 1
+x2 <- data.frame(institutions_quality = inst.qual, h_j = 1)
+
+# predictions
+y_hat1 <- predict(m1, newdata = x1)
+y_hat2 <- predict(m1, newdata = x2)
+
+# free judiciary
+a$h_j <- factor(a$h_j, c(0, 1), c("controlled judiciary", "independent judiciary"))
+
+# plot
+plot(
+  y = a$human_development,
+  x = a$institutions_quality, 
+  pch = 16,
+  frame.plot = FALSE,
+  col = h_j,
+  main = "Relationship between the quality of life and quality of institutions",
+  ylab = "Human development index",
+  xlab = "Quality of Institutions"
+  )
+
+# add a legend
+legend(
+  "bottomright",  # position fo legend
+  legend = levels(a$h_j), # what to seperate by 
+  col = a$former_col, # colors of legend labels
+  pch = 16, # dot type
+  lwd = 2, # line width in legend
+  bty = "n" # no box around the legend
+  )
+
+# free judiciary = 0 
+lines(x = inst.qual, y = y_hat1, lwd = 3, col = 1)
+
+# free judiciary = 1 
+lines(x = inst.qual, y = y_hat2, lwd = 3, col = 2)
+```
+
+The effect of the quality of institutions does not seem to be conditional on whether a country has a controlled or an independent judiciary. The interaction term is insignificant and we can see that the slope of the lines is quite similar. We would not interpret the effect of the quality of institutions as conditional. It's substantially similar in both groups.
+
+
+```{r}
+m1 <- lm(human_development ~ institutions_quality * h_j, data = a)
+screenreg(m1)
+```
+
+d. Does the interaction improve model fit?
+
+```{r}
+m_no_interaction <- lm(human_development ~ institutions_quality + h_j, data = a)
+anova(m_no_interaction, m1)
+```
+
+The f test confirms that the interaction model does not improve model quality. We fail to reject the null hypothesis that the interaction model does not explain the quality of life better.
+
+### Question 6
+
+Clear your workspace and download the California Test Score Data used by Stock and Watson.
+    a. <a href="http://uclspp.github.io/PUBLG100/data/caschool.dta" type="button" class="btn btn-success">Download 'caschool.dta' Dataset</a>
+    b. Draw a scatterplot between `avginc` and `testscr` variables.
+    c. Run two regressions with `testscr` as the dependent variable. 
+        c.a. In the first model use `avginc` as the independent variable.
+        c.b. In the second model use quadratic `avginc` as the independent variable.
+    d. Test whether the quadratic model fits the data better.
+
+a. Load the dataset.
+
+```{r}
+rm(list=ls())
+library(foreign) # to load a stata file
+a <- read.dta("caschool.dta")
+```
+
+b. Draw a scatterplot between `avginc` and `testscr` variables.
+
+```{r}
+plot(y = a$testscr,
+     x = a$avginc, 
+     pch = 16,
+     col = "darkgray",
+     frame.plot = FALSE,
+     xlab = "Average family income",
+     ylab = "Student test scores")
+```
+
+c. Run two regressions with `testscr` as the dependent variable. 
+        c.a. In the first model use `avginc` as the independent variable.
+        c.b. In the second model use quadratic `avginc` as the independent variable.
+
+```{r}
+ca <- lm(testscr ~ avginc, data = a)
+cb <- lm(testscr ~ poly(avginc,2), data = a)
+```
+
+d. Test whether the quadratic model fits the data better.
+
+```{r}
+anova(ca, cb)
+```
+
+The quadratic model improves model fit. The p value is smaller than 0.05.
+
+<!-- ### Question 7 -->
+
+<!-- 1. Load the `guns` dataset.  -->
+<!--     a. Pick a dependent variable that we did not use in class, that you want to explain. Why could explaining that variable be of interest (why should we care?)? -->
+<!--     b. Pick independent variables to include in the model. Argue why you include them.  -->
+<!--     c. Control for potential confounders. -->
+<!--     d. Compare and discuss your best model and another model comprehensively. -->
+
+
+<!-- ```{r} -->
+<!-- rm(list=ls()) -->
+<!-- a <- read.csv("guns.csv") -->
+<!-- names(a) -->
+<!-- ``` -->
+
+<!-- a. Pick a dependent variable that we did not use in class, that you want to explain. Why could explaining that variable be of interest (why should we care?)? -->
+<!-- We pick violent crimes as a dependent variable `vio`. Reducing violent crimes is a societal goal. At the same time, the means by which we can best achieve this goal is a subject of fierce debate. -->
+
+<!-- b. Pick independent variables to include in the model. Argue why you include them. -->
+
+<!-- We test a deterrence argument. The more pople own guns, the more risky it is to comit a crime. Therefore, if everyone is armed to the teeth, crime rates will drop. Furthermore, a young person who comits a minor crime must immediately be sent to prison where the person sees real criminals. This will deter the young offender. In general, people will be deterred if prioson sentences are tough. We proxy tougher sentencing with the incarceration rate as a predictor variable to teest the argument that prison deters crime. We use the sahll laws predictor to test whether liberal gun laws lead to a reduction of violent crime.  -->
+
+<!-- ```{r} -->
+<!-- m1 <- lm(mur ~ shall + incarc_rate , data = a) -->
+<!-- screenreg(m1) -->
+<!-- ``` -->
+
+<!-- In line with our original argument, laxer gun laws seem to reduce the violent crime rate. The incaceration rate, however, seems to increase violent crime. -->
+
+<!-- c. Control for potential confounders. -->
+
+<!-- We control for average income. The argument is that crime is more prevalent in poorer areas. The variable could, therefore, confound the effect of the incaceration rate. We control for population density because urban areas are more affected by violent crime. We also control for the percentage of young men, who are the group in society who is most likely to comit violent crimes. As we discussed in the seminar there are potential confounders that vary across states but are constant over time. We, therefore, control for the states using fixed-effects. There are also potential confounders, as discussed in the seminar, that vary over time but are constant across states. Thus, we also control for time fixed-effects. -->
+
+<!-- ```{r} -->
+<!-- m2 <- lm(mur ~ shall + incarc_rate + pm1029 + avginc + density + factor(stateid) + factor(year), data = a) -->
+<!-- screenreg(list(m1,m2), -->
+<!--           custom.model.names = c("Naive model", "State and Time Fixed Effects"), -->
+<!--           custom.coef.map = list(shall = "Shall", # list of variables we want displayed -->
+<!--                                  incarc_rate = "Icarceration Rate", -->
+<!--                                  pm1029 = "Percent Young Male", -->
+<!--                                  avginc = "Average Income", -->
+<!--                                  density = "Population Density")) -->
+
+<!-- anova(m1, m2) -->
+<!-- ``` -->
+
+<!-- We compare the naive model with the one where we control for many confounders. Our small model is naive in the sense that there are almost certainly confounders that bias our estimates. We ran an F test which confirms that our bigger model is better at explaining the rate of violent crimes. Likewise, adjusted R^2 increases by a substantial amount. From the f test we can reject the hypothesis that our larger model is not better than the smaller and that our control variables really do not need to be in the model. -->
+
+<!-- We argued that lax gun laws reduce the rate of violent crimes. The effect in the naive model was substantial and in line with our argument. After controlling for potential confounders, we found that effect is indistinguishable from zero. The most likely reason for the large change of the coefficient is omitted variable bias. We found no evidence for our argument that tougher sentencing reduces in crime in both models. The effect of the incaceration rate became smaller but reamains significant and positive. For a percentage point increase in the incarceration rate, the rate of violent crimes increases by 0.01 percentage points. -->
+
+<!-- We are not interested in our control variables beyond the fact that we want to estimate unbiased effects of our deterrence variables. As expected, the larger the percentage of young males, the higher the rate of violent crime. Average income and population are significantlly related with crime but the direction of the correlation is unexpected. -->
+
+<!-- Overall, we do not find evidence for our deterrence argument. The lax gun laws variable is unrelated to the rate of violent crimes. Tougher sentencing seems to be related to more violent crime, not less. -->
+
+<!-- ### Question 6 -->
+
+<!-- Load the dataset from our lecture -->
+
+<!--     a. Re-run the state fixed-effects model the lecture. -->
+<!--     b. Run a state and time fixed-effects model. -->
+<!--     c. Produce a regression table with both models next to each other but do not show us the dummy variables. -->
+<!--     d. Interpret the models. -->
+
+<!-- ```{r} -->
+<!-- rm(list=ls()) -->
+<!-- a <- read.csv("http://philippbroniecki.github.io/philippbroniecki.github.io/assets/data/resourcecurse.csv") -->
+<!-- ``` -->
+
+<!-- a. Re-run the state fixed-effects model the lecture. -->
+
+<!-- ```{r} -->
+<!-- summary(a) -->
+<!-- ``` -->
+
+<!-- We look at a summary of the data first. The oil variable looks strange. We would have noticed that at the lasted when we run a model that includes oil. Because oil is a factor variable. It should be a numeric variable. The `read.csv()` function has converted oil to a factor variable. That only happens if not all entries are numeric but there are a few character entries in there as well. First of all, we look at the unique values of `oil` variable. -->
+
+<!-- ```{r} -->
+<!-- # umique values of oil variable -->
+<!-- table(a$oil) -->
+<!-- ``` -->
+
+<!-- The three dots are the way the World Banks codes missings by default. We have to convert them to `NA`. Firstly, we convert the factor variable to a string variable. -->
+
+<!-- ```{r} -->
+<!-- # convert factor variable to string -->
+<!-- a$oil <- as.character(a$oil) -->
+<!-- ``` -->
+
+<!-- Now, we convert the variable from a string to numeric. R will convert all numbers it recognizes. It will not recognize the three dots and automatically turn them to NA. -->
+
+<!-- ```{r} -->
+<!-- # convert factor variable to string -->
+<!-- a$oil <- as.numeric(a$oil) -->
+<!-- summary(a$oil) -->
+<!-- ``` -->
+
+<!-- As we can see, the 179 observations that had the three dots are now NA's. -->
+
+<!-- We can now re-run the model from the lecture. Note that the country variable is already a factor variable in the data. -->
+<!-- ```{r} -->
+<!-- m1 <- lm(institutions ~ oil + aid + gdp.capita + polity2 + log(population) + country, data = a) -->
+<!-- ``` -->
+
+<!-- b. Run a state and time fixed-effects model. -->
+
+<!-- ```{r} -->
+<!-- m2 <- lm(institutions ~ oil + aid + gdp.capita + polity2 + log(population) + country + factor(year), data = a) -->
+<!-- ``` -->
+
+<!-- c. Produce a regression table with both models next to each other but do not show us the dummy variables. -->
+
+<!-- ```{r} -->
+<!-- screenreg(list(m1,m2), -->
+<!--           custom.model.names = c("State Fixed Effects", "State and Time Fixed Effects"), -->
+<!--           custom.coef.map = list(oil = "oil", -->
+<!--                                  aid = "aid", -->
+<!--                                  gdp.capita = "gdp/capita", -->
+<!--                                  polity2 = "polity score", -->
+<!--                                  `log(population)` = "log of population")) -->
+
+<!-- ``` -->
+
+<!-- d. Interpret the models. -->
+
+<!-- Firstly, we look at the coefficient in a little more detail. -->
+
+<!-- ```{r} -->
+<!-- # we print the exact values of the first 6 coefficients -->
+<!-- coef(m2)[1:6] -->
+
+<!-- # we look at the range of the dependent variable -->
+<!-- summary(a$institutions) -->
+<!-- # so the  range is roughly 4.5 -->
+
+<!-- # f test -->
+<!-- anova(m1, m2) -->
+<!-- ``` -->
+
+
+<!-- The variables `oil` and `aid` are oil rents as percentage of GDP and net international aid as percentage of GDP respectively. We discussed the rentier states theory in class. The hypotheses were that oil and aid should both reduce institutional quality (the dependent variable). -->
+
+<!-- We do not find evidence for the theory. The effect of oil is insignificant in both models. Futhermore, aid seems to related to better quality institutions which would suggest that foreign aid does work. -->
+
+<!-- The effect of aid is noticeable. When the percentage of foreign aid of gdp increases by a percentage point, the quality of institutions increases by 0.0025. -->
+
+<!-- The magnitudes of the polity score increased. The effect of population almost halfed. These variables may have been confounded. Our model remains very stable. The F test suggests that, we improve model fit by controlling for time fixed effects as well. -->

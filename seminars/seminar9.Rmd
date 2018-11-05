@@ -1,0 +1,478 @@
+# Regression Assumptions
+
+## Seminar
+
+Clear the environment and set the working directory.
+
+```{r eval = FALSE}
+rm(list = ls())
+setwd("Your directory")
+```
+
+### Required Packages
+
+Today, we need two new packages: `lmtest` and `sandwich`. We'll explain the functionality offered by each package as we go along. We load the the libraries up front and you need to install `lmtest` and `sandwich` once.
+
+```{r eval = FALSE}
+install.packages("lmtest")
+install.packages("sandwich")
+```
+
+Now load the libraries.
+
+```{r message = FALSE}
+library(lmtest)
+library(sandwich)
+library(texreg)
+```
+
+### Omitted Variable Bias
+
+- [Spurious Correlations](http://tylervigen.com/spurious-correlations)
+
+We have already dealt with OVB at length, but it is worth going over another (silly) example here for revision purposes (we talked about this example in class as well).
+
+#### ![](./img/shark.png) Ice Cream and Shark Attacks
+
+Does ice cream consumption increase the likelihood of being attacked by a shark? Let's explore a dataset of shark attacks, ice cream sales and monthly temperatures collected over 7 years to find out.
+
+
+```{r}
+shark_attacks <- read.csv("shark_attacks.csv")
+head(shark_attacks)
+```
+
+Run a linear model to see the effects of ice cream consumption on shark attacks.
+
+```{r class.source="collapsible"}
+model1 <- lm(SharkAttacks ~ IceCreamSales, data = shark_attacks)
+screenreg(model1)
+```
+
+Let's check pairwise correlation between ice cream consumption, average monthly temperatures and shark attacks.
+
+```{r}
+cor(shark_attacks[, c("SharkAttacks", "Temperature", "IceCreamSales")])
+```
+
+It looks like there's high correlation between average monthly temperatures and shark attacks, and also between ice cream consumption and monthly temperatures, so let's add the `Temperature` variable to our model.
+
+```{r class.source="collapsible"}
+model2 <- lm(SharkAttacks ~ IceCreamSales + Temperature, data = shark_attacks)
+```
+
+Now compare it to the first model.
+
+```{r class.source="collapsible"}
+screenreg(list(model1, model2))
+```
+
+The second model shows that once we control for monthly temperatures, ice cream consumption has no effect on the number of shark attacks. 
+
+What was the bias in the coefficient of `IceCreamSales` in the model where we did not control for `Temperature`?
+```{r class.source="collapsible"}
+# coefficient in new model minus coefficient in old model
+0.10 -  0.34
+```
+
+We overestimated the effect by 0.24, more than two thirds of the effect. We know that the real effect of selling ice cream on shark attacks is exactly 0 (unless for some reason sharks really like icecream). The two phenomena are unrelated. Our estimate, although insignificant, is still an over-estimate.
+
+### Detecting non-linearity
+
+For this part of the problem set, we will be using data on the results of the German Bundestag elections in 2017. You can load this data directly from GitHub using the following command:
+
+```{r}
+german_results <- read.csv("https://raw.githubusercontent.com/UCLSPP/datasets/master/data/german_election_results.csv") 
+```
+
+Note, the data contains weird looking German characters. If you want them properly displayed, load the data using its character encoding utf-8 like so: `german_results <- read.csv("https://raw.githubusercontent.com/UCLSPP/datasets/master/data/german_election_results.csv", fileEncoding = "utf-8")`. It's usually not a problem because it only messes up the names of the districts. 
+
+We should again quickly see the variables that are included in the data using the `head()` function (or any other way you prefer):
+```{r class.source="collapsible"}
+head(german_results)
+```
+
+For this problem, we are going to be interested in modelling the share of the vote won by the SPD in each of the 299 electoral districts. This variable is named `SPD` in the `german_results` data.frame. Let's build a linear regression model with two predictors: `migrantfraction` and `catholicfraction`, both of which are measured on a range from 0 to 100 percent.
+
+```{r class.source="collapsible"}
+# model on SPD
+spd_linear_model <- lm(SPD ~ migrantfraction + catholicfraction , data = german_results)
+
+# show model
+screenreg(spd_linear_model)
+```
+
+The model suggests that the fraction of migrants in a district is positively related to the popularity of the SPD in that district, and that there is a negative relationship between the fraction of catholics in a district and the SPD vote share. More precisely, the model tells us the for each additional percentage point of migrants, the SPD's vote share increases by `r round(coef(spd_linear_model)["migrantfraction"], digits = 2)` points, holding constant the fraction of Catholics. Conversely, for each additional percentage point of Catholics, the SPD's share of the vote increases by `r round(coef(spd_linear_model)["catholicfraction"], digits = 2)` points, holding constant the fraction of migrants. 
+
+As discussed in lecture, it is often useful to examine plots of the *model residuals* to determine whether there is evidence of a non-linear relationship between our dependent variable and our independent variables. Recall that the sample residuals are the difference between the observed values of Y and the predicted values of Y given our model: $u_i = Y_i - \hat{Y}_i$
+
+We can calculate the residuals for each observation in our data that we used to estimate the model by applying the `residuals()` function to the model object. Let's do this now, and assign the output to be a new variable in the `german_results` data frame.
+
+
+```{r}
+# get the residuals
+german_results$residuals <- spd_linear_model$residuals
+```
+
+Assume you wanted to estimate the residuals from the fitted values. Do so on your own. Hint: You can get fitted values (model predictions for each observation in the data) as `spd_linear_model$fitted.values`.
+
+```{r class.source="collapsible"}
+german_results$residuals2 <- german_results$SPD - spd_linear_model$fitted.values
+```
+
+Assess whehter both methods lead to the same result. Hint: There is rounding error, so both methods may not produce similar results numericaly. Confirm that the results are equivalent nonetheless.
+
+```{r class.source="collapsible"}
+# correlation coefficient
+cor(german_results$residuals, german_results$residuals2)
+```
+
+To assess whether there is evidence for non-linearity, it can be helpful to plot the residuals against the continuous explanatory variables in our model. Remember, the assumptions behind OLS models suggest that the residuals should be randomly distributed around zero for all values of X: $E(u_i|X_i) = 0$. So, any pattern that deviates from this randomness suggests that we may have misspecified our model.
+
+Let's plot the residuals from `spd_linear_model` against the two independent variables in our data.
+
+```{r}
+par(mfrow = c(1,2))
+plot(y = german_results$residuals,
+     x = german_results$catholicfraction,
+     xlab = "Catholic Fraction",
+     ylab = "Residuals",
+     frame.plot = F,
+     pch = 19,
+     cex = .7,
+     col = "grey")
+abline(h = 0)
+
+plot(y = german_results$residuals,
+     x = german_results$migrantfraction,
+     xlab = "Migrant Fraction",
+     ylab = "Residuals",
+     frame.plot = F,
+     pch = 19,
+     cex = .7,
+     col = "grey")
+abline(h = 0)
+
+```
+
+What can we conclude from these plots? In the left-hand plot, the residuals seem to be distributed fairly randomly around zero for all values of `catholicfraction`: there does not appear to be evidence of non-linearity for this variable.
+
+In the right-hand plot, however, it seems that the residuals are mostly negative for both low and high levels of the `migrantfraction` variable, but evenly spread around zero for the more moderate range of this variable. This pattern of residuals does seem to deviate from the OLS assumptions to a certain degree, and therefore suggests that we might want to try to account for this possible non-linearity in our model.
+
+One way of doing this is to include a polynomial term (we will use $X^2$ here) in our model, as we did last week. Let's do that now, and then `screenreg()` the results. Try on your own:
+
+```{r class.source="collapsible"}
+spd_non_linear_model <- lm(SPD ~ poly(migrantfraction,2) + catholicfraction , data = german_results)
+screenreg(spd_non_linear_model)
+```
+
+The coefficient on the squared term (`poly(migrantfraction, 2)2`) is significant, which indicates that there is evidence of a non-linear relationship between `migrantfraction` and SPD vote share in our data. This suggests that our interpretation of the residual plot above was correct, and that including the squared term is an important modification to our model. (You might also note that the Adjusted $R^2$ has nearly doubled with the inclusion of $X^2$, again suggesting that the non-linear adjustment is important.)
+
+We can now repeat the same residual-plotting exersise with the residuals from our new model, to see if we are closer to meeting the OLS assumption that the error term is randomly distributed around zero for all values of X. Try on your own:
+
+```{r class.source="collapsible"}
+german_results$residuals_model_two <- residuals(spd_non_linear_model)
+
+par(mfrow = c(1,2))
+plot(y = german_results$residuals_model_two,
+     x = german_results$catholicfraction,
+     xlab = "Catholic Fraction",
+     ylab = "Residuals",
+     frame.plot = F,
+     pch = 19,
+     cex = .7,
+     col = "grey")
+abline(h = 0)
+
+plot(y = german_results$residuals_model_two,
+     x = german_results$migrantfraction,
+     xlab = "Migrant Fraction",
+     ylab = "Residuals",
+     frame.plot = F,
+     pch = 19,
+     cex = .7,
+     col = "grey")
+abline(h = 0)
+
+
+```
+
+The right-hand plot now looks much better: the residuals seem randomly distributed around zero for all values of the `migrantfraction` variable, and there is no clearly distinguishable pattern anymore.
+
+You can also inspect how the model does overall. Repeat the previous exercise but plot the fitted values on the x-axis. What can we conclude?
+
+```{r class.source="collapsible"}
+par(mfrow = c(1,1))
+plot(y = german_results$residuals_model_two,
+     x = spd_non_linear_model$fitted.values,
+     xlab = "Migrant Fraction",
+     ylab = "Residuals",
+     frame.plot = F,
+     pch = 19,
+     cex = .7,
+     col = "grey")
+abline(h = 0)
+```
+
+Overall, it looks like conditional mean independence is satisfied.
+
+### Heteroskedasticity
+
+In order to understand heteroskedasticity, let's start by loading a sample of the U.S. Current Population Survey (CPS) from 2013. The dataset contains 2989 observations of full-time workers with variables including age, gender, years of education and income reported in hourly earnings.
+
+
+```{r}
+cps <- read.csv("cps2013.csv")
+```
+
+```{r}
+head(cps)
+```
+
+We plot income by years of education. 
+
+```{r class.source="collapsible"}
+plot(
+  y = cps$income,
+  x = cps$education,
+  xlab = "level of education",
+  pch = 19, 
+  cex = 1, 
+  bty = "n",
+  col = rgb(180,0,180,30, maxColorValue = 255)
+  )
+```
+
+
+The dots in this plot largely overlap because education is only collected for full years. It's therefore a bit hard to see the amount of observations that have 12 years of education and income 20. You can make it easier to see the amount of points by adding sine random noise to the education variable. So for example, for everyone with twelve years of eductation, we add or subtract a small amount at random. We will still be able to tell the education categories apart. We use this `jitter()` function to do this. We choose a small number of noise to add such that we can see the number of observations better and education categories are still visible. You have to play around to find a good number. Try on your own.
+
+```{r class.source="collapsible"}
+plot(
+  y = cps$income,
+  x = jitter(cps$education, 1.5),
+  xlab = "level of education",
+  pch = 19, 
+  cex = 1, 
+  bty = "n",
+  col = rgb(180,0,180,30, maxColorValue = 255)
+  )
+```
+
+We can see that the range of values for income have a larger spread as the level of education increases. Intuitively this makes sense as people with more education tend to have more opportunities and are employed in a wider range of professions. But how does this larger spread affect the regression model? 
+
+Let's run linear regression and take a look at the results to find out the answer.
+
+```{r class.source="collapsible"}
+model1 <- lm(income ~ education, data = cps)
+summary(model1)
+```
+
+The model tells us the for each additional year of education, the income increases by `r round(coef(model1)["education"], digits = 3)`. 
+
+Now let's plot the fitted model on our scatter plot of observations.
+
+```{r class.source="collapsible"}
+plot(
+  y = cps$income, 
+  x = jitter(cps$education,1.5),
+  xlab = "level of education",
+  pch = 19, 
+  cex = 1, 
+  bty = "n",
+  col = rgb(180,0,180,30, maxColorValue = 255)
+  )
+abline(model1, col = "darkblue", lwd = 2)
+```
+
+Looking at the fitted model, we can see that the errors (i.e. the differences between the predicted value and the observed value) increase as the level of education increases. This is what is known as *heteroskedasticity* or *heteroskedastic errors*. In plain language it simply means that the variability of the error term is not constant across the entire range of our observations.
+
+Another way to visualize this is by plotting residuals against the fitted values.
+
+```{r}
+plot(
+  y = model1$residuals,
+  x = jitter(model1$fitted.values, 1.5),
+  pch = 19,
+  bty = "n",
+  xlab = "predicted income",
+  ylab = "residuals (difference b/w truth and prediction)",
+  col = rgb(180,0,180,30, maxColorValue = 255),
+  main = "Residuals vs. Fitted")
+```
+
+Again, we can see that residuals are not constant and increase as the fitted values increase. In addition to visual inspection, we can also test for heteroskedasticity using the Breusch-Pagan Test from the [`lmtest`](http://bit.ly/R_lmtest) package we loaded at the beginning.
+
+```{r}
+bptest(model1)
+```
+
+The null hypothesis for the Breusch-Pagan test is that the variance of the error term is constant, or in other words, the errors are homoskedestic. By looking at the *p-value* from Breusch-Pagan test we can determine whether we have heteroskedastic errors or not.
+
+The *p-value* tells us that we can reject the null hypothesis of homoskedestic errors. Once we've determined that we're dealing with heteroskedastic errors, we can correct them using the [`coeftest()`](http://bit.ly/R_coeftest) function from the [`lmtest`](http://bit.ly/R_lmtest) package. 
+
+Here is a list of arguments for the [`coeftest()`](http://bit.ly/R_coeftest) function:
+
+```
+coeftest(model, vcov)
+```
+
+|Argument|Description|
+|--------|-------------------------------------------------------------|
+|`model`|This is the estimated model obtained from [`lm()`](http://bit.ly/R_lm).|
+|`vcov`|Covariance matrix. The simplest way to obtain heteroskedasticity-consistent covariance matrix is by using the [`vcovHC()`](http://bit.ly/R_vcovHC) function from the [`sandwich`](http://bit.ly/R_sandwich) package. The result from [`vcovHC()`](http://bit.ly/R_vcovHC) can be directly passed to [`coeftest()`](http://bit.ly/R_coeftest) as the second argument.|
+
+
+```{r}
+screenreg(coeftest(model1, vcov = vcovHC(model1)))
+```
+
+```{r echo = FALSE}
+corrected_errors <- coeftest(model1, vcov = vcovHC(model1)) 
+```
+
+After correcting for heteroskedasticity we can see that the standard error for the independent variable `education` have increased from `r round(summary(model1)$coef["education", "Std. Error"], digits = 4)` to  `r round(corrected_errors["education", "Std. Error"], digits = 4)`. Even though this increase might seem very small, remember that it is relative to the scale of the independent variable. Since the standard error is the measure of precision for the esitmated coefficients, an increase in standard error means that our original estiamte wasn't as good as we thought it was before we corrected for heteroskedasticity.
+
+Now that we can get heteroskedastic corrected standard errors, how would you present them in a publication (or in your dissertation or the final exam)? Fortunately, all [`textreg`](http://bit.ly/R_texreg) functions such as [`screenreg()`](http://bit.ly/R_screenreg) or [`htmlreg()`](http://bit.ly/R_htmlreg) allow us to easily override the *standard errors* and *p-value* in the resulting output. 
+
+We first need to save the result from `coeftest()` to an object and then override the output from `screenreg()` by extracting the two columns of interest. 
+
+The corrected *standard errors* are in column `2` of the object returned by `coeftest()` and the associated *p-values* are in column `4`:
+
+```{r}
+corrected_errors <- coeftest(model1, vcov = vcovHC(model1)) 
+
+screenreg(model1, 
+          override.se = corrected_errors[, 2], 
+          override.pval = corrected_errors[, 4])
+```
+
+
+### Exercises
+
+[Does Indiscriminate Violence Incite Insurgent Attacks?](http://journals.sagepub.com/doi/suppl/10.1177/0022002708330881) Download and then load `chechen.csv`.
+
+<a href="https://uclspp.github.io/datasets/data/chechen.csv" type = "button" class = "btn btn-lg btn-primary" download>chechen data</a>
+
+</br>
+  
+Jason Lyall:
+<blockquote>
+Does a state's use of indiscriminate violence incite insurgent attacks? To date, most existing theories and empirical studies have concluded that such violence is highly counterproductive because it creates new grievances while forcing victims to seek security, if not safety, in rebel arms. This proposition is tested using Russian artillery fire in Chechnya (2000 to 2005) to estimate indiscriminate violence's effect on subsequent patterns of insurgent attacks [...].
+</blockquote>
+
+</br>
+Codebook:
+</br>
+
+  |Variable|Description|
+  |--------|-------------------------------------|
+  |vilno  |unique village number|
+  |disno |unique distric number|
+  |treat |Russian artillery shelling of cechan village|
+  |poverty   |estimated need (3 is highest)|
+  |pop2000  | population in 2000 |
+  |lpop2000  | logged population in 2000 |
+  |pret | pre-treatment insurgent attacks |
+  |post  | post-treatment insurgent attacks |
+  |diff  | post minus pret |
+  |groznyy  | 1 if in groznyy |
+  |elevation  | in meters |
+  |lelev  | logged elevation |
+  |tariq  | Tariqa (1=Naq.) |
+  |nn  | distance to nearest neighbour (km) |
+  |lnn | logged distance to nearest neighbour |
+  |reb  | rebel (1 = Basayev) |
+  |garrison  | (1 = Russian base present) |
+  |vildays  | days to first insurgent attack after treatment |
+  |deaths  | estimated number of individuals killed during Russian artillery shelling |
+  |deathsd  | 1 indicates that individuals were killed during shelling |
+  |wounded  | estimated number of individuals wounded during Russian artillery shelling |
+  |woundedd  | 1 indicates that individuals were wounded during Russian artillery shelling |
+  |fail  | 1 if insurgent attack is observed in 90 days after artillery shelling |
+  |swept  | 1 indicates village was swept in 90 days prior to artillery shelling |
+  |prop  | estimated number of structures destroyed during shelling |
+  |propd  | 1 indicates that property was destroyed during shelling |
+  |lprop  | logged number of estimated structures destroyed or damaged during shelling |
+  |history  | number of times village had been shelled in the past |
+  |historyd  | 1 indicates that village had been shelled in the past |
+  |lhistory  | logged number of times village had been shelled |
+  |change  | 1 if DD is increase: 0 if no change, -1 if DD decreases |
+  |decrease  | 1 if decrease recorded, 0 if not |
+  |increase  | 1 if increase in DD recorded, 0 if not |
+  |abandon  | number of neighbours within 5km^2 radius |
+
+</br>  
+
+The dataset comes from an article in the Journal of Conflict Resolution. Use the codebook above for the tasks and if anything is unclear, refer to the article that we have linked to above. 
+  
+  1. Load `chechen.csv`.
+  2. Run a bivariate regression model with `diff` as the dependent variable and `treat` as the predictor.
+  3. Control for additional variables. Discuss your choice of variables and refer to omitted variable bias.
+  4. Discuss the improvement in model fit and use the appropriate test statistic.
+  5. Check for non-linearity and if there is solve the problem.
+  6. Check for heteroskedasticity and if there is solve the problem.
+  7. Thoroughly compare the models, and interpret the outcome in substantial as well statistical terms - do not forget to talk about model fit. What are the implications of this?
+
+</br>
+
+[Ordinary Economic Voting Behavior in the Extraordinary Election of Adolf Hitler](https://www.cambridge.org/core/journals/journal-of-economic-history/article/ordinary-economic-voting-behavior-in-the-extraordinary-election-of-adolf-hitler/8C79A0AB9DA174B7D81A6EB313B1EDFC) Download and then load `who_voted_nazi_in_1932.csv`. 
+
+<a href="https://uclspp.github.io/datasets/data/who_voted_nazi_in_1932.csv" type = "button" class = "btn btn-lg btn-primary" download>who voted nazi in 1932 data</a>
+
+</br>
+
+<blockquote>
+The goal of analysis is to investigate which types of voters (based on their occupation category) cast ballots
+for the Nazis. One hypothesis says that the Nazis received much support from blue-collar workers. Since the
+data do not directly tell us how many blue-collar workers voted for the Nazis, we must infer this information
+using a statistical analysis [...].
+</blockquote>
+
+The data contains aggregate voting behaviour from 681 voting districts.
+
+</br>
+Codebook:
+</br>
+
+  |Variable|Description|
+  |--------|-------------------------------------|
+  |sharenazis  |Percent of the vote Nazis received in the district|
+  |nazivote |Number of Nazi votes|
+  |nvoter |Total number of eligible voters|
+  |shareblue   |Percent of blue-collar potential voters|
+  |sharewhite  |Percent of white-collar potential voters |
+  |shareself  |Percent of self-employed potential voters |
+  |sharedomestic |Percent of domestically employed potential voters |
+  |shareunemployed  |Percent of unemployed potential voters |
+
+  8. Load `who_voted_nazi_in_1932.csv`.
+  9. Run a bivariate model to test whether blue-collar voters voted for the Nazis.
+  10. Control for additional variables. Discuss your choice of variables and refer to omitted variable bias.
+  11. Can you fit a model using `shareblue`, `sharewhite`, `shareself`, `sharedomestic`, and `shareunemployed` as predictors? Why or why not?
+  12. Check for heteroskedasticity and if there is solve the problem.
+  13. Interpret your models.  
+  
+</br>
+
+Load the Massachusetts Test Scores dataset `MA_Schools.csv` from your PUBLG100 folder.
+
+The dataset contains `16` variables, but we're only interested in the following:
+    
+  |Variable|Description|
+  |--------|-------------------------------------|
+  |score8  |8th grade scores|
+  |stratio |Student-teacher ratio|
+  |english |% English learners|
+  |lunch   |% Receiving lunch subsidy|
+  |income  |Average district income |
+
+  14. Fit a model to explain the relationship between percentage of English learners and average 8th grade scores.
+  15. Plot the model and the regression line.
+  16. Check for correlation between the variables listed above to see if there are other variables that should be included in the model.
+    - HINT: There are some missing values in the dataset. Remove the NA's from the dataset like we have seen previously.
+    a. Add two variables from the list above that are highly correlated with both the independent and the dependent variable and run a linear regression again.
+  17. Compare the two models. Did the first model suffer from omitted variable bias?
+  18. Plot the residuals against the fitted values from the second model to visually check for heteroskedasticity.
+  19. Run the Breusch-Pagan Test to see whether the model suffers from heteroskedastic errors.
+  20. Correct for heteroskedasticity (if needed) and present the results with corrected standard errors and p-values. 
+  21. Save everything and source your script. If you get error messages, clean your script.
