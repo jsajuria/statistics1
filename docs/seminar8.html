@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="seminar7.html">
+<link rel="prev" href="solutions7.html">
 <link rel="next" href="solutions8.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -214,6 +214,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.1.7" data-path="seminar7.html"><a href="seminar7.html#exercises-6"><i class="fa fa-check"></i><b>7.1.7</b> Exercises</a></li>
 <li class="chapter" data-level="7.1.8" data-path="seminar7.html"><a href="seminar7.html#midterm-preparation"><i class="fa fa-check"></i><b>7.1.8</b> Midterm Preparation</a></li>
 </ul></li>
+<li class="chapter" data-level="7.2" data-path="solutions7.html"><a href="solutions7.html"><i class="fa fa-check"></i><b>7.2</b> Solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="seminar8.html"><a href="seminar8.html"><i class="fa fa-check"></i><b>8</b> Multiple linear regression models (II)</a><ul>
 <li class="chapter" data-level="8.1" data-path="seminar8.html"><a href="seminar8.html#seminar-7"><i class="fa fa-check"></i><b>8.1</b> Seminar</a><ul>
@@ -406,7 +407,7 @@ RMSE           0.13
      <span class="dt">ylab =</span> <span class="st">&quot;Human Development Index&quot;</span>)
 <span class="co"># the regression line</span>
 <span class="kw">abline</span>(m1, <span class="dt">col =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-351-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-369-1.png" width="672" /></p>
 <p>This model looks awful. We over-predict quality of live for poor countries. We under-predict for medium wealth levels and over-predict for rich countries. We will return to this problem later.</p>
 <p>For now, you should see that using the variability in <em>wdi_gdpc</em> we actually explain some of the variability in <em>undp_hdi</em>. We do not explain all of the variability. There are still differences between our predictions (the points on the line) and actual outcomes. Were we to explain all of the variability, all of the points would be on the line. They are not. They never will be in real-life applications. The social world is complex. However, we can ask: “How much of the variability in <em>undp_hdi</em> do we explain using the variability in <em>wdi_gdpc</em>.</p>
 <p>To answer this question, we first extract a fitted value for every observation in the dataset. Recall that a fitted value is a point on the line. Hence, we take the regression equation <span class="math inline">\(\hat{Y} = 0.5855759 + 0.000102 \times \textrm{GDP per capita}\)</span> and plug in the value of <em>wdi_gdpc</em> for every row in the dataset.</p>
@@ -502,7 +503,7 @@ adj.R.sq</code></pre></div>
   <span class="dt">pch =</span> <span class="dv">16</span>, <span class="co"># dot type</span>
   <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span> <span class="co"># no box around the legend</span>
   )</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-363-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-381-1.png" width="672" /></p>
 <p>To explain the level of development with quality of institutions is intuitive. We could add the colonial past dummy, to control for potential confounders. Including a dummy gives us the difference between former colonies and not former colonies. It therefore shifts the regression line parallelly. We have looked at binary variables in the last weeks. To see the effect of a dummy again, refer to the extra info at the bottom of page.</p>
 </div>
 <div id="interactions-continuous-and-binary" class="section level3">
@@ -617,7 +618,7 @@ yhat2 &lt;-<span class="st"> </span><span class="kw">predict</span>(m2, <span cl
   <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="co"># line width in legend</span>
   <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span> <span class="co"># no box around the legend</span>
   )</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-367-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-385-1.png" width="672" /></p>
 <p>As you can see, the line is steeper for ex colonies than for countries that were never colonised. That means the effect of institutional quality on human development is conditional on colonial past. Institutional quality matters more in ex colonies.</p>
 <p>Let’s examine the effect sizes of institutional quality conditional on colonial past.</p>
 <span class="math display">\[\begin{align}
@@ -682,7 +683,7 @@ yhat2 &lt;-<span class="st"> </span><span class="kw">predict</span>(m2, <span cl
   <span class="dt">ylab =</span> <span class="st">&quot;Human development index&quot;</span>,
   <span class="dt">xlab =</span> <span class="st">&quot;GDP per capita&quot;</span>
   )</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-369-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-387-1.png" width="672" /></p>
 <p>It’s easy to see, that the relationship between GDP per captia and the Human Development Index is not linear. Increases in wealth rapidly increase the quality of life in poor societies. The richer the country, the less pronounced the effect of additional wealth. We would mis-specify our model if we do not take the non-linear relationship into account.</p>
 <p>Let’s go ahead and mis-specify our model :-)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a mis-specified model</span>
@@ -775,7 +776,7 @@ y_hat &lt;-<span class="st"> </span><span class="kw">predict</span>(better.model
 
 <span class="co"># better model</span>
 <span class="kw">lines</span>(<span class="dt">x =</span> gdp_seq, <span class="dt">y =</span> y_hat, <span class="dt">col =</span> <span class="dv">2</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-375-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-393-1.png" width="672" /></p>
 <p>At home, we want you to estimate <code>even.better.model</code> with GDP/capita raised to the power of three to determine whether the data fit improves. Show this visually and with an F test.</p>
 <div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r"><span class="co"># estimate even better model with gdp/capita^3</span>
 even.better.model &lt;-<span class="st"> </span><span class="kw">lm</span>(undp_hdi <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(wdi_gdpc, <span class="dv">3</span>), <span class="dt">data =</span> a)
@@ -815,7 +816,7 @@ y_hat2 &lt;-<span class="st"> </span><span class="kw">predict</span>(even.better
 
 <span class="co"># even better model</span>
 <span class="kw">lines</span>(<span class="dt">x =</span> gdp_seq, <span class="dt">y =</span> y_hat2, <span class="dt">col =</span> <span class="dv">3</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-376-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-394-1.png" width="672" /></p>
 <p>We generate an even better fit with the cubic, however it still looks somewhat strange. The cubic is being wagged around by its tail. The few extreme values cause the strange shape. This is a common problem with polynomials. We move on to an alternative.</p>
 </div>
 <div id="log-transformations" class="section level4">
@@ -833,7 +834,7 @@ y_hat2 &lt;-<span class="st"> </span><span class="kw">predict</span>(even.better
   <span class="dt">ylab =</span> <span class="st">&quot;Human development index&quot;</span>,
   <span class="dt">xlab =</span> <span class="st">&quot;Logged gdp/capita&quot;</span>
   )</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-377-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-395-1.png" width="672" /></p>
 <p>As you can see, the relationship now looks linear and we get the best fit to the data if we run our model with log-transformed gdp.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># run model with log-transformed gdp</span>
 best.model &lt;-<span class="st"> </span><span class="kw">lm</span>(undp_hdi <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(wdi_gdpc), <span class="dt">data =</span> a)
@@ -897,7 +898,7 @@ y_hat3 &lt;-<span class="st"> </span><span class="kw">predict</span>(best.model,
 
 <span class="co"># best model</span>
 <span class="kw">lines</span>(<span class="dt">x =</span> gdp_seq, <span class="dt">y =</span> y_hat3, <span class="dt">col =</span> <span class="dv">4</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-379-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-397-1.png" width="672" /></p>
 <p>The dark purple line shows the log-transformed model. It clearly fits the data best.</p>
 </div>
 </div>
@@ -1023,7 +1024,7 @@ model_coef</code></pre></div>
   <span class="dt">pch =</span> <span class="dv">16</span>,
   <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>
   )</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-384-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-402-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -1033,7 +1034,7 @@ model_coef</code></pre></div>
           </div>
         </div>
       </div>
-<a href="seminar7.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="solutions7.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="solutions8.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

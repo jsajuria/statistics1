@@ -6,10 +6,10 @@ library(texreg)
 
 #### Exercise 2
 
-You can download the data and load from your local disk but since it is available online, we download it directly from the Quality of Government Institute website.
+If you didn't find the data online, you can download it [here](https://github.com/philippbroniecki/statistics1/blob/master/data/qog_std_cs_jan18.csv?raw=TRUE)
 
 ```{r}
-df <- read.csv("http://www.qogdata.pol.gu.se/data/qog_std_cs_jan17.csv", header = TRUE)
+df <- read.csv("qog_std_cs_jan18.csv", header = TRUE)
 ```
 
 #### Exercise 3
@@ -73,7 +73,7 @@ Add some additional explanatory variables (no more than 5) to your model and jus
 
 We have not talked about this in the lecture before and it will not be a hurdle in the midterm. However, it is important that you keep an eye on sample size. If the sample size becomes too small it is unlikely that you can make meaningful statements about the world. We, therefore, selected variables with an eye on the missing values and their theoretical importance. If you see studies that are based on small samples, be suspicious.
 
-Firstly, we used infant mortality as a general indicator for development in the sense that basic health can be provided. We expect that if health conditions get worse than that should affect the capacity to govern negatively because it points to a basic lack of resources. We include a variable that measures conflict intensity. Violent conflict seriously, impedes the ability to govern. Finally, we added an index for the freedom of the press. The press is often considered to be the forth column in a state (besides the legislative, executive, and judicial branches). The function is to check the government. A role, that can be best fulfilled by a free press. This will lead to a more accountable government which we conjecture increases the quality of government.
+Firstly, we used infant mortality as a general indicator for development in the sense that basic health can be provided. We expect that if health conditions get worse than that should affect the capacity to govern negatively because it points to a basic lack of resources. We include a variable that measures conflict intensity. Violent conflict seriously, impedes the ability to govern.
 
 We rename the variables and drop missing values on them.
 
@@ -82,11 +82,9 @@ Note: To make models comparable, they should be based on the same sample. So, af
 ```{r}
 # renaming
 names(df)[which(names(df)=="wef_imort")] <- "infant_mortality"
-names(df)[which(names(df)=="fh_fotpsc")] <- "press_freedom"
 names(df)[which(names(df)=="bti_ci")] <- "conflict_intensity"
 
 summary(df$infant_mortality) # infant mortality
-summary(df$press_freedom) # freedom of the press index
 summary(df$conflict_intensity) # conflict intensity
 ```
 
@@ -103,7 +101,7 @@ As you can see, the difference is not small. This is less than ideal. R^2 goes d
 
 ```{r}
 # add new control variables
-m2 <- lm(gov_quality ~ social_capital + infant_mortality + press_freedom + conflict_intensity, data = df )
+m2 <- lm(gov_quality ~ social_capital + infant_mortality + conflict_intensity, data = df )
 screenreg(list(m1.rerun, m2))
 ```
 
@@ -136,16 +134,15 @@ Interpret the output of the better model. State your expectations and whether th
 screenreg( list(m1.rerun, m2))
 ```
 
-Our re-run bivariate model explains 13$\%$ of the variance of the quality of government. This is not bad for a small model. By adding our three variables, we increased explained variance to 40$\%$ which is a large increase. Our new model seems to explain quality of government much better than the smaller model.
+We'll use adjusted R^2 here. Our re-run bivariate model explains 16$\%$ of the variance of the quality of government. This is not bad for a small model. By adding our three variables, we increased explained variance to 42$\%$ which is a large increase. Our new model seems to explain quality of government much better than the smaller model.
 
-The intercept is not meaningful in either model. The coefficient of social capital is no longer significant (its standard error is larger in absolute terms than the coefficient estimate). We, therefore, do find evidence for the effect of social capital when we control basic health, press freedom, and conflict intensity also. Neither press freedom nor conflict intensity reach conventional levels of significance (both coefficients are less than 1.96 standard deviations away from zero). We find that the worth the health conditions, the less well governed a country will be. Infant mortality is measured in deaths/ 1000 live births. If that proportion increases by 10, the government index decreases by 2.3 which corresponds to roughly 2$\%$ of its range.
-
+The intercept is not meaningful in either model. The coefficient of social capital is no longer significant (its standard error is larger in absolute terms than the coefficient estimate). We, therefore, do find evidence for the effect of social capital when we control basic health, and conflict intensity also. We find that the worth the health conditions, the less well governed a country will be. Infant mortality is measured in deaths/ 1000 live births. If that proportion increases by 10, the government index decreases by 2.3 which corresponds to roughly 2$\%$ of its range. The higher the conflict intensity, the lower quality of government. For any one point increase ($\frac{1}{10}$ of the scale) quality of government decrases by 0.01 which corresponds to roughly 1$\%$ of its range.
 
 #### Exercise 9
 
 Calculate fitted values whilst varying at least one of your continuous explanatory variables.
 
-We only have one significant variable. It does not make sense to vary insignificant variables because, we cannot reject the null that their effect is zero. We vary infant mortality from minimum to maximum.
+We vary infant mortality from minimum to maximum.
 
 ```{r}
 # see minimum and maximum of infant mortality
@@ -155,7 +152,6 @@ summary(df$infant_mortality)
 covariates <- data.frame(
   social_capital = mean(df$social_capital), 
   infant_mortality = seq(from = 2, to = 120, by = 1),
-  press_freedom = mean(df$press_freedom),
   conflict_intensity = mean(df$conflict_intensity)
   )
 

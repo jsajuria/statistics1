@@ -226,6 +226,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.1.6" data-path="seminar8.html"><a href="seminar8.html#exercises-7"><i class="fa fa-check"></i><b>8.1.6</b> Exercises</a></li>
 <li class="chapter" data-level="8.1.7" data-path="seminar8.html"><a href="seminar8.html#extra-info-dummy-variables-repetition"><i class="fa fa-check"></i><b>8.1.7</b> Extra Info: Dummy Variables Repetition</a></li>
 </ul></li>
+<li class="chapter" data-level="8.2" data-path="solutions8.html"><a href="solutions8.html"><i class="fa fa-check"></i><b>8.2</b> Solutions</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="solutions8.html"><a href="solutions8.html#question-1"><i class="fa fa-check"></i><b>8.2.1</b> Question 1</a></li>
+<li class="chapter" data-level="8.2.2" data-path="solutions8.html"><a href="solutions8.html#question-2"><i class="fa fa-check"></i><b>8.2.2</b> Question 2</a></li>
+<li class="chapter" data-level="8.2.3" data-path="solutions8.html"><a href="solutions8.html#question-3"><i class="fa fa-check"></i><b>8.2.3</b> Question 3</a></li>
+<li class="chapter" data-level="8.2.4" data-path="solutions8.html"><a href="solutions8.html#question-4"><i class="fa fa-check"></i><b>8.2.4</b> Question 4</a></li>
+<li class="chapter" data-level="8.2.5" data-path="solutions8.html"><a href="solutions8.html#question-5"><i class="fa fa-check"></i><b>8.2.5</b> Question 5</a></li>
+<li class="chapter" data-level="8.2.6" data-path="solutions8.html"><a href="solutions8.html#question-6"><i class="fa fa-check"></i><b>8.2.6</b> Question 6</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="seminar9.html"><a href="seminar9.html"><i class="fa fa-check"></i><b>9</b> Regression Assumptions</a><ul>
+<li class="chapter" data-level="9.1" data-path="seminar9.html"><a href="seminar9.html#seminar-8"><i class="fa fa-check"></i><b>9.1</b> Seminar</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="seminar9.html"><a href="seminar9.html#required-packages"><i class="fa fa-check"></i><b>9.1.1</b> Required Packages</a></li>
+<li class="chapter" data-level="9.1.2" data-path="seminar9.html"><a href="seminar9.html#omitted-variable-bias"><i class="fa fa-check"></i><b>9.1.2</b> Omitted Variable Bias</a></li>
+<li class="chapter" data-level="9.1.3" data-path="seminar9.html"><a href="seminar9.html#detecting-non-linearity"><i class="fa fa-check"></i><b>9.1.3</b> Detecting non-linearity</a></li>
+<li class="chapter" data-level="9.1.4" data-path="seminar9.html"><a href="seminar9.html#heteroskedasticity"><i class="fa fa-check"></i><b>9.1.4</b> Heteroskedasticity</a></li>
+<li class="chapter" data-level="9.1.5" data-path="seminar9.html"><a href="seminar9.html#exercises-8"><i class="fa fa-check"></i><b>9.1.5</b> Exercises</a></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -249,8 +266,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(texreg)</code></pre></div>
 <div id="exercise-2-4" class="section level4">
 <h4><span class="header-section-number">7.2.0.1</span> Exercise 2</h4>
-<p>You can download the data and load from your local disk but since it is available online, we download it directly from the Quality of Government Institute website.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://www.qogdata.pol.gu.se/data/qog_std_cs_jan17.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>If you didn’t find the data online, you can download it <a href="https://github.com/philippbroniecki/statistics1/blob/master/data/qog_std_cs_jan18.csv?raw=TRUE">here</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;qog_std_cs_jan18.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</code></pre></div>
 </div>
 <div id="exercise-3-6" class="section level4">
 <h4><span class="header-section-number">7.2.0.2</span> Exercise 3</h4>
@@ -262,7 +279,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="co"># look at DV</span>
 <span class="kw">summary</span>(df<span class="op">$</span>gov_quality) <span class="co"># 55 NA&#39;s</span></code></pre></div>
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
-0.08333 0.38889 0.47222 0.52540 0.63194 0.97222      55 </code></pre>
+0.08333 0.38889 0.47222 0.52551 0.63310 0.97222      55 </code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create a copy of full dataset</span>
 df.full &lt;-<span class="st"> </span>df
 
@@ -277,7 +294,7 @@ df &lt;-<span class="st"> </span>df[ <span class="op">!</span><span class="kw">i
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># look at IV</span>
 <span class="kw">summary</span>(df<span class="op">$</span>bti_sc)</code></pre></div>
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
-  1.000   4.000   5.000   5.324   6.000   9.000      34 </code></pre>
+   1.00    4.00    5.00    5.21    6.00    9.00      34 </code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># remove NA&#39;s</span>
 df &lt;-<span class="st"> </span>df[ <span class="op">!</span><span class="kw">is.na</span>(df<span class="op">$</span>bti_sc), ]
 
@@ -291,15 +308,15 @@ m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(gov_quality <span cl
 ==========================
                 Model 1   
 --------------------------
-(Intercept)      24.68 ***
-                 (4.02)   
-social_capital    3.73 ***
-                 (0.72)   
+(Intercept)      26.00 ***
+                 (3.74)   
+social_capital    3.57 ***
+                 (0.68)   
 --------------------------
 R^2               0.21    
 Adj. R^2          0.20    
 Num. obs.       105       
-RMSE             12.41    
+RMSE             12.37    
 ==========================
 *** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
 <p>Firstly, the intercept is not meaningful in this case because social capital ranges from 1 to 9, i.e. there is no country with 0 social capital.</p>
@@ -310,23 +327,19 @@ RMSE             12.41
 <h4><span class="header-section-number">7.2.0.4</span> Exercise 5</h4>
 <p>Add some additional explanatory variables (no more than 5) to your model and justify the choice again.</p>
 <p>We have not talked about this in the lecture before and it will not be a hurdle in the midterm. However, it is important that you keep an eye on sample size. If the sample size becomes too small it is unlikely that you can make meaningful statements about the world. We, therefore, selected variables with an eye on the missing values and their theoretical importance. If you see studies that are based on small samples, be suspicious.</p>
-<p>Firstly, we used infant mortality as a general indicator for development in the sense that basic health can be provided. We expect that if health conditions get worse than that should affect the capacity to govern negatively because it points to a basic lack of resources. We include a variable that measures conflict intensity. Violent conflict seriously, impedes the ability to govern. Finally, we added an index for the freedom of the press. The press is often considered to be the forth column in a state (besides the legislative, executive, and judicial branches). The function is to check the government. A role, that can be best fulfilled by a free press. This will lead to a more accountable government which we conjecture increases the quality of government.</p>
+<p>Firstly, we used infant mortality as a general indicator for development in the sense that basic health can be provided. We expect that if health conditions get worse than that should affect the capacity to govern negatively because it points to a basic lack of resources. We include a variable that measures conflict intensity. Violent conflict seriously, impedes the ability to govern.</p>
 <p>We rename the variables and drop missing values on them.</p>
 <p>Note: To make models comparable, they should be based on the same sample. So, after we dropped missing values, we have to re-run our bivariate model as well.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># renaming</span>
 <span class="kw">names</span>(df)[<span class="kw">which</span>(<span class="kw">names</span>(df)<span class="op">==</span><span class="st">&quot;wef_imort&quot;</span>)] &lt;-<span class="st"> &quot;infant_mortality&quot;</span>
-<span class="kw">names</span>(df)[<span class="kw">which</span>(<span class="kw">names</span>(df)<span class="op">==</span><span class="st">&quot;fh_fotpsc&quot;</span>)] &lt;-<span class="st"> &quot;press_freedom&quot;</span>
 <span class="kw">names</span>(df)[<span class="kw">which</span>(<span class="kw">names</span>(df)<span class="op">==</span><span class="st">&quot;bti_ci&quot;</span>)] &lt;-<span class="st"> &quot;conflict_intensity&quot;</span>
 
 <span class="kw">summary</span>(df<span class="op">$</span>infant_mortality) <span class="co"># infant mortality</span></code></pre></div>
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
-   2.00    9.30   17.30   27.73   42.80  119.20      12 </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(df<span class="op">$</span>press_freedom) <span class="co"># freedom of the press index</span></code></pre></div>
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  16.00   41.00   57.00   55.57   68.00   97.00 </code></pre>
+   2.30    9.05   15.90   26.59   41.05  117.40      10 </code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(df<span class="op">$</span>conflict_intensity) <span class="co"># conflict intensity</span></code></pre></div>
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  1.000   3.000   4.000   4.762   6.000  10.000 </code></pre>
+  1.000   3.000   4.000   4.829   6.000  10.000 </code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># drop missings</span>
 df &lt;-<span class="st"> </span>df[ <span class="op">!</span><span class="kw">is.na</span>(df<span class="op">$</span>infant_mortality) ,]
 
@@ -337,41 +350,39 @@ m1.rerun &lt;-<span class="st"> </span><span class="kw">lm</span>(gov_quality <s
 =====================================
                 Model 1     Model 2  
 -------------------------------------
-(Intercept)      24.68 ***  30.11 ***
-                 (4.02)     (4.52)   
-social_capital    3.73 ***   2.93 ***
-                 (0.72)     (0.79)   
+(Intercept)      26.00 ***  28.94 ***
+                 (3.74)     (4.12)   
+social_capital    3.57 ***   3.18 ***
+                 (0.68)     (0.73)   
 -------------------------------------
-R^2               0.21       0.13    
-Adj. R^2          0.20       0.12    
-Num. obs.       105         93       
-RMSE             12.41      12.03    
+R^2               0.21       0.17    
+Adj. R^2          0.20       0.16    
+Num. obs.       105         95       
+RMSE             12.37      12.21    
 =====================================
 *** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
 <p>As you can see, the difference is not small. This is less than ideal. R^2 goes down by alot and the magnitude of social capital also changes. There is not much you can do (without advanced stats) except being transparent about the differences.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># add new control variables</span>
-m2 &lt;-<span class="st"> </span><span class="kw">lm</span>(gov_quality <span class="op">~</span><span class="st"> </span>social_capital <span class="op">+</span><span class="st"> </span>infant_mortality <span class="op">+</span><span class="st"> </span>press_freedom <span class="op">+</span><span class="st"> </span>conflict_intensity, <span class="dt">data =</span> df )
+m2 &lt;-<span class="st"> </span><span class="kw">lm</span>(gov_quality <span class="op">~</span><span class="st"> </span>social_capital <span class="op">+</span><span class="st"> </span>infant_mortality <span class="op">+</span><span class="st"> </span>conflict_intensity, <span class="dt">data =</span> df )
 <span class="kw">screenreg</span>(<span class="kw">list</span>(m1.rerun, m2))</code></pre></div>
 <pre><code>
-=========================================
-                    Model 1    Model 2   
------------------------------------------
-(Intercept)         30.11 ***   64.29 ***
-                    (4.52)     (12.74)   
-social_capital       2.93 ***   -0.08    
-                    (0.79)      (1.27)   
-infant_mortality                -0.23 ***
-                                (0.05)   
-press_freedom                   -0.10    
-                                (0.10)   
-conflict_intensity              -1.29    
-                                (0.66)   
------------------------------------------
-R^2                  0.13        0.39    
-Adj. R^2             0.12        0.37    
-Num. obs.           93          93       
-RMSE                12.03       10.21    
-=========================================
+========================================
+                    Model 1    Model 2  
+----------------------------------------
+(Intercept)         28.94 ***  51.59 ***
+                    (4.12)     (5.90)   
+social_capital       3.18 ***   1.35    
+                    (0.73)     (0.72)   
+infant_mortality               -0.26 ***
+                               (0.05)   
+conflict_intensity             -1.27 *  
+                               (0.60)   
+----------------------------------------
+R^2                  0.17       0.44    
+Adj. R^2             0.16       0.42    
+Num. obs.           95         95       
+RMSE                12.21      10.18    
+========================================
 *** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
 </div>
 <div id="exercise-6-6" class="section level4">
@@ -382,11 +393,10 @@ RMSE                12.03       10.21
 <pre><code>Analysis of Variance Table
 
 Model 1: gov_quality ~ social_capital
-Model 2: gov_quality ~ social_capital + infant_mortality + press_freedom + 
-    conflict_intensity
-  Res.Df   RSS Df Sum of Sq    F       Pr(&gt;F)    
-1     91 13170                                   
-2     88  9169  3    4000.9 12.8 0.0000005133 ***
+Model 2: gov_quality ~ social_capital + infant_mortality + conflict_intensity
+  Res.Df     RSS Df Sum of Sq      F        Pr(&gt;F)    
+1     93 13866.9                                      
+2     91  9428.7  2    4438.2 21.417 0.00000002385 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>As we saw by comparing R^2, the bigger model explains a lot more variance in the quality of government. The f-test shows that this difference is not due to chance. The p value is smaller than 0.05, hence, we reject the null that the small model and the larger model really explain the same. Another way to put this is: the variables we have added are jointly significant.</p>
@@ -402,54 +412,51 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <p>Interpret the output of the better model. State your expectations and whether they were met.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">screenreg</span>( <span class="kw">list</span>(m1.rerun, m2))</code></pre></div>
 <pre><code>
-=========================================
-                    Model 1    Model 2   
------------------------------------------
-(Intercept)         30.11 ***   64.29 ***
-                    (4.52)     (12.74)   
-social_capital       2.93 ***   -0.08    
-                    (0.79)      (1.27)   
-infant_mortality                -0.23 ***
-                                (0.05)   
-press_freedom                   -0.10    
-                                (0.10)   
-conflict_intensity              -1.29    
-                                (0.66)   
------------------------------------------
-R^2                  0.13        0.39    
-Adj. R^2             0.12        0.37    
-Num. obs.           93          93       
-RMSE                12.03       10.21    
-=========================================
+========================================
+                    Model 1    Model 2  
+----------------------------------------
+(Intercept)         28.94 ***  51.59 ***
+                    (4.12)     (5.90)   
+social_capital       3.18 ***   1.35    
+                    (0.73)     (0.72)   
+infant_mortality               -0.26 ***
+                               (0.05)   
+conflict_intensity             -1.27 *  
+                               (0.60)   
+----------------------------------------
+R^2                  0.17       0.44    
+Adj. R^2             0.16       0.42    
+Num. obs.           95         95       
+RMSE                12.21      10.18    
+========================================
 *** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
-<p>Our re-run bivariate model explains 13<span class="math inline">\(\%\)</span> of the variance of the quality of government. This is not bad for a small model. By adding our three variables, we increased explained variance to 40<span class="math inline">\(\%\)</span> which is a large increase. Our new model seems to explain quality of government much better than the smaller model.</p>
-<p>The intercept is not meaningful in either model. The coefficient of social capital is no longer significant (its standard error is larger in absolute terms than the coefficient estimate). We, therefore, do find evidence for the effect of social capital when we control basic health, press freedom, and conflict intensity also. Neither press freedom nor conflict intensity reach conventional levels of significance (both coefficients are less than 1.96 standard deviations away from zero). We find that the worth the health conditions, the less well governed a country will be. Infant mortality is measured in deaths/ 1000 live births. If that proportion increases by 10, the government index decreases by 2.3 which corresponds to roughly 2<span class="math inline">\(\%\)</span> of its range.</p>
+<p>We’ll use adjusted R^2 here. Our re-run bivariate model explains 16<span class="math inline">\(\%\)</span> of the variance of the quality of government. This is not bad for a small model. By adding our three variables, we increased explained variance to 42<span class="math inline">\(\%\)</span> which is a large increase. Our new model seems to explain quality of government much better than the smaller model.</p>
+<p>The intercept is not meaningful in either model. The coefficient of social capital is no longer significant (its standard error is larger in absolute terms than the coefficient estimate). We, therefore, do find evidence for the effect of social capital when we control basic health, and conflict intensity also. We find that the worth the health conditions, the less well governed a country will be. Infant mortality is measured in deaths/ 1000 live births. If that proportion increases by 10, the government index decreases by 2.3 which corresponds to roughly 2<span class="math inline">\(\%\)</span> of its range. The higher the conflict intensity, the lower quality of government. For any one point increase (<span class="math inline">\(\frac{1}{10}\)</span> of the scale) quality of government decrases by 0.01 which corresponds to roughly 1<span class="math inline">\(\%\)</span> of its range.</p>
 </div>
 <div id="exercise-9-5" class="section level4">
 <h4><span class="header-section-number">7.2.0.8</span> Exercise 9</h4>
 <p>Calculate fitted values whilst varying at least one of your continuous explanatory variables.</p>
-<p>We only have one significant variable. It does not make sense to vary insignificant variables because, we cannot reject the null that their effect is zero. We vary infant mortality from minimum to maximum.</p>
+<p>We vary infant mortality from minimum to maximum.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># see minimum and maximum of infant mortality</span>
 <span class="kw">summary</span>(df<span class="op">$</span>infant_mortality)</code></pre></div>
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-   2.00    9.30   17.30   27.73   42.80  119.20 </code></pre>
+   2.30    9.05   15.90   26.59   41.05  117.40 </code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set our covariates</span>
 covariates &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
   <span class="dt">social_capital =</span> <span class="kw">mean</span>(df<span class="op">$</span>social_capital), 
   <span class="dt">infant_mortality =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">2</span>, <span class="dt">to =</span> <span class="dv">120</span>, <span class="dt">by =</span> <span class="dv">1</span>),
-  <span class="dt">press_freedom =</span> <span class="kw">mean</span>(df<span class="op">$</span>press_freedom),
   <span class="dt">conflict_intensity =</span> <span class="kw">mean</span>(df<span class="op">$</span>conflict_intensity)
   )
 
 <span class="co"># check that everything looks okay</span>
 <span class="kw">head</span>(covariates) <span class="co"># looks fine</span></code></pre></div>
-<pre><code>  social_capital infant_mortality press_freedom conflict_intensity
-1       5.473118                2      53.92473           4.612903
-2       5.473118                3      53.92473           4.612903
-3       5.473118                4      53.92473           4.612903
-4       5.473118                5      53.92473           4.612903
-5       5.473118                6      53.92473           4.612903
-6       5.473118                7      53.92473           4.612903</code></pre>
+<pre><code>  social_capital infant_mortality conflict_intensity
+1       5.389474                2           4.705263
+2       5.389474                3           4.705263
+3       5.389474                4           4.705263
+4       5.389474                5           4.705263
+5       5.389474                6           4.705263
+6       5.389474                7           4.705263</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculate fitted values using predict()</span>
 fitted.vals &lt;-<span class="st"> </span><span class="kw">predict</span>(m2, <span class="dt">newdata =</span> covariates)
 
@@ -458,20 +465,13 @@ covariates<span class="op">$</span>fitted.vals &lt;-<span class="st"> </span>fit
 
 <span class="co"># hooray, for each scenario a predicted outcome</span>
 <span class="kw">head</span>(covariates)</code></pre></div>
-<pre><code>  social_capital infant_mortality press_freedom conflict_intensity
-1       5.473118                2      53.92473           4.612903
-2       5.473118                3      53.92473           4.612903
-3       5.473118                4      53.92473           4.612903
-4       5.473118                5      53.92473           4.612903
-5       5.473118                6      53.92473           4.612903
-6       5.473118                7      53.92473           4.612903
-  fitted.vals
-1    52.19227
-2    51.95759
-3    51.72292
-4    51.48825
-5    51.25358
-6    51.01891</code></pre>
+<pre><code>  social_capital infant_mortality conflict_intensity fitted.vals
+1       5.389474                2           4.705263    52.38236
+2       5.389474                3           4.705263    52.12627
+3       5.389474                4           4.705263    51.87018
+4       5.389474                5           4.705263    51.61409
+5       5.389474                6           4.705263    51.35800
+6       5.389474                7           4.705263    51.10190</code></pre>
 </div>
 <div id="exercise-10-5" class="section level4">
 <h4><span class="header-section-number">7.2.0.9</span> Exercise 10</h4>
