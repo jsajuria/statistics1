@@ -113,15 +113,14 @@
 }
 
 \setlength{\droptitle}{-2em}
-
   \title{Statistics 1}
-    \pretitle{\vspace{\droptitle}\centering\huge}
+  \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
-    \author{}
-    \preauthor{}\postauthor{}
-    \date{}
-    \predate{}\postdate{}
-  
+  \author{}
+  \preauthor{}\postauthor{}
+  \date{}
+  \predate{}\postdate{}
+
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[section]
@@ -5627,8 +5626,8 @@ is the maximum value.
 \end{Shaded}
 
 \begin{verbatim}
- [1] 1.085571 3.461975 1.337674 6.837531 6.328475 1.417875 2.598703
- [8] 2.104554 3.843775 2.232360
+ [1] 3.995911 4.865186 4.306878 1.236770 6.053912 6.416925 4.985713
+ [8] 3.357604 5.620513 6.730208
 \end{verbatim}
 
 We have indeed drawn 10 numbers but they are not integers as we would
@@ -5647,8 +5646,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 1.085571 3.461975 1.337674 6.837531 6.328475 1.417875 2.598703
- [8] 2.104554 3.843775 2.232360
+ [1] 3.995911 4.865186 4.306878 1.236770 6.053912 6.416925 4.985713
+ [8] 3.357604 5.620513 6.730208
 \end{verbatim}
 
 \begin{Shaded}
@@ -5659,8 +5658,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 3.165453 6.346896 5.789588 2.018155 5.205485 4.321096 1.689898
- [8] 4.040179 6.201925 2.425152
+ [1] 6.099410 2.609672 4.109623 5.996368 1.756864 5.925215 5.580484
+ [8] 4.496061 6.247924 3.458987
 \end{verbatim}
 
 The numbers of the first and second roll differ because we have drawn
@@ -12480,6 +12479,190 @@ income & Average district income\tabularnewline
   Save everything and source your script. If you get error messages,
   clean your script.
 \end{enumerate}
+
+\section{Regression Assumptions}\label{regression-assumptions-1}
+
+\subsection{Seminar}\label{seminar-9}
+
+In this seminar, you will be required to work more on your own. Start by
+clearing your workspace and setting your working directory.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rm}\NormalTok{(}\DataTypeTok{list =} \KeywordTok{ls}\NormalTok{())}
+\KeywordTok{setwd}\NormalTok{(}\StringTok{"Your directory"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{More guns, less crime}\label{more-guns-less-crime}
+
+More guns, less crime. This is the claim of an in(famous) book. It shows
+that violent crime rates in the United States decrease when gun
+ownership restrictions are relaxed. The data used in Lott's research
+compares violent crimes, robberies, and murders across 50 states to
+determine whether the so called ``shall'' laws that remove discretion
+from license granting authorities actually decrease crime rates. So far
+41 states have passed these ``shall'' laws where a person applying for a
+licence to carry a concealed weapon doesn't have to provide
+justification or ``good cause'' for requiring a concealed weapon permit.
+
+Load the guns.csv dataset directly into R by running the following line:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"http://philippbroniecki.github.io/philippbroniecki.github.io/assets/data/guns.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The data includes the following variables: * mur - Murder rate
+(incidents per 100,000) * shall - =1 if state has a shall-carry law in
+effect in that year, 0 otherwise * incarc rate - Incarceration rate in
+the state in the previous year (sentenced prisoners per 100,000
+residents; value for the previous year) * pm1029 - Percent of state
+population that is male, ages 10 to 29 * stateid - ID number of states
+(Alabama = , Alaska = 2, etc.) * year - Year (1977 - 1999)
+
+\subsubsection{Question 1}\label{question-1-1}
+
+Estimate the effect of shall using a simple linear model and interpret
+it.
+
+ Reveal answer
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(}\KeywordTok{lm}\NormalTok{(mur}\OperatorTok{~}\NormalTok{shall}\OperatorTok{+}\NormalTok{incarc_rate}\OperatorTok{+}\NormalTok{pm1029,}\DataTypeTok{data=}\NormalTok{a))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+Call:
+lm(formula = mur ~ shall + incarc_rate + pm1029, data = a)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-18.020  -2.486  -0.161   2.123  40.141 
+
+Coefficients:
+              Estimate Std. Error t value             Pr(>|t|)    
+(Intercept) -26.676300   1.527265 -17.467 < 0.0000000000000002 ***
+shall        -1.964093   0.316082  -6.214       0.000000000718 ***
+incarc_rate   0.037136   0.000814  45.624 < 0.0000000000000002 ***
+pm1029        1.641943   0.087414  18.784 < 0.0000000000000002 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 4.441 on 1169 degrees of freedom
+Multiple R-squared:  0.6524,    Adjusted R-squared:  0.6515 
+F-statistic: 731.4 on 3 and 1169 DF,  p-value: < 0.00000000000000022
+\end{verbatim}
+
+\begin{quote}
+Answer: According to our simple linear model, lax gun laws reduce the
+murder rate. It decreases by roughly 2 incidents per 100,000.
+\end{quote}
+
+ Reveal answer
+
+\subsubsection{Question 2}\label{question-2-1}
+
+Estimate a unit fixed effects model and a random effects model. Are both
+models consistent. If not which is the appropriate model? Use a
+consistent model to estimate the effect of the shall laws on the murder
+rate.
+
+ Reveal answer
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# panel data library}
+\KeywordTok{library}\NormalTok{(plm)}
+
+\CommentTok{# fixed effects}
+\NormalTok{m.fe <-}\StringTok{ }\KeywordTok{plm}\NormalTok{(mur }\OperatorTok{~}\StringTok{ }\NormalTok{shall }\OperatorTok{+}\StringTok{ }\NormalTok{incarc_rate }\OperatorTok{+}\StringTok{ }\NormalTok{pm1029,}
+\DataTypeTok{data =}\NormalTok{ a,}
+\DataTypeTok{index =} \KeywordTok{c}\NormalTok{(}\StringTok{"stateid"}\NormalTok{, }\StringTok{"year"}\NormalTok{),}
+\DataTypeTok{model =} \StringTok{"within"}\NormalTok{,}
+\DataTypeTok{effect =} \StringTok{"individual"}\NormalTok{)}
+
+\CommentTok{# random effects}
+\NormalTok{m.re <-}\StringTok{ }\KeywordTok{plm}\NormalTok{(mur }\OperatorTok{~}\StringTok{ }\NormalTok{shall }\OperatorTok{+}\StringTok{ }\NormalTok{incarc_rate }\OperatorTok{+}\StringTok{ }\NormalTok{pm1029,}
+\DataTypeTok{data =}\NormalTok{ a,}
+\DataTypeTok{index =} \KeywordTok{c}\NormalTok{(}\StringTok{"stateid"}\NormalTok{, }\StringTok{"year"}\NormalTok{),}
+\DataTypeTok{model =} \StringTok{"random"}\NormalTok{)}
+
+\CommentTok{# hausman test}
+\KeywordTok{phtest}\NormalTok{(m.fe, m.re)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Hausman Test
+
+data:  mur ~ shall + incarc_rate + pm1029
+chisq = 147.59, df = 3, p-value < 0.00000000000000022
+alternative hypothesis: one model is inconsistent
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# effect}
+\KeywordTok{summary}\NormalTok{(m.fe)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Oneway (individual) effect Within Model
+
+Call:
+plm(formula = mur ~ shall + incarc_rate + pm1029, data = a, effect = "individual", 
+    model = "within", index = c("stateid", "year"))
+
+Balanced Panel: n = 51, T = 23, N = 1173
+
+Residuals:
+      Min.    1st Qu.     Median    3rd Qu.       Max. 
+-21.102428  -0.958945   0.016047   1.082008  29.031961 
+
+Coefficients:
+              Estimate Std. Error t-value              Pr(>|t|)    
+shall       -1.4513886  0.3154300 -4.6013           0.000004678 ***
+incarc_rate  0.0174551  0.0011261 15.4998 < 0.00000000000000022 ***
+pm1029       0.9582993  0.0859610 11.1481 < 0.00000000000000022 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Total Sum of Squares:    12016
+Residual Sum of Squares: 9800
+R-Squared:      0.18444
+Adj. R-Squared: 0.14581
+F-statistic: 84.3526 on 3 and 1119 DF, p-value: < 0.000000000000000222
+\end{verbatim}
+
+\begin{quote}
+Answer: The Hausman test shows that we reject the null hypothesis - both
+random effects model and fixed effects model are consistent. The unique
+errors ui are correlated with the regressors. Therefore, we must rely on
+the fixed effects model.
+\end{quote}
+
+\begin{quote}
+The effect of the shall laws has decreased slightly but is still
+significantly related to the murder rate. Lax gun laws reduce the murder
+rate by 1.45 incidents per 100,000.
+\end{quote}
+
+ Reveal answer
+
+\subsubsection{Question 3}\label{question-3-1}
+
+Think of a theoretical reason to control for time fixed effects (what
+confounding sources could bias our estimate of the shall laws?). Test
+for time fixed effects using the appropriate test. If time fixed effects
+are required, re-estimate the fixed effects model as a twoway fixed
+effects model and interpret the effect of lax gun laws
 
 
 \end{document}

@@ -1,0 +1,103 @@
+# Panel Data - Fixed Effects and some Random Effects
+
+## Seminar
+
+In this seminar, you will be asked to work more on your own. Start by clearing your workspace and setting your working directory. We will then introduce the necessary R code for today using the example from the lecture. This will be brief and afterwards, you can analyse yourself whether more guns lead to less crime.
+
+```{r eval = FALSE, class.source="collapsible"}
+rm(list = ls())
+setwd("Your directory")
+```
+
+
+
+### More guns, less crime
+
+More guns, less crime. This is the claim of an in(famous) book. It shows that violent crime rates
+in the United States decrease when gun ownership restrictions are relaxed. The data used in Lott's
+research compares violent crimes, robberies, and murders across 50 states to determine whether
+the so called "shall" laws that remove discretion from license granting authorities actually decrease
+crime rates. So far 41 states have passed these "shall" laws where a person applying for a licence
+to carry a concealed weapon doesn't have to provide justification or "good cause" for requiring a
+concealed weapon permit.
+
+Load the guns.csv dataset directly into R by running the following line:
+
+```{r}
+a <- read.csv("http://philippbroniecki.github.io/philippbroniecki.github.io/assets/data/guns.csv")
+```
+
+The data includes the following variables:
+* mur - Murder rate (incidents per 100,000)
+* shall - =1 if state has a shall-carry law in effect in that year, 0 otherwise
+* incarc rate - Incarceration rate in the state in the previous year (sentenced prisoners per 100,000 residents; value for the previous year)
+* pm1029 - Percent of state population that is male, ages 10 to 29
+* stateid - ID number of states (Alabama = , Alaska = 2, etc.)
+* year - Year (1977 - 1999)
+
+
+### Question 1
+
+Estimate the effect of shall using a simple linear model and interpret it.
+
+<details>
+<summary>Reveal answer</summary>
+
+```{r}
+summary(lm(mur~shall+incarc_rate+pm1029,data=a))
+```
+
+> Answer: According to our simple linear model, lax gun laws reduce the murder rate. It decreases by
+roughly 2 incidents per 100,000.
+
+<details>
+
+### Question 2 
+
+Estimate a unit fixed effects model and a random effects model. Are both models consistent.
+If not which is the appropriate model? Use a consistent model to estimate the effect of the
+shall laws on the murder rate.
+
+<details>
+<summary>Reveal answer</summary>
+
+```{r}
+# panel data library
+library(plm)
+
+# fixed effects
+m.fe <- plm(mur ~ shall + incarc_rate + pm1029,
+data = a,
+index = c("stateid", "year"),
+model = "within",
+effect = "individual")
+
+# random effects
+m.re <- plm(mur ~ shall + incarc_rate + pm1029,
+data = a,
+index = c("stateid", "year"),
+model = "random")
+
+# hausman test
+phtest(m.fe, m.re)
+
+# effect
+summary(m.fe)
+```
+
+> Answer: The Hausman test shows that we reject the null hypothesis - both random effects model and
+fixed effects model are consistent. The unique errors ui are correlated with the regressors.
+Therefore, we must rely on the fixed effects model.
+
+> The effect of the shall laws has decreased slightly but is still significantly related to the murder
+rate. Lax gun laws reduce the murder rate by 1.45 incidents per 100,000.
+
+<details>
+<summary>Reveal answer</summary>
+
+### Question 3
+
+Think of a theoretical reason to control for time fixed effects (what confounding sources could
+bias our estimate of the shall laws?). Test for time fixed effects using the appropriate test.
+If time fixed effects are required, re-estimate the fixed effects model as a twoway fixed effects
+model and interpret the effect of lax gun laws

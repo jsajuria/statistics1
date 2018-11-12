@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="seminar2.html">
-<link rel="next" href="seminar3.html">
+<link rel="prev" href="seminar9.html">
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -269,114 +269,116 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="solutions-1" class="section level2">
-<h2><span class="header-section-number">2.2</span> Solutions</h2>
-<div id="exercise-2" class="section level3">
-<h3><span class="header-section-number">2.2.1</span> Exercise 2</h3>
-<p>Use the <code>names()</code> function to display the variable names of the <code>longley</code> dataset.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(longley)</code></pre></div>
-<pre><code>[1] &quot;GNP.deflator&quot; &quot;GNP&quot;          &quot;Unemployed&quot;   &quot;Armed.Forces&quot;
-[5] &quot;Population&quot;   &quot;Year&quot;         &quot;Employed&quot;    </code></pre>
+<div id="regression-assumptions-1" class="section level1">
+<h1><span class="header-section-number">Chapter 10</span> Regression Assumptions</h1>
+<div id="seminar-9" class="section level2">
+<h2><span class="header-section-number">10.1</span> Seminar</h2>
+<p>In this seminar, you will be required to work more on your own. Start by clearing your workspace and setting your working directory.</p>
+<div class="sourceCode"><pre class="sourceCode r collapsible"><code class="sourceCode r"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())
+<span class="kw">setwd</span>(<span class="st">&quot;Your directory&quot;</span>)</code></pre></div>
+<div id="more-guns-less-crime" class="section level3">
+<h3><span class="header-section-number">10.1.1</span> More guns, less crime</h3>
+<p>More guns, less crime. This is the claim of an in(famous) book. It shows that violent crime rates in the United States decrease when gun ownership restrictions are relaxed. The data used in Lott’s research compares violent crimes, robberies, and murders across 50 states to determine whether the so called “shall” laws that remove discretion from license granting authorities actually decrease crime rates. So far 41 states have passed these “shall” laws where a person applying for a licence to carry a concealed weapon doesn’t have to provide justification or “good cause” for requiring a concealed weapon permit.</p>
+<p>Load the guns.csv dataset directly into R by running the following line:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://philippbroniecki.github.io/philippbroniecki.github.io/assets/data/guns.csv&quot;</span>)</code></pre></div>
+<p>The data includes the following variables: * mur - Murder rate (incidents per 100,000) * shall - =1 if state has a shall-carry law in effect in that year, 0 otherwise * incarc rate - Incarceration rate in the state in the previous year (sentenced prisoners per 100,000 residents; value for the previous year) * pm1029 - Percent of state population that is male, ages 10 to 29 * stateid - ID number of states (Alabama = , Alaska = 2, etc.) * year - Year (1977 - 1999)</p>
 </div>
-<div id="exercise-3-1" class="section level3">
-<h3><span class="header-section-number">2.2.2</span> Exercise 3</h3>
-<p>Use square brackets to access the 4th column of the dataset.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">longley[, <span class="dv">4</span>]</code></pre></div>
-<pre><code> [1] 159.0 145.6 161.6 165.0 309.9 359.4 354.7 335.0 304.8 285.7 279.8
-[12] 263.7 255.2 251.4 257.2 282.7</code></pre>
+<div id="question-1-1" class="section level3">
+<h3><span class="header-section-number">10.1.2</span> Question 1</h3>
+<p>Estimate the effect of shall using a simple linear model and interpret it.</p>
+<p><details> <summary>Reveal answer</summary></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">lm</span>(mur<span class="op">~</span>shall<span class="op">+</span>incarc_rate<span class="op">+</span>pm1029,<span class="dt">data=</span>a))</code></pre></div>
+<pre><code>
+Call:
+lm(formula = mur ~ shall + incarc_rate + pm1029, data = a)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-18.020  -2.486  -0.161   2.123  40.141 
+
+Coefficients:
+              Estimate Std. Error t value             Pr(&gt;|t|)    
+(Intercept) -26.676300   1.527265 -17.467 &lt; 0.0000000000000002 ***
+shall        -1.964093   0.316082  -6.214       0.000000000718 ***
+incarc_rate   0.037136   0.000814  45.624 &lt; 0.0000000000000002 ***
+pm1029        1.641943   0.087414  18.784 &lt; 0.0000000000000002 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 4.441 on 1169 degrees of freedom
+Multiple R-squared:  0.6524,    Adjusted R-squared:  0.6515 
+F-statistic: 731.4 on 3 and 1169 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+<blockquote>
+<p>Answer: According to our simple linear model, lax gun laws reduce the murder rate. It decreases by roughly 2 incidents per 100,000.</p>
+</blockquote>
+<p><details> <summary>Reveal answer</summary></p>
 </div>
-<div id="exercise-4-1" class="section level3">
-<h3><span class="header-section-number">2.2.3</span> Exercise 4</h3>
-<p>Use the dollar sign to access the 4th column of the dataset.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">longley<span class="op">$</span>Armed.Forces</code></pre></div>
-<pre><code> [1] 159.0 145.6 161.6 165.0 309.9 359.4 354.7 335.0 304.8 285.7 279.8
-[12] 263.7 255.2 251.4 257.2 282.7</code></pre>
-<p>Note: There is yet another way to access the 4th column of the dataset. We can put the variable name into the square brackets using quotes like so:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">longley[, <span class="st">&quot;Armed.Forces&quot;</span>]</code></pre></div>
-<pre><code> [1] 159.0 145.6 161.6 165.0 309.9 359.4 354.7 335.0 304.8 285.7 279.8
-[12] 263.7 255.2 251.4 257.2 282.7</code></pre>
+<div id="question-2-1" class="section level3">
+<h3><span class="header-section-number">10.1.3</span> Question 2</h3>
+<p>Estimate a unit fixed effects model and a random effects model. Are both models consistent. If not which is the appropriate model? Use a consistent model to estimate the effect of the shall laws on the murder rate.</p>
+<p><details> <summary>Reveal answer</summary></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># panel data library</span>
+<span class="kw">library</span>(plm)</code></pre></div>
+<pre><code>Loading required package: Formula</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># fixed effects</span>
+m.fe &lt;-<span class="st"> </span><span class="kw">plm</span>(mur <span class="op">~</span><span class="st"> </span>shall <span class="op">+</span><span class="st"> </span>incarc_rate <span class="op">+</span><span class="st"> </span>pm1029,
+<span class="dt">data =</span> a,
+<span class="dt">index =</span> <span class="kw">c</span>(<span class="st">&quot;stateid&quot;</span>, <span class="st">&quot;year&quot;</span>),
+<span class="dt">model =</span> <span class="st">&quot;within&quot;</span>,
+<span class="dt">effect =</span> <span class="st">&quot;individual&quot;</span>)
+
+<span class="co"># random effects</span>
+m.re &lt;-<span class="st"> </span><span class="kw">plm</span>(mur <span class="op">~</span><span class="st"> </span>shall <span class="op">+</span><span class="st"> </span>incarc_rate <span class="op">+</span><span class="st"> </span>pm1029,
+<span class="dt">data =</span> a,
+<span class="dt">index =</span> <span class="kw">c</span>(<span class="st">&quot;stateid&quot;</span>, <span class="st">&quot;year&quot;</span>),
+<span class="dt">model =</span> <span class="st">&quot;random&quot;</span>)
+
+<span class="co"># hausman test</span>
+<span class="kw">phtest</span>(m.fe, m.re)</code></pre></div>
+<pre><code>
+    Hausman Test
+
+data:  mur ~ shall + incarc_rate + pm1029
+chisq = 147.59, df = 3, p-value &lt; 0.00000000000000022
+alternative hypothesis: one model is inconsistent</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># effect</span>
+<span class="kw">summary</span>(m.fe)</code></pre></div>
+<pre><code>Oneway (individual) effect Within Model
+
+Call:
+plm(formula = mur ~ shall + incarc_rate + pm1029, data = a, effect = &quot;individual&quot;, 
+    model = &quot;within&quot;, index = c(&quot;stateid&quot;, &quot;year&quot;))
+
+Balanced Panel: n = 51, T = 23, N = 1173
+
+Residuals:
+      Min.    1st Qu.     Median    3rd Qu.       Max. 
+-21.102428  -0.958945   0.016047   1.082008  29.031961 
+
+Coefficients:
+              Estimate Std. Error t-value              Pr(&gt;|t|)    
+shall       -1.4513886  0.3154300 -4.6013           0.000004678 ***
+incarc_rate  0.0174551  0.0011261 15.4998 &lt; 0.00000000000000022 ***
+pm1029       0.9582993  0.0859610 11.1481 &lt; 0.00000000000000022 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Total Sum of Squares:    12016
+Residual Sum of Squares: 9800
+R-Squared:      0.18444
+Adj. R-Squared: 0.14581
+F-statistic: 84.3526 on 3 and 1119 DF, p-value: &lt; 0.000000000000000222</code></pre>
+<blockquote>
+<p>Answer: The Hausman test shows that we reject the null hypothesis - both random effects model and fixed effects model are consistent. The unique errors ui are correlated with the regressors. Therefore, we must rely on the fixed effects model.</p>
+</blockquote>
+<blockquote>
+<p>The effect of the shall laws has decreased slightly but is still significantly related to the murder rate. Lax gun laws reduce the murder rate by 1.45 incidents per 100,000.</p>
+</blockquote>
+<p><details> <summary>Reveal answer</summary></p>
 </div>
-<div id="exercise-5-1" class="section level3">
-<h3><span class="header-section-number">2.2.4</span> Exercise 5</h3>
-<p>Access the two cells from row 4 and column 1 and row 6 and column 3.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># row 4, column 1</span>
-longley[<span class="dv">4</span>, <span class="dv">1</span>]</code></pre></div>
-<pre><code>[1] 89.5</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># row 6, column 3</span>
-longley[<span class="dv">6</span>, <span class="dv">3</span>]</code></pre></div>
-<pre><code>[1] 193.2</code></pre>
-</div>
-<div id="exercise-6-1" class="section level3">
-<h3><span class="header-section-number">2.2.5</span> Exercise 6</h3>
-<p>Using the <code>longley</code> data produce a line plot with GNP on the y-axis and population on the x-axis.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(
-  <span class="dt">y =</span> longley<span class="op">$</span>GNP, <span class="co"># y-axis variable</span>
-  <span class="dt">x =</span> longley<span class="op">$</span>Population, <span class="co"># x-axis variable</span>
-  <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="co"># produce a line plot</span>
-  <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="co"># no box around our plot</span>
-  <span class="dt">main =</span> <span class="st">&quot;Relationship of Population Size and Size of the Economy&quot;</span>
-)</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
-</div>
-<div id="exercise-7-1" class="section level3">
-<h3><span class="header-section-number">2.2.6</span> Exercise 7</h3>
-<p>Use the help function to find out how to label the y-axis “wealth” and the x-axis “population”.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?plot</code></pre></div>
-<p>The <code>?</code> is short for the <code>help()</code> function. We see that the <code>xlab</code> argument lets us label the x-axis and the <code>ylab</code> argument lets us label the y-axis. We do so below.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(
-  <span class="dt">y =</span> longley<span class="op">$</span>GNP, <span class="co"># y-axis variable</span>
-  <span class="dt">x =</span> longley<span class="op">$</span>Population, <span class="co"># x-axis variable</span>
-  <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="co"># produce a line plot</span>
-  <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="co"># no box around our plot</span>
-  <span class="dt">main =</span> <span class="st">&quot;Relationship of Population Size and Size of the Economy&quot;</span>,
-  <span class="dt">xlab =</span> <span class="st">&quot;Population older than 14 years of age&quot;</span>,
-  <span class="dt">ylab =</span> <span class="st">&quot;Gross national product&quot;</span>
-)</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
-</div>
-<div id="exercise-8-1" class="section level3">
-<h3><span class="header-section-number">2.2.7</span> Exercise 8</h3>
-<p>Create a boxplot showing the distribution of <em>IMMBRIT</em> by each party in the data and plot these in one plot next to each other.</p>
-<p>To do that, we load the non-western foreigners dataset first.</p>
-<p>Note: You have to set your working directory that R operates in to the location of the dataset.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load perception of non-western foreigners data</span>
-<span class="kw">load</span>(<span class="st">&quot;BSAS_manip.RData&quot;</span>)</code></pre></div>
-<p>We have five parties in our dataset. We plot 5 boxplots next to each other. Hence, we separate the plot window into 1 row and 5 columns.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot window to 1 row and 5 columns</span>
-<span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>))
-<span class="kw">boxplot</span>(data2<span class="op">$</span>IMMBRIT[ data2<span class="op">$</span>Cons <span class="op">==</span><span class="st"> </span><span class="dv">1</span> ], <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Tories&quot;</span>)
-<span class="kw">boxplot</span>(data2<span class="op">$</span>IMMBRIT[ data2<span class="op">$</span>Lab <span class="op">==</span><span class="st"> </span><span class="dv">1</span> ], <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Labour&quot;</span>)
-<span class="kw">boxplot</span>(data2<span class="op">$</span>IMMBRIT[ data2<span class="op">$</span>SNP <span class="op">==</span><span class="st"> </span><span class="dv">1</span> ], <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>, <span class="dt">col =</span> <span class="st">&quot;yellow&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;SNP&quot;</span>)
-<span class="kw">boxplot</span>(data2<span class="op">$</span>IMMBRIT[ data2<span class="op">$</span>Ukip <span class="op">==</span><span class="st"> </span><span class="dv">1</span> ], <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>, <span class="dt">col =</span> <span class="st">&quot;purple&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Ukip&quot;</span>)
-<span class="kw">boxplot</span>(data2<span class="op">$</span>IMMBRIT[ data2<span class="op">$</span>BNP <span class="op">==</span><span class="st"> </span><span class="dv">1</span> ], <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>, <span class="dt">col =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;BNP&quot;</span>)</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
-</div>
-<div id="exercises-9-and-10" class="section level3">
-<h3><span class="header-section-number">2.2.8</span> Exercises 9 and 10</h3>
-<p>We combine the answer to questions 9 and 10.</p>
-<p>Question from 9: Is there a difference between women and men in terms of their subjective estimation of foreingers?</p>
-<p>Question from 10: What is the difference between women and men?</p>
-<p>Women’s subjective estimate is the mean of <em>IMMBRIT</em> across women and equally, men’s subjective estimate is the mean of <em>IMMBRIT</em> over all men. Let’s get these numbers with the mean function and the square brackets.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">womens.mean &lt;-<span class="st"> </span><span class="kw">mean</span>(data2<span class="op">$</span>IMMBRIT[ data2<span class="op">$</span>RSex <span class="op">==</span><span class="st"> </span><span class="dv">2</span> ])
-womens.mean</code></pre></div>
-<pre><code>[1] 32.79159</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mens.mean &lt;-<span class="st"> </span><span class="kw">mean</span>(data2<span class="op">$</span>IMMBRIT[ data2<span class="op">$</span>RSex <span class="op">==</span><span class="st"> </span><span class="dv">1</span> ])
-mens.mean</code></pre></div>
-<pre><code>[1] 24.53766</code></pre>
-<p>The difference between women and men is the difference in means. Let’s take the difference between them. The difference in means is often referred to as the first difference.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">first.difference &lt;-<span class="st"> </span>womens.mean <span class="op">-</span><span class="st"> </span>mens.mean
-first.difference</code></pre></div>
-<pre><code>[1] 8.253937</code></pre>
-<p>Let’s round that number. We don’t like to see so many decimal places. You should usually present precision up to the second decimal place. We can use the <code>round()</code> function. The first argument is number to round and the second is the amount of digits.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(first.difference, <span class="dv">2</span>)</code></pre></div>
-<pre><code>[1] 8.25</code></pre>
-<p>We do find a difference between men and women. On average, women’s estimate of the number of non-western foreingers is 8.25 greater than men’s estimate.</p>
-<p>At this point we have established that there is a difference in our sample. Samples are subject to sampling variability. That means, we cannot yet say that the difference is systematic, i.e., British women, generally, think that there are more non-western foreingers than British men.</p>
-</div>
-<div id="exercises-11" class="section level3">
-<h3><span class="header-section-number">2.2.9</span> Exercises 11</h3>
-<p>Could you form a hypothesis out of the relationship that you see if any exists?</p>
-<p>Our testable hypothesis could be: Women tend to overestimate the number of foreigners more than men. In our sample, women tend to estimate on the number of foreingers at</p>
+<div id="question-3-1" class="section level3">
+<h3><span class="header-section-number">10.1.4</span> Question 3</h3>
+<p>Think of a theoretical reason to control for time fixed effects (what confounding sources could bias our estimate of the shall laws?). Test for time fixed effects using the appropriate test. If time fixed effects are required, re-estimate the fixed effects model as a twoway fixed effects model and interpret the effect of lax gun laws</p>
 
 </div>
 </div>
@@ -386,8 +388,8 @@ first.difference</code></pre></div>
           </div>
         </div>
       </div>
-<a href="seminar2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="seminar3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="seminar9.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
