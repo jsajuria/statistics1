@@ -192,7 +192,7 @@ This is our final model. We confirm hypothesis 1. Greater oil rents seem to be r
 
 ### The random effects model
 
-We show you the random effects model only because you see it applied often in political science. However, the model rests on extremely heroic assumptions. Recall from our lecture, the random effects model assumes that the time invariant confounders are unrelated to our regressors. The assumption says: "We assume that there are no confounders." This is unsatisfactory and the assumption will almost always be violated. The random effects model is weak when from a causal inference standpoint. The random effects model, however, tends to be used when we are interested in predicting outcomes but don't really care whether X is causally related to Y.
+We show you the random effects model only because you see it applied often in political science. However, the model rests on an heroic assumption. Recall from our lecture, the random effects model assumes that the time invariant confounders are unrelated to our regressors. The assumption says: "There are no confounders. Basta! By assumption." That's unsatisfactory. In fact, this assumption will almost always be violated. The random effects model is weak from a causal inference standpoint. However, it tends to well in prediction tasks where we are interested in predicting outcomes but don't really care whether X is causally related to Y.
 
 Let's estimate the random effects model.
 
