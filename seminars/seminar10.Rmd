@@ -59,7 +59,7 @@ a$log.pop <- log(a$population)
 |`population`   |  |
 |`mortality`   | rate (per 1000 live births) |
 
-We test the rentier states theory and the resource curse that we discussed in the lecture. It states that rentier capitalism can be a curse on the systemic level. States that extract rents from easily lootable resources instead of taxing their people develop institutions that become unresponsive to their citizens and provide less public goods. [North and Weingast](https://www.cambridge.org/core/journals/journal-of-economic-history/article/constitutions-and-commitment-evolution-of-institutions-governing-public-choice-in-seventeenth-century-england/2E0D2B2D3490BE5C556D836ACB096362), for instance, relate the advent of democracy in Britain with the struggle for property rights.
+We test the rentier states theory and the resource curse that we discussed in the lecture. It states that rentier capitalism can be a curse on the systemic level. States that extract rents from easily lootable resources instead of taxing their people develop institutions that become unresponsive to their citizens and provide less public goods. [North and Weingast (academic heroes)](https://www.cambridge.org/core/journals/journal-of-economic-history/article/constitutions-and-commitment-evolution-of-institutions-governing-public-choice-in-seventeenth-century-england/2E0D2B2D3490BE5C556D836ACB096362), for instance, relate the advent of democracy in Britain to the struggle for property rights.
 
 ### Unit fixed effects (country fixed effects)
 
