@@ -188,7 +188,7 @@ m5.scc <- coeftest(m5, vcov = vcovSCC(m5, type = "HC3", cluster = "group"))
 m5.scc
 ```
 
-This is our final model. We confirm hypothesis 1. Greater oil rents seem to be related to lower institutional quality. While we should still be careful with causal claims. We have reduced the potential for counfounding substantially. We reject hypothesis 2. Aid is significant but more foreign aid is related to better institutional quality.
+This is our final model. We find no evidence for hypothesis 1 and 2. Both oil and aid are unrelated to institutional quality (note that this is different from what you saw in the lecture. I had an error in the code. This version is correct.)
 
 ### The random effects model
 
@@ -261,7 +261,7 @@ summary(lm(mur~shall+incarc_rate+pm1029,data=a))
 > Answer: According to our simple linear model, lax gun laws reduce the murder rate. It decreases by
 roughly 2 incidents per 100,000.
 
-<details>
+</details>
 
 ### Question 2 
 
@@ -301,7 +301,7 @@ summary(m.fe)
 > The effect of the shall laws has decreased slightly but is still significantly related to the murder
 rate. Lax gun laws reduce the murder rate by 1.45 incidents per 100,000.
 
-<details>
+</details>
 
 ### Question 3
 
@@ -340,7 +340,7 @@ summary(m.2wfe)
 
 > The effect of the shall laws is indistinguishable from zero (at the 0.05 alpha level). We conclude that the shall laws do not increase or decrease the murder rate.
 
-<details>
+</details>
 
 ### Question 4
 
@@ -356,7 +356,7 @@ m.2wfe.hac
 
 > Answer: The standard error more than doubled. Our substantive conclusion does not change: The shall laws have no effect on the murder rate in our sample.
 
-<details>
+</details>
 
 ### Question 5
 
@@ -380,4 +380,4 @@ m.2wfe.scc
 
 > Overall, we find no evidence for the claim made in the book. Guns do not appear to decrease the number of violent crimes. There is also no evidence for the opposite effect.
 
-<details>
+</details>
