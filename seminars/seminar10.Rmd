@@ -9,7 +9,218 @@ rm(list = ls())
 setwd("Your directory")
 ```
 
+We start by loading the [resource curse data](https://github.com/philippbroniecki/statistics1/blob/master/data/resourcecurse.csv?raw=TRUE) and checking the data with the `str()` function.
 
+```{r}
+a <- read.csv("resourcecurse.csv")
+str(a)
+```
+
+The oil variable is coded as a factor variable but it should be numeric. Missing values as coded as "..". convert the variable to a numeric variable and drop missing values.
+
+```{r}
+# recode missings
+a$oil[which(a$oil=="..")] <- NA
+# convert to numeric
+a$oil <- as.numeric(a$oil)
+```
+
+To estimate panel data models, we need to install the `plm` package. You only need to do this once.
+
+```{r, eval=FALSE}
+install.packages("plm")
+```
+
+Every time, we want to use the package (when we start a new R session), we load the `plm` library like so:
+
+```{r}
+library(plm)
+```
+
+We log-transform gdp per capita and population size.
+
+```{r}
+a$log.gdp <- log(a$gdp.capita)
+a$log.pop <- log(a$population)
+```
+
+### Our data
+
+|Variable| Description |
+|--------|------------------------------------------------------------------------|
+|`country`    | country name |
+|`countrycode`   | 3 letter country abbreviation |
+|`year`   | |
+|`aid`   | net aid flow (in per cent of GDP) |
+|`oil`   | oil rents (in per cent of GDP) |
+|`gdp.capita`   | GDP per capita in constant 2000 US dollars |
+|`institutions`   | world governance indicator index for quality of institutions |
+|`polity2`   | polity IV project index |
+|`population`   |  |
+|`mortality`   | rate (per 1000 live births) |
+
+We test the rentier states theory and the resource curse that we discussed in the lecture. It states that rentier capitalism can a curse on the systemic level. States that extract rents from easily lootable resources instead of taxing their people develop institutions that become unresponsive to their citizens and provide less public goods. North and Weingast, for instance, relate the advent of democracy in Britain with the struggle for property rights.
+
+### Unit fixed effects (country fixed effects)
+
+In class, our first fixed effects model was called `m3`. It was the unit fixed effects model. Recall, that the unit fixed effects model is the same as including dummy variables for all countries except the baseline country. Therefore, we control for all potential confounders that vary across countries but are constant over time (e.g., the colonial heritage of a country).
+
+```{r}
+# run fixed effects model
+m3 <- plm(
+  institutions ~ oil + aid + log.gdp + polity2 + log.pop + mortality,
+  data = a,
+  index = c("country", "year"),
+  model = "within",
+  effect = "individual"
+  )
+
+# model output
+summary(m3)
+```
+
+Similar to the F-test, we use the check whether country fixed effects explain any variation at all using the Lagrange Multiplier test.
+
+```{r}
+# check for unit(country) fixed effects
+plmtest(m3, effect="individual")
+```
+The null hypothesis is that country fixed effects do not have any effect and that would mean, statistically, that we could leave them out. However, in this case we reject the null hypothesis and hence we do need to control for country fixed effects.
+
+### Time fixed effects
+
+We now estimate the time fixed effects model to illustrate how this would be done. However, we already know that we do need to include country fixed effects. Not estimating country fixed effects would be a mistake. The time fixed effects model does not include country fixed effects and, therefore, it makes that mistake. Generally, in the time fixed effects model, we control for all sources of confounding that vary over time but are constant across the units (the countries) such as technological change, for instance (you can argue whether technological change really affects all countries in our sample in the same way). The time fixed effects model includes a dummy variable for every time period except the baseline.
+
+```{r}
+# time fixed effects model
+m4 <- plm(
+  institutions ~ oil + aid + log.gdp + polity2 + log.pop + mortality,
+  data = a,
+  index = c("country", "year"),
+  model = "within",
+  effect = "time")
+
+# model output time fixed effects
+summary(m4)
+```
+
+Notice that adjusted R^2 is much larger in the time fixed effects model than in the country fixed effects model. That does not mean that the time fixed effects model is better. In fact adjusted R^2 cannot be compared between country fixed effects and time fixed effects models. In the country fixed effects model, adjusted R^2 is the variation in the dependent variable that is explained by our independent variables that vary within in countries. It is the explained within country variation. In a time fixed effects model, adjusted R^2 gives us the explained within time variation.
+
+The time fixed effects model gives us different results than the country fixed effects model. We don't like the time fixed effects model here because we already saw that we need to include time fixed effects from the `plmtest()`. We can, however, check whether we need to include time fixed effects or put differently whether time fixed effects matter jointly. We do this using the `plmtest()` again.
+
+```{r}
+# test for time fixed effects
+plmtest(m4, effect="time")
+```
+
+The test comes back insignificant. That means, statistically speaking, we do not need to control for time fixed effects to have a consistent model. The test gives you justification to stick with the country fixed effects model. *But*, we will ignore the test. In the country fixed effects model, we have 602 degrees of freedom. We can afford to estimate country fixed effects in addition. There, are 12 time periods (indicated by the capital T in the summary output) and you can verify this like so:
+
+```{r}
+# frequency table of year (i.e., number of observations per period)
+table(a$year)
+
+# number of time periods
+length(table(a$year))
+```
+
+With 602 degrees of freedom, we can easily afford to estimate another 11 parameters (1 for each year where 1 year is the baseline category). Having 602 degrees of freedom is like having 602 free observations (that is a lot of information).
+
+We do not make a mistake by controlling for potential confounders that vary across countries and are constant over time (unit fixed effects) and confounders that vary across time but are constant across units (time fixed effects). Therefore, we do that.
+
+### Twoway fixed effects
+
+We now estimate the twoway fixed effects model. We control for all confounders that vary across units (countries) but are constant over time and we control for all confounders that vary over time but are constant across units.
+
+```{r}
+# two-way fixed effects model
+m5 <-  plm(
+  institutions ~ oil + aid + log.gdp + polity2 + log.pop + mortality,
+  data = a,
+  index = c("country", "year"),
+  model = "within",
+  effect = "twoways"
+  )
+
+summary(m5)
+```
+
+### Serial correlation/auto-correlation
+
+In a panel model, we always have serial correlation. Maybe *always* is an overstatement but just maybe. Serial correlation means that a variable at time t (let's say 2000) and in country i (let's say Greece) is related to its value at t-1 (in 1999). Anything that is path dependent would fall into this category. Surely, institutional quality is path dependent. There is a statistical test for auto-correlation but really your default assumption should be that auto-correlation is present.
+
+Let's carry out the test. The null hypothesis is that we do not have auto-correlation.
+
+```{r}
+# Breusch-Godfrey test
+pbgtest(m5)
+```
+
+Clearly, we do have auto-correlation, so we need to correct our standard errors. We need to libraries for this. First, `sandwich` and second, `lmtest`. 
+
+```{r}
+library(sandwich)
+library(lmtest)
+
+# heteroskedasticity and autocorrelation consistent standard errors
+m5.hac <- coeftest(m4, vcov = vcovHC(m4, method = "arellano", type = "HC3"))
+m5.hac
+```
+
+The difference is noticeable. It is a mistake not to correct for serial correlation. The difference is that we now reject the null hypothesis for the effect of oil. More oil rents are related to lower institutional quality.
+
+### Cross-sectional dependence/ spatial dependence
+
+Spatial dependence is common in panel data sets but unlike serial correlation, it is not always present. Spatial correlation means that some units that cluster together (usually geographically) are affected by some external shock in the same way. For instance, the Arab Spring affected counties in the MENA region in the same way.
+
+We test for cross-sectional dependence. If it exists, we need to correct for it. The null hypothesis is that we do not have spatial dependence.
+
+```{r}
+# Peasaran test for cross-sectional dependence
+pcdtest(m5)
+```
+The test comes back significant. Therefore, we need to adjust our standard errors for serial correlation, heteroskedasticity and spatial dependency.
+
+Some political scientists like to estimate the so-called panel corrected standard errors (PCSE). In fact, [Beck and Katz 1995](https://www.cambridge.org/core/journals/american-political-science-review/article/what-to-do-and-not-to-do-with-timeseries-crosssection-data/0E778B85AB008DAF8D13E0AC63505E37) is one of the most cited political science papers of all time. However, [Driscoll and Kraay (1998)](https://www.mitpressjournals.org/doi/abs/10.1162/003465398557825?casa_token=vV9SnvSYao0AAAAA:7wxGG2rWdlkyrCEAmjZ_5jT0fVmr-zvW7mOl9tjr9JN0zaEeH0yV-kIdGIZyVzZ9YIJpL9Qjgdc) propose standard errors that work even better in short panels (where we have few observations per unit). Their standard errors are sometimes called the SCC estimator. We correct for spatial correlation using SCC standard errors.
+
+```{r}
+# Driscoll and Kraay SCC standard errors
+m5.scc <- coeftest(m4, vcov = vcovSCC(m4, type = "HC3", cluster = "group"))
+m5.scc
+```
+
+This is our final model. We confirm hypothesis 1. Greater oil rents seem to be related to lower institutional quality. While we should still be careful with causal claims. We have reduced the potential for counfounding substantially. We reject hypothesis 2. Aid is significant but more foreign aid is related to better institutional quality.
+
+### The random effects model
+
+We show you the random effects model only because you see it applied often in political science. However, the model rests on extremely heroic assumptions. Recall from our lecture, the random effects model assumes that the time invariant confounders are unrelated to our regressors. The assumption says: "We assume that there are no confounders." This is unsatisfactory and the assumption will almost always be violated. The random effects model is weak when from a causal inference standpoint. The random effects model, however, tends to be used when we are interested in predicting outcomes but don't really care whether X is causally related to Y.
+
+Let's estimate the random effects model.
+
+```{r}
+# random effects model
+ran.effects <- plm(
+  institutions ~ oil + aid + log.gdp + polity2 + log.pop + mortality,
+  data = a,
+  index = c("country", "year"),
+  model = "random")
+
+# model output
+summary(ran.effects)
+```
+
+As mentioned, you will have an extremely hard time convincing anyone of a causal claim made based on a random effects model. However, sometimes you cannot estimate a fixed effects model. For instance, if you wish to estimate the effect of the electoral system on some outcome, you have the problem that the electoral system does not vary within countries (countries tend to choose an electoral system and stick with it). That means, you cannot estimate a unit-fixed effects model. You can however, estimate the random effects model in that case. 
+
+The absolute minimum hurdle that you need to pass to be allowed to use the random effects model is to carry out the Hausman test. The test assesses whether the errors are correlated with the X variables. It thus, tests the assumption that the random effects model is based on.
+
+However, we have to caution against the Hausman test! The Hausman test does not take heteroskedastic errors into account and it does not take serial correlation into account. That's a big problem. Even if the Hausman tests, confirms that the random effects model is consistent, it may be wrong. We should always be skeptical of the random effects model (when it's used to make a causal claim). 
+
+Let's run the Hausman test. Its null hypothesis is that the errors and the X's are uncorrelated and hence the random effects model is consistent.
+
+```{r}
+# hausman test
+phtest(m5, ran.effects)
+```
+The Hausman test reject the null hypothesis. The random effects model is inconsistent. You now have all the tools to carry out your own analysis. Go ahead and show us whether more guns lead to less crime or not.
 
 ### More guns, less crime
 
@@ -54,8 +265,8 @@ roughly 2 incidents per 100,000.
 
 ### Question 2 
 
-Estimate a unit fixed effects model and a random effects model. Are both models consistent.
-If not which is the appropriate model? Use a consistent model to estimate the effect of the
+Estimate a unit fixed effects model and a random effects model. Are both models consistent?
+If not, which is the appropriate model? Use a consistent model to estimate the effect of the
 shall laws on the murder rate.
 
 <details>
@@ -85,9 +296,7 @@ phtest(m.fe, m.re)
 summary(m.fe)
 ```
 
-> Answer: The Hausman test shows that we reject the null hypothesis - both random effects model and
-fixed effects model are consistent. The unique errors ui are correlated with the regressors.
-Therefore, we must rely on the fixed effects model.
+> Answer: The Hausman test shows that we reject the null hypothesis which states that both random effects model and fixed effects model are consistent. The unique errors ui are correlated with the regressors. Therefore, we must rely on the fixed effects model.
 
 > The effect of the shall laws has decreased slightly but is still significantly related to the murder
 rate. Lax gun laws reduce the murder rate by 1.45 incidents per 100,000.
@@ -100,4 +309,79 @@ rate. Lax gun laws reduce the murder rate by 1.45 incidents per 100,000.
 Think of a theoretical reason to control for time fixed effects (what confounding sources could
 bias our estimate of the shall laws?). Test for time fixed effects using the appropriate test.
 If time fixed effects are required, re-estimate the fixed effects model as a twoway fixed effects
-model and interpret the effect of lax gun laws
+model and interpret the effect of lax gun laws.
+
+<details>
+<summary>Reveal answer</summary>
+
+```{r}
+m.tfe <- plm(
+  mur ~ shall + incarc_rate + pm1029,
+  data = a,
+  index = c("stateid", "year"),
+  model = "within",
+  effect = "time"
+  )
+
+plmtest(m.tfe, effect = "time")
+
+# twoway FE model
+m.2wfe <- plm(
+  mur ~ shall + incarc_rate + pm1029,
+  data = a,
+  index = c("stateid", "year"),
+  model = "within",
+  effect = "twoway")
+summary(m.2wfe)
+```
+
+> Answer: In the 90s, crime rates in inner cities dropped across many Western countries. This trend will have affected U.S. states in a relatively similar way. This source of confounding will be correlated with the murder rate. Such a strong theoretical foundation for confounding should be controlled for using time fixed effects independent of the test for time fixed effects.
+
+> We reject the null hypothesis - time fixed effects are insignificant (make no difference). We, therefore, control for time fixed effects to reduce omitted variable bias from sources that vary over time but are constant across states.
+
+> The effect of the shall laws is indistinguishable from zero (at the 0.05 alpha level). We conclude that the shall laws do not increase or decrease the murder rate.
+
+<details>
+<summary>Reveal answer</summary>
+
+### Question 3
+
+Correct the standard errors to account for heteroskedasticity and serial correlation. Does the conclusion regarding the effect of the shall laws change?
+
+<details>
+<summary>Reveal answer</summary>
+
+```{r}
+m.2wfe.hac <- coeftest(m.2wfe, vcov = vcovBK(m.2wfe, type = "HC3", cluster = "group"))
+m.2wfe.hac
+```
+
+> Answer: The standard error more than doubled. Our substantive conclusion does not change: The shall laws have no effect on the murder rate in our sample.
+
+<details>
+<summary>Reveal answer</summary>
+
+### Question 4
+
+Test for cross-sectional dependence and if present, use the SSC estimator to correct for heteroskedasticity, serial correlation, and spatial dependence. Does our conclusion regarding the effect of the shall laws change?
+
+<details>
+<summary>Reveal answer</summary>
+
+```{r}
+# test for cross-sectional dependence
+pcdtest(m.2wfe)
+```
+
+```{r}
+# correct standard errors
+m.2wfe.scc <- coeftest(m.2wfe, vcov = vcovSCC(m.2wfe, type = "HC3", cluster = "group"))
+m.2wfe.scc
+```
+
+> Answer: The effect of the shall laws remains insignificant. The standard error decreased slightly.
+
+> Overall, we find no evidence for the claim made in the book. Guns do not appear to decrease the number of violent crimes. There is also no evidence for the opposite effect.
+
+<details>
+<summary>Reveal answer</summary>
