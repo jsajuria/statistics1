@@ -257,8 +257,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.1.9" data-path="seminar10.html"><a href="seminar10.html#question-1-1"><i class="fa fa-check"></i><b>10.1.9</b> Question 1</a></li>
 <li class="chapter" data-level="10.1.10" data-path="seminar10.html"><a href="seminar10.html#question-2-1"><i class="fa fa-check"></i><b>10.1.10</b> Question 2</a></li>
 <li class="chapter" data-level="10.1.11" data-path="seminar10.html"><a href="seminar10.html#question-3-1"><i class="fa fa-check"></i><b>10.1.11</b> Question 3</a></li>
-<li class="chapter" data-level="10.1.12" data-path="seminar10.html"><a href="seminar10.html#question-3-2"><i class="fa fa-check"></i><b>10.1.12</b> Question 3</a></li>
-<li class="chapter" data-level="10.1.13" data-path="seminar10.html"><a href="seminar10.html#question-4-1"><i class="fa fa-check"></i><b>10.1.13</b> Question 4</a></li>
+<li class="chapter" data-level="10.1.12" data-path="seminar10.html"><a href="seminar10.html#question-4-1"><i class="fa fa-check"></i><b>10.1.12</b> Question 4</a></li>
+<li class="chapter" data-level="10.1.13" data-path="seminar10.html"><a href="seminar10.html#question-5-1"><i class="fa fa-check"></i><b>10.1.13</b> Question 5</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -294,20 +294,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># random draw of 10 values from a uniform distribution</span>
 dice &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">7</span>)
 dice</code></pre></div>
-<pre><code> [1] 4.230131 5.490655 4.434723 4.742588 5.871187 5.962885 4.145122
- [8] 6.585164 2.073642 4.293772</code></pre>
+<pre><code> [1] 5.049418 2.287972 4.724260 6.273453 1.230167 2.257111 1.778173
+ [8] 2.146583 3.943884 2.927521</code></pre>
 <p>We have indeed drawn 10 numbers but they are not integers as we would like—we want to simulate a die, so the values should be 1, 2, 3, 4, 5 or 6. We will return to this in a moment but for now let’s return to the randomness. Let’s draw 10 numbers again:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># random draw of 10 values from a uniform distribution</span>
 dice2 &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">7</span>)
 
 <span class="co"># first draw</span>
 dice</code></pre></div>
-<pre><code> [1] 4.230131 5.490655 4.434723 4.742588 5.871187 5.962885 4.145122
- [8] 6.585164 2.073642 4.293772</code></pre>
+<pre><code> [1] 5.049418 2.287972 4.724260 6.273453 1.230167 2.257111 1.778173
+ [8] 2.146583 3.943884 2.927521</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># second draw</span>
 dice2</code></pre></div>
-<pre><code> [1] 1.689290 3.780382 5.277490 5.363538 5.074016 1.039250 5.611500
- [8] 4.014351 5.593479 6.117002</code></pre>
+<pre><code> [1] 5.761293 2.830179 1.542720 4.198988 2.546364 6.415031 2.580386
+ [8] 5.064716 3.003224 6.003459</code></pre>
 <p>The numbers of the first and second roll differ because we have drawn values at random. To make our results replicate and to ensure that everyone in the seminar works with the same numbers, we set R’s random number generator with the <code>set.seed()</code> function. As argument we plug in some arbitrary value (it does not matter which but using a different one will lead to a different quasi-random draw).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set random number generator</span>
 <span class="kw">set.seed</span>(<span class="dv">123</span>)

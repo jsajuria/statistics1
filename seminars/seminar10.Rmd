@@ -184,7 +184,7 @@ Some political scientists like to estimate the so-called panel corrected standar
 
 ```{r}
 # Driscoll and Kraay SCC standard errors
-m5.scc <- coeftest(m4, vcov = vcovSCC(m4, type = "HC3", cluster = "group"))
+m5.scc <- coeftest(m5, vcov = vcovSCC(m4, type = "HC3", cluster = "group"))
 m5.scc
 ```
 
@@ -192,7 +192,7 @@ This is our final model. We confirm hypothesis 1. Greater oil rents seem to be r
 
 ### The random effects model
 
-We show you the random effects model only because you see it applied often in political science. However, the model rests on an heroic assumption. Recall from our lecture, the random effects model assumes that the time invariant confounders are unrelated to our regressors. The assumption says: "There are no confounders. Basta! By assumption." That's unsatisfactory. In fact, this assumption will almost always be violated. The random effects model is weak from a causal inference standpoint. However, it tends to well in prediction tasks where we are interested in predicting outcomes but don't really care whether X is causally related to Y.
+We show you the random effects model only because you see it applied often in political science. However, the model rests on an heroic assumption. Recall from our lecture, the random effects model assumes that the time invariant confounders are unrelated to our regressors. The assumption says: "There are no confounders. By assumption. Basta!" That's unsatisfactory. In fact, this assumption will almost always be violated. The random effects model is weak from a causal inference standpoint. However, it tends to do well in prediction tasks where we are interested in predicting outcomes but don't really care whether X is causally related to Y.
 
 Let's estimate the random effects model.
 
@@ -302,7 +302,6 @@ summary(m.fe)
 rate. Lax gun laws reduce the murder rate by 1.45 incidents per 100,000.
 
 <details>
-<summary>Reveal answer</summary>
 
 ### Question 3
 
@@ -342,9 +341,8 @@ summary(m.2wfe)
 > The effect of the shall laws is indistinguishable from zero (at the 0.05 alpha level). We conclude that the shall laws do not increase or decrease the murder rate.
 
 <details>
-<summary>Reveal answer</summary>
 
-### Question 3
+### Question 4
 
 Correct the standard errors to account for heteroskedasticity and serial correlation. Does the conclusion regarding the effect of the shall laws change?
 
@@ -359,9 +357,8 @@ m.2wfe.hac
 > Answer: The standard error more than doubled. Our substantive conclusion does not change: The shall laws have no effect on the murder rate in our sample.
 
 <details>
-<summary>Reveal answer</summary>
 
-### Question 4
+### Question 5
 
 Test for cross-sectional dependence and if present, use the SSC estimator to correct for heteroskedasticity, serial correlation, and spatial dependence. Does our conclusion regarding the effect of the shall laws change?
 
@@ -384,4 +381,3 @@ m.2wfe.scc
 > Overall, we find no evidence for the claim made in the book. Guns do not appear to decrease the number of violent crimes. There is also no evidence for the opposite effect.
 
 <details>
-<summary>Reveal answer</summary>

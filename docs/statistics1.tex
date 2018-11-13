@@ -5627,8 +5627,8 @@ is the maximum value.
 \end{Shaded}
 
 \begin{verbatim}
- [1] 5.505020 2.766742 5.292420 6.257437 1.849451 4.737403 5.863175
- [8] 3.141622 4.297807 2.201467
+ [1] 6.328446 5.296164 2.941034 4.171175 6.799984 1.315123 1.710239
+ [8] 3.589195 3.120227 3.518614
 \end{verbatim}
 
 We have indeed drawn 10 numbers but they are not integers as we would
@@ -5647,8 +5647,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 5.505020 2.766742 5.292420 6.257437 1.849451 4.737403 5.863175
- [8] 3.141622 4.297807 2.201467
+ [1] 6.328446 5.296164 2.941034 4.171175 6.799984 1.315123 1.710239
+ [8] 3.589195 3.120227 3.518614
 \end{verbatim}
 
 \begin{Shaded}
@@ -5659,8 +5659,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 5.644922 6.827327 1.573691 1.171277 6.073322 2.489075 5.864205
- [8] 6.306487 4.152433 2.416654
+ [1] 2.280523 5.901315 2.528896 6.065413 4.769326 1.937775 6.801817
+ [8] 3.848642 1.627586 1.549531
 \end{verbatim}
 
 The numbers of the first and second roll differ because we have drawn
@@ -12989,7 +12989,7 @@ correlation using SCC standard errors.
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# Driscoll and Kraay SCC standard errors}
-\NormalTok{m5.scc <-}\StringTok{ }\KeywordTok{coeftest}\NormalTok{(m4, }\DataTypeTok{vcov =} \KeywordTok{vcovSCC}\NormalTok{(m4, }\DataTypeTok{type =} \StringTok{"HC3"}\NormalTok{, }\DataTypeTok{cluster =} \StringTok{"group"}\NormalTok{))}
+\NormalTok{m5.scc <-}\StringTok{ }\KeywordTok{coeftest}\NormalTok{(m5, }\DataTypeTok{vcov =} \KeywordTok{vcovSCC}\NormalTok{(m4, }\DataTypeTok{type =} \StringTok{"HC3"}\NormalTok{, }\DataTypeTok{cluster =} \StringTok{"group"}\NormalTok{))}
 \NormalTok{m5.scc}
 \end{Highlighting}
 \end{Shaded}
@@ -12998,13 +12998,13 @@ correlation using SCC standard errors.
 
 t test of coefficients:
 
-             Estimate  Std. Error t value              Pr(>|t|)    
-oil       -0.00094474  0.00034649 -2.7266              0.006571 ** 
-aid        0.01147113  0.00421341  2.7225              0.006651 ** 
-log.gdp    0.45007149  0.04894368  9.1957 < 0.00000000000000022 ***
-polity2    0.03248425  0.00684752  4.7439           0.000002575 ***
-log.pop   -0.01333510  0.02865664 -0.4653              0.641842    
-mortality  0.00360009  0.00256795  1.4019              0.161410    
+             Estimate  Std. Error t value       Pr(>|t|)    
+oil       0.000013209 0.000346490  0.0381        0.96960    
+aid       0.002925254 0.004213408  0.6943        0.48778    
+log.gdp   0.298727506 0.048943681  6.1035 0.000000001868 ***
+polity2   0.016062925 0.006847518  2.3458        0.01931 *  
+log.pop   0.016589819 0.028656636  0.5789        0.56286    
+mortality 0.004167650 0.002567955  1.6229        0.10513    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
@@ -13021,11 +13021,11 @@ We show you the random effects model only because you see it applied
 often in political science. However, the model rests on an heroic
 assumption. Recall from our lecture, the random effects model assumes
 that the time invariant confounders are unrelated to our regressors. The
-assumption says: ``There are no confounders. Basta! By assumption.''
+assumption says: ``There are no confounders. By assumption. Basta!''
 That's unsatisfactory. In fact, this assumption will almost always be
 violated. The random effects model is weak from a causal inference
-standpoint. However, it tends to well in prediction tasks where we are
-interested in predicting outcomes but don't really care whether X is
+standpoint. However, it tends to do well in prediction tasks where we
+are interested in predicting outcomes but don't really care whether X is
 causally related to Y.
 
 Let's estimate the random effects model.
@@ -13289,8 +13289,6 @@ significantly related to the murder rate. Lax gun laws reduce the murder
 rate by 1.45 incidents per 100,000.
 \end{quote}
 
- Reveal answer
-
 \subsubsection{Question 3}\label{question-3-1}
 
 Think of a theoretical reason to control for time fixed effects (what
@@ -13388,9 +13386,7 @@ alpha level). We conclude that the shall laws do not increase or
 decrease the murder rate.
 \end{quote}
 
- Reveal answer
-
-\subsubsection{Question 3}\label{question-3-2}
+\subsubsection{Question 4}\label{question-4-1}
 
 Correct the standard errors to account for heteroskedasticity and serial
 correlation. Does the conclusion regarding the effect of the shall laws
@@ -13423,9 +13419,7 @@ does not change: The shall laws have no effect on the murder rate in our
 sample.
 \end{quote}
 
- Reveal answer
-
-\subsubsection{Question 4}\label{question-4-1}
+\subsubsection{Question 5}\label{question-5-1}
 
 Test for cross-sectional dependence and if present, use the SSC
 estimator to correct for heteroskedasticity, serial correlation, and
@@ -13480,8 +13474,6 @@ Overall, we find no evidence for the claim made in the book. Guns do not
 appear to decrease the number of violent crimes. There is also no
 evidence for the opposite effect.
 \end{quote}
-
- Reveal answer
 
 
 \end{document}

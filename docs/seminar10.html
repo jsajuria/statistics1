@@ -257,8 +257,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.1.9" data-path="seminar10.html"><a href="seminar10.html#question-1-1"><i class="fa fa-check"></i><b>10.1.9</b> Question 1</a></li>
 <li class="chapter" data-level="10.1.10" data-path="seminar10.html"><a href="seminar10.html#question-2-1"><i class="fa fa-check"></i><b>10.1.10</b> Question 2</a></li>
 <li class="chapter" data-level="10.1.11" data-path="seminar10.html"><a href="seminar10.html#question-3-1"><i class="fa fa-check"></i><b>10.1.11</b> Question 3</a></li>
-<li class="chapter" data-level="10.1.12" data-path="seminar10.html"><a href="seminar10.html#question-3-2"><i class="fa fa-check"></i><b>10.1.12</b> Question 3</a></li>
-<li class="chapter" data-level="10.1.13" data-path="seminar10.html"><a href="seminar10.html#question-4-1"><i class="fa fa-check"></i><b>10.1.13</b> Question 4</a></li>
+<li class="chapter" data-level="10.1.12" data-path="seminar10.html"><a href="seminar10.html#question-4-1"><i class="fa fa-check"></i><b>10.1.12</b> Question 4</a></li>
+<li class="chapter" data-level="10.1.13" data-path="seminar10.html"><a href="seminar10.html#question-5-1"><i class="fa fa-check"></i><b>10.1.13</b> Question 5</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -581,25 +581,25 @@ alternative hypothesis: cross-sectional dependence</code></pre>
 <p>The test comes back significant. Therefore, we need to adjust our standard errors for serial correlation, heteroskedasticity and spatial dependency.</p>
 <p>Some political scientists like to estimate the so-called panel corrected standard errors (PCSE). In fact, <a href="https://www.cambridge.org/core/journals/american-political-science-review/article/what-to-do-and-not-to-do-with-timeseries-crosssection-data/0E778B85AB008DAF8D13E0AC63505E37">Beck and Katz 1995</a> is one of the most cited political science papers of all time. However, <a href="https://www.mitpressjournals.org/doi/abs/10.1162/003465398557825?casa_token=vV9SnvSYao0AAAAA:7wxGG2rWdlkyrCEAmjZ_5jT0fVmr-zvW7mOl9tjr9JN0zaEeH0yV-kIdGIZyVzZ9YIJpL9Qjgdc">Driscoll and Kraay (1998)</a> propose standard errors that work even better in short panels (where we have few observations per unit). Their standard errors are sometimes called the SCC estimator. We correct for spatial correlation using SCC standard errors.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Driscoll and Kraay SCC standard errors</span>
-m5.scc &lt;-<span class="st"> </span><span class="kw">coeftest</span>(m4, <span class="dt">vcov =</span> <span class="kw">vcovSCC</span>(m4, <span class="dt">type =</span> <span class="st">&quot;HC3&quot;</span>, <span class="dt">cluster =</span> <span class="st">&quot;group&quot;</span>))
+m5.scc &lt;-<span class="st"> </span><span class="kw">coeftest</span>(m5, <span class="dt">vcov =</span> <span class="kw">vcovSCC</span>(m4, <span class="dt">type =</span> <span class="st">&quot;HC3&quot;</span>, <span class="dt">cluster =</span> <span class="st">&quot;group&quot;</span>))
 m5.scc</code></pre></div>
 <pre><code>
 t test of coefficients:
 
-             Estimate  Std. Error t value              Pr(&gt;|t|)    
-oil       -0.00094474  0.00034649 -2.7266              0.006571 ** 
-aid        0.01147113  0.00421341  2.7225              0.006651 ** 
-log.gdp    0.45007149  0.04894368  9.1957 &lt; 0.00000000000000022 ***
-polity2    0.03248425  0.00684752  4.7439           0.000002575 ***
-log.pop   -0.01333510  0.02865664 -0.4653              0.641842    
-mortality  0.00360009  0.00256795  1.4019              0.161410    
+             Estimate  Std. Error t value       Pr(&gt;|t|)    
+oil       0.000013209 0.000346490  0.0381        0.96960    
+aid       0.002925254 0.004213408  0.6943        0.48778    
+log.gdp   0.298727506 0.048943681  6.1035 0.000000001868 ***
+polity2   0.016062925 0.006847518  2.3458        0.01931 *  
+log.pop   0.016589819 0.028656636  0.5789        0.56286    
+mortality 0.004167650 0.002567955  1.6229        0.10513    
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>This is our final model. We confirm hypothesis 1. Greater oil rents seem to be related to lower institutional quality. While we should still be careful with causal claims. We have reduced the potential for counfounding substantially. We reject hypothesis 2. Aid is significant but more foreign aid is related to better institutional quality.</p>
 </div>
 <div id="the-random-effects-model" class="section level3">
 <h3><span class="header-section-number">10.1.7</span> The random effects model</h3>
-<p>We show you the random effects model only because you see it applied often in political science. However, the model rests on an heroic assumption. Recall from our lecture, the random effects model assumes that the time invariant confounders are unrelated to our regressors. The assumption says: “There are no confounders. Basta! By assumption.” That’s unsatisfactory. In fact, this assumption will almost always be violated. The random effects model is weak from a causal inference standpoint. However, it tends to well in prediction tasks where we are interested in predicting outcomes but don’t really care whether X is causally related to Y.</p>
+<p>We show you the random effects model only because you see it applied often in political science. However, the model rests on an heroic assumption. Recall from our lecture, the random effects model assumes that the time invariant confounders are unrelated to our regressors. The assumption says: “There are no confounders. By assumption. Basta!” That’s unsatisfactory. In fact, this assumption will almost always be violated. The random effects model is weak from a causal inference standpoint. However, it tends to do well in prediction tasks where we are interested in predicting outcomes but don’t really care whether X is causally related to Y.</p>
 <p>Let’s estimate the random effects model.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># random effects model</span>
 ran.effects &lt;-<span class="st"> </span><span class="kw">plm</span>(
@@ -761,7 +761,7 @@ F-statistic: 84.3526 on 3 and 1119 DF, p-value: &lt; 0.000000000000000222</code>
 <blockquote>
 <p>The effect of the shall laws has decreased slightly but is still significantly related to the murder rate. Lax gun laws reduce the murder rate by 1.45 incidents per 100,000.</p>
 </blockquote>
-<p><details> <summary>Reveal answer</summary></p>
+<p><details></p>
 </div>
 <div id="question-3-1" class="section level3">
 <h3><span class="header-section-number">10.1.11</span> Question 3</h3>
@@ -825,10 +825,10 @@ F-statistic: 117.746 on 3 and 1097 DF, p-value: &lt; 0.000000000000000222</code>
 <blockquote>
 <p>The effect of the shall laws is indistinguishable from zero (at the 0.05 alpha level). We conclude that the shall laws do not increase or decrease the murder rate.</p>
 </blockquote>
-<p><details> <summary>Reveal answer</summary></p>
+<p><details></p>
 </div>
-<div id="question-3-2" class="section level3">
-<h3><span class="header-section-number">10.1.12</span> Question 3</h3>
+<div id="question-4-1" class="section level3">
+<h3><span class="header-section-number">10.1.12</span> Question 4</h3>
 <p>Correct the standard errors to account for heteroskedasticity and serial correlation. Does the conclusion regarding the effect of the shall laws change?</p>
 <p><details> <summary>Reveal answer</summary></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m.2wfe.hac &lt;-<span class="st"> </span><span class="kw">coeftest</span>(m.2wfe, <span class="dt">vcov =</span> <span class="kw">vcovBK</span>(m.2wfe, <span class="dt">type =</span> <span class="st">&quot;HC3&quot;</span>, <span class="dt">cluster =</span> <span class="st">&quot;group&quot;</span>))
@@ -845,10 +845,10 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <blockquote>
 <p>Answer: The standard error more than doubled. Our substantive conclusion does not change: The shall laws have no effect on the murder rate in our sample.</p>
 </blockquote>
-<p><details> <summary>Reveal answer</summary></p>
+<p><details></p>
 </div>
-<div id="question-4-1" class="section level3">
-<h3><span class="header-section-number">10.1.13</span> Question 4</h3>
+<div id="question-5-1" class="section level3">
+<h3><span class="header-section-number">10.1.13</span> Question 5</h3>
 <p>Test for cross-sectional dependence and if present, use the SSC estimator to correct for heteroskedasticity, serial correlation, and spatial dependence. Does our conclusion regarding the effect of the shall laws change?</p>
 <p><details> <summary>Reveal answer</summary></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># test for cross-sectional dependence</span>
@@ -877,7 +877,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <blockquote>
 <p>Overall, we find no evidence for the claim made in the book. Guns do not appear to decrease the number of violent crimes. There is also no evidence for the opposite effect.</p>
 </blockquote>
-<p><details> <summary>Reveal answer</summary></p>
+<p><details></p>
 
 </div>
 </div>
