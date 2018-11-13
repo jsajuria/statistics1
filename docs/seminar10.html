@@ -546,21 +546,21 @@ alternative hypothesis: serial correlation in idiosyncratic errors</code></pre>
 <span class="kw">library</span>(lmtest)
 
 <span class="co"># heteroskedasticity and autocorrelation consistent standard errors</span>
-m5.hac &lt;-<span class="st"> </span><span class="kw">coeftest</span>(m4, <span class="dt">vcov =</span> <span class="kw">vcovHC</span>(m4, <span class="dt">method =</span> <span class="st">&quot;arellano&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;HC3&quot;</span>))
+m5.hac &lt;-<span class="st"> </span><span class="kw">coeftest</span>(m5, <span class="dt">vcov =</span> <span class="kw">vcovHC</span>(m5, <span class="dt">method =</span> <span class="st">&quot;arellano&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;HC3&quot;</span>))
 m5.hac</code></pre></div>
 <pre><code>
 t test of coefficients:
 
-             Estimate  Std. Error t value              Pr(&gt;|t|)    
-oil       -0.00094474  0.00034260 -2.7575              0.005987 ** 
-aid        0.01147113  0.00431615  2.6577              0.008059 ** 
-log.gdp    0.45007149  0.04881216  9.2205 &lt; 0.00000000000000022 ***
-polity2    0.03248425  0.00698752  4.6489           0.000004038 ***
-log.pop   -0.01333510  0.02931157 -0.4549              0.649301    
-mortality  0.00360009  0.00267661  1.3450              0.179085    
+             Estimate  Std. Error t value Pr(&gt;|t|)   
+oil       0.000013209 0.000148966  0.0887 0.929375   
+aid       0.002925254 0.001684554  1.7365 0.082989 . 
+log.gdp   0.298727506 0.132230608  2.2591 0.024234 * 
+polity2   0.016062925 0.006201084  2.5903 0.009822 **
+log.pop   0.016589819 0.307818867  0.0539 0.957037   
+mortality 0.004167650 0.005529193  0.7538 0.451294   
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>The difference is noticeable. It is a mistake not to correct for serial correlation. The difference is that we now reject the null hypothesis for the effect of oil. More oil rents are related to lower institutional quality.</p>
+<p>The difference is noticeable. It is a mistake not to correct for serial correlation. The difference is that we now <em>fail</em> to reject the null hypothesis for the effect of aid.</p>
 </div>
 <div id="cross-sectional-dependence-spatial-dependence" class="section level3">
 <h3><span class="header-section-number">10.1.6</span> Cross-sectional dependence/ spatial dependence</h3>

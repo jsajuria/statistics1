@@ -5627,8 +5627,8 @@ is the maximum value.
 \end{Shaded}
 
 \begin{verbatim}
- [1] 2.342470 6.383817 1.161400 3.962132 1.967138 4.985692 2.603579
- [8] 4.285589 3.296620 5.357686
+ [1] 5.087022 5.647330 6.729065 6.756879 4.951178 1.637155 5.694796
+ [8] 4.860543 5.682838 2.230135
 \end{verbatim}
 
 We have indeed drawn 10 numbers but they are not integers as we would
@@ -5647,8 +5647,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 2.342470 6.383817 1.161400 3.962132 1.967138 4.985692 2.603579
- [8] 4.285589 3.296620 5.357686
+ [1] 5.087022 5.647330 6.729065 6.756879 4.951178 1.637155 5.694796
+ [8] 4.860543 5.682838 2.230135
 \end{verbatim}
 
 \begin{Shaded}
@@ -5659,8 +5659,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 3.177045 5.224814 2.478556 3.609154 1.505778 5.383940 5.687461
- [8] 5.478813 4.538268 6.673587
+ [1] 3.298936 5.429695 3.224487 6.998811 4.527405 1.030433 1.282922
+ [8] 5.519434 1.745439 6.510836
 \end{verbatim}
 
 The numbers of the first and second roll differ because we have drawn
@@ -12911,7 +12911,7 @@ second, \texttt{lmtest}.
 \KeywordTok{library}\NormalTok{(lmtest)}
 
 \CommentTok{# heteroskedasticity and autocorrelation consistent standard errors}
-\NormalTok{m5.hac <-}\StringTok{ }\KeywordTok{coeftest}\NormalTok{(m4, }\DataTypeTok{vcov =} \KeywordTok{vcovHC}\NormalTok{(m4, }\DataTypeTok{method =} \StringTok{"arellano"}\NormalTok{, }\DataTypeTok{type =} \StringTok{"HC3"}\NormalTok{))}
+\NormalTok{m5.hac <-}\StringTok{ }\KeywordTok{coeftest}\NormalTok{(m5, }\DataTypeTok{vcov =} \KeywordTok{vcovHC}\NormalTok{(m5, }\DataTypeTok{method =} \StringTok{"arellano"}\NormalTok{, }\DataTypeTok{type =} \StringTok{"HC3"}\NormalTok{))}
 \NormalTok{m5.hac}
 \end{Highlighting}
 \end{Shaded}
@@ -12920,21 +12920,20 @@ second, \texttt{lmtest}.
 
 t test of coefficients:
 
-             Estimate  Std. Error t value              Pr(>|t|)    
-oil       -0.00094474  0.00034260 -2.7575              0.005987 ** 
-aid        0.01147113  0.00431615  2.6577              0.008059 ** 
-log.gdp    0.45007149  0.04881216  9.2205 < 0.00000000000000022 ***
-polity2    0.03248425  0.00698752  4.6489           0.000004038 ***
-log.pop   -0.01333510  0.02931157 -0.4549              0.649301    
-mortality  0.00360009  0.00267661  1.3450              0.179085    
+             Estimate  Std. Error t value Pr(>|t|)   
+oil       0.000013209 0.000148966  0.0887 0.929375   
+aid       0.002925254 0.001684554  1.7365 0.082989 . 
+log.gdp   0.298727506 0.132230608  2.2591 0.024234 * 
+polity2   0.016062925 0.006201084  2.5903 0.009822 **
+log.pop   0.016589819 0.307818867  0.0539 0.957037   
+mortality 0.004167650 0.005529193  0.7538 0.451294   
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
 
 The difference is noticeable. It is a mistake not to correct for serial
-correlation. The difference is that we now reject the null hypothesis
-for the effect of oil. More oil rents are related to lower institutional
-quality.
+correlation. The difference is that we now \emph{fail} to reject the
+null hypothesis for the effect of aid.
 
 \subsubsection{Cross-sectional dependence/ spatial
 dependence}\label{cross-sectional-dependence-spatial-dependence}

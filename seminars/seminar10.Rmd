@@ -162,11 +162,11 @@ library(sandwich)
 library(lmtest)
 
 # heteroskedasticity and autocorrelation consistent standard errors
-m5.hac <- coeftest(m4, vcov = vcovHC(m4, method = "arellano", type = "HC3"))
+m5.hac <- coeftest(m5, vcov = vcovHC(m5, method = "arellano", type = "HC3"))
 m5.hac
 ```
 
-The difference is noticeable. It is a mistake not to correct for serial correlation. The difference is that we now reject the null hypothesis for the effect of oil. More oil rents are related to lower institutional quality.
+The difference is noticeable. It is a mistake not to correct for serial correlation. The difference is that we now *fail* to reject the null hypothesis for the effect of aid.
 
 ### Cross-sectional dependence/ spatial dependence
 
