@@ -581,18 +581,18 @@ alternative hypothesis: cross-sectional dependence</code></pre>
 <p>The test comes back significant. Therefore, we need to adjust our standard errors for serial correlation, heteroskedasticity and spatial dependency.</p>
 <p>Some political scientists like to estimate the so-called panel corrected standard errors (PCSE). In fact, <a href="https://www.cambridge.org/core/journals/american-political-science-review/article/what-to-do-and-not-to-do-with-timeseries-crosssection-data/0E778B85AB008DAF8D13E0AC63505E37">Beck and Katz 1995</a> is one of the most cited political science papers of all time. However, <a href="https://www.mitpressjournals.org/doi/abs/10.1162/003465398557825?casa_token=vV9SnvSYao0AAAAA:7wxGG2rWdlkyrCEAmjZ_5jT0fVmr-zvW7mOl9tjr9JN0zaEeH0yV-kIdGIZyVzZ9YIJpL9Qjgdc">Driscoll and Kraay (1998)</a> propose standard errors that work even better in short panels (where we have few observations per unit). Their standard errors are sometimes called the SCC estimator. We correct for spatial correlation using SCC standard errors.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Driscoll and Kraay SCC standard errors</span>
-m5.scc &lt;-<span class="st"> </span><span class="kw">coeftest</span>(m5, <span class="dt">vcov =</span> <span class="kw">vcovSCC</span>(m4, <span class="dt">type =</span> <span class="st">&quot;HC3&quot;</span>, <span class="dt">cluster =</span> <span class="st">&quot;group&quot;</span>))
+m5.scc &lt;-<span class="st"> </span><span class="kw">coeftest</span>(m5, <span class="dt">vcov =</span> <span class="kw">vcovSCC</span>(m5, <span class="dt">type =</span> <span class="st">&quot;HC3&quot;</span>, <span class="dt">cluster =</span> <span class="st">&quot;group&quot;</span>))
 m5.scc</code></pre></div>
 <pre><code>
 t test of coefficients:
 
-             Estimate  Std. Error t value       Pr(&gt;|t|)    
-oil       0.000013209 0.000346490  0.0381        0.96960    
-aid       0.002925254 0.004213408  0.6943        0.48778    
-log.gdp   0.298727506 0.048943681  6.1035 0.000000001868 ***
-polity2   0.016062925 0.006847518  2.3458        0.01931 *  
-log.pop   0.016589819 0.028656636  0.5789        0.56286    
-mortality 0.004167650 0.002567955  1.6229        0.10513    
+             Estimate  Std. Error t value Pr(&gt;|t|)   
+oil       0.000013209 0.000143564  0.0920 0.926725   
+aid       0.002925254 0.001628816  1.7959 0.073010 . 
+log.gdp   0.298727506 0.133686296  2.2345 0.025817 * 
+polity2   0.016062925 0.005974345  2.6887 0.007374 **
+log.pop   0.016589819 0.314543279  0.0527 0.957955   
+mortality 0.004167650 0.004991541  0.8349 0.404084   
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>This is our final model. We confirm hypothesis 1. Greater oil rents seem to be related to lower institutional quality. While we should still be careful with causal claims. We have reduced the potential for counfounding substantially. We reject hypothesis 2. Aid is significant but more foreign aid is related to better institutional quality.</p>

@@ -294,20 +294,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># random draw of 10 values from a uniform distribution</span>
 dice &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">7</span>)
 dice</code></pre></div>
-<pre><code> [1] 5.049418 2.287972 4.724260 6.273453 1.230167 2.257111 1.778173
- [8] 2.146583 3.943884 2.927521</code></pre>
+<pre><code> [1] 5.489326 1.890226 4.956618 6.062959 6.092092 6.934385 5.703708
+ [8] 6.746846 4.802880 6.649035</code></pre>
 <p>We have indeed drawn 10 numbers but they are not integers as we would like—we want to simulate a die, so the values should be 1, 2, 3, 4, 5 or 6. We will return to this in a moment but for now let’s return to the randomness. Let’s draw 10 numbers again:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># random draw of 10 values from a uniform distribution</span>
 dice2 &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">7</span>)
 
 <span class="co"># first draw</span>
 dice</code></pre></div>
-<pre><code> [1] 5.049418 2.287972 4.724260 6.273453 1.230167 2.257111 1.778173
- [8] 2.146583 3.943884 2.927521</code></pre>
+<pre><code> [1] 5.489326 1.890226 4.956618 6.062959 6.092092 6.934385 5.703708
+ [8] 6.746846 4.802880 6.649035</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># second draw</span>
 dice2</code></pre></div>
-<pre><code> [1] 5.761293 2.830179 1.542720 4.198988 2.546364 6.415031 2.580386
- [8] 5.064716 3.003224 6.003459</code></pre>
+<pre><code> [1] 1.161006 2.504661 6.785061 1.028048 2.674566 2.340176 5.729714
+ [8] 1.987462 1.363086 6.549874</code></pre>
 <p>The numbers of the first and second roll differ because we have drawn values at random. To make our results replicate and to ensure that everyone in the seminar works with the same numbers, we set R’s random number generator with the <code>set.seed()</code> function. As argument we plug in some arbitrary value (it does not matter which but using a different one will lead to a different quasi-random draw).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set random number generator</span>
 <span class="kw">set.seed</span>(<span class="dv">123</span>)

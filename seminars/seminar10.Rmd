@@ -184,7 +184,7 @@ Some political scientists like to estimate the so-called panel corrected standar
 
 ```{r}
 # Driscoll and Kraay SCC standard errors
-m5.scc <- coeftest(m5, vcov = vcovSCC(m4, type = "HC3", cluster = "group"))
+m5.scc <- coeftest(m5, vcov = vcovSCC(m5, type = "HC3", cluster = "group"))
 m5.scc
 ```
 
