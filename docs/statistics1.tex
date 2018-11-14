@@ -5627,8 +5627,8 @@ is the maximum value.
 \end{Shaded}
 
 \begin{verbatim}
- [1] 5.087022 5.647330 6.729065 6.756879 4.951178 1.637155 5.694796
- [8] 4.860543 5.682838 2.230135
+ [1] 3.251495 6.120408 5.112480 3.247712 6.138011 6.874157 6.145373
+ [8] 2.348023 1.832185 2.977000
 \end{verbatim}
 
 We have indeed drawn 10 numbers but they are not integers as we would
@@ -5647,8 +5647,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 5.087022 5.647330 6.729065 6.756879 4.951178 1.637155 5.694796
- [8] 4.860543 5.682838 2.230135
+ [1] 3.251495 6.120408 5.112480 3.247712 6.138011 6.874157 6.145373
+ [8] 2.348023 1.832185 2.977000
 \end{verbatim}
 
 \begin{Shaded}
@@ -5659,8 +5659,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 3.298936 5.429695 3.224487 6.998811 4.527405 1.030433 1.282922
- [8] 5.519434 1.745439 6.510836
+ [1] 2.089203 2.086237 1.760296 5.926525 2.324964 6.172486 6.671999
+ [8] 5.512985 1.929870 2.349645
 \end{verbatim}
 
 The numbers of the first and second roll differ because we have drawn
@@ -13125,9 +13125,10 @@ chisq = 136.39, df = 6, p-value < 0.00000000000000022
 alternative hypothesis: one model is inconsistent
 \end{verbatim}
 
-The Hausman test reject the null hypothesis. The random effects model is
-inconsistent. You now have all the tools to carry out your own analysis.
-Go ahead and show us whether more guns lead to less crime or not.
+The Hausman test rejects the null hypothesis. The random effects model
+is inconsistent. You now have all the tools to carry out your own
+analysis. Go ahead and show us whether more guns lead to less crime or
+not.
 
 \subsubsection{More guns, less crime}\label{more-guns-less-crime}
 
@@ -13149,13 +13150,19 @@ Load the guns.csv dataset directly into R by running the following line:
 \end{Highlighting}
 \end{Shaded}
 
-The data includes the following variables: * mur - Murder rate
-(incidents per 100,000) * shall - =1 if state has a shall-carry law in
-effect in that year, 0 otherwise * incarc rate - Incarceration rate in
-the state in the previous year (sentenced prisoners per 100,000
-residents; value for the previous year) * pm1029 - Percent of state
-population that is male, ages 10 to 29 * stateid - ID number of states
-(Alabama = , Alaska = 2, etc.) * year - Year (1977 - 1999)
+The data includes the following variables: \textbar{}Variable\textbar{}
+Description \textbar{}
+\textbar{}--------\textbar{}------------------------------------------------------------------------\textbar{}
+\textbar{}\texttt{mur} \textbar{} Murder rate (incidents per 100,000)
+\textbar{} \textbar{}\texttt{shall} \textbar{} =1 if state has a
+shall-carry law in effect in that year, 0 otherwise \textbar{}
+\textbar{}\texttt{incarc\ rate} \textbar{} Incarceration rate in the
+state in the previous year (sentenced prisoners per 100,000 residents;
+value for the previous year) \textbar{} \textbar{}\texttt{pm1029}
+\textbar{} Percent of state population that is male, ages 10 to 29
+\textbar{} \textbar{}\texttt{stateid} \textbar{} ID number of states
+(Alabama = , Alaska = 2, etc.) \textbar{} \textbar{}\texttt{year}
+\textbar{} Year (1977 - 1999) \textbar{}
 
 \subsubsection{Question 1}\label{question-1-1}
 
@@ -13472,6 +13479,25 @@ Overall, we find no evidence for the claim made in the book. Guns do not
 appear to decrease the number of violent crimes. There is also no
 evidence for the opposite effect.
 \end{quote}
+
+\section{Datacamp}\label{datacamp}
+
+\subsection{Develop your skills as a data
+scientist}\label{develop-your-skills-as-a-data-scientist}
+
+Dear all, thanks to Lorenzo, you all have access to datacamp for six
+months starting on 16 November, 2018. Data camp is a great source for
+delving deeper into R. You can do courses on data cleaning or you could
+could get a first glimpse at machine learning courses (you all heard
+about big data before). Maybe you would like to learn how to scrape data
+from the web. How to clean it and then use a machine learning classifier
+and cross-validate out of sample. Data camp is great address for this.
+Polish your data science skills and increase your employability and its
+great fun as well. Thanks to datacamp and Lorenzo!
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+Data Camp Class Link
 
 
 \end{document}

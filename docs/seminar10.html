@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="seminar9.html">
-
+<link rel="next" href="datacamp.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -260,6 +260,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.1.12" data-path="seminar10.html"><a href="seminar10.html#question-4-1"><i class="fa fa-check"></i><b>10.1.12</b> Question 4</a></li>
 <li class="chapter" data-level="10.1.13" data-path="seminar10.html"><a href="seminar10.html#question-5-1"><i class="fa fa-check"></i><b>10.1.13</b> Question 5</a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="datacamp.html"><a href="datacamp.html"><i class="fa fa-check"></i><b>11</b> Datacamp</a><ul>
+<li class="chapter" data-level="11.1" data-path="datacamp.html"><a href="datacamp.html#develop-your-skills-as-a-data-scientist"><i class="fa fa-check"></i><b>11.1</b> Develop your skills as a data scientist</a></li>
 </ul></li>
 </ul>
 
@@ -661,14 +664,14 @@ F-statistic: 34.4236 on 6 and 665 DF, p-value: &lt; 0.000000000000000222</code><
 data:  institutions ~ oil + aid + log.gdp + polity2 + log.pop + mortality
 chisq = 136.39, df = 6, p-value &lt; 0.00000000000000022
 alternative hypothesis: one model is inconsistent</code></pre>
-<p>The Hausman test reject the null hypothesis. The random effects model is inconsistent. You now have all the tools to carry out your own analysis. Go ahead and show us whether more guns lead to less crime or not.</p>
+<p>The Hausman test rejects the null hypothesis. The random effects model is inconsistent. You now have all the tools to carry out your own analysis. Go ahead and show us whether more guns lead to less crime or not.</p>
 </div>
 <div id="more-guns-less-crime" class="section level3">
 <h3><span class="header-section-number">10.1.8</span> More guns, less crime</h3>
 <p>More guns, less crime. This is the claim of an in(famous) book. It shows that violent crime rates in the United States decrease when gun ownership restrictions are relaxed. The data used in Lott’s research compares violent crimes, robberies, and murders across 50 states to determine whether the so called “shall” laws that remove discretion from license granting authorities actually decrease crime rates. So far 41 states have passed these “shall” laws where a person applying for a licence to carry a concealed weapon doesn’t have to provide justification or “good cause” for requiring a concealed weapon permit.</p>
 <p>Load the guns.csv dataset directly into R by running the following line:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://philippbroniecki.github.io/philippbroniecki.github.io/assets/data/guns.csv&quot;</span>)</code></pre></div>
-<p>The data includes the following variables: * mur - Murder rate (incidents per 100,000) * shall - =1 if state has a shall-carry law in effect in that year, 0 otherwise * incarc rate - Incarceration rate in the state in the previous year (sentenced prisoners per 100,000 residents; value for the previous year) * pm1029 - Percent of state population that is male, ages 10 to 29 * stateid - ID number of states (Alabama = , Alaska = 2, etc.) * year - Year (1977 - 1999)</p>
+<p>The data includes the following variables: |Variable| Description | |——–|————————————————————————| |<code>mur</code> | Murder rate (incidents per 100,000) | |<code>shall</code> | =1 if state has a shall-carry law in effect in that year, 0 otherwise | |<code>incarc rate</code> | Incarceration rate in the state in the previous year (sentenced prisoners per 100,000 residents; value for the previous year) | |<code>pm1029</code> | Percent of state population that is male, ages 10 to 29 | |<code>stateid</code> | ID number of states (Alabama = , Alaska = 2, etc.) | |<code>year</code> | Year (1977 - 1999) |</p>
 </div>
 <div id="question-1-1" class="section level3">
 <h3><span class="header-section-number">10.1.9</span> Question 1</h3>
@@ -887,8 +890,8 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
           </div>
         </div>
       </div>
-<a href="seminar9.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="seminar9.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="datacamp.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

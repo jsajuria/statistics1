@@ -220,7 +220,7 @@ Let's run the Hausman test. Its null hypothesis is that the errors and the X's a
 # hausman test
 phtest(m5, ran.effects)
 ```
-The Hausman test reject the null hypothesis. The random effects model is inconsistent. You now have all the tools to carry out your own analysis. Go ahead and show us whether more guns lead to less crime or not.
+The Hausman test rejects the null hypothesis. The random effects model is inconsistent. You now have all the tools to carry out your own analysis. Go ahead and show us whether more guns lead to less crime or not.
 
 ### More guns, less crime
 
@@ -239,13 +239,14 @@ a <- read.csv("http://philippbroniecki.github.io/philippbroniecki.github.io/asse
 ```
 
 The data includes the following variables:
-* mur - Murder rate (incidents per 100,000)
-* shall - =1 if state has a shall-carry law in effect in that year, 0 otherwise
-* incarc rate - Incarceration rate in the state in the previous year (sentenced prisoners per 100,000 residents; value for the previous year)
-* pm1029 - Percent of state population that is male, ages 10 to 29
-* stateid - ID number of states (Alabama = , Alaska = 2, etc.)
-* year - Year (1977 - 1999)
-
+|Variable| Description |
+|--------|------------------------------------------------------------------------|
+|`mur`    | Murder rate (incidents per 100,000) |
+|`shall`   | =1 if state has a shall-carry law in effect in that year, 0 otherwise |
+|`incarc rate`   | Incarceration rate in the state in the previous year (sentenced prisoners per 100,000 residents; value for the previous year) |
+|`pm1029`   | Percent of state population that is male, ages 10 to 29 |
+|`stateid`   | ID number of states (Alabama = , Alaska = 2, etc.) |
+|`year`   | Year (1977 - 1999) |
 
 ### Question 1
 
