@@ -671,7 +671,49 @@ alternative hypothesis: one model is inconsistent</code></pre>
 <p>More guns, less crime. This is the claim of an in(famous) book. It shows that violent crime rates in the United States decrease when gun ownership restrictions are relaxed. The data used in Lott’s research compares violent crimes, robberies, and murders across 50 states to determine whether the so called “shall” laws that remove discretion from license granting authorities actually decrease crime rates. So far 41 states have passed these “shall” laws where a person applying for a licence to carry a concealed weapon doesn’t have to provide justification or “good cause” for requiring a concealed weapon permit.</p>
 <p>Load the guns.csv dataset directly into R by running the following line:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://philippbroniecki.github.io/philippbroniecki.github.io/assets/data/guns.csv&quot;</span>)</code></pre></div>
-<p>The data includes the following variables: |Variable| Description | |——–|————————————————————————| |<code>mur</code> | Murder rate (incidents per 100,000) | |<code>shall</code> | =1 if state has a shall-carry law in effect in that year, 0 otherwise | |<code>incarc rate</code> | Incarceration rate in the state in the previous year (sentenced prisoners per 100,000 residents; value for the previous year) | |<code>pm1029</code> | Percent of state population that is male, ages 10 to 29 | |<code>stateid</code> | ID number of states (Alabama = , Alaska = 2, etc.) | |<code>year</code> | Year (1977 - 1999) |</p>
+<p>The data includes the following variables:</p>
+<table>
+<colgroup>
+<col width="10%" />
+<col width="89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>mur</code></td>
+<td>Murder rate (incidents per 100,000)</td>
+</tr>
+<tr class="even">
+<td><code>shall</code></td>
+<td>=1 if state has a shall-carry law in effect in that year, 0 otherwise</td>
+</tr>
+<tr class="odd">
+<td><code>incarc rate</code></td>
+<td>Incarceration rate in the state in the previous year</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>(sentenced prisoners per 100,000 residents; value for the previous year)</td>
+</tr>
+<tr class="odd">
+<td><code>pm1029</code></td>
+<td>Percent of state population that is male, ages 10 to 29</td>
+</tr>
+<tr class="even">
+<td><code>stateid</code></td>
+<td>ID number of states (Alabama = , Alaska = 2, etc.)</td>
+</tr>
+<tr class="odd">
+<td><code>year</code></td>
+<td>Year (1977 - 1999)</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="question-1-1" class="section level3">
 <h3><span class="header-section-number">10.1.9</span> Question 1</h3>
