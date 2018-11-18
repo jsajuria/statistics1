@@ -1,8 +1,4 @@
-# Binary Dependent Varible Models (I)
-
-```{r echo=FALSE, results='asis'}
-chapter_header(week = 8)
-```
+# Binary Dependent Varible Models
 
 ## Seminar
 

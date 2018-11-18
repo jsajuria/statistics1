@@ -5627,8 +5627,8 @@ is the maximum value.
 \end{Shaded}
 
 \begin{verbatim}
- [1] 3.378118 2.302369 3.370876 5.416081 5.059456 3.475359 4.845758
- [8] 5.142285 4.768548 2.460304
+ [1] 3.162651 3.998719 5.327703 5.998897 2.081359 3.879299 4.875455
+ [8] 3.696840 5.617060 6.287357
 \end{verbatim}
 
 We have indeed drawn 10 numbers but they are not integers as we would
@@ -5647,8 +5647,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 3.378118 2.302369 3.370876 5.416081 5.059456 3.475359 4.845758
- [8] 5.142285 4.768548 2.460304
+ [1] 3.162651 3.998719 5.327703 5.998897 2.081359 3.879299 4.875455
+ [8] 3.696840 5.617060 6.287357
 \end{verbatim}
 
 \begin{Shaded}
@@ -5659,8 +5659,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 6.635421 2.526998 5.960583 5.576204 5.090134 4.574149 6.424385
- [8] 6.302903 6.625800 6.933180
+ [1] 4.228466 1.289513 3.732153 5.430211 6.281590 2.200771 6.906523
+ [8] 5.063655 4.228107 5.678245
 \end{verbatim}
 
 The numbers of the first and second roll differ because we have drawn
@@ -13516,6 +13516,940 @@ Overall, we find no evidence for the claim made in the book. Guns do not
 appear to decrease the number of violent crimes. There is also no
 evidence for the opposite effect.
 \end{quote}
+
+\section{Binary Dependent Varible
+Models}\label{binary-dependent-varible-models}
+
+\subsection{Seminar}\label{seminar-10}
+
+\subsubsection{Required Packages}\label{required-packages-1}
+
+Let's start by loading the required packages:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(foreign) }
+\KeywordTok{library}\NormalTok{(texreg) }
+\KeywordTok{library}\NormalTok{(lmtest)}
+\KeywordTok{library}\NormalTok{(sandwich)}
+\end{Highlighting}
+\end{Shaded}
+
+Clear the environment
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rm}\NormalTok{(}\DataTypeTok{list =} \KeywordTok{ls}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Loading Data}\label{loading-data-2}
+
+We will be using data from the Afrobarometer (a public attitude survey
+on democracy and governance in more than 35 countries in Africa) to
+investigate whether a political candidate can utilize his wife's
+ethnicity to garner coethnic support. This is linked to a broad research
+theory which implies that voters in Africa prefer to vote for candidates
+of their own ethnic group, and that if a presidential candidate marries
+a non-coethnic wife, this may broaden their electoral appeal to other
+ethnic groups.
+
+We will focus only African democracies where the president and wife are
+not of the same ethnicity are considered (i.e., the president and wife
+are not coethnic with one another). We will investigate whether voters
+are more likely to vote for the a president when the voter shares the
+same ethnicity as the president's wife.
+
+First, let's load the data directly from GitHub:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{afb <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"https://raw.githubusercontent.com/UCLSPP/datasets/master/data/afb_class.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The table below gives an overview of the variables included in the data.
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.10\columnwidth}\raggedright\strut
+Variable\strut
+\end{minipage} & \begin{minipage}[b]{0.84\columnwidth}\raggedright\strut
+Description\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+\texttt{country}\strut
+\end{minipage} & \begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+A character variable indicating the country of the respondent\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+\texttt{wifecoethnic}\strut
+\end{minipage} & \begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+1 if respondent is same ethnicity as president's wife, and 0
+otherwise\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+\texttt{oppcoethnic}\strut
+\end{minipage} & \begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+1 if respondent is same ethnicity as main presidential opponent, and 0
+otherwise\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+\texttt{ethnicpercent}\strut
+\end{minipage} & \begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+Respondent's ethnic group fraction in respondent country\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+\texttt{distance}\strut
+\end{minipage} & \begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+Distance between respondent's home and the home city of the president
+(measured in hundreds of miles)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+\texttt{vote}\strut
+\end{minipage} & \begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+1 if respondent would vote for the president, 0 otherwise\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+Now take a look at the first few observations to see what the dataset
+looks like
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(afb)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  country wifecoethnic oppcoethnic ethnicpercent vote  distance
+1   benin            1           1     0.4173623    1  5.449764
+2   benin            1           1     0.4173623    0 18.510687
+3   benin            1           1     0.4173623    0 26.370297
+4   benin            1           1     0.4173623    0 21.012341
+5   benin            1           1     0.4173623    0 22.238316
+6   benin            1           1     0.4173623    1  1.822167
+\end{verbatim}
+
+\subsubsection{Linear regression with a Binary Dependent
+Variable}\label{linear-regression-with-a-binary-dependent-variable}
+
+Before moving on to the new model, we can illustrate some of the
+shortcomings of the linear regression model when working with binary
+outcome variables.
+
+Let's run a linear regression (here, a \emph{linear probability model})
+where \texttt{vote} is our dependent variable, and \texttt{distance} is
+our independent variable. Try doing this yourself before revealing the
+solution code below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{linear_mod <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(vote }\OperatorTok{~}\StringTok{ }\NormalTok{distance, }\DataTypeTok{data =}\NormalTok{ afb)}
+\KeywordTok{screenreg}\NormalTok{(linear_mod)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+========================
+             Model 1    
+------------------------
+(Intercept)     1.33 ***
+               (0.01)   
+distance       -0.06 ***
+               (0.00)   
+------------------------
+R^2             0.70    
+Adj. R^2        0.70    
+Num. obs.    4552       
+RMSE            0.27    
+========================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+The model shows that there is a strong and significant bivariate
+relationship between distance and vote choice for the president.
+Specifically, the model suggest that increasing the distance between the
+respondent and the president's home city by 100 miles decreases the
+probability that the respondent will vote for the president by 6
+percentage points on average.
+
+As we discussed in lecture, however, the linear probability model can
+lead to some odd conclusions with regard to fitted values. Let's plot
+the two variables above, and include the estimated regression line.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}
+  \DataTypeTok{x =}\NormalTok{ afb}\OperatorTok{$}\NormalTok{distance,}
+  \DataTypeTok{y =}\NormalTok{ afb}\OperatorTok{$}\NormalTok{vote,}
+  \DataTypeTok{pch =} \DecValTok{19}\NormalTok{,}
+  \DataTypeTok{col =} \StringTok{"grey"}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"Distance"}\NormalTok{, }
+  \DataTypeTok{ylab =} \StringTok{"Vote for the president"}\NormalTok{,}
+  \DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\NormalTok{.}\DecValTok{5}\NormalTok{, }\FloatTok{1.5}\NormalTok{),}
+  \DataTypeTok{frame.plot =}\NormalTok{ F)}
+\KeywordTok{abline}\NormalTok{(linear_mod, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-484-1.pdf}
+
+As we can see from the plot, because the functional form of the linear
+probability model is linear, the estimated relationsip suggests that for
+respondents with a \texttt{distance} value greater than about 23 have a
+\emph{negative} probability of voting for the president, and respondents
+with a \texttt{distance} value less than about 5 have a probability of
+voting for the president that is \emph{greater than 1}.
+
+\paragraph{Adjusted Standard Errors in the Linear Probability
+Model}\label{adjusted-standard-errors-in-the-linear-probability-model}
+
+Now create a plot of the residuals from the model on the Y-axis, and the
+\texttt{distance} variable on the X-axis. Try this yourself before
+revealing the code below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}
+  \DataTypeTok{x =}\NormalTok{ afb}\OperatorTok{$}\NormalTok{distance, }
+  \DataTypeTok{y =} \KeywordTok{residuals}\NormalTok{(linear_mod), }
+  \DataTypeTok{pch =} \DecValTok{19}\NormalTok{,}
+  \DataTypeTok{col =} \StringTok{"grey"}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"Distance"}\NormalTok{, }
+  \DataTypeTok{ylab =} \StringTok{"Residuals"}\NormalTok{,}
+  \DataTypeTok{frame.plot =}\NormalTok{ F)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h =} \DecValTok{0}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-485-1.pdf}
+
+We can see from this plot that the linear probability model is always
+heteroskedastic -- the errors are not evenly distributed around zero for
+all values of \texttt{distance}.
+
+Because of this problem, we now adjust the standard errors to be
+heteroskedasticity robust.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{corrected_errors <-}\StringTok{ }\KeywordTok{coeftest}\NormalTok{(linear_mod, }\DataTypeTok{vcov =} \KeywordTok{vcovHC}\NormalTok{(linear_mod))}
+\KeywordTok{screenreg}\NormalTok{(}\KeywordTok{list}\NormalTok{(linear_mod,corrected_errors))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+===================================
+             Model 1      Model 2  
+-----------------------------------
+(Intercept)     1.33 ***   1.33 ***
+               (0.01)     (0.01)   
+distance       -0.06 ***  -0.06 ***
+               (0.00)     (0.00)   
+-----------------------------------
+R^2             0.70               
+Adj. R^2        0.70               
+Num. obs.    4552                  
+RMSE            0.27               
+===================================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+In this instance, the adjustment did not change our substantial
+conclusion. However, we still always need to adjust standard errors when
+we estimate the linear probability model.
+
+\paragraph{Classification}\label{classification}
+
+Our binary variable is either 0 or 1. With the linear probability model,
+we predict the underlying (and fundamentally unobserved) probability
+that the outcome is 0 or 1. In order to decide whether an outcome is 0
+or 1, we follow a simple rule: Every outcome with a probability of
+greater or equal 0.5 is assigned a 1 and a 0 otherwise. First, we create
+a new variable called \texttt{lm\_pps}. Those are our model predictions
+or fitted values. They are predicted probabilities that the outcome is 1
+- with the downside that we can get predictions outsied the 0 to 1
+interval.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# predicted probabilities}
+\NormalTok{afb}\OperatorTok{$}\NormalTok{lm_yhats <-}\StringTok{ }\NormalTok{linear_mod}\OperatorTok{$}\NormalTok{fitted.values}
+\KeywordTok{summary}\NormalTok{(afb}\OperatorTok{$}\NormalTok{lm_pps)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Length  Class   Mode 
+     0   NULL   NULL 
+\end{verbatim}
+
+Let's turn our predictions into outcomes of either 0 or 1 using the
+\texttt{ifelse()} function. The first argument of the function is a
+logical condition that is true or false for every observation that is
+evaluated. The second argument specifies what to do if the condition is
+true and third argument specifies what to do if the condition is not met
+(false).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# expected values}
+\NormalTok{afb}\OperatorTok{$}\NormalTok{exp.vals <-}\StringTok{ }\KeywordTok{ifelse}\NormalTok{( afb}\OperatorTok{$}\NormalTok{lm_yhats }\OperatorTok{>=}\StringTok{ }\FloatTok{0.5}\NormalTok{, }\DataTypeTok{yes =} \DecValTok{1}\NormalTok{, }\DataTypeTok{no =} \DecValTok{0}\NormalTok{ )}
+\KeywordTok{table}\NormalTok{(afb}\OperatorTok{$}\NormalTok{exp.vals)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+   0    1 
+2066 2486 
+\end{verbatim}
+
+We predict 2066 zeroes and 2486 ones. How good is this. We cannot use
+R\^{}2 as a model fit statistic for models with binary dependent
+variables. It is impossible that all values are on the regression line.
+Let's examine the outcome variable \texttt{vote} first.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(afb}\OperatorTok{$}\NormalTok{vote)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.0000  1.0000  0.5464  1.0000  1.0000 
+\end{verbatim}
+
+The mean is \textasciitilde{}0.55. Therefore, 55 per cent of the
+respondents would vote for the president. It also means that a
+classification model must be better than predicting 55 per cent of the
+outcomes correctly. Otherwise, it is no better than the naive guess.
+
+What is the naive guess? It is simply the modal category. In our case,
+it is 1 because 55 per cent of the respondents would vote for the
+president and 45 would not.
+
+If our model does not predict more than 55 per cent of outcomes
+correctly, it makes no contribution. We must always pass this minimum
+test. Let's compare actual outcomes to our expected values (the
+predictions from our model).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{out.table <-}\StringTok{ }\KeywordTok{table}\NormalTok{(}\DataTypeTok{prediction =}\NormalTok{ afb}\OperatorTok{$}\NormalTok{exp.vals, }\DataTypeTok{truth =}\NormalTok{ afb}\OperatorTok{$}\NormalTok{vote)}
+\NormalTok{out.table}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+          truth
+prediction    0    1
+         0 1922  144
+         1  143 2343
+\end{verbatim}
+
+On the diagonal, we see the correct predictions and on the off-diagonal,
+we see the errors. If we sum up the diagonal and divide by the total, we
+get the per cent correctly classified. Recall, it must be larger than 55
+per cent.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# per cent correctly classified}
+\NormalTok{cc.lm <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\KeywordTok{diag}\NormalTok{(out.table)) }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(out.table)}
+\NormalTok{cc.lm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.9369508
+\end{verbatim}
+
+The mdoel does extremely well. We correctly classify 94 of all cases. A
+substantial improvement on the naive guess. Let's move on and compare
+our linear model to the logistic regression approach.
+
+\subsubsection{Logistic Regression
+Model}\label{logistic-regression-model}
+
+We use the generalized linear model function \texttt{glm()} to estimate
+a logistic regression. The syntax is very similar to the \texttt{lm}
+regression function that we are already familiar with, but there is an
+additional argument that we need to specify (the \texttt{family}
+argument) in order to tell R that we would like to estimate a logistic
+regression model.
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.12\columnwidth}\raggedright\strut
+Argument\strut
+\end{minipage} & \begin{minipage}[b]{0.78\columnwidth}\raggedright\strut
+Description\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+\texttt{formula}\strut
+\end{minipage} & \begin{minipage}[t]{0.78\columnwidth}\raggedright\strut
+As before, the \texttt{formula} describes the relationship between the
+dependent and independent variables, for example
+\texttt{dependent.variable\ \textasciitilde{}\ independent.variable} In
+our case, we will use the formula:
+\texttt{vote\ \textasciitilde{}\ wifecoethnic\ +\ distance}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+\texttt{data}\strut
+\end{minipage} & \begin{minipage}[t]{0.78\columnwidth}\raggedright\strut
+Again as before, this is simply the name of the dataset that contains
+the variable of interest. In our case, this is the dataset called
+\texttt{afb}.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+\texttt{family}\strut
+\end{minipage} & \begin{minipage}[t]{0.78\columnwidth}\raggedright\strut
+The \texttt{family} argument provides a description of the error
+distribution and link function to be used in the model. For our
+purposes, we would like to estimate a binary logistic regression model
+and so we set \texttt{family\ =\ binomial(link\ =\ "logit")}\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+We tell \texttt{glm()} that we've binary dependent variable and we want
+to use the logistic link function using the
+\texttt{family\ =\ binomial(link\ =\ "logit")} argument:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{logit_model_}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(vote }\OperatorTok{~}\StringTok{ }\NormalTok{wifecoethnic }\OperatorTok{+}\StringTok{ }\NormalTok{distance,}
+                     \DataTypeTok{family =} \KeywordTok{binomial}\NormalTok{(}\DataTypeTok{link =} \StringTok{"logit"}\NormalTok{), }\DataTypeTok{data =}\NormalTok{ afb)}
+\KeywordTok{screenreg}\NormalTok{(logit_model_}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+===========================
+                Model 1    
+---------------------------
+(Intercept)       11.66 ***
+                  (0.42)   
+wifecoethnic      -1.36 ***
+                  (0.17)   
+distance          -0.79 ***
+                  (0.03)   
+---------------------------
+AIC             1364.65    
+BIC             1383.92    
+Log Likelihood  -679.33    
+Deviance        1358.65    
+Num. obs.       4552       
+===========================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+Interpreting the output of a logistic regression model is less
+straightforward than for the linear model, because the coefficients no
+longer describe the effect of a unit change in X on Y. Instead, the
+direct interpretation of the coefficient is: a one unit change in X is
+associated with a \(\hat{\beta}\) change in the log-odds of Y, holding
+constant other variables. Here, the coefficient on \texttt{wifecoethnic}
+is equal to -1.36, implying that the log-odds of voting for the
+president are 1.36 \emph{lower} when the respondent has the same
+ethnicity as the president's wife, holding constant distance.
+
+The interpretation of the significance of the coefficients remains
+unchanged from the linear regression model. For example, the standard
+error for the coefficient on \texttt{wifecoethnic} is 0.17, and the test
+statistic is therefore -1.36/0.17 = -8. This is much greater than the
+critical value of any conventionally used \(\alpha\)-level and so we can
+be sure that this result is statistically significant. We will speak
+more about statistical inference for logit coefficients next week.
+
+\subsubsection{Odds-ratios}\label{odds-ratios}
+
+Differences in the log-odds, however, are difficult to interpret
+substantively. There are two main approaches to describing the
+substantive relationships that emerge from a logistic regression model.
+1) odds-ratios, and 2) predicted probabilities.
+
+Converting log-odds differences to odds-ratios is very straightforward.
+As the log function is the inverse of the exponential function, we can
+simply exponentiate the coefficient associated with
+\texttt{wifecoethnic}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{beta_wifecoethnic <-}\StringTok{ }\KeywordTok{coef}\NormalTok{(logit_model_}\DecValTok{1}\NormalTok{)[[}\StringTok{"wifecoethnic"}\NormalTok{]]}
+\KeywordTok{exp}\NormalTok{(beta_wifecoethnic)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.2556929
+\end{verbatim}
+
+And we can do the same for the coefficient associated with
+\texttt{distance}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{beta_distance <-}\StringTok{ }\KeywordTok{coef}\NormalTok{(logit_model_}\DecValTok{1}\NormalTok{)[[}\StringTok{"distance"}\NormalTok{]]}
+\KeywordTok{exp}\NormalTok{(beta_distance)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.4539435
+\end{verbatim}
+
+We can then interpret the odds-ratios as follows:
+
+\begin{itemize}
+\tightlist
+\item
+  When the respondent shares the same ethnicity as the president's wife
+  the odds of voting for the president are multiplied by 0.26, holding
+  constant the distance between the respondent and the president's home
+  city (i.e.~they decrease by 74\%)
+\item
+  Increasing the distance between the respondent and the president's
+  home city by 100 miles, holding constant whether the respondent shares
+  the same ethnicity as the president's wife, multiplies the odds of
+  voting for the president by 0.45, (i.e.~the odds decrease by 55\%)
+\item
+  In general, when X increases by one unit, the odds of the outcome
+  \(Y = 1\) are multiplied by \(exp(\hat{\beta})\), holding other
+  factors constant
+\end{itemize}
+
+\subsubsection{Predicted probabilities}\label{predicted-probabilities}
+
+Thinking in terms of odds may not be much better than thinking in terms
+of log-odds, and so often the most useful discussion of the substantive
+effect sizes is in terms of predicted probabilities.
+
+We can use the \texttt{predict()} function to calculate fitted values
+for the logistic regression model, just as we did for the linear model.
+Here, however, we need to take into account the fact that we model the
+\emph{log-odds} that \(Y = 1\), rather than the \emph{probability} that
+\(Y=1\). The \texttt{predict()} function will therefore, by default,
+give us predictions for Y on the log-odds scale. To get predictions on
+the probability scale, we need to add an additional argument to
+\texttt{predict()}: we set the \texttt{type} argument to
+\texttt{type\ =\ "response"}.
+
+For example, if we would like to calculate the predicted probability of
+voting for the president for a respondent who shares the same ethnicity
+as the president's wife, and lives 1000 miles from the president's home
+city, we could use:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pred_prob_}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(logit_model_}\DecValTok{1}\NormalTok{, }\DataTypeTok{newdata =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{wifecoethnic =} \DecValTok{1}\NormalTok{, }\DataTypeTok{distance =} \DecValTok{10}\NormalTok{), }\DataTypeTok{type =} \StringTok{"response"}\NormalTok{)}
+\NormalTok{pred_prob_}\DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+      1 
+0.91698 
+\end{verbatim}
+
+The tells us that the probability of a respondent with these covariate
+values voting for the president (\(Y=1\)) is 0.92, based on this model.
+
+\textbf{At home}, we want you to estimate the predicted probability for
+this scenario by doing the transformation yourself. You can compare your
+results with the code below
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# get fitted values using predict function - not transformed back to probabilities}
+\NormalTok{pred_prob_1a <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(logit_model_}\DecValTok{1}\NormalTok{, }\DataTypeTok{newdata =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{wifecoethnic =} \DecValTok{1}\NormalTok{, }\DataTypeTok{distance =} \DecValTok{10}\NormalTok{))}
+\NormalTok{pred_prob_1a}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+       1 
+2.402004 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# send the fitted values through the link function}
+\KeywordTok{exp}\NormalTok{(pred_prob_1a) }\OperatorTok{/}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{+}\StringTok{ }\KeywordTok{exp}\NormalTok{(pred_prob_1a))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+      1 
+0.91698 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# get fitted values by hand}
+\NormalTok{pred_prob_1b <-}\StringTok{ }\KeywordTok{coef}\NormalTok{(logit_model_}\DecValTok{1}\NormalTok{)[}\DecValTok{1}\NormalTok{] }\OperatorTok{+}\StringTok{ }\KeywordTok{coef}\NormalTok{(logit_model_}\DecValTok{1}\NormalTok{)[}\DecValTok{2}\NormalTok{] }\OperatorTok{*}\StringTok{ }\DecValTok{1} \OperatorTok{+}\StringTok{ }\KeywordTok{coef}\NormalTok{(logit_model_}\DecValTok{1}\NormalTok{)[}\DecValTok{3}\NormalTok{] }\OperatorTok{*}\StringTok{ }\DecValTok{10}
+\CommentTok{# below we use as.numeric() only because otherwise R labels the result intercept which it is not}
+\NormalTok{pred_prob_1b <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(pred_prob_1b)}
+\NormalTok{pred_prob_1b}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 2.402004
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## send fitted values through the link function}
+\KeywordTok{exp}\NormalTok{(pred_prob_1b) }\OperatorTok{/}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{+}\StringTok{ }\KeywordTok{exp}\NormalTok{(pred_prob_1b))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.91698
+\end{verbatim}
+
+How does this predicted probability compare to the predicted probability
+of voting for the president for a respondent who \emph{is not} coethnic
+with the president's wife, and lives 1000 miles from the president's
+home city? We can just use the \texttt{predict()} function again, but
+specify a different value for \texttt{wifecoethnic} to use for the
+prediction:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pred_prob_}\DecValTok{2}\NormalTok{ <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(logit_model_}\DecValTok{1}\NormalTok{, }\DataTypeTok{newdata =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{wifecoethnic =} \DecValTok{0}\NormalTok{, }\DataTypeTok{distance =} \DecValTok{10}\NormalTok{), }\DataTypeTok{type =} \StringTok{"response"}\NormalTok{)}
+\NormalTok{pred_prob_}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+        1 
+0.9773743 
+\end{verbatim}
+
+Comparing the two predicted probabilities, the model tells us that for
+respondents who live 100 miles from the president's home city, sharing
+the ethnicity of the president's wife \emph{decreases} the probability
+of voting for the president by about 6 points:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pred_prob_}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{pred_prob_}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+         1 
+-0.0603943 
+\end{verbatim}
+
+Notice that this ``finding'' is the opposite of the prediction from the
+theory: respondents do not seem to be more likely to vote for the
+president if they share the same ethnicity as the president's wife. Of
+course, here we are dealing with a very simple model with many possible
+confounding variables that we have not included in the model!
+
+As discussed in lecture, the logistic model implies a \emph{non-linear}
+relationship between the X variables and the outcome. To see this more
+clearly, we can calulate the probability of voting for the president
+over the entire range of the \texttt{distance} variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Set the values for the explanatory variables}
+\NormalTok{data_for_predicted_prob <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{distance =} \KeywordTok{seq}\NormalTok{(}\DataTypeTok{from =} \DecValTok{0}\NormalTok{, }\DataTypeTok{to =} \DecValTok{34}\NormalTok{, }\DataTypeTok{by =}\NormalTok{ .}\DecValTok{5}\NormalTok{),}
+                                     \DataTypeTok{wifecoethnic =} \DecValTok{1}
+\NormalTok{                                     )}
+\end{Highlighting}
+\end{Shaded}
+
+Here, we have set the \texttt{distance} variable to vary between 0 and
+34, with increments of .5 units and we have set \texttt{wifecoethnic} to
+be equal to 1. We have then put all of these values into a new
+\texttt{data.frame} called \texttt{data\_for\_predicted\_prob} which we
+will pass to the \texttt{predict()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Calculate the fitted values}
+\NormalTok{predicted_probs <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(logit_model_}\DecValTok{1}\NormalTok{, }\DataTypeTok{newdata =}\NormalTok{ data_for_predicted_prob, }\DataTypeTok{type =} \StringTok{"response"}\NormalTok{)}
+
+\NormalTok{## Save the fitted values as a new variable in the data_for_fitted_values object}
+\NormalTok{data_for_predicted_prob}\OperatorTok{$}\NormalTok{predicted_probs <-}\StringTok{ }\NormalTok{predicted_probs}
+\end{Highlighting}
+\end{Shaded}
+
+Finally, we can plot these values:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}
+\NormalTok{  predicted_probs }\OperatorTok{~}\StringTok{ }\NormalTok{distance, }\CommentTok{# Specify the formula for the plot (dependent.variable ~ independent.variable)}
+  \DataTypeTok{data =}\NormalTok{ data_for_predicted_prob, }\CommentTok{# Specify the data to use for the plot}
+  \DataTypeTok{xlab =} \StringTok{"Distance"}\NormalTok{, }\CommentTok{# Specify the X-axis title}
+  \DataTypeTok{ylab =} \StringTok{"Probability of voting for the president"}\NormalTok{, }\CommentTok{# Specify the Y-axis title}
+  \DataTypeTok{frame.plot =} \OtherTok{FALSE}\NormalTok{, }\CommentTok{# The frame.plot = FALSE argument removes the box from around the plot}
+  \DataTypeTok{col =} \StringTok{"grey"}\NormalTok{, }\CommentTok{# The col argument specifies the color}
+  \DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\CommentTok{# type = "l" will produce a line plot, rather than the default scatter plot}
+  \DataTypeTok{lwd =} \DecValTok{3} \CommentTok{# lwd = 3 will increase the thinkness of the line on the plot}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-501-1.pdf}
+
+The plot nicely illustrates the non-linear functional form of the
+logistic regression model. As desired, all of the predicted
+probabilities now vary between 0 and 1, as the line takes on a
+distinctive ``S'' shape. It is clear from this plot that X
+(\texttt{distance}) is non-linearly related to the probability that
+\(Y=1\) (\(P(Y = 1) = \pi\)): the same change in X results in difference
+changes in \(\pi\) depending on which values of X we consider. For
+example:
+
+\begin{itemize}
+\tightlist
+\item
+  Increasing \texttt{distance} from 5 to 10 leads to a decrease in
+  \(\pi\) of only a very small amount
+\item
+  Increasing \texttt{distance} from 10 to 15 leads to a decrease in
+  \(\pi\) of a very large amount
+\end{itemize}
+
+This is why we are unable to interpret the \(\beta\) coefficients from
+the logistic model as constant increases or decreases in \(\pi\) given a
+change in X. For any given change in X, the amount that \(\pi\) will
+change will depend on the starting value of X that we are considering.
+
+Finally, we can also see the non-linearity inherent in the logistic
+model by calculating the difference in predicted probability between
+respondents who share the ethnic group of the president's wife and
+respondents who come from different ethnic groups than the president's
+wife, \emph{at different values of the \texttt{distance} variable}.
+Let's calculate this difference for \texttt{distance\ =\ 10} and
+\texttt{distance\ =\ 12}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prob_coethnic_dist10 <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(logit_model_}\DecValTok{1}\NormalTok{, }\DataTypeTok{newdata =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{wifecoethnic =} \DecValTok{1}\NormalTok{, }\DataTypeTok{distance =} \DecValTok{10}\NormalTok{), }\DataTypeTok{type =} \StringTok{"response"}\NormalTok{)}
+\NormalTok{prob_not_coethnic_dist10 <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(logit_model_}\DecValTok{1}\NormalTok{, }\DataTypeTok{newdata =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{wifecoethnic =} \DecValTok{0}\NormalTok{, }\DataTypeTok{distance =} \DecValTok{10}\NormalTok{), }\DataTypeTok{type =} \StringTok{"response"}\NormalTok{)}
+\NormalTok{prob_coethnic_dist10 }\OperatorTok{-}\StringTok{ }\NormalTok{prob_not_coethnic_dist10}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+         1 
+-0.0603943 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prob_coethnic_dist12 <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(logit_model_}\DecValTok{1}\NormalTok{, }\DataTypeTok{newdata =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{wifecoethnic =} \DecValTok{1}\NormalTok{, }\DataTypeTok{distance =} \DecValTok{12}\NormalTok{), }\DataTypeTok{type =} \StringTok{"response"}\NormalTok{)}
+\NormalTok{prob_not_coethnic_dist12 <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(logit_model_}\DecValTok{1}\NormalTok{, }\DataTypeTok{newdata =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{wifecoethnic =} \DecValTok{0}\NormalTok{, }\DataTypeTok{distance =} \DecValTok{12}\NormalTok{), }\DataTypeTok{type =} \StringTok{"response"}\NormalTok{)}
+\NormalTok{prob_coethnic_dist12 }\OperatorTok{-}\StringTok{ }\NormalTok{prob_not_coethnic_dist12}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+         1 
+-0.2042512 
+\end{verbatim}
+
+The results indicating that, when comparing respondents with values of
+10 on the district variable, coethnics of the president's wife are 6
+points less likey to vote for the president than non-coethnics. However,
+when comparing respondents with values of 12 on the distance variable,
+coethnics are 20 points less likely to vote for the president.
+Therefore, this illustrates that in a multiple logistic regression model
+the change in \(\pi\) in response to even exactly the same change in one
+X variable depends on the values at which the other X variables are
+fixed.
+
+\subsubsection{Exercises}\label{exercises-9}
+
+We will be using some data from a post-referendum survey among people
+living in Switzerland. The survey was carried out right after the vote
+on an initiative whether to ban military assault rifles in private
+households or not. If you would like to get some more background you may
+consult the wikipedia article on the referendum,
+\href{http://en.wikipedia.org/wiki/Swiss_gun_control_referendum,_2011}{here}.
+
+You can load the data from GitHub by running the following code
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(foreign)}
+\NormalTok{swiss <-}\StringTok{ }\KeywordTok{read.dta}\NormalTok{(}\StringTok{"https://raw.githubusercontent.com/UCLSPP/datasets/master/data/SwissData2011.dta"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+We have access to the following variables:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.11\columnwidth}\raggedright\strut
+Variable\strut
+\end{minipage} & \begin{minipage}[b]{0.83\columnwidth}\raggedright\strut
+Description\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+VoteYes\strut
+\end{minipage} & \begin{minipage}[t]{0.83\columnwidth}\raggedright\strut
+1 if someone voted yes and is 0 if someone voted no.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+participation\strut
+\end{minipage} & \begin{minipage}[t]{0.83\columnwidth}\raggedright\strut
+1 for people that voted and 0 otherwise.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+male\strut
+\end{minipage} & \begin{minipage}[t]{0.83\columnwidth}\raggedright\strut
+1 for men and 0 for women.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+age\strut
+\end{minipage} & \begin{minipage}[t]{0.83\columnwidth}\raggedright\strut
+Age in years.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+LeftRight\strut
+\end{minipage} & \begin{minipage}[t]{0.83\columnwidth}\raggedright\strut
+Left-Right self placement where low values indicate that a respondent is
+more to the left.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+GovTrust\strut
+\end{minipage} & \begin{minipage}[t]{0.83\columnwidth}\raggedright\strut
+Trust in government. Little or no trust is -1, neither YES nor NO is 0,
+and +1 if somebody trusts the government.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+ReligFreq\strut
+\end{minipage} & \begin{minipage}[t]{0.83\columnwidth}\raggedright\strut
+How frequently does a respondent attend a religious service? Never (0),
+only on special occasions (1), several times a year (2), once a month
+(3), and once a week (4).\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+university\strut
+\end{minipage} & \begin{minipage}[t]{0.83\columnwidth}\raggedright\strut
+Binary indicator (dummy) whether respondent has a university degree (1)
+or not (0).\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+party\strut
+\end{minipage} & \begin{minipage}[t]{0.83\columnwidth}\raggedright\strut
+Indicates which party a respondent supports. Liberals (1), Christian
+Democrats (2), Social Democrats (3), Conservative Right (4), and Greens
+(5).\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+income\strut
+\end{minipage} & \begin{minipage}[t]{0.83\columnwidth}\raggedright\strut
+Income measured in ten different brackets (higher values indicate higher
+income). You may assume that this variable is an interval type
+measure.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+german\strut
+\end{minipage} & \begin{minipage}[t]{0.83\columnwidth}\raggedright\strut
+Binary indicator (dummy) whether respondent's mother tongue is German
+(1) or not (0)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+suburb\strut
+\end{minipage} & \begin{minipage}[t]{0.83\columnwidth}\raggedright\strut
+Binary indicator (dummy) whether respondent lives in a suburban
+neighborhood (1) or not (0)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+urban\strut
+\end{minipage} & \begin{minipage}[t]{0.83\columnwidth}\raggedright\strut
+Binary indicator (dummy) whether respondent lives in a city (1) or not
+(0)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+cars\strut
+\end{minipage} & \begin{minipage}[t]{0.83\columnwidth}\raggedright\strut
+Number of cars the respondent's household owns.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+old voter\strut
+\end{minipage} & \begin{minipage}[t]{0.83\columnwidth}\raggedright\strut
+Variable indicating whether a respondent is older than 60 years (1) or
+not (0).\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+cantonnr\strut
+\end{minipage} & \begin{minipage}[t]{0.83\columnwidth}\raggedright\strut
+Variable indicating in which of the 26 Swiss cantons a respondent
+lives.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+nodenomination\strut
+\end{minipage} & \begin{minipage}[t]{0.83\columnwidth}\raggedright\strut
+Share of citizens in a canton that do not have a denomination.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+urbanization\strut
+\end{minipage} & \begin{minipage}[t]{0.83\columnwidth}\raggedright\strut
+Share of citizens in a canton that live in urban areas.\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Create plots of \texttt{age} vs \texttt{VoteYes} and
+  \texttt{LeftRight} vs \texttt{VoteYes}. Add a regression line (from a
+  linear probability model) to the plots
+\item
+  Estimate a model which includes \texttt{age} and \texttt{LeftRight} as
+  predictors, and \texttt{VoteYes} as the dependent variable
+\item
+  What is the effect of a one-unit increase in \texttt{LeftRight} on
+  \texttt{VoteYes}? Discuss in terms of odds-ratios
+\item
+  What is the effect of a one-unit increase in \texttt{age} on
+  \texttt{VoteYes}? Discuss in terms of odds-ratios
+\item
+  What is the effect on \emph{the probability of a ``yes'' vote} of
+  moving from a left-right self placement of 5 to a self placement of 6
+  for an individual who is 44 years old?
+\item
+  Calculate and plot the predicted probability of voting yes across the
+  range of the \texttt{age} variable for individuals who have a
+  left-right self placement of 5. Do the same across the range of the
+  \texttt{LeftRight} variable for individuals with an age of 50.
+\item
+  Looking at the other variables in the \texttt{swiss} data, which do
+  you think might be important determinants of a ``yes'' vote in the
+  referendum? Write a short paragraph justifying the importance of 3 of
+  the predictors in \emph{theoretical} terms. Include the additional
+  explanatory variables you have selected in a new model that also
+  includes \texttt{age} and \texttt{LeftRight}.
+\item
+  Provide some predicted probabilities from the model that illustrate
+  the substantive importance of the new variables that you have added
+\end{enumerate}
 
 \section{Datacamp}\label{datacamp}
 
