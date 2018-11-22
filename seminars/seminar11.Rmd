@@ -1,4 +1,4 @@
-# Binary Dependent Varible Models
+# Binary Dependent Variable Models
 
 ## Seminar
 
@@ -78,7 +78,7 @@ plot(
 abline(linear_mod, lwd = 3)
 ```
 
-As we can see from the plot, because the functional form of the linear probability model is linear, the estimated relationsip suggests that for respondents with a `distance` value greater than about 23 have a *negative* probability of voting for the president, and respondents with a `distance` value less than about 5 have a probability of voting for the president that is *greater than 1*.
+As we can see from the plot, because the functional form of the linear probability model is linear, the estimated relationship suggests that for respondents with a `distance` value greater than about 23 have a *negative* probability of voting for the president, and respondents with a `distance` value less than about 5 have a probability of voting for the president that is *greater than 1*.
 
 #### Adjusted Standard Errors in the Linear Probability Model
 
@@ -109,12 +109,12 @@ In this instance, the adjustment did not change our substantial conclusion. Howe
 
 #### Classification
 
-Our binary variable is either 0 or 1. With the linear probability model, we predict the underlying (and fundamentally unobserved) probability that the outcome is 0 or 1. In order to decide whether an outcome is 0 or 1, we follow a simple rule: Every outcome with a probability of greater or equal 0.5 is assigned a 1 and a 0 otherwise. First, we create a new variable called `lm_pps`. Those are our model predictions or fitted values. They are predicted probabilities that the outcome is 1 - with the downside that we can get predictions outsied the 0 to 1 interval.
+Our binary variable is either 0 or 1. With the linear probability model, we predict the underlying (and fundamentally unobserved) probability that the outcome is 0 or 1. In order to decide whether an outcome is 0 or 1, we follow a simple rule: Every outcome with a probability of greater or equal 0.5 is assigned a 1 and a 0 otherwise. First, we create a new variable called `lm_pps`. Those are our model predictions or fitted values. They are predicted probabilities that the outcome is 1 - with the downside that we can get predictions outside the 0 to 1 interval.
 
 ```{r}
 # predicted probabilities
 afb$lm_yhats <- linear_mod$fitted.values
-summary(afb$lm_pps)
+summary(afb$lm_yhats)
 ```
 
 Let's turn our predictions into outcomes of either 0 or 1 using the `ifelse()` function. The first argument of the function is a logical condition that is true or false for every observation that is evaluated. The second argument specifies what to do if the condition is true and third argument specifies what to do if the condition is not met (false).
@@ -149,7 +149,7 @@ cc.lm <- sum(diag(out.table)) / sum(out.table)
 cc.lm
 ```
 
-The mdoel does extremely well. We correctly classify 94 of all cases. A substantial improvement on the naive guess. Let's move on and compare our linear model to the logistic regression approach.
+The model does extremely well. We correctly classify 94 of all cases. A substantial improvement on the naive guess. Let's move on and compare our linear model to the logistic regression approach.
 
 ### Logistic Regression Model
 
@@ -243,7 +243,7 @@ pred_prob_1 - pred_prob_2
 
 Notice that this "finding" is the opposite of the prediction from the theory: respondents do not seem to be more likely to vote for the president if they share the same ethnicity as the president's wife. Of course, here we are dealing with a very simple model with many possible confounding variables that we have not included in the model!
 
-As discussed in lecture, the logistic model implies a *non-linear* relationship between the X variables and the outcome. To see this more clearly, we can calulate the probability of voting for the president over the entire range of the `distance` variable.
+As discussed in lecture, the logistic model implies a *non-linear* relationship between the X variables and the outcome. To see this more clearly, we can calculate the probability of voting for the president over the entire range of the `distance` variable.
 
 ```{r}
 ## Set the values for the explanatory variables
@@ -300,7 +300,7 @@ prob_not_coethnic_dist12 <- predict(logit_model_1, newdata = data.frame(wifecoet
 prob_coethnic_dist12 - prob_not_coethnic_dist12
 ```
 
-The results indicating that, when comparing respondents with values of 10 on the district variable, coethnics of the president's wife are `r abs(round((prob_coethnic_dist10 - prob_not_coethnic_dist10)*100))` points less likey to vote for the president than non-coethnics. However, when comparing respondents with values of 12 on the distance variable, coethnics are `r abs(round((prob_coethnic_dist12 - prob_not_coethnic_dist12)*100))` points less likely to vote for the president. Therefore, this illustrates that in a multiple logistic regression model the change in $\pi$ in response to even exactly the same change in one X variable depends on the values at which the other X variables are fixed.
+The results indicating that, when comparing respondents with values of 10 on the district variable, coethnics of the president's wife are `r abs(round((prob_coethnic_dist10 - prob_not_coethnic_dist10)*100))` points less likely to vote for the president than non-coethnics. However, when comparing respondents with values of 12 on the distance variable, coethnics are `r abs(round((prob_coethnic_dist12 - prob_not_coethnic_dist12)*100))` points less likely to vote for the president. Therefore, this illustrates that in a multiple logistic regression model the change in $\pi$ in response to even exactly the same change in one X variable depends on the values at which the other X variables are fixed.
 
 ### Exercises
 

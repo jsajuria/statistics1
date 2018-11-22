@@ -261,7 +261,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.1.13" data-path="seminar10.html"><a href="seminar10.html#question-5-1"><i class="fa fa-check"></i><b>10.1.13</b> Question 5</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="seminar11.html"><a href="seminar11.html"><i class="fa fa-check"></i><b>11</b> Binary Dependent Varible Models</a><ul>
+<li class="chapter" data-level="11" data-path="seminar11.html"><a href="seminar11.html"><i class="fa fa-check"></i><b>11</b> Binary Dependent Variable Models</a><ul>
 <li class="chapter" data-level="11.1" data-path="seminar11.html"><a href="seminar11.html#seminar-10"><i class="fa fa-check"></i><b>11.1</b> Seminar</a><ul>
 <li class="chapter" data-level="11.1.1" data-path="seminar11.html"><a href="seminar11.html#required-packages-1"><i class="fa fa-check"></i><b>11.1.1</b> Required Packages</a></li>
 <li class="chapter" data-level="11.1.2" data-path="seminar11.html"><a href="seminar11.html#loading-data-2"><i class="fa fa-check"></i><b>11.1.2</b> Loading Data</a></li>
@@ -292,8 +292,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="binary-dependent-varible-models" class="section level1">
-<h1><span class="header-section-number">Chapter 11</span> Binary Dependent Varible Models</h1>
+<div id="binary-dependent-variable-models" class="section level1">
+<h1><span class="header-section-number">Chapter 11</span> Binary Dependent Variable Models</h1>
 <div id="seminar-10" class="section level2">
 <h2><span class="header-section-number">11.1</span> Seminar</h2>
 <div id="required-packages-1" class="section level3">
@@ -395,7 +395,7 @@ RMSE            0.27
   <span class="dt">frame.plot =</span> F)
 <span class="kw">abline</span>(linear_mod, <span class="dt">lwd =</span> <span class="dv">3</span>)</code></pre></div>
 <p><img src="statistics1_files/figure-html/unnamed-chunk-484-1.png" width="672" /></p>
-<p>As we can see from the plot, because the functional form of the linear probability model is linear, the estimated relationsip suggests that for respondents with a <code>distance</code> value greater than about 23 have a <em>negative</em> probability of voting for the president, and respondents with a <code>distance</code> value less than about 5 have a probability of voting for the president that is <em>greater than 1</em>.</p>
+<p>As we can see from the plot, because the functional form of the linear probability model is linear, the estimated relationship suggests that for respondents with a <code>distance</code> value greater than about 23 have a <em>negative</em> probability of voting for the president, and respondents with a <code>distance</code> value less than about 5 have a probability of voting for the president that is <em>greater than 1</em>.</p>
 <div id="adjusted-standard-errors-in-the-linear-probability-model" class="section level4">
 <h4><span class="header-section-number">11.1.3.1</span> Adjusted Standard Errors in the Linear Probability Model</h4>
 <p>Now create a plot of the residuals from the model on the Y-axis, and the <code>distance</code> variable on the X-axis. Try this yourself before revealing the code below.</p>
@@ -432,12 +432,12 @@ RMSE            0.27
 </div>
 <div id="classification" class="section level4">
 <h4><span class="header-section-number">11.1.3.2</span> Classification</h4>
-<p>Our binary variable is either 0 or 1. With the linear probability model, we predict the underlying (and fundamentally unobserved) probability that the outcome is 0 or 1. In order to decide whether an outcome is 0 or 1, we follow a simple rule: Every outcome with a probability of greater or equal 0.5 is assigned a 1 and a 0 otherwise. First, we create a new variable called <code>lm_pps</code>. Those are our model predictions or fitted values. They are predicted probabilities that the outcome is 1 - with the downside that we can get predictions outsied the 0 to 1 interval.</p>
+<p>Our binary variable is either 0 or 1. With the linear probability model, we predict the underlying (and fundamentally unobserved) probability that the outcome is 0 or 1. In order to decide whether an outcome is 0 or 1, we follow a simple rule: Every outcome with a probability of greater or equal 0.5 is assigned a 1 and a 0 otherwise. First, we create a new variable called <code>lm_pps</code>. Those are our model predictions or fitted values. They are predicted probabilities that the outcome is 1 - with the downside that we can get predictions outside the 0 to 1 interval.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># predicted probabilities</span>
 afb<span class="op">$</span>lm_yhats &lt;-<span class="st"> </span>linear_mod<span class="op">$</span>fitted.values
-<span class="kw">summary</span>(afb<span class="op">$</span>lm_pps)</code></pre></div>
-<pre><code>Length  Class   Mode 
-     0   NULL   NULL </code></pre>
+<span class="kw">summary</span>(afb<span class="op">$</span>lm_yhats)</code></pre></div>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+-0.8084  0.1974  0.5875  0.5464  0.8928  1.3344 </code></pre>
 <p>Let’s turn our predictions into outcomes of either 0 or 1 using the <code>ifelse()</code> function. The first argument of the function is a logical condition that is true or false for every observation that is evaluated. The second argument specifies what to do if the condition is true and third argument specifies what to do if the condition is not met (false).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># expected values</span>
 afb<span class="op">$</span>exp.vals &lt;-<span class="st"> </span><span class="kw">ifelse</span>( afb<span class="op">$</span>lm_yhats <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.5</span>, <span class="dt">yes =</span> <span class="dv">1</span>, <span class="dt">no =</span> <span class="dv">0</span> )
@@ -463,7 +463,7 @@ prediction    0    1
 cc.lm &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">diag</span>(out.table)) <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(out.table)
 cc.lm</code></pre></div>
 <pre><code>[1] 0.9369508</code></pre>
-<p>The mdoel does extremely well. We correctly classify 94 of all cases. A substantial improvement on the naive guess. Let’s move on and compare our linear model to the logistic regression approach.</p>
+<p>The model does extremely well. We correctly classify 94 of all cases. A substantial improvement on the naive guess. Let’s move on and compare our linear model to the logistic regression approach.</p>
 </div>
 </div>
 <div id="logistic-regression-model" class="section level3">
@@ -577,7 +577,7 @@ pred_prob_<span class="dv">2</span></code></pre></div>
 <pre><code>         1 
 -0.0603943 </code></pre>
 <p>Notice that this “finding” is the opposite of the prediction from the theory: respondents do not seem to be more likely to vote for the president if they share the same ethnicity as the president’s wife. Of course, here we are dealing with a very simple model with many possible confounding variables that we have not included in the model!</p>
-<p>As discussed in lecture, the logistic model implies a <em>non-linear</em> relationship between the X variables and the outcome. To see this more clearly, we can calulate the probability of voting for the president over the entire range of the <code>distance</code> variable.</p>
+<p>As discussed in lecture, the logistic model implies a <em>non-linear</em> relationship between the X variables and the outcome. To see this more clearly, we can calculate the probability of voting for the president over the entire range of the <code>distance</code> variable.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Set the values for the explanatory variables
 data_for_predicted_prob &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">distance =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">34</span>, <span class="dt">by =</span> .<span class="dv">5</span>),
                                      <span class="dt">wifecoethnic =</span> <span class="dv">1</span>
@@ -617,7 +617,7 @@ prob_not_coethnic_dist12 &lt;-<span class="st"> </span><span class="kw">predict<
 prob_coethnic_dist12 <span class="op">-</span><span class="st"> </span>prob_not_coethnic_dist12</code></pre></div>
 <pre><code>         1 
 -0.2042512 </code></pre>
-<p>The results indicating that, when comparing respondents with values of 10 on the district variable, coethnics of the president’s wife are 6 points less likey to vote for the president than non-coethnics. However, when comparing respondents with values of 12 on the distance variable, coethnics are 20 points less likely to vote for the president. Therefore, this illustrates that in a multiple logistic regression model the change in <span class="math inline">\(\pi\)</span> in response to even exactly the same change in one X variable depends on the values at which the other X variables are fixed.</p>
+<p>The results indicating that, when comparing respondents with values of 10 on the district variable, coethnics of the president’s wife are 6 points less likely to vote for the president than non-coethnics. However, when comparing respondents with values of 12 on the distance variable, coethnics are 20 points less likely to vote for the president. Therefore, this illustrates that in a multiple logistic regression model the change in <span class="math inline">\(\pi\)</span> in response to even exactly the same change in one X variable depends on the values at which the other X variables are fixed.</p>
 </div>
 <div id="exercises-9" class="section level3">
 <h3><span class="header-section-number">11.1.7</span> Exercises</h3>
