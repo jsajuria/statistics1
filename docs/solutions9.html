@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Statistics 1</title>
+  <meta name="description" content="Statistics 1">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Statistics 1" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Statistics 1" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="seminar9.html">
+<link rel="next" href="seminar10.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="lib/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/codefolding.js"></script>
+
+
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding();
+});
+</script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="lib\bootstrap\3.3.7\css\bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="css\readthedocs.css" type="text/css" />
+<link rel="stylesheet" href="css\custom.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this course</a></li>
+<li class="chapter" data-level="1" data-path="seminar1.html"><a href="seminar1.html"><i class="fa fa-check"></i><b>1</b> Introduction: Measurement, Central Tendency, Dispersion, Validity, Reliability</a><ul>
+<li class="chapter" data-level="1.1" data-path="seminar1.html"><a href="seminar1.html#seminar"><i class="fa fa-check"></i><b>1.1</b> Seminar</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="seminar1.html"><a href="seminar1.html#getting-started"><i class="fa fa-check"></i><b>1.1.1</b> Getting Started</a></li>
+<li class="chapter" data-level="1.1.2" data-path="seminar1.html"><a href="seminar1.html#rstudio"><i class="fa fa-check"></i><b>1.1.2</b> RStudio</a></li>
+<li class="chapter" data-level="1.1.3" data-path="seminar1.html"><a href="seminar1.html#console"><i class="fa fa-check"></i><b>1.1.3</b> Console</a></li>
+<li class="chapter" data-level="1.1.4" data-path="seminar1.html"><a href="seminar1.html#functions"><i class="fa fa-check"></i><b>1.1.4</b> Functions</a></li>
+<li class="chapter" data-level="1.1.5" data-path="seminar1.html"><a href="seminar1.html#getting-help"><i class="fa fa-check"></i><b>1.1.5</b> Getting Help</a></li>
+<li class="chapter" data-level="1.1.6" data-path="seminar1.html"><a href="seminar1.html#the-assignment-operator"><i class="fa fa-check"></i><b>1.1.6</b> The Assignment Operator</a></li>
+<li class="chapter" data-level="1.1.7" data-path="seminar1.html"><a href="seminar1.html#sequences"><i class="fa fa-check"></i><b>1.1.7</b> Sequences</a></li>
+<li class="chapter" data-level="1.1.8" data-path="seminar1.html"><a href="seminar1.html#scripts"><i class="fa fa-check"></i><b>1.1.8</b> Scripts</a></li>
+<li class="chapter" data-level="1.1.9" data-path="seminar1.html"><a href="seminar1.html#central-tendency"><i class="fa fa-check"></i><b>1.1.9</b> Central Tendency</a></li>
+<li class="chapter" data-level="1.1.10" data-path="seminar1.html"><a href="seminar1.html#dispersion"><i class="fa fa-check"></i><b>1.1.10</b> Dispersion</a></li>
+<li class="chapter" data-level="1.1.11" data-path="seminar1.html"><a href="seminar1.html#exercises"><i class="fa fa-check"></i><b>1.1.11</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="solutions1.html"><a href="solutions1.html"><i class="fa fa-check"></i><b>1.2</b> Solutions</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="solutions1.html"><a href="solutions1.html#exercise-3"><i class="fa fa-check"></i><b>1.2.1</b> Exercise 3</a></li>
+<li class="chapter" data-level="1.2.2" data-path="solutions1.html"><a href="solutions1.html#exercise-4"><i class="fa fa-check"></i><b>1.2.2</b> Exercise 4</a></li>
+<li class="chapter" data-level="1.2.3" data-path="solutions1.html"><a href="solutions1.html#exercise-5"><i class="fa fa-check"></i><b>1.2.3</b> Exercise 5</a></li>
+<li class="chapter" data-level="1.2.4" data-path="solutions1.html"><a href="solutions1.html#exercise-6"><i class="fa fa-check"></i><b>1.2.4</b> Exercise 6</a></li>
+<li class="chapter" data-level="1.2.5" data-path="solutions1.html"><a href="solutions1.html#exercise-7"><i class="fa fa-check"></i><b>1.2.5</b> Exercise 7</a></li>
+<li class="chapter" data-level="1.2.6" data-path="solutions1.html"><a href="solutions1.html#exercise-8"><i class="fa fa-check"></i><b>1.2.6</b> Exercise 8</a></li>
+<li class="chapter" data-level="1.2.7" data-path="solutions1.html"><a href="solutions1.html#exercise-9"><i class="fa fa-check"></i><b>1.2.7</b> Exercise 9</a></li>
+<li class="chapter" data-level="1.2.8" data-path="solutions1.html"><a href="solutions1.html#exercise-10"><i class="fa fa-check"></i><b>1.2.8</b> Exercise 10</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="seminar2.html"><a href="seminar2.html"><i class="fa fa-check"></i><b>2</b> Research Design, Counterfactuals, Forming Hypotheses</a><ul>
+<li class="chapter" data-level="2.1" data-path="seminar2.html"><a href="seminar2.html#seminar-1"><i class="fa fa-check"></i><b>2.1</b> Seminar</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="seminar2.html"><a href="seminar2.html#setting-up"><i class="fa fa-check"></i><b>2.1.1</b> setting up</a></li>
+<li class="chapter" data-level="2.1.2" data-path="seminar2.html"><a href="seminar2.html#vectors-and-subsetting"><i class="fa fa-check"></i><b>2.1.2</b> vectors and subsetting</a></li>
+<li class="chapter" data-level="2.1.3" data-path="seminar2.html"><a href="seminar2.html#data-frames"><i class="fa fa-check"></i><b>2.1.3</b> data frames</a></li>
+<li class="chapter" data-level="2.1.4" data-path="seminar2.html"><a href="seminar2.html#loading-data"><i class="fa fa-check"></i><b>2.1.4</b> Loading data</a></li>
+<li class="chapter" data-level="2.1.5" data-path="seminar2.html"><a href="seminar2.html#plots"><i class="fa fa-check"></i><b>2.1.5</b> Plots</a></li>
+<li class="chapter" data-level="2.1.6" data-path="seminar2.html"><a href="seminar2.html#average-treatment-effect"><i class="fa fa-check"></i><b>2.1.6</b> Average Treatment Effect</a></li>
+<li class="chapter" data-level="2.1.7" data-path="seminar2.html"><a href="seminar2.html#exercises-1"><i class="fa fa-check"></i><b>2.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="solutions2.html"><a href="solutions2.html"><i class="fa fa-check"></i><b>2.2</b> Solutions</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="solutions2.html"><a href="solutions2.html#exercise-2"><i class="fa fa-check"></i><b>2.2.1</b> Exercise 2</a></li>
+<li class="chapter" data-level="2.2.2" data-path="solutions2.html"><a href="solutions2.html#exercise-3-1"><i class="fa fa-check"></i><b>2.2.2</b> Exercise 3</a></li>
+<li class="chapter" data-level="2.2.3" data-path="solutions2.html"><a href="solutions2.html#exercise-4-1"><i class="fa fa-check"></i><b>2.2.3</b> Exercise 4</a></li>
+<li class="chapter" data-level="2.2.4" data-path="solutions2.html"><a href="solutions2.html#exercise-5-1"><i class="fa fa-check"></i><b>2.2.4</b> Exercise 5</a></li>
+<li class="chapter" data-level="2.2.5" data-path="solutions2.html"><a href="solutions2.html#exercise-6-1"><i class="fa fa-check"></i><b>2.2.5</b> Exercise 6</a></li>
+<li class="chapter" data-level="2.2.6" data-path="solutions2.html"><a href="solutions2.html#exercise-7-1"><i class="fa fa-check"></i><b>2.2.6</b> Exercise 7</a></li>
+<li class="chapter" data-level="2.2.7" data-path="solutions2.html"><a href="solutions2.html#exercise-8-1"><i class="fa fa-check"></i><b>2.2.7</b> Exercise 8</a></li>
+<li class="chapter" data-level="2.2.8" data-path="solutions2.html"><a href="solutions2.html#exercises-9-and-10"><i class="fa fa-check"></i><b>2.2.8</b> Exercises 9 and 10</a></li>
+<li class="chapter" data-level="2.2.9" data-path="solutions2.html"><a href="solutions2.html#exercises-11"><i class="fa fa-check"></i><b>2.2.9</b> Exercises 11</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="seminar3.html"><a href="seminar3.html"><i class="fa fa-check"></i><b>3</b> Sampling and Distributions</a><ul>
+<li class="chapter" data-level="3.1" data-path="seminar3.html"><a href="seminar3.html#seminar-2"><i class="fa fa-check"></i><b>3.1</b> Seminar</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="seminar3.html"><a href="seminar3.html#loading-dataset-in-csv-format"><i class="fa fa-check"></i><b>3.1.1</b> Loading Dataset in CSV Format</a></li>
+<li class="chapter" data-level="3.1.2" data-path="seminar3.html"><a href="seminar3.html#missing-values"><i class="fa fa-check"></i><b>3.1.2</b> Missing Values</a></li>
+<li class="chapter" data-level="3.1.3" data-path="seminar3.html"><a href="seminar3.html#factor-variables"><i class="fa fa-check"></i><b>3.1.3</b> Factor Variables</a></li>
+<li class="chapter" data-level="3.1.4" data-path="seminar3.html"><a href="seminar3.html#renaming-variables"><i class="fa fa-check"></i><b>3.1.4</b> Renaming Variables</a></li>
+<li class="chapter" data-level="3.1.5" data-path="seminar3.html"><a href="seminar3.html#distributions"><i class="fa fa-check"></i><b>3.1.5</b> Distributions</a></li>
+<li class="chapter" data-level="3.1.6" data-path="seminar3.html"><a href="seminar3.html#conditional-distributions"><i class="fa fa-check"></i><b>3.1.6</b> Conditional Distributions</a></li>
+<li class="chapter" data-level="3.1.7" data-path="seminar3.html"><a href="seminar3.html#exercises-2"><i class="fa fa-check"></i><b>3.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="solutions3.html"><a href="solutions3.html"><i class="fa fa-check"></i><b>3.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="seminar4.html"><a href="seminar4.html"><i class="fa fa-check"></i><b>4</b> T-test for Difference in Means and Hypothesis Testing</a><ul>
+<li class="chapter" data-level="4.1" data-path="seminar4.html"><a href="seminar4.html#seminar-3"><i class="fa fa-check"></i><b>4.1</b> Seminar</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="seminar4.html"><a href="seminar4.html#the-standard-error"><i class="fa fa-check"></i><b>4.1.1</b> The Standard Error</a></li>
+<li class="chapter" data-level="4.1.2" data-path="seminar4.html"><a href="seminar4.html#t-test-one-sample-hypothesis-test"><i class="fa fa-check"></i><b>4.1.2</b> T-test (one sample hypothesis test)</a></li>
+<li class="chapter" data-level="4.1.3" data-path="seminar4.html"><a href="seminar4.html#t-test-difference-in-means"><i class="fa fa-check"></i><b>4.1.3</b> T-test (difference in means)</a></li>
+<li class="chapter" data-level="4.1.4" data-path="seminar4.html"><a href="seminar4.html#estimating-p-values-from-t-values"><i class="fa fa-check"></i><b>4.1.4</b> Estimating p values from t values</a></li>
+<li class="chapter" data-level="4.1.5" data-path="seminar4.html"><a href="seminar4.html#exercises-3"><i class="fa fa-check"></i><b>4.1.5</b> Exercises</a></li>
+<li class="chapter" data-level="4.1.6" data-path="seminar4.html"><a href="seminar4.html#optional-exercises-that-require-reading-extra-info-below"><i class="fa fa-check"></i><b>4.1.6</b> Optional Exercises that require reading Extra Info below</a></li>
+<li class="chapter" data-level="4.1.7" data-path="seminar4.html"><a href="seminar4.html#advanced-exercises"><i class="fa fa-check"></i><b>4.1.7</b> Advanced Exercises</a></li>
+<li class="chapter" data-level="4.1.8" data-path="seminar4.html"><a href="seminar4.html#extra-info"><i class="fa fa-check"></i><b>4.1.8</b> Extra Info</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="solutions4.html"><a href="solutions4.html"><i class="fa fa-check"></i><b>4.2</b> Solutions</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="solutions4.html"><a href="solutions4.html#optional-exercises-that-require-reading-extra-info-below-1"><i class="fa fa-check"></i><b>4.2.1</b> Optional Exercises that require reading Extra Info below</a></li>
+<li class="chapter" data-level="4.2.2" data-path="solutions4.html"><a href="solutions4.html#advanced-exercises-1"><i class="fa fa-check"></i><b>4.2.2</b> Advanced Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="seminar5.html"><a href="seminar5.html"><i class="fa fa-check"></i><b>5</b> Revision: Sample Variance and Sample Standard Deviation; Hypothesis testing and Confidence Intervals</a><ul>
+<li class="chapter" data-level="5.1" data-path="seminar5.html"><a href="seminar5.html#seminar-4"><i class="fa fa-check"></i><b>5.1</b> Seminar</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="seminar5.html"><a href="seminar5.html#sample-variance-and-sample-standard-deviation"><i class="fa fa-check"></i><b>5.1.1</b> Sample Variance and Sample Standard Deviation</a></li>
+<li class="chapter" data-level="5.1.2" data-path="seminar5.html"><a href="seminar5.html#t-test-for-the-sample-mean"><i class="fa fa-check"></i><b>5.1.2</b> T test for the sample mean</a></li>
+<li class="chapter" data-level="5.1.3" data-path="seminar5.html"><a href="seminar5.html#t-test-for-the-difference-in-means"><i class="fa fa-check"></i><b>5.1.3</b> T test for the difference in means</a></li>
+<li class="chapter" data-level="5.1.4" data-path="seminar5.html"><a href="seminar5.html#exercises-4"><i class="fa fa-check"></i><b>5.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="solutions5.html"><a href="solutions5.html"><i class="fa fa-check"></i><b>5.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="seminar6.html"><a href="seminar6.html"><i class="fa fa-check"></i><b>6</b> Bivariate linear regression models</a><ul>
+<li class="chapter" data-level="6.1" data-path="seminar6.html"><a href="seminar6.html#seminar-5"><i class="fa fa-check"></i><b>6.1</b> Seminar</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="seminar6.html"><a href="seminar6.html#packages"><i class="fa fa-check"></i><b>6.1.1</b> Packages</a></li>
+<li class="chapter" data-level="6.1.2" data-path="seminar6.html"><a href="seminar6.html#fitted-values"><i class="fa fa-check"></i><b>6.1.2</b> Fitted values</a></li>
+<li class="chapter" data-level="6.1.3" data-path="seminar6.html"><a href="seminar6.html#additional-resources"><i class="fa fa-check"></i><b>6.1.3</b> Additional Resources</a></li>
+<li class="chapter" data-level="6.1.4" data-path="seminar6.html"><a href="seminar6.html#exercises-5"><i class="fa fa-check"></i><b>6.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="solutions6.html"><a href="solutions6.html"><i class="fa fa-check"></i><b>6.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="seminar7.html"><a href="seminar7.html"><i class="fa fa-check"></i><b>7</b> Multiple linear regression models (I)</a><ul>
+<li class="chapter" data-level="7.1" data-path="seminar7.html"><a href="seminar7.html#seminar-6"><i class="fa fa-check"></i><b>7.1</b> Seminar</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="seminar7.html"><a href="seminar7.html#loading-understanding-and-cleaning-our-data"><i class="fa fa-check"></i><b>7.1.1</b> Loading, Understanding and Cleaning our Data</a></li>
+<li class="chapter" data-level="7.1.2" data-path="seminar7.html"><a href="seminar7.html#estimating-a-bivariate-regression"><i class="fa fa-check"></i><b>7.1.2</b> Estimating a Bivariate Regression</a></li>
+<li class="chapter" data-level="7.1.3" data-path="seminar7.html"><a href="seminar7.html#multivariate-regression"><i class="fa fa-check"></i><b>7.1.3</b> Multivariate Regression</a></li>
+<li class="chapter" data-level="7.1.4" data-path="seminar7.html"><a href="seminar7.html#joint-significance-test-f-statistic"><i class="fa fa-check"></i><b>7.1.4</b> Joint Significance Test (F-statistic)</a></li>
+<li class="chapter" data-level="7.1.5" data-path="seminar7.html"><a href="seminar7.html#predicting-outcome-conditional-on-institutional-quality"><i class="fa fa-check"></i><b>7.1.5</b> Predicting outcome conditional on institutional quality</a></li>
+<li class="chapter" data-level="7.1.6" data-path="seminar7.html"><a href="seminar7.html#additional-resources-1"><i class="fa fa-check"></i><b>7.1.6</b> Additional Resources</a></li>
+<li class="chapter" data-level="7.1.7" data-path="seminar7.html"><a href="seminar7.html#exercises-6"><i class="fa fa-check"></i><b>7.1.7</b> Exercises</a></li>
+<li class="chapter" data-level="7.1.8" data-path="seminar7.html"><a href="seminar7.html#midterm-preparation"><i class="fa fa-check"></i><b>7.1.8</b> Midterm Preparation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="solutions7.html"><a href="solutions7.html"><i class="fa fa-check"></i><b>7.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="seminar8.html"><a href="seminar8.html"><i class="fa fa-check"></i><b>8</b> Multiple linear regression models (II)</a><ul>
+<li class="chapter" data-level="8.1" data-path="seminar8.html"><a href="seminar8.html#seminar-7"><i class="fa fa-check"></i><b>8.1</b> Seminar</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="seminar8.html"><a href="seminar8.html#loading-data-1"><i class="fa fa-check"></i><b>8.1.1</b> Loading Data</a></li>
+<li class="chapter" data-level="8.1.2" data-path="seminar8.html"><a href="seminar8.html#r-squared"><i class="fa fa-check"></i><b>8.1.2</b> R Squared</a></li>
+<li class="chapter" data-level="8.1.3" data-path="seminar8.html"><a href="seminar8.html#the-relationship-between-institutional-quality-and-quality-of-life-by-colonial-past"><i class="fa fa-check"></i><b>8.1.3</b> The Relationship between Institutional Quality and Quality of Life by Colonial Past</a></li>
+<li class="chapter" data-level="8.1.4" data-path="seminar8.html"><a href="seminar8.html#interactions-continuous-and-binary"><i class="fa fa-check"></i><b>8.1.4</b> Interactions: Continuous and Binary</a></li>
+<li class="chapter" data-level="8.1.5" data-path="seminar8.html"><a href="seminar8.html#non-linearities"><i class="fa fa-check"></i><b>8.1.5</b> Non-Linearities</a></li>
+<li class="chapter" data-level="8.1.6" data-path="seminar8.html"><a href="seminar8.html#exercises-7"><i class="fa fa-check"></i><b>8.1.6</b> Exercises</a></li>
+<li class="chapter" data-level="8.1.7" data-path="seminar8.html"><a href="seminar8.html#extra-info-dummy-variables-repetition"><i class="fa fa-check"></i><b>8.1.7</b> Extra Info: Dummy Variables Repetition</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="solutions8.html"><a href="solutions8.html"><i class="fa fa-check"></i><b>8.2</b> Solutions</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="solutions8.html"><a href="solutions8.html#question-1"><i class="fa fa-check"></i><b>8.2.1</b> Question 1</a></li>
+<li class="chapter" data-level="8.2.2" data-path="solutions8.html"><a href="solutions8.html#question-2"><i class="fa fa-check"></i><b>8.2.2</b> Question 2</a></li>
+<li class="chapter" data-level="8.2.3" data-path="solutions8.html"><a href="solutions8.html#question-3"><i class="fa fa-check"></i><b>8.2.3</b> Question 3</a></li>
+<li class="chapter" data-level="8.2.4" data-path="solutions8.html"><a href="solutions8.html#question-4"><i class="fa fa-check"></i><b>8.2.4</b> Question 4</a></li>
+<li class="chapter" data-level="8.2.5" data-path="solutions8.html"><a href="solutions8.html#question-5"><i class="fa fa-check"></i><b>8.2.5</b> Question 5</a></li>
+<li class="chapter" data-level="8.2.6" data-path="solutions8.html"><a href="solutions8.html#question-6"><i class="fa fa-check"></i><b>8.2.6</b> Question 6</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="seminar9.html"><a href="seminar9.html"><i class="fa fa-check"></i><b>9</b> Regression Assumptions</a><ul>
+<li class="chapter" data-level="9.1" data-path="seminar9.html"><a href="seminar9.html#seminar-8"><i class="fa fa-check"></i><b>9.1</b> Seminar</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="seminar9.html"><a href="seminar9.html#required-packages"><i class="fa fa-check"></i><b>9.1.1</b> Required Packages</a></li>
+<li class="chapter" data-level="9.1.2" data-path="seminar9.html"><a href="seminar9.html#omitted-variable-bias"><i class="fa fa-check"></i><b>9.1.2</b> Omitted Variable Bias</a></li>
+<li class="chapter" data-level="9.1.3" data-path="seminar9.html"><a href="seminar9.html#detecting-non-linearity"><i class="fa fa-check"></i><b>9.1.3</b> Detecting non-linearity</a></li>
+<li class="chapter" data-level="9.1.4" data-path="seminar9.html"><a href="seminar9.html#heteroskedasticity"><i class="fa fa-check"></i><b>9.1.4</b> Heteroskedasticity</a></li>
+<li class="chapter" data-level="9.1.5" data-path="seminar9.html"><a href="seminar9.html#exercises-8"><i class="fa fa-check"></i><b>9.1.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="solutions9.html"><a href="solutions9.html"><i class="fa fa-check"></i><b>9.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="seminar10.html"><a href="seminar10.html"><i class="fa fa-check"></i><b>10</b> Panel Data - Fixed Effects and some Random Effects</a><ul>
+<li class="chapter" data-level="10.1" data-path="seminar10.html"><a href="seminar10.html#seminar-9"><i class="fa fa-check"></i><b>10.1</b> Seminar</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="seminar10.html"><a href="seminar10.html#our-data"><i class="fa fa-check"></i><b>10.1.1</b> Our data</a></li>
+<li class="chapter" data-level="10.1.2" data-path="seminar10.html"><a href="seminar10.html#unit-fixed-effects-country-fixed-effects"><i class="fa fa-check"></i><b>10.1.2</b> Unit fixed effects (country fixed effects)</a></li>
+<li class="chapter" data-level="10.1.3" data-path="seminar10.html"><a href="seminar10.html#time-fixed-effects"><i class="fa fa-check"></i><b>10.1.3</b> Time fixed effects</a></li>
+<li class="chapter" data-level="10.1.4" data-path="seminar10.html"><a href="seminar10.html#twoway-fixed-effects"><i class="fa fa-check"></i><b>10.1.4</b> Twoway fixed effects</a></li>
+<li class="chapter" data-level="10.1.5" data-path="seminar10.html"><a href="seminar10.html#serial-correlationauto-correlation"><i class="fa fa-check"></i><b>10.1.5</b> Serial correlation/auto-correlation</a></li>
+<li class="chapter" data-level="10.1.6" data-path="seminar10.html"><a href="seminar10.html#cross-sectional-dependence-spatial-dependence"><i class="fa fa-check"></i><b>10.1.6</b> Cross-sectional dependence/ spatial dependence</a></li>
+<li class="chapter" data-level="10.1.7" data-path="seminar10.html"><a href="seminar10.html#the-random-effects-model"><i class="fa fa-check"></i><b>10.1.7</b> The random effects model</a></li>
+<li class="chapter" data-level="10.1.8" data-path="seminar10.html"><a href="seminar10.html#more-guns-less-crime"><i class="fa fa-check"></i><b>10.1.8</b> More guns, less crime</a></li>
+<li class="chapter" data-level="10.1.9" data-path="seminar10.html"><a href="seminar10.html#question-1-1"><i class="fa fa-check"></i><b>10.1.9</b> Question 1</a></li>
+<li class="chapter" data-level="10.1.10" data-path="seminar10.html"><a href="seminar10.html#question-2-1"><i class="fa fa-check"></i><b>10.1.10</b> Question 2</a></li>
+<li class="chapter" data-level="10.1.11" data-path="seminar10.html"><a href="seminar10.html#question-3-1"><i class="fa fa-check"></i><b>10.1.11</b> Question 3</a></li>
+<li class="chapter" data-level="10.1.12" data-path="seminar10.html"><a href="seminar10.html#question-4-1"><i class="fa fa-check"></i><b>10.1.12</b> Question 4</a></li>
+<li class="chapter" data-level="10.1.13" data-path="seminar10.html"><a href="seminar10.html#question-5-1"><i class="fa fa-check"></i><b>10.1.13</b> Question 5</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="seminar11.html"><a href="seminar11.html"><i class="fa fa-check"></i><b>11</b> Binary Dependent Variable Models</a><ul>
+<li class="chapter" data-level="11.1" data-path="seminar11.html"><a href="seminar11.html#seminar-10"><i class="fa fa-check"></i><b>11.1</b> Seminar</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="seminar11.html"><a href="seminar11.html#required-packages-1"><i class="fa fa-check"></i><b>11.1.1</b> Required Packages</a></li>
+<li class="chapter" data-level="11.1.2" data-path="seminar11.html"><a href="seminar11.html#loading-data-2"><i class="fa fa-check"></i><b>11.1.2</b> Loading Data</a></li>
+<li class="chapter" data-level="11.1.3" data-path="seminar11.html"><a href="seminar11.html#linear-regression-with-a-binary-dependent-variable"><i class="fa fa-check"></i><b>11.1.3</b> Linear regression with a Binary Dependent Variable</a></li>
+<li class="chapter" data-level="11.1.4" data-path="seminar11.html"><a href="seminar11.html#logistic-regression-model"><i class="fa fa-check"></i><b>11.1.4</b> Logistic Regression Model</a></li>
+<li class="chapter" data-level="11.1.5" data-path="seminar11.html"><a href="seminar11.html#odds-ratios"><i class="fa fa-check"></i><b>11.1.5</b> Odds-ratios</a></li>
+<li class="chapter" data-level="11.1.6" data-path="seminar11.html"><a href="seminar11.html#predicted-probabilities"><i class="fa fa-check"></i><b>11.1.6</b> Predicted probabilities</a></li>
+<li class="chapter" data-level="11.1.7" data-path="seminar11.html"><a href="seminar11.html#exercises-9"><i class="fa fa-check"></i><b>11.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="solutions11.html"><a href="solutions11.html"><i class="fa fa-check"></i><b>11.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="datacamp.html"><a href="datacamp.html"><i class="fa fa-check"></i><b>12</b> Datacamp</a><ul>
+<li class="chapter" data-level="12.1" data-path="datacamp.html"><a href="datacamp.html#develop-your-skills-as-a-data-scientist"><i class="fa fa-check"></i><b>12.1</b> Develop your skills as a data scientist</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics 1</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="solutions-8" class="section level2">
+<h2><span class="header-section-number">9.2</span> Solutions</h2>
+<div id="exercise-1-1" class="section level4">
+<h4><span class="header-section-number">9.2.0.1</span> Exercise 1</h4>
+<p>Load <code>chechen.csv.</code> We will load it directly from the github source.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load texreg library for model output tables</span>
+<span class="kw">library</span>(texreg)
+
+<span class="co"># chechen data</span>
+a &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://uclspp.github.io/datasets/data/chechen.csv&quot;</span>)</code></pre></div>
+</div>
+<div id="exercise-2-5" class="section level4">
+<h4><span class="header-section-number">9.2.0.2</span> Exercise 2</h4>
+<p>Run a bivariate regression model with diff as the dependent variable and treat as the predictor.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># bivariate model</span>
+m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(diff <span class="op">~</span><span class="st"> </span>treat, <span class="dt">data =</span> a)
+<span class="kw">screenreg</span>(m1)</code></pre></div>
+<pre><code>
+======================
+             Model 1  
+----------------------
+(Intercept)   -0.10   
+              (0.12)  
+treat         -0.52 **
+              (0.17)  
+----------------------
+R^2            0.03   
+Adj. R^2       0.02   
+Num. obs.    318      
+RMSE           1.54   
+======================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>The effect of Russian artillery shelling is significant and negative. Therefore, it seems that indiscriminate violence in this case reduces insurgent violence. There are many potential confounders, however, that we will control for in the next exercise.</p>
+<p>The interpretation on the magnitude of the effect is the following: The dependent variable is the change in the number of insurgent attacks. The independent variable is binary. Therefore, there was half an attack less, on average, in villages that had been bombarded by Russian artillery.</p>
+</div>
+<div id="exercise-3-7" class="section level4">
+<h4><span class="header-section-number">9.2.0.3</span> Exercise 3</h4>
+<p>Control for additional variables. Discuss your choice of variables and refer to omitted variable bias.</p>
+<p>We control for the amount of attacks before the village was bombarded (<code>pret</code>). We reason that villages that saw more insurgent activity already, were more likely to be bombarded and might see more insurgent activity after bombardment as well. Furhtermore, we control for logged elevation <code>lelev</code> because attacks may be more likely in remote mountainous terrain and it may have been harder for the Russians to control such areas. With a similar argument we control <code>groznyy</code> and <code>lpop2000</code>, were the argument is that urban areas may see more insurgent actitivities and are harder to control. We also control for <code>swept</code> to account for the possibility that previous sweeps in the area have reduced the likelihood of subsequent shelling and insurgent activity.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># multivariate model</span>
+m2 &lt;-<span class="st"> </span><span class="kw">lm</span>(diff <span class="op">~</span><span class="st"> </span>
+<span class="st">           </span>treat <span class="op">+</span>
+<span class="st">           </span>pret <span class="op">+</span>
+<span class="st">           </span>lelev <span class="op">+</span>
+<span class="st">           </span>groznyy <span class="op">+</span>
+<span class="st">           </span>lpop2000 <span class="op">+</span>
+<span class="st">           </span>swept <span class="op">+</span>
+<span class="st">           </span><span class="kw">factor</span>(disno), 
+         <span class="dt">data =</span> a)
+<span class="kw">screenreg</span>(<span class="kw">list</span>(m1, m2))</code></pre></div>
+<pre><code>
+======================================
+                 Model 1    Model 2   
+--------------------------------------
+(Intercept)       -0.10      -0.93    
+                  (0.12)     (1.64)   
+treat             -0.52 **   -0.39 *  
+                  (0.17)     (0.16)   
+pret                         -0.28 ***
+                             (0.03)   
+lelev                         0.07    
+                             (0.24)   
+groznyy                       2.03 ** 
+                             (0.67)   
+lpop2000                      0.13    
+                             (0.07)   
+swept                        -0.02    
+                             (0.19)   
+factor(disno)3               -0.14    
+                             (0.52)   
+factor(disno)4                0.44    
+                             (0.66)   
+factor(disno)5               -0.09    
+                             (1.11)   
+factor(disno)6                0.08    
+                             (0.59)   
+factor(disno)7               -0.37    
+                             (1.41)   
+factor(disno)8               -0.74    
+                             (0.78)   
+factor(disno)9               -0.14    
+                             (0.68)   
+factor(disno)10              -0.49    
+                             (0.51)   
+factor(disno)11              -0.22    
+                             (0.60)   
+factor(disno)14               0.04    
+                             (0.53)   
+factor(disno)15              -0.14    
+                             (0.56)   
+--------------------------------------
+R^2                0.03       0.32    
+Adj. R^2           0.02       0.28    
+Num. obs.        318        318       
+RMSE               1.54       1.32    
+======================================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+</div>
+<div id="exercise-4-7" class="section level4">
+<h4><span class="header-section-number">9.2.0.4</span> Exercise 4</h4>
+<p>Discuss the improvement in model fit and use the appropriate test statistic.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># f-test</span>
+<span class="kw">anova</span>(m1, m2)</code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Model 1: diff ~ treat
+Model 2: diff ~ treat + pret + lelev + groznyy + lpop2000 + swept + factor(disno)
+  Res.Df    RSS Df Sum of Sq      F                Pr(&gt;F)    
+1    316 751.99                                              
+2    300 526.42 16    225.57 8.0342 0.0000000000000005841 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>We increase adjusted R^2 substantially. While R^2 almost always increases and never decreases, adjusted R^2 might decrease. We use the F test to test whether are added covariates are jointly significant - whether the improvement in explanatory power of our model could be due to chance. We reject the null hypothesis that both models do equally well at explaining the outcome. Our larger model improves model fit.</p>
+</div>
+<div id="exercise-5-7" class="section level4">
+<h4><span class="header-section-number">9.2.0.5</span> Exercise 5</h4>
+<p>Check for non-linearity and if there is, solve the problem.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create residuals variable in data set</span>
+a<span class="op">$</span>residuals &lt;-<span class="st"> </span>m2<span class="op">$</span>residuals
+
+<span class="co"># check residual plots with continuous variable</span>
+<span class="kw">plot</span>(residuals <span class="op">~</span><span class="st"> </span>pret, <span class="dt">data =</span> a)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-457-1.png" width="672" /></p>
+<p>We only have one continuous variable in our model that has not already been transformed to deal with non-linearity: the number of insurgent attacks before shelling <code>pret</code>. The residual plot does not reveal a non-linear relation.</p>
+</div>
+<div id="exercise-6-7" class="section level4">
+<h4><span class="header-section-number">9.2.0.6</span> Exercise 6</h4>
+<p>Check for heteroskedasticity and if there is solve the problem.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lmtest) <span class="co"># contains BP test function</span>
+<span class="kw">bptest</span>(m2) <span class="co"># null is constant error which we reject</span></code></pre></div>
+<pre><code>
+    studentized Breusch-Pagan test
+
+data:  m2
+BP = 78.61, df = 17, p-value = 0.0000000006764</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sandwich) <span class="co"># contains sandwich estimator robust SE&#39;s</span>
+<span class="co"># estimate model 2 again with corrected standard errors</span>
+m3 &lt;-<span class="st"> </span><span class="kw">coeftest</span>(m2, <span class="dt">vcov. =</span> <span class="kw">vcovHC</span>(m2, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))
+
+<span class="co"># compare models</span>
+<span class="kw">screenreg</span>(<span class="kw">list</span>(m2,m3))</code></pre></div>
+<pre><code>
+======================================
+                 Model 1     Model 2  
+--------------------------------------
+(Intercept)       -0.93      -0.93    
+                  (1.64)     (1.25)   
+treat             -0.39 *    -0.39 *  
+                  (0.16)     (0.15)   
+pret              -0.28 ***  -0.28 ***
+                  (0.03)     (0.04)   
+lelev              0.07       0.07    
+                  (0.24)     (0.20)   
+groznyy            2.03 **    2.03 *  
+                  (0.67)     (1.02)   
+lpop2000           0.13       0.13 *  
+                  (0.07)     (0.05)   
+swept             -0.02      -0.02    
+                  (0.19)     (0.23)   
+factor(disno)3    -0.14      -0.14    
+                  (0.52)     (0.67)   
+factor(disno)4     0.44       0.44    
+                  (0.66)     (0.82)   
+factor(disno)5    -0.09      -0.09    
+                  (1.11)     (0.75)   
+factor(disno)6     0.08       0.08    
+                  (0.59)     (0.77)   
+factor(disno)7    -0.37      -0.37    
+                  (1.41)     (0.67)   
+factor(disno)8    -0.74      -0.74    
+                  (0.78)     (0.84)   
+factor(disno)9    -0.14      -0.14    
+                  (0.68)     (0.72)   
+factor(disno)10   -0.49      -0.49    
+                  (0.51)     (0.70)   
+factor(disno)11   -0.22      -0.22    
+                  (0.60)     (0.73)   
+factor(disno)14    0.04       0.04    
+                  (0.53)     (0.71)   
+factor(disno)15   -0.14      -0.14    
+                  (0.56)     (0.71)   
+--------------------------------------
+R^2                0.32               
+Adj. R^2           0.28               
+Num. obs.        318                  
+RMSE               1.32               
+======================================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>The result is that heteroskedasticity robust standard errors do not change our findings. The estimated robust standard errors are actually smaller than the ones estimated under the constant error assumption. The effect remains significant either way but we would choose the larger standard errors.</p>
+</div>
+<div id="exercise-7-6" class="section level4">
+<h4><span class="header-section-number">9.2.0.7</span> Exercise 7</h4>
+<p>Thoroughly compare the models, and interpret the outcome in substantial as well statistical terms - do not forget to talk about model fit. What are the implications of this?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># compare models</span>
+<span class="kw">screenreg</span>(<span class="kw">list</span>(m1,m2,m3))</code></pre></div>
+<pre><code>
+=================================================
+                 Model 1    Model 2     Model 3  
+-------------------------------------------------
+(Intercept)       -0.10      -0.93      -0.93    
+                  (0.12)     (1.64)     (1.25)   
+treat             -0.52 **   -0.39 *    -0.39 *  
+                  (0.17)     (0.16)     (0.15)   
+pret                         -0.28 ***  -0.28 ***
+                             (0.03)     (0.04)   
+lelev                         0.07       0.07    
+                             (0.24)     (0.20)   
+groznyy                       2.03 **    2.03 *  
+                             (0.67)     (1.02)   
+lpop2000                      0.13       0.13 *  
+                             (0.07)     (0.05)   
+swept                        -0.02      -0.02    
+                             (0.19)     (0.23)   
+factor(disno)3               -0.14      -0.14    
+                             (0.52)     (0.67)   
+factor(disno)4                0.44       0.44    
+                             (0.66)     (0.82)   
+factor(disno)5               -0.09      -0.09    
+                             (1.11)     (0.75)   
+factor(disno)6                0.08       0.08    
+                             (0.59)     (0.77)   
+factor(disno)7               -0.37      -0.37    
+                             (1.41)     (0.67)   
+factor(disno)8               -0.74      -0.74    
+                             (0.78)     (0.84)   
+factor(disno)9               -0.14      -0.14    
+                             (0.68)     (0.72)   
+factor(disno)10              -0.49      -0.49    
+                             (0.51)     (0.70)   
+factor(disno)11              -0.22      -0.22    
+                             (0.60)     (0.73)   
+factor(disno)14               0.04       0.04    
+                             (0.53)     (0.71)   
+factor(disno)15              -0.14      -0.14    
+                             (0.56)     (0.71)   
+-------------------------------------------------
+R^2                0.03       0.32               
+Adj. R^2           0.02       0.28               
+Num. obs.        318        318                  
+RMSE               1.54       1.32               
+=================================================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>The goal of analysis was to test whether indiscriminate violence leads to more resistance. The variable of interest is, therefore, <code>treat</code> which indicates whether a Chechnian village was bombarded or not. In our initial model, we found a significant and negative effect. Thereby, we contradict the theory because the effect seems to go the other way.</p>
+<p>We were concerned about confounding and including a number of variables in the model. We controled for terrain, geographic areas in the country, urban areas, attacks before artillery bombardment, and prior sweeps. The change in the coeffcient is large. The difference is (<span class="math inline">\(-.52 - -0.39 = -0.13\)</span>). That is 25% of the original effect. Although, the effect decreased substantially when we control for confounders, it is still significant. The difference between villages that were bombarded and those that were not is <span class="math inline">\(0.39\)</span> attacks on average.</p>
+<p>We are not substantially interested in the control variables. According to the model with the larger standard errors, <code>pret</code>, and <code>groznyy</code> are also significant. Insurgent attacks were more numerous in Groznyy. Interestingly, the more attacks there were before the bombardment , the fewer attacks happened afterwards.</p>
+<p>Model fit improves substantially, from <span class="math inline">\(0.03\)</span> in our first model to <span class="math inline">\(0.32\)</span>. Although, the second model explains the outcome better that is not what we care about. We are interested in the effect of indiscriminate violence. We prefer the larger model because we control for potential confounders and our estimate less of an overestimate.</p>
+</div>
+<div id="exercise-8-7" class="section level4">
+<h4><span class="header-section-number">9.2.0.8</span> Exercise 8</h4>
+<p>Load who_voted_nazi_in_1932.csv.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># clear workspace </span>
+<span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())
+a &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://uclspp.github.io/datasets/data/who_voted_nazi_in_1932.csv&quot;</span>)</code></pre></div>
+</div>
+<div id="exercise-9-6" class="section level4">
+<h4><span class="header-section-number">9.2.0.9</span> Exercise 9</h4>
+<p>Run a bivariate model to test whether blue-collar voters voted for the Nazis.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># summary stats</span>
+<span class="kw">summary</span>(a)</code></pre></div>
+<pre><code>   shareself        shareblue       sharewhite     sharedomestic   
+ Min.   : 5.799   Min.   :11.44   Min.   : 2.205   Min.   : 3.721  
+ 1st Qu.:14.716   1st Qu.:25.26   1st Qu.: 6.579   1st Qu.:14.410  
+ Median :18.196   Median :30.35   Median : 8.751   Median :26.230  
+ Mean   :18.589   Mean   :30.82   Mean   :11.423   Mean   :25.443  
+ 3rd Qu.:22.186   3rd Qu.:35.87   3rd Qu.:13.577   3rd Qu.:35.250  
+ Max.   :31.340   Max.   :54.14   Max.   :51.864   Max.   :52.639  
+ shareunemployed      nvoter          nazivote        sharenazis   
+ Min.   : 1.958   Min.   :  5969   Min.   :  2415   Min.   :12.32  
+ 1st Qu.: 7.456   1st Qu.: 23404   1st Qu.:  9196   1st Qu.:33.96  
+ Median :11.934   Median : 35203   Median : 15708   Median :41.47  
+ Mean   :13.722   Mean   : 65118   Mean   : 25193   Mean   :41.57  
+ 3rd Qu.:18.979   3rd Qu.: 67606   3rd Qu.: 27810   3rd Qu.:48.61  
+ Max.   :39.678   Max.   :932831   Max.   :318746   Max.   :74.09  </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(sharenazis <span class="op">~</span><span class="st"> </span>shareblue, <span class="dt">data =</span> a)
+<span class="kw">screenreg</span>(m1)</code></pre></div>
+<pre><code>
+=======================
+             Model 1   
+-----------------------
+(Intercept)   39.56 ***
+              (1.66)   
+shareblue      0.07    
+              (0.05)   
+-----------------------
+R^2            0.00    
+Adj. R^2       0.00    
+Num. obs.    681       
+RMSE          10.80    
+=======================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+</div>
+<div id="exercise-10-6" class="section level4">
+<h4><span class="header-section-number">9.2.0.10</span> Exercise 10</h4>
+<p>Our dataset does not contain much information. We only know about the share of diffrent groups in the district: white collar workers, blue collar workers, self employed, domestically employed, and unemployed. We control for these variables.</p>
+<p>A model that would only include blue collar workers omits information about the social make of the district that is necessarily related to the share of blue collar workers. For, example if there are mostly white collar workers in a district that means, there are less blue collar workers, all else equal. If we only have blue collar in our model, we do not know whether most other people are unemployed or white collar workers and so on.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m2 &lt;-<span class="st"> </span><span class="kw">lm</span>(sharenazis <span class="op">~</span><span class="st"> </span>shareblue <span class="op">+</span><span class="st"> </span>sharewhite <span class="op">+</span><span class="st"> </span>shareself <span class="op">+</span><span class="st"> </span>sharedomestic, <span class="dt">data =</span> a)</code></pre></div>
+</div>
+<div id="exercise-11-5" class="section level4">
+<h4><span class="header-section-number">9.2.0.11</span> Exercise 11</h4>
+<p>Can you fit a model using <code>shareblue</code>, <code>sharewhite</code>, <code>shareself</code>, <code>sharedomestic</code>, and <code>shareunemployed</code> as predictors? Why or why not?</p>
+<p>Such a model would suffer from perfect multicollinearity. Whichever variable we entered last into our model would be dropped automatically. If we add the share of the five groups, we get 100%. Thus, if we know the share of four gropus in a district, we necessarily know the share of the remaining group in the district.</p>
+<p>For example if <code>shareblue</code>=30, <code>shareunemployed</code>=15, <code>sharedomestic</code>=25, <code>shareself</code>=20, the four groups are together 90% of the district. The remaining 10% must be white collar workers.</p>
+<p>Therefore, adding <code>shareblue</code>, <code>shareunemployed</code>, <code>sharedomestic</code>, and <code>shareself</code> to our model already gives us information about how many white collar workers there are in a district. Were we to add the variable <code>sharewhite</code>, we would enter the same information twice - leading to perfect multicollinearity.</p>
+</div>
+<div id="exercise-12-3" class="section level4">
+<h4><span class="header-section-number">9.2.0.12</span> Exercise 12</h4>
+<p>Check for heteroskedasticity and if there is solve the problem.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># tests on our models </span>
+<span class="kw">bptest</span>(m1)</code></pre></div>
+<pre><code>
+    studentized Breusch-Pagan test
+
+data:  m1
+BP = 18.578, df = 1, p-value = 0.00001631</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bptest</span>(m2)</code></pre></div>
+<pre><code>
+    studentized Breusch-Pagan test
+
+data:  m2
+BP = 95.811, df = 4, p-value &lt; 0.00000000000000022</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># robust SE&#39;s</span>
+m1.robust &lt;-<span class="st"> </span><span class="kw">coeftest</span>(m1, <span class="dt">vcov. =</span> <span class="kw">vcovHC</span>(m1))
+m2.robust &lt;-<span class="st"> </span><span class="kw">coeftest</span>(m2, <span class="dt">vcov. =</span> <span class="kw">vcovHC</span>(m2))
+
+<span class="co"># compare standard errors</span>
+<span class="kw">screenreg</span>(<span class="kw">list</span>(m1, m1.robust, m2, m2.robust),
+          <span class="dt">custom.model.names =</span> <span class="kw">c</span>(<span class="st">&quot;m1&quot;</span>, <span class="st">&quot;m1 robust&quot;</span>, <span class="st">&quot;m2&quot;</span>, <span class="st">&quot;m2 robust&quot;</span>))</code></pre></div>
+<pre><code>
+===========================================================
+               m1          m1 robust  m2          m2 robust
+-----------------------------------------------------------
+(Intercept)     39.56 ***  39.56 ***   -2.82      -2.82    
+                (1.66)     (1.68)      (7.01)     (6.28)   
+shareblue        0.07       0.07        0.57 ***   0.57 ***
+                (0.05)     (0.05)      (0.09)     (0.08)   
+sharewhite                              0.31 *     0.31 ** 
+                                       (0.13)     (0.11)   
+shareself                               1.14 ***   1.14 ***
+                                       (0.19)     (0.23)   
+sharedomestic                           0.08       0.08    
+                                       (0.10)     (0.11)   
+-----------------------------------------------------------
+R^2              0.00                   0.11               
+Adj. R^2         0.00                   0.10               
+Num. obs.      681                    681                  
+RMSE            10.80                  10.24               
+===========================================================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>Correcting for heteroskedasticity does not change our results.</p>
+</div>
+<div id="exercise-13-3" class="section level4">
+<h4><span class="header-section-number">9.2.0.13</span> Exercise 13</h4>
+<p>Interpret your models.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">screenreg</span>(<span class="kw">list</span>(m1,m2))</code></pre></div>
+<pre><code>
+=====================================
+               Model 1     Model 2   
+-------------------------------------
+(Intercept)     39.56 ***   -2.82    
+                (1.66)      (7.01)   
+shareblue        0.07        0.57 ***
+                (0.05)      (0.09)   
+sharewhite                   0.31 *  
+                            (0.13)   
+shareself                    1.14 ***
+                            (0.19)   
+sharedomestic                0.08    
+                            (0.10)   
+-------------------------------------
+R^2              0.00        0.11    
+Adj. R^2         0.00        0.10    
+Num. obs.      681         681       
+RMSE            10.80       10.24    
+=====================================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>A prominent theory suggests that Nazis received a lot of their support from blue-collar workers. In model 1, we only include the percentage of blue collar workers in a district. The variable is insignificant but we are likely suffering from omitted variable bias because we are omitting other aspects of the social make-up of the district that are related to the share blue collar workers.</p>
+<p>We omit one category from our models to avoid perfect multicollinearity. In model 2, it seems that blue-collar workers did support the Nazis. More so, than white-collar workers. They received most of their support from the self-employed, though.</p>
+</div>
+<div id="exercise-14-2" class="section level4">
+<h4><span class="header-section-number">9.2.0.14</span> Exercise 14</h4>
+<p>Load the Massachusetts Test Scores dataset <code>MA_Schools.csv</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())
+a &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;MA_Schools.csv&quot;</span>)
+<span class="kw">summary</span>(a)</code></pre></div>
+<pre><code>    district       municipality     expreg       expspecial   
+ Min.   :  1.0   Abington:  1   Min.   :2905   Min.   : 3832  
+ 1st Qu.: 84.5   Acton   :  1   1st Qu.:4065   1st Qu.: 7442  
+ Median :163.5   Acushnet:  1   Median :4488   Median : 8354  
+ Mean   :170.9   Agawam  :  1   Mean   :4605   Mean   : 8901  
+ 3rd Qu.:269.2   Amesbury:  1   3rd Qu.:4972   3rd Qu.: 9722  
+ Max.   :350.0   Amherst :  1   Max.   :8759   Max.   :53569  
+                 (Other) :214                                 
+     expbil           expocc          exptot        scratio      
+ Min.   :     0   Min.   :    0   Min.   :3465   Min.   : 2.300  
+ 1st Qu.:     0   1st Qu.:    0   1st Qu.:4730   1st Qu.: 6.100  
+ Median :     0   Median :    0   Median :5155   Median : 7.800  
+ Mean   :  3037   Mean   : 1104   Mean   :5370   Mean   : 8.107  
+ 3rd Qu.:     0   3rd Qu.:    0   3rd Qu.:5789   3rd Qu.: 9.800  
+ Max.   :295140   Max.   :15088   Max.   :9868   Max.   :18.400  
+                                                 NA&#39;s   :9       
+    special          lunch          stratio          income      
+ Min.   : 8.10   Min.   : 0.40   Min.   :11.40   Min.   : 9.686  
+ 1st Qu.:13.38   1st Qu.: 5.30   1st Qu.:15.80   1st Qu.:15.223  
+ Median :15.45   Median :10.55   Median :17.10   Median :17.128  
+ Mean   :15.97   Mean   :15.32   Mean   :17.34   Mean   :18.747  
+ 3rd Qu.:17.93   3rd Qu.:20.02   3rd Qu.:19.02   3rd Qu.:20.376  
+ Max.   :34.30   Max.   :76.20   Max.   :27.00   Max.   :46.855  
+                                                                 
+     score4          score8          salary         english       
+ Min.   :658.0   Min.   :641.0   Min.   :24.96   Min.   : 0.0000  
+ 1st Qu.:701.0   1st Qu.:685.0   1st Qu.:33.80   1st Qu.: 0.0000  
+ Median :711.0   Median :698.0   Median :35.88   Median : 0.0000  
+ Mean   :709.8   Mean   :698.4   Mean   :35.99   Mean   : 1.1177  
+ 3rd Qu.:720.0   3rd Qu.:712.0   3rd Qu.:37.96   3rd Qu.: 0.8859  
+ Max.   :740.0   Max.   :747.0   Max.   :44.49   Max.   :24.4939  
+                 NA&#39;s   :40      NA&#39;s   :25                       </code></pre>
+<p>Fit a model to explain the relationship between percentage of English learners and average 8th grade scores.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(score8 <span class="op">~</span><span class="st"> </span>english, <span class="dt">data =</span> a)
+<span class="kw">screenreg</span>(m1)</code></pre></div>
+<pre><code>
+=======================
+             Model 1   
+-----------------------
+(Intercept)  702.99 ***
+              (1.44)   
+english       -3.64 ***
+              (0.44)   
+-----------------------
+R^2            0.28    
+Adj. R^2       0.28    
+Num. obs.    180       
+RMSE          17.89    
+=======================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+</div>
+<div id="exercise-15-1" class="section level4">
+<h4><span class="header-section-number">9.2.0.15</span> Exercise 15</h4>
+<p>Plot the model and the regression line.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(score8 <span class="op">~</span><span class="st"> </span>english,
+     <span class="dt">data =</span> a,
+     <span class="dt">pch =</span> <span class="dv">19</span>,
+     <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>,
+     <span class="dt">col =</span> <span class="st">&quot;darkgray&quot;</span>)
+<span class="kw">abline</span>(m1, <span class="dt">lwd =</span> <span class="dv">3</span>)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-467-1.png" width="672" /></p>
+</div>
+<div id="exercise-16" class="section level4">
+<h4><span class="header-section-number">9.2.0.16</span> Exercise 16</h4>
+<p>Check for correlation between the variables listed above to see if there are other variables that should be included in the model.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span>a[, <span class="kw">c</span>(<span class="st">&quot;score8&quot;</span>, <span class="st">&quot;stratio&quot;</span>, <span class="st">&quot;english&quot;</span>, <span class="st">&quot;lunch&quot;</span>, <span class="st">&quot;income&quot;</span>)]
+<span class="kw">summary</span>(a)</code></pre></div>
+<pre><code>     score8         stratio         english            lunch      
+ Min.   :641.0   Min.   :11.40   Min.   : 0.0000   Min.   : 0.40  
+ 1st Qu.:685.0   1st Qu.:15.80   1st Qu.: 0.0000   1st Qu.: 5.30  
+ Median :698.0   Median :17.10   Median : 0.0000   Median :10.55  
+ Mean   :698.4   Mean   :17.34   Mean   : 1.1177   Mean   :15.32  
+ 3rd Qu.:712.0   3rd Qu.:19.02   3rd Qu.: 0.8859   3rd Qu.:20.02  
+ Max.   :747.0   Max.   :27.00   Max.   :24.4939   Max.   :76.20  
+ NA&#39;s   :40                                                       
+     income      
+ Min.   : 9.686  
+ 1st Qu.:15.223  
+ Median :17.128  
+ Mean   :18.747  
+ 3rd Qu.:20.376  
+ Max.   :46.855  
+                 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># remove NA&#39;s</span>
+a &lt;-<span class="st"> </span>a[ <span class="op">!</span><span class="kw">is.na</span>(a<span class="op">$</span>score8),  ]
+
+<span class="co"># check correlation</span>
+<span class="kw">cor</span>(a)</code></pre></div>
+<pre><code>            score8    stratio    english      lunch     income
+score8   1.0000000 -0.3164449 -0.5312991 -0.8337520  0.7765043
+stratio -0.3164449  1.0000000  0.2126209  0.2875544 -0.2616973
+english -0.5312991  0.2126209  1.0000000  0.6946009 -0.2510956
+lunch   -0.8337520  0.2875544  0.6946009  1.0000000 -0.5738153
+income   0.7765043 -0.2616973 -0.2510956 -0.5738153  1.0000000</code></pre>
+<p>Both <code>lunch</code> and <code>income</code> are highly correlated with the percent of English learners and with the response variable. We add both to our model.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m2 &lt;-<span class="st"> </span><span class="kw">lm</span>(score8 <span class="op">~</span><span class="st"> </span>english <span class="op">+</span><span class="st"> </span>lunch <span class="op">+</span><span class="st"> </span>income, <span class="dt">data =</span> a)</code></pre></div>
+</div>
+<div id="exercise-17" class="section level4">
+<h4><span class="header-section-number">9.2.0.17</span> Exercise 17</h4>
+<p>Compare the two models. Did the first model suffer from omitted variable bias?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">screenreg</span>(<span class="kw">list</span>(m1,m2))</code></pre></div>
+<pre><code>
+===================================
+             Model 1     Model 2   
+-----------------------------------
+(Intercept)  702.99 ***  678.59 ***
+              (1.44)      (3.45)   
+english       -3.64 ***   -0.25    
+              (0.44)      (0.31)   
+lunch                     -0.72 ***
+                          (0.07)   
+income                     1.70 ***
+                          (0.15)   
+-----------------------------------
+R^2            0.28        0.83    
+Adj. R^2       0.28        0.83    
+Num. obs.    180         180       
+RMSE          17.89        8.80    
+===================================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>The comparison between models 1 and 2, shows that the performance of the children is related to poverty rather than language. The two are, however, correlated.</p>
+</div>
+<div id="exercise-18" class="section level4">
+<h4><span class="header-section-number">9.2.0.18</span> Exercise 18</h4>
+<p>Plot the residuals against the fitted values from the second model to visually check for heteroskedasticity.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a<span class="op">$</span>residuals &lt;-<span class="st"> </span>m2<span class="op">$</span>residuals <span class="co"># mistakes</span>
+a<span class="op">$</span>fitted &lt;-<span class="st"> </span>m2<span class="op">$</span>fitted.values <span class="co"># predictions</span>
+<span class="kw">plot</span>(residuals <span class="op">~</span><span class="st"> </span>fitted,
+     <span class="dt">data =</span> a,
+     <span class="dt">pch =</span> <span class="dv">19</span>,
+     <span class="dt">col =</span> <span class="st">&quot;darkgray&quot;</span>,
+     <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>)
+<span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">0</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-471-1.png" width="672" /></p>
+<p>The plot looks okay. I would not conclude that the model violates the constant errors assumption.</p>
+</div>
+<div id="exercise-19" class="section level4">
+<h4><span class="header-section-number">9.2.0.19</span> Exercise 19</h4>
+<p>Run the Breusch-Pagan Test to see whether the model suffers from heteroskedastic errors.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bptest</span>(m2) <span class="co"># we cannot reject the null -&gt; yay :)</span></code></pre></div>
+<pre><code>
+    studentized Breusch-Pagan test
+
+data:  m2
+BP = 2.3913, df = 3, p-value = 0.4953</code></pre>
+<p>The Bresch Pagan test confirms, the constant error assumption is not violated.</p>
+</div>
+<div id="exercise-20" class="section level4">
+<h4><span class="header-section-number">9.2.0.20</span> Exercise 20</h4>
+<p>Correct for heteroskedasticity (if needed) and present the results with corrected standard errors and p-values.</p>
+<p>We do not need to do this because the constant error assumption is not violated.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="seminar9.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="seminar10.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["statistics1.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

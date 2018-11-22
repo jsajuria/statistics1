@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Statistics 1</title>
+  <meta name="description" content="Statistics 1">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Statistics 1" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Statistics 1" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="seminar11.html">
+<link rel="next" href="datacamp.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="lib/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/codefolding.js"></script>
+
+
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding();
+});
+</script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="lib\bootstrap\3.3.7\css\bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="css\readthedocs.css" type="text/css" />
+<link rel="stylesheet" href="css\custom.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this course</a></li>
+<li class="chapter" data-level="1" data-path="seminar1.html"><a href="seminar1.html"><i class="fa fa-check"></i><b>1</b> Introduction: Measurement, Central Tendency, Dispersion, Validity, Reliability</a><ul>
+<li class="chapter" data-level="1.1" data-path="seminar1.html"><a href="seminar1.html#seminar"><i class="fa fa-check"></i><b>1.1</b> Seminar</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="seminar1.html"><a href="seminar1.html#getting-started"><i class="fa fa-check"></i><b>1.1.1</b> Getting Started</a></li>
+<li class="chapter" data-level="1.1.2" data-path="seminar1.html"><a href="seminar1.html#rstudio"><i class="fa fa-check"></i><b>1.1.2</b> RStudio</a></li>
+<li class="chapter" data-level="1.1.3" data-path="seminar1.html"><a href="seminar1.html#console"><i class="fa fa-check"></i><b>1.1.3</b> Console</a></li>
+<li class="chapter" data-level="1.1.4" data-path="seminar1.html"><a href="seminar1.html#functions"><i class="fa fa-check"></i><b>1.1.4</b> Functions</a></li>
+<li class="chapter" data-level="1.1.5" data-path="seminar1.html"><a href="seminar1.html#getting-help"><i class="fa fa-check"></i><b>1.1.5</b> Getting Help</a></li>
+<li class="chapter" data-level="1.1.6" data-path="seminar1.html"><a href="seminar1.html#the-assignment-operator"><i class="fa fa-check"></i><b>1.1.6</b> The Assignment Operator</a></li>
+<li class="chapter" data-level="1.1.7" data-path="seminar1.html"><a href="seminar1.html#sequences"><i class="fa fa-check"></i><b>1.1.7</b> Sequences</a></li>
+<li class="chapter" data-level="1.1.8" data-path="seminar1.html"><a href="seminar1.html#scripts"><i class="fa fa-check"></i><b>1.1.8</b> Scripts</a></li>
+<li class="chapter" data-level="1.1.9" data-path="seminar1.html"><a href="seminar1.html#central-tendency"><i class="fa fa-check"></i><b>1.1.9</b> Central Tendency</a></li>
+<li class="chapter" data-level="1.1.10" data-path="seminar1.html"><a href="seminar1.html#dispersion"><i class="fa fa-check"></i><b>1.1.10</b> Dispersion</a></li>
+<li class="chapter" data-level="1.1.11" data-path="seminar1.html"><a href="seminar1.html#exercises"><i class="fa fa-check"></i><b>1.1.11</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="solutions1.html"><a href="solutions1.html"><i class="fa fa-check"></i><b>1.2</b> Solutions</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="solutions1.html"><a href="solutions1.html#exercise-3"><i class="fa fa-check"></i><b>1.2.1</b> Exercise 3</a></li>
+<li class="chapter" data-level="1.2.2" data-path="solutions1.html"><a href="solutions1.html#exercise-4"><i class="fa fa-check"></i><b>1.2.2</b> Exercise 4</a></li>
+<li class="chapter" data-level="1.2.3" data-path="solutions1.html"><a href="solutions1.html#exercise-5"><i class="fa fa-check"></i><b>1.2.3</b> Exercise 5</a></li>
+<li class="chapter" data-level="1.2.4" data-path="solutions1.html"><a href="solutions1.html#exercise-6"><i class="fa fa-check"></i><b>1.2.4</b> Exercise 6</a></li>
+<li class="chapter" data-level="1.2.5" data-path="solutions1.html"><a href="solutions1.html#exercise-7"><i class="fa fa-check"></i><b>1.2.5</b> Exercise 7</a></li>
+<li class="chapter" data-level="1.2.6" data-path="solutions1.html"><a href="solutions1.html#exercise-8"><i class="fa fa-check"></i><b>1.2.6</b> Exercise 8</a></li>
+<li class="chapter" data-level="1.2.7" data-path="solutions1.html"><a href="solutions1.html#exercise-9"><i class="fa fa-check"></i><b>1.2.7</b> Exercise 9</a></li>
+<li class="chapter" data-level="1.2.8" data-path="solutions1.html"><a href="solutions1.html#exercise-10"><i class="fa fa-check"></i><b>1.2.8</b> Exercise 10</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="seminar2.html"><a href="seminar2.html"><i class="fa fa-check"></i><b>2</b> Research Design, Counterfactuals, Forming Hypotheses</a><ul>
+<li class="chapter" data-level="2.1" data-path="seminar2.html"><a href="seminar2.html#seminar-1"><i class="fa fa-check"></i><b>2.1</b> Seminar</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="seminar2.html"><a href="seminar2.html#setting-up"><i class="fa fa-check"></i><b>2.1.1</b> setting up</a></li>
+<li class="chapter" data-level="2.1.2" data-path="seminar2.html"><a href="seminar2.html#vectors-and-subsetting"><i class="fa fa-check"></i><b>2.1.2</b> vectors and subsetting</a></li>
+<li class="chapter" data-level="2.1.3" data-path="seminar2.html"><a href="seminar2.html#data-frames"><i class="fa fa-check"></i><b>2.1.3</b> data frames</a></li>
+<li class="chapter" data-level="2.1.4" data-path="seminar2.html"><a href="seminar2.html#loading-data"><i class="fa fa-check"></i><b>2.1.4</b> Loading data</a></li>
+<li class="chapter" data-level="2.1.5" data-path="seminar2.html"><a href="seminar2.html#plots"><i class="fa fa-check"></i><b>2.1.5</b> Plots</a></li>
+<li class="chapter" data-level="2.1.6" data-path="seminar2.html"><a href="seminar2.html#average-treatment-effect"><i class="fa fa-check"></i><b>2.1.6</b> Average Treatment Effect</a></li>
+<li class="chapter" data-level="2.1.7" data-path="seminar2.html"><a href="seminar2.html#exercises-1"><i class="fa fa-check"></i><b>2.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="solutions2.html"><a href="solutions2.html"><i class="fa fa-check"></i><b>2.2</b> Solutions</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="solutions2.html"><a href="solutions2.html#exercise-2"><i class="fa fa-check"></i><b>2.2.1</b> Exercise 2</a></li>
+<li class="chapter" data-level="2.2.2" data-path="solutions2.html"><a href="solutions2.html#exercise-3-1"><i class="fa fa-check"></i><b>2.2.2</b> Exercise 3</a></li>
+<li class="chapter" data-level="2.2.3" data-path="solutions2.html"><a href="solutions2.html#exercise-4-1"><i class="fa fa-check"></i><b>2.2.3</b> Exercise 4</a></li>
+<li class="chapter" data-level="2.2.4" data-path="solutions2.html"><a href="solutions2.html#exercise-5-1"><i class="fa fa-check"></i><b>2.2.4</b> Exercise 5</a></li>
+<li class="chapter" data-level="2.2.5" data-path="solutions2.html"><a href="solutions2.html#exercise-6-1"><i class="fa fa-check"></i><b>2.2.5</b> Exercise 6</a></li>
+<li class="chapter" data-level="2.2.6" data-path="solutions2.html"><a href="solutions2.html#exercise-7-1"><i class="fa fa-check"></i><b>2.2.6</b> Exercise 7</a></li>
+<li class="chapter" data-level="2.2.7" data-path="solutions2.html"><a href="solutions2.html#exercise-8-1"><i class="fa fa-check"></i><b>2.2.7</b> Exercise 8</a></li>
+<li class="chapter" data-level="2.2.8" data-path="solutions2.html"><a href="solutions2.html#exercises-9-and-10"><i class="fa fa-check"></i><b>2.2.8</b> Exercises 9 and 10</a></li>
+<li class="chapter" data-level="2.2.9" data-path="solutions2.html"><a href="solutions2.html#exercises-11"><i class="fa fa-check"></i><b>2.2.9</b> Exercises 11</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="seminar3.html"><a href="seminar3.html"><i class="fa fa-check"></i><b>3</b> Sampling and Distributions</a><ul>
+<li class="chapter" data-level="3.1" data-path="seminar3.html"><a href="seminar3.html#seminar-2"><i class="fa fa-check"></i><b>3.1</b> Seminar</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="seminar3.html"><a href="seminar3.html#loading-dataset-in-csv-format"><i class="fa fa-check"></i><b>3.1.1</b> Loading Dataset in CSV Format</a></li>
+<li class="chapter" data-level="3.1.2" data-path="seminar3.html"><a href="seminar3.html#missing-values"><i class="fa fa-check"></i><b>3.1.2</b> Missing Values</a></li>
+<li class="chapter" data-level="3.1.3" data-path="seminar3.html"><a href="seminar3.html#factor-variables"><i class="fa fa-check"></i><b>3.1.3</b> Factor Variables</a></li>
+<li class="chapter" data-level="3.1.4" data-path="seminar3.html"><a href="seminar3.html#renaming-variables"><i class="fa fa-check"></i><b>3.1.4</b> Renaming Variables</a></li>
+<li class="chapter" data-level="3.1.5" data-path="seminar3.html"><a href="seminar3.html#distributions"><i class="fa fa-check"></i><b>3.1.5</b> Distributions</a></li>
+<li class="chapter" data-level="3.1.6" data-path="seminar3.html"><a href="seminar3.html#conditional-distributions"><i class="fa fa-check"></i><b>3.1.6</b> Conditional Distributions</a></li>
+<li class="chapter" data-level="3.1.7" data-path="seminar3.html"><a href="seminar3.html#exercises-2"><i class="fa fa-check"></i><b>3.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="solutions3.html"><a href="solutions3.html"><i class="fa fa-check"></i><b>3.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="seminar4.html"><a href="seminar4.html"><i class="fa fa-check"></i><b>4</b> T-test for Difference in Means and Hypothesis Testing</a><ul>
+<li class="chapter" data-level="4.1" data-path="seminar4.html"><a href="seminar4.html#seminar-3"><i class="fa fa-check"></i><b>4.1</b> Seminar</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="seminar4.html"><a href="seminar4.html#the-standard-error"><i class="fa fa-check"></i><b>4.1.1</b> The Standard Error</a></li>
+<li class="chapter" data-level="4.1.2" data-path="seminar4.html"><a href="seminar4.html#t-test-one-sample-hypothesis-test"><i class="fa fa-check"></i><b>4.1.2</b> T-test (one sample hypothesis test)</a></li>
+<li class="chapter" data-level="4.1.3" data-path="seminar4.html"><a href="seminar4.html#t-test-difference-in-means"><i class="fa fa-check"></i><b>4.1.3</b> T-test (difference in means)</a></li>
+<li class="chapter" data-level="4.1.4" data-path="seminar4.html"><a href="seminar4.html#estimating-p-values-from-t-values"><i class="fa fa-check"></i><b>4.1.4</b> Estimating p values from t values</a></li>
+<li class="chapter" data-level="4.1.5" data-path="seminar4.html"><a href="seminar4.html#exercises-3"><i class="fa fa-check"></i><b>4.1.5</b> Exercises</a></li>
+<li class="chapter" data-level="4.1.6" data-path="seminar4.html"><a href="seminar4.html#optional-exercises-that-require-reading-extra-info-below"><i class="fa fa-check"></i><b>4.1.6</b> Optional Exercises that require reading Extra Info below</a></li>
+<li class="chapter" data-level="4.1.7" data-path="seminar4.html"><a href="seminar4.html#advanced-exercises"><i class="fa fa-check"></i><b>4.1.7</b> Advanced Exercises</a></li>
+<li class="chapter" data-level="4.1.8" data-path="seminar4.html"><a href="seminar4.html#extra-info"><i class="fa fa-check"></i><b>4.1.8</b> Extra Info</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="solutions4.html"><a href="solutions4.html"><i class="fa fa-check"></i><b>4.2</b> Solutions</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="solutions4.html"><a href="solutions4.html#optional-exercises-that-require-reading-extra-info-below-1"><i class="fa fa-check"></i><b>4.2.1</b> Optional Exercises that require reading Extra Info below</a></li>
+<li class="chapter" data-level="4.2.2" data-path="solutions4.html"><a href="solutions4.html#advanced-exercises-1"><i class="fa fa-check"></i><b>4.2.2</b> Advanced Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="seminar5.html"><a href="seminar5.html"><i class="fa fa-check"></i><b>5</b> Revision: Sample Variance and Sample Standard Deviation; Hypothesis testing and Confidence Intervals</a><ul>
+<li class="chapter" data-level="5.1" data-path="seminar5.html"><a href="seminar5.html#seminar-4"><i class="fa fa-check"></i><b>5.1</b> Seminar</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="seminar5.html"><a href="seminar5.html#sample-variance-and-sample-standard-deviation"><i class="fa fa-check"></i><b>5.1.1</b> Sample Variance and Sample Standard Deviation</a></li>
+<li class="chapter" data-level="5.1.2" data-path="seminar5.html"><a href="seminar5.html#t-test-for-the-sample-mean"><i class="fa fa-check"></i><b>5.1.2</b> T test for the sample mean</a></li>
+<li class="chapter" data-level="5.1.3" data-path="seminar5.html"><a href="seminar5.html#t-test-for-the-difference-in-means"><i class="fa fa-check"></i><b>5.1.3</b> T test for the difference in means</a></li>
+<li class="chapter" data-level="5.1.4" data-path="seminar5.html"><a href="seminar5.html#exercises-4"><i class="fa fa-check"></i><b>5.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="solutions5.html"><a href="solutions5.html"><i class="fa fa-check"></i><b>5.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="seminar6.html"><a href="seminar6.html"><i class="fa fa-check"></i><b>6</b> Bivariate linear regression models</a><ul>
+<li class="chapter" data-level="6.1" data-path="seminar6.html"><a href="seminar6.html#seminar-5"><i class="fa fa-check"></i><b>6.1</b> Seminar</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="seminar6.html"><a href="seminar6.html#packages"><i class="fa fa-check"></i><b>6.1.1</b> Packages</a></li>
+<li class="chapter" data-level="6.1.2" data-path="seminar6.html"><a href="seminar6.html#fitted-values"><i class="fa fa-check"></i><b>6.1.2</b> Fitted values</a></li>
+<li class="chapter" data-level="6.1.3" data-path="seminar6.html"><a href="seminar6.html#additional-resources"><i class="fa fa-check"></i><b>6.1.3</b> Additional Resources</a></li>
+<li class="chapter" data-level="6.1.4" data-path="seminar6.html"><a href="seminar6.html#exercises-5"><i class="fa fa-check"></i><b>6.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="solutions6.html"><a href="solutions6.html"><i class="fa fa-check"></i><b>6.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="seminar7.html"><a href="seminar7.html"><i class="fa fa-check"></i><b>7</b> Multiple linear regression models (I)</a><ul>
+<li class="chapter" data-level="7.1" data-path="seminar7.html"><a href="seminar7.html#seminar-6"><i class="fa fa-check"></i><b>7.1</b> Seminar</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="seminar7.html"><a href="seminar7.html#loading-understanding-and-cleaning-our-data"><i class="fa fa-check"></i><b>7.1.1</b> Loading, Understanding and Cleaning our Data</a></li>
+<li class="chapter" data-level="7.1.2" data-path="seminar7.html"><a href="seminar7.html#estimating-a-bivariate-regression"><i class="fa fa-check"></i><b>7.1.2</b> Estimating a Bivariate Regression</a></li>
+<li class="chapter" data-level="7.1.3" data-path="seminar7.html"><a href="seminar7.html#multivariate-regression"><i class="fa fa-check"></i><b>7.1.3</b> Multivariate Regression</a></li>
+<li class="chapter" data-level="7.1.4" data-path="seminar7.html"><a href="seminar7.html#joint-significance-test-f-statistic"><i class="fa fa-check"></i><b>7.1.4</b> Joint Significance Test (F-statistic)</a></li>
+<li class="chapter" data-level="7.1.5" data-path="seminar7.html"><a href="seminar7.html#predicting-outcome-conditional-on-institutional-quality"><i class="fa fa-check"></i><b>7.1.5</b> Predicting outcome conditional on institutional quality</a></li>
+<li class="chapter" data-level="7.1.6" data-path="seminar7.html"><a href="seminar7.html#additional-resources-1"><i class="fa fa-check"></i><b>7.1.6</b> Additional Resources</a></li>
+<li class="chapter" data-level="7.1.7" data-path="seminar7.html"><a href="seminar7.html#exercises-6"><i class="fa fa-check"></i><b>7.1.7</b> Exercises</a></li>
+<li class="chapter" data-level="7.1.8" data-path="seminar7.html"><a href="seminar7.html#midterm-preparation"><i class="fa fa-check"></i><b>7.1.8</b> Midterm Preparation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="solutions7.html"><a href="solutions7.html"><i class="fa fa-check"></i><b>7.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="seminar8.html"><a href="seminar8.html"><i class="fa fa-check"></i><b>8</b> Multiple linear regression models (II)</a><ul>
+<li class="chapter" data-level="8.1" data-path="seminar8.html"><a href="seminar8.html#seminar-7"><i class="fa fa-check"></i><b>8.1</b> Seminar</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="seminar8.html"><a href="seminar8.html#loading-data-1"><i class="fa fa-check"></i><b>8.1.1</b> Loading Data</a></li>
+<li class="chapter" data-level="8.1.2" data-path="seminar8.html"><a href="seminar8.html#r-squared"><i class="fa fa-check"></i><b>8.1.2</b> R Squared</a></li>
+<li class="chapter" data-level="8.1.3" data-path="seminar8.html"><a href="seminar8.html#the-relationship-between-institutional-quality-and-quality-of-life-by-colonial-past"><i class="fa fa-check"></i><b>8.1.3</b> The Relationship between Institutional Quality and Quality of Life by Colonial Past</a></li>
+<li class="chapter" data-level="8.1.4" data-path="seminar8.html"><a href="seminar8.html#interactions-continuous-and-binary"><i class="fa fa-check"></i><b>8.1.4</b> Interactions: Continuous and Binary</a></li>
+<li class="chapter" data-level="8.1.5" data-path="seminar8.html"><a href="seminar8.html#non-linearities"><i class="fa fa-check"></i><b>8.1.5</b> Non-Linearities</a></li>
+<li class="chapter" data-level="8.1.6" data-path="seminar8.html"><a href="seminar8.html#exercises-7"><i class="fa fa-check"></i><b>8.1.6</b> Exercises</a></li>
+<li class="chapter" data-level="8.1.7" data-path="seminar8.html"><a href="seminar8.html#extra-info-dummy-variables-repetition"><i class="fa fa-check"></i><b>8.1.7</b> Extra Info: Dummy Variables Repetition</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="solutions8.html"><a href="solutions8.html"><i class="fa fa-check"></i><b>8.2</b> Solutions</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="solutions8.html"><a href="solutions8.html#question-1"><i class="fa fa-check"></i><b>8.2.1</b> Question 1</a></li>
+<li class="chapter" data-level="8.2.2" data-path="solutions8.html"><a href="solutions8.html#question-2"><i class="fa fa-check"></i><b>8.2.2</b> Question 2</a></li>
+<li class="chapter" data-level="8.2.3" data-path="solutions8.html"><a href="solutions8.html#question-3"><i class="fa fa-check"></i><b>8.2.3</b> Question 3</a></li>
+<li class="chapter" data-level="8.2.4" data-path="solutions8.html"><a href="solutions8.html#question-4"><i class="fa fa-check"></i><b>8.2.4</b> Question 4</a></li>
+<li class="chapter" data-level="8.2.5" data-path="solutions8.html"><a href="solutions8.html#question-5"><i class="fa fa-check"></i><b>8.2.5</b> Question 5</a></li>
+<li class="chapter" data-level="8.2.6" data-path="solutions8.html"><a href="solutions8.html#question-6"><i class="fa fa-check"></i><b>8.2.6</b> Question 6</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="seminar9.html"><a href="seminar9.html"><i class="fa fa-check"></i><b>9</b> Regression Assumptions</a><ul>
+<li class="chapter" data-level="9.1" data-path="seminar9.html"><a href="seminar9.html#seminar-8"><i class="fa fa-check"></i><b>9.1</b> Seminar</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="seminar9.html"><a href="seminar9.html#required-packages"><i class="fa fa-check"></i><b>9.1.1</b> Required Packages</a></li>
+<li class="chapter" data-level="9.1.2" data-path="seminar9.html"><a href="seminar9.html#omitted-variable-bias"><i class="fa fa-check"></i><b>9.1.2</b> Omitted Variable Bias</a></li>
+<li class="chapter" data-level="9.1.3" data-path="seminar9.html"><a href="seminar9.html#detecting-non-linearity"><i class="fa fa-check"></i><b>9.1.3</b> Detecting non-linearity</a></li>
+<li class="chapter" data-level="9.1.4" data-path="seminar9.html"><a href="seminar9.html#heteroskedasticity"><i class="fa fa-check"></i><b>9.1.4</b> Heteroskedasticity</a></li>
+<li class="chapter" data-level="9.1.5" data-path="seminar9.html"><a href="seminar9.html#exercises-8"><i class="fa fa-check"></i><b>9.1.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="solutions9.html"><a href="solutions9.html"><i class="fa fa-check"></i><b>9.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="seminar10.html"><a href="seminar10.html"><i class="fa fa-check"></i><b>10</b> Panel Data - Fixed Effects and some Random Effects</a><ul>
+<li class="chapter" data-level="10.1" data-path="seminar10.html"><a href="seminar10.html#seminar-9"><i class="fa fa-check"></i><b>10.1</b> Seminar</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="seminar10.html"><a href="seminar10.html#our-data"><i class="fa fa-check"></i><b>10.1.1</b> Our data</a></li>
+<li class="chapter" data-level="10.1.2" data-path="seminar10.html"><a href="seminar10.html#unit-fixed-effects-country-fixed-effects"><i class="fa fa-check"></i><b>10.1.2</b> Unit fixed effects (country fixed effects)</a></li>
+<li class="chapter" data-level="10.1.3" data-path="seminar10.html"><a href="seminar10.html#time-fixed-effects"><i class="fa fa-check"></i><b>10.1.3</b> Time fixed effects</a></li>
+<li class="chapter" data-level="10.1.4" data-path="seminar10.html"><a href="seminar10.html#twoway-fixed-effects"><i class="fa fa-check"></i><b>10.1.4</b> Twoway fixed effects</a></li>
+<li class="chapter" data-level="10.1.5" data-path="seminar10.html"><a href="seminar10.html#serial-correlationauto-correlation"><i class="fa fa-check"></i><b>10.1.5</b> Serial correlation/auto-correlation</a></li>
+<li class="chapter" data-level="10.1.6" data-path="seminar10.html"><a href="seminar10.html#cross-sectional-dependence-spatial-dependence"><i class="fa fa-check"></i><b>10.1.6</b> Cross-sectional dependence/ spatial dependence</a></li>
+<li class="chapter" data-level="10.1.7" data-path="seminar10.html"><a href="seminar10.html#the-random-effects-model"><i class="fa fa-check"></i><b>10.1.7</b> The random effects model</a></li>
+<li class="chapter" data-level="10.1.8" data-path="seminar10.html"><a href="seminar10.html#more-guns-less-crime"><i class="fa fa-check"></i><b>10.1.8</b> More guns, less crime</a></li>
+<li class="chapter" data-level="10.1.9" data-path="seminar10.html"><a href="seminar10.html#question-1-1"><i class="fa fa-check"></i><b>10.1.9</b> Question 1</a></li>
+<li class="chapter" data-level="10.1.10" data-path="seminar10.html"><a href="seminar10.html#question-2-1"><i class="fa fa-check"></i><b>10.1.10</b> Question 2</a></li>
+<li class="chapter" data-level="10.1.11" data-path="seminar10.html"><a href="seminar10.html#question-3-1"><i class="fa fa-check"></i><b>10.1.11</b> Question 3</a></li>
+<li class="chapter" data-level="10.1.12" data-path="seminar10.html"><a href="seminar10.html#question-4-1"><i class="fa fa-check"></i><b>10.1.12</b> Question 4</a></li>
+<li class="chapter" data-level="10.1.13" data-path="seminar10.html"><a href="seminar10.html#question-5-1"><i class="fa fa-check"></i><b>10.1.13</b> Question 5</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="seminar11.html"><a href="seminar11.html"><i class="fa fa-check"></i><b>11</b> Binary Dependent Variable Models</a><ul>
+<li class="chapter" data-level="11.1" data-path="seminar11.html"><a href="seminar11.html#seminar-10"><i class="fa fa-check"></i><b>11.1</b> Seminar</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="seminar11.html"><a href="seminar11.html#required-packages-1"><i class="fa fa-check"></i><b>11.1.1</b> Required Packages</a></li>
+<li class="chapter" data-level="11.1.2" data-path="seminar11.html"><a href="seminar11.html#loading-data-2"><i class="fa fa-check"></i><b>11.1.2</b> Loading Data</a></li>
+<li class="chapter" data-level="11.1.3" data-path="seminar11.html"><a href="seminar11.html#linear-regression-with-a-binary-dependent-variable"><i class="fa fa-check"></i><b>11.1.3</b> Linear regression with a Binary Dependent Variable</a></li>
+<li class="chapter" data-level="11.1.4" data-path="seminar11.html"><a href="seminar11.html#logistic-regression-model"><i class="fa fa-check"></i><b>11.1.4</b> Logistic Regression Model</a></li>
+<li class="chapter" data-level="11.1.5" data-path="seminar11.html"><a href="seminar11.html#odds-ratios"><i class="fa fa-check"></i><b>11.1.5</b> Odds-ratios</a></li>
+<li class="chapter" data-level="11.1.6" data-path="seminar11.html"><a href="seminar11.html#predicted-probabilities"><i class="fa fa-check"></i><b>11.1.6</b> Predicted probabilities</a></li>
+<li class="chapter" data-level="11.1.7" data-path="seminar11.html"><a href="seminar11.html#exercises-9"><i class="fa fa-check"></i><b>11.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="solutions11.html"><a href="solutions11.html"><i class="fa fa-check"></i><b>11.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="datacamp.html"><a href="datacamp.html"><i class="fa fa-check"></i><b>12</b> Datacamp</a><ul>
+<li class="chapter" data-level="12.1" data-path="datacamp.html"><a href="datacamp.html#develop-your-skills-as-a-data-scientist"><i class="fa fa-check"></i><b>12.1</b> Develop your skills as a data scientist</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics 1</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="solutions-9" class="section level2">
+<h2><span class="header-section-number">11.2</span> Solutions</h2>
+<div id="exercise-1-2" class="section level4">
+<h4><span class="header-section-number">11.2.0.1</span> Exercise 1</h4>
+<p>Create plots of <code>age</code> vs <code>VoteYes</code> and <code>LeftRight</code> vs <code>VoteYes</code>. Add a regression line (from a linear probability model) to the plots.</p>
+<p>Here, we use the <code>jitter()</code> function to offset the observations on the x-axis a little bit. This helps us to better see the amount of observations that we have at each level of <code>age</code>. Furthermore, instead of plotting dots, we plot vertical bars for the same reason.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(
+  <span class="dt">x =</span> <span class="kw">jitter</span>(swiss<span class="op">$</span>age,<span class="dv">1</span>),
+  <span class="dt">y =</span> swiss<span class="op">$</span>VoteYes,
+  <span class="dt">pch =</span> <span class="st">&quot;|&quot;</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,
+  <span class="dt">col =</span> <span class="kw">rgb</span>(<span class="dt">green =</span> <span class="dv">100</span>, <span class="dt">blue =</span> <span class="dv">100</span>, <span class="dt">red =</span> <span class="dv">100</span>, <span class="dt">alpha =</span> <span class="dv">100</span>, <span class="dt">maxColorValue =</span> <span class="dv">255</span>),
+  <span class="dt">xlab =</span> <span class="st">&quot;age&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;vote yes (1 = yes, 0 = no)&quot;</span>,
+  <span class="dt">main =</span> <span class="st">&quot;Voting Yes on Assault Rifle Ban by Age&quot;</span>
+  )
+<span class="kw">abline</span>( <span class="kw">lm</span>(VoteYes <span class="op">~</span><span class="st"> </span>age, <span class="dt">data =</span> swiss), <span class="dt">lwd =</span> <span class="dv">3</span>  )</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-528-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(
+  <span class="dt">x =</span> <span class="kw">jitter</span>(swiss<span class="op">$</span>LeftRight,<span class="dv">1</span>),
+  <span class="dt">y =</span> swiss<span class="op">$</span>VoteYes,
+  <span class="dt">pch =</span> <span class="st">&quot;|&quot;</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,
+  <span class="dt">col =</span> <span class="kw">rgb</span>(<span class="dt">green =</span> <span class="dv">100</span>, <span class="dt">blue =</span> <span class="dv">100</span>, <span class="dt">red =</span> <span class="dv">100</span>, <span class="dt">alpha =</span> <span class="dv">100</span>, <span class="dt">maxColorValue =</span> <span class="dv">255</span>),
+  <span class="dt">xlab =</span> <span class="st">&quot;Left-Right Self Placement&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;vote yes (1 = yes, 0 = no)&quot;</span>,
+  <span class="dt">main =</span> <span class="st">&quot;Voting Yes on Assault Rifle Ban by Ideology&quot;</span>
+  )
+<span class="kw">abline</span>( <span class="kw">lm</span>(VoteYes <span class="op">~</span><span class="st"> </span>LeftRight, <span class="dt">data =</span> swiss), <span class="dt">lwd =</span> <span class="dv">3</span>  )</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-529-1.png" width="672" /></p>
+</div>
+<div id="exercise-2-6" class="section level4">
+<h4><span class="header-section-number">11.2.0.2</span> Exercise 2</h4>
+<p>Estimate a model which includes <code>age</code> and <code>LeftRight</code> as predictors, and <code>VoteYes</code> as the dependent variable.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m1 &lt;-<span class="st"> </span><span class="kw">glm</span>(VoteYes <span class="op">~</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>LeftRight, <span class="dt">data =</span> swiss, <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>))
+<span class="kw">library</span>(texreg)
+<span class="kw">screenreg</span>(m1)</code></pre></div>
+<pre><code>
+===========================
+                Model 1    
+---------------------------
+(Intercept)        5.01 ***
+                  (0.42)   
+age               -0.02 ***
+                  (0.01)   
+LeftRight         -0.81 ***
+                  (0.06)   
+---------------------------
+AIC              935.71    
+BIC              950.13    
+Log Likelihood  -464.86    
+Deviance         929.71    
+Num. obs.        902       
+===========================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+</div>
+<div id="exercise-3-8" class="section level4">
+<h4><span class="header-section-number">11.2.0.3</span> Exercise 3</h4>
+<p>What is the effect of a one-unit increase in <code>LeftRight</code> on <code>VoteYes</code>? Discuss in terms of odds-ratios.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># left-right</span>
+<span class="kw">exp</span>(<span class="kw">coef</span>(m1)[[<span class="st">&quot;LeftRight&quot;</span>]])</code></pre></div>
+<pre><code>[1] 0.4443931</code></pre>
+<p>Conservatives are less likely to vote in favour of the ban. The odds ratio of voting for the assault rifle ban decreases by 56% when we move 1 unit into the conservative direction of the ideology measure.</p>
+</div>
+<div id="exercise-4-8" class="section level4">
+<h4><span class="header-section-number">11.2.0.4</span> Exercise 4</h4>
+<p>What is the effect of a one-unit increase in <code>age</code> on <code>VoteYes</code>? Discuss in terms of odds-ratios.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># age</span>
+<span class="kw">exp</span>(<span class="kw">coef</span>(m1)[[<span class="st">&quot;age&quot;</span>]])</code></pre></div>
+<pre><code>[1] 0.9807587</code></pre>
+<p>Voting yes on the ban also becomes less likely with increasing age. For each additional year the odds ratio of voting yes decrase by 2%.</p>
+</div>
+<div id="exercise-5-8" class="section level4">
+<h4><span class="header-section-number">11.2.0.5</span> Exercise 5</h4>
+<p>What is the effect on the probability of a <code>yes</code> vote of moving from a left-right self placement of 5 to a self placement of 6 for an individual who is 44 years old?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># predicted probability of yes-vote for left-right 5 and age 44</span>
+s1 &lt;-<span class="st"> </span><span class="kw">predict</span>(m1, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">age =</span> <span class="dv">44</span>, <span class="dt">LeftRight =</span> <span class="dv">5</span>), <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)
+s1</code></pre></div>
+<pre><code>        1 
+0.5259904 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># predicted probability of yes-vote for left-right 6 and age 44</span>
+s2 &lt;-<span class="st"> </span><span class="kw">predict</span>(m1, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">age =</span> <span class="dv">44</span>, <span class="dt">LeftRight =</span> <span class="dv">6</span>), <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)
+s2</code></pre></div>
+<pre><code>        1 
+0.3302643 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># first differences</span>
+s1 <span class="op">-</span><span class="st"> </span>s2</code></pre></div>
+<pre><code>        1 
+0.1957262 </code></pre>
+<p>The probability of voting in favour decreases by 20 percentage points from 53% to 33%. Assuming a treshold of 0.5, we would predict that the 44 years old respondent who is at 5 on the ideology scale would for the ban. The respondent who is of the same age but at 6 on the ideology scale would vote against the ban.</p>
+</div>
+<div id="exercise-6-8" class="section level4">
+<h4><span class="header-section-number">11.2.0.6</span> Exercise 6</h4>
+<p>Calculate and plot the predicted probability of voting yes across the range of the <code>age</code> variable for individuals who have a left-right self placement of 5. Do the same across the range of the <code>LeftRight</code> variable for individuals with an age of 50.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># age range</span>
+s3 &lt;-<span class="st"> </span><span class="kw">predict</span>(m1, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">age =</span> <span class="kw">seq</span>(<span class="kw">min</span>(swiss<span class="op">$</span>age), <span class="kw">max</span>(swiss<span class="op">$</span>age), <span class="dt">length.out =</span> <span class="dv">100</span>),
+                                       <span class="dt">LeftRight =</span> <span class="dv">5</span>), <span class="dt">type =</span> <span class="st">&quot;response&quot;</span> )
+<span class="kw">plot</span>(
+  <span class="dt">x =</span> <span class="kw">jitter</span>(swiss<span class="op">$</span>age[swiss<span class="op">$</span>LeftRight<span class="op">==</span><span class="dv">5</span>],<span class="dv">1</span>),
+  <span class="dt">y =</span> swiss<span class="op">$</span>VoteYes[swiss<span class="op">$</span>LeftRight<span class="op">==</span><span class="dv">5</span>],
+  <span class="dt">pch =</span> <span class="st">&quot;|&quot;</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,
+  <span class="dt">col =</span> <span class="kw">rgb</span>(<span class="dt">green =</span> <span class="dv">100</span>, <span class="dt">blue =</span> <span class="dv">100</span>, <span class="dt">red =</span> <span class="dv">100</span>, <span class="dt">alpha =</span> <span class="dv">100</span>, <span class="dt">maxColorValue =</span> <span class="dv">255</span>),
+  <span class="dt">xlab =</span> <span class="st">&quot;age&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;vote yes (1 = yes, 0 = no)&quot;</span>,
+  <span class="dt">main =</span> <span class="st">&quot;Voting Yes on Assault Rifle Ban by Age&quot;</span>
+  )
+<span class="kw">abline</span>(<span class="dt">h=</span>.<span class="dv">5</span>, <span class="dt">lty =</span> <span class="st">&quot;dotted&quot;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)
+<span class="kw">text</span>(<span class="dt">x =</span> <span class="dv">80</span>, <span class="dt">y=</span> .<span class="dv">50</span>, <span class="dt">pos =</span> <span class="dv">3</span>, <span class="st">&quot;cutoff pi = .5&quot;</span>)
+<span class="kw">lines</span>(<span class="dt">x =</span> <span class="kw">seq</span>(<span class="kw">min</span>(swiss<span class="op">$</span>age), <span class="kw">max</span>(swiss<span class="op">$</span>age), <span class="dt">length.out =</span> <span class="dv">100</span>),
+      <span class="dt">y =</span> s3, <span class="dt">lwd =</span> <span class="dv">3</span>)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-534-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># max prediction</span>
+<span class="kw">max</span>(s3)</code></pre></div>
+<pre><code>[1] 0.6477591</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># min prediction</span>
+<span class="kw">min</span>(s3)</code></pre></div>
+<pre><code>[1] 0.308083</code></pre>
+<p>We predict that the probability of voting for the ban decreases with age for a respondent with centrist ideology (left-right = 5) from 65% to 31%. This is a substantial effect.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># left-right range</span>
+s4 &lt;-<span class="st"> </span><span class="kw">predict</span>(m1, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">age =</span> <span class="dv">50</span>,
+                                       <span class="dt">LeftRight =</span> <span class="kw">seq</span>(<span class="kw">min</span>(swiss<span class="op">$</span>LeftRight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), 
+                                                       <span class="kw">max</span>(swiss<span class="op">$</span>LeftRight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
+                                                       <span class="dt">length.out =</span> <span class="dv">100</span>)), <span class="dt">type =</span> <span class="st">&quot;response&quot;</span> )
+
+<span class="kw">plot</span>(
+  <span class="dt">x=</span> <span class="kw">jitter</span>(swiss<span class="op">$</span>LeftRight[swiss<span class="op">$</span>age<span class="op">==</span><span class="dv">50</span>],<span class="dv">1</span>),
+  <span class="dt">y =</span> swiss<span class="op">$</span>VoteYes[swiss<span class="op">$</span>age<span class="op">==</span><span class="dv">50</span>],
+  <span class="dt">pch =</span> <span class="st">&quot;|&quot;</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,
+  <span class="dt">col =</span> <span class="kw">rgb</span>(<span class="dt">green =</span> <span class="dv">100</span>, <span class="dt">blue =</span> <span class="dv">100</span>, <span class="dt">red =</span> <span class="dv">100</span>, <span class="dt">alpha =</span> <span class="dv">150</span>, <span class="dt">maxColorValue =</span> <span class="dv">255</span>),
+  <span class="dt">xlab =</span> <span class="st">&quot;Left-Right Self Placement&quot;</span>, 
+  <span class="dt">ylab =</span> <span class="st">&quot;Predicted Probability of Yes-Vote&quot;</span>,
+  <span class="dt">main =</span> <span class="st">&quot;Effect of Ideology for Fifty Year Olds&quot;</span>
+  )
+<span class="kw">abline</span>(<span class="dt">h=</span>.<span class="dv">5</span>, <span class="dt">lty =</span> <span class="st">&quot;dotted&quot;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)
+<span class="kw">text</span>(<span class="dt">x =</span> <span class="dv">8</span>, <span class="dt">y=</span> .<span class="dv">50</span>, <span class="dt">pos =</span> <span class="dv">3</span>, <span class="st">&quot;cutoff pi = .5&quot;</span>)
+<span class="kw">lines</span>(<span class="dt">x =</span> <span class="kw">seq</span>(<span class="kw">min</span>(swiss<span class="op">$</span>LeftRight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), 
+              <span class="kw">max</span>(swiss<span class="op">$</span>LeftRight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
+              <span class="dt">length.out =</span> <span class="dv">100</span>),
+      <span class="dt">y =</span> s4, <span class="dt">lwd =</span> <span class="dv">3</span>)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-536-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># max prediction</span>
+<span class="kw">max</span>(s4)</code></pre></div>
+<pre><code>[1] 0.9827529</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># min prediction</span>
+<span class="kw">min</span>(s4)</code></pre></div>
+<pre><code>[1] 0.03708689</code></pre>
+<p>We predict that the probability of voting for the ban decreases the more conservative the respondent. For a 50 year old respondent, who is on the extreme left of the ideology scale, we predict a 98% probability of voting yes. The predicted probability of voting in favour decreases rapidly the more conservative the respondent, to 4% at the extreme right of the scale.</p>
+</div>
+<div id="exercise-7-7" class="section level4">
+<h4><span class="header-section-number">11.2.0.7</span> Exercise 7</h4>
+<p>We include <code>university</code>, <code>german</code>, and <code>urban</code> in our model.</p>
+<p>We conjecture that repsondents who are university educated are more liberal in general and more in favour of gun control specifically. University classes, especially those on statistics, teach that gun laws are beneficial for society as a whole in the sense that freely available guns do not prevent crime but are potentially harmful. Furthermore, we control for the cultural language divide in Switzerland, where the German speaking areas are potentially more conservative and more in favour of liberal gun laws. We control for urbanization because we suspect that rural areas are more status quo oriented, whereas urban areas favour tighter regulation of guns.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m2 &lt;-<span class="st"> </span><span class="kw">glm</span>(VoteYes <span class="op">~</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>LeftRight <span class="op">+</span><span class="st"> </span>university <span class="op">+</span><span class="st"> </span>german <span class="op">+</span><span class="st"> </span>urban, <span class="dt">data =</span> swiss, <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>))
+<span class="kw">screenreg</span>(<span class="kw">list</span>(m1, m2))</code></pre></div>
+<pre><code>
+========================================
+                Model 1      Model 2    
+----------------------------------------
+(Intercept)        5.01 ***     4.64 ***
+                  (0.42)       (0.44)   
+age               -0.02 ***    -0.02 ***
+                  (0.01)       (0.01)   
+LeftRight         -0.81 ***    -0.80 ***
+                  (0.06)       (0.06)   
+university                      0.67 ***
+                               (0.19)   
+german                         -0.12    
+                               (0.17)   
+urban                           0.42 *  
+                               (0.18)   
+----------------------------------------
+AIC              935.71       917.79    
+BIC              950.13       946.61    
+Log Likelihood  -464.86      -452.90    
+Deviance         929.71       905.79    
+Num. obs.        902          901       
+========================================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+</div>
+<div id="exercise-8-8" class="section level4">
+<h4><span class="header-section-number">11.2.0.8</span> Exercise 8</h4>
+<p>The effect of <code>german</code> in our new model is a statistical zero. As expected, university educated respondents are more in favour of the assault rifle regulation. Similarly, the more urban the canton, the respondent lives in, the more likely the respondent is to be in favour of the regulation.</p>
+<p>Comparing our two models, we conclude that none of the new variables were confounding the effects of age and ideology. The effects of age and ideology are substantially unchanged.</p>
+<p>We illustrate the effect of higher education and urbanisation in a plot. We vary urbanization from its minimum to its maximum. We plot two lines one for respondents with higher education and one for respondents without university education. We will keep constant <code>age</code>, <code>LeftRight</code>, and <code>german</code> and the appropriate measures of central tendency.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># newdata with no uni degree</span>
+X1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">age =</span> <span class="kw">mean</span>(swiss<span class="op">$</span>age),
+  <span class="dt">LeftRight =</span> <span class="kw">mean</span>(swiss<span class="op">$</span>LeftRight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
+  <span class="dt">university =</span> <span class="dv">0</span>,
+  <span class="dt">german =</span> <span class="kw">median</span>(swiss<span class="op">$</span>german),
+  <span class="dt">urban =</span> <span class="kw">seq</span>(<span class="kw">min</span>(swiss<span class="op">$</span>urban), <span class="kw">max</span>(swiss<span class="op">$</span>urban),<span class="dt">length.out =</span> <span class="dv">100</span>)
+)
+
+<span class="co"># newdata with uni degree</span>
+X2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">age =</span> <span class="kw">mean</span>(swiss<span class="op">$</span>age),
+  <span class="dt">LeftRight =</span> <span class="kw">mean</span>(swiss<span class="op">$</span>LeftRight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
+  <span class="dt">university =</span> <span class="dv">1</span>,
+  <span class="dt">german =</span> <span class="kw">median</span>(swiss<span class="op">$</span>german),
+  <span class="dt">urban =</span> <span class="kw">seq</span>(<span class="kw">min</span>(swiss<span class="op">$</span>urban), <span class="kw">max</span>(swiss<span class="op">$</span>urban),<span class="dt">length.out =</span> <span class="dv">100</span>)
+)
+
+
+<span class="co"># no university degree</span>
+X1<span class="op">$</span>pp &lt;-<span class="st"> </span><span class="kw">predict</span>(m2, <span class="dt">newdata =</span> X1, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)
+
+<span class="co"># got uni degree</span>
+X2<span class="op">$</span>pp &lt;-<span class="st"> </span><span class="kw">predict</span>(m2, <span class="dt">newdata =</span> X2, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)
+
+
+<span class="co"># plot</span>
+<span class="kw">plot</span>(
+  <span class="dt">x =</span> X1<span class="op">$</span>urban,
+  <span class="dt">y =</span> X1<span class="op">$</span>pp,
+  <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>,
+  <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),
+  <span class="dt">main =</span> <span class="st">&quot;Effects of Urbanisation and Higher Education on Yes-Vote&quot;</span>,
+  <span class="dt">xlab =</span> <span class="st">&quot;Share of citizens in canton living in urban areas&quot;</span>,
+  <span class="dt">ylab =</span> <span class="st">&quot;Predicted Probability of Yes-Vote&quot;</span>,
+  <span class="dt">lwd =</span> <span class="dv">3</span>,
+  <span class="dt">frame.plot =</span> <span class="ot">FALSE</span>
+  )
+<span class="kw">abline</span>(<span class="dt">h=</span>.<span class="dv">5</span>, <span class="dt">lty =</span> <span class="st">&quot;dotted&quot;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)
+<span class="kw">text</span>(<span class="dt">x =</span> .<span class="dv">8</span>, <span class="dt">y=</span> .<span class="dv">50</span>, <span class="dt">pos =</span> <span class="dv">1</span>, <span class="st">&quot;cutoff pi = .5&quot;</span>)
+
+<span class="co"># add university education</span>
+<span class="kw">lines</span>(X2<span class="op">$</span>urban, X2<span class="op">$</span>pp, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-539-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># no uni degree predictions</span>
+<span class="kw">range</span>(X1<span class="op">$</span>pp)</code></pre></div>
+<pre><code>[1] 0.4376645 0.5421051</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># uni degree predictions</span>
+<span class="kw">range</span>(X2<span class="op">$</span>pp)</code></pre></div>
+<pre><code>[1] 0.6040835 0.6988812</code></pre>
+<p>We show the effects of urbanisation and higher education for a centrist respondent with mean age (49), from the German speaking part of Switzerland. An average respondent such as this without a university degree living in the most rural part of Switzerland is predicted to vote yes with 44/% probabilty. The same respondent with higher education is predicted to vote yes with probability 60%. At the other extreme end of urbanization the predicted probability of a yes-vote for a respondent without higher education is 54%. The respondent with a university degree is predicted to vote yes with 70% probability.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="seminar11.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="datacamp.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["statistics1.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

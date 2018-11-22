@@ -190,7 +190,7 @@ We omit one category from our models to avoid perfect multicollinearity. In mode
 
 #### Exercise 14
 
-Load the Massachusetts Test Scores dataset `MA_Schools.csv` from your PUBLG100 folder.
+Load the Massachusetts Test Scores dataset `MA_Schools.csv`.
 
 ```{r}
 rm(list=ls())

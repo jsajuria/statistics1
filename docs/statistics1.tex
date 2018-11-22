@@ -5627,8 +5627,8 @@ is the maximum value.
 \end{Shaded}
 
 \begin{verbatim}
- [1] 5.194975 4.515139 6.072655 5.385262 5.658498 5.209952 4.239573
- [8] 4.369943 2.107184 1.670448
+ [1] 3.686993 2.391410 4.688283 1.296594 3.962915 3.909719 4.946537
+ [8] 4.711605 4.464695 6.067921
 \end{verbatim}
 
 We have indeed drawn 10 numbers but they are not integers as we would
@@ -5647,8 +5647,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 5.194975 4.515139 6.072655 5.385262 5.658498 5.209952 4.239573
- [8] 4.369943 2.107184 1.670448
+ [1] 3.686993 2.391410 4.688283 1.296594 3.962915 3.909719 4.946537
+ [8] 4.711605 4.464695 6.067921
 \end{verbatim}
 
 \begin{Shaded}
@@ -5659,8 +5659,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 6.647377 6.362353 3.649725 1.605386 5.124899 4.800696 1.795388
- [8] 2.504169 1.745089 3.595872
+ [1] 4.656603 1.616605 2.413401 3.520346 5.781839 2.024383 3.876880
+ [8] 2.336095 1.323726 1.645960
 \end{verbatim}
 
 The numbers of the first and second roll differ because we have drawn
@@ -12481,6 +12481,848 @@ income & Average district income\tabularnewline
   clean your script.
 \end{enumerate}
 
+\subsection{Solutions}\label{solutions-8}
+
+\paragraph{Exercise 1}\label{exercise-1-1}
+
+Load \texttt{chechen.csv.} We will load it directly from the github
+source.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# load texreg library for model output tables}
+\KeywordTok{library}\NormalTok{(texreg)}
+
+\CommentTok{# chechen data}
+\NormalTok{a <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"https://uclspp.github.io/datasets/data/chechen.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\paragraph{Exercise 2}\label{exercise-2-5}
+
+Run a bivariate regression model with diff as the dependent variable and
+treat as the predictor.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# bivariate model}
+\NormalTok{m1 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(diff }\OperatorTok{~}\StringTok{ }\NormalTok{treat, }\DataTypeTok{data =}\NormalTok{ a)}
+\KeywordTok{screenreg}\NormalTok{(m1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+======================
+             Model 1  
+----------------------
+(Intercept)   -0.10   
+              (0.12)  
+treat         -0.52 **
+              (0.17)  
+----------------------
+R^2            0.03   
+Adj. R^2       0.02   
+Num. obs.    318      
+RMSE           1.54   
+======================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+The effect of Russian artillery shelling is significant and negative.
+Therefore, it seems that indiscriminate violence in this case reduces
+insurgent violence. There are many potential confounders, however, that
+we will control for in the next exercise.
+
+The interpretation on the magnitude of the effect is the following: The
+dependent variable is the change in the number of insurgent attacks. The
+independent variable is binary. Therefore, there was half an attack
+less, on average, in villages that had been bombarded by Russian
+artillery.
+
+\paragraph{Exercise 3}\label{exercise-3-7}
+
+Control for additional variables. Discuss your choice of variables and
+refer to omitted variable bias.
+
+We control for the amount of attacks before the village was bombarded
+(\texttt{pret}). We reason that villages that saw more insurgent
+activity already, were more likely to be bombarded and might see more
+insurgent activity after bombardment as well. Furhtermore, we control
+for logged elevation \texttt{lelev} because attacks may be more likely
+in remote mountainous terrain and it may have been harder for the
+Russians to control such areas. With a similar argument we control
+\texttt{groznyy} and \texttt{lpop2000}, were the argument is that urban
+areas may see more insurgent actitivities and are harder to control. We
+also control for \texttt{swept} to account for the possibility that
+previous sweeps in the area have reduced the likelihood of subsequent
+shelling and insurgent activity.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# multivariate model}
+\NormalTok{m2 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(diff }\OperatorTok{~}\StringTok{ }
+\StringTok{           }\NormalTok{treat }\OperatorTok{+}
+\StringTok{           }\NormalTok{pret }\OperatorTok{+}
+\StringTok{           }\NormalTok{lelev }\OperatorTok{+}
+\StringTok{           }\NormalTok{groznyy }\OperatorTok{+}
+\StringTok{           }\NormalTok{lpop2000 }\OperatorTok{+}
+\StringTok{           }\NormalTok{swept }\OperatorTok{+}
+\StringTok{           }\KeywordTok{factor}\NormalTok{(disno), }
+         \DataTypeTok{data =}\NormalTok{ a)}
+\KeywordTok{screenreg}\NormalTok{(}\KeywordTok{list}\NormalTok{(m1, m2))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+======================================
+                 Model 1    Model 2   
+--------------------------------------
+(Intercept)       -0.10      -0.93    
+                  (0.12)     (1.64)   
+treat             -0.52 **   -0.39 *  
+                  (0.17)     (0.16)   
+pret                         -0.28 ***
+                             (0.03)   
+lelev                         0.07    
+                             (0.24)   
+groznyy                       2.03 ** 
+                             (0.67)   
+lpop2000                      0.13    
+                             (0.07)   
+swept                        -0.02    
+                             (0.19)   
+factor(disno)3               -0.14    
+                             (0.52)   
+factor(disno)4                0.44    
+                             (0.66)   
+factor(disno)5               -0.09    
+                             (1.11)   
+factor(disno)6                0.08    
+                             (0.59)   
+factor(disno)7               -0.37    
+                             (1.41)   
+factor(disno)8               -0.74    
+                             (0.78)   
+factor(disno)9               -0.14    
+                             (0.68)   
+factor(disno)10              -0.49    
+                             (0.51)   
+factor(disno)11              -0.22    
+                             (0.60)   
+factor(disno)14               0.04    
+                             (0.53)   
+factor(disno)15              -0.14    
+                             (0.56)   
+--------------------------------------
+R^2                0.03       0.32    
+Adj. R^2           0.02       0.28    
+Num. obs.        318        318       
+RMSE               1.54       1.32    
+======================================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+\paragraph{Exercise 4}\label{exercise-4-7}
+
+Discuss the improvement in model fit and use the appropriate test
+statistic.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# f-test}
+\KeywordTok{anova}\NormalTok{(m1, m2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Analysis of Variance Table
+
+Model 1: diff ~ treat
+Model 2: diff ~ treat + pret + lelev + groznyy + lpop2000 + swept + factor(disno)
+  Res.Df    RSS Df Sum of Sq      F                Pr(>F)    
+1    316 751.99                                              
+2    300 526.42 16    225.57 8.0342 0.0000000000000005841 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+We increase adjusted R\^{}2 substantially. While R\^{}2 almost always
+increases and never decreases, adjusted R\^{}2 might decrease. We use
+the F test to test whether are added covariates are jointly significant
+- whether the improvement in explanatory power of our model could be due
+to chance. We reject the null hypothesis that both models do equally
+well at explaining the outcome. Our larger model improves model fit.
+
+\paragraph{Exercise 5}\label{exercise-5-7}
+
+Check for non-linearity and if there is, solve the problem.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# create residuals variable in data set}
+\NormalTok{a}\OperatorTok{$}\NormalTok{residuals <-}\StringTok{ }\NormalTok{m2}\OperatorTok{$}\NormalTok{residuals}
+
+\CommentTok{# check residual plots with continuous variable}
+\KeywordTok{plot}\NormalTok{(residuals }\OperatorTok{~}\StringTok{ }\NormalTok{pret, }\DataTypeTok{data =}\NormalTok{ a)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-457-1.pdf}
+
+We only have one continuous variable in our model that has not already
+been transformed to deal with non-linearity: the number of insurgent
+attacks before shelling \texttt{pret}. The residual plot does not reveal
+a non-linear relation.
+
+\paragraph{Exercise 6}\label{exercise-6-7}
+
+Check for heteroskedasticity and if there is solve the problem.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(lmtest) }\CommentTok{# contains BP test function}
+\KeywordTok{bptest}\NormalTok{(m2) }\CommentTok{# null is constant error which we reject}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    studentized Breusch-Pagan test
+
+data:  m2
+BP = 78.61, df = 17, p-value = 0.0000000006764
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(sandwich) }\CommentTok{# contains sandwich estimator robust SE's}
+\CommentTok{# estimate model 2 again with corrected standard errors}
+\NormalTok{m3 <-}\StringTok{ }\KeywordTok{coeftest}\NormalTok{(m2, }\DataTypeTok{vcov. =} \KeywordTok{vcovHC}\NormalTok{(m2, }\DataTypeTok{type =} \StringTok{"HC1"}\NormalTok{))}
+
+\CommentTok{# compare models}
+\KeywordTok{screenreg}\NormalTok{(}\KeywordTok{list}\NormalTok{(m2,m3))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+======================================
+                 Model 1     Model 2  
+--------------------------------------
+(Intercept)       -0.93      -0.93    
+                  (1.64)     (1.25)   
+treat             -0.39 *    -0.39 *  
+                  (0.16)     (0.15)   
+pret              -0.28 ***  -0.28 ***
+                  (0.03)     (0.04)   
+lelev              0.07       0.07    
+                  (0.24)     (0.20)   
+groznyy            2.03 **    2.03 *  
+                  (0.67)     (1.02)   
+lpop2000           0.13       0.13 *  
+                  (0.07)     (0.05)   
+swept             -0.02      -0.02    
+                  (0.19)     (0.23)   
+factor(disno)3    -0.14      -0.14    
+                  (0.52)     (0.67)   
+factor(disno)4     0.44       0.44    
+                  (0.66)     (0.82)   
+factor(disno)5    -0.09      -0.09    
+                  (1.11)     (0.75)   
+factor(disno)6     0.08       0.08    
+                  (0.59)     (0.77)   
+factor(disno)7    -0.37      -0.37    
+                  (1.41)     (0.67)   
+factor(disno)8    -0.74      -0.74    
+                  (0.78)     (0.84)   
+factor(disno)9    -0.14      -0.14    
+                  (0.68)     (0.72)   
+factor(disno)10   -0.49      -0.49    
+                  (0.51)     (0.70)   
+factor(disno)11   -0.22      -0.22    
+                  (0.60)     (0.73)   
+factor(disno)14    0.04       0.04    
+                  (0.53)     (0.71)   
+factor(disno)15   -0.14      -0.14    
+                  (0.56)     (0.71)   
+--------------------------------------
+R^2                0.32               
+Adj. R^2           0.28               
+Num. obs.        318                  
+RMSE               1.32               
+======================================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+The result is that heteroskedasticity robust standard errors do not
+change our findings. The estimated robust standard errors are actually
+smaller than the ones estimated under the constant error assumption. The
+effect remains significant either way but we would choose the larger
+standard errors.
+
+\paragraph{Exercise 7}\label{exercise-7-6}
+
+Thoroughly compare the models, and interpret the outcome in substantial
+as well statistical terms - do not forget to talk about model fit. What
+are the implications of this?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# compare models}
+\KeywordTok{screenreg}\NormalTok{(}\KeywordTok{list}\NormalTok{(m1,m2,m3))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+=================================================
+                 Model 1    Model 2     Model 3  
+-------------------------------------------------
+(Intercept)       -0.10      -0.93      -0.93    
+                  (0.12)     (1.64)     (1.25)   
+treat             -0.52 **   -0.39 *    -0.39 *  
+                  (0.17)     (0.16)     (0.15)   
+pret                         -0.28 ***  -0.28 ***
+                             (0.03)     (0.04)   
+lelev                         0.07       0.07    
+                             (0.24)     (0.20)   
+groznyy                       2.03 **    2.03 *  
+                             (0.67)     (1.02)   
+lpop2000                      0.13       0.13 *  
+                             (0.07)     (0.05)   
+swept                        -0.02      -0.02    
+                             (0.19)     (0.23)   
+factor(disno)3               -0.14      -0.14    
+                             (0.52)     (0.67)   
+factor(disno)4                0.44       0.44    
+                             (0.66)     (0.82)   
+factor(disno)5               -0.09      -0.09    
+                             (1.11)     (0.75)   
+factor(disno)6                0.08       0.08    
+                             (0.59)     (0.77)   
+factor(disno)7               -0.37      -0.37    
+                             (1.41)     (0.67)   
+factor(disno)8               -0.74      -0.74    
+                             (0.78)     (0.84)   
+factor(disno)9               -0.14      -0.14    
+                             (0.68)     (0.72)   
+factor(disno)10              -0.49      -0.49    
+                             (0.51)     (0.70)   
+factor(disno)11              -0.22      -0.22    
+                             (0.60)     (0.73)   
+factor(disno)14               0.04       0.04    
+                             (0.53)     (0.71)   
+factor(disno)15              -0.14      -0.14    
+                             (0.56)     (0.71)   
+-------------------------------------------------
+R^2                0.03       0.32               
+Adj. R^2           0.02       0.28               
+Num. obs.        318        318                  
+RMSE               1.54       1.32               
+=================================================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+The goal of analysis was to test whether indiscriminate violence leads
+to more resistance. The variable of interest is, therefore,
+\texttt{treat} which indicates whether a Chechnian village was bombarded
+or not. In our initial model, we found a significant and negative
+effect. Thereby, we contradict the theory because the effect seems to go
+the other way.
+
+We were concerned about confounding and including a number of variables
+in the model. We controled for terrain, geographic areas in the country,
+urban areas, attacks before artillery bombardment, and prior sweeps. The
+change in the coeffcient is large. The difference is
+(\(-.52 - -0.39 = -0.13\)). That is 25\% of the original effect.
+Although, the effect decreased substantially when we control for
+confounders, it is still significant. The difference between villages
+that were bombarded and those that were not is \(0.39\) attacks on
+average.
+
+We are not substantially interested in the control variables. According
+to the model with the larger standard errors, \texttt{pret}, and
+\texttt{groznyy} are also significant. Insurgent attacks were more
+numerous in Groznyy. Interestingly, the more attacks there were before
+the bombardment , the fewer attacks happened afterwards.
+
+Model fit improves substantially, from \(0.03\) in our first model to
+\(0.32\). Although, the second model explains the outcome better that is
+not what we care about. We are interested in the effect of
+indiscriminate violence. We prefer the larger model because we control
+for potential confounders and our estimate less of an overestimate.
+
+\paragraph{Exercise 8}\label{exercise-8-7}
+
+Load who\_voted\_nazi\_in\_1932.csv.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# clear workspace }
+\KeywordTok{rm}\NormalTok{(}\DataTypeTok{list=}\KeywordTok{ls}\NormalTok{())}
+\NormalTok{a <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"https://uclspp.github.io/datasets/data/who_voted_nazi_in_1932.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\paragraph{Exercise 9}\label{exercise-9-6}
+
+Run a bivariate model to test whether blue-collar voters voted for the
+Nazis.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# summary stats}
+\KeywordTok{summary}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+   shareself        shareblue       sharewhite     sharedomestic   
+ Min.   : 5.799   Min.   :11.44   Min.   : 2.205   Min.   : 3.721  
+ 1st Qu.:14.716   1st Qu.:25.26   1st Qu.: 6.579   1st Qu.:14.410  
+ Median :18.196   Median :30.35   Median : 8.751   Median :26.230  
+ Mean   :18.589   Mean   :30.82   Mean   :11.423   Mean   :25.443  
+ 3rd Qu.:22.186   3rd Qu.:35.87   3rd Qu.:13.577   3rd Qu.:35.250  
+ Max.   :31.340   Max.   :54.14   Max.   :51.864   Max.   :52.639  
+ shareunemployed      nvoter          nazivote        sharenazis   
+ Min.   : 1.958   Min.   :  5969   Min.   :  2415   Min.   :12.32  
+ 1st Qu.: 7.456   1st Qu.: 23404   1st Qu.:  9196   1st Qu.:33.96  
+ Median :11.934   Median : 35203   Median : 15708   Median :41.47  
+ Mean   :13.722   Mean   : 65118   Mean   : 25193   Mean   :41.57  
+ 3rd Qu.:18.979   3rd Qu.: 67606   3rd Qu.: 27810   3rd Qu.:48.61  
+ Max.   :39.678   Max.   :932831   Max.   :318746   Max.   :74.09  
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m1 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(sharenazis }\OperatorTok{~}\StringTok{ }\NormalTok{shareblue, }\DataTypeTok{data =}\NormalTok{ a)}
+\KeywordTok{screenreg}\NormalTok{(m1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+=======================
+             Model 1   
+-----------------------
+(Intercept)   39.56 ***
+              (1.66)   
+shareblue      0.07    
+              (0.05)   
+-----------------------
+R^2            0.00    
+Adj. R^2       0.00    
+Num. obs.    681       
+RMSE          10.80    
+=======================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+\paragraph{Exercise 10}\label{exercise-10-6}
+
+Our dataset does not contain much information. We only know about the
+share of diffrent groups in the district: white collar workers, blue
+collar workers, self employed, domestically employed, and unemployed. We
+control for these variables.
+
+A model that would only include blue collar workers omits information
+about the social make of the district that is necessarily related to the
+share of blue collar workers. For, example if there are mostly white
+collar workers in a district that means, there are less blue collar
+workers, all else equal. If we only have blue collar in our model, we do
+not know whether most other people are unemployed or white collar
+workers and so on.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m2 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(sharenazis }\OperatorTok{~}\StringTok{ }\NormalTok{shareblue }\OperatorTok{+}\StringTok{ }\NormalTok{sharewhite }\OperatorTok{+}\StringTok{ }\NormalTok{shareself }\OperatorTok{+}\StringTok{ }\NormalTok{sharedomestic, }\DataTypeTok{data =}\NormalTok{ a)}
+\end{Highlighting}
+\end{Shaded}
+
+\paragraph{Exercise 11}\label{exercise-11-5}
+
+Can you fit a model using \texttt{shareblue}, \texttt{sharewhite},
+\texttt{shareself}, \texttt{sharedomestic}, and \texttt{shareunemployed}
+as predictors? Why or why not?
+
+Such a model would suffer from perfect multicollinearity. Whichever
+variable we entered last into our model would be dropped automatically.
+If we add the share of the five groups, we get 100\%. Thus, if we know
+the share of four gropus in a district, we necessarily know the share of
+the remaining group in the district.
+
+For example if \texttt{shareblue}=30, \texttt{shareunemployed}=15,
+\texttt{sharedomestic}=25, \texttt{shareself}=20, the four groups are
+together 90\% of the district. The remaining 10\% must be white collar
+workers.
+
+Therefore, adding \texttt{shareblue}, \texttt{shareunemployed},
+\texttt{sharedomestic}, and \texttt{shareself} to our model already
+gives us information about how many white collar workers there are in a
+district. Were we to add the variable \texttt{sharewhite}, we would
+enter the same information twice - leading to perfect multicollinearity.
+
+\paragraph{Exercise 12}\label{exercise-12-3}
+
+Check for heteroskedasticity and if there is solve the problem.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# tests on our models }
+\KeywordTok{bptest}\NormalTok{(m1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    studentized Breusch-Pagan test
+
+data:  m1
+BP = 18.578, df = 1, p-value = 0.00001631
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{bptest}\NormalTok{(m2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    studentized Breusch-Pagan test
+
+data:  m2
+BP = 95.811, df = 4, p-value < 0.00000000000000022
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# robust SE's}
+\NormalTok{m1.robust <-}\StringTok{ }\KeywordTok{coeftest}\NormalTok{(m1, }\DataTypeTok{vcov. =} \KeywordTok{vcovHC}\NormalTok{(m1))}
+\NormalTok{m2.robust <-}\StringTok{ }\KeywordTok{coeftest}\NormalTok{(m2, }\DataTypeTok{vcov. =} \KeywordTok{vcovHC}\NormalTok{(m2))}
+
+\CommentTok{# compare standard errors}
+\KeywordTok{screenreg}\NormalTok{(}\KeywordTok{list}\NormalTok{(m1, m1.robust, m2, m2.robust),}
+          \DataTypeTok{custom.model.names =} \KeywordTok{c}\NormalTok{(}\StringTok{"m1"}\NormalTok{, }\StringTok{"m1 robust"}\NormalTok{, }\StringTok{"m2"}\NormalTok{, }\StringTok{"m2 robust"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+===========================================================
+               m1          m1 robust  m2          m2 robust
+-----------------------------------------------------------
+(Intercept)     39.56 ***  39.56 ***   -2.82      -2.82    
+                (1.66)     (1.68)      (7.01)     (6.28)   
+shareblue        0.07       0.07        0.57 ***   0.57 ***
+                (0.05)     (0.05)      (0.09)     (0.08)   
+sharewhite                              0.31 *     0.31 ** 
+                                       (0.13)     (0.11)   
+shareself                               1.14 ***   1.14 ***
+                                       (0.19)     (0.23)   
+sharedomestic                           0.08       0.08    
+                                       (0.10)     (0.11)   
+-----------------------------------------------------------
+R^2              0.00                   0.11               
+Adj. R^2         0.00                   0.10               
+Num. obs.      681                    681                  
+RMSE            10.80                  10.24               
+===========================================================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+Correcting for heteroskedasticity does not change our results.
+
+\paragraph{Exercise 13}\label{exercise-13-3}
+
+Interpret your models.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{screenreg}\NormalTok{(}\KeywordTok{list}\NormalTok{(m1,m2))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+=====================================
+               Model 1     Model 2   
+-------------------------------------
+(Intercept)     39.56 ***   -2.82    
+                (1.66)      (7.01)   
+shareblue        0.07        0.57 ***
+                (0.05)      (0.09)   
+sharewhite                   0.31 *  
+                            (0.13)   
+shareself                    1.14 ***
+                            (0.19)   
+sharedomestic                0.08    
+                            (0.10)   
+-------------------------------------
+R^2              0.00        0.11    
+Adj. R^2         0.00        0.10    
+Num. obs.      681         681       
+RMSE            10.80       10.24    
+=====================================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+A prominent theory suggests that Nazis received a lot of their support
+from blue-collar workers. In model 1, we only include the percentage of
+blue collar workers in a district. The variable is insignificant but we
+are likely suffering from omitted variable bias because we are omitting
+other aspects of the social make-up of the district that are related to
+the share blue collar workers.
+
+We omit one category from our models to avoid perfect multicollinearity.
+In model 2, it seems that blue-collar workers did support the Nazis.
+More so, than white-collar workers. They received most of their support
+from the self-employed, though.
+
+\paragraph{Exercise 14}\label{exercise-14-2}
+
+Load the Massachusetts Test Scores dataset \texttt{MA\_Schools.csv}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rm}\NormalTok{(}\DataTypeTok{list=}\KeywordTok{ls}\NormalTok{())}
+\NormalTok{a <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"MA_Schools.csv"}\NormalTok{)}
+\KeywordTok{summary}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+    district       municipality     expreg       expspecial   
+ Min.   :  1.0   Abington:  1   Min.   :2905   Min.   : 3832  
+ 1st Qu.: 84.5   Acton   :  1   1st Qu.:4065   1st Qu.: 7442  
+ Median :163.5   Acushnet:  1   Median :4488   Median : 8354  
+ Mean   :170.9   Agawam  :  1   Mean   :4605   Mean   : 8901  
+ 3rd Qu.:269.2   Amesbury:  1   3rd Qu.:4972   3rd Qu.: 9722  
+ Max.   :350.0   Amherst :  1   Max.   :8759   Max.   :53569  
+                 (Other) :214                                 
+     expbil           expocc          exptot        scratio      
+ Min.   :     0   Min.   :    0   Min.   :3465   Min.   : 2.300  
+ 1st Qu.:     0   1st Qu.:    0   1st Qu.:4730   1st Qu.: 6.100  
+ Median :     0   Median :    0   Median :5155   Median : 7.800  
+ Mean   :  3037   Mean   : 1104   Mean   :5370   Mean   : 8.107  
+ 3rd Qu.:     0   3rd Qu.:    0   3rd Qu.:5789   3rd Qu.: 9.800  
+ Max.   :295140   Max.   :15088   Max.   :9868   Max.   :18.400  
+                                                 NA's   :9       
+    special          lunch          stratio          income      
+ Min.   : 8.10   Min.   : 0.40   Min.   :11.40   Min.   : 9.686  
+ 1st Qu.:13.38   1st Qu.: 5.30   1st Qu.:15.80   1st Qu.:15.223  
+ Median :15.45   Median :10.55   Median :17.10   Median :17.128  
+ Mean   :15.97   Mean   :15.32   Mean   :17.34   Mean   :18.747  
+ 3rd Qu.:17.93   3rd Qu.:20.02   3rd Qu.:19.02   3rd Qu.:20.376  
+ Max.   :34.30   Max.   :76.20   Max.   :27.00   Max.   :46.855  
+                                                                 
+     score4          score8          salary         english       
+ Min.   :658.0   Min.   :641.0   Min.   :24.96   Min.   : 0.0000  
+ 1st Qu.:701.0   1st Qu.:685.0   1st Qu.:33.80   1st Qu.: 0.0000  
+ Median :711.0   Median :698.0   Median :35.88   Median : 0.0000  
+ Mean   :709.8   Mean   :698.4   Mean   :35.99   Mean   : 1.1177  
+ 3rd Qu.:720.0   3rd Qu.:712.0   3rd Qu.:37.96   3rd Qu.: 0.8859  
+ Max.   :740.0   Max.   :747.0   Max.   :44.49   Max.   :24.4939  
+                 NA's   :40      NA's   :25                       
+\end{verbatim}
+
+Fit a model to explain the relationship between percentage of English
+learners and average 8th grade scores.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m1 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(score8 }\OperatorTok{~}\StringTok{ }\NormalTok{english, }\DataTypeTok{data =}\NormalTok{ a)}
+\KeywordTok{screenreg}\NormalTok{(m1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+=======================
+             Model 1   
+-----------------------
+(Intercept)  702.99 ***
+              (1.44)   
+english       -3.64 ***
+              (0.44)   
+-----------------------
+R^2            0.28    
+Adj. R^2       0.28    
+Num. obs.    180       
+RMSE          17.89    
+=======================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+\paragraph{Exercise 15}\label{exercise-15-1}
+
+Plot the model and the regression line.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(score8 }\OperatorTok{~}\StringTok{ }\NormalTok{english,}
+     \DataTypeTok{data =}\NormalTok{ a,}
+     \DataTypeTok{pch =} \DecValTok{19}\NormalTok{,}
+     \DataTypeTok{frame.plot =} \OtherTok{FALSE}\NormalTok{,}
+     \DataTypeTok{col =} \StringTok{"darkgray"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(m1, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-467-1.pdf}
+
+\paragraph{Exercise 16}\label{exercise-16}
+
+Check for correlation between the variables listed above to see if there
+are other variables that should be included in the model.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a <-}\StringTok{ }\NormalTok{a[, }\KeywordTok{c}\NormalTok{(}\StringTok{"score8"}\NormalTok{, }\StringTok{"stratio"}\NormalTok{, }\StringTok{"english"}\NormalTok{, }\StringTok{"lunch"}\NormalTok{, }\StringTok{"income"}\NormalTok{)]}
+\KeywordTok{summary}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+     score8         stratio         english            lunch      
+ Min.   :641.0   Min.   :11.40   Min.   : 0.0000   Min.   : 0.40  
+ 1st Qu.:685.0   1st Qu.:15.80   1st Qu.: 0.0000   1st Qu.: 5.30  
+ Median :698.0   Median :17.10   Median : 0.0000   Median :10.55  
+ Mean   :698.4   Mean   :17.34   Mean   : 1.1177   Mean   :15.32  
+ 3rd Qu.:712.0   3rd Qu.:19.02   3rd Qu.: 0.8859   3rd Qu.:20.02  
+ Max.   :747.0   Max.   :27.00   Max.   :24.4939   Max.   :76.20  
+ NA's   :40                                                       
+     income      
+ Min.   : 9.686  
+ 1st Qu.:15.223  
+ Median :17.128  
+ Mean   :18.747  
+ 3rd Qu.:20.376  
+ Max.   :46.855  
+                 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# remove NA's}
+\NormalTok{a <-}\StringTok{ }\NormalTok{a[ }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(a}\OperatorTok{$}\NormalTok{score8),  ]}
+
+\CommentTok{# check correlation}
+\KeywordTok{cor}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+            score8    stratio    english      lunch     income
+score8   1.0000000 -0.3164449 -0.5312991 -0.8337520  0.7765043
+stratio -0.3164449  1.0000000  0.2126209  0.2875544 -0.2616973
+english -0.5312991  0.2126209  1.0000000  0.6946009 -0.2510956
+lunch   -0.8337520  0.2875544  0.6946009  1.0000000 -0.5738153
+income   0.7765043 -0.2616973 -0.2510956 -0.5738153  1.0000000
+\end{verbatim}
+
+Both \texttt{lunch} and \texttt{income} are highly correlated with the
+percent of English learners and with the response variable. We add both
+to our model.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m2 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(score8 }\OperatorTok{~}\StringTok{ }\NormalTok{english }\OperatorTok{+}\StringTok{ }\NormalTok{lunch }\OperatorTok{+}\StringTok{ }\NormalTok{income, }\DataTypeTok{data =}\NormalTok{ a)}
+\end{Highlighting}
+\end{Shaded}
+
+\paragraph{Exercise 17}\label{exercise-17}
+
+Compare the two models. Did the first model suffer from omitted variable
+bias?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{screenreg}\NormalTok{(}\KeywordTok{list}\NormalTok{(m1,m2))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+===================================
+             Model 1     Model 2   
+-----------------------------------
+(Intercept)  702.99 ***  678.59 ***
+              (1.44)      (3.45)   
+english       -3.64 ***   -0.25    
+              (0.44)      (0.31)   
+lunch                     -0.72 ***
+                          (0.07)   
+income                     1.70 ***
+                          (0.15)   
+-----------------------------------
+R^2            0.28        0.83    
+Adj. R^2       0.28        0.83    
+Num. obs.    180         180       
+RMSE          17.89        8.80    
+===================================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+The comparison between models 1 and 2, shows that the performance of the
+children is related to poverty rather than language. The two are,
+however, correlated.
+
+\paragraph{Exercise 18}\label{exercise-18}
+
+Plot the residuals against the fitted values from the second model to
+visually check for heteroskedasticity.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a}\OperatorTok{$}\NormalTok{residuals <-}\StringTok{ }\NormalTok{m2}\OperatorTok{$}\NormalTok{residuals }\CommentTok{# mistakes}
+\NormalTok{a}\OperatorTok{$}\NormalTok{fitted <-}\StringTok{ }\NormalTok{m2}\OperatorTok{$}\NormalTok{fitted.values }\CommentTok{# predictions}
+\KeywordTok{plot}\NormalTok{(residuals }\OperatorTok{~}\StringTok{ }\NormalTok{fitted,}
+     \DataTypeTok{data =}\NormalTok{ a,}
+     \DataTypeTok{pch =} \DecValTok{19}\NormalTok{,}
+     \DataTypeTok{col =} \StringTok{"darkgray"}\NormalTok{,}
+     \DataTypeTok{frame.plot =} \OtherTok{FALSE}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h=}\DecValTok{0}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-471-1.pdf}
+
+The plot looks okay. I would not conclude that the model violates the
+constant errors assumption.
+
+\paragraph{Exercise 19}\label{exercise-19}
+
+Run the Breusch-Pagan Test to see whether the model suffers from
+heteroskedastic errors.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{bptest}\NormalTok{(m2) }\CommentTok{# we cannot reject the null -> yay :)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    studentized Breusch-Pagan test
+
+data:  m2
+BP = 2.3913, df = 3, p-value = 0.4953
+\end{verbatim}
+
+The Bresch Pagan test confirms, the constant error assumption is not
+violated.
+
+\paragraph{Exercise 20}\label{exercise-20}
+
+Correct for heteroskedasticity (if needed) and present the results with
+corrected standard errors and p-values.
+
+We do not need to do this because the constant error assumption is not
+violated.
+
 \section{Panel Data - Fixed Effects and some Random
 Effects}\label{panel-data---fixed-effects-and-some-random-effects}
 
@@ -13697,7 +14539,7 @@ the two variables above, and include the estimated regression line.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{statistics1_files/figure-latex/unnamed-chunk-484-1.pdf}
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-505-1.pdf}
 
 As we can see from the plot, because the functional form of the linear
 probability model is linear, the estimated relationship suggests that
@@ -13727,7 +14569,7 @@ revealing the code below.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{statistics1_files/figure-latex/unnamed-chunk-485-1.pdf}
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-506-1.pdf}
 
 We can see from this plot that the linear probability model is always
 heteroskedastic -- the errors are not evenly distributed around zero for
@@ -14208,7 +15050,7 @@ Finally, we can plot these values:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{statistics1_files/figure-latex/unnamed-chunk-501-1.pdf}
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-522-1.pdf}
 
 The plot nicely illustrates the non-linear functional form of the
 logistic regression model. As desired, all of the predicted
@@ -14450,6 +15292,437 @@ Share of citizens in a canton that live in urban areas.\strut
   Provide some predicted probabilities from the model that illustrate
   the substantive importance of the new variables that you have added
 \end{enumerate}
+
+\subsection{Solutions}\label{solutions-9}
+
+\paragraph{Exercise 1}\label{exercise-1-2}
+
+Create plots of \texttt{age} vs \texttt{VoteYes} and \texttt{LeftRight}
+vs \texttt{VoteYes}. Add a regression line (from a linear probability
+model) to the plots.
+
+Here, we use the \texttt{jitter()} function to offset the observations
+on the x-axis a little bit. This helps us to better see the amount of
+observations that we have at each level of \texttt{age}. Furthermore,
+instead of plotting dots, we plot vertical bars for the same reason.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}
+  \DataTypeTok{x =} \KeywordTok{jitter}\NormalTok{(swiss}\OperatorTok{$}\NormalTok{age,}\DecValTok{1}\NormalTok{),}
+  \DataTypeTok{y =}\NormalTok{ swiss}\OperatorTok{$}\NormalTok{VoteYes,}
+  \DataTypeTok{pch =} \StringTok{"|"}\NormalTok{, }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{,}
+  \DataTypeTok{col =} \KeywordTok{rgb}\NormalTok{(}\DataTypeTok{green =} \DecValTok{100}\NormalTok{, }\DataTypeTok{blue =} \DecValTok{100}\NormalTok{, }\DataTypeTok{red =} \DecValTok{100}\NormalTok{, }\DataTypeTok{alpha =} \DecValTok{100}\NormalTok{, }\DataTypeTok{maxColorValue =} \DecValTok{255}\NormalTok{),}
+  \DataTypeTok{xlab =} \StringTok{"age"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"vote yes (1 = yes, 0 = no)"}\NormalTok{,}
+  \DataTypeTok{main =} \StringTok{"Voting Yes on Assault Rifle Ban by Age"}
+\NormalTok{  )}
+\KeywordTok{abline}\NormalTok{( }\KeywordTok{lm}\NormalTok{(VoteYes }\OperatorTok{~}\StringTok{ }\NormalTok{age, }\DataTypeTok{data =}\NormalTok{ swiss), }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-528-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}
+  \DataTypeTok{x =} \KeywordTok{jitter}\NormalTok{(swiss}\OperatorTok{$}\NormalTok{LeftRight,}\DecValTok{1}\NormalTok{),}
+  \DataTypeTok{y =}\NormalTok{ swiss}\OperatorTok{$}\NormalTok{VoteYes,}
+  \DataTypeTok{pch =} \StringTok{"|"}\NormalTok{, }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{,}
+  \DataTypeTok{col =} \KeywordTok{rgb}\NormalTok{(}\DataTypeTok{green =} \DecValTok{100}\NormalTok{, }\DataTypeTok{blue =} \DecValTok{100}\NormalTok{, }\DataTypeTok{red =} \DecValTok{100}\NormalTok{, }\DataTypeTok{alpha =} \DecValTok{100}\NormalTok{, }\DataTypeTok{maxColorValue =} \DecValTok{255}\NormalTok{),}
+  \DataTypeTok{xlab =} \StringTok{"Left-Right Self Placement"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"vote yes (1 = yes, 0 = no)"}\NormalTok{,}
+  \DataTypeTok{main =} \StringTok{"Voting Yes on Assault Rifle Ban by Ideology"}
+\NormalTok{  )}
+\KeywordTok{abline}\NormalTok{( }\KeywordTok{lm}\NormalTok{(VoteYes }\OperatorTok{~}\StringTok{ }\NormalTok{LeftRight, }\DataTypeTok{data =}\NormalTok{ swiss), }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-529-1.pdf}
+
+\paragraph{Exercise 2}\label{exercise-2-6}
+
+Estimate a model which includes \texttt{age} and \texttt{LeftRight} as
+predictors, and \texttt{VoteYes} as the dependent variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m1 <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(VoteYes }\OperatorTok{~}\StringTok{ }\NormalTok{age }\OperatorTok{+}\StringTok{ }\NormalTok{LeftRight, }\DataTypeTok{data =}\NormalTok{ swiss, }\DataTypeTok{family =} \KeywordTok{binomial}\NormalTok{(}\DataTypeTok{link=}\StringTok{"logit"}\NormalTok{))}
+\KeywordTok{library}\NormalTok{(texreg)}
+\KeywordTok{screenreg}\NormalTok{(m1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+===========================
+                Model 1    
+---------------------------
+(Intercept)        5.01 ***
+                  (0.42)   
+age               -0.02 ***
+                  (0.01)   
+LeftRight         -0.81 ***
+                  (0.06)   
+---------------------------
+AIC              935.71    
+BIC              950.13    
+Log Likelihood  -464.86    
+Deviance         929.71    
+Num. obs.        902       
+===========================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+\paragraph{Exercise 3}\label{exercise-3-8}
+
+What is the effect of a one-unit increase in \texttt{LeftRight} on
+\texttt{VoteYes}? Discuss in terms of odds-ratios.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# left-right}
+\KeywordTok{exp}\NormalTok{(}\KeywordTok{coef}\NormalTok{(m1)[[}\StringTok{"LeftRight"}\NormalTok{]])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.4443931
+\end{verbatim}
+
+Conservatives are less likely to vote in favour of the ban. The odds
+ratio of voting for the assault rifle ban decreases by 56\% when we move
+1 unit into the conservative direction of the ideology measure.
+
+\paragraph{Exercise 4}\label{exercise-4-8}
+
+What is the effect of a one-unit increase in \texttt{age} on
+\texttt{VoteYes}? Discuss in terms of odds-ratios.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# age}
+\KeywordTok{exp}\NormalTok{(}\KeywordTok{coef}\NormalTok{(m1)[[}\StringTok{"age"}\NormalTok{]])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.9807587
+\end{verbatim}
+
+Voting yes on the ban also becomes less likely with increasing age. For
+each additional year the odds ratio of voting yes decrase by 2\%.
+
+\paragraph{Exercise 5}\label{exercise-5-8}
+
+What is the effect on the probability of a \texttt{yes} vote of moving
+from a left-right self placement of 5 to a self placement of 6 for an
+individual who is 44 years old?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# predicted probability of yes-vote for left-right 5 and age 44}
+\NormalTok{s1 <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(m1, }\DataTypeTok{newdata =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{age =} \DecValTok{44}\NormalTok{, }\DataTypeTok{LeftRight =} \DecValTok{5}\NormalTok{), }\DataTypeTok{type =} \StringTok{"response"}\NormalTok{)}
+\NormalTok{s1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+        1 
+0.5259904 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# predicted probability of yes-vote for left-right 6 and age 44}
+\NormalTok{s2 <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(m1, }\DataTypeTok{newdata =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{age =} \DecValTok{44}\NormalTok{, }\DataTypeTok{LeftRight =} \DecValTok{6}\NormalTok{), }\DataTypeTok{type =} \StringTok{"response"}\NormalTok{)}
+\NormalTok{s2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+        1 
+0.3302643 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# first differences}
+\NormalTok{s1 }\OperatorTok{-}\StringTok{ }\NormalTok{s2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+        1 
+0.1957262 
+\end{verbatim}
+
+The probability of voting in favour decreases by 20 percentage points
+from 53\% to 33\%. Assuming a treshold of 0.5, we would predict that the
+44 years old respondent who is at 5 on the ideology scale would for the
+ban. The respondent who is of the same age but at 6 on the ideology
+scale would vote against the ban.
+
+\paragraph{Exercise 6}\label{exercise-6-8}
+
+Calculate and plot the predicted probability of voting yes across the
+range of the \texttt{age} variable for individuals who have a left-right
+self placement of 5. Do the same across the range of the
+\texttt{LeftRight} variable for individuals with an age of 50.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# age range}
+\NormalTok{s3 <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(m1, }\DataTypeTok{newdata =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{age =} \KeywordTok{seq}\NormalTok{(}\KeywordTok{min}\NormalTok{(swiss}\OperatorTok{$}\NormalTok{age), }\KeywordTok{max}\NormalTok{(swiss}\OperatorTok{$}\NormalTok{age), }\DataTypeTok{length.out =} \DecValTok{100}\NormalTok{),}
+                                       \DataTypeTok{LeftRight =} \DecValTok{5}\NormalTok{), }\DataTypeTok{type =} \StringTok{"response"}\NormalTok{ )}
+\KeywordTok{plot}\NormalTok{(}
+  \DataTypeTok{x =} \KeywordTok{jitter}\NormalTok{(swiss}\OperatorTok{$}\NormalTok{age[swiss}\OperatorTok{$}\NormalTok{LeftRight}\OperatorTok{==}\DecValTok{5}\NormalTok{],}\DecValTok{1}\NormalTok{),}
+  \DataTypeTok{y =}\NormalTok{ swiss}\OperatorTok{$}\NormalTok{VoteYes[swiss}\OperatorTok{$}\NormalTok{LeftRight}\OperatorTok{==}\DecValTok{5}\NormalTok{],}
+  \DataTypeTok{pch =} \StringTok{"|"}\NormalTok{, }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{,}
+  \DataTypeTok{col =} \KeywordTok{rgb}\NormalTok{(}\DataTypeTok{green =} \DecValTok{100}\NormalTok{, }\DataTypeTok{blue =} \DecValTok{100}\NormalTok{, }\DataTypeTok{red =} \DecValTok{100}\NormalTok{, }\DataTypeTok{alpha =} \DecValTok{100}\NormalTok{, }\DataTypeTok{maxColorValue =} \DecValTok{255}\NormalTok{),}
+  \DataTypeTok{xlab =} \StringTok{"age"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"vote yes (1 = yes, 0 = no)"}\NormalTok{,}
+  \DataTypeTok{main =} \StringTok{"Voting Yes on Assault Rifle Ban by Age"}
+\NormalTok{  )}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h=}\NormalTok{.}\DecValTok{5}\NormalTok{, }\DataTypeTok{lty =} \StringTok{"dotted"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{)}
+\KeywordTok{text}\NormalTok{(}\DataTypeTok{x =} \DecValTok{80}\NormalTok{, }\DataTypeTok{y=}\NormalTok{ .}\DecValTok{50}\NormalTok{, }\DataTypeTok{pos =} \DecValTok{3}\NormalTok{, }\StringTok{"cutoff pi = .5"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{seq}\NormalTok{(}\KeywordTok{min}\NormalTok{(swiss}\OperatorTok{$}\NormalTok{age), }\KeywordTok{max}\NormalTok{(swiss}\OperatorTok{$}\NormalTok{age), }\DataTypeTok{length.out =} \DecValTok{100}\NormalTok{),}
+      \DataTypeTok{y =}\NormalTok{ s3, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-534-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# max prediction}
+\KeywordTok{max}\NormalTok{(s3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.6477591
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# min prediction}
+\KeywordTok{min}\NormalTok{(s3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.308083
+\end{verbatim}
+
+We predict that the probability of voting for the ban decreases with age
+for a respondent with centrist ideology (left-right = 5) from 65\% to
+31\%. This is a substantial effect.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# left-right range}
+\NormalTok{s4 <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(m1, }\DataTypeTok{newdata =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{age =} \DecValTok{50}\NormalTok{,}
+                                       \DataTypeTok{LeftRight =} \KeywordTok{seq}\NormalTok{(}\KeywordTok{min}\NormalTok{(swiss}\OperatorTok{$}\NormalTok{LeftRight, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{), }
+                                                       \KeywordTok{max}\NormalTok{(swiss}\OperatorTok{$}\NormalTok{LeftRight, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{),}
+                                                       \DataTypeTok{length.out =} \DecValTok{100}\NormalTok{)), }\DataTypeTok{type =} \StringTok{"response"}\NormalTok{ )}
+
+\KeywordTok{plot}\NormalTok{(}
+  \DataTypeTok{x=} \KeywordTok{jitter}\NormalTok{(swiss}\OperatorTok{$}\NormalTok{LeftRight[swiss}\OperatorTok{$}\NormalTok{age}\OperatorTok{==}\DecValTok{50}\NormalTok{],}\DecValTok{1}\NormalTok{),}
+  \DataTypeTok{y =}\NormalTok{ swiss}\OperatorTok{$}\NormalTok{VoteYes[swiss}\OperatorTok{$}\NormalTok{age}\OperatorTok{==}\DecValTok{50}\NormalTok{],}
+  \DataTypeTok{pch =} \StringTok{"|"}\NormalTok{, }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{,}
+  \DataTypeTok{col =} \KeywordTok{rgb}\NormalTok{(}\DataTypeTok{green =} \DecValTok{100}\NormalTok{, }\DataTypeTok{blue =} \DecValTok{100}\NormalTok{, }\DataTypeTok{red =} \DecValTok{100}\NormalTok{, }\DataTypeTok{alpha =} \DecValTok{150}\NormalTok{, }\DataTypeTok{maxColorValue =} \DecValTok{255}\NormalTok{),}
+  \DataTypeTok{xlab =} \StringTok{"Left-Right Self Placement"}\NormalTok{, }
+  \DataTypeTok{ylab =} \StringTok{"Predicted Probability of Yes-Vote"}\NormalTok{,}
+  \DataTypeTok{main =} \StringTok{"Effect of Ideology for Fifty Year Olds"}
+\NormalTok{  )}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h=}\NormalTok{.}\DecValTok{5}\NormalTok{, }\DataTypeTok{lty =} \StringTok{"dotted"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{)}
+\KeywordTok{text}\NormalTok{(}\DataTypeTok{x =} \DecValTok{8}\NormalTok{, }\DataTypeTok{y=}\NormalTok{ .}\DecValTok{50}\NormalTok{, }\DataTypeTok{pos =} \DecValTok{3}\NormalTok{, }\StringTok{"cutoff pi = .5"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{seq}\NormalTok{(}\KeywordTok{min}\NormalTok{(swiss}\OperatorTok{$}\NormalTok{LeftRight, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{), }
+              \KeywordTok{max}\NormalTok{(swiss}\OperatorTok{$}\NormalTok{LeftRight, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{),}
+              \DataTypeTok{length.out =} \DecValTok{100}\NormalTok{),}
+      \DataTypeTok{y =}\NormalTok{ s4, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-536-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# max prediction}
+\KeywordTok{max}\NormalTok{(s4)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.9827529
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# min prediction}
+\KeywordTok{min}\NormalTok{(s4)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.03708689
+\end{verbatim}
+
+We predict that the probability of voting for the ban decreases the more
+conservative the respondent. For a 50 year old respondent, who is on the
+extreme left of the ideology scale, we predict a 98\% probability of
+voting yes. The predicted probability of voting in favour decreases
+rapidly the more conservative the respondent, to 4\% at the extreme
+right of the scale.
+
+\paragraph{Exercise 7}\label{exercise-7-7}
+
+We include \texttt{university}, \texttt{german}, and \texttt{urban} in
+our model.
+
+We conjecture that repsondents who are university educated are more
+liberal in general and more in favour of gun control specifically.
+University classes, especially those on statistics, teach that gun laws
+are beneficial for society as a whole in the sense that freely available
+guns do not prevent crime but are potentially harmful. Furthermore, we
+control for the cultural language divide in Switzerland, where the
+German speaking areas are potentially more conservative and more in
+favour of liberal gun laws. We control for urbanization because we
+suspect that rural areas are more status quo oriented, whereas urban
+areas favour tighter regulation of guns.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m2 <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(VoteYes }\OperatorTok{~}\StringTok{ }\NormalTok{age }\OperatorTok{+}\StringTok{ }\NormalTok{LeftRight }\OperatorTok{+}\StringTok{ }\NormalTok{university }\OperatorTok{+}\StringTok{ }\NormalTok{german }\OperatorTok{+}\StringTok{ }\NormalTok{urban, }\DataTypeTok{data =}\NormalTok{ swiss, }\DataTypeTok{family =} \KeywordTok{binomial}\NormalTok{(}\DataTypeTok{link=}\StringTok{"logit"}\NormalTok{))}
+\KeywordTok{screenreg}\NormalTok{(}\KeywordTok{list}\NormalTok{(m1, m2))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+========================================
+                Model 1      Model 2    
+----------------------------------------
+(Intercept)        5.01 ***     4.64 ***
+                  (0.42)       (0.44)   
+age               -0.02 ***    -0.02 ***
+                  (0.01)       (0.01)   
+LeftRight         -0.81 ***    -0.80 ***
+                  (0.06)       (0.06)   
+university                      0.67 ***
+                               (0.19)   
+german                         -0.12    
+                               (0.17)   
+urban                           0.42 *  
+                               (0.18)   
+----------------------------------------
+AIC              935.71       917.79    
+BIC              950.13       946.61    
+Log Likelihood  -464.86      -452.90    
+Deviance         929.71       905.79    
+Num. obs.        902          901       
+========================================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+\paragraph{Exercise 8}\label{exercise-8-8}
+
+The effect of \texttt{german} in our new model is a statistical zero. As
+expected, university educated respondents are more in favour of the
+assault rifle regulation. Similarly, the more urban the canton, the
+respondent lives in, the more likely the respondent is to be in favour
+of the regulation.
+
+Comparing our two models, we conclude that none of the new variables
+were confounding the effects of age and ideology. The effects of age and
+ideology are substantially unchanged.
+
+We illustrate the effect of higher education and urbanisation in a plot.
+We vary urbanization from its minimum to its maximum. We plot two lines
+one for respondents with higher education and one for respondents
+without university education. We will keep constant \texttt{age},
+\texttt{LeftRight}, and \texttt{german} and the appropriate measures of
+central tendency.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# newdata with no uni degree}
+\NormalTok{X1 <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
+  \DataTypeTok{age =} \KeywordTok{mean}\NormalTok{(swiss}\OperatorTok{$}\NormalTok{age),}
+  \DataTypeTok{LeftRight =} \KeywordTok{mean}\NormalTok{(swiss}\OperatorTok{$}\NormalTok{LeftRight, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{),}
+  \DataTypeTok{university =} \DecValTok{0}\NormalTok{,}
+  \DataTypeTok{german =} \KeywordTok{median}\NormalTok{(swiss}\OperatorTok{$}\NormalTok{german),}
+  \DataTypeTok{urban =} \KeywordTok{seq}\NormalTok{(}\KeywordTok{min}\NormalTok{(swiss}\OperatorTok{$}\NormalTok{urban), }\KeywordTok{max}\NormalTok{(swiss}\OperatorTok{$}\NormalTok{urban),}\DataTypeTok{length.out =} \DecValTok{100}\NormalTok{)}
+\NormalTok{)}
+
+\CommentTok{# newdata with uni degree}
+\NormalTok{X2 <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
+  \DataTypeTok{age =} \KeywordTok{mean}\NormalTok{(swiss}\OperatorTok{$}\NormalTok{age),}
+  \DataTypeTok{LeftRight =} \KeywordTok{mean}\NormalTok{(swiss}\OperatorTok{$}\NormalTok{LeftRight, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{),}
+  \DataTypeTok{university =} \DecValTok{1}\NormalTok{,}
+  \DataTypeTok{german =} \KeywordTok{median}\NormalTok{(swiss}\OperatorTok{$}\NormalTok{german),}
+  \DataTypeTok{urban =} \KeywordTok{seq}\NormalTok{(}\KeywordTok{min}\NormalTok{(swiss}\OperatorTok{$}\NormalTok{urban), }\KeywordTok{max}\NormalTok{(swiss}\OperatorTok{$}\NormalTok{urban),}\DataTypeTok{length.out =} \DecValTok{100}\NormalTok{)}
+\NormalTok{)}
+
+
+\CommentTok{# no university degree}
+\NormalTok{X1}\OperatorTok{$}\NormalTok{pp <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(m2, }\DataTypeTok{newdata =}\NormalTok{ X1, }\DataTypeTok{type =} \StringTok{"response"}\NormalTok{)}
+
+\CommentTok{# got uni degree}
+\NormalTok{X2}\OperatorTok{$}\NormalTok{pp <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(m2, }\DataTypeTok{newdata =}\NormalTok{ X2, }\DataTypeTok{type =} \StringTok{"response"}\NormalTok{)}
+
+
+\CommentTok{# plot}
+\KeywordTok{plot}\NormalTok{(}
+  \DataTypeTok{x =}\NormalTok{ X1}\OperatorTok{$}\NormalTok{urban,}
+  \DataTypeTok{y =}\NormalTok{ X1}\OperatorTok{$}\NormalTok{pp,}
+  \DataTypeTok{type =} \StringTok{"l"}\NormalTok{,}
+  \DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}
+  \DataTypeTok{main =} \StringTok{"Effects of Urbanisation and Higher Education on Yes-Vote"}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"Share of citizens in canton living in urban areas"}\NormalTok{,}
+  \DataTypeTok{ylab =} \StringTok{"Predicted Probability of Yes-Vote"}\NormalTok{,}
+  \DataTypeTok{lwd =} \DecValTok{3}\NormalTok{,}
+  \DataTypeTok{frame.plot =} \OtherTok{FALSE}
+\NormalTok{  )}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h=}\NormalTok{.}\DecValTok{5}\NormalTok{, }\DataTypeTok{lty =} \StringTok{"dotted"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{)}
+\KeywordTok{text}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ .}\DecValTok{8}\NormalTok{, }\DataTypeTok{y=}\NormalTok{ .}\DecValTok{50}\NormalTok{, }\DataTypeTok{pos =} \DecValTok{1}\NormalTok{, }\StringTok{"cutoff pi = .5"}\NormalTok{)}
+
+\CommentTok{# add university education}
+\KeywordTok{lines}\NormalTok{(X2}\OperatorTok{$}\NormalTok{urban, X2}\OperatorTok{$}\NormalTok{pp, }\DataTypeTok{lwd =} \DecValTok{3}\NormalTok{, }\DataTypeTok{col =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{statistics1_files/figure-latex/unnamed-chunk-539-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# no uni degree predictions}
+\KeywordTok{range}\NormalTok{(X1}\OperatorTok{$}\NormalTok{pp)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.4376645 0.5421051
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# uni degree predictions}
+\KeywordTok{range}\NormalTok{(X2}\OperatorTok{$}\NormalTok{pp)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.6040835 0.6988812
+\end{verbatim}
+
+We show the effects of urbanisation and higher education for a centrist
+respondent with mean age (49), from the German speaking part of
+Switzerland. An average respondent such as this without a university
+degree living in the most rural part of Switzerland is predicted to vote
+yes with 44/\% probabilty. The same respondent with higher education is
+predicted to vote yes with probability 60\%. At the other extreme end of
+urbanization the predicted probability of a yes-vote for a respondent
+without higher education is 54\%. The respondent with a university
+degree is predicted to vote yes with 70\% probability.
 
 \section{Datacamp}\label{datacamp}
 

@@ -243,6 +243,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.1.4" data-path="seminar9.html"><a href="seminar9.html#heteroskedasticity"><i class="fa fa-check"></i><b>9.1.4</b> Heteroskedasticity</a></li>
 <li class="chapter" data-level="9.1.5" data-path="seminar9.html"><a href="seminar9.html#exercises-8"><i class="fa fa-check"></i><b>9.1.5</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="9.2" data-path="solutions9.html"><a href="solutions9.html"><i class="fa fa-check"></i><b>9.2</b> Solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="seminar10.html"><a href="seminar10.html"><i class="fa fa-check"></i><b>10</b> Panel Data - Fixed Effects and some Random Effects</a><ul>
 <li class="chapter" data-level="10.1" data-path="seminar10.html"><a href="seminar10.html#seminar-9"><i class="fa fa-check"></i><b>10.1</b> Seminar</a><ul>
@@ -271,6 +272,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.1.6" data-path="seminar11.html"><a href="seminar11.html#predicted-probabilities"><i class="fa fa-check"></i><b>11.1.6</b> Predicted probabilities</a></li>
 <li class="chapter" data-level="11.1.7" data-path="seminar11.html"><a href="seminar11.html#exercises-9"><i class="fa fa-check"></i><b>11.1.7</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="11.2" data-path="solutions11.html"><a href="solutions11.html"><i class="fa fa-check"></i><b>11.2</b> Solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="datacamp.html"><a href="datacamp.html"><i class="fa fa-check"></i><b>12</b> Datacamp</a><ul>
 <li class="chapter" data-level="12.1" data-path="datacamp.html"><a href="datacamp.html#develop-your-skills-as-a-data-scientist"><i class="fa fa-check"></i><b>12.1</b> Develop your skills as a data scientist</a></li>
@@ -308,20 +310,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># random draw of 10 values from a uniform distribution</span>
 dice &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">7</span>)
 dice</code></pre></div>
-<pre><code> [1] 2.752968 1.184678 4.356550 3.313679 4.017976 1.426506 1.993266
- [8] 6.059841 6.471126 6.306460</code></pre>
+<pre><code> [1] 4.617125 1.582249 1.913534 1.592641 5.089284 6.002973 3.495334
+ [8] 6.303471 2.842448 6.539487</code></pre>
 <p>We have indeed drawn 10 numbers but they are not integers as we would like—we want to simulate a die, so the values should be 1, 2, 3, 4, 5 or 6. We will return to this in a moment but for now let’s return to the randomness. Let’s draw 10 numbers again:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># random draw of 10 values from a uniform distribution</span>
 dice2 &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">7</span>)
 
 <span class="co"># first draw</span>
 dice</code></pre></div>
-<pre><code> [1] 2.752968 1.184678 4.356550 3.313679 4.017976 1.426506 1.993266
- [8] 6.059841 6.471126 6.306460</code></pre>
+<pre><code> [1] 4.617125 1.582249 1.913534 1.592641 5.089284 6.002973 3.495334
+ [8] 6.303471 2.842448 6.539487</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># second draw</span>
 dice2</code></pre></div>
-<pre><code> [1] 5.982007 4.599795 4.804325 4.316573 1.249818 5.164681 3.243995
- [8] 3.794728 6.041231 2.586993</code></pre>
+<pre><code> [1] 5.179127 1.711914 5.921980 1.889529 6.126363 3.887006 4.155600
+ [8] 6.558753 4.675780 2.254718</code></pre>
 <p>The numbers of the first and second roll differ because we have drawn values at random. To make our results replicate and to ensure that everyone in the seminar works with the same numbers, we set R’s random number generator with the <code>set.seed()</code> function. As argument we plug in some arbitrary value (it does not matter which but using a different one will lead to a different quasi-random draw).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set random number generator</span>
 <span class="kw">set.seed</span>(<span class="dv">123</span>)

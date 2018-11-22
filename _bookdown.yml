@@ -36,13 +36,13 @@ rmd_files: [
   solutions/solutions8.Rmd,
 
   seminars/seminar9.Rmd,
-  #solutions/solutions9.Rmd,
+  solutions/solutions9.Rmd,
   
   seminars/seminar10.Rmd,
   #solutions/solutions9.Rmd,
   
   seminars/seminar11.Rmd,
-  #solutions/solutions9.Rmd,
+  solutions/solutions11.Rmd,
 
   datacamp.Rmd,
   # optional material

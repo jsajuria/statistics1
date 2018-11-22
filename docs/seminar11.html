@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="seminar10.html">
-<link rel="next" href="datacamp.html">
+<link rel="next" href="solutions11.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -243,6 +243,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.1.4" data-path="seminar9.html"><a href="seminar9.html#heteroskedasticity"><i class="fa fa-check"></i><b>9.1.4</b> Heteroskedasticity</a></li>
 <li class="chapter" data-level="9.1.5" data-path="seminar9.html"><a href="seminar9.html#exercises-8"><i class="fa fa-check"></i><b>9.1.5</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="9.2" data-path="solutions9.html"><a href="solutions9.html"><i class="fa fa-check"></i><b>9.2</b> Solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="seminar10.html"><a href="seminar10.html"><i class="fa fa-check"></i><b>10</b> Panel Data - Fixed Effects and some Random Effects</a><ul>
 <li class="chapter" data-level="10.1" data-path="seminar10.html"><a href="seminar10.html#seminar-9"><i class="fa fa-check"></i><b>10.1</b> Seminar</a><ul>
@@ -271,6 +272,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.1.6" data-path="seminar11.html"><a href="seminar11.html#predicted-probabilities"><i class="fa fa-check"></i><b>11.1.6</b> Predicted probabilities</a></li>
 <li class="chapter" data-level="11.1.7" data-path="seminar11.html"><a href="seminar11.html#exercises-9"><i class="fa fa-check"></i><b>11.1.7</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="11.2" data-path="solutions11.html"><a href="solutions11.html"><i class="fa fa-check"></i><b>11.2</b> Solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="datacamp.html"><a href="datacamp.html"><i class="fa fa-check"></i><b>12</b> Datacamp</a><ul>
 <li class="chapter" data-level="12.1" data-path="datacamp.html"><a href="datacamp.html#develop-your-skills-as-a-data-scientist"><i class="fa fa-check"></i><b>12.1</b> Develop your skills as a data scientist</a></li>
@@ -394,7 +396,7 @@ RMSE            0.27
   <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span>.<span class="dv">5</span>, <span class="fl">1.5</span>),
   <span class="dt">frame.plot =</span> F)
 <span class="kw">abline</span>(linear_mod, <span class="dt">lwd =</span> <span class="dv">3</span>)</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-484-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-505-1.png" width="672" /></p>
 <p>As we can see from the plot, because the functional form of the linear probability model is linear, the estimated relationship suggests that for respondents with a <code>distance</code> value greater than about 23 have a <em>negative</em> probability of voting for the president, and respondents with a <code>distance</code> value less than about 5 have a probability of voting for the president that is <em>greater than 1</em>.</p>
 <div id="adjusted-standard-errors-in-the-linear-probability-model" class="section level4">
 <h4><span class="header-section-number">11.1.3.1</span> Adjusted Standard Errors in the Linear Probability Model</h4>
@@ -408,7 +410,7 @@ RMSE            0.27
   <span class="dt">ylab =</span> <span class="st">&quot;Residuals&quot;</span>,
   <span class="dt">frame.plot =</span> F)
 <span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-485-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-506-1.png" width="672" /></p>
 <p>We can see from this plot that the linear probability model is always heteroskedastic – the errors are not evenly distributed around zero for all values of <code>distance</code>.</p>
 <p>Because of this problem, we now adjust the standard errors to be heteroskedasticity robust.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">corrected_errors &lt;-<span class="st"> </span><span class="kw">coeftest</span>(linear_mod, <span class="dt">vcov =</span> <span class="kw">vcovHC</span>(linear_mod))
@@ -599,7 +601,7 @@ data_for_predicted_prob<span class="op">$</span>predicted_probs &lt;-<span class
   <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="co"># type = &quot;l&quot; will produce a line plot, rather than the default scatter plot</span>
   <span class="dt">lwd =</span> <span class="dv">3</span> <span class="co"># lwd = 3 will increase the thinkness of the line on the plot</span>
 )</code></pre></div>
-<p><img src="statistics1_files/figure-html/unnamed-chunk-501-1.png" width="672" /></p>
+<p><img src="statistics1_files/figure-html/unnamed-chunk-522-1.png" width="672" /></p>
 <p>The plot nicely illustrates the non-linear functional form of the logistic regression model. As desired, all of the predicted probabilities now vary between 0 and 1, as the line takes on a distinctive “S” shape. It is clear from this plot that X (<code>distance</code>) is non-linearly related to the probability that <span class="math inline">\(Y=1\)</span> (<span class="math inline">\(P(Y = 1) = \pi\)</span>): the same change in X results in difference changes in <span class="math inline">\(\pi\)</span> depending on which values of X we consider. For example:</p>
 <ul>
 <li>Increasing <code>distance</code> from 5 to 10 leads to a decrease in <span class="math inline">\(\pi\)</span> of only a very small amount</li>
@@ -725,14 +727,13 @@ swiss &lt;-<span class="st"> </span><span class="kw">read.dta</span>(<span class
 
 </div>
 </div>
-</div>
             </section>
 
           </div>
         </div>
       </div>
 <a href="seminar10.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="datacamp.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="solutions11.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
