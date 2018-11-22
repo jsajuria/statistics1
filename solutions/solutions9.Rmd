@@ -1,0 +1,289 @@
+## Solutions
+
+#### Exercise 1
+
+Load `chechen.csv.` We will load it directly from the github source.
+
+```{r}
+# load texreg library for model output tables
+library(texreg)
+
+# chechen data
+a <- read.csv("https://uclspp.github.io/datasets/data/chechen.csv")
+```
+
+#### Exercise 2
+
+Run a bivariate regression model with diff as the dependent variable and treat as the predictor.
+
+```{r}
+# bivariate model
+m1 <- lm(diff ~ treat, data = a)
+screenreg(m1)
+```
+
+The effect of Russian artillery shelling is significant and negative. Therefore, it seems that indiscriminate violence in this case reduces insurgent violence. There are many potential confounders, however, that we will control for in the next exercise. 
+
+The interpretation on the magnitude of the effect is the following: The dependent variable is the change in the number of insurgent attacks. The independent variable is binary. Therefore, there was half an attack less, on average, in villages that had been bombarded by Russian artillery.
+
+
+#### Exercise 3
+
+Control for additional variables. Discuss your choice of variables and refer to omitted variable bias.
+
+We control for the amount of attacks before the village was bombarded (`pret`). We reason that villages that saw more insurgent activity already, were more likely to be bombarded and might see more insurgent activity after bombardment as well. Furhtermore, we control for logged elevation `lelev` because attacks may be more likely in remote mountainous terrain and it may have been harder for the Russians to control such areas. With a similar argument we control `groznyy` and `lpop2000`, were the argument is that urban areas may see more insurgent actitivities and are harder to control. We also control for `swept` to account for the possibility that previous sweeps in the area have reduced the likelihood of subsequent shelling and insurgent activity.
+ 
+
+```{r}
+# multivariate model
+m2 <- lm(diff ~ 
+           treat +
+           pret +
+           lelev +
+           groznyy +
+           lpop2000 +
+           swept +
+           factor(disno), 
+         data = a)
+screenreg(list(m1, m2))
+```
+
+
+#### Exercise 4
+
+Discuss the improvement in model fit and use the appropriate test statistic.
+
+```{r}
+# f-test
+anova(m1, m2)
+```
+
+We increase adjusted R^2 substantially. While R^2 almost always increases and never decreases, adjusted R^2 might decrease. We use the F test to test whether are added covariates are jointly significant - whether the improvement in explanatory power of our model could be due to chance. We reject the null hypothesis that both models do equally well at explaining the outcome. Our larger model improves model fit.
+
+#### Exercise 5
+
+Check for non-linearity and if there is, solve the problem.
+
+```{r}
+# create residuals variable in data set
+a$residuals <- m2$residuals
+
+# check residual plots with continuous variable
+plot(residuals ~ pret, data = a)
+```
+
+We only have one continuous variable in our model that has not already been transformed to deal with non-linearity: the number of insurgent attacks before shelling `pret`. The residual plot does not reveal a non-linear relation.
+
+
+#### Exercise 6
+
+Check for heteroskedasticity and if there is solve the problem.
+
+```{r}
+library(lmtest) # contains BP test function
+bptest(m2) # null is constant error which we reject
+
+library(sandwich) # contains sandwich estimator robust SE's
+# estimate model 2 again with corrected standard errors
+m3 <- coeftest(m2, vcov. = vcovHC(m2, type = "HC1"))
+
+# compare models
+screenreg(list(m2,m3))
+```
+
+The result is that heteroskedasticity robust standard errors do not change our findings. The estimated robust standard errors are actually smaller than the ones estimated under the constant error assumption. The effect remains significant either way but we would choose the larger standard errors.
+
+
+#### Exercise 7
+
+Thoroughly compare the models, and interpret the outcome in substantial as well statistical terms - do not forget to talk about model fit. What are the implications of this?
+
+```{r}
+# compare models
+screenreg(list(m1,m2,m3))
+```
+
+The goal of analysis was to test whether indiscriminate violence leads to more resistance. The variable of interest is, therefore, `treat` which indicates whether a Chechnian village was bombarded or not. In our initial model, we found a significant and negative effect. Thereby, we contradict the theory because the effect seems to go the other way. 
+
+We were concerned about confounding and including a number of variables in the model. We controled for terrain, geographic areas in the country, urban areas, attacks before artillery bombardment, and prior sweeps. The change in the coeffcient is large. The difference is ($-.52 - -0.39 = -0.13$). That is 25% of the original effect. Although, the effect decreased substantially when we control for confounders, it is still significant. The difference between villages that were bombarded and those that were not is $0.39$ attacks on average.
+
+We are not substantially interested in the control variables. According to the model with the larger standard errors, `pret`, and `groznyy` are also significant. Insurgent attacks were more numerous in Groznyy. Interestingly, the more attacks there were before the bombardment , the fewer attacks happened afterwards.
+
+Model fit improves substantially, from $0.03$ in our first model to $0.32$. Although, the second model explains the outcome better that is not what we care about. We are interested in the effect of indiscriminate violence. We prefer the larger model because we control for potential confounders and our estimate less of an overestimate.
+
+#### Exercise 8
+
+Load who_voted_nazi_in_1932.csv.
+
+```{r}
+# clear workspace 
+rm(list=ls())
+a <- read.csv("https://uclspp.github.io/datasets/data/who_voted_nazi_in_1932.csv")
+```
+
+
+#### Exercise 9
+
+Run a bivariate model to test whether blue-collar voters voted for the Nazis.
+
+```{r}
+# summary stats
+summary(a)
+
+m1 <- lm(sharenazis ~ shareblue, data = a)
+screenreg(m1)
+```
+
+#### Exercise 10
+
+Our dataset does not contain much information. We only know about the share of diffrent groups in the district: white collar workers, blue collar workers, self employed, domestically employed, and unemployed. We control for these variables.
+
+A model that would only include blue collar workers omits information about the social make of the district that is necessarily related to the share of blue collar workers. For, example if there are mostly white collar workers in a district that means, there are less blue collar workers, all else equal. If we only have blue collar in our model, we do not know whether most other people are unemployed or white collar workers and so on.
+
+```{r}
+m2 <- lm(sharenazis ~ shareblue + sharewhite + shareself + sharedomestic, data = a)
+```
+
+
+#### Exercise 11
+
+Can you fit a model using `shareblue`, `sharewhite`, `shareself`, `sharedomestic`, and `shareunemployed` as predictors? Why or why not?
+
+Such a model would suffer from perfect multicollinearity. Whichever variable we entered last into our model would be dropped automatically. If we add the share of the five groups, we get 100%. Thus, if we know the share of four gropus in a district, we necessarily know the share of the remaining group in the district.
+
+For example if `shareblue`=30, `shareunemployed`=15, `sharedomestic`=25, `shareself`=20, the four groups are together 90% of the district. The remaining 10% must be white collar workers.
+
+Therefore, adding `shareblue`, `shareunemployed`, `sharedomestic`, and `shareself` to our model already gives us information about how many white collar workers there are in a district. Were we to add the variable `sharewhite`, we would enter the same information twice - leading to perfect multicollinearity.
+
+#### Exercise 12
+
+Check for heteroskedasticity and if there is solve the problem.
+
+```{r}
+# tests on our models 
+bptest(m1)
+bptest(m2)
+
+# robust SE's
+m1.robust <- coeftest(m1, vcov. = vcovHC(m1))
+m2.robust <- coeftest(m2, vcov. = vcovHC(m2))
+
+# compare standard errors
+screenreg(list(m1, m1.robust, m2, m2.robust),
+          custom.model.names = c("m1", "m1 robust", "m2", "m2 robust"))
+```
+
+Correcting for heteroskedasticity does not change our results.
+
+#### Exercise 13
+
+Interpret your models.
+
+```{r}
+screenreg(list(m1,m2))
+```
+
+A prominent theory suggests that Nazis received a lot of their support from blue-collar workers. In model 1, we only include the percentage of blue collar workers in a district. The variable is insignificant but we are likely suffering from omitted variable bias because we are omitting other aspects of the social make-up of the district that are related to the share blue collar workers. 
+
+We omit one category from our models to avoid perfect multicollinearity. In model 2, it seems that blue-collar workers did support the Nazis. More so, than white-collar workers. They received most of their support from the self-employed, though.
+
+
+#### Exercise 14
+
+Load the Massachusetts Test Scores dataset `MA_Schools.csv` from your PUBLG100 folder.
+
+```{r}
+rm(list=ls())
+a <- read.csv("MA_Schools.csv")
+summary(a)
+```
+
+Fit a model to explain the relationship between percentage of English learners and average 8th grade scores.
+
+```{r}
+m1 <- lm(score8 ~ english, data = a)
+screenreg(m1)
+```
+
+#### Exercise 15
+
+Plot the model and the regression line.
+
+```{r}
+plot(score8 ~ english,
+     data = a,
+     pch = 19,
+     frame.plot = FALSE,
+     col = "darkgray")
+abline(m1, lwd = 3)
+```
+
+
+#### Exercise 16
+
+Check for correlation between the variables listed above to see if there are other variables that should be included in the model.
+
+```{r}
+a <- a[, c("score8", "stratio", "english", "lunch", "income")]
+summary(a)
+# remove NA's
+a <- a[ !is.na(a$score8),  ]
+
+# check correlation
+cor(a)
+```
+
+Both `lunch` and `income` are highly correlated with the percent of English learners and with the response variable. We add both to our model.
+
+```{r}
+m2 <- lm(score8 ~ english + lunch + income, data = a)
+```
+
+
+#### Exercise 17
+
+Compare the two models. Did the first model suffer from omitted variable bias?
+
+
+```{r}
+screenreg(list(m1,m2))
+```
+
+The comparison between models 1 and 2, shows that the performance of the children is related to poverty rather than language. The two are, however, correlated.
+
+
+#### Exercise 18
+
+Plot the residuals against the fitted values from the second model to visually check for heteroskedasticity.
+
+```{r}
+a$residuals <- m2$residuals # mistakes
+a$fitted <- m2$fitted.values # predictions
+plot(residuals ~ fitted,
+     data = a,
+     pch = 19,
+     col = "darkgray",
+     frame.plot = FALSE)
+abline(h=0, lwd = 2)
+```
+
+The plot looks okay. I would not conclude that the model violates the constant errors assumption.
+
+
+#### Exercise 19
+
+Run the Breusch-Pagan Test to see whether the model suffers from heteroskedastic errors.
+
+```{r}
+bptest(m2) # we cannot reject the null -> yay :)
+```
+
+The Bresch Pagan test confirms, the constant error assumption is not violated.
+
+
+#### Exercise 20
+Correct for heteroskedasticity (if needed) and present the results with corrected standard errors and p-values.
+
+We do not need to do this because the constant error assumption is not violated.
+
+
