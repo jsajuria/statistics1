@@ -43,6 +43,9 @@ rmd_files: [
   
   seminars/seminar11.Rmd,
   solutions/solutions11.Rmd,
+  
+  seminars/seminar12.Rmd,
+  #solutions/solutions11.Rmd,
 
   datacamp.Rmd,
   # optional material

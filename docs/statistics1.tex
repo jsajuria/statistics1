@@ -5627,8 +5627,8 @@ is the maximum value.
 \end{Shaded}
 
 \begin{verbatim}
- [1] 3.686993 2.391410 4.688283 1.296594 3.962915 3.909719 4.946537
- [8] 4.711605 4.464695 6.067921
+ [1] 5.201606 4.462380 6.134784 2.825017 4.383748 4.894286 4.502674
+ [8] 4.836910 1.983851 6.348310
 \end{verbatim}
 
 We have indeed drawn 10 numbers but they are not integers as we would
@@ -5647,8 +5647,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 3.686993 2.391410 4.688283 1.296594 3.962915 3.909719 4.946537
- [8] 4.711605 4.464695 6.067921
+ [1] 5.201606 4.462380 6.134784 2.825017 4.383748 4.894286 4.502674
+ [8] 4.836910 1.983851 6.348310
 \end{verbatim}
 
 \begin{Shaded}
@@ -5659,8 +5659,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 4.656603 1.616605 2.413401 3.520346 5.781839 2.024383 3.876880
- [8] 2.336095 1.323726 1.645960
+ [1] 2.998999 2.993855 5.896027 3.353403 4.962556 5.695806 2.107456
+ [8] 2.339513 5.929563 3.299450
 \end{verbatim}
 
 The numbers of the first and second roll differ because we have drawn
@@ -15723,6 +15723,739 @@ predicted to vote yes with probability 60\%. At the other extreme end of
 urbanization the predicted probability of a yes-vote for a respondent
 without higher education is 54\%. The respondent with a university
 degree is predicted to vote yes with 70\% probability.
+
+\section{Binary Dependent Variable Models
+(II)}\label{binary-dependent-variable-models-ii}
+
+\subsection{Seminar}\label{seminar-11}
+
+Let's start by loading the required packages:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(texreg) }
+\KeywordTok{library}\NormalTok{(lmtest)}
+\end{Highlighting}
+\end{Shaded}
+
+Clear the environment
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rm}\NormalTok{(}\DataTypeTok{list =} \KeywordTok{ls}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Loading Data}\label{loading-data-3}
+
+Today, we return to ethnic voting. Instead of the Afrobarometer, we will
+use a dataset from a survey that was carried out in Benin. Researchers
+randomly assigned survey respondents short bibliographical passages on
+the then Beninoise president Yayi Boni that included no mention of his
+wife, included a mention of his wife, or included a mention of his Fon
+wife. Respondents were then asked whether they were willing to vote for
+Yayi Boni should an election be held and barring term limits. The goal
+of the experiment was to assess whether priming respondents about the
+president's Fon wife might raise support amonst wife coethics for the
+president.
+
+We start by loading the dataset \texttt{benin.csv}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{benin <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"https://raw.githubusercontent.com/UCLSPP/datasets/master/data/benin.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.10\columnwidth}\raggedright\strut
+Variable\strut
+\end{minipage} & \begin{minipage}[b]{0.84\columnwidth}\raggedright\strut
+Description\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+\texttt{vote}\strut
+\end{minipage} & \begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+1 - if respondent would vote for the president, 0 otherwise.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+\texttt{sex}\strut
+\end{minipage} & \begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+1 if respondent is female, and 0 otherwise\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+\texttt{age}\strut
+\end{minipage} & \begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+\texttt{ethnicity}\strut
+\end{minipage} & \begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+Ethnicity of the respondent\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+\texttt{fon}\strut
+\end{minipage} & \begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+1 if respondent is Fon, and 0 otherwise.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+\texttt{passage}\strut
+\end{minipage} & \begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+Control if respondent given control passage, Wife for wife passage,
+FonWife for Fon wife passage\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+We take a look at the summary stats:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(benin)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+      sex              age          ethnicity        fon        
+ Min.   :0.0000   Min.   :18.00   Fon    :152   Min.   :0.0000  
+ 1st Qu.:0.0000   1st Qu.:25.00   Goun   : 37   1st Qu.:0.0000  
+ Median :0.0000   Median :31.00   Mina   : 34   Median :0.0000  
+ Mean   :0.4986   Mean   :32.74   Adja   : 33   Mean   :0.4553  
+ 3rd Qu.:1.0000   3rd Qu.:39.00   Dendi  : 30   3rd Qu.:1.0000  
+ Max.   :1.0000   Max.   :70.00   Lokpa  : 12   Max.   :1.0000  
+                                  (Other): 49                   
+    passage         vote       
+ Control:118   Min.   :0.0000  
+ FonWife:118   1st Qu.:0.0000  
+ Wife   :111   Median :0.0000  
+               Mean   :0.4438  
+               3rd Qu.:1.0000  
+               Max.   :1.0000  
+                               
+\end{verbatim}
+
+We have to character variables \texttt{ethnicity} and \texttt{passage}.
+Let's inspect them and turn them into factor variables and look at the
+summary stats once more. Let's also turn our two numeric dummies
+\texttt{sex} and \texttt{fon} into factors.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# inspect}
+\KeywordTok{table}\NormalTok{(benin}\OperatorTok{$}\NormalTok{ethnicity)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+      Adja        Ani Betamaribe      Dendi   Ditamari    Dompago 
+        33          4          2         30          9          2 
+       Ewe        Fon       Goun      Lokpa       Mahi       Mina 
+         1        152         37         12          6         34 
+   Natimba      Ouama       Peul      Somba       Wama        Yoa 
+         2          1          6          5          2          5 
+       Yom 
+         4 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(benin}\OperatorTok{$}\NormalTok{passage)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+Control FonWife    Wife 
+    118     118     111 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# convert to factor}
+\NormalTok{benin}\OperatorTok{$}\NormalTok{ethnicity <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(benin}\OperatorTok{$}\NormalTok{ethnicity)}
+\NormalTok{benin}\OperatorTok{$}\NormalTok{passage <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(benin}\OperatorTok{$}\NormalTok{passage)}
+\NormalTok{benin}\OperatorTok{$}\NormalTok{sex <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(benin}\OperatorTok{$}\NormalTok{sex, }\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"male"}\NormalTok{, }\StringTok{"female"}\NormalTok{))}
+\NormalTok{benin}\OperatorTok{$}\NormalTok{fon <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(benin}\OperatorTok{$}\NormalTok{fon, }\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"not fon"}\NormalTok{, }\StringTok{"fon"}\NormalTok{))}
+
+\CommentTok{# inspect again}
+\KeywordTok{table}\NormalTok{(benin}\OperatorTok{$}\NormalTok{ethnicity)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+      Adja        Ani Betamaribe      Dendi   Ditamari    Dompago 
+        33          4          2         30          9          2 
+       Ewe        Fon       Goun      Lokpa       Mahi       Mina 
+         1        152         37         12          6         34 
+   Natimba      Ouama       Peul      Somba       Wama        Yoa 
+         2          1          6          5          2          5 
+       Yom 
+         4 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(benin}\OperatorTok{$}\NormalTok{passage)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+Control FonWife    Wife 
+    118     118     111 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# summary stats again}
+\KeywordTok{summary}\NormalTok{(benin)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+     sex           age          ethnicity        fon         passage   
+ male  :174   Min.   :18.00   Fon    :152   not fon:189   Control:118  
+ female:173   1st Qu.:25.00   Goun   : 37   fon    :158   FonWife:118  
+              Median :31.00   Mina   : 34                 Wife   :111  
+              Mean   :32.74   Adja   : 33                              
+              3rd Qu.:39.00   Dendi  : 30                              
+              Max.   :70.00   Lokpa  : 12                              
+                              (Other): 49                              
+      vote       
+ Min.   :0.0000  
+ 1st Qu.:0.0000  
+ Median :0.0000  
+ Mean   :0.4438  
+ 3rd Qu.:1.0000  
+ Max.   :1.0000  
+                 
+\end{verbatim}
+
+\subsubsection{Models with Binary Dependent Variables and
+Interactions}\label{models-with-binary-dependent-variables-and-interactions}
+
+Let's estimate a model that predicts whether a respondent would vote for
+the incumbent using \texttt{passage}, \texttt{sex}, \texttt{age} as
+predictors.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m1 <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(vote }\OperatorTok{~}\StringTok{ }\NormalTok{passage }\OperatorTok{+}\StringTok{ }\NormalTok{sex }\OperatorTok{+}\StringTok{ }\NormalTok{age, }\DataTypeTok{family =} \KeywordTok{binomial}\NormalTok{(}\DataTypeTok{link =} \StringTok{"logit"}\NormalTok{), }\DataTypeTok{data =}\NormalTok{ benin)}
+\KeywordTok{screenreg}\NormalTok{(m1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+==========================
+                Model 1   
+--------------------------
+(Intercept)       -0.15   
+                  (0.42)  
+passageFonWife     0.18   
+                  (0.26)  
+passageWife       -0.14   
+                  (0.27)  
+sexfemale         -0.57 **
+                  (0.22)  
+age                0.01   
+                  (0.01)  
+--------------------------
+AIC              477.39   
+BIC              496.64   
+Log Likelihood  -233.69   
+Deviance         467.39   
+Num. obs.        347      
+==========================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+Let's interpret the table. The respondents who received the message
+about Yayi Boni's wife were not more likely to say that they would vote
+for the incumbent. Equally, respondents who were primed with the message
+of Boni's Fon wife were not more likely to say that they intended to
+vote for the incumbent. The only non-zero finding, is a gender effect.
+Women are less likely to vote for the incumbent. The odds of a voting
+intention for the incumbent are 43\% lower for women than for men
+(\texttt{exp(-.57)}\(=0.57\)).
+
+However, there is likely something missing from our model. Our goal was
+to test whether priming respondents with the message about the Fon wife
+made respondents more likely to say they would vote for Boni. We would
+only reasonably expect such an effect for coethnics with the wife.
+Therefore, we have to interact the treatment variable \texttt{passage}
+with the coethnic indicator \texttt{fon}. We do so in model 2.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m2 <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(vote }\OperatorTok{~}\StringTok{ }\NormalTok{passage}\OperatorTok{*}\NormalTok{fon }\OperatorTok{+}\StringTok{ }\NormalTok{sex }\OperatorTok{+}\StringTok{ }\NormalTok{age, }\DataTypeTok{family =} \KeywordTok{binomial}\NormalTok{(}\DataTypeTok{link =} \StringTok{"logit"}\NormalTok{), }\DataTypeTok{data =}\NormalTok{ benin)}
+\KeywordTok{screenreg}\NormalTok{(}\KeywordTok{list}\NormalTok{(m1,m2))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+==============================================
+                       Model 1     Model 2    
+----------------------------------------------
+(Intercept)              -0.15        1.22 *  
+                         (0.42)      (0.53)   
+passageFonWife            0.18       -0.73    
+                         (0.26)      (0.39)   
+passageWife              -0.14       -0.57    
+                         (0.27)      (0.39)   
+sexfemale                -0.57 **    -0.60 *  
+                         (0.22)      (0.24)   
+age                       0.01       -0.00    
+                         (0.01)      (0.01)   
+fonfon                               -2.36 ***
+                                     (0.44)   
+passageFonWife:fonfon                 1.76 ** 
+                                     (0.58)   
+passageWife:fonfon                    0.19    
+                                     (0.67)   
+----------------------------------------------
+AIC                     477.39      424.28    
+BIC                     496.64      455.08    
+Log Likelihood         -233.69     -204.14    
+Deviance                467.39      408.28    
+Num. obs.               347         347       
+==============================================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+We now get significant interaction effects. We have three groups to
+compare: 1) Fon respondents who got no briefing about Boni's wife. 2)
+Fon respondent's who got a message about Boni's wife but not her
+ethnicity. 3) Fon respondents who got a message about Boni's Fon wife.
+
+We call the message about the wife but not her ethnicity a placebo
+treatment. By giving that, we can be sure that an estimated effect is
+not due to the popularity or notoriety of the wife.
+
+For respondents in the control group, the odds ratio for those with Fon
+ehnicity vs.~other ethnicity is:
+\[ OR1 = exp^{\beta_{Fon}} = exp^{-2.36} = 0.09 \] The odds are reduced
+by 91\%.
+
+There is no discernable effect between Fon respondents who did not
+receive a message about the wife and Fon respondents who were primed
+about Boni's wife but not her ethnicity.
+
+The odds ratio would be computed as:
+\[ OR2 = exp^{\beta_{Fon} + \beta{Fon X Group}} = exp^{-2.36 + 0.19} = 0.11 \]
+
+Finally, the interaction term between wife coethinc \texttt{fon} and
+priming about the wife's ethnicity \texttt{passageFonWife:fon} is
+positive and significant. For such respondents the odds ratios are
+modified by \texttt{exp(-2.36\ +\ 1.76)} which is \(0.55\). Therefore,
+for Fon respondents who received the treatment, the odds of voting for
+Boni were reduced by only 44\%. This is evidence for the effect of
+priming.
+
+\subsubsection{Predicted Probabilities and Predictive
+Power}\label{predicted-probabilities-and-predictive-power}
+
+To assess the predictive power of our model we will check the percentage
+of cases that it correctly predicted. Let's look at our dependent
+variable first and find out what the naive guess is.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(benin}\OperatorTok{$}\NormalTok{vote)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.443804
+\end{verbatim}
+
+The mean is \(0.44\). That means that 44\% of the respondents said that
+they would vote for Boni. This also means that more people said, that
+they would not vote for him (\(100 - 44 = 56\%\)). If we had no model
+and were to close our eyes and predict for a random respondent from our
+sample whether she would vote for or against Boni, the prediction that
+we should make is: she will not vote for Boni. This is the naive guess.
+The naive guess is \(0\) - the best prediction without a statistical
+model.
+
+Now suppose, you predict \(0\) for every respondent in the sample. This
+would give us a percent of correctly predicted cases of 56\%. Remember
+that the mean is \(0.44\). This is the proportion of respondents who
+would vote for Boni. So, if we predict that everyone does not vote for
+Boni, our rate of correct predictions is 56\%. Let's get this in R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# naive guess}
+\NormalTok{nguess <-}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(}\KeywordTok{mean}\NormalTok{(benin}\OperatorTok{$}\NormalTok{vote) }\OperatorTok{>}\StringTok{ }\NormalTok{.}\DecValTok{5}\NormalTok{, }\DataTypeTok{yes =} \DecValTok{1}\NormalTok{, }\DataTypeTok{no =} \DecValTok{0}\NormalTok{)}
+\NormalTok{nguess}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# percent correctly predicted using the naive guess}
+\NormalTok{pcp.naive <-}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(}\KeywordTok{mean}\NormalTok{(benin}\OperatorTok{$}\NormalTok{vote) }\OperatorTok{>}\StringTok{ }\FloatTok{0.5}\NormalTok{, }\DataTypeTok{yes =} \KeywordTok{mean}\NormalTok{(benin}\OperatorTok{$}\NormalTok{vote), }\DataTypeTok{no =} \DecValTok{1} \OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(benin}\OperatorTok{$}\NormalTok{vote))}
+\NormalTok{pcp.naive}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.556196
+\end{verbatim}
+
+We see that the naive guess is indeed 56\%. Our statistical model that
+we estimated earlier must do better than this, otherwise our model will
+be useless. You can think of this like a linear model that does not win
+the F-test against the empty model. Such a model makes no contribution.
+
+We will now estimate predicted probabilities, expected values and
+estimate our rate of correctly predicted cases.
+
+Step 1: Predicted probabilities. We already know how to do this. We use
+the \texttt{predict()} function and set \texttt{type\ =\ "response"}. We
+attach the predicted probabilities for every respondent to the original
+dataset.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# predicted probabilities}
+\NormalTok{benin}\OperatorTok{$}\NormalTok{pps <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(m2, }\DataTypeTok{type =} \StringTok{"response"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Step 2: Expected values. Now, that we got our predicted probabilities of
+voting for Boni, we will assign everyone in our dataset who has a
+predicted probability greater than \(0.5\) with an expected value of 1
+and everyone else get's a \(0\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{benin}\OperatorTok{$}\NormalTok{evs <-}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(benin}\OperatorTok{$}\NormalTok{pps }\OperatorTok{>}\StringTok{ }\FloatTok{0.5}\NormalTok{, }\DataTypeTok{yes =} \DecValTok{1}\NormalTok{, }\DataTypeTok{no =} \DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Step 3: Compute percentage correctly predicted. For every respondent in
+our dataset, we have made a prediction based on our model \texttt{m2}.
+We will compare our predictions to the actual outcomes now in a
+cross-table (sometimes called confusion matrix).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{confusion <-}\StringTok{ }\KeywordTok{table}\NormalTok{(}\DataTypeTok{actual =}\NormalTok{ benin}\OperatorTok{$}\NormalTok{vote, }\DataTypeTok{expected.value =}\NormalTok{ benin}\OperatorTok{$}\NormalTok{evs)}
+\NormalTok{confusion}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+      expected.value
+actual   0   1
+     0 133  60
+     1  55  99
+\end{verbatim}
+
+The observations on the diagonal are our correct predictions where a
+predicted vote intention against Boni corresponds to an actual vote
+intention against Boni and a predicted vote intention for Boni
+corresponds to an actual vote intention to Boni.
+
+For 55 respondents, we predict that they do not want to vote for Boni
+but they respond that they do want to vote for him. These are what we
+call false negatives.
+
+For 60 respondents, we predict that they would want to vote for Boni but
+when asked they said that they would not want to vote for him. We call
+these mistakes false positives.
+
+For our purposes, false negatives are equally bad as false positives. We
+do want to make as few mistakes as possible but we do not care about the
+kind of mistake that we make. There are other applications where the
+kind of mistake matters (e.g.~cancer tests). By varying the threshold
+from 0.5 to some other threshold value, we would change the amount of
+false negative and false positive mistakes that we make but we cannot
+get a lower overall rate of mistakes by changing the threshold (0.5 is
+optimal in that sense).
+
+To compute the percentage of correctly classified cases, we now divide
+the elements on the diagonal of the confusion matrix by all respondents.
+We use the \texttt{diag()} function and the \texttt{sum()} function to
+do this. The former takes the diagonal elements of the table and the
+latter takes a sum.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{(}\KeywordTok{diag}\NormalTok{(confusion)) }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(confusion)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.6685879
+\end{verbatim}
+
+We correctly classify 67\% of the respondents into Boni supporters and
+opponents. We thereby improve upon the naive guess which correctly
+classifies 56\% of the respondents. Here, we compared against a baseline
+of no model. When we try to decide between models, we can use the same
+approach.
+
+\subsubsection{Joint hypothesis testing}\label{joint-hypothesis-testing}
+
+Our first model \texttt{m1} included \texttt{passageFonWife},
+\texttt{passageWife}, \texttt{sex}, and \texttt{age} as predictors. In
+our second model, we also included \texttt{fon} as well as interactions
+between \texttt{passageFonWife} and \texttt{fon}, and also
+\texttt{passageWife} and \texttt{fon}. We estimated three additional
+parameters in model \texttt{m2} compared to model \texttt{m1}. Let's
+compare the models in a table again.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{screenreg}\NormalTok{(}\KeywordTok{list}\NormalTok{(m1, m2))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+==============================================
+                       Model 1     Model 2    
+----------------------------------------------
+(Intercept)              -0.15        1.22 *  
+                         (0.42)      (0.53)   
+passageFonWife            0.18       -0.73    
+                         (0.26)      (0.39)   
+passageWife              -0.14       -0.57    
+                         (0.27)      (0.39)   
+sexfemale                -0.57 **    -0.60 *  
+                         (0.22)      (0.24)   
+age                       0.01       -0.00    
+                         (0.01)      (0.01)   
+fonfon                               -2.36 ***
+                                     (0.44)   
+passageFonWife:fonfon                 1.76 ** 
+                                     (0.58)   
+passageWife:fonfon                    0.19    
+                                     (0.67)   
+----------------------------------------------
+AIC                     477.39      424.28    
+BIC                     496.64      455.08    
+Log Likelihood         -233.69     -204.14    
+Deviance                467.39      408.28    
+Num. obs.               347         347       
+==============================================
+*** p < 0.001, ** p < 0.01, * p < 0.05
+\end{verbatim}
+
+As you can see, the log-likelihood in \texttt{m2} is larger than the
+log-likelihood in \texttt{m1}. That means that the same is true for the
+likelihoods. The likelihood is a relative measure. We do not know
+whether any particular value is large or small but we can compare the
+likelihoods between two nested models. We want to test now whether the
+increase in the likelihood could be due too chance (sampling
+variability). To do this, we apply the likelihood ratio test.
+
+In R, you need to load the \texttt{libary(lmtest)} to carry out the
+test. The actual test is done by using the \texttt{lrtest()} function
+which stands for likelihood-ratio test. We will do this now. The null
+hypothesis is that \texttt{m2} is not an improvement on \texttt{m1} but
+that they are similar models, i.e.~both explain the world equally well.
+We can reject that null if the p value is small. Here, we require it to
+be less than \(0.05\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lrtest}\NormalTok{(m1, m2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Likelihood ratio test
+
+Model 1: vote ~ passage + sex + age
+Model 2: vote ~ passage * fon + sex + age
+  #Df  LogLik Df  Chisq         Pr(>Chisq)    
+1   5 -233.69                                 
+2   8 -204.14  3 59.108 0.0000000000009115 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+Our p value is smaller than \(0.05\). We reject the null hypothesis.
+
+\paragraph{Predicted Probabilities and Confidence
+intervals}\label{predicted-probabilities-and-confidence-intervals}
+
+We have constructed confidence intervals for our estimates before. Here,
+we want to quantify the uncertainty of our predictions. Imagine, we
+predict that a respondent will vote for Boni with 85\% probability. This
+is what we call a point estimate, a prediction, of the outcome.
+Beacause, we predict this quantity from our model and our model
+parameters follow distributions, so does the prediction of the outcome.
+
+With a confidence interval of the prediction, we can show how precise
+our prediction is. Let's say, we predict that the respondent will vote
+for Boni with 80\% to 90\% probability. That would be a more precise
+statement than if we were to predict that the respondent votes for Boni
+with 60\% to 100\% probability.
+
+The precision of the outcome depends on precision of our estimated
+parameters and their covariance. We will predict the probability of
+voting for Boni for the treatment group and Fon coethnic respondent and
+control groups.
+
+To illustrate the uncertainty of our estimates we will use the
+\texttt{predict()} function and set the argument
+\texttt{se.fit\ =\ TRUE} which will return standard errors alongside
+predictions. We will use the standard error to construct our confidence
+intervals.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# treatment group covariates}
+\NormalTok{Xt <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
+  \DataTypeTok{passage =} \StringTok{"FonWife"}\NormalTok{, }
+  \DataTypeTok{fon =} \StringTok{"fon"}\NormalTok{, }
+  \DataTypeTok{sex =} \StringTok{"male"}\NormalTok{,}
+  \DataTypeTok{age =} \KeywordTok{mean}\NormalTok{(benin}\OperatorTok{$}\NormalTok{age)}
+\NormalTok{  )}
+
+\CommentTok{# control group 1 covariates }
+\NormalTok{Xc <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
+  \DataTypeTok{passage =} \StringTok{"Wife"}\NormalTok{,}
+  \DataTypeTok{fon =} \StringTok{"fon"}\NormalTok{,}
+  \DataTypeTok{sex =} \StringTok{"male"}\NormalTok{,}
+  \DataTypeTok{age =} \KeywordTok{mean}\NormalTok{(benin}\OperatorTok{$}\NormalTok{age)}
+\NormalTok{)}
+
+\CommentTok{# predictions treatment}
+\NormalTok{treat.prediction <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(m2, }\DataTypeTok{newdata =}\NormalTok{ Xt, }\DataTypeTok{type =} \StringTok{"response"}\NormalTok{, }\DataTypeTok{se.fit =} \OtherTok{TRUE}\NormalTok{)}
+\CommentTok{# upper bound }
+\NormalTok{treat.upper <-}\StringTok{ }\NormalTok{treat.prediction}\OperatorTok{$}\NormalTok{fit }\OperatorTok{+}\StringTok{ }\FloatTok{1.96} \OperatorTok{*}\StringTok{ }\NormalTok{treat.prediction}\OperatorTok{$}\NormalTok{se.fit}
+\NormalTok{treat.upper}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+        1 
+0.6178997 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{treat.lower <-}\StringTok{ }\NormalTok{treat.prediction}\OperatorTok{$}\NormalTok{fit }\OperatorTok{-}\StringTok{ }\FloatTok{1.96} \OperatorTok{*}\StringTok{ }\NormalTok{treat.prediction}\OperatorTok{$}\NormalTok{se.fit}
+\NormalTok{treat.lower}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+        1 
+0.3227125 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# point estimate}
+\NormalTok{treat.point <-}\StringTok{ }\NormalTok{treat.prediction}\OperatorTok{$}\NormalTok{fit}
+\NormalTok{treat.point}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+        1 
+0.4703061 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# predictions control (message about wife but no coethnic)}
+\NormalTok{pps.control <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(m2, }\DataTypeTok{newdata =}\NormalTok{ Xc, }\DataTypeTok{type =} \StringTok{"response"}\NormalTok{, }\DataTypeTok{se.fit =} \OtherTok{TRUE}\NormalTok{)}
+\CommentTok{# upper bound}
+\NormalTok{control.upper <-}\StringTok{ }\NormalTok{pps.control}\OperatorTok{$}\NormalTok{fit }\OperatorTok{+}\StringTok{ }\FloatTok{1.96} \OperatorTok{*}\StringTok{ }\NormalTok{pps.control}\OperatorTok{$}\NormalTok{se.fit}
+\NormalTok{control.upper}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+        1 
+0.3092137 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# lower bound}
+\NormalTok{control.lower <-}\StringTok{ }\NormalTok{pps.control}\OperatorTok{$}\NormalTok{fit }\OperatorTok{-}\StringTok{ }\FloatTok{1.96} \OperatorTok{*}\StringTok{ }\NormalTok{pps.control}\OperatorTok{$}\NormalTok{se.fit}
+\NormalTok{control.lower}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+         1 
+0.04649733 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# point estimate}
+\NormalTok{control.point <-}\StringTok{ }\NormalTok{pps.control}\OperatorTok{$}\NormalTok{fit}
+\NormalTok{control.point}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+        1 
+0.1778555 
+\end{verbatim}
+
+We predict that the Fon respondent who got the treatment message, votes
+for Boni with 47\%. Our estimate is the range 32\% to 62\%. For the Fon
+respondent who received the control treatment, we predict that she votes
+for Boni with probability 18\%. The estimate is in the range from 5\% to
+31\%.
+
+\subsubsection{Exercises}\label{exercises-10}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Load the non-western foreigners dataset
+  \texttt{non\_western\_foreingners.RData}.
+\item
+  Build a model that predicts \texttt{over.estimate} to find
+  determinants of over-estimating the level of migration. Justify your
+  choice of predictors and interpret the model output.
+\item
+  What is the naive guess of \texttt{over.estimate}?
+\item
+  What is the percentage of correctly predicted cases using the naive
+  guess?
+\item
+  What is the percent of correctly predicted cases of your model and how
+  does it compare to the naive guess?
+\item
+  Add predictors to your model and justify the choice.
+\item
+  Are the added predictors jointly significant?
+\item
+  What is the new rate of correctly predicted cases? Is it better than
+  the first model and how does it compare to the naive guess?
+\item
+  Vary the treshold for generating expected values and compute the
+  percent correctly predicted cases again. How does it change?
+\item
+  Vary a continuous predictor in a model and plot predicted
+  probabilities over its range and include uncertainty estimates in the
+  plot.
+\end{enumerate}
 
 \section{Datacamp}\label{datacamp}
 

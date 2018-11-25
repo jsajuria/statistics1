@@ -1,0 +1,258 @@
+# Binary Dependent Variable Models (II)
+
+## Seminar
+
+Let's start by loading the required packages:
+
+```{r message = FALSE}
+library(texreg) 
+library(lmtest)
+```
+
+Clear the environment
+
+```{r}
+rm(list = ls())
+```
+
+### Loading Data
+
+Today, we return to ethnic voting. Instead of the Afrobarometer, we will use a dataset from a survey that was carried out in Benin. Researchers randomly assigned survey respondents short bibliographical passages on the then Beninoise president Yayi Boni that included no mention of his wife, included a mention of his wife, or included a mention of his Fon wife. Respondents were then asked whether they were willing to vote for Yayi Boni should an election be held and barring term limits. The goal of the experiment was to assess whether priming respondents about the president's Fon wife might raise support amonst wife coethics for the president. 
+
+We start by loading the dataset `benin.csv`.
+
+```{r}
+benin <- read.csv("https://raw.githubusercontent.com/UCLSPP/datasets/master/data/benin.csv")
+```
+
+| Variable | Description| 
+|:------|:------------------------------------------------------------------|
+| `vote`| 1 - if respondent would vote for the president, 0 otherwise.|
+| `sex` | 1 if respondent is female, and 0 otherwise|
+| `age` | |
+| `ethnicity` | Ethnicity of the respondent|
+| `fon` | 1 if respondent is Fon, and 0 otherwise.|
+| `passage` | Control if respondent given control passage, Wife for wife passage, FonWife for Fon wife passage|
+
+
+We take a look at the summary stats:
+
+```{r}
+summary(benin)
+```
+
+We have to character variables `ethnicity` and `passage`. Let's inspect them and turn them into factor variables and look at the summary stats once more. Let's also turn our two numeric dummies `sex` and `fon` into factors.
+
+```{r}
+# inspect
+table(benin$ethnicity)
+table(benin$passage)
+
+# convert to factor
+benin$ethnicity <- as.factor(benin$ethnicity)
+benin$passage <- as.factor(benin$passage)
+benin$sex <- factor(benin$sex, c(0,1), c("male", "female"))
+benin$fon <- factor(benin$fon, c(0,1), c("not fon", "fon"))
+
+# inspect again
+table(benin$ethnicity)
+table(benin$passage)
+
+# summary stats again
+summary(benin)
+```
+
+
+### Models with Binary Dependent Variables and Interactions
+
+Let's estimate a model that predicts whether a respondent would vote for the incumbent using `passage`, `sex`, `age` as predictors.
+
+```{r}
+m1 <- glm(vote ~ passage + sex + age, family = binomial(link = "logit"), data = benin)
+screenreg(m1)
+```
+
+Let's interpret the table. The respondents who received the message about Yayi Boni's wife were not more likely to say that they would vote for the incumbent. Equally, respondents who were primed with the message of Boni's Fon wife were not more likely to say that they intended to vote for the incumbent. The only non-zero finding, is a gender effect. Women are less likely to vote for the incumbent. The odds of a voting intention for the incumbent are 43% lower for women than for men (`exp(-.57)`$=0.57$).
+
+However, there is likely something missing from our model. Our goal was to test whether priming respondents with the message about the Fon wife made respondents more likely to say they would vote for Boni. We would only reasonably expect such an effect for coethnics with the wife. Therefore, we have to interact the treatment variable `passage` with the coethnic indicator `fon`. We do so in model 2.
+
+```{r}
+m2 <- glm(vote ~ passage*fon + sex + age, family = binomial(link = "logit"), data = benin)
+screenreg(list(m1,m2))
+```
+
+We now get significant interaction effects. We have three groups to compare: 1) Fon respondents who got no briefing about Boni's wife. 2) Fon respondent's who got a message about Boni's wife but not her ethnicity. 3) Fon respondents who got a message about Boni's Fon wife.
+
+We call the message about the wife but not her ethnicity a placebo treatment. By giving that, we can be sure that an estimated effect is not due to the popularity or notoriety of the wife.
+
+For respondents in the control group, the odds ratio for those with Fon ehnicity vs. other ethnicity is:
+\[ OR1 = exp^{\beta_{Fon}} = exp^{-2.36} = 0.09 \] The odds are reduced by 91%.
+
+There is no discernable effect between Fon respondents who did not receive a message about the wife and Fon respondents who were primed about Boni's wife but not her ethnicity.
+
+The odds ratio would be computed as:
+\[ OR2 = exp^{\beta_{Fon} + \beta{Fon X Group}} = exp^{-2.36 + 0.19} = 0.11 \]
+
+
+Finally, the interaction term between wife coethinc `fon` and priming about the wife's ethnicity `passageFonWife:fon` is positive and significant. For such respondents the odds ratios are modified by `exp(-2.36 + 1.76)` which is $0.55$. Therefore, for Fon respondents who received the treatment, the odds of voting for Boni were reduced by only 44%. This is evidence for the effect of priming.
+
+
+### Predicted Probabilities and Predictive Power
+
+To assess the predictive power of our model we will check the percentage of cases that it correctly predicted. Let's look at our dependent variable first and find out what the naive guess is.
+
+```{r}
+mean(benin$vote)
+```
+
+The mean is $0.44$. That means that 44% of the respondents said that they would vote for Boni. This also means that more people said, that they would not vote for him ($100 - 44 = 56\%$). If we had no model and were to close our eyes and predict for a random respondent from our sample whether she would vote for or against Boni, the prediction that we should make is: she will not vote for Boni. This is the naive guess. The naive guess is $0$ - the best prediction without a statistical model.
+
+Now suppose, you predict $0$ for every respondent in the sample. This would give us a percent of correctly predicted cases of 56%. Remember that the mean is $0.44$. This is the proportion of respondents who would vote for Boni. So, if we predict that everyone does not vote for Boni, our rate of correct predictions is 56%. Let's get this in R.
+
+```{r}
+# naive guess
+nguess <- ifelse(mean(benin$vote) > .5, yes = 1, no = 0)
+nguess
+
+# percent correctly predicted using the naive guess
+pcp.naive <- ifelse(mean(benin$vote) > 0.5, yes = mean(benin$vote), no = 1 - mean(benin$vote))
+pcp.naive
+```
+
+We see that the naive guess is indeed 56%. Our statistical model that we estimated earlier must do better than this, otherwise our model will be useless. You can think of this like a linear model that does not win the F-test against the empty model. Such a model makes no contribution.
+
+We will now estimate predicted probabilities, expected values and estimate our rate of correctly predicted cases.
+
+Step 1: Predicted probabilities. 
+We already know how to do this. We use the `predict()` function and set `type = "response"`. We attach the predicted probabilities for every respondent to the original dataset.
+
+```{r}
+# predicted probabilities
+benin$pps <- predict(m2, type = "response")
+```
+
+Step 2: Expected values.
+Now, that we got our predicted probabilities of voting for Boni, we will assign everyone in our dataset who has a predicted probability greater than $0.5$ with an expected value of 1 and everyone else get's a $0$.
+
+```{r}
+benin$evs <- ifelse(benin$pps > 0.5, yes = 1, no = 0)
+```
+
+Step 3: Compute percentage correctly predicted.
+For every respondent in our dataset, we have made a prediction based on our model `m2`. We will compare our predictions to the actual outcomes now in a cross-table (sometimes called confusion matrix).
+
+```{r}
+confusion <- table(actual = benin$vote, expected.value = benin$evs)
+confusion
+```
+
+The observations on the diagonal are our correct predictions where a predicted vote intention against Boni corresponds to an actual vote intention against Boni and a predicted vote intention for Boni corresponds to an actual vote intention to Boni.
+
+For 55 respondents, we predict that they do not want to vote for Boni but they respond that they do want to vote for him. These are what we call false negatives.
+
+For 60 respondents, we predict that they would want to vote for Boni but when asked they said that they would not want to vote for him. We call these mistakes false positives.
+
+For our purposes, false negatives are equally bad as false positives. We do want to make as few mistakes as possible but we do not care about the kind of mistake that we make. There are other applications where the kind of mistake matters (e.g. cancer tests). By varying the threshold from 0.5 to some other threshold value, we would change the amount of false negative and false positive mistakes that we make but we cannot get a lower overall rate of mistakes by changing the threshold (0.5 is optimal in that sense).
+
+To compute the percentage of correctly classified cases, we now divide the elements on the diagonal of the confusion matrix by all respondents. We use the `diag()` function and the `sum()` function to do this. The former takes the diagonal elements of the table and the latter takes a sum.
+
+```{r}
+sum(diag(confusion)) / sum(confusion)
+```
+
+We correctly classify 67% of the respondents into Boni supporters and opponents. We thereby improve upon the naive guess which correctly classifies 56% of the respondents. Here, we compared against a baseline of no model. When we try to decide between models, we can use the same approach.
+
+
+### Joint hypothesis testing
+
+Our first model `m1` included `passageFonWife`, `passageWife`, `sex`, and `age` as predictors. In our second model, we also included `fon` as well as interactions between `passageFonWife` and `fon`, and also `passageWife` and `fon`. We estimated three additional parameters in model `m2` compared to model `m1`. Let's compare the models in a table again.
+
+```{r}
+screenreg(list(m1, m2))
+```
+
+As you can see, the log-likelihood in `m2` is larger than the log-likelihood in `m1`. That means that the same is true for the likelihoods. The likelihood is a relative measure. We do not know whether any particular value is large or small but we can compare the likelihoods between two nested models. We want to test now whether the increase in the likelihood could be due too chance (sampling variability). To do this, we apply the likelihood ratio test. 
+
+In R, you need to load the `libary(lmtest)` to carry out the test. The actual test is done by using the `lrtest()` function which stands for likelihood-ratio test. We will do this now. The null hypothesis is that `m2` is not an improvement on `m1` but that they are similar models, i.e. both explain the world equally well. We can reject that null if the p value is small. Here, we require it to be less than $0.05$.
+
+```{r}
+lrtest(m1, m2)
+```
+
+Our p value is smaller than $0.05$. We reject the null hypothesis.
+
+#### Predicted Probabilities and Confidence intervals
+
+We have constructed confidence intervals for our estimates before. Here, we want to quantify the uncertainty of our predictions. Imagine, we predict that a respondent will vote for Boni with 85% probability. This is what we call a point estimate, a prediction, of the outcome. Beacause, we predict this quantity from our model and our model parameters follow distributions, so does the prediction of the outcome. 
+
+With a confidence interval of the prediction, we can show how precise our prediction is. Let's say, we predict that the respondent will vote for Boni with 80% to 90% probability. That would be a more precise statement than if we were to predict that the respondent votes for Boni with 60% to 100% probability.
+
+The precision of the outcome depends on precision of our estimated parameters and their covariance. We will predict the probability of voting for Boni for the treatment group and Fon coethnic respondent and control groups.
+
+To illustrate the uncertainty of our estimates we will use the `predict()` function and set the argument `se.fit = TRUE` which will return standard errors alongside predictions. We will use the standard error to construct our confidence intervals.
+
+```{r}
+# treatment group covariates
+Xt <- data.frame(
+  passage = "FonWife", 
+  fon = "fon", 
+  sex = "male",
+  age = mean(benin$age)
+  )
+
+# control group 1 covariates 
+Xc <- data.frame(
+  passage = "Wife",
+  fon = "fon",
+  sex = "male",
+  age = mean(benin$age)
+)
+
+# predictions treatment
+treat.prediction <- predict(m2, newdata = Xt, type = "response", se.fit = TRUE)
+# upper bound 
+treat.upper <- treat.prediction$fit + 1.96 * treat.prediction$se.fit
+treat.upper
+treat.lower <- treat.prediction$fit - 1.96 * treat.prediction$se.fit
+treat.lower
+# point estimate
+treat.point <- treat.prediction$fit
+treat.point
+
+# predictions control (message about wife but no coethnic)
+pps.control <- predict(m2, newdata = Xc, type = "response", se.fit = TRUE)
+# upper bound
+control.upper <- pps.control$fit + 1.96 * pps.control$se.fit
+control.upper
+# lower bound
+control.lower <- pps.control$fit - 1.96 * pps.control$se.fit
+control.lower
+# point estimate
+control.point <- pps.control$fit
+control.point
+```
+
+We predict that the Fon respondent who got the treatment message, votes for Boni with 47%. Our estimate is the range 32% to 62%. For the Fon respondent who received the control treatment, we predict that she votes for Boni with probability 18%. The estimate is in the range from 5% to 31%.
+
+
+### Exercises
+
+1. Load the non-western foreigners dataset `non_western_foreingners.RData`.
+2. Build a model that predicts `over.estimate` to find determinants of over-estimating the level of migration. Justify your choice of predictors and interpret the model output.
+3. What is the naive guess of `over.estimate`?
+4. What is the percentage of correctly predicted cases using the naive guess?
+5. What is the percent of correctly predicted cases of your model and how does it compare to the naive guess?
+6. Add predictors to your model and justify the choice.
+7. Are the added predictors jointly significant?
+8. What is the new rate of correctly predicted cases? Is it better than the first model and how does it compare to the naive guess?
+9. Vary the treshold for generating expected values and compute the percent correctly predicted cases again. How does it change?
+10. Vary a continuous predictor in a model and plot predicted probabilities over its range and include uncertainty estimates in the plot.
+
+
+<!-- ### Final Preparation -->
+
+<!-- To prepare yourself for the final coursework, you can do the following bigger exercise. We will not be able to provide solutions for it but you can come to office hours/ drop in sessions and ask questions you have. -->
+
+<!-- <div class="container btn-container"> -->
+<!--   <a href="https://raw.githubusercontent.com/UCLSPP/datasets/master/data/final_coursework_sample.pdf" type = "button" class = "btn btn-lg btn-primary">Final Exam Exercise</a> -->
+<!-- </div> -->

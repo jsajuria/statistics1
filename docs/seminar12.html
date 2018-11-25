@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Statistics 1</title>
+  <meta name="description" content="Statistics 1">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Statistics 1" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Statistics 1" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="solutions11.html">
+<link rel="next" href="datacamp.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="lib/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/codefolding.js"></script>
+
+
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding();
+});
+</script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="lib\bootstrap\3.3.7\css\bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="css\readthedocs.css" type="text/css" />
+<link rel="stylesheet" href="css\custom.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this course</a></li>
+<li class="chapter" data-level="1" data-path="seminar1.html"><a href="seminar1.html"><i class="fa fa-check"></i><b>1</b> Introduction: Measurement, Central Tendency, Dispersion, Validity, Reliability</a><ul>
+<li class="chapter" data-level="1.1" data-path="seminar1.html"><a href="seminar1.html#seminar"><i class="fa fa-check"></i><b>1.1</b> Seminar</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="seminar1.html"><a href="seminar1.html#getting-started"><i class="fa fa-check"></i><b>1.1.1</b> Getting Started</a></li>
+<li class="chapter" data-level="1.1.2" data-path="seminar1.html"><a href="seminar1.html#rstudio"><i class="fa fa-check"></i><b>1.1.2</b> RStudio</a></li>
+<li class="chapter" data-level="1.1.3" data-path="seminar1.html"><a href="seminar1.html#console"><i class="fa fa-check"></i><b>1.1.3</b> Console</a></li>
+<li class="chapter" data-level="1.1.4" data-path="seminar1.html"><a href="seminar1.html#functions"><i class="fa fa-check"></i><b>1.1.4</b> Functions</a></li>
+<li class="chapter" data-level="1.1.5" data-path="seminar1.html"><a href="seminar1.html#getting-help"><i class="fa fa-check"></i><b>1.1.5</b> Getting Help</a></li>
+<li class="chapter" data-level="1.1.6" data-path="seminar1.html"><a href="seminar1.html#the-assignment-operator"><i class="fa fa-check"></i><b>1.1.6</b> The Assignment Operator</a></li>
+<li class="chapter" data-level="1.1.7" data-path="seminar1.html"><a href="seminar1.html#sequences"><i class="fa fa-check"></i><b>1.1.7</b> Sequences</a></li>
+<li class="chapter" data-level="1.1.8" data-path="seminar1.html"><a href="seminar1.html#scripts"><i class="fa fa-check"></i><b>1.1.8</b> Scripts</a></li>
+<li class="chapter" data-level="1.1.9" data-path="seminar1.html"><a href="seminar1.html#central-tendency"><i class="fa fa-check"></i><b>1.1.9</b> Central Tendency</a></li>
+<li class="chapter" data-level="1.1.10" data-path="seminar1.html"><a href="seminar1.html#dispersion"><i class="fa fa-check"></i><b>1.1.10</b> Dispersion</a></li>
+<li class="chapter" data-level="1.1.11" data-path="seminar1.html"><a href="seminar1.html#exercises"><i class="fa fa-check"></i><b>1.1.11</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="solutions1.html"><a href="solutions1.html"><i class="fa fa-check"></i><b>1.2</b> Solutions</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="solutions1.html"><a href="solutions1.html#exercise-3"><i class="fa fa-check"></i><b>1.2.1</b> Exercise 3</a></li>
+<li class="chapter" data-level="1.2.2" data-path="solutions1.html"><a href="solutions1.html#exercise-4"><i class="fa fa-check"></i><b>1.2.2</b> Exercise 4</a></li>
+<li class="chapter" data-level="1.2.3" data-path="solutions1.html"><a href="solutions1.html#exercise-5"><i class="fa fa-check"></i><b>1.2.3</b> Exercise 5</a></li>
+<li class="chapter" data-level="1.2.4" data-path="solutions1.html"><a href="solutions1.html#exercise-6"><i class="fa fa-check"></i><b>1.2.4</b> Exercise 6</a></li>
+<li class="chapter" data-level="1.2.5" data-path="solutions1.html"><a href="solutions1.html#exercise-7"><i class="fa fa-check"></i><b>1.2.5</b> Exercise 7</a></li>
+<li class="chapter" data-level="1.2.6" data-path="solutions1.html"><a href="solutions1.html#exercise-8"><i class="fa fa-check"></i><b>1.2.6</b> Exercise 8</a></li>
+<li class="chapter" data-level="1.2.7" data-path="solutions1.html"><a href="solutions1.html#exercise-9"><i class="fa fa-check"></i><b>1.2.7</b> Exercise 9</a></li>
+<li class="chapter" data-level="1.2.8" data-path="solutions1.html"><a href="solutions1.html#exercise-10"><i class="fa fa-check"></i><b>1.2.8</b> Exercise 10</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="seminar2.html"><a href="seminar2.html"><i class="fa fa-check"></i><b>2</b> Research Design, Counterfactuals, Forming Hypotheses</a><ul>
+<li class="chapter" data-level="2.1" data-path="seminar2.html"><a href="seminar2.html#seminar-1"><i class="fa fa-check"></i><b>2.1</b> Seminar</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="seminar2.html"><a href="seminar2.html#setting-up"><i class="fa fa-check"></i><b>2.1.1</b> setting up</a></li>
+<li class="chapter" data-level="2.1.2" data-path="seminar2.html"><a href="seminar2.html#vectors-and-subsetting"><i class="fa fa-check"></i><b>2.1.2</b> vectors and subsetting</a></li>
+<li class="chapter" data-level="2.1.3" data-path="seminar2.html"><a href="seminar2.html#data-frames"><i class="fa fa-check"></i><b>2.1.3</b> data frames</a></li>
+<li class="chapter" data-level="2.1.4" data-path="seminar2.html"><a href="seminar2.html#loading-data"><i class="fa fa-check"></i><b>2.1.4</b> Loading data</a></li>
+<li class="chapter" data-level="2.1.5" data-path="seminar2.html"><a href="seminar2.html#plots"><i class="fa fa-check"></i><b>2.1.5</b> Plots</a></li>
+<li class="chapter" data-level="2.1.6" data-path="seminar2.html"><a href="seminar2.html#average-treatment-effect"><i class="fa fa-check"></i><b>2.1.6</b> Average Treatment Effect</a></li>
+<li class="chapter" data-level="2.1.7" data-path="seminar2.html"><a href="seminar2.html#exercises-1"><i class="fa fa-check"></i><b>2.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="solutions2.html"><a href="solutions2.html"><i class="fa fa-check"></i><b>2.2</b> Solutions</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="solutions2.html"><a href="solutions2.html#exercise-2"><i class="fa fa-check"></i><b>2.2.1</b> Exercise 2</a></li>
+<li class="chapter" data-level="2.2.2" data-path="solutions2.html"><a href="solutions2.html#exercise-3-1"><i class="fa fa-check"></i><b>2.2.2</b> Exercise 3</a></li>
+<li class="chapter" data-level="2.2.3" data-path="solutions2.html"><a href="solutions2.html#exercise-4-1"><i class="fa fa-check"></i><b>2.2.3</b> Exercise 4</a></li>
+<li class="chapter" data-level="2.2.4" data-path="solutions2.html"><a href="solutions2.html#exercise-5-1"><i class="fa fa-check"></i><b>2.2.4</b> Exercise 5</a></li>
+<li class="chapter" data-level="2.2.5" data-path="solutions2.html"><a href="solutions2.html#exercise-6-1"><i class="fa fa-check"></i><b>2.2.5</b> Exercise 6</a></li>
+<li class="chapter" data-level="2.2.6" data-path="solutions2.html"><a href="solutions2.html#exercise-7-1"><i class="fa fa-check"></i><b>2.2.6</b> Exercise 7</a></li>
+<li class="chapter" data-level="2.2.7" data-path="solutions2.html"><a href="solutions2.html#exercise-8-1"><i class="fa fa-check"></i><b>2.2.7</b> Exercise 8</a></li>
+<li class="chapter" data-level="2.2.8" data-path="solutions2.html"><a href="solutions2.html#exercises-9-and-10"><i class="fa fa-check"></i><b>2.2.8</b> Exercises 9 and 10</a></li>
+<li class="chapter" data-level="2.2.9" data-path="solutions2.html"><a href="solutions2.html#exercises-11"><i class="fa fa-check"></i><b>2.2.9</b> Exercises 11</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="seminar3.html"><a href="seminar3.html"><i class="fa fa-check"></i><b>3</b> Sampling and Distributions</a><ul>
+<li class="chapter" data-level="3.1" data-path="seminar3.html"><a href="seminar3.html#seminar-2"><i class="fa fa-check"></i><b>3.1</b> Seminar</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="seminar3.html"><a href="seminar3.html#loading-dataset-in-csv-format"><i class="fa fa-check"></i><b>3.1.1</b> Loading Dataset in CSV Format</a></li>
+<li class="chapter" data-level="3.1.2" data-path="seminar3.html"><a href="seminar3.html#missing-values"><i class="fa fa-check"></i><b>3.1.2</b> Missing Values</a></li>
+<li class="chapter" data-level="3.1.3" data-path="seminar3.html"><a href="seminar3.html#factor-variables"><i class="fa fa-check"></i><b>3.1.3</b> Factor Variables</a></li>
+<li class="chapter" data-level="3.1.4" data-path="seminar3.html"><a href="seminar3.html#renaming-variables"><i class="fa fa-check"></i><b>3.1.4</b> Renaming Variables</a></li>
+<li class="chapter" data-level="3.1.5" data-path="seminar3.html"><a href="seminar3.html#distributions"><i class="fa fa-check"></i><b>3.1.5</b> Distributions</a></li>
+<li class="chapter" data-level="3.1.6" data-path="seminar3.html"><a href="seminar3.html#conditional-distributions"><i class="fa fa-check"></i><b>3.1.6</b> Conditional Distributions</a></li>
+<li class="chapter" data-level="3.1.7" data-path="seminar3.html"><a href="seminar3.html#exercises-2"><i class="fa fa-check"></i><b>3.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="solutions3.html"><a href="solutions3.html"><i class="fa fa-check"></i><b>3.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="seminar4.html"><a href="seminar4.html"><i class="fa fa-check"></i><b>4</b> T-test for Difference in Means and Hypothesis Testing</a><ul>
+<li class="chapter" data-level="4.1" data-path="seminar4.html"><a href="seminar4.html#seminar-3"><i class="fa fa-check"></i><b>4.1</b> Seminar</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="seminar4.html"><a href="seminar4.html#the-standard-error"><i class="fa fa-check"></i><b>4.1.1</b> The Standard Error</a></li>
+<li class="chapter" data-level="4.1.2" data-path="seminar4.html"><a href="seminar4.html#t-test-one-sample-hypothesis-test"><i class="fa fa-check"></i><b>4.1.2</b> T-test (one sample hypothesis test)</a></li>
+<li class="chapter" data-level="4.1.3" data-path="seminar4.html"><a href="seminar4.html#t-test-difference-in-means"><i class="fa fa-check"></i><b>4.1.3</b> T-test (difference in means)</a></li>
+<li class="chapter" data-level="4.1.4" data-path="seminar4.html"><a href="seminar4.html#estimating-p-values-from-t-values"><i class="fa fa-check"></i><b>4.1.4</b> Estimating p values from t values</a></li>
+<li class="chapter" data-level="4.1.5" data-path="seminar4.html"><a href="seminar4.html#exercises-3"><i class="fa fa-check"></i><b>4.1.5</b> Exercises</a></li>
+<li class="chapter" data-level="4.1.6" data-path="seminar4.html"><a href="seminar4.html#optional-exercises-that-require-reading-extra-info-below"><i class="fa fa-check"></i><b>4.1.6</b> Optional Exercises that require reading Extra Info below</a></li>
+<li class="chapter" data-level="4.1.7" data-path="seminar4.html"><a href="seminar4.html#advanced-exercises"><i class="fa fa-check"></i><b>4.1.7</b> Advanced Exercises</a></li>
+<li class="chapter" data-level="4.1.8" data-path="seminar4.html"><a href="seminar4.html#extra-info"><i class="fa fa-check"></i><b>4.1.8</b> Extra Info</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="solutions4.html"><a href="solutions4.html"><i class="fa fa-check"></i><b>4.2</b> Solutions</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="solutions4.html"><a href="solutions4.html#optional-exercises-that-require-reading-extra-info-below-1"><i class="fa fa-check"></i><b>4.2.1</b> Optional Exercises that require reading Extra Info below</a></li>
+<li class="chapter" data-level="4.2.2" data-path="solutions4.html"><a href="solutions4.html#advanced-exercises-1"><i class="fa fa-check"></i><b>4.2.2</b> Advanced Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="seminar5.html"><a href="seminar5.html"><i class="fa fa-check"></i><b>5</b> Revision: Sample Variance and Sample Standard Deviation; Hypothesis testing and Confidence Intervals</a><ul>
+<li class="chapter" data-level="5.1" data-path="seminar5.html"><a href="seminar5.html#seminar-4"><i class="fa fa-check"></i><b>5.1</b> Seminar</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="seminar5.html"><a href="seminar5.html#sample-variance-and-sample-standard-deviation"><i class="fa fa-check"></i><b>5.1.1</b> Sample Variance and Sample Standard Deviation</a></li>
+<li class="chapter" data-level="5.1.2" data-path="seminar5.html"><a href="seminar5.html#t-test-for-the-sample-mean"><i class="fa fa-check"></i><b>5.1.2</b> T test for the sample mean</a></li>
+<li class="chapter" data-level="5.1.3" data-path="seminar5.html"><a href="seminar5.html#t-test-for-the-difference-in-means"><i class="fa fa-check"></i><b>5.1.3</b> T test for the difference in means</a></li>
+<li class="chapter" data-level="5.1.4" data-path="seminar5.html"><a href="seminar5.html#exercises-4"><i class="fa fa-check"></i><b>5.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="solutions5.html"><a href="solutions5.html"><i class="fa fa-check"></i><b>5.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="seminar6.html"><a href="seminar6.html"><i class="fa fa-check"></i><b>6</b> Bivariate linear regression models</a><ul>
+<li class="chapter" data-level="6.1" data-path="seminar6.html"><a href="seminar6.html#seminar-5"><i class="fa fa-check"></i><b>6.1</b> Seminar</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="seminar6.html"><a href="seminar6.html#packages"><i class="fa fa-check"></i><b>6.1.1</b> Packages</a></li>
+<li class="chapter" data-level="6.1.2" data-path="seminar6.html"><a href="seminar6.html#fitted-values"><i class="fa fa-check"></i><b>6.1.2</b> Fitted values</a></li>
+<li class="chapter" data-level="6.1.3" data-path="seminar6.html"><a href="seminar6.html#additional-resources"><i class="fa fa-check"></i><b>6.1.3</b> Additional Resources</a></li>
+<li class="chapter" data-level="6.1.4" data-path="seminar6.html"><a href="seminar6.html#exercises-5"><i class="fa fa-check"></i><b>6.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="solutions6.html"><a href="solutions6.html"><i class="fa fa-check"></i><b>6.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="seminar7.html"><a href="seminar7.html"><i class="fa fa-check"></i><b>7</b> Multiple linear regression models (I)</a><ul>
+<li class="chapter" data-level="7.1" data-path="seminar7.html"><a href="seminar7.html#seminar-6"><i class="fa fa-check"></i><b>7.1</b> Seminar</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="seminar7.html"><a href="seminar7.html#loading-understanding-and-cleaning-our-data"><i class="fa fa-check"></i><b>7.1.1</b> Loading, Understanding and Cleaning our Data</a></li>
+<li class="chapter" data-level="7.1.2" data-path="seminar7.html"><a href="seminar7.html#estimating-a-bivariate-regression"><i class="fa fa-check"></i><b>7.1.2</b> Estimating a Bivariate Regression</a></li>
+<li class="chapter" data-level="7.1.3" data-path="seminar7.html"><a href="seminar7.html#multivariate-regression"><i class="fa fa-check"></i><b>7.1.3</b> Multivariate Regression</a></li>
+<li class="chapter" data-level="7.1.4" data-path="seminar7.html"><a href="seminar7.html#joint-significance-test-f-statistic"><i class="fa fa-check"></i><b>7.1.4</b> Joint Significance Test (F-statistic)</a></li>
+<li class="chapter" data-level="7.1.5" data-path="seminar7.html"><a href="seminar7.html#predicting-outcome-conditional-on-institutional-quality"><i class="fa fa-check"></i><b>7.1.5</b> Predicting outcome conditional on institutional quality</a></li>
+<li class="chapter" data-level="7.1.6" data-path="seminar7.html"><a href="seminar7.html#additional-resources-1"><i class="fa fa-check"></i><b>7.1.6</b> Additional Resources</a></li>
+<li class="chapter" data-level="7.1.7" data-path="seminar7.html"><a href="seminar7.html#exercises-6"><i class="fa fa-check"></i><b>7.1.7</b> Exercises</a></li>
+<li class="chapter" data-level="7.1.8" data-path="seminar7.html"><a href="seminar7.html#midterm-preparation"><i class="fa fa-check"></i><b>7.1.8</b> Midterm Preparation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="solutions7.html"><a href="solutions7.html"><i class="fa fa-check"></i><b>7.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="seminar8.html"><a href="seminar8.html"><i class="fa fa-check"></i><b>8</b> Multiple linear regression models (II)</a><ul>
+<li class="chapter" data-level="8.1" data-path="seminar8.html"><a href="seminar8.html#seminar-7"><i class="fa fa-check"></i><b>8.1</b> Seminar</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="seminar8.html"><a href="seminar8.html#loading-data-1"><i class="fa fa-check"></i><b>8.1.1</b> Loading Data</a></li>
+<li class="chapter" data-level="8.1.2" data-path="seminar8.html"><a href="seminar8.html#r-squared"><i class="fa fa-check"></i><b>8.1.2</b> R Squared</a></li>
+<li class="chapter" data-level="8.1.3" data-path="seminar8.html"><a href="seminar8.html#the-relationship-between-institutional-quality-and-quality-of-life-by-colonial-past"><i class="fa fa-check"></i><b>8.1.3</b> The Relationship between Institutional Quality and Quality of Life by Colonial Past</a></li>
+<li class="chapter" data-level="8.1.4" data-path="seminar8.html"><a href="seminar8.html#interactions-continuous-and-binary"><i class="fa fa-check"></i><b>8.1.4</b> Interactions: Continuous and Binary</a></li>
+<li class="chapter" data-level="8.1.5" data-path="seminar8.html"><a href="seminar8.html#non-linearities"><i class="fa fa-check"></i><b>8.1.5</b> Non-Linearities</a></li>
+<li class="chapter" data-level="8.1.6" data-path="seminar8.html"><a href="seminar8.html#exercises-7"><i class="fa fa-check"></i><b>8.1.6</b> Exercises</a></li>
+<li class="chapter" data-level="8.1.7" data-path="seminar8.html"><a href="seminar8.html#extra-info-dummy-variables-repetition"><i class="fa fa-check"></i><b>8.1.7</b> Extra Info: Dummy Variables Repetition</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="solutions8.html"><a href="solutions8.html"><i class="fa fa-check"></i><b>8.2</b> Solutions</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="solutions8.html"><a href="solutions8.html#question-1"><i class="fa fa-check"></i><b>8.2.1</b> Question 1</a></li>
+<li class="chapter" data-level="8.2.2" data-path="solutions8.html"><a href="solutions8.html#question-2"><i class="fa fa-check"></i><b>8.2.2</b> Question 2</a></li>
+<li class="chapter" data-level="8.2.3" data-path="solutions8.html"><a href="solutions8.html#question-3"><i class="fa fa-check"></i><b>8.2.3</b> Question 3</a></li>
+<li class="chapter" data-level="8.2.4" data-path="solutions8.html"><a href="solutions8.html#question-4"><i class="fa fa-check"></i><b>8.2.4</b> Question 4</a></li>
+<li class="chapter" data-level="8.2.5" data-path="solutions8.html"><a href="solutions8.html#question-5"><i class="fa fa-check"></i><b>8.2.5</b> Question 5</a></li>
+<li class="chapter" data-level="8.2.6" data-path="solutions8.html"><a href="solutions8.html#question-6"><i class="fa fa-check"></i><b>8.2.6</b> Question 6</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="seminar9.html"><a href="seminar9.html"><i class="fa fa-check"></i><b>9</b> Regression Assumptions</a><ul>
+<li class="chapter" data-level="9.1" data-path="seminar9.html"><a href="seminar9.html#seminar-8"><i class="fa fa-check"></i><b>9.1</b> Seminar</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="seminar9.html"><a href="seminar9.html#required-packages"><i class="fa fa-check"></i><b>9.1.1</b> Required Packages</a></li>
+<li class="chapter" data-level="9.1.2" data-path="seminar9.html"><a href="seminar9.html#omitted-variable-bias"><i class="fa fa-check"></i><b>9.1.2</b> Omitted Variable Bias</a></li>
+<li class="chapter" data-level="9.1.3" data-path="seminar9.html"><a href="seminar9.html#detecting-non-linearity"><i class="fa fa-check"></i><b>9.1.3</b> Detecting non-linearity</a></li>
+<li class="chapter" data-level="9.1.4" data-path="seminar9.html"><a href="seminar9.html#heteroskedasticity"><i class="fa fa-check"></i><b>9.1.4</b> Heteroskedasticity</a></li>
+<li class="chapter" data-level="9.1.5" data-path="seminar9.html"><a href="seminar9.html#exercises-8"><i class="fa fa-check"></i><b>9.1.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="solutions9.html"><a href="solutions9.html"><i class="fa fa-check"></i><b>9.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="seminar10.html"><a href="seminar10.html"><i class="fa fa-check"></i><b>10</b> Panel Data - Fixed Effects and some Random Effects</a><ul>
+<li class="chapter" data-level="10.1" data-path="seminar10.html"><a href="seminar10.html#seminar-9"><i class="fa fa-check"></i><b>10.1</b> Seminar</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="seminar10.html"><a href="seminar10.html#our-data"><i class="fa fa-check"></i><b>10.1.1</b> Our data</a></li>
+<li class="chapter" data-level="10.1.2" data-path="seminar10.html"><a href="seminar10.html#unit-fixed-effects-country-fixed-effects"><i class="fa fa-check"></i><b>10.1.2</b> Unit fixed effects (country fixed effects)</a></li>
+<li class="chapter" data-level="10.1.3" data-path="seminar10.html"><a href="seminar10.html#time-fixed-effects"><i class="fa fa-check"></i><b>10.1.3</b> Time fixed effects</a></li>
+<li class="chapter" data-level="10.1.4" data-path="seminar10.html"><a href="seminar10.html#twoway-fixed-effects"><i class="fa fa-check"></i><b>10.1.4</b> Twoway fixed effects</a></li>
+<li class="chapter" data-level="10.1.5" data-path="seminar10.html"><a href="seminar10.html#serial-correlationauto-correlation"><i class="fa fa-check"></i><b>10.1.5</b> Serial correlation/auto-correlation</a></li>
+<li class="chapter" data-level="10.1.6" data-path="seminar10.html"><a href="seminar10.html#cross-sectional-dependence-spatial-dependence"><i class="fa fa-check"></i><b>10.1.6</b> Cross-sectional dependence/ spatial dependence</a></li>
+<li class="chapter" data-level="10.1.7" data-path="seminar10.html"><a href="seminar10.html#the-random-effects-model"><i class="fa fa-check"></i><b>10.1.7</b> The random effects model</a></li>
+<li class="chapter" data-level="10.1.8" data-path="seminar10.html"><a href="seminar10.html#more-guns-less-crime"><i class="fa fa-check"></i><b>10.1.8</b> More guns, less crime</a></li>
+<li class="chapter" data-level="10.1.9" data-path="seminar10.html"><a href="seminar10.html#question-1-1"><i class="fa fa-check"></i><b>10.1.9</b> Question 1</a></li>
+<li class="chapter" data-level="10.1.10" data-path="seminar10.html"><a href="seminar10.html#question-2-1"><i class="fa fa-check"></i><b>10.1.10</b> Question 2</a></li>
+<li class="chapter" data-level="10.1.11" data-path="seminar10.html"><a href="seminar10.html#question-3-1"><i class="fa fa-check"></i><b>10.1.11</b> Question 3</a></li>
+<li class="chapter" data-level="10.1.12" data-path="seminar10.html"><a href="seminar10.html#question-4-1"><i class="fa fa-check"></i><b>10.1.12</b> Question 4</a></li>
+<li class="chapter" data-level="10.1.13" data-path="seminar10.html"><a href="seminar10.html#question-5-1"><i class="fa fa-check"></i><b>10.1.13</b> Question 5</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="seminar11.html"><a href="seminar11.html"><i class="fa fa-check"></i><b>11</b> Binary Dependent Variable Models</a><ul>
+<li class="chapter" data-level="11.1" data-path="seminar11.html"><a href="seminar11.html#seminar-10"><i class="fa fa-check"></i><b>11.1</b> Seminar</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="seminar11.html"><a href="seminar11.html#required-packages-1"><i class="fa fa-check"></i><b>11.1.1</b> Required Packages</a></li>
+<li class="chapter" data-level="11.1.2" data-path="seminar11.html"><a href="seminar11.html#loading-data-2"><i class="fa fa-check"></i><b>11.1.2</b> Loading Data</a></li>
+<li class="chapter" data-level="11.1.3" data-path="seminar11.html"><a href="seminar11.html#linear-regression-with-a-binary-dependent-variable"><i class="fa fa-check"></i><b>11.1.3</b> Linear regression with a Binary Dependent Variable</a></li>
+<li class="chapter" data-level="11.1.4" data-path="seminar11.html"><a href="seminar11.html#logistic-regression-model"><i class="fa fa-check"></i><b>11.1.4</b> Logistic Regression Model</a></li>
+<li class="chapter" data-level="11.1.5" data-path="seminar11.html"><a href="seminar11.html#odds-ratios"><i class="fa fa-check"></i><b>11.1.5</b> Odds-ratios</a></li>
+<li class="chapter" data-level="11.1.6" data-path="seminar11.html"><a href="seminar11.html#predicted-probabilities"><i class="fa fa-check"></i><b>11.1.6</b> Predicted probabilities</a></li>
+<li class="chapter" data-level="11.1.7" data-path="seminar11.html"><a href="seminar11.html#exercises-9"><i class="fa fa-check"></i><b>11.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="solutions11.html"><a href="solutions11.html"><i class="fa fa-check"></i><b>11.2</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="seminar12.html"><a href="seminar12.html"><i class="fa fa-check"></i><b>12</b> Binary Dependent Variable Models (II)</a><ul>
+<li class="chapter" data-level="12.1" data-path="seminar12.html"><a href="seminar12.html#seminar-11"><i class="fa fa-check"></i><b>12.1</b> Seminar</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="seminar12.html"><a href="seminar12.html#loading-data-3"><i class="fa fa-check"></i><b>12.1.1</b> Loading Data</a></li>
+<li class="chapter" data-level="12.1.2" data-path="seminar12.html"><a href="seminar12.html#models-with-binary-dependent-variables-and-interactions"><i class="fa fa-check"></i><b>12.1.2</b> Models with Binary Dependent Variables and Interactions</a></li>
+<li class="chapter" data-level="12.1.3" data-path="seminar12.html"><a href="seminar12.html#predicted-probabilities-and-predictive-power"><i class="fa fa-check"></i><b>12.1.3</b> Predicted Probabilities and Predictive Power</a></li>
+<li class="chapter" data-level="12.1.4" data-path="seminar12.html"><a href="seminar12.html#joint-hypothesis-testing"><i class="fa fa-check"></i><b>12.1.4</b> Joint hypothesis testing</a></li>
+<li class="chapter" data-level="12.1.5" data-path="seminar12.html"><a href="seminar12.html#exercises-10"><i class="fa fa-check"></i><b>12.1.5</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="datacamp.html"><a href="datacamp.html"><i class="fa fa-check"></i><b>13</b> Datacamp</a><ul>
+<li class="chapter" data-level="13.1" data-path="datacamp.html"><a href="datacamp.html#develop-your-skills-as-a-data-scientist"><i class="fa fa-check"></i><b>13.1</b> Develop your skills as a data scientist</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics 1</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="binary-dependent-variable-models-ii" class="section level1">
+<h1><span class="header-section-number">Chapter 12</span> Binary Dependent Variable Models (II)</h1>
+<div id="seminar-11" class="section level2">
+<h2><span class="header-section-number">12.1</span> Seminar</h2>
+<p>Let’s start by loading the required packages:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(texreg) 
+<span class="kw">library</span>(lmtest)</code></pre></div>
+<p>Clear the environment</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</code></pre></div>
+<div id="loading-data-3" class="section level3">
+<h3><span class="header-section-number">12.1.1</span> Loading Data</h3>
+<p>Today, we return to ethnic voting. Instead of the Afrobarometer, we will use a dataset from a survey that was carried out in Benin. Researchers randomly assigned survey respondents short bibliographical passages on the then Beninoise president Yayi Boni that included no mention of his wife, included a mention of his wife, or included a mention of his Fon wife. Respondents were then asked whether they were willing to vote for Yayi Boni should an election be held and barring term limits. The goal of the experiment was to assess whether priming respondents about the president’s Fon wife might raise support amonst wife coethics for the president.</p>
+<p>We start by loading the dataset <code>benin.csv</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">benin &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/UCLSPP/datasets/master/data/benin.csv&quot;</span>)</code></pre></div>
+<table>
+<colgroup>
+<col width="10%" />
+<col width="89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Variable</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>vote</code></td>
+<td align="left">1 - if respondent would vote for the president, 0 otherwise.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>sex</code></td>
+<td align="left">1 if respondent is female, and 0 otherwise</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>age</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>ethnicity</code></td>
+<td align="left">Ethnicity of the respondent</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>fon</code></td>
+<td align="left">1 if respondent is Fon, and 0 otherwise.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>passage</code></td>
+<td align="left">Control if respondent given control passage, Wife for wife passage, FonWife for Fon wife passage</td>
+</tr>
+</tbody>
+</table>
+<p>We take a look at the summary stats:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(benin)</code></pre></div>
+<pre><code>      sex              age          ethnicity        fon        
+ Min.   :0.0000   Min.   :18.00   Fon    :152   Min.   :0.0000  
+ 1st Qu.:0.0000   1st Qu.:25.00   Goun   : 37   1st Qu.:0.0000  
+ Median :0.0000   Median :31.00   Mina   : 34   Median :0.0000  
+ Mean   :0.4986   Mean   :32.74   Adja   : 33   Mean   :0.4553  
+ 3rd Qu.:1.0000   3rd Qu.:39.00   Dendi  : 30   3rd Qu.:1.0000  
+ Max.   :1.0000   Max.   :70.00   Lokpa  : 12   Max.   :1.0000  
+                                  (Other): 49                   
+    passage         vote       
+ Control:118   Min.   :0.0000  
+ FonWife:118   1st Qu.:0.0000  
+ Wife   :111   Median :0.0000  
+               Mean   :0.4438  
+               3rd Qu.:1.0000  
+               Max.   :1.0000  
+                               </code></pre>
+<p>We have to character variables <code>ethnicity</code> and <code>passage</code>. Let’s inspect them and turn them into factor variables and look at the summary stats once more. Let’s also turn our two numeric dummies <code>sex</code> and <code>fon</code> into factors.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># inspect</span>
+<span class="kw">table</span>(benin<span class="op">$</span>ethnicity)</code></pre></div>
+<pre><code>
+      Adja        Ani Betamaribe      Dendi   Ditamari    Dompago 
+        33          4          2         30          9          2 
+       Ewe        Fon       Goun      Lokpa       Mahi       Mina 
+         1        152         37         12          6         34 
+   Natimba      Ouama       Peul      Somba       Wama        Yoa 
+         2          1          6          5          2          5 
+       Yom 
+         4 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(benin<span class="op">$</span>passage)</code></pre></div>
+<pre><code>
+Control FonWife    Wife 
+    118     118     111 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># convert to factor</span>
+benin<span class="op">$</span>ethnicity &lt;-<span class="st"> </span><span class="kw">as.factor</span>(benin<span class="op">$</span>ethnicity)
+benin<span class="op">$</span>passage &lt;-<span class="st"> </span><span class="kw">as.factor</span>(benin<span class="op">$</span>passage)
+benin<span class="op">$</span>sex &lt;-<span class="st"> </span><span class="kw">factor</span>(benin<span class="op">$</span>sex, <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="kw">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>))
+benin<span class="op">$</span>fon &lt;-<span class="st"> </span><span class="kw">factor</span>(benin<span class="op">$</span>fon, <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="kw">c</span>(<span class="st">&quot;not fon&quot;</span>, <span class="st">&quot;fon&quot;</span>))
+
+<span class="co"># inspect again</span>
+<span class="kw">table</span>(benin<span class="op">$</span>ethnicity)</code></pre></div>
+<pre><code>
+      Adja        Ani Betamaribe      Dendi   Ditamari    Dompago 
+        33          4          2         30          9          2 
+       Ewe        Fon       Goun      Lokpa       Mahi       Mina 
+         1        152         37         12          6         34 
+   Natimba      Ouama       Peul      Somba       Wama        Yoa 
+         2          1          6          5          2          5 
+       Yom 
+         4 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(benin<span class="op">$</span>passage)</code></pre></div>
+<pre><code>
+Control FonWife    Wife 
+    118     118     111 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># summary stats again</span>
+<span class="kw">summary</span>(benin)</code></pre></div>
+<pre><code>     sex           age          ethnicity        fon         passage   
+ male  :174   Min.   :18.00   Fon    :152   not fon:189   Control:118  
+ female:173   1st Qu.:25.00   Goun   : 37   fon    :158   FonWife:118  
+              Median :31.00   Mina   : 34                 Wife   :111  
+              Mean   :32.74   Adja   : 33                              
+              3rd Qu.:39.00   Dendi  : 30                              
+              Max.   :70.00   Lokpa  : 12                              
+                              (Other): 49                              
+      vote       
+ Min.   :0.0000  
+ 1st Qu.:0.0000  
+ Median :0.0000  
+ Mean   :0.4438  
+ 3rd Qu.:1.0000  
+ Max.   :1.0000  
+                 </code></pre>
+</div>
+<div id="models-with-binary-dependent-variables-and-interactions" class="section level3">
+<h3><span class="header-section-number">12.1.2</span> Models with Binary Dependent Variables and Interactions</h3>
+<p>Let’s estimate a model that predicts whether a respondent would vote for the incumbent using <code>passage</code>, <code>sex</code>, <code>age</code> as predictors.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m1 &lt;-<span class="st"> </span><span class="kw">glm</span>(vote <span class="op">~</span><span class="st"> </span>passage <span class="op">+</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>age, <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>), <span class="dt">data =</span> benin)
+<span class="kw">screenreg</span>(m1)</code></pre></div>
+<pre><code>
+==========================
+                Model 1   
+--------------------------
+(Intercept)       -0.15   
+                  (0.42)  
+passageFonWife     0.18   
+                  (0.26)  
+passageWife       -0.14   
+                  (0.27)  
+sexfemale         -0.57 **
+                  (0.22)  
+age                0.01   
+                  (0.01)  
+--------------------------
+AIC              477.39   
+BIC              496.64   
+Log Likelihood  -233.69   
+Deviance         467.39   
+Num. obs.        347      
+==========================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>Let’s interpret the table. The respondents who received the message about Yayi Boni’s wife were not more likely to say that they would vote for the incumbent. Equally, respondents who were primed with the message of Boni’s Fon wife were not more likely to say that they intended to vote for the incumbent. The only non-zero finding, is a gender effect. Women are less likely to vote for the incumbent. The odds of a voting intention for the incumbent are 43% lower for women than for men (<code>exp(-.57)</code><span class="math inline">\(=0.57\)</span>).</p>
+<p>However, there is likely something missing from our model. Our goal was to test whether priming respondents with the message about the Fon wife made respondents more likely to say they would vote for Boni. We would only reasonably expect such an effect for coethnics with the wife. Therefore, we have to interact the treatment variable <code>passage</code> with the coethnic indicator <code>fon</code>. We do so in model 2.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m2 &lt;-<span class="st"> </span><span class="kw">glm</span>(vote <span class="op">~</span><span class="st"> </span>passage<span class="op">*</span>fon <span class="op">+</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>age, <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>), <span class="dt">data =</span> benin)
+<span class="kw">screenreg</span>(<span class="kw">list</span>(m1,m2))</code></pre></div>
+<pre><code>
+==============================================
+                       Model 1     Model 2    
+----------------------------------------------
+(Intercept)              -0.15        1.22 *  
+                         (0.42)      (0.53)   
+passageFonWife            0.18       -0.73    
+                         (0.26)      (0.39)   
+passageWife              -0.14       -0.57    
+                         (0.27)      (0.39)   
+sexfemale                -0.57 **    -0.60 *  
+                         (0.22)      (0.24)   
+age                       0.01       -0.00    
+                         (0.01)      (0.01)   
+fonfon                               -2.36 ***
+                                     (0.44)   
+passageFonWife:fonfon                 1.76 ** 
+                                     (0.58)   
+passageWife:fonfon                    0.19    
+                                     (0.67)   
+----------------------------------------------
+AIC                     477.39      424.28    
+BIC                     496.64      455.08    
+Log Likelihood         -233.69     -204.14    
+Deviance                467.39      408.28    
+Num. obs.               347         347       
+==============================================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>We now get significant interaction effects. We have three groups to compare: 1) Fon respondents who got no briefing about Boni’s wife. 2) Fon respondent’s who got a message about Boni’s wife but not her ethnicity. 3) Fon respondents who got a message about Boni’s Fon wife.</p>
+<p>We call the message about the wife but not her ethnicity a placebo treatment. By giving that, we can be sure that an estimated effect is not due to the popularity or notoriety of the wife.</p>
+<p>For respondents in the control group, the odds ratio for those with Fon ehnicity vs. other ethnicity is: <span class="math display">\[ OR1 = exp^{\beta_{Fon}} = exp^{-2.36} = 0.09 \]</span> The odds are reduced by 91%.</p>
+<p>There is no discernable effect between Fon respondents who did not receive a message about the wife and Fon respondents who were primed about Boni’s wife but not her ethnicity.</p>
+<p>The odds ratio would be computed as: <span class="math display">\[ OR2 = exp^{\beta_{Fon} + \beta{Fon X Group}} = exp^{-2.36 + 0.19} = 0.11 \]</span></p>
+<p>Finally, the interaction term between wife coethinc <code>fon</code> and priming about the wife’s ethnicity <code>passageFonWife:fon</code> is positive and significant. For such respondents the odds ratios are modified by <code>exp(-2.36 + 1.76)</code> which is <span class="math inline">\(0.55\)</span>. Therefore, for Fon respondents who received the treatment, the odds of voting for Boni were reduced by only 44%. This is evidence for the effect of priming.</p>
+</div>
+<div id="predicted-probabilities-and-predictive-power" class="section level3">
+<h3><span class="header-section-number">12.1.3</span> Predicted Probabilities and Predictive Power</h3>
+<p>To assess the predictive power of our model we will check the percentage of cases that it correctly predicted. Let’s look at our dependent variable first and find out what the naive guess is.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(benin<span class="op">$</span>vote)</code></pre></div>
+<pre><code>[1] 0.443804</code></pre>
+<p>The mean is <span class="math inline">\(0.44\)</span>. That means that 44% of the respondents said that they would vote for Boni. This also means that more people said, that they would not vote for him (<span class="math inline">\(100 - 44 = 56\%\)</span>). If we had no model and were to close our eyes and predict for a random respondent from our sample whether she would vote for or against Boni, the prediction that we should make is: she will not vote for Boni. This is the naive guess. The naive guess is <span class="math inline">\(0\)</span> - the best prediction without a statistical model.</p>
+<p>Now suppose, you predict <span class="math inline">\(0\)</span> for every respondent in the sample. This would give us a percent of correctly predicted cases of 56%. Remember that the mean is <span class="math inline">\(0.44\)</span>. This is the proportion of respondents who would vote for Boni. So, if we predict that everyone does not vote for Boni, our rate of correct predictions is 56%. Let’s get this in R.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># naive guess</span>
+nguess &lt;-<span class="st"> </span><span class="kw">ifelse</span>(<span class="kw">mean</span>(benin<span class="op">$</span>vote) <span class="op">&gt;</span><span class="st"> </span>.<span class="dv">5</span>, <span class="dt">yes =</span> <span class="dv">1</span>, <span class="dt">no =</span> <span class="dv">0</span>)
+nguess</code></pre></div>
+<pre><code>[1] 0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># percent correctly predicted using the naive guess</span>
+pcp.naive &lt;-<span class="st"> </span><span class="kw">ifelse</span>(<span class="kw">mean</span>(benin<span class="op">$</span>vote) <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span>, <span class="dt">yes =</span> <span class="kw">mean</span>(benin<span class="op">$</span>vote), <span class="dt">no =</span> <span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(benin<span class="op">$</span>vote))
+pcp.naive</code></pre></div>
+<pre><code>[1] 0.556196</code></pre>
+<p>We see that the naive guess is indeed 56%. Our statistical model that we estimated earlier must do better than this, otherwise our model will be useless. You can think of this like a linear model that does not win the F-test against the empty model. Such a model makes no contribution.</p>
+<p>We will now estimate predicted probabilities, expected values and estimate our rate of correctly predicted cases.</p>
+<p>Step 1: Predicted probabilities. We already know how to do this. We use the <code>predict()</code> function and set <code>type = &quot;response&quot;</code>. We attach the predicted probabilities for every respondent to the original dataset.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># predicted probabilities</span>
+benin<span class="op">$</span>pps &lt;-<span class="st"> </span><span class="kw">predict</span>(m2, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</code></pre></div>
+<p>Step 2: Expected values. Now, that we got our predicted probabilities of voting for Boni, we will assign everyone in our dataset who has a predicted probability greater than <span class="math inline">\(0.5\)</span> with an expected value of 1 and everyone else get’s a <span class="math inline">\(0\)</span>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">benin<span class="op">$</span>evs &lt;-<span class="st"> </span><span class="kw">ifelse</span>(benin<span class="op">$</span>pps <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span>, <span class="dt">yes =</span> <span class="dv">1</span>, <span class="dt">no =</span> <span class="dv">0</span>)</code></pre></div>
+<p>Step 3: Compute percentage correctly predicted. For every respondent in our dataset, we have made a prediction based on our model <code>m2</code>. We will compare our predictions to the actual outcomes now in a cross-table (sometimes called confusion matrix).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">confusion &lt;-<span class="st"> </span><span class="kw">table</span>(<span class="dt">actual =</span> benin<span class="op">$</span>vote, <span class="dt">expected.value =</span> benin<span class="op">$</span>evs)
+confusion</code></pre></div>
+<pre><code>      expected.value
+actual   0   1
+     0 133  60
+     1  55  99</code></pre>
+<p>The observations on the diagonal are our correct predictions where a predicted vote intention against Boni corresponds to an actual vote intention against Boni and a predicted vote intention for Boni corresponds to an actual vote intention to Boni.</p>
+<p>For 55 respondents, we predict that they do not want to vote for Boni but they respond that they do want to vote for him. These are what we call false negatives.</p>
+<p>For 60 respondents, we predict that they would want to vote for Boni but when asked they said that they would not want to vote for him. We call these mistakes false positives.</p>
+<p>For our purposes, false negatives are equally bad as false positives. We do want to make as few mistakes as possible but we do not care about the kind of mistake that we make. There are other applications where the kind of mistake matters (e.g. cancer tests). By varying the threshold from 0.5 to some other threshold value, we would change the amount of false negative and false positive mistakes that we make but we cannot get a lower overall rate of mistakes by changing the threshold (0.5 is optimal in that sense).</p>
+<p>To compute the percentage of correctly classified cases, we now divide the elements on the diagonal of the confusion matrix by all respondents. We use the <code>diag()</code> function and the <code>sum()</code> function to do this. The former takes the diagonal elements of the table and the latter takes a sum.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(<span class="kw">diag</span>(confusion)) <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(confusion)</code></pre></div>
+<pre><code>[1] 0.6685879</code></pre>
+<p>We correctly classify 67% of the respondents into Boni supporters and opponents. We thereby improve upon the naive guess which correctly classifies 56% of the respondents. Here, we compared against a baseline of no model. When we try to decide between models, we can use the same approach.</p>
+</div>
+<div id="joint-hypothesis-testing" class="section level3">
+<h3><span class="header-section-number">12.1.4</span> Joint hypothesis testing</h3>
+<p>Our first model <code>m1</code> included <code>passageFonWife</code>, <code>passageWife</code>, <code>sex</code>, and <code>age</code> as predictors. In our second model, we also included <code>fon</code> as well as interactions between <code>passageFonWife</code> and <code>fon</code>, and also <code>passageWife</code> and <code>fon</code>. We estimated three additional parameters in model <code>m2</code> compared to model <code>m1</code>. Let’s compare the models in a table again.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">screenreg</span>(<span class="kw">list</span>(m1, m2))</code></pre></div>
+<pre><code>
+==============================================
+                       Model 1     Model 2    
+----------------------------------------------
+(Intercept)              -0.15        1.22 *  
+                         (0.42)      (0.53)   
+passageFonWife            0.18       -0.73    
+                         (0.26)      (0.39)   
+passageWife              -0.14       -0.57    
+                         (0.27)      (0.39)   
+sexfemale                -0.57 **    -0.60 *  
+                         (0.22)      (0.24)   
+age                       0.01       -0.00    
+                         (0.01)      (0.01)   
+fonfon                               -2.36 ***
+                                     (0.44)   
+passageFonWife:fonfon                 1.76 ** 
+                                     (0.58)   
+passageWife:fonfon                    0.19    
+                                     (0.67)   
+----------------------------------------------
+AIC                     477.39      424.28    
+BIC                     496.64      455.08    
+Log Likelihood         -233.69     -204.14    
+Deviance                467.39      408.28    
+Num. obs.               347         347       
+==============================================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>As you can see, the log-likelihood in <code>m2</code> is larger than the log-likelihood in <code>m1</code>. That means that the same is true for the likelihoods. The likelihood is a relative measure. We do not know whether any particular value is large or small but we can compare the likelihoods between two nested models. We want to test now whether the increase in the likelihood could be due too chance (sampling variability). To do this, we apply the likelihood ratio test.</p>
+<p>In R, you need to load the <code>libary(lmtest)</code> to carry out the test. The actual test is done by using the <code>lrtest()</code> function which stands for likelihood-ratio test. We will do this now. The null hypothesis is that <code>m2</code> is not an improvement on <code>m1</code> but that they are similar models, i.e. both explain the world equally well. We can reject that null if the p value is small. Here, we require it to be less than <span class="math inline">\(0.05\)</span>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lrtest</span>(m1, m2)</code></pre></div>
+<pre><code>Likelihood ratio test
+
+Model 1: vote ~ passage + sex + age
+Model 2: vote ~ passage * fon + sex + age
+  #Df  LogLik Df  Chisq         Pr(&gt;Chisq)    
+1   5 -233.69                                 
+2   8 -204.14  3 59.108 0.0000000000009115 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Our p value is smaller than <span class="math inline">\(0.05\)</span>. We reject the null hypothesis.</p>
+<div id="predicted-probabilities-and-confidence-intervals" class="section level4">
+<h4><span class="header-section-number">12.1.4.1</span> Predicted Probabilities and Confidence intervals</h4>
+<p>We have constructed confidence intervals for our estimates before. Here, we want to quantify the uncertainty of our predictions. Imagine, we predict that a respondent will vote for Boni with 85% probability. This is what we call a point estimate, a prediction, of the outcome. Beacause, we predict this quantity from our model and our model parameters follow distributions, so does the prediction of the outcome.</p>
+<p>With a confidence interval of the prediction, we can show how precise our prediction is. Let’s say, we predict that the respondent will vote for Boni with 80% to 90% probability. That would be a more precise statement than if we were to predict that the respondent votes for Boni with 60% to 100% probability.</p>
+<p>The precision of the outcome depends on precision of our estimated parameters and their covariance. We will predict the probability of voting for Boni for the treatment group and Fon coethnic respondent and control groups.</p>
+<p>To illustrate the uncertainty of our estimates we will use the <code>predict()</code> function and set the argument <code>se.fit = TRUE</code> which will return standard errors alongside predictions. We will use the standard error to construct our confidence intervals.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># treatment group covariates</span>
+Xt &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">passage =</span> <span class="st">&quot;FonWife&quot;</span>, 
+  <span class="dt">fon =</span> <span class="st">&quot;fon&quot;</span>, 
+  <span class="dt">sex =</span> <span class="st">&quot;male&quot;</span>,
+  <span class="dt">age =</span> <span class="kw">mean</span>(benin<span class="op">$</span>age)
+  )
+
+<span class="co"># control group 1 covariates </span>
+Xc &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">passage =</span> <span class="st">&quot;Wife&quot;</span>,
+  <span class="dt">fon =</span> <span class="st">&quot;fon&quot;</span>,
+  <span class="dt">sex =</span> <span class="st">&quot;male&quot;</span>,
+  <span class="dt">age =</span> <span class="kw">mean</span>(benin<span class="op">$</span>age)
+)
+
+<span class="co"># predictions treatment</span>
+treat.prediction &lt;-<span class="st"> </span><span class="kw">predict</span>(m2, <span class="dt">newdata =</span> Xt, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>, <span class="dt">se.fit =</span> <span class="ot">TRUE</span>)
+<span class="co"># upper bound </span>
+treat.upper &lt;-<span class="st"> </span>treat.prediction<span class="op">$</span>fit <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>treat.prediction<span class="op">$</span>se.fit
+treat.upper</code></pre></div>
+<pre><code>        1 
+0.6178997 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">treat.lower &lt;-<span class="st"> </span>treat.prediction<span class="op">$</span>fit <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>treat.prediction<span class="op">$</span>se.fit
+treat.lower</code></pre></div>
+<pre><code>        1 
+0.3227125 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># point estimate</span>
+treat.point &lt;-<span class="st"> </span>treat.prediction<span class="op">$</span>fit
+treat.point</code></pre></div>
+<pre><code>        1 
+0.4703061 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># predictions control (message about wife but no coethnic)</span>
+pps.control &lt;-<span class="st"> </span><span class="kw">predict</span>(m2, <span class="dt">newdata =</span> Xc, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>, <span class="dt">se.fit =</span> <span class="ot">TRUE</span>)
+<span class="co"># upper bound</span>
+control.upper &lt;-<span class="st"> </span>pps.control<span class="op">$</span>fit <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>pps.control<span class="op">$</span>se.fit
+control.upper</code></pre></div>
+<pre><code>        1 
+0.3092137 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lower bound</span>
+control.lower &lt;-<span class="st"> </span>pps.control<span class="op">$</span>fit <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>pps.control<span class="op">$</span>se.fit
+control.lower</code></pre></div>
+<pre><code>         1 
+0.04649733 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># point estimate</span>
+control.point &lt;-<span class="st"> </span>pps.control<span class="op">$</span>fit
+control.point</code></pre></div>
+<pre><code>        1 
+0.1778555 </code></pre>
+<p>We predict that the Fon respondent who got the treatment message, votes for Boni with 47%. Our estimate is the range 32% to 62%. For the Fon respondent who received the control treatment, we predict that she votes for Boni with probability 18%. The estimate is in the range from 5% to 31%.</p>
+</div>
+</div>
+<div id="exercises-10" class="section level3">
+<h3><span class="header-section-number">12.1.5</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li>Load the non-western foreigners dataset <code>non_western_foreingners.RData</code>.</li>
+<li>Build a model that predicts <code>over.estimate</code> to find determinants of over-estimating the level of migration. Justify your choice of predictors and interpret the model output.</li>
+<li>What is the naive guess of <code>over.estimate</code>?</li>
+<li>What is the percentage of correctly predicted cases using the naive guess?</li>
+<li>What is the percent of correctly predicted cases of your model and how does it compare to the naive guess?</li>
+<li>Add predictors to your model and justify the choice.</li>
+<li>Are the added predictors jointly significant?</li>
+<li>What is the new rate of correctly predicted cases? Is it better than the first model and how does it compare to the naive guess?</li>
+<li>Vary the treshold for generating expected values and compute the percent correctly predicted cases again. How does it change?</li>
+<li>Vary a continuous predictor in a model and plot predicted probabilities over its range and include uncertainty estimates in the plot.</li>
+</ol>
+<!-- ### Final Preparation -->
+<!-- To prepare yourself for the final coursework, you can do the following bigger exercise. We will not be able to provide solutions for it but you can come to office hours/ drop in sessions and ask questions you have. -->
+<!-- <div class="container btn-container"> -->
+<!--   <a href="https://raw.githubusercontent.com/UCLSPP/datasets/master/data/final_coursework_sample.pdf" type = "button" class = "btn btn-lg btn-primary">Final Exam Exercise</a> -->
+<!-- </div> -->
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="solutions11.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="datacamp.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["statistics1.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
