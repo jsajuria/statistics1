@@ -109,7 +109,7 @@ In this instance, the adjustment did not change our substantial conclusion. Howe
 
 #### Classification
 
-Our binary variable is either 0 or 1. With the linear probability model, we predict the underlying (and fundamentally unobserved) probability that the outcome is 0 or 1. In order to decide whether an outcome is 0 or 1, we follow a simple rule: Every outcome with a probability of greater or equal 0.5 is assigned a 1 and a 0 otherwise. First, we create a new variable called `lm_pps`. Those are our model predictions or fitted values. They are predicted probabilities that the outcome is 1 - with the downside that we can get predictions outside the 0 to 1 interval.
+Our binary variable is either 0 or 1. With the linear probability model, we predict the underlying (and fundamentally unobserved) probability that the outcome is 0 or 1. In order to decide whether an outcome is 0 or 1, we follow a simple rule: Every outcome with a probability of greater or equal 0.5 is assigned a 1 and a 0 otherwise. First, we create a new variable called `lm_yhats`. Those are our model predictions or fitted values. They are predicted probabilities that the outcome is 1 - with the downside that we can get predictions outside the 0 to 1 interval.
 
 ```{r}
 # predicted probabilities

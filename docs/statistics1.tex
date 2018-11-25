@@ -5627,8 +5627,8 @@ is the maximum value.
 \end{Shaded}
 
 \begin{verbatim}
- [1] 5.201606 4.462380 6.134784 2.825017 4.383748 4.894286 4.502674
- [8] 4.836910 1.983851 6.348310
+ [1] 6.034943 5.100144 6.369319 2.479182 6.352504 2.417192 2.485653
+ [8] 6.975805 1.205389 3.994078
 \end{verbatim}
 
 We have indeed drawn 10 numbers but they are not integers as we would
@@ -5647,8 +5647,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 5.201606 4.462380 6.134784 2.825017 4.383748 4.894286 4.502674
- [8] 4.836910 1.983851 6.348310
+ [1] 6.034943 5.100144 6.369319 2.479182 6.352504 2.417192 2.485653
+ [8] 6.975805 1.205389 3.994078
 \end{verbatim}
 
 \begin{Shaded}
@@ -5659,8 +5659,8 @@ randomness. Let's draw 10 numbers again:
 \end{Shaded}
 
 \begin{verbatim}
- [1] 2.998999 2.993855 5.896027 3.353403 4.962556 5.695806 2.107456
- [8] 2.339513 5.929563 3.299450
+ [1] 5.555998 3.769431 5.403457 6.949023 2.283092 1.533248 3.062511
+ [8] 2.977389 2.791993 6.111669
 \end{verbatim}
 
 The numbers of the first and second roll differ because we have drawn
@@ -14614,10 +14614,10 @@ we predict the underlying (and fundamentally unobserved) probability
 that the outcome is 0 or 1. In order to decide whether an outcome is 0
 or 1, we follow a simple rule: Every outcome with a probability of
 greater or equal 0.5 is assigned a 1 and a 0 otherwise. First, we create
-a new variable called \texttt{lm\_pps}. Those are our model predictions
-or fitted values. They are predicted probabilities that the outcome is 1
-- with the downside that we can get predictions outside the 0 to 1
-interval.
+a new variable called \texttt{lm\_yhats}. Those are our model
+predictions or fitted values. They are predicted probabilities that the
+outcome is 1 - with the downside that we can get predictions outside the
+0 to 1 interval.
 
 \begin{Shaded}
 \begin{Highlighting}[]
